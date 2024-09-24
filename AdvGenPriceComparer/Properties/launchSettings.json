@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AdvGenPriceComparer (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AdvGenPriceComparer (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
