@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdvGenPriceComparer.Core.Models
 {
-    internal class Item
+    public class Item
     {
+        
+        
     }
 }
