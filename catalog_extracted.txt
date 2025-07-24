@@ -1,0 +1,208 @@
+
+--- Page 1 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 2 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 3 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 4 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 5 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 6 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 7 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 8 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 9 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 10 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 11 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 12 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 13 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 14 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 15 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 16 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 17 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 18 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 19 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 20 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 21 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 22 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 23 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 24 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 25 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 26 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 27 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 28 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 29 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 30 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 31 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 32 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 33 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 34 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 35 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 36 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 37 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 38 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 39 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 40 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 41 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 42 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 43 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 44 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 45 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 46 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 47 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 48 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 49 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 50 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 51 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]
+
+--- Page 52 ---
+<image: DeviceRGB, width: 960, height: 1509, bpc: 8>
+[OCR not available - see setup instructions above]

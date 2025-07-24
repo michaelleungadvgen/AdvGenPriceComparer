@@ -1,0 +1,504 @@
+[
+    {
+    "productID": "001",
+    "productName": "Uncle Tobys Muesli Bars 145g-185g",
+    "category": "Breakfast & Cereal",
+    "brand": "Uncle Tobys",
+    "description": "Muesli bars, various flavours, 145g-185g",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+    },
+    {
+    "productID": "002",
+    "productName": "Sanitarium Up&Go Liquid Breakfast 6x250mL",
+    "category": "Breakfast & Cereal",
+    "brand": "Sanitarium",
+    "description": "Liquid breakfast drink, 6 pack 250mL bottles",
+    "price": "$6.30",
+    "originalPrice": "$12.60",
+    "savings": "$6.30"
+    },
+    {
+    "productID": "003",
+    "productName": "Arnott's Shapes Crackers 130g-190g",
+    "category": "Snacks & Crackers",
+    "brand": "Arnott's",
+    "description": "Shapes crackers, various flavours, 130g-190g",
+    "price": "$2.00",
+    "originalPrice": "$4.00",
+    "savings": "$2.00"
+    },
+    {
+    "productID": "004",
+    "productName": "Sorbent 3-Ply Toilet Paper 16 Pack",
+    "category": "Household & Cleaning",
+    "brand": "Sorbent",
+    "description": "Silky White toilet paper, 16 pack, 3-ply",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00"
+    },
+    {
+    "productID": "005",
+    "productName": "Coles Australian Pork & Beef Bolognese Mince 500g",
+    "category": "Meat & Seafood",
+    "brand": "Coles",
+    "description": "Regular mince, 500g pack, sold uncooked",
+    "price": "$5.00",
+    "originalPrice": "$6.50",
+    "savings": "$1.50"
+    },
+    {
+    "productID": "006",
+    "productName": "John West Tuna 95g",
+    "category": "Pantry & Cooking",
+    "brand": "John West",
+    "description": "Canned tuna, 95g can",
+    "price": "$1.35",
+    "originalPrice": "$2.70",
+    "savings": "$1.35"
+    },
+    {
+    "productID": "007",
+    "productName": "Cobs Popcorn 80g-120g",
+    "category": "Snacks & Crackers",
+    "brand": "Cobs",
+    "description": "Popcorn snacks, various flavours, 80g-120g",
+    "price": "$1.75",
+    "originalPrice": "$3.50",
+    "savings": "$1.75"
+    },
+    {
+    "productID": "008",
+    "productName": "Sanitarium Weet-Bix Bites Cereal 500g-510g",
+    "category": "Breakfast & Cereal",
+    "brand": "Sanitarium",
+    "description": "Breakfast cereal, 500g-510g box",
+    "price": "$3.50",
+    "originalPrice": "$6.00",
+    "savings": "$3.00"
+    },
+    {
+    "productID": "009",
+    "productName": "Red Bull Energy Drink 8x250mL",
+    "category": "Beverages",
+    "brand": "Red Bull",
+    "description": "Energy drink, 8 pack 250mL cans",
+    "price": "$10.50",
+    "originalPrice": "$21.00",
+    "savings": "$10.50"
+    },
+    {
+    "productID": "010",
+    "productName": "Dove Body Wash 1L",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "Body wash, 1 litre bottle",
+    "price": "$9.50",
+    "originalPrice": "$19.00",
+    "savings": "$9.50"
+    },
+    {
+    "productID": "011",
+    "productName": "Radiant Laundry Liquid 2L",
+    "category": "Household & Cleaning",
+    "brand": "Radiant",
+    "description": "Laundry liquid or powder, 2kg/2L",
+    "price": "$10.00",
+    "originalPrice": "$20.00",
+    "savings": "$10.00"
+    },
+    {
+    "productID": "012",
+    "productName": "Cadbury Chocolate Bar 30g-55g",
+    "category": "Chocolate & Confectionery",
+    "brand": "Cadbury",
+    "description": "Chocolate bars, various flavours, 30g-55g",
+    "price": "$1.20",
+    "originalPrice": "$3.00",
+    "savings": "$1.80"
+    },
+    {
+    "productID": "013",
+    "productName": "Fantastic Delites Rice Snacks 100g",
+    "category": "Snacks & Crackers",
+    "brand": "Fantastic",
+    "description": "Rice snacks, 100g pack",
+    "price": "$1.40",
+    "originalPrice": "$2.80",
+    "savings": "$1.40"
+    },
+    {
+    "productID": "014",
+    "productName": "McVities Chocolate Digestives 266g-355g",
+    "category": "Snacks & Crackers",
+    "brand": "McVities",
+    "description": "Plain or milk chocolate digestive biscuits, 266g-355g",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+    },
+    {
+    "productID": "015",
+    "productName": "Arnott's TeeVee Snacks Biscuits 175g",
+    "category": "Snacks & Crackers",
+    "brand": "Arnott's",
+    "description": "TeeVee snack biscuits, 175g pack",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+    },
+    {
+    "productID": "016",
+    "productName": "Lipton Ice Tea 1.5L",
+    "category": "Beverages",
+    "brand": "Lipton",
+    "description": "Iced tea, 1.5 litre bottle",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+    },
+    {
+    "productID": "017",
+    "productName": "Griffin's Marvels Biscuits 165g-200g",
+    "category": "Snacks & Crackers",
+    "brand": "Griffin's",
+    "description": "Marvel biscuits, various flavours, 165g-200g",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+    },
+    {
+    "productID": "018",
+    "productName": "Red Rock Deli Potato Chips 150g-165g",
+    "category": "Snacks & Crackers",
+    "brand": "Red Rock Deli",
+    "description": "Premium potato chips, 150g-165g",
+    "price": "$3.15",
+    "originalPrice": "$6.30",
+    "savings": "$3.15"
+    },
+    {
+    "productID": "019",
+    "productName": "Cadbury Old Gold Block Chocolate 170g-180g",
+    "category": "Chocolate & Confectionery",
+    "brand": "Cadbury",
+    "description": "Old Gold chocolate block, 170g-180g",
+    "price": "$1.40",
+    "originalPrice": "$8.00",
+    "savings": "$4.00"
+    },
+    {
+    "productID": "020",
+    "productName": "Lindt Lindor Gift Box 232g-235g",
+    "category": "Chocolate & Confectionery",
+    "brand": "Lindt",
+    "description": "Lindor chocolate gift box, 232g-235g",
+    "price": "$14.00",
+    "originalPrice": "$28.00",
+    "savings": "$14.00"
+    },
+    {
+    "productID": "021",
+    "productName": "Continental Soup Sensations 2 Serves 40g-70g",
+    "category": "Pantry & Cooking",
+    "brand": "Continental",
+    "description": "Soup mix, 2 serves, 40g-70g",
+    "price": "$1.75",
+    "originalPrice": "$3.50",
+    "savings": "$1.75"
+    },
+    {
+    "productID": "022",
+    "productName": "Aunt Betty's Puddings 2 Pack 190g-220g",
+    "category": "Pantry & Cooking",
+    "brand": "Aunt Betty's",
+    "description": "Ready-made puddings, 2 pack, 190g-220g",
+    "price": "$2.90",
+    "originalPrice": "$4.90",
+    "savings": "$2.90"
+    },
+    {
+    "productID": "023",
+    "productName": "Campbell's Real Stock 1L",
+    "category": "Pantry & Cooking",
+    "brand": "Campbell's",
+    "description": "Real stock, 1 litre carton",
+    "price": "$2.25",
+    "originalPrice": "$4.50",
+    "savings": "$2.25"
+    },
+    {
+    "productID": "024",
+    "productName": "Betty Crocker Baking Mix 370g-450g",
+    "category": "Pantry & Cooking",
+    "brand": "Betty Crocker",
+    "description": "Baking mix, various types, 370g-450g",
+    "price": "$3.00",
+    "originalPrice": "$6.00",
+    "savings": "$3.00"
+    },
+    {
+    "productID": "025",
+    "productName": "Moccona Café Classic Coffee Sachets 10 Pack",
+    "category": "Pantry & Cooking",
+    "brand": "Moccona",
+    "description": "Instant coffee sachets, 10 pack",
+    "price": "$3.95",
+    "originalPrice": "$7.90",
+    "savings": "$3.95"
+    },
+    {
+    "productID": "026",
+    "productName": "Ovaltine Sleep Calming Choc 400g",
+    "category": "Pantry & Cooking",
+    "brand": "Ovaltine",
+    "description": "Sleep calming chocolate drink, 400g",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00"
+    },
+    {
+    "productID": "027",
+    "productName": "Heinz Seriously Good Aioli or Mayonnaise 500mL",
+    "category": "Pantry & Cooking",
+    "brand": "Heinz",
+    "description": "Premium aioli or mayonnaise, 500mL",
+    "price": "$4.15",
+    "originalPrice": "$8.30",
+    "savings": "$4.15"
+    },
+    {
+    "productID": "028",
+    "productName": "Sunrice Jasmine Rice 5kg",
+    "category": "Pantry & Cooking",
+    "brand": "Sunrice",
+    "description": "Jasmine rice, 5kg bag",
+    "price": "$13.50",
+    "originalPrice": "$27.00",
+    "savings": "$13.50"
+    },
+    {
+    "productID": "029",
+    "productName": "Gold Sunset Vegetable or Canola Oil 4L",
+    "category": "Pantry & Cooking",
+    "brand": "Gold Sunset",
+    "description": "Cooking oil, vegetable or canola, 4 litre",
+    "price": "$15.00",
+    "originalPrice": "$30.00",
+    "savings": "$15.00"
+    },
+    {
+    "productID": "030",
+    "productName": "Bulla Creamy Classics Ice Cream Tub 2L",
+    "category": "Frozen Foods",
+    "brand": "Bulla",
+    "description": "Ice cream tub, 2 litre",
+    "price": "$5.50",
+    "originalPrice": "$11.00",
+    "savings": "$5.50"
+    },
+    {
+    "productID": "031",
+    "productName": "Flora ProActiv 250g",
+    "category": "Dairy & Chilled",
+    "brand": "Flora",
+    "description": "ProActiv spread, 250g",
+    "price": "$2.85",
+    "originalPrice": "$5.75",
+    "savings": "$2.90"
+    },
+    {
+    "productID": "032",
+    "productName": "Hong Kong Dim Sim Kitchen Pork & Chive Dumplings 300g",
+    "category": "Frozen Foods",
+    "brand": "Hong Kong Dim Sim Kitchen",
+    "description": "Pork and chive dumplings, 300g",
+    "price": "$4.25",
+    "originalPrice": "$8.50",
+    "savings": "$4.25"
+    },
+    {
+    "productID": "033",
+    "productName": "Hershey's or Reese's Ice Cream Tub 1L",
+    "category": "Frozen Foods",
+    "brand": "Hershey's/Reese's",
+    "description": "Ice cream tub, various flavours, 1 litre",
+    "price": "$5.00",
+    "originalPrice": "$10.00",
+    "savings": "$5.00"
+    },
+    {
+    "productID": "034",
+    "productName": "Australian Envy Apples",
+    "category": "Fresh Produce",
+    "brand": "Australian",
+    "description": "Fresh Envy apples, per kg",
+    "price": "$4.90/kg",
+    "originalPrice": "$6.90/kg",
+    "savings": "$2.00/kg"
+    },
+    {
+    "productID": "035",
+    "productName": "Coles Australian Carrots 1kg Bag",
+    "category": "Fresh Produce",
+    "brand": "Coles",
+    "description": "Australian carrots, 1kg bag",
+    "price": "$1.70/bag",
+    "originalPrice": "",
+    "savings": ""
+    },
+    {
+    "productID": "036",
+    "productName": "Australian Afourer Mandarins",
+    "category": "Fresh Produce",
+    "brand": "Australian",
+    "description": "Afourer mandarins, per kg",
+    "price": "$3.90/kg",
+    "originalPrice": "$5.50/kg",
+    "savings": ""
+    },
+    {
+    "productID": "037",
+    "productName": "Coles Free Range RSPCA Approved Chicken Breast Large Pack",
+    "category": "Meat & Seafood",
+    "brand": "Coles",
+    "description": "Free range chicken breast, large pack, per kg",
+    "price": "$12.00/kg",
+    "originalPrice": "$15.00/kg",
+    "savings": "$3.00/kg"
+    },
+    {
+    "productID": "038",
+    "productName": "Coles Australian No Added Hormones Beef Roast Topside",
+    "category": "Meat & Seafood",
+    "brand": "Coles",
+    "description": "Beef roast topside, no added hormones, per kg",
+    "price": "$16.00/kg",
+    "originalPrice": "$19.00/kg",
+    "savings": "$3.00/kg"
+    },
+    {
+    "productID": "039",
+    "productName": "Don Honey Ham",
+    "category": "Deli",
+    "brand": "Don",
+    "description": "Honey ham, per kg",
+    "price": "$22.00/kg",
+    "originalPrice": "$26.00/kg",
+    "savings": "$4.00/kg"
+    },
+    {
+    "productID": "040",
+    "productName": "Pepsi or Solo Soft Drink 1.25L",
+    "category": "Beverages",
+    "brand": "Pepsi/Solo",
+    "description": "Soft drink, 1.25 litre bottle",
+    "price": "$2.60",
+    "originalPrice": "$3.50",
+    "savings": "$1.50"
+    },
+    {
+    "productID": "041",
+    "productName": "V Energy Drink 4x250mL",
+    "category": "Beverages",
+    "brand": "V",
+    "description": "Energy drink, 4 pack 250mL cans",
+    "price": "$9.60",
+    "originalPrice": "$11.75",
+    "savings": "$4.75"
+    },
+    {
+    "productID": "042",
+    "productName": "Monster Energy Drink 4x500mL",
+    "category": "Beverages",
+    "brand": "Monster",
+    "description": "Energy drink, 4 pack 500mL cans",
+    "price": "$9.60",
+    "originalPrice": "$16.00",
+    "savings": "$6.40"
+    },
+    {
+    "productID": "043",
+    "productName": "Coca-Cola Soft Drink 12x300mL",
+    "category": "Beverages",
+    "brand": "Coca-Cola",
+    "description": "Soft drink, 12 pack 300mL cans",
+    "price": "$12.00",
+    "originalPrice": "$20.00",
+    "savings": "$8.00"
+    },
+    {
+    "productID": "044",
+    "productName": "Fanta or Sprite Soft Drink 24x375mL",
+    "category": "Beverages",
+    "brand": "Fanta/Sprite",
+    "description": "Soft drink, 24 pack 375mL cans",
+    "price": "$24.75",
+    "originalPrice": "$41.25",
+    "savings": "$16.50"
+    },
+    {
+    "productID": "045",
+    "productName": "Nivea Antiperspirant Roll On Deodorant 50mL",
+    "category": "Health & Beauty",
+    "brand": "Nivea",
+    "description": "Antiperspirant roll on deodorant, 50mL",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50"
+    },
+    {
+    "productID": "046",
+    "productName": "Nivea Rich Nourishing Body Lotion 400mL",
+    "category": "Health & Beauty",
+    "brand": "Nivea",
+    "description": "Rich nourishing or express hydration body lotion, 400mL",
+    "price": "$4.75",
+    "originalPrice": "$9.50",
+    "savings": "$4.75"
+    },
+    {
+    "productID": "047",
+    "productName": "Colgate Advanced White Toothpaste 200g",
+    "category": "Health & Beauty",
+    "brand": "Colgate",
+    "description": "Advanced white tartar and whitening or max fresh toothpaste, 200g",
+    "price": "$5.00",
+    "originalPrice": "$10.00",
+    "savings": "$5.00"
+    },
+    {
+    "productID": "048",
+    "productName": "Olay Regenerist Micro Sculpt Night Cream 50g",
+    "category": "Health & Beauty",
+    "brand": "Olay",
+    "description": "Regenerist micro sculpt night cream, 50g",
+    "price": "$30.00",
+    "originalPrice": "$60.00",
+    "savings": "$30.00"
+    },
+    {
+    "productID": "049",
+    "productName": "Palmolive Naturals Body Wash 1L",
+    "category": "Health & Beauty",
+    "brand": "Palmolive",
+    "description": "Naturals body wash, 1 litre",
+    "price": "$6.00",
+    "originalPrice": "$12.00",
+    "savings": "$6.00"
+    },
+    {
+    "productID": "050",
+    "productName": "Dove Advanced Body Wash 700mL",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "Advanced body wash, 700mL",
+    "price": "$11.00",
+    "originalPrice": "$22.00",
+    "savings": "$11.00"
+    }
+    ]
+    
+    
