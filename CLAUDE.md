@@ -14,7 +14,7 @@ The project aims to combat "illusory discounts" by tracking historical price dat
 
 ## Architecture
 
-- **AdvGenPriceComparer** - WinUI 3 desktop application (.NET 9.0)
+- **AdvGenPriceComparer.Desktop.WinUI** - WinUI 3 desktop application (.NET 9.0)
 - **AdvGenPriceComparer.Core** - Class library (.NET 9.0) containing:
   - Models: `Item`, `Place`, `PriceRecord`
   - Helpers: `NetworkManager` (for future P2P functionality)
@@ -29,15 +29,15 @@ dotnet build AdvGenPriceComparer.sln
 
 ### Running the Application
 ```
-dotnet run --project AdvGenPriceComparer
+dotnet run --project AdvGenPriceComparer.Desktop.WinUI
 ```
 
 ### Building for Different Platforms
 The WinUI app supports multiple platforms:
 ```
-dotnet publish AdvGenPriceComparer -c Release -r win-x64
-dotnet publish AdvGenPriceComparer -c Release -r win-x86
-dotnet publish AdvGenPriceComparer -c Release -r win-arm64
+dotnet publish AdvGenPriceComparer.Desktop.WinUI -c Release -r win-x64
+dotnet publish AdvGenPriceComparer.Desktop.WinUI -c Release -r win-x86
+dotnet publish AdvGenPriceComparer.Desktop.WinUI -c Release -r win-arm64
 ```
 
 ### Python Environment Setup

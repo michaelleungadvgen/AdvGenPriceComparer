@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(pip install:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(ren:*)",
+      "Bash(move:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(dotnet build:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

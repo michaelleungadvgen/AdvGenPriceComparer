@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace AdvGenPriceComparer.Core.Models;
 
-namespace AdvGenPriceComparer.Core.Models
+public class PriceRecord
 {
-    public class PriceRecord
-    {
-        public Guid Id { get; set; }    
-        public DateTime Date { get; set; }
-        public decimal Price { get; set; }
-        public Place Place { get; set; }
-        public Item Item { get; set; }
-    }
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public DateTime Date { get; set; } = DateTime.UtcNow;
+    public decimal Price { get; set; }
+    public required Place Place { get; set; }
+    public required Item Item { get; set; }
 }
