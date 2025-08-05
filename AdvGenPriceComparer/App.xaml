@@ -8,9 +8,93 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
+            
+            <!-- Color Palette -->
+            <SolidColorBrush x:Key="AppBackgroundBrush" Color="#f8fafb"/>
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#ffffff"/>
+            <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#ffffff"/>
+            <SolidColorBrush x:Key="BorderBrush" Color="#e2e8f0"/>
+            <SolidColorBrush x:Key="PrimaryBrush" Color="#3b82f6"/>
+            <SolidColorBrush x:Key="PrimaryLightBrush" Color="#dbeafe"/>
+            <SolidColorBrush x:Key="SuccessBrush" Color="#10b981"/>
+            <SolidColorBrush x:Key="WarningBrush" Color="#f59e0b"/>
+            <SolidColorBrush x:Key="DangerBrush" Color="#ef4444"/>
+            <SolidColorBrush x:Key="TextPrimaryBrush" Color="#1e293b"/>
+            <SolidColorBrush x:Key="TextSecondaryBrush" Color="#64748b"/>
+            <SolidColorBrush x:Key="TextMutedBrush" Color="#94a3b8"/>
+
+            <!-- Card Style -->
+            <Style x:Key="StatsCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="Margin" Value="8"/>
+            </Style>
+
+            <!-- Button Styles -->
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="Padding" Value="16,8"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+            </Style>
+
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="Padding" Value="16,8"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            </Style>
+
+            <!-- Text Styles -->
+            <Style x:Key="HeadingTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            </Style>
+
+            <Style x:Key="SubheadingTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            </Style>
+
+            <Style x:Key="BodyTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            </Style>
+
+            <Style x:Key="MutedTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+            </Style>
+
+            <!-- Search Box Style -->
+            <Style x:Key="SearchBoxStyle" TargetType="TextBox">
+                <Setter Property="Background" Value="#f1f5f9"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="18"/>
+                <Setter Property="Padding" Value="36,8,12,8"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="PlaceholderText" Value="Search items, stores, or prices..."/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

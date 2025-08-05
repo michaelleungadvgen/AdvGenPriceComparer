@@ -8,7 +8,15 @@
       "Bash(mv:*)",
       "Bash(cp:*)",
       "Bash(dotnet build:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(dotnet clean:*)",
+      "Bash(ls:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(dotnet run:*)",
+      "Bash(dotnet publish:*)",
+      "Bash(.AdvGenPriceComparer.Desktop.WinUI.exe)",
+      "Bash(\"AdvGenPriceComparer.Desktop.WinUI.exe\")"
     ],
     "deny": []
   }
