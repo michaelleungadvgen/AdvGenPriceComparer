@@ -333,8 +333,8 @@ public class NetworkManager : IDisposable
     {
         try
         {
-            var item = _groceryData.GetItemById(itemId);
-            var place = _groceryData.GetPlaceById(placeId);
+            var item = _groceryData.Items.GetById(itemId);
+            var place = _groceryData.Places.GetById(placeId);
 
             if (item == null || place == null) return;
 
@@ -380,7 +380,7 @@ public class NetworkManager : IDisposable
         try
         {
             // Find or create item
-            var item = _groceryData.GetAllItems()
+            var item = _groceryData.Items.GetAll()
                 .FirstOrDefault(i => i.Name == priceMessage.ItemName && 
                                    i.Brand == priceMessage.ItemBrand);
 
@@ -393,11 +393,11 @@ public class NetworkManager : IDisposable
                     priceMessage.ItemBarcode,
                     priceMessage.PackageSize
                 );
-                item = _groceryData.GetItemById(itemId);
+                item = _groceryData.Items.GetById(itemId);
             }
 
             // Find or create place
-            var place = _groceryData.GetAllPlaces()
+            var place = _groceryData.Places.GetAll()
                 .FirstOrDefault(p => p.Name == priceMessage.StoreName &&
                                    p.Chain == priceMessage.StoreChain);
 
@@ -409,7 +409,7 @@ public class NetworkManager : IDisposable
                     suburb: priceMessage.StoreSuburb,
                     state: priceMessage.StoreState
                 );
-                place = _groceryData.GetPlaceById(placeId);
+                place = _groceryData.Places.GetById(placeId);
             }
 
             if (item != null && place != null)
@@ -440,14 +440,14 @@ public class NetworkManager : IDisposable
         
         try
         {
-            var recentRecords = _groceryData.GetRecentPriceUpdates(100);
+            var recentRecords = _groceryData.PriceRecords.GetRecentPriceUpdates(100);
             
             foreach (var record in recentRecords)
             {
                 if (record.DateRecorded < request.LastSyncTime) continue;
 
-                var item = _groceryData.GetItemById(record.ItemId);
-                var place = _groceryData.GetPlaceById(record.PlaceId);
+                var item = _groceryData.Items.GetById(record.ItemId);
+                var place = _groceryData.Places.GetById(record.PlaceId);
 
                 if (item == null || place == null) continue;
 

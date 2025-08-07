@@ -1,10 +1,11 @@
 using LiteDB;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Repositories;
 
-public class ItemRepository
+public class ItemRepository : IItemRepository
 {
     private readonly DatabaseService _database;
 

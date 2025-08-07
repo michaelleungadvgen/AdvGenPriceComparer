@@ -5,6 +5,11 @@ namespace AdvGenPriceComparer.Core.Interfaces;
 
 public interface IGroceryDataService : IDisposable
 {
+    // Repository properties
+    IItemRepository Items { get; }
+    IPlaceRepository Places { get; }
+    IPriceRecordRepository PriceRecords { get; }
+
     // Item operations
     ObjectId AddGroceryItem(string name, string? brand = null, string? category = null, 
         string? barcode = null, string? packageSize = null, string? unit = null);

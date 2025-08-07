@@ -21,9 +21,9 @@ public class GroceryDataService : IGroceryDataService
         InitializeDefaultData();
     }
 
-    public ItemRepository Items { get; }
-    public PlaceRepository Places { get; }
-    public PriceRecordRepository PriceRecords { get; }
+    public IItemRepository Items { get; }
+    public IPlaceRepository Places { get; }
+    public IPriceRecordRepository PriceRecords { get; }
 
     private void InitializeDefaultData()
     {
