@@ -1,0 +1,62 @@
+[
+  {
+    "name": "AusPriceShare-Sydney",
+    "host": "aus-price.sydney.example.com",
+    "port": 8080,
+    "isSecure": false,
+    "region": "NSW",
+    "isActive": false,
+    "lastSeen": "0001-01-01T00:00:00",
+    "description": "Australian grocery price sharing network - Sydney region (Coles, Woolworths, IGA)"
+  },
+  {
+    "name": "AusPriceShare-Melbourne",
+    "host": "aus-price.melbourne.example.com", 
+    "port": 8080,
+    "isSecure": false,
+    "region": "VIC",
+    "isActive": false,
+    "lastSeen": "0001-01-01T00:00:00",
+    "description": "Australian grocery price sharing network - Melbourne region"
+  },
+  {
+    "name": "AusPriceShare-Brisbane",
+    "host": "aus-price.brisbane.example.com",
+    "port": 8080,
+    "isSecure": false,
+    "region": "QLD", 
+    "isActive": false,
+    "lastSeen": "0001-01-01T00:00:00",
+    "description": "Australian grocery price sharing network - Brisbane region"
+  },
+  {
+    "name": "AusPriceShare-Perth",
+    "host": "aus-price.perth.example.com",
+    "port": 8080,
+    "isSecure": false,
+    "region": "WA",
+    "isActive": false,
+    "lastSeen": "0001-01-01T00:00:00",
+    "description": "Australian grocery price sharing network - Perth region"
+  },
+  {
+    "name": "LocalTestServer",
+    "host": "localhost",
+    "port": 8081,
+    "isSecure": false,
+    "region": "Local",
+    "isActive": false,
+    "lastSeen": "0001-01-01T00:00:00",
+    "description": "Local testing server for development"
+  },
+  {
+    "name": "CommunityPriceHub-AU",
+    "host": "community.price-hub.org.au",
+    "port": 9090,
+    "isSecure": true,
+    "region": "AU",
+    "isActive": false,
+    "lastSeen": "0001-01-01T00:00:00",
+    "description": "Community-run price sharing hub for all Australian states"
+  }
+]

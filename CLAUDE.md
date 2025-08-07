@@ -86,9 +86,24 @@ Links a grocery `Item` to a supermarket `Place` with timestamp and price data - 
 ## Development Notes
 
 - Uses WinUI 3 with .NET 8.0 (downgraded from .NET 9.0 due to Windows App SDK compatibility issues)
+- **LiteDB Database** - Lightweight embedded database for storing grocery items, supermarket locations, and price records
 - Python scripts utilize PyPDF2, pdfplumber, and OCR libraries
-- Core models use nullable reference types
-- Extensive metadata support for comprehensive price comparison
+- Core models use nullable reference types with LiteDB BSON attributes
+- Extensive metadata support for comprehensive grocery price comparison
+
+## Database Structure
+
+### LiteDB Implementation
+- **Database File**: `GroceryPrices.db` stored in `%AppData%\AdvGenPriceComparer\`
+- **Collections**: `items`, `places`, `price_records`
+- **Indexes**: Optimized for name, brand, category, chain, suburb, price, and date queries
+
+### Key Services
+- **DatabaseService**: Core LiteDB connection and configuration
+- **ItemRepository**: CRUD operations for grocery items
+- **PlaceRepository**: CRUD operations for supermarket locations with geospatial support
+- **PriceRecordRepository**: Price tracking with historical analysis
+- **GroceryDataService**: High-level service combining all repositories
 
 ## Known Issues
 
