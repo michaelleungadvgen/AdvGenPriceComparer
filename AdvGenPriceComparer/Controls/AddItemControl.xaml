@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="AdvGenPriceComparer.Desktop.WinUI.Controls.AddItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer MaxHeight="500" VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16" Margin="8">
+            <!-- Header -->
+            <TextBlock Text="Add New Grocery Item" 
+                      FontSize="18" FontWeight="SemiBold"
+                      Margin="0,0,0,8"/>
+            
+            <TextBlock Text="Fill in the information below to add a new item to track prices across supermarkets." 
+                      TextWrapping="Wrap" 
+                      Foreground="{StaticResource TextSecondaryBrush}"
+                      Margin="0,0,0,12"/>
+
+            <!-- Basic Information Section -->
+            <Border Background="{StaticResource CardBackgroundBrush}" 
+                    CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Basic Information" FontWeight="SemiBold" FontSize="14"/>
+                    
+                    <!-- Name (Required) -->
+                    <StackPanel>
+                        <TextBlock Text="Product Name *" FontWeight="Medium"/>
+                        <TextBox x:Name="NameTextBox" 
+                                PlaceholderText="e.g., White Bread, Full Cream Milk"
+                                TextChanged="OnFieldChanged"/>
+                        <TextBlock x:Name="NameErrorText" 
+                                  Foreground="Red" FontSize="12" 
+                                  Visibility="Collapsed"/>
+                    </StackPanel>
+
+                    <!-- Brand -->
+                    <StackPanel>
+                        <TextBlock Text="Brand" FontWeight="Medium"/>
+                        <TextBox x:Name="BrandTextBox" 
+                                PlaceholderText="e.g., Tip Top, Dairy Farmers"
+                                TextChanged="OnFieldChanged"/>
+                    </StackPanel>
+
+                    <!-- Description -->
+                    <StackPanel>
+                        <TextBlock Text="Description" FontWeight="Medium"/>
+                        <TextBox x:Name="DescriptionTextBox" 
+                                PlaceholderText="Brief description of the product"
+                                TextWrapping="Wrap"
+                                AcceptsReturn="True"
+                                Height="60"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Category Section -->
+            <Border Background="{StaticResource CardBackgroundBrush}" 
+                    CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Category & Classification" FontWeight="SemiBold" FontSize="14"/>
+                    
+                    <!-- Category -->
+                    <StackPanel>
+                        <TextBlock Text="Category" FontWeight="Medium"/>
+                        <ComboBox x:Name="CategoryComboBox" 
+                                 PlaceholderText="Select category"
+                                 IsEditable="True"
+                                 SelectionChanged="OnFieldChanged">
+                            <ComboBoxItem Content="Bakery"/>
+                            <ComboBoxItem Content="Dairy"/>
+                            <ComboBoxItem Content="Meat"/>
+                            <ComboBoxItem Content="Produce"/>
+                            <ComboBoxItem Content="Pantry"/>
+                            <ComboBoxItem Content="Frozen"/>
+                            <ComboBoxItem Content="Beverages"/>
+                            <ComboBoxItem Content="Snacks"/>
+                            <ComboBoxItem Content="Health &amp; Beauty"/>
+                            <ComboBoxItem Content="Household"/>
+                            <ComboBoxItem Content="Other"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Sub Category -->
+                    <StackPanel>
+                        <TextBlock Text="Sub Category" FontWeight="Medium"/>
+                        <ComboBox x:Name="SubCategoryComboBox" 
+                                 PlaceholderText="Select sub category"
+                                 IsEditable="True"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Product Details Section -->
+            <Border Background="{StaticResource CardBackgroundBrush}" 
+                    CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Product Details" FontWeight="SemiBold" FontSize="14"/>
+                    
+                    <!-- Package Size -->
+                    <StackPanel>
+                        <TextBlock Text="Package Size" FontWeight="Medium"/>
+                        <TextBox x:Name="PackageSizeTextBox" 
+                                PlaceholderText="e.g., 680g, 2L, 500ml, 12 pack"
+                                TextChanged="OnPackageSizeChanged"/>
+                        <TextBlock x:Name="PackageSizeHint" 
+                                  Foreground="{StaticResource TextSecondaryBrush}" 
+                                  FontSize="12" 
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <!-- Unit -->
+                    <StackPanel>
+                        <TextBlock Text="Unit" FontWeight="Medium"/>
+                        <ComboBox x:Name="UnitComboBox" 
+                                 PlaceholderText="Select unit">
+                            <ComboBoxItem Content="each"/>
+                            <ComboBoxItem Content="g"/>
+                            <ComboBoxItem Content="kg"/>
+                            <ComboBoxItem Content="ml"/>
+                            <ComboBoxItem Content="L"/>
+                            <ComboBoxItem Content="pack"/>
+                            <ComboBoxItem Content="dozen"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Barcode -->
+                    <StackPanel>
+                        <TextBlock Text="Barcode" FontWeight="Medium"/>
+                        <TextBox x:Name="BarcodeTextBox" 
+                                PlaceholderText="e.g., 9310072123456"
+                                TextChanged="OnBarcodeChanged"/>
+                        <TextBlock x:Name="BarcodeErrorText" 
+                                  Foreground="Red" FontSize="12" 
+                                  Visibility="Collapsed"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Health & Diet Section -->
+            <Border Background="{StaticResource CardBackgroundBrush}" 
+                    CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Health &amp; Dietary Information" FontWeight="SemiBold" FontSize="14"/>
+                    
+                    <!-- Dietary Flags -->
+                    <StackPanel>
+                        <TextBlock Text="Dietary Flags" FontWeight="Medium"/>
+                        <StackPanel x:Name="DietaryFlagsPanel" Orientation="Horizontal" Spacing="8">
+                            <CheckBox Content="Organic" Tag="Organic"/>
+                            <CheckBox Content="Vegan" Tag="Vegan"/>
+                            <CheckBox Content="Vegetarian" Tag="Vegetarian"/>
+                            <CheckBox Content="Gluten-Free" Tag="Gluten-Free"/>
+                            <CheckBox Content="Sugar-Free" Tag="Sugar-Free"/>
+                            <CheckBox Content="Low-Fat" Tag="Low-Fat"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Allergens -->
+                    <StackPanel>
+                        <TextBlock Text="Contains Allergens" FontWeight="Medium"/>
+                        <StackPanel x:Name="AllergensPanel" Orientation="Horizontal" Spacing="8">
+                            <CheckBox Content="Gluten" Tag="Gluten"/>
+                            <CheckBox Content="Wheat" Tag="Wheat"/>
+                            <CheckBox Content="Milk" Tag="Milk"/>
+                            <CheckBox Content="Eggs" Tag="Eggs"/>
+                            <CheckBox Content="Nuts" Tag="Nuts"/>
+                            <CheckBox Content="Soy" Tag="Soy"/>
+                            <CheckBox Content="Fish" Tag="Fish"/>
+                            <CheckBox Content="Shellfish" Tag="Shellfish"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Tags -->
+                    <StackPanel>
+                        <TextBlock Text="Tags (comma separated)" FontWeight="Medium"/>
+                        <TextBox x:Name="TagsTextBox" 
+                                PlaceholderText="e.g., healthy, breakfast, daily, premium"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Additional Information -->
+            <Border Background="{StaticResource CardBackgroundBrush}" 
+                    CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Additional Information" FontWeight="SemiBold" FontSize="14"/>
+                    
+                    <!-- Image URL -->
+                    <StackPanel>
+                        <TextBlock Text="Image URL (optional)" FontWeight="Medium"/>
+                        <TextBox x:Name="ImageUrlTextBox" 
+                                PlaceholderText="https://example.com/image.jpg"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Validation Summary -->
+            <Border x:Name="ValidationSummary" 
+                   Background="#FFEBEE" 
+                   BorderBrush="Red" 
+                   BorderThickness="1"
+                   CornerRadius="4" 
+                   Padding="12"
+                   Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Please fix the following errors:" 
+                              FontWeight="SemiBold" 
+                              Foreground="Red"/>
+                    <TextBlock x:Name="ValidationErrors" 
+                              Foreground="Red" 
+                              TextWrapping="Wrap"
+                              Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

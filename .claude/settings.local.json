@@ -17,7 +17,8 @@
       "Bash(dotnet publish:*)",
       "Bash(.AdvGenPriceComparer.Desktop.WinUI.exe)",
       "Bash(\"AdvGenPriceComparer.Desktop.WinUI.exe\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(dir:*)"
     ],
     "deny": []
   }

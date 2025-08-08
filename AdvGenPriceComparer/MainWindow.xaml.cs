@@ -88,6 +88,11 @@ public sealed partial class MainWindow : Window
         _ = ShowAddItemDialogAsync();
     }
 
+    private void AddPlace_Click(object sender, RoutedEventArgs e)
+    {
+        _ = ShowAddPlaceDialogAsync();
+    }
+
     private void SharePrices_Click(object sender, RoutedEventArgs e)
     {
         _ = ShowComparePricesDialogAsync();
@@ -115,30 +120,98 @@ public sealed partial class MainWindow : Window
 
     private async Task ShowAddItemDialogAsync()
     {
+        var addItemControl = new Controls.AddItemControl();
+        
         var dialog = new ContentDialog
         {
             Title = "Add Grocery Item",
-            Content = CreateAddItemContent(),
+            Content = addItemControl,
             PrimaryButtonText = "Add Item",
             CloseButtonText = "Cancel",
             XamlRoot = this.Content.XamlRoot
         };
 
+        // Update primary button enabled state based on validation
+        addItemControl.ValidationChanged += (s, isValid) =>
+        {
+            dialog.IsPrimaryButtonEnabled = isValid;
+        };
+
+        // Initial validation check
+        dialog.IsPrimaryButtonEnabled = addItemControl.IsValid();
+
         var result = await dialog.ShowAsync().AsTask();
         
         if (result == ContentDialogResult.Primary)
         {
-            // TODO: Get values from form and add to database
-            // This is a placeholder - in a full implementation, you'd get values from input controls
             try
             {
-                var itemId = _groceryData.AddGroceryItem("Sample Item", "Sample Brand", "Groceries");
+                var item = addItemControl.CreateItemFromForm();
+                
+                // Add item to database using the comprehensive grocery data service
+                var itemId = _groceryData.AddGroceryItem(
+                    item.Name,
+                    item.Brand ?? "",
+                    item.Category ?? "Other",
+                    item.Barcode ?? "",
+                    item.PackageSize ?? ""
+                );
+                
                 await ShowSuccessMessageAsync("Item added successfully!");
                 LoadDashboardData(); // Refresh dashboard
             }
             catch (Exception ex)
             {
                 await ShowErrorMessageAsync($"Error adding item: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task ShowAddPlaceDialogAsync()
+    {
+        var addPlaceControl = new Controls.AddPlaceControl();
+        
+        var dialog = new ContentDialog
+        {
+            Title = "Add Store/Supermarket",
+            Content = addPlaceControl,
+            PrimaryButtonText = "Add Store",
+            CloseButtonText = "Cancel",
+            XamlRoot = this.Content.XamlRoot
+        };
+
+        // Update primary button enabled state based on validation
+        addPlaceControl.ValidationChanged += (s, isValid) =>
+        {
+            dialog.IsPrimaryButtonEnabled = isValid;
+        };
+
+        // Initial validation check
+        dialog.IsPrimaryButtonEnabled = addPlaceControl.IsValid();
+
+        var result = await dialog.ShowAsync().AsTask();
+        
+        if (result == ContentDialogResult.Primary)
+        {
+            try
+            {
+                var place = addPlaceControl.CreatePlaceFromForm();
+                
+                // Add place to database using the grocery data service
+                var placeId = _groceryData.AddSupermarket(
+                    place.Name,
+                    place.Chain ?? "",
+                    place.Suburb,
+                    place.State ?? "",
+                    place.Postcode ?? ""
+                );
+                
+                await ShowSuccessMessageAsync("Store added successfully!");
+                LoadDashboardData(); // Refresh dashboard
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorMessageAsync($"Error adding store: {ex.Message}");
             }
         }
     }

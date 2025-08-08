@@ -49,6 +49,8 @@
                            HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12">
                     <Button Content="Add Item" Style="{StaticResource PrimaryButtonStyle}" 
                             Click="AddItem_Click"/>
+                    <Button Content="Add Store" Style="{StaticResource SecondaryButtonStyle}" 
+                            Click="AddPlace_Click"/>
                     <Button Content="Compare Prices" Style="{StaticResource SecondaryButtonStyle}" 
                             Click="SharePrices_Click"/>
                     <Button Content="View Analytics" Style="{StaticResource SecondaryButtonStyle}" 
@@ -292,8 +294,9 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Add Item Action -->
-                                <Border Grid.Column="0" Background="{StaticResource PrimaryLightBrush}" 
-                                       CornerRadius="8" Padding="16" Margin="4">
+                                <Button Grid.Column="0" Background="{StaticResource PrimaryLightBrush}" 
+                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
+                                       Click="AddItem_Click">
                                     <StackPanel>
                                         <Border Background="{StaticResource PrimaryBrush}" 
                                                Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
@@ -306,45 +309,48 @@
                                                   Style="{StaticResource MutedTextStyle}"
                                                   Foreground="{StaticResource PrimaryBrush}"/>
                                     </StackPanel>
-                                </Border>
+                                </Button>
 
-                                <!-- Compare Prices Action -->
-                                <Border Grid.Column="1" Background="#f0f9ff" 
-                                       CornerRadius="8" Padding="16" Margin="4">
+                                <!-- Add Store Action -->
+                                <Button Grid.Column="1" Background="#f0f9ff" 
+                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
+                                       Click="AddPlace_Click">
                                     <StackPanel>
                                         <Border Background="#0ea5e9" 
+                                               Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
+                                            <FontIcon Glyph="&#xE80F;" FontSize="16" Foreground="White"/>
+                                        </Border>
+                                        <TextBlock Text="Add New Store" 
+                                                  Style="{StaticResource BodyTextStyle}" 
+                                                  Foreground="#0369a1" FontWeight="Medium"/>
+                                        <TextBlock Text="Track location" 
+                                                  Style="{StaticResource MutedTextStyle}"
+                                                  Foreground="#0ea5e9"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Compare Prices Action -->
+                                <Button Grid.Column="2" Background="#f0fdf4" 
+                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
+                                       Click="SharePrices_Click">
+                                    <StackPanel>
+                                        <Border Background="#16a34a" 
                                                Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
                                             <FontIcon Glyph="&#xE8EF;" FontSize="16" Foreground="White"/>
                                         </Border>
                                         <TextBlock Text="Compare Prices" 
                                                   Style="{StaticResource BodyTextStyle}" 
-                                                  Foreground="#0369a1" FontWeight="Medium"/>
-                                        <TextBlock Text="Across stores" 
-                                                  Style="{StaticResource MutedTextStyle}"
-                                                  Foreground="#0ea5e9"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <!-- Update Prices Action -->
-                                <Border Grid.Column="2" Background="#f0fdf4" 
-                                       CornerRadius="8" Padding="16" Margin="4">
-                                    <StackPanel>
-                                        <Border Background="#16a34a" 
-                                               Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
-                                            <FontIcon Glyph="&#xE8AB;" FontSize="16" Foreground="White"/>
-                                        </Border>
-                                        <TextBlock Text="Update Prices" 
-                                                  Style="{StaticResource BodyTextStyle}" 
                                                   Foreground="#15803d" FontWeight="Medium"/>
-                                        <TextBlock Text="Scan catalogs" 
+                                        <TextBlock Text="Across stores" 
                                                   Style="{StaticResource MutedTextStyle}"
                                                   Foreground="#16a34a"/>
                                     </StackPanel>
-                                </Border>
+                                </Button>
 
                                 <!-- View Reports Action -->
-                                <Border Grid.Column="3" Background="#fefce8" 
-                                       CornerRadius="8" Padding="16" Margin="4">
+                                <Button Grid.Column="3" Background="#fefce8" 
+                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
+                                       Click="ViewAnalytics_Click">
                                     <StackPanel>
                                         <Border Background="#eab308" 
                                                Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
@@ -357,7 +363,7 @@
                                                   Style="{StaticResource MutedTextStyle}"
                                                   Foreground="#eab308"/>
                                     </StackPanel>
-                                </Border>
+                                </Button>
                             </Grid>
                         </StackPanel>
                     </Border>
