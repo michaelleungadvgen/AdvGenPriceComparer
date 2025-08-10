@@ -1,4 +1,3 @@
-using LiteDB;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Globalization;
@@ -7,102 +6,73 @@ namespace AdvGenPriceComparer.Core.Models;
 
 public class Item
 {
-    [BsonId]
-    public ObjectId Id { get; set; } = ObjectId.NewObjectId();
+    public string Id { get; set; } = Guid.NewGuid().ToString();
     
-    [BsonField("name")]
     public required string Name { get; set; }
     
-    [BsonField("description")]
     public string? Description { get; set; }
     
-    [BsonField("brand")]
     public string? Brand { get; set; }
     
-    [BsonField("category")]
     public string? Category { get; set; }
     
-    [BsonField("subCategory")]
     public string? SubCategory { get; set; }
     
-    [BsonField("barcode")]
     public string? Barcode { get; set; }
     
-    [BsonField("packageSize")]
     public string? PackageSize { get; set; }
     
-    [BsonField("unit")]
     public string? Unit { get; set; }
     
-    [BsonField("weight")]
     public decimal? Weight { get; set; }
     
-    [BsonField("volume")]
     public decimal? Volume { get; set; }
     
-    [BsonField("imageUrl")]
     public string? ImageUrl { get; set; }
     
-    [BsonField("nutritionalInfo")]
     public Dictionary<string, decimal> NutritionalInfo { get; set; } = new();
     
-    [BsonField("allergens")]
     public List<string> Allergens { get; set; } = new();
     
-    [BsonField("dietaryFlags")]
     public List<string> DietaryFlags { get; set; } = new(); // "Vegan", "Gluten-Free", "Organic", etc.
     
-    [BsonField("tags")]
     public List<string> Tags { get; set; } = new();
     
-    [BsonField("isActive")]
     public bool IsActive { get; set; } = true;
     
-    [BsonField("dateAdded")]
     public DateTime DateAdded { get; set; } = DateTime.UtcNow;
     
-    [BsonField("lastUpdated")]
     public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
     
-    [BsonField("extraInfo")]
     public Dictionary<string, string> ExtraInformation { get; set; } = new();
 
     // Computed Properties (not stored in database)
-    [BsonIgnore]
     [JsonIgnore]
     public string DisplayName => !string.IsNullOrEmpty(Brand) ? $"{Brand} {Name}" : Name;
     
-    [BsonIgnore]
     [JsonIgnore]
     public string FullDescription => !string.IsNullOrEmpty(Description) ? 
         $"{DisplayName} - {Description}" : DisplayName;
     
-    [BsonIgnore]
     [JsonIgnore]
     public string CategoryPath => !string.IsNullOrEmpty(SubCategory) ? 
         $"{Category} > {SubCategory}" : Category ?? "Uncategorized";
     
-    [BsonIgnore]
     [JsonIgnore]
     public bool HasBarcode => !string.IsNullOrEmpty(Barcode);
     
-    [BsonIgnore]
     [JsonIgnore]
     public bool HasNutritionalInfo => NutritionalInfo.Count > 0;
     
-    [BsonIgnore]
     [JsonIgnore]
     public bool HasAllergens => Allergens.Count > 0;
     
-    [BsonIgnore]
     [JsonIgnore]
     public bool HasDietaryFlags => DietaryFlags.Count > 0;
     
-    [BsonIgnore]
     [JsonIgnore]
     public bool IsRecent => DateTime.UtcNow - DateAdded <= TimeSpan.FromDays(7);
     
-    [BsonIgnore]
     [JsonIgnore]
     public bool WasRecentlyUpdated => DateTime.UtcNow - LastUpdated <= TimeSpan.FromDays(1);
 

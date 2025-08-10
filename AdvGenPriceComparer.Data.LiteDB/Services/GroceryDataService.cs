@@ -47,7 +47,7 @@ public class GroceryDataService : IGroceryDataService
     }
 
     // Comprehensive grocery item operations
-    public ObjectId AddGroceryItem(string name, string? brand = null, string? category = null, 
+    public string AddGroceryItem(string name, string? brand = null, string? category = null, 
         string? barcode = null, string? packageSize = null, string? unit = null)
     {
         var item = new Item
@@ -63,7 +63,7 @@ public class GroceryDataService : IGroceryDataService
         return Items.Add(item);
     }
 
-    public ObjectId AddSupermarket(string name, string chain, string? address = null, 
+    public string AddSupermarket(string name, string chain, string? address = null, 
         string? suburb = null, string? state = null, string? postcode = null)
     {
         var place = new Place
@@ -79,7 +79,7 @@ public class GroceryDataService : IGroceryDataService
         return Places.Add(place);
     }
 
-    public ObjectId RecordPrice(ObjectId itemId, ObjectId placeId, decimal price, 
+    public string RecordPrice(string itemId, string placeId, decimal price, 
         bool isOnSale = false, decimal? originalPrice = null, string? saleDescription = null,
         DateTime? validFrom = null, DateTime? validTo = null, string source = "manual")
     {
@@ -113,7 +113,7 @@ public class GroceryDataService : IGroceryDataService
         return chain != null ? stores.Where(s => s.Chain == chain) : stores;
     }
 
-    public (decimal min, decimal max, decimal avg) GetPriceStatistics(ObjectId itemId)
+    public (decimal min, decimal max, decimal avg) GetPriceStatistics(string itemId)
     {
         var min = PriceRecords.GetLowestPrice(itemId) ?? 0;
         var max = PriceRecords.GetHighestPrice(itemId) ?? 0;
@@ -122,7 +122,7 @@ public class GroceryDataService : IGroceryDataService
         return (min, max, avg);
     }
 
-    public bool IsGoodDeal(ObjectId itemId, ObjectId placeId, decimal currentPrice)
+    public bool IsGoodDeal(string itemId, string placeId, decimal currentPrice)
     {
         var averagePrice = PriceRecords.GetAveragePrice(itemId);
         if (!averagePrice.HasValue) return false;
@@ -175,7 +175,7 @@ public class GroceryDataService : IGroceryDataService
     }
 
     // Interface implementations
-    public Item? GetItemById(ObjectId id)
+    public Item? GetItemById(string id)
     {
         return Items.GetById(id);
     }
@@ -185,7 +185,7 @@ public class GroceryDataService : IGroceryDataService
         return Items.GetAll();
     }
 
-    public Place? GetPlaceById(ObjectId id)
+    public Place? GetPlaceById(string id)
     {
         return Places.GetById(id);
     }

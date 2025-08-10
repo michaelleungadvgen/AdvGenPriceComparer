@@ -5,7 +5,6 @@ using System.Text.Json;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
-using LiteDB;
 
 namespace AdvGenPriceComparer.Core.Helpers;
 
@@ -328,7 +327,7 @@ public class NetworkManager : IDisposable
 
     #region Price Sharing
 
-    public async Task SharePrice(ObjectId itemId, ObjectId placeId, decimal price, 
+    public async Task SharePrice(string itemId, string placeId, decimal price, 
         bool isOnSale = false, decimal? originalPrice = null, string? saleDescription = null)
     {
         try

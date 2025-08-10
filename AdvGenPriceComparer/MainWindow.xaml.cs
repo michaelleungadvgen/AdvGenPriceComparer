@@ -10,7 +10,6 @@ using AdvGenPriceComparer.Core.Services;
 using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
-using LiteDB;
 
 namespace AdvGenPriceComparer.Desktop.WinUI;
 
@@ -573,7 +572,7 @@ public sealed partial class MainWindow : Window
         // This would update the "Network Users" stat card and any network status indicators
     }
 
-    public async Task ShareCurrentPrice(ObjectId itemId, ObjectId placeId, decimal price, bool isOnSale = false, decimal? originalPrice = null, string saleDescription = null)
+    public async Task ShareCurrentPrice(string itemId, string placeId, decimal price, bool isOnSale = false, decimal? originalPrice = null, string saleDescription = null)
     {
         try
         {

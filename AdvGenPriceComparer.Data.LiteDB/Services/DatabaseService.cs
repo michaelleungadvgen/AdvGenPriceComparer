@@ -1,5 +1,5 @@
 using LiteDB;
-using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Data.LiteDB.Entities;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Services;
 
@@ -12,14 +12,14 @@ public class DatabaseService : IDisposable
     {
         var mapper = BsonMapper.Global;
         
-        // Configure ObjectId serialization for the models
-        mapper.Entity<Item>()
+        // Configure ObjectId serialization for the entity models
+        mapper.Entity<ItemEntity>()
             .Id(x => x.Id);
             
-        mapper.Entity<Place>()
+        mapper.Entity<PlaceEntity>()
             .Id(x => x.Id);
             
-        mapper.Entity<PriceRecord>()
+        mapper.Entity<PriceRecordEntity>()
             .Id(x => x.Id);
 
         _database = new LiteDatabase(connectionString);
@@ -28,9 +28,9 @@ public class DatabaseService : IDisposable
         CreateIndexes();
     }
 
-    public ILiteCollection<Item> Items => _database.GetCollection<Item>("items");
-    public ILiteCollection<Place> Places => _database.GetCollection<Place>("places");
-    public ILiteCollection<PriceRecord> PriceRecords => _database.GetCollection<PriceRecord>("price_records");
+    public ILiteCollection<ItemEntity> Items => _database.GetCollection<ItemEntity>("items");
+    public ILiteCollection<PlaceEntity> Places => _database.GetCollection<PlaceEntity>("places");
+    public ILiteCollection<PriceRecordEntity> PriceRecords => _database.GetCollection<PriceRecordEntity>("price_records");
 
     private void CreateIndexes()
     {

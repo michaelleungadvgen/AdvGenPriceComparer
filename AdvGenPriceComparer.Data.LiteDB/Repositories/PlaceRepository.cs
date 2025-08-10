@@ -2,6 +2,8 @@ using LiteDB;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.Data.LiteDB.Entities;
+using AdvGenPriceComparer.Data.LiteDB.Utilities;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Repositories;
 
@@ -14,63 +16,75 @@ public class PlaceRepository : IPlaceRepository
         _database = database;
     }
 
-    public ObjectId Add(Place place)
+    public string Add(Place place)
     {
         place.DateAdded = DateTime.UtcNow;
-        return _database.Places.Insert(place);
+        var entity = PlaceEntity.FromPlace(place);
+        var insertedId = _database.Places.Insert(entity);
+        return insertedId.ToString();
     }
 
     public bool Update(Place place)
     {
-        return _database.Places.Update(place);
+        var entity = PlaceEntity.FromPlace(place);
+        return _database.Places.Update(entity);
     }
 
-    public bool Delete(ObjectId id)
+    public bool Delete(string id)
     {
-        return _database.Places.Delete(id);
+        if (!ObjectIdHelper.TryParseObjectId(id, out var objectId)) return false;
+        return _database.Places.Delete(objectId);
     }
 
-    public bool SoftDelete(ObjectId id)
+    public bool SoftDelete(string id)
     {
-        var place = _database.Places.FindById(id);
-        if (place == null) return false;
+        if (!ObjectIdHelper.TryParseObjectId(id, out var objectId)) return false;
         
-        place.IsActive = false;
-        return _database.Places.Update(place);
+        var entity = _database.Places.FindById(objectId);
+        if (entity == null) return false;
+        
+        entity.IsActive = false;
+        return _database.Places.Update(entity);
     }
 
-    public Place? GetById(ObjectId id)
+    public Place? GetById(string id)
     {
-        return _database.Places.FindById(id);
+        if (!ObjectIdHelper.TryParseObjectId(id, out var objectId)) return null;
+        var entity = _database.Places.FindById(objectId);
+        return entity?.ToPlace();
     }
 
     public IEnumerable<Place> GetAll()
     {
-        return _database.Places.FindAll().Where(x => x.IsActive);
+        return _database.Places.FindAll().Where(x => x.IsActive).Select(x => x.ToPlace());
     }
 
     public IEnumerable<Place> SearchByName(string name)
     {
         return _database.Places
-            .Find(x => x.Name.Contains(name, StringComparison.OrdinalIgnoreCase) && x.IsActive);
+            .Find(x => x.Name.Contains(name, StringComparison.OrdinalIgnoreCase) && x.IsActive)
+            .Select(x => x.ToPlace());
     }
 
     public IEnumerable<Place> GetByChain(string chain)
     {
         return _database.Places
-            .Find(x => x.Chain == chain && x.IsActive);
+            .Find(x => x.Chain == chain && x.IsActive)
+            .Select(x => x.ToPlace());
     }
 
     public IEnumerable<Place> GetBySuburb(string suburb)
     {
         return _database.Places
-            .Find(x => x.Suburb == suburb && x.IsActive);
+            .Find(x => x.Suburb == suburb && x.IsActive)
+            .Select(x => x.ToPlace());
     }
 
     public IEnumerable<Place> GetByState(string state)
     {
         return _database.Places
-            .Find(x => x.State == state && x.IsActive);
+            .Find(x => x.State == state && x.IsActive)
+            .Select(x => x.ToPlace());
     }
 
     public IEnumerable<Place> GetByLocation(double latitude, double longitude, double radiusKm)
@@ -82,7 +96,8 @@ public class PlaceRepository : IPlaceRepository
             {
                 var distance = CalculateDistance(latitude, longitude, x.Latitude!.Value, x.Longitude!.Value);
                 return distance <= radiusKm;
-            });
+            })
+            .Select(x => x.ToPlace());
     }
 
     public IEnumerable<string> GetAllChains()

@@ -1,26 +1,25 @@
 using AdvGenPriceComparer.Core.Models;
-using LiteDB;
 
 namespace AdvGenPriceComparer.Core.Interfaces;
 
 public interface IPriceRecordRepository
 {
-    ObjectId Add(PriceRecord priceRecord);
+    string Add(PriceRecord priceRecord);
     bool Update(PriceRecord priceRecord);
-    bool Delete(ObjectId id);
-    PriceRecord? GetById(ObjectId id);
+    bool Delete(string id);
+    PriceRecord? GetById(string id);
     IEnumerable<PriceRecord> GetAll();
-    IEnumerable<PriceRecord> GetByItem(ObjectId itemId);
-    IEnumerable<PriceRecord> GetByPlace(ObjectId placeId);
-    IEnumerable<PriceRecord> GetByItemAndPlace(ObjectId itemId, ObjectId placeId);
-    PriceRecord? GetLatestPrice(ObjectId itemId, ObjectId placeId);
+    IEnumerable<PriceRecord> GetByItem(string itemId);
+    IEnumerable<PriceRecord> GetByPlace(string placeId);
+    IEnumerable<PriceRecord> GetByItemAndPlace(string itemId, string placeId);
+    PriceRecord? GetLatestPrice(string itemId, string placeId);
     IEnumerable<PriceRecord> GetCurrentSales();
-    IEnumerable<PriceRecord> GetPriceHistory(ObjectId itemId, DateTime? fromDate = null, DateTime? toDate = null);
-    decimal? GetLowestPrice(ObjectId itemId);
-    decimal? GetHighestPrice(ObjectId itemId);
-    decimal? GetAveragePrice(ObjectId itemId);
+    IEnumerable<PriceRecord> GetPriceHistory(string itemId, DateTime? fromDate = null, DateTime? toDate = null);
+    decimal? GetLowestPrice(string itemId);
+    decimal? GetHighestPrice(string itemId);
+    decimal? GetAveragePrice(string itemId);
     IEnumerable<PriceRecord> GetBestDeals(int count = 10);
-    IEnumerable<PriceRecord> ComparePrices(ObjectId itemId);
+    IEnumerable<PriceRecord> ComparePrices(string itemId);
     int GetTotalRecordsCount();
     int GetRecordsCountThisWeek();
     int GetSaleRecordsCount();

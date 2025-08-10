@@ -1,15 +1,14 @@
 using AdvGenPriceComparer.Core.Models;
-using LiteDB;
 
 namespace AdvGenPriceComparer.Core.Interfaces;
 
 public interface IPlaceRepository
 {
-    ObjectId Add(Place place);
+    string Add(Place place);
     bool Update(Place place);
-    bool Delete(ObjectId id);
-    bool SoftDelete(ObjectId id);
-    Place? GetById(ObjectId id);
+    bool Delete(string id);
+    bool SoftDelete(string id);
+    Place? GetById(string id);
     IEnumerable<Place> GetAll();
     IEnumerable<Place> SearchByName(string name);
     IEnumerable<Place> GetByChain(string chain);

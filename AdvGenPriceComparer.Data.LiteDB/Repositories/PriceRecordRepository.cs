@@ -2,6 +2,8 @@ using LiteDB;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.Data.LiteDB.Entities;
+using AdvGenPriceComparer.Data.LiteDB.Utilities;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Repositories;
 
@@ -14,59 +16,80 @@ public class PriceRecordRepository : IPriceRecordRepository
         _database = database;
     }
 
-    public ObjectId Add(PriceRecord priceRecord)
+    public string Add(PriceRecord priceRecord)
     {
         priceRecord.DateRecorded = DateTime.UtcNow;
-        return _database.PriceRecords.Insert(priceRecord);
+        var entity = PriceRecordEntity.FromPriceRecord(priceRecord);
+        var insertedId = _database.PriceRecords.Insert(entity);
+        return insertedId.ToString();
     }
 
     public bool Update(PriceRecord priceRecord)
     {
-        return _database.PriceRecords.Update(priceRecord);
+        var entity = PriceRecordEntity.FromPriceRecord(priceRecord);
+        return _database.PriceRecords.Update(entity);
     }
 
-    public bool Delete(ObjectId id)
+    public bool Delete(string id)
     {
-        return _database.PriceRecords.Delete(id);
+        if (!ObjectIdHelper.TryParseObjectId(id, out var objectId)) return false;
+        return _database.PriceRecords.Delete(objectId);
     }
 
-    public PriceRecord? GetById(ObjectId id)
+    public PriceRecord? GetById(string id)
     {
-        return _database.PriceRecords.FindById(id);
+        if (!ObjectIdHelper.TryParseObjectId(id, out var objectId)) return null;
+        var entity = _database.PriceRecords.FindById(objectId);
+        return entity?.ToPriceRecord();
     }
 
     public IEnumerable<PriceRecord> GetAll()
     {
-        return _database.PriceRecords.FindAll();
+        return _database.PriceRecords.FindAll().Select(x => x.ToPriceRecord());
     }
 
-    public IEnumerable<PriceRecord> GetByItem(ObjectId itemId)
+    public IEnumerable<PriceRecord> GetByItem(string itemId)
     {
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId)) return Enumerable.Empty<PriceRecord>();
+        
         return _database.PriceRecords
-            .Find(x => x.ItemId == itemId)
-            .OrderByDescending(x => x.DateRecorded);
+            .Find(x => x.ItemId == objectItemId)
+            .OrderByDescending(x => x.DateRecorded)
+            .Select(x => x.ToPriceRecord());
     }
 
-    public IEnumerable<PriceRecord> GetByPlace(ObjectId placeId)
+    public IEnumerable<PriceRecord> GetByPlace(string placeId)
     {
+        if (!ObjectIdHelper.TryParseObjectId(placeId, out var objectPlaceId)) return Enumerable.Empty<PriceRecord>();
+        
         return _database.PriceRecords
-            .Find(x => x.PlaceId == placeId)
-            .OrderByDescending(x => x.DateRecorded);
+            .Find(x => x.PlaceId == objectPlaceId)
+            .OrderByDescending(x => x.DateRecorded)
+            .Select(x => x.ToPriceRecord());
     }
 
-    public IEnumerable<PriceRecord> GetByItemAndPlace(ObjectId itemId, ObjectId placeId)
+    public IEnumerable<PriceRecord> GetByItemAndPlace(string itemId, string placeId)
     {
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId) || !ObjectIdHelper.TryParseObjectId(placeId, out var objectPlaceId)) 
+            return Enumerable.Empty<PriceRecord>();
+        
         return _database.PriceRecords
-            .Find(x => x.ItemId == itemId && x.PlaceId == placeId)
-            .OrderByDescending(x => x.DateRecorded);
+            .Find(x => x.ItemId == objectItemId && x.PlaceId == objectPlaceId)
+            .OrderByDescending(x => x.DateRecorded)
+            .Select(x => x.ToPriceRecord());
     }
 
-    public PriceRecord? GetLatestPrice(ObjectId itemId, ObjectId placeId)
+    public PriceRecord? GetLatestPrice(string itemId, string placeId)
     {
-        return _database.PriceRecords
-            .Find(x => x.ItemId == itemId && x.PlaceId == placeId)
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId) || !ObjectIdHelper.TryParseObjectId(placeId, out var objectPlaceId)) 
+            return null;
+        
+        var entity = _database.PriceRecords
+            .Find(x => x.ItemId == objectItemId && x.PlaceId == objectPlaceId)
             .OrderByDescending(x => x.DateRecorded)
             .FirstOrDefault();
+            
+        return entity?.ToPriceRecord();
     }
 
     public IEnumerable<PriceRecord> GetCurrentSales()
@@ -76,12 +99,15 @@ public class PriceRecordRepository : IPriceRecordRepository
             .Find(x => x.IsOnSale && 
                       (!x.ValidTo.HasValue || x.ValidTo >= now) &&
                       (!x.ValidFrom.HasValue || x.ValidFrom <= now))
-            .OrderBy(x => x.Price);
+            .OrderBy(x => x.Price)
+            .Select(x => x.ToPriceRecord());
     }
 
-    public IEnumerable<PriceRecord> GetPriceHistory(ObjectId itemId, DateTime? fromDate = null, DateTime? toDate = null)
+    public IEnumerable<PriceRecord> GetPriceHistory(string itemId, DateTime? fromDate = null, DateTime? toDate = null)
     {
-        var query = _database.PriceRecords.Find(x => x.ItemId == itemId);
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId)) return Enumerable.Empty<PriceRecord>();
+        
+        var query = _database.PriceRecords.Find(x => x.ItemId == objectItemId);
         
         if (fromDate.HasValue)
             query = query.Where(x => x.DateRecorded >= fromDate.Value);
@@ -89,24 +115,30 @@ public class PriceRecordRepository : IPriceRecordRepository
         if (toDate.HasValue)
             query = query.Where(x => x.DateRecorded <= toDate.Value);
             
-        return query.OrderBy(x => x.DateRecorded);
+        return query.OrderBy(x => x.DateRecorded).Select(x => x.ToPriceRecord());
     }
 
-    public decimal? GetLowestPrice(ObjectId itemId)
+    public decimal? GetLowestPrice(string itemId)
     {
-        var records = _database.PriceRecords.Find(x => x.ItemId == itemId);
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId)) return null;
+        
+        var records = _database.PriceRecords.Find(x => x.ItemId == objectItemId);
         return records.Any() ? records.Min(x => x.Price) : null;
     }
 
-    public decimal? GetHighestPrice(ObjectId itemId)
+    public decimal? GetHighestPrice(string itemId)
     {
-        var records = _database.PriceRecords.Find(x => x.ItemId == itemId);
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId)) return null;
+        
+        var records = _database.PriceRecords.Find(x => x.ItemId == objectItemId);
         return records.Any() ? records.Max(x => x.Price) : null;
     }
 
-    public decimal? GetAveragePrice(ObjectId itemId)
+    public decimal? GetAveragePrice(string itemId)
     {
-        var records = _database.PriceRecords.Find(x => x.ItemId == itemId);
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId)) return null;
+        
+        var records = _database.PriceRecords.Find(x => x.ItemId == objectItemId);
         return records.Any() ? records.Average(x => x.Price) : null;
     }
 
@@ -116,17 +148,21 @@ public class PriceRecordRepository : IPriceRecordRepository
         return _database.PriceRecords
             .Find(x => x.IsOnSale && x.OriginalPrice.HasValue && x.OriginalPrice > x.Price)
             .OrderByDescending(x => (x.OriginalPrice!.Value - x.Price) / x.OriginalPrice.Value * 100)
-            .Take(count);
+            .Take(count)
+            .Select(x => x.ToPriceRecord());
     }
 
-    public IEnumerable<PriceRecord> ComparePrices(ObjectId itemId)
+    public IEnumerable<PriceRecord> ComparePrices(string itemId)
     {
+        if (!ObjectIdHelper.TryParseObjectId(itemId, out var objectItemId)) return Enumerable.Empty<PriceRecord>();
+        
         // Get the latest price for each place for a specific item
         return _database.PriceRecords
-            .Find(x => x.ItemId == itemId)
+            .Find(x => x.ItemId == objectItemId)
             .GroupBy(x => x.PlaceId)
             .Select(g => g.OrderByDescending(x => x.DateRecorded).First())
-            .OrderBy(x => x.Price);
+            .OrderBy(x => x.Price)
+            .Select(x => x.ToPriceRecord());
     }
 
     public int GetTotalRecordsCount()
@@ -150,7 +186,8 @@ public class PriceRecordRepository : IPriceRecordRepository
         return _database.PriceRecords
             .FindAll()
             .OrderByDescending(x => x.DateRecorded)
-            .Take(count);
+            .Take(count)
+            .Select(x => x.ToPriceRecord());
     }
 
     public Dictionary<string, int> GetPriceRecordsBySource()
