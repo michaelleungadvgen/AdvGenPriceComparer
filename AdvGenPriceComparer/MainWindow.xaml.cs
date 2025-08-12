@@ -48,6 +48,7 @@ public sealed partial class MainWindow : Window
         _serverConfig = new ServerConfigService(serverConfigPath);
         _networkManager = new NetworkManager(_groceryData, _serverConfig);
         
+        
         // Subscribe to network events
         _networkManager.PeerConnected += OnPeerConnected;
         _networkManager.PeerDisconnected += OnPeerDisconnected;
@@ -60,6 +61,7 @@ public sealed partial class MainWindow : Window
         LoadDashboardData();
         _ = InitializeNetworking();
     }
+
 
     private void LoadDashboardData()
     {
@@ -104,7 +106,12 @@ public sealed partial class MainWindow : Window
 
     private void ItemsNav_Click(object sender, RoutedEventArgs e)
     {
-        _ = ShowAddItemDialogAsync();
+        ContentFrame.Navigate(typeof(Views.ItemListView));
+    }
+
+    private void StoresNav_Click(object sender, RoutedEventArgs e)
+    {
+        ContentFrame.Navigate(typeof(Views.PlaceListView));
     }
 
     private void SharingNav_Click(object sender, RoutedEventArgs e)

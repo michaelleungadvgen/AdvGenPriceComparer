@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AdvGenPriceComparer.Desktop.WinUI.Views.ItemListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="24" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="Grocery Items" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,8"/>
+            <TextBlock Text="Track grocery prices across different supermarkets" FontSize="14" Opacity="0.7"/>
+            <Button Content="Add Item" Margin="0,16,0,0" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <!-- Simple Item List -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="12">
+                <!-- Sample Item Cards -->
+                <Border Background="#f0f9ff" Padding="16" CornerRadius="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Bread White Sliced 680g" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Text="Tip Top • Bakery • $3.50" FontSize="14" Opacity="0.7"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                            <Button Content="Edit" FontSize="12"/>
+                            <Button Content="Price History" FontSize="12"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+                <Border Background="#f0f9ff" Padding="16" CornerRadius="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Milk Full Cream 2L" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Text="Dairy Farmers • Dairy • $4.20" FontSize="14" Opacity="0.7"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                            <Button Content="Edit" FontSize="12"/>
+                            <Button Content="Price History" FontSize="12"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+                <Border Background="#f0f9ff" Padding="16" CornerRadius="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Bananas per kg" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Text="Fresh • Produce • $3.80/kg" FontSize="14" Opacity="0.7"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                            <Button Content="Edit" FontSize="12"/>
+                            <Button Content="Price History" FontSize="12"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

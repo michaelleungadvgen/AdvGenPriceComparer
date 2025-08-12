@@ -2,373 +2,88 @@
 <Window
     x:Class="AdvGenPriceComparer.Desktop.WinUI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AdvGenPriceComparer.Desktop.WinUI"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Grid Background="{StaticResource AppBackgroundBrush}">
+    <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Bar -->
-        <Border Grid.Row="0" Background="{StaticResource CardBackgroundBrush}" 
-                BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1">
-            <Grid>
-                <TextBlock Text="AdvGen Price Comparer" 
-                          FontFamily="Segoe UI" FontSize="16" FontWeight="SemiBold"
-                          Foreground="{StaticResource TextPrimaryBrush}"
-                          VerticalAlignment="Center" Margin="24,0"/>
-            </Grid>
+        <!-- Simple Title Bar -->
+        <Border Grid.Row="0" Background="#f8fafb" Padding="24,16" BorderBrush="#e2e8f0" BorderThickness="0,0,0,1">
+            <TextBlock Text="AdvGen Price Comparer" FontSize="18" FontWeight="SemiBold"/>
         </Border>
 
-        <!-- Top Navigation Bar -->
-        <Border Grid.Row="1" Background="{StaticResource CardBackgroundBrush}" 
-                BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1">
-            <Grid Margin="24,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Search Bar -->
-                <Grid Grid.Column="0" VerticalAlignment="Center">
-                    <TextBox x:Name="SearchBox" Style="{StaticResource SearchBoxStyle}" Width="400"/>
-                    <FontIcon Glyph="&#xE721;" FontSize="14" 
-                             Foreground="{StaticResource TextSecondaryBrush}"
-                             HorizontalAlignment="Left" VerticalAlignment="Center" Margin="12,0"/>
-                </Grid>
-
-                <!-- Quick Actions -->
-                <StackPanel Grid.Column="1" Orientation="Horizontal" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12">
-                    <Button Content="Add Item" Style="{StaticResource PrimaryButtonStyle}" 
-                            Click="AddItem_Click"/>
-                    <Button Content="Add Store" Style="{StaticResource SecondaryButtonStyle}" 
-                            Click="AddPlace_Click"/>
-                    <Button Content="Compare Prices" Style="{StaticResource SecondaryButtonStyle}" 
-                            Click="SharePrices_Click"/>
-                    <Button Content="View Analytics" Style="{StaticResource SecondaryButtonStyle}" 
-                            Click="ViewAnalytics_Click"/>
-                </StackPanel>
-
-                <!-- User Profile -->
-                <StackPanel Grid.Column="2" Orientation="Horizontal" 
-                           VerticalAlignment="Center" Spacing="8">
-                    <TextBlock Text="Price Manager" 
-                              Style="{StaticResource BodyTextStyle}" VerticalAlignment="Center"/>
-                    <Border Background="{StaticResource PrimaryBrush}" 
-                           Width="32" Height="32" CornerRadius="16">
-                        <TextBlock Text="PM" FontFamily="Segoe UI" FontSize="12" FontWeight="SemiBold"
-                                  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- Main Content -->
-        <Grid Grid.Row="2">
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Sidebar Navigation -->
-            <Border Grid.Column="0" Background="{StaticResource SidebarBackgroundBrush}" 
-                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
-                <StackPanel Margin="16" Spacing="8">
-                    <!-- Dashboard (Active) -->
-                    <Border Background="{StaticResource PrimaryLightBrush}" 
-                           CornerRadius="8" Padding="12" Height="44">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4"/>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Background="{StaticResource PrimaryBrush}" 
-                                   CornerRadius="2" Width="4"/>
-                            <FontIcon Grid.Column="1" Glyph="&#xE80F;" FontSize="14" 
-                                     Foreground="{StaticResource PrimaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="2" Text="Dashboard" 
-                                      Style="{StaticResource BodyTextStyle}" 
-                                      Foreground="{StaticResource PrimaryBrush}"
-                                      VerticalAlignment="Center" Margin="8,0"/>
-                        </Grid>
+            <!-- Simple Sidebar -->
+            <Border Grid.Column="0" Background="#ffffff" BorderBrush="#e2e8f0" BorderThickness="0,0,1,0" Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Navigation" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    
+                    <!-- Dashboard -->
+                    <Border Background="#dbeafe" Padding="12" CornerRadius="6">
+                        <TextBlock Text="Dashboard" FontWeight="Medium" Foreground="#3b82f6"/>
                     </Border>
-
+                    
                     <!-- Items -->
-                    <Button x:Name="ItemsNavButton" Height="44" HorizontalAlignment="Stretch" 
-                           Background="Transparent" BorderThickness="0" 
-                           Click="ItemsNav_Click" Padding="12">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <FontIcon Grid.Column="0" Glyph="&#xE8F1;" FontSize="14" 
-                                     Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Items" 
-                                      Style="{StaticResource BodyTextStyle}" 
-                                      Foreground="{StaticResource TextSecondaryBrush}"
-                                      VerticalAlignment="Center" Margin="8,0" HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Button>
-
-                    <!-- Price Sharing -->
-                    <Button x:Name="SharingNavButton" Height="44" HorizontalAlignment="Stretch" 
-                           Background="Transparent" BorderThickness="0" 
-                           Click="SharingNav_Click" Padding="12">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <FontIcon Grid.Column="0" Glyph="&#xE72D;" FontSize="14" 
-                                     Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Price Compare" 
-                                      Style="{StaticResource BodyTextStyle}" 
-                                      Foreground="{StaticResource TextSecondaryBrush}"
-                                      VerticalAlignment="Center" Margin="8,0" HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Button>
-
-                    <!-- Analytics -->
-                    <Button Height="44" HorizontalAlignment="Stretch" 
-                           Background="Transparent" BorderThickness="0" Padding="12">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <FontIcon Grid.Column="0" Glyph="&#xE9D9;" FontSize="14" 
-                                     Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Analytics" 
-                                      Style="{StaticResource BodyTextStyle}" 
-                                      Foreground="{StaticResource TextSecondaryBrush}"
-                                      VerticalAlignment="Center" Margin="8,0" HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Button>
-
-                    <!-- Network -->
-                    <Button x:Name="NetworkNavButton" Height="44" HorizontalAlignment="Stretch" 
-                           Background="Transparent" BorderThickness="0" 
-                           Click="NetworkNav_Click" Padding="12">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <FontIcon Grid.Column="0" Glyph="&#xE774;" FontSize="14" 
-                                     Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Network" 
-                                      Style="{StaticResource BodyTextStyle}" 
-                                      Foreground="{StaticResource TextSecondaryBrush}"
-                                      VerticalAlignment="Center" Margin="8,0" HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Button>
-
-                    <!-- Settings -->
-                    <Button Height="44" HorizontalAlignment="Stretch" 
-                           Background="Transparent" BorderThickness="0" Padding="12">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <FontIcon Grid.Column="0" Glyph="&#xE713;" FontSize="14" 
-                                     Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Settings" 
-                                      Style="{StaticResource BodyTextStyle}" 
-                                      Foreground="{StaticResource TextSecondaryBrush}"
-                                      VerticalAlignment="Center" Margin="8,0" HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Button>
+                    <Button x:Name="ItemsNavButton" Content="Items" HorizontalAlignment="Stretch" 
+                           Background="Transparent" BorderThickness="0" Click="ItemsNav_Click" Padding="12,8"/>
+                    
+                    <!-- Stores -->
+                    <Button x:Name="StoresNavButton" Content="Stores" HorizontalAlignment="Stretch" 
+                           Background="Transparent" BorderThickness="0" Click="StoresNav_Click" Padding="12,8"/>
+                    
+                    <!-- Quick Actions -->
+                    <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <Button Content="Add Item" HorizontalAlignment="Stretch" Click="AddItem_Click"/>
+                    <Button Content="Add Store" HorizontalAlignment="Stretch" Click="AddPlace_Click"/>
                 </StackPanel>
             </Border>
 
-            <!-- Main Content Area -->
+            <!-- Content Frame -->
             <ScrollViewer Grid.Column="1" Padding="24">
-                <StackPanel Spacing="20">
-                    <!-- Stats Cards -->
-                    <Grid>
+                <StackPanel>
+                    <!-- Dashboard Content -->
+                    <TextBlock Text="Dashboard" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                    
+                    <!-- Stats -->
+                    <Grid Margin="0,0,0,24">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
-                        <!-- Total Items -->
-                        <Border Grid.Column="0" Style="{StaticResource StatsCardStyle}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Total Items" 
-                                          Style="{StaticResource SubheadingTextStyle}"/>
-                                <TextBlock Grid.Row="1" Text="247" 
-                                          FontFamily="Segoe UI" FontSize="32" FontWeight="Bold"
-                                          Foreground="{StaticResource TextPrimaryBrush}" Margin="0,8"/>
-                                <TextBlock Grid.Row="2" Text="↗ +15 this week" 
-                                          Style="{StaticResource MutedTextStyle}"
-                                          Foreground="{StaticResource SuccessBrush}"/>
-                            </Grid>
+                        
+                        <Border Grid.Column="0" Background="#f0f9ff" Padding="16" CornerRadius="8" Margin="0,0,8,0">
+                            <StackPanel>
+                                <TextBlock Text="Total Items" FontSize="14" Opacity="0.7"/>
+                                <TextBlock Text="247" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
                         </Border>
-
-                        <!-- Tracked Stores -->
-                        <Border Grid.Column="1" Style="{StaticResource StatsCardStyle}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Tracked Stores" 
-                                          Style="{StaticResource SubheadingTextStyle}"/>
-                                <TextBlock Grid.Row="1" Text="5" 
-                                          FontFamily="Segoe UI" FontSize="32" FontWeight="Bold"
-                                          Foreground="{StaticResource TextPrimaryBrush}" Margin="0,8"/>
-                                <TextBlock Grid.Row="2" Text="Coles, Woolworths, IGA..." 
-                                          Style="{StaticResource MutedTextStyle}"
-                                          Foreground="{StaticResource SuccessBrush}"/>
-                            </Grid>
+                        
+                        <Border Grid.Column="1" Background="#f0fdf4" Padding="16" CornerRadius="8" Margin="4,0">
+                            <StackPanel>
+                                <TextBlock Text="Tracked Stores" FontSize="14" Opacity="0.7"/>
+                                <TextBlock Text="5" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
                         </Border>
-
-                        <!-- Price Updates -->
-                        <Border Grid.Column="2" Style="{StaticResource StatsCardStyle}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Price Updates" 
-                                          Style="{StaticResource SubheadingTextStyle}"/>
-                                <TextBlock Grid.Row="1" Text="34" 
-                                          FontFamily="Segoe UI" FontSize="32" FontWeight="Bold"
-                                          Foreground="{StaticResource TextPrimaryBrush}" Margin="0,8"/>
-                                <TextBlock Grid.Row="2" Text="⚠ 5 need review" 
-                                          Style="{StaticResource MutedTextStyle}"
-                                          Foreground="{StaticResource WarningBrush}"/>
-                            </Grid>
-                        </Border>
-
-                        <!-- Network Users -->
-                        <Border Grid.Column="3" Style="{StaticResource StatsCardStyle}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Network Users" 
-                                          Style="{StaticResource SubheadingTextStyle}"/>
-                                <TextBlock Grid.Row="1" Text="12" 
-                                          FontFamily="Segoe UI" FontSize="32" FontWeight="Bold"
-                                          Foreground="{StaticResource TextPrimaryBrush}" Margin="0,8"/>
-                                <TextBlock Grid.Row="2" Text="📡 3 online" 
-                                          Style="{StaticResource MutedTextStyle}"
-                                          Foreground="{StaticResource PrimaryBrush}"/>
-                            </Grid>
+                        
+                        <Border Grid.Column="2" Background="#fefce8" Padding="16" CornerRadius="8" Margin="8,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Price Updates" FontSize="14" Opacity="0.7"/>
+                                <TextBlock Text="34" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
                         </Border>
                     </Grid>
 
-                    <!-- Quick Actions Panel -->
-                    <Border Style="{StaticResource StatsCardStyle}">
-                        <StackPanel>
-                            <TextBlock Text="Quick Actions" Style="{StaticResource HeadingTextStyle}" Margin="0,0,0,16"/>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Add Item Action -->
-                                <Button Grid.Column="0" Background="{StaticResource PrimaryLightBrush}" 
-                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
-                                       Click="AddItem_Click">
-                                    <StackPanel>
-                                        <Border Background="{StaticResource PrimaryBrush}" 
-                                               Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
-                                            <FontIcon Glyph="&#xE710;" FontSize="16" Foreground="White"/>
-                                        </Border>
-                                        <TextBlock Text="Add New Item" 
-                                                  Style="{StaticResource BodyTextStyle}" 
-                                                  Foreground="{StaticResource PrimaryBrush}" FontWeight="Medium"/>
-                                        <TextBlock Text="Add to catalog" 
-                                                  Style="{StaticResource MutedTextStyle}"
-                                                  Foreground="{StaticResource PrimaryBrush}"/>
-                                    </StackPanel>
-                                </Button>
-
-                                <!-- Add Store Action -->
-                                <Button Grid.Column="1" Background="#f0f9ff" 
-                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
-                                       Click="AddPlace_Click">
-                                    <StackPanel>
-                                        <Border Background="#0ea5e9" 
-                                               Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
-                                            <FontIcon Glyph="&#xE80F;" FontSize="16" Foreground="White"/>
-                                        </Border>
-                                        <TextBlock Text="Add New Store" 
-                                                  Style="{StaticResource BodyTextStyle}" 
-                                                  Foreground="#0369a1" FontWeight="Medium"/>
-                                        <TextBlock Text="Track location" 
-                                                  Style="{StaticResource MutedTextStyle}"
-                                                  Foreground="#0ea5e9"/>
-                                    </StackPanel>
-                                </Button>
-
-                                <!-- Compare Prices Action -->
-                                <Button Grid.Column="2" Background="#f0fdf4" 
-                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
-                                       Click="SharePrices_Click">
-                                    <StackPanel>
-                                        <Border Background="#16a34a" 
-                                               Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
-                                            <FontIcon Glyph="&#xE8EF;" FontSize="16" Foreground="White"/>
-                                        </Border>
-                                        <TextBlock Text="Compare Prices" 
-                                                  Style="{StaticResource BodyTextStyle}" 
-                                                  Foreground="#15803d" FontWeight="Medium"/>
-                                        <TextBlock Text="Across stores" 
-                                                  Style="{StaticResource MutedTextStyle}"
-                                                  Foreground="#16a34a"/>
-                                    </StackPanel>
-                                </Button>
-
-                                <!-- View Reports Action -->
-                                <Button Grid.Column="3" Background="#fefce8" 
-                                       CornerRadius="8" Padding="16" Margin="4" BorderThickness="0"
-                                       Click="ViewAnalytics_Click">
-                                    <StackPanel>
-                                        <Border Background="#eab308" 
-                                               Width="32" Height="32" CornerRadius="6" Margin="0,0,0,8">
-                                            <FontIcon Glyph="&#xE9D9;" FontSize="16" Foreground="White"/>
-                                        </Border>
-                                        <TextBlock Text="View Reports" 
-                                                  Style="{StaticResource BodyTextStyle}" 
-                                                  Foreground="#a16207" FontWeight="Medium"/>
-                                        <TextBlock Text="Price analytics" 
-                                                  Style="{StaticResource MutedTextStyle}"
-                                                  Foreground="#eab308"/>
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Page Content Area -->
+                    <!-- Page Content Frame -->
                     <Frame x:Name="ContentFrame" Background="Transparent"/>
                 </StackPanel>
             </ScrollViewer>
