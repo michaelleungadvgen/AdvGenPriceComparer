@@ -37,15 +37,18 @@
                     
                     <!-- Items -->
                     <Button Content="Items" HorizontalAlignment="Stretch"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"/>
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="ItemsNav_Click"/>
                     
                     <!-- Stores -->
                     <Button Content="Stores" HorizontalAlignment="Stretch"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"/>
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="StoresNav_Click"/>
                     
                     <!-- Categories -->
                     <Button Content="Categories" HorizontalAlignment="Stretch"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"/>
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="CategoriesNav_Click"/>
                     
                     <!-- Quick Actions -->
                     <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8"/>

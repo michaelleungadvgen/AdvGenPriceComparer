@@ -49,8 +49,8 @@ public partial class App : Application
 
         // Services
         services.AddSingleton<IGroceryDataService>(new GroceryDataService(dbPath));
-        services.AddSingleton<IDialogService, DialogService>();
-        services.AddSingleton<INotificationService, NotificationService>();
+        services.AddSingleton<IDialogService, SimpleDialogService>();
+        services.AddSingleton<INotificationService, SimpleNotificationService>();
         services.AddSingleton<ServerConfigService>(new ServerConfigService(serverConfigPath));
         services.AddSingleton<NetworkManager>();
 
