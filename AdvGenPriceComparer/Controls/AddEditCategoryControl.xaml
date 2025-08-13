@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="AdvGenPriceComparer.Desktop.WinUI.Controls.AddEditCategoryControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="16" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock x:Name="HeaderText" Text="Add New Category" FontSize="18" FontWeight="SemiBold"/>
+            <TextBlock Text="Create or edit grocery categories to organize your items" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Category Name -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,16">
+            <TextBlock Text="Category Name" FontWeight="Medium" Margin="0,0,0,8"/>
+            <TextBox x:Name="CategoryNameTextBox" 
+                    PlaceholderText="e.g., Bakery, Dairy, Produce"
+                    Padding="12,8"
+                    FontSize="14"/>
+        </StackPanel>
+
+        <!-- Category Description -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,16">
+            <TextBlock Text="Description" FontWeight="Medium" Margin="0,0,0,8"/>
+            <TextBox x:Name="CategoryDescriptionTextBox" 
+                    PlaceholderText="Brief description of what items belong in this category"
+                    Padding="12,8"
+                    FontSize="14"/>
+        </StackPanel>
+
+        <!-- Category Icon/Emoji -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,16">
+            <TextBlock Text="Icon" FontWeight="Medium" Margin="0,0,0,8"/>
+            <ComboBox x:Name="CategoryIconComboBox" 
+                     PlaceholderText="Select an icon"
+                     HorizontalAlignment="Stretch"
+                     Padding="12,8">
+                <ComboBoxItem Content="🍞 Bread"/>
+                <ComboBoxItem Content="🥛 Milk"/>
+                <ComboBoxItem Content="🥩 Meat"/>
+                <ComboBoxItem Content="🥬 Vegetables"/>
+                <ComboBoxItem Content="🥫 Canned"/>
+                <ComboBoxItem Content="🧊 Frozen"/>
+                <ComboBoxItem Content="🍎 Fruit"/>
+                <ComboBoxItem Content="🧀 Cheese"/>
+                <ComboBoxItem Content="🥤 Beverages"/>
+                <ComboBoxItem Content="🍫 Snacks"/>
+                <ComboBoxItem Content="🧴 Health"/>
+                <ComboBoxItem Content="🧽 Household"/>
+                <ComboBoxItem Content="📦 Other"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Subcategories Section -->
+        <StackPanel Grid.Row="4">
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Subcategories" FontWeight="Medium"/>
+                <Button Grid.Column="1" Content="Add Subcategory" FontSize="12" Padding="8,4" 
+                       Click="AddSubcategory_Click"/>
+            </Grid>
+
+            <!-- Subcategory Input -->
+            <Grid x:Name="SubcategoryInputGrid" Margin="0,0,0,12" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="SubcategoryTextBox" Grid.Column="0" 
+                        PlaceholderText="Enter subcategory name"
+                        Padding="8,6" FontSize="14" Margin="0,0,8,0"/>
+                <Button Grid.Column="1" Content="Add" FontSize="12" Padding="8,4" 
+                       Click="ConfirmAddSubcategory_Click" Margin="0,0,4,0"/>
+                <Button Grid.Column="2" Content="Cancel" FontSize="12" Padding="8,4" 
+                       Click="CancelAddSubcategory_Click"/>
+            </Grid>
+
+            <!-- Subcategories List -->
+            <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="SubcategoriesPanel" Spacing="8">
+                    <!-- Subcategories will be added here dynamically -->
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Sample Subcategories for Preview -->
+            <StackPanel x:Name="SampleSubcategoriesPanel" Spacing="8" Visibility="Visible">
+                <TextBlock Text="Sample subcategories will appear here based on category type" 
+                          FontSize="12" Opacity="0.6" FontStyle="Italic" Margin="0,8,0,0"/>
+                
+                <!-- Sample items for Bakery -->
+                <StackPanel x:Name="BakerySamples" Spacing="4" Visibility="Collapsed">
+                    <Border Background="#f3f4f6" Padding="8" CornerRadius="4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Bread" FontSize="14"/>
+                            <Button Grid.Column="1" Content="×" FontSize="12" Padding="4" 
+                                   Background="Transparent" BorderThickness="0"/>
+                        </Grid>
+                    </Border>
+                    <Border Background="#f3f4f6" Padding="8" CornerRadius="4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Pastries" FontSize="14"/>
+                            <Button Grid.Column="1" Content="×" FontSize="12" Padding="4" 
+                                   Background="Transparent" BorderThickness="0"/>
+                        </Grid>
+                    </Border>
+                    <Border Background="#f3f4f6" Padding="8" CornerRadius="4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Cakes" FontSize="14"/>
+                            <Button Grid.Column="1" Content="×" FontSize="12" Padding="4" 
+                                   Background="Transparent" BorderThickness="0"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

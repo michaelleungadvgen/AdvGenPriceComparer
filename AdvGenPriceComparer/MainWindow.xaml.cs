@@ -114,6 +114,11 @@ public sealed partial class MainWindow : Window
         ContentFrame.Navigate(typeof(Views.PlaceListView));
     }
 
+    private void CategoriesNav_Click(object sender, RoutedEventArgs e)
+    {
+        ContentFrame.Navigate(typeof(Views.CategoryListView));
+    }
+
     private void SharingNav_Click(object sender, RoutedEventArgs e)
     {
         _ = ShowComparePricesDialogAsync();

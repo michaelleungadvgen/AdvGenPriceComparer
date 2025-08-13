@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AdvGenPriceComparer.Desktop.WinUI.Views.CategoryListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="24" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="Category Management" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,8"/>
+            <TextBlock Text="Organize grocery items into categories and subcategories" FontSize="14" Opacity="0.7"/>
+            <Button Content="Add Category" Margin="0,16,0,0" HorizontalAlignment="Left" Click="AddCategory_Click"/>
+        </StackPanel>
+
+        <!-- Categories List -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="16">
+                
+                <!-- Bakery Category -->
+                <Border Background="#fef3c7" Padding="20" CornerRadius="12" BorderBrush="#f59e0b" BorderThickness="1">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🍞 Bakery" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="Bread, pastries, cakes and baked goods" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="Edit" FontSize="12" Padding="8,4" Click="EditCategory_Click" Tag="Bakery"/>
+                                <Button Content="View Items" FontSize="12" Padding="8,4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Subcategories -->
+                        <TextBlock Text="Subcategories:" FontWeight="Medium" FontSize="12" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Bread" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Pastries" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Cakes" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Rolls" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Bagels" FontSize="12"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Dairy Category -->
+                <Border Background="#dbeafe" Padding="20" CornerRadius="12" BorderBrush="#3b82f6" BorderThickness="1">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🥛 Dairy &amp; Chilled" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="Milk, cheese, yogurt and refrigerated products" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="Edit" FontSize="12" Padding="8,4"/>
+                                <Button Content="View Items" FontSize="12" Padding="8,4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Subcategories -->
+                        <TextBlock Text="Subcategories:" FontWeight="Medium" FontSize="12" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Milk" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Cheese" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Yogurt" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Butter" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Cream" FontSize="12"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Meat & Seafood Category -->
+                <Border Background="#fecaca" Padding="20" CornerRadius="12" BorderBrush="#ef4444" BorderThickness="1">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🥩 Meat &amp; Seafood" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="Fresh and processed meat, fish and seafood" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="Edit" FontSize="12" Padding="8,4"/>
+                                <Button Content="View Items" FontSize="12" Padding="8,4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Subcategories -->
+                        <TextBlock Text="Subcategories:" FontWeight="Medium" FontSize="12" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Beef" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Chicken" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Pork" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Lamb" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Seafood" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Processed" FontSize="12"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Fresh Produce Category -->
+                <Border Background="#bbf7d0" Padding="20" CornerRadius="12" BorderBrush="#10b981" BorderThickness="1">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🥬 Fresh Produce" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="Fresh fruits, vegetables and herbs" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="Edit" FontSize="12" Padding="8,4"/>
+                                <Button Content="View Items" FontSize="12" Padding="8,4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Subcategories -->
+                        <TextBlock Text="Subcategories:" FontWeight="Medium" FontSize="12" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Fruit" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Vegetables" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Herbs" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Organic Produce" FontSize="12"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Pantry & Cooking Category -->
+                <Border Background="#f3e8ff" Padding="20" CornerRadius="12" BorderBrush="#8b5cf6" BorderThickness="1">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🥫 Pantry &amp; Cooking" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="Canned goods, pasta, rice, spices and condiments" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="Edit" FontSize="12" Padding="8,4"/>
+                                <Button Content="View Items" FontSize="12" Padding="8,4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Subcategories -->
+                        <TextBlock Text="Subcategories:" FontWeight="Medium" FontSize="12" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Canned Goods" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Pasta" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Rice" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Cereals" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Condiments" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Spices" FontSize="12"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Frozen Category -->
+                <Border Background="#e0f2fe" Padding="20" CornerRadius="12" BorderBrush="#0891b2" BorderThickness="1">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🧊 Frozen" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="Frozen meals, ice cream and frozen foods" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="Edit" FontSize="12" Padding="8,4"/>
+                                <Button Content="View Items" FontSize="12" Padding="8,4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Subcategories -->
+                        <TextBlock Text="Subcategories:" FontWeight="Medium" FontSize="12" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Frozen Meals" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Ice Cream" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Frozen Vegetables" FontSize="12"/>
+                            </Border>
+                            <Border Background="White" Padding="8,4" CornerRadius="4">
+                                <TextBlock Text="Frozen Meat" FontSize="12"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Summary Stats -->
+                <Border Background="#f8fafc" Padding="20" CornerRadius="12" BorderBrush="#e2e8f0" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <TextBlock Text="6" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Categories" FontSize="14" Opacity="0.7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <TextBlock Text="29" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Subcategories" FontSize="14" Opacity="0.7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                            <TextBlock Text="247" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Total Items" FontSize="14" Opacity="0.7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

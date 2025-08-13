@@ -40,6 +40,10 @@
                     <Button x:Name="StoresNavButton" Content="Stores" HorizontalAlignment="Stretch" 
                            Background="Transparent" BorderThickness="0" Click="StoresNav_Click" Padding="12,8"/>
                     
+                    <!-- Categories -->
+                    <Button x:Name="CategoriesNavButton" Content="Categories" HorizontalAlignment="Stretch" 
+                           Background="Transparent" BorderThickness="0" Click="CategoriesNav_Click" Padding="12,8"/>
+                    
                     <!-- Quick Actions -->
                     <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8"/>
                     <Button Content="Add Item" HorizontalAlignment="Stretch" Click="AddItem_Click"/>
