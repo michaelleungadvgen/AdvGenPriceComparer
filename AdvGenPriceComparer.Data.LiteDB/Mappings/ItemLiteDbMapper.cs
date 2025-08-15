@@ -1,5 +1,6 @@
 using LiteDB;
 using AdvGenPriceComparer.Core.Models;
+using System.Linq;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Mappings;
 
@@ -22,13 +23,13 @@ public static class ItemLiteDbMapper
             ["volume"] = item.Volume,
             ["imageUrl"] = item.ImageUrl,
             ["nutritionalInfo"] = new BsonDocument(item.NutritionalInfo.ToDictionary(kv => kv.Key, kv => new BsonValue(kv.Value))),
-            ["allergens"] = new BsonArray(item.Allergens),
-            ["dietaryFlags"] = new BsonArray(item.DietaryFlags),
-            ["tags"] = new BsonArray(item.Tags),
+            ["allergens"] = new BsonArray(item.Allergens.Select(x => new BsonValue(x))),
+            ["dietaryFlags"] = new BsonArray(item.DietaryFlags.Select(x => new BsonValue(x))),
+            ["tags"] = new BsonArray(item.Tags.Select(x => new BsonValue(x))),
             ["isActive"] = item.IsActive,
             ["dateAdded"] = item.DateAdded,
             ["lastUpdated"] = item.LastUpdated,
-            ["extraInfo"] = new BsonDocument(item.ExtraInformation)
+            ["extraInfo"] = new BsonDocument(item.ExtraInformation.ToDictionary(kv => kv.Key, kv => new BsonValue(kv.Value)))
         };
         return doc;
     }
@@ -37,7 +38,7 @@ public static class ItemLiteDbMapper
     {
         return new Item
         {
-            Id = Guid.TryParse(doc["_id"].AsString, out var guid) ? guid : Guid.NewGuid(),
+            Id = doc["_id"].AsString,
             Name = doc["name"].AsString,
             Description = doc["description"].IsNull ? null : doc["description"].AsString,
             Brand = doc["brand"].IsNull ? null : doc["brand"].AsString,
