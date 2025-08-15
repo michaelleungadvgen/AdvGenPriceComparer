@@ -1,3 +1,146 @@
 using Newtonsoft.Json;
 
 WoolworthsData woolworthsData = JsonConvert.DeserializeObject<WoolworthsData>(jsonData);
+
+using Microsoft.ML.Data;
+
+namespace AdvGenPriceComparer.ML.Models;
+
+public class ItemCategoryData
+{
+    [LoadColumn(0)]
+    public string Name { get; set; } = string.Empty;
+    
+    [LoadColumn(1)]
+    public string Category { get; set; } = string.Empty;
+}
+
+public class ItemCategoryPrediction
+{
+    [ColumnName("PredictedLabel")]
+    public string PredictedCategory { get; set; } = string.Empty;
+    
+    public float Probability { get; set; }
+}
+
+using Microsoft.ML;
+using AdvGenPriceComparer.ML.Models;
+using System.IO;
+
+namespace AdvGenPriceComparer.ML.Services;
+
+public class ItemCategoryPredictionService
+{
+    private readonly MLContext _mlContext;
+    private ITransformer? _model;
+    private PredictionEngine<ItemCategoryData, ItemCategoryPrediction>? _predictionEngine;
+
+    public ItemCategoryPredictionService()
+    {
+        _mlContext = new MLContext(seed: 0);
+    }
+
+    public void TrainModel(string dataPath)
+    {
+        // Load training data
+        IDataView dataView = _mlContext.Data.LoadFromTextFile<ItemCategoryData>(dataPath, hasHeader: true, separatorChar: ',');
+
+        // Create pipeline
+        var pipeline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(ItemCategoryData.Name))
+            .Append(_mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy())
+            .Append(_mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName: "PredictedLabel", inputColumnName: "PredictedLabel"));
+
+        // Train model
+        _model = pipeline.Fit(dataView);
+
+        // Create prediction engine
+        _predictionEngine = _mlContext.Model.CreatePredictionEngine<ItemCategoryData, ItemCategoryPrediction>(_model);
+    }
+
+    public string PredictCategory(string itemName)
+    {
+        if (_predictionEngine == null)
+            throw new InvalidOperationException("Model not trained. Call TrainModel() first.");
+
+        var prediction = _predictionEngine.Predict(new ItemCategoryData { Name = itemName });
+        return prediction.PredictedCategory;
+    }
+
+    public void SaveModel(string modelPath)
+    {
+        if (_model == null)
+            throw new InvalidOperationException("No model to save. Train the model first.");
+
+        _mlContext.Model.Save(_model, null, modelPath);
+    }
+
+    public void LoadModel(string modelPath)
+    {
+        _model = _mlContext.Model.Load(modelPath, out var modelInputSchema);
+        _predictionEngine = _mlContext.Model.CreatePredictionEngine<ItemCategoryData, ItemCategoryPrediction>(_model);
+    }
+}
+
+using AdvGenPriceComparer.Data.LiteDB.Entities;
+using System.IO;
+
+namespace AdvGenPriceComparer.ML.Services;
+
+public class TrainingDataGenerator
+{
+    public void GenerateTrainingData(List<ItemEntity> items, string outputPath)
+    {
+        var lines = new List<string> { "Name,Category" }; // Header
+        
+        foreach (var item in items)
+        {
+            if (!string.IsNullOrEmpty(item.Name) && !string.IsNullOrEmpty(item.Category))
+            {
+                // Escape commas in name and category
+                var escapedName = item.Name.Replace("\"", "\"\"");
+                var escapedCategory = item.Category.Replace("\"", "\"\"");
+                
+                lines.Add($"\"{escapedName}\",\"{escapedCategory}\"");
+            }
+        }
+
+        File.WriteAllLines(outputPath, lines);
+    }
+}
+
+using AdvGenPriceComparer.Data.LiteDB.Entities;
+using AdvGenPriceComparer.ML.Services;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Initialize services
+        var predictionService = new ItemCategoryPredictionService();
+        var dataGenerator = new TrainingDataGenerator();
+        
+        // Sample data - in practice, you'd load this from your database
+        var sampleItems = new List<ItemEntity>
+        {
+            new ItemEntity { Name = "Apple", Category = "Fruits" },
+            new ItemEntity { Name = "Banana", Category = "Fruits" },
+            new ItemEntity { Name = "Milk", Category = "Dairy" },
+            new ItemEntity { Name = "Bread", Category = "Bakery" },
+            // Add more sample data
+        };
+        
+        // Generate training data
+        string trainingDataPath = "training_data.csv";
+        dataGenerator.GenerateTrainingData(sampleItems, trainingDataPath);
+        
+        // Train model
+        predictionService.TrainModel(trainingDataPath);
+        
+        // Save trained model
+        predictionService.SaveModel("item_category_model.zip");
+        
+        // Test prediction
+        string predictedCategory = predictionService.PredictCategory("Orange");
+        Console.WriteLine($"Predicted category for 'Orange': {predictedCategory}");
+    }
+}
