@@ -1,0 +1,3 @@
+using Newtonsoft.Json;
+
+WoolworthsData woolworthsData = JsonConvert.DeserializeObject<WoolworthsData>(jsonData);

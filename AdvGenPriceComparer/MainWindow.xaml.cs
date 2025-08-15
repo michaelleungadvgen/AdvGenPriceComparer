@@ -1,23 +1,28 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Extensions.DependencyInjection;
+using AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.ObjectModel;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Core.Helpers;
-using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Services;
+using AdvGenPriceComparer.Core.Models;
 using System.IO;
-using System.Linq;
-using System.Collections.ObjectModel;
 
 namespace AdvGenPriceComparer.Desktop.WinUI;
 
 public sealed partial class MainWindow : Window
 {
-    private readonly IGroceryDataService _groceryData;
-    private readonly NetworkManager _networkManager;
-    private readonly ServerConfigService _serverConfig;
+    public MainWindowViewModel? ViewModel { get; private set; }
+
+    // Fallback services if DI fails
+    private IGroceryDataService? _groceryData;
+    private NetworkManager? _networkManager;
+    private ServerConfigService? _serverConfig;
     private readonly ObservableCollection<NetworkPeer> _connectedPeers = new();
     private readonly ObservableCollection<PriceShareMessage> _recentPriceUpdates = new();
 
@@ -25,73 +30,166 @@ public sealed partial class MainWindow : Window
     {
         InitializeComponent();
         
-        // Initialize database in AppData folder
-        var appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AdvGenPriceComparer");
-        Directory.CreateDirectory(appDataPath);
-        var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
-        
-        _groceryData = new GroceryDataService(dbPath);
-        
-        // Initialize P2P networking
-        var serverConfigPath = Path.Combine(appDataPath, "servers.json");
-        
-        // Copy servers.json from project root if it doesn't exist
-        if (!File.Exists(serverConfigPath))
-        {
-            var projectServerPath = Path.Combine(Directory.GetCurrentDirectory(), "servers.json");
-            if (File.Exists(projectServerPath))
-            {
-                File.Copy(projectServerPath, serverConfigPath);
-            }
-        }
-        
-        _serverConfig = new ServerConfigService(serverConfigPath);
-        _networkManager = new NetworkManager(_groceryData, _serverConfig);
-        
-        
-        // Subscribe to network events
-        _networkManager.PeerConnected += OnPeerConnected;
-        _networkManager.PeerDisconnected += OnPeerDisconnected;
-        _networkManager.PriceReceived += OnPriceReceived;
-        _networkManager.ErrorOccurred += OnNetworkError;
-        
-        // Subscribe to window close event
-        this.Closed += Window_Closed;
-        
-        LoadDashboardData();
-        _ = InitializeNetworking();
-    }
-
-
-    private void LoadDashboardData()
-    {
         try
         {
-            var stats = _groceryData.GetDashboardStats();
-            
-            // Update UI with real data - these would be bound to UI elements in a full MVVM implementation
-            // For now, this demonstrates how to use the database services
-            var totalItems = (int)stats["totalItems"];
-            var trackedStores = (int)stats["trackedStores"];
-            var priceRecords = (int)stats["priceRecords"];
-            
-            // TODO: Update UI elements with these values
+            InitializeViewModel();
         }
         catch (Exception ex)
         {
-            // Log error - in production, use proper logging
+            System.Diagnostics.Debug.WriteLine($"Error initializing ViewModel: {ex.Message}");
+            InitializeFallbackServices();
+        }
+        
+        // Subscribe to window close event
+        this.Closed += Window_Closed;
+    }
+
+    private void InitializeViewModel()
+    {
+        if (App.Services != null)
+        {
+            try
+            {
+                ViewModel = App.Services.GetRequiredService<MainWindowViewModel>();
+                // Set DataContext properly for WinUI 3
+                ((FrameworkElement)this.Content).DataContext = ViewModel;
+                return;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error getting ViewModel from DI: {ex.Message}");
+            }
+        }
+        
+        // If DI ViewModel fails, create manually
+        CreateViewModelManually();
+    }
+
+    private void CreateViewModelManually()
+    {
+        try
+        {
+            // Initialize database in AppData folder
+            var appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AdvGenPriceComparer");
+            Directory.CreateDirectory(appDataPath);
+            var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
+            
+            _groceryData = new GroceryDataService(dbPath);
+            
+            // Initialize P2P networking
+            var serverConfigPath = Path.Combine(appDataPath, "servers.json");
+            if (!File.Exists(serverConfigPath))
+            {
+                var projectServerPath = Path.Combine(Directory.GetCurrentDirectory(), "servers.json");
+                if (File.Exists(projectServerPath))
+                {
+                    File.Copy(projectServerPath, serverConfigPath);
+                }
+            }
+            
+            _serverConfig = new ServerConfigService(serverConfigPath);
+            _networkManager = new NetworkManager(_groceryData, _serverConfig);
+            
+            // Create manual services
+            var dialogService = new Services.DialogService(this);
+            var notificationService = new Services.NotificationService(this);
+            
+            ViewModel = new MainWindowViewModel(_groceryData, _networkManager, dialogService, notificationService);
+            ((FrameworkElement)this.Content).DataContext = ViewModel;
+            
+            // Subscribe to network events for fallback handling
+            if (_networkManager != null)
+            {
+                _networkManager.PeerConnected += OnPeerConnected;
+                _networkManager.PeerDisconnected += OnPeerDisconnected;
+                _networkManager.PriceReceived += OnPriceReceived;
+                _networkManager.ErrorOccurred += OnNetworkError;
+                
+                _ = InitializeNetworking();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error creating ViewModel manually: {ex.Message}");
+            InitializeFallbackServices();
+        }
+    }
+
+    private void InitializeFallbackServices()
+    {
+        try
+        {
+            // Minimal initialization without ViewModel
+            var appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AdvGenPriceComparer");
+            Directory.CreateDirectory(appDataPath);
+            var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
+            _groceryData = new GroceryDataService(dbPath);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error in fallback initialization: {ex.Message}");
+        }
+    }
+
+    private void LoadDashboardData()
+    {
+        // Simple fallback method for when ViewModel is not available
+        try
+        {
+            if (_groceryData != null)
+            {
+                var stats = _groceryData.GetDashboardStats();
+                // Could update UI directly here if needed
+            }
+        }
+        catch (Exception ex)
+        {
             System.Diagnostics.Debug.WriteLine($"Error loading dashboard data: {ex.Message}");
+        }
+    }
+
+    private async Task InitializeNetworking()
+    {
+        try
+        {
+            if (_networkManager != null)
+            {
+                var serverStarted = await _networkManager.StartServer(8081);
+                if (serverStarted)
+                {
+                    System.Diagnostics.Debug.WriteLine("P2P server started on port 8081");
+                }
+                await _networkManager.DiscoverAndConnectToServers("NSW");
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error initializing networking: {ex.Message}");
         }
     }
 
     private void AddItem_Click(object sender, RoutedEventArgs e)
     {
-        _ = ShowAddItemDialogAsync();
+        if (ViewModel != null)
+        {
+            ViewModel.AddItemCommand.Execute(null);
+        }
+        else
+        {
+            _ = ShowAddItemDialogAsync();
+        }
     }
 
     private void AddPlace_Click(object sender, RoutedEventArgs e)
     {
-        _ = ShowAddPlaceDialogAsync();
+        if (ViewModel != null)
+        {
+            ViewModel.AddPlaceCommand.Execute(null);
+        }
+        else
+        {
+            _ = ShowAddPlaceDialogAsync();
+        }
     }
 
     private void SharePrices_Click(object sender, RoutedEventArgs e)
@@ -510,34 +608,11 @@ public sealed partial class MainWindow : Window
 
     #region P2P Networking
 
-    private async Task InitializeNetworking()
-    {
-        try
-        {
-            // Start local server
-            var serverStarted = await _networkManager.StartServer(8081);
-            if (serverStarted)
-            {
-                System.Diagnostics.Debug.WriteLine("P2P server started on port 8081");
-            }
-
-            // Connect to available servers in the user's region (defaulting to NSW/Australia)
-            await _networkManager.DiscoverAndConnectToServers("NSW");
-            
-            UpdateNetworkStatus();
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Debug.WriteLine($"Error initializing networking: {ex.Message}");
-        }
-    }
-
     private void OnPeerConnected(object sender, NetworkPeer peer)
     {
         DispatcherQueue.TryEnqueue(() =>
         {
             _connectedPeers.Add(peer);
-            UpdateNetworkStatus();
         });
     }
 
@@ -550,7 +625,6 @@ public sealed partial class MainWindow : Window
             {
                 _connectedPeers.Remove(existingPeer);
             }
-            UpdateNetworkStatus();
         });
     }
 
@@ -578,11 +652,6 @@ public sealed partial class MainWindow : Window
         });
     }
 
-    private void UpdateNetworkStatus()
-    {
-        // TODO: Update UI elements showing network status
-        // This would update the "Network Users" stat card and any network status indicators
-    }
 
     public async Task ShareCurrentPrice(string itemId, string placeId, decimal price, bool isOnSale = false, decimal? originalPrice = null, string saleDescription = null)
     {
@@ -599,7 +668,21 @@ public sealed partial class MainWindow : Window
 
     private void Window_Closed(object sender, WindowEventArgs args)
     {
-        _networkManager?.Dispose();
+        try
+        {
+            if (ViewModel != null)
+            {
+                ViewModel.Dispose();
+            }
+            else
+            {
+                _networkManager?.Dispose();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error during window close: {ex.Message}");
+        }
     }
 
     #endregion
