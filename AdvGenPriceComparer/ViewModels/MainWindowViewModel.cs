@@ -109,6 +109,9 @@ public class MainWindowViewModel : BaseViewModel
     public ObservableCollection<NetworkPeer> ConnectedPeers { get; }
     public ObservableCollection<PriceShareMessage> RecentPriceUpdates { get; }
 
+    // Events
+    public event Action? OnStoreAdded;
+
     #endregion
 
     #region Commands
@@ -212,6 +215,9 @@ public class MainWindowViewModel : BaseViewModel
 
                 await _notificationService.ShowSuccessAsync("Store added successfully!");
                 await LoadDashboardDataAsync();
+                
+                // Navigate to the Store View after adding a place
+                OnStoreAdded?.Invoke();
             }
         }
         catch (Exception ex)

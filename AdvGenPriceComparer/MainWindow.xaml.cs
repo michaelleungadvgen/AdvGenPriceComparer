@@ -15,6 +15,9 @@ public sealed partial class MainWindow : Window
         ViewModel = viewModel;
         this.Closed += OnClosed;
         
+        // Subscribe to store added event
+        ViewModel.OnStoreAdded += () => ContentFrame.Navigate(typeof(Views.PlaceListView));
+        
         // Initialize services with XamlRoot when content is loaded
         this.Activated += (s, e) => 
         {
