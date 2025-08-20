@@ -1,3 +1,4 @@
+using System;
 using AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 using AdvGenPriceComparer.Desktop.WinUI.Services;
 using Microsoft.UI.Xaml;
@@ -19,14 +20,32 @@ public sealed partial class MainWindow : Window
         ViewModel.OnStoreAdded += () => ContentFrame.Navigate(typeof(Views.PlaceListView));
         
         // Initialize services with XamlRoot when content is loaded
-        this.Activated += (s, e) => 
+        this.Activated += (s, e) => InitializeServices();
+    }
+    
+    private void InitializeServices()
+    {
+        try
         {
-            var dialogService = App.Services.GetRequiredService<IDialogService>() as SimpleDialogService;
-            dialogService?.Initialize(this.Content.XamlRoot);
-            
-            var notificationService = App.Services.GetRequiredService<INotificationService>() as SimpleNotificationService;
-            notificationService?.Initialize(this.Content.XamlRoot);
-        };
+            if (this.Content?.XamlRoot != null)
+            {
+                var dialogService = App.Services.GetRequiredService<IDialogService>() as SimpleDialogService;
+                dialogService?.Initialize(this.Content.XamlRoot);
+                
+                var notificationService = App.Services.GetRequiredService<INotificationService>() as SimpleNotificationService;
+                notificationService?.Initialize(this.Content.XamlRoot);
+                
+                System.Diagnostics.Debug.WriteLine("Services initialized with XamlRoot");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("XamlRoot not available for service initialization");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error initializing services: {ex.Message}");
+        }
     }
 
     private void OnClosed(object sender, WindowEventArgs e)

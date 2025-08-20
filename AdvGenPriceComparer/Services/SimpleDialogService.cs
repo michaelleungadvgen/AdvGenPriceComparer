@@ -55,13 +55,21 @@ public class SimpleDialogService : IDialogService
 
     public async Task<bool> ShowAddPlaceDialogAsync(PlaceViewModel placeViewModel)
     {
-        if (_xamlRoot == null) return false;
+        System.Diagnostics.Debug.WriteLine($"ShowAddPlaceDialogAsync called, _xamlRoot is null: {_xamlRoot == null}");
+        
+        if (_xamlRoot == null) 
+        {
+            System.Diagnostics.Debug.WriteLine("_xamlRoot is null, returning false");
+            return false;
+        }
 
+        System.Diagnostics.Debug.WriteLine("Creating AddPlaceView");
         var addPlaceView = new AddPlaceView
         {
             DataContext = placeViewModel
         };
 
+        System.Diagnostics.Debug.WriteLine("Creating ContentDialog");
         var dialog = new ContentDialog
         {
             Title = "Add Store/Supermarket",
@@ -83,7 +91,9 @@ public class SimpleDialogService : IDialogService
         // Set initial state
         dialog.IsPrimaryButtonEnabled = placeViewModel.IsValid;
 
+        System.Diagnostics.Debug.WriteLine("Showing dialog");
         var result = await dialog.ShowAsync();
+        System.Diagnostics.Debug.WriteLine($"Dialog closed with result: {result}");
         return result == ContentDialogResult.Primary;
     }
 

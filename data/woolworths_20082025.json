@@ -1,0 +1,395 @@
+[
+  {
+    "productID": "WW002",
+    "productName": "Australian Fresh Whole Plain RSPCA Approved Chicken",
+    "category": "Meat & Seafood",
+    "brand": "Woolworths",
+    "price": "$4.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW003",
+    "productName": "Australian Blueberries 125g Punnet",
+    "category": "Fruit & Veg",
+    "brand": "Grow",
+    "price": "$4.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW004",
+    "productName": "Cadbury Dairy Milk, Bubbly or Marvellous Creations Blocks",
+    "category": "Pantry",
+    "brand": "Cadbury",
+    "price": "$9.30",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW005",
+    "productName": "Twinings Tea Bags Pk 80-100",
+    "category": "Pantry",
+    "brand": "Twinings",
+    "price": "$6.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW006",
+    "productName": "Golden Crumpets 150-190g Rounds Pk 6",
+    "category": "Bakery",
+    "brand": "Golden",
+    "price": "$6.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW007",
+    "productName": "Birds Eye Oven Bake Fish 425g",
+    "category": "Fridge & Freezer",
+    "brand": "Birds Eye",
+    "price": "$6.75",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW008",
+    "productName": "Fantastic Noodles Cup 45-70g or Bowl 85g",
+    "category": "Pantry",
+    "brand": "Fantastic",
+    "price": "$4.25",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW009",
+    "productName": "Arnott's Shapes Cracker Biscuits 160-190g",
+    "category": "Pantry",
+    "brand": "Arnott's",
+    "price": "$2.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW010",
+    "productName": "Sorbent Soft & Strong 3 Ply Toilet Paper",
+    "category": "Household",
+    "brand": "Sorbent",
+    "price": "$4.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW011",
+    "productName": "Coca-Cola, Sprite or Fanta Soft Drink Varieties 10 x 375ml",
+    "category": "Drinks & Pantry",
+    "brand": "Coca-Cola",
+    "price": "$10.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW012",
+    "productName": "Smith's Chips, Parker's Pretzel Minis, Sunbites Grain Waves, Twisties, Doritos or Cheetos Snacktime Faves Multipack 152-200g Pk 8",
+    "category": "Pantry",
+    "brand": "Smith's",
+    "price": "$3.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW013",
+    "productName": "Arnott's Chocolate Coated Biscuits 160-200g or Arnott's Chocolate Scotch Finger Biscuit 250g",
+    "category": "Pantry",
+    "brand": "Arnott's",
+    "price": "$2.75",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW014",
+    "productName": "Nuttelex Barista Milk 1 Litre",
+    "category": "Fridge & Freezer",
+    "brand": "Nuttelex",
+    "price": "$2.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW015",
+    "productName": "Kellogg's Corn Flakes 450g",
+    "category": "Pantry",
+    "brand": "Kellogg's",
+    "price": "$2.95",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW016",
+    "productName": "Darrell Lea Bites 150-204g",
+    "category": "Pantry",
+    "brand": "Darrell Lea",
+    "price": "$4.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW017",
+    "productName": "Nescafe Coffee Sachets Pk 8-10",
+    "category": "Pantry",
+    "brand": "Nescafe",
+    "price": "$4.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW018",
+    "productName": "Cadbury Dairy Milk Bubbly or Marvellous Creations Blocks 150-190g",
+    "category": "Pantry",
+    "brand": "Cadbury",
+    "price": "$4.30",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW019",
+    "productName": "Nestle Milo Frothy Sachets Pk 8",
+    "category": "Pantry",
+    "brand": "Nestle",
+    "price": "$5.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW020",
+    "productName": "Nescafe Freeze Dried Flavoured Coffee 95g",
+    "category": "Pantry",
+    "brand": "Nescafe",
+    "price": "$5.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW021",
+    "productName": "Coca-Cola, Fanta or Sprite Soft Drink Varieties 10 x 375ml",
+    "category": "Drinks & Pantry",
+    "brand": "Coca-Cola",
+    "price": "$10.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW022",
+    "productName": "The Natural Confectionery Co. Gummy Bears",
+    "category": "Pantry",
+    "brand": "The Natural Confectionery Co.",
+    "price": "$4.75",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW023",
+    "productName": "Gatorade Sports Drink 600ml, G Active Flavoured Water 600ml or Gatorade Fast Twitch 350ml",
+    "category": "Drinks & Pantry",
+    "brand": "Gatorade",
+    "price": "$1.75",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW024",
+    "productName": "Cheezels Cheese Box 125g",
+    "category": "Pantry",
+    "brand": "Cheezels",
+    "price": "$2.10",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW025",
+    "productName": "Bhuja Mix 140-160g",
+    "category": "Pantry",
+    "brand": "Bhuja",
+    "price": "$2.25",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW026",
+    "productName": "Doritos Corn Chips Share Pack 150-170g",
+    "category": "Pantry",
+    "brand": "Doritos",
+    "price": "$2.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW027",
+    "productName": "The Natural Confectionery Co. Medium Bags 130-230g, Sour Patch Kids 190g or Pascall Sugar Bags 160-300g",
+    "category": "Pantry",
+    "brand": "The Natural Confectionery Co.",
+    "price": "$3.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW028",
+    "productName": "Smith's Potato Chips Snacktime Faves Multipack 152g Pk 8",
+    "category": "Pantry",
+    "brand": "Smith's",
+    "price": "$3.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW029",
+    "productName": "Kettle Ridge Cut Potato Chips 165g",
+    "category": "Pantry",
+    "brand": "Kettle",
+    "price": "$2.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW030",
+    "productName": "Continental Cup a Soup 50-75g Pk 2",
+    "category": "Pantry",
+    "brand": "Continental",
+    "price": "$1.25",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW031",
+    "productName": "Frisp Crisps 15g - From the Health Food Aisle",
+    "category": "Health & Beauty",
+    "brand": "Frisp",
+    "price": "$1.40",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW032",
+    "productName": "Mission White Corn Tortillas 312g Pk 12",
+    "category": "Pantry",
+    "brand": "Mission",
+    "price": "$2.10",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW033",
+    "productName": "Real Stock 1 Litre",
+    "category": "Pantry",
+    "brand": "Real Stock",
+    "price": "$2.25",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW034",
+    "productName": "Campbell's Aunt Betty's Puddings 95g",
+    "category": "Pantry",
+    "brand": "Campbell's",
+    "price": "$2.45",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW035",
+    "productName": "Patak's Simmer Sauce 450g",
+    "category": "Pantry",
+    "brand": "Patak's",
+    "price": "$2.75",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW036",
+    "productName": "Allshaan Super Basmati Rice 5 kg",
+    "category": "Pantry",
+    "brand": "Allshaan",
+    "price": "$16.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW037",
+    "productName": "SunRice Australian Medium Grain Rice 10 kg",
+    "category": "Pantry",
+    "brand": "SunRice",
+    "price": "$19.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW038",
+    "productName": "Vileda Dishmatic Sponge Handle Pk 1",
+    "category": "Household",
+    "brand": "Vileda",
+    "price": "$1.95",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW039",
+    "productName": "Ansell Handee Paper Towel Pk 2",
+    "category": "Household",
+    "brand": "Ansell",
+    "price": "$1.95",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW040",
+    "productName": "Ansell Super Protector Gloves Pk1",
+    "category": "Household",
+    "brand": "Ansell",
+    "price": "$2.10",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW041",
+    "productName": "Sabco Duex Kitchen Scrub & Wipe Pk 3",
+    "category": "Household",
+    "brand": "Sabco",
+    "price": "$2.25",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW042",
+    "productName": "Flower Power Scrub Scourer Pk 1",
+    "category": "Household",
+    "brand": "Flower Power",
+    "price": "$3.15",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW043",
+    "productName": "OzKleen Shower Power Bathroom Cleaner 750ml",
+    "category": "Household",
+    "brand": "OzKleen",
+    "price": "$3.65",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW044",
+    "productName": "Sabco Dustpan Set Pk1",
+    "category": "Household",
+    "brand": "Sabco",
+    "price": "$4.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW045",
+    "productName": "Dettol Antibacterial Hand Wash Refill 950ml",
+    "category": "Household",
+    "brand": "Dettol",
+    "price": "$5.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW046",
+    "productName": "Dettol Disinfectant Wipes Pk 110",
+    "category": "Household",
+    "brand": "Dettol",
+    "price": "$6.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW047",
+    "productName": "Sabco Stainless Steel Toilet Brush Set",
+    "category": "Household",
+    "brand": "Sabco",
+    "price": "$7.15",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW048",
+    "productName": "Dettol Profresh Shower Gel Body Wash 950ml",
+    "category": "Household",
+    "brand": "Dettol",
+    "price": "$5.00",
+    "scrapedAt": "2025-08-19T21:50:58.711877",
+      "specialType": "1/2 Price"
+  },
+  {
+    "productID": "WW049",
+    "productName": "Energizer Max Plus Batteries AA or AAA Pk16",
+    "category": "Household",
+    "brand": "Energizer",
+    "price": "$13.75",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  },
+  {
+    "productID": "WW050",
+    "productName": "Duck Deep Action Toilet Gel 750ml",
+    "category": "Household",
+    "brand": "Duck",
+    "price": "$3.50",
+    "scrapedAt": "2025-08-19T21:50:58.711877"
+  }
+]

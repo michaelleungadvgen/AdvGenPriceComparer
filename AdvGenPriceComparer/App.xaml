@@ -13,6 +13,7 @@
             
             <!-- Converters -->
             <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             
             <!-- Color Palette -->
             <SolidColorBrush x:Key="AppBackgroundBrush" Color="#f8fafb"/>

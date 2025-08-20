@@ -2,8 +2,7 @@
 <UserControl
     x:Class="AdvGenPriceComparer.Desktop.WinUI.Views.AddPlaceView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:vm="using:AdvGenPriceComparer.Desktop.WinUI.ViewModels">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ScrollViewer MaxHeight="500" VerticalScrollBarVisibility="Auto">
         <StackPanel Spacing="16" Margin="8">
@@ -26,15 +25,15 @@
                     <!-- Store Name (Required) -->
                     <StackPanel>
                         <TextBlock Text="Store Name *" FontWeight="Medium"/>
-                        <TextBox Text="{x:Bind ViewModel.StoreName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Text="{Binding StoreName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 PlaceholderText="e.g., Coles Chatswood, Woolworths Town Hall"/>
                     </StackPanel>
 
                     <!-- Chain (Required) -->
                     <StackPanel>
                         <TextBlock Text="Chain *" FontWeight="Medium"/>
-                        <ComboBox ItemsSource="{x:Bind ViewModel.Chains}" 
-                                 SelectedItem="{x:Bind ViewModel.Chain, Mode=TwoWay}"
+                        <ComboBox ItemsSource="{Binding Chains}" 
+                                 SelectedItem="{Binding Chain, Mode=TwoWay}"
                                  PlaceholderText="Select or enter chain"
                                  IsEditable="True"/>
                     </StackPanel>
@@ -50,7 +49,7 @@
                     <!-- Address -->
                     <StackPanel>
                         <TextBlock Text="Street Address" FontWeight="Medium"/>
-                        <TextBox Text="{x:Bind ViewModel.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 PlaceholderText="e.g., 123 Main Street"
                                 TextWrapping="Wrap"
                                 AcceptsReturn="True"
@@ -60,7 +59,7 @@
                     <!-- Suburb (Required) -->
                     <StackPanel>
                         <TextBlock Text="Suburb *" FontWeight="Medium"/>
-                        <TextBox Text="{x:Bind ViewModel.Suburb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Text="{Binding Suburb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 PlaceholderText="e.g., Chatswood, Sydney"/>
                     </StackPanel>
 
@@ -68,18 +67,18 @@
                     <Grid ColumnDefinitions="*,12,150">
                         <StackPanel Grid.Column="0">
                             <TextBlock Text="State *" FontWeight="Medium"/>
-                            <ComboBox ItemsSource="{x:Bind ViewModel.States}" 
-                                     SelectedItem="{x:Bind ViewModel.State, Mode=TwoWay}"
+                            <ComboBox ItemsSource="{Binding States}" 
+                                     SelectedItem="{Binding State, Mode=TwoWay}"
                                      PlaceholderText="Select state"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
                             <TextBlock Text="Postcode" FontWeight="Medium"/>
-                            <TextBox Text="{x:Bind ViewModel.Postcode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            <TextBox Text="{Binding Postcode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     PlaceholderText="e.g., 2067"/>
-                            <TextBlock Text="{x:Bind ViewModel.PostcodeError, Mode=OneWay}" 
+                            <TextBlock Text="{Binding PostcodeError, Mode=OneWay}" 
                                       Foreground="Red" FontSize="12" 
-                                      Visibility="{x:Bind ViewModel.HasPostcodeError, Mode=OneWay}"/>
+                                      Visibility="{Binding HasPostcodeError, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -94,21 +93,21 @@
                     <!-- Phone -->
                     <StackPanel>
                         <TextBlock Text="Phone Number" FontWeight="Medium"/>
-                        <TextBox Text="{x:Bind ViewModel.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 PlaceholderText="e.g., (02) 9876 5432"/>
-                        <TextBlock Text="{x:Bind ViewModel.PhoneError, Mode=OneWay}" 
+                        <TextBlock Text="{Binding PhoneError, Mode=OneWay}" 
                                   Foreground="Red" FontSize="12" 
-                                  Visibility="{x:Bind ViewModel.HasPhoneError, Mode=OneWay}"/>
+                                  Visibility="{Binding HasPhoneError, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </StackPanel>
 
                     <!-- Website -->
                     <StackPanel>
                         <TextBlock Text="Website" FontWeight="Medium"/>
-                        <TextBox Text="{x:Bind ViewModel.Website, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Text="{Binding Website, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 PlaceholderText="https://www.example.com"/>
-                        <TextBlock Text="{x:Bind ViewModel.WebsiteError, Mode=OneWay}" 
+                        <TextBlock Text="{Binding WebsiteError, Mode=OneWay}" 
                                   Foreground="Red" FontSize="12" 
-                                  Visibility="{x:Bind ViewModel.HasWebsiteError, Mode=OneWay}"/>
+                                  Visibility="{Binding HasWebsiteError, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -122,23 +121,23 @@
                     <!-- Operating Hours -->
                     <StackPanel>
                         <TextBlock Text="Operating Hours" FontWeight="Medium"/>
-                        <TextBox Text="{x:Bind ViewModel.OperatingHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Text="{Binding OperatingHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 PlaceholderText="e.g., Mon-Fri: 6am-10pm, Sat-Sun: 7am-9pm"/>
                     </StackPanel>
 
                     <!-- Services -->
                     <StackPanel>
                         <TextBlock Text="Services Available" FontWeight="Medium"/>
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.Services}">
+                        <ItemsControl ItemsSource="{Binding Services}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" Spacing="8"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="vm:ServiceViewModel">
-                                    <CheckBox Content="{x:Bind DisplayName}" 
-                                             IsChecked="{x:Bind IsSelected, Mode=TwoWay}"/>
+                                <DataTemplate>
+                                    <CheckBox Content="{Binding DisplayName}" 
+                                             IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -157,20 +156,20 @@
                         <Grid ColumnDefinitions="*,12,*">
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Latitude" FontWeight="Medium"/>
-                                <TextBox Text="{x:Bind ViewModel.Latitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                <TextBox Text="{Binding Latitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                         PlaceholderText="e.g., -33.7969"/>
-                                <TextBlock Text="{x:Bind ViewModel.LatitudeError, Mode=OneWay}" 
+                                <TextBlock Text="{Binding LatitudeError, Mode=OneWay}" 
                                           Foreground="Red" FontSize="12" 
-                                          Visibility="{x:Bind ViewModel.HasLatitudeError, Mode=OneWay}"/>
+                                          Visibility="{Binding HasLatitudeError, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Longitude" FontWeight="Medium"/>
-                                <TextBox Text="{x:Bind ViewModel.Longitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                <TextBox Text="{Binding Longitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                         PlaceholderText="e.g., 151.1316"/>
-                                <TextBlock Text="{x:Bind ViewModel.LongitudeError, Mode=OneWay}" 
+                                <TextBlock Text="{Binding LongitudeError, Mode=OneWay}" 
                                           Foreground="Red" FontSize="12" 
-                                          Visibility="{x:Bind ViewModel.HasLongitudeError, Mode=OneWay}"/>
+                                          Visibility="{Binding HasLongitudeError, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
@@ -183,12 +182,12 @@
                    BorderThickness="1"
                    CornerRadius="4" 
                    Padding="12"
-                   Visibility="{x:Bind ViewModel.ValidationErrors, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}">
+                   Visibility="{Binding ValidationErrors, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}">
                 <StackPanel>
                     <TextBlock Text="Please fix the following errors:" 
                               FontWeight="SemiBold" 
                               Foreground="Red"/>
-                    <TextBlock Text="{x:Bind ViewModel.ValidationErrors, Mode=OneWay}" 
+                    <TextBlock Text="{Binding ValidationErrors, Mode=OneWay}" 
                               Foreground="Red" 
                               TextWrapping="Wrap"
                               Margin="0,4,0,0"/>
