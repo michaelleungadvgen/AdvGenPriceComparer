@@ -14,6 +14,8 @@
             <!-- Converters -->
             <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:PriceFormatConverter x:Key="PriceFormatConverter" />
+            <converters:PercentageFormatConverter x:Key="PercentageFormatConverter" />
             
             <!-- Color Palette -->
             <SolidColorBrush x:Key="AppBackgroundBrush" Color="#f8fafb"/>

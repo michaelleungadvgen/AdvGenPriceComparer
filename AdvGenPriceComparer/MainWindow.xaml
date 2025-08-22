@@ -50,10 +50,20 @@
                            Background="Transparent" BorderThickness="0" Padding="12,8"
                            Click="CategoriesNav_Click"/>
                     
+                    <!-- Reports -->
+                    <Button Content="Reports" HorizontalAlignment="Stretch"
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="ReportsNav_Click"/>
+                    
                     <!-- Quick Actions -->
                     <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8"/>
                     <Button Content="Add Item" HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.AddItemCommand}"/>
                     <Button Content="Add Store" HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.AddPlaceCommand}"/>
+                    <Button Content="View Reports" HorizontalAlignment="Stretch" Click="ReportsNav_Click"/>
+                    
+                    <!-- Demo Data -->
+                    <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <Button Content="Generate Demo Data" HorizontalAlignment="Stretch" Click="GenerateDemoData_Click"/>
                 </StackPanel>
             </Border>
 

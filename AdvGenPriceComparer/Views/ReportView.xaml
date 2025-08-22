@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AdvGenPriceComparer.Desktop.WinUI.Views.ReportView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="24" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="Grocery Price Reports" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,8"/>
+            <TextBlock Text="Analyze grocery price trends and compare stores" FontSize="14" Opacity="0.7"/>
+            
+            <!-- Filter Controls -->
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="0,16,0,0">
+                <ComboBox Header="Time Period" x:Name="TimePeriodComboBox" SelectionChanged="TimePeriod_SelectionChanged">
+                    <ComboBoxItem Content="Last 7 Days" IsSelected="True"/>
+                    <ComboBoxItem Content="Last 30 Days"/>
+                    <ComboBoxItem Content="Last 3 Months"/>
+                    <ComboBoxItem Content="Last 6 Months"/>
+                    <ComboBoxItem Content="Last Year"/>
+                </ComboBox>
+                
+                <ComboBox Header="Store Chain" x:Name="StoreChainComboBox" SelectionChanged="StoreChain_SelectionChanged">
+                    <ComboBoxItem Content="All Stores" IsSelected="True"/>
+                    <ComboBoxItem Content="Coles"/>
+                    <ComboBoxItem Content="Woolworths"/>
+                    <ComboBoxItem Content="IGA"/>
+                    <ComboBoxItem Content="ALDI"/>
+                </ComboBox>
+                
+                <Button Content="Refresh Data" Click="RefreshData_Click" Style="{StaticResource PrimaryButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Charts and Reports -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="24">
+                
+                <!-- Summary Cards -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Border Grid.Column="0" Style="{StaticResource StatsCardStyle}" Background="#f0f9ff">
+                        <StackPanel>
+                            <TextBlock Text="Total Products" FontSize="14" Opacity="0.7"/>
+                            <TextBlock x:Name="TotalProductsText" Text="0" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            <TextBlock Text="Being tracked" FontSize="12" Opacity="0.6"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Grid.Column="1" Style="{StaticResource StatsCardStyle}" Background="#f0fdf4">
+                        <StackPanel>
+                            <TextBlock Text="Avg Price Change" FontSize="14" Opacity="0.7"/>
+                            <TextBlock x:Name="AvgPriceChangeText" Text="0%" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            <TextBlock Text="Last 30 days" FontSize="12" Opacity="0.6"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Grid.Column="2" Style="{StaticResource StatsCardStyle}" Background="#fefce8">
+                        <StackPanel>
+                            <TextBlock Text="Best Store" FontSize="14" Opacity="0.7"/>
+                            <TextBlock x:Name="BestStoreText" Text="-" FontSize="16" FontWeight="Bold" Margin="0,4,0,0"/>
+                            <TextBlock Text="Lowest avg prices" FontSize="12" Opacity="0.6"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Grid.Column="3" Style="{StaticResource StatsCardStyle}" Background="#fdf2f8">
+                        <StackPanel>
+                            <TextBlock Text="Price Updates" FontSize="14" Opacity="0.7"/>
+                            <TextBlock x:Name="PriceUpdatesText" Text="0" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            <TextBlock Text="This month" FontSize="12" Opacity="0.6"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- Price Trends Chart -->
+                <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="8" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Price Trends Over Time" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                        
+                        <!-- Custom Chart Container -->
+                        <Border x:Name="PriceTrendsChart" Height="300" Background="#f8fafc" CornerRadius="4">
+                            <Canvas x:Name="PriceTrendsCanvas"/>
+                        </Border>
+                        
+                        <!-- Chart Legend -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0" Spacing="20">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Rectangle Width="16" Height="16" Fill="#3b82f6"/>
+                                <TextBlock Text="Average Price" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Rectangle Width="16" Height="16" Fill="#10b981"/>
+                                <TextBlock Text="Lowest Price" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Rectangle Width="16" Height="16" Fill="#f59e0b"/>
+                                <TextBlock Text="Highest Price" FontSize="12"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Store Comparison Chart -->
+                <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="8" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Average Prices by Store" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                        
+                        <!-- Bar Chart Container -->
+                        <Border x:Name="StoreComparisonChart" Height="250" Background="#f8fafc" CornerRadius="4">
+                            <Canvas x:Name="StoreComparisonCanvas"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Category Breakdown Chart -->
+                <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="8" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Price Distribution by Category" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                        
+                        <!-- Pie Chart Container -->
+                        <Grid Height="300">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Border Grid.Column="0" x:Name="CategoryBreakdownChart" Background="#f8fafc" CornerRadius="4">
+                                <Canvas x:Name="CategoryBreakdownCanvas"/>
+                            </Border>
+                            
+                            <!-- Category Legend -->
+                            <StackPanel Grid.Column="1" x:Name="CategoryLegend" Margin="16,0,0,0"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Top Products Table -->
+                <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="8" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Top Products by Price Variance" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                        
+                        <ListView x:Name="TopProductsList" MaxHeight="300">
+                            <ListView.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="Product" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="Min Price" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="2" Text="Max Price" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="3" Text="Avg Price" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="4" Text="Variance" FontWeight="SemiBold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.HeaderTemplate>
+                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding ProductName}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding MinPrice, Converter={StaticResource PriceFormatConverter}}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding MaxPrice, Converter={StaticResource PriceFormatConverter}}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding AvgPrice, Converter={StaticResource PriceFormatConverter}}"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding Variance, Converter={StaticResource PercentageFormatConverter}}" 
+                                                                  Foreground="{Binding VarianceColor}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!-- Export Options -->
+                <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="8" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Export Reports" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Button Content="Export to CSV" Click="ExportToCsv_Click" Style="{StaticResource SecondaryButtonStyle}"/>
+                            <Button Content="Export to PDF" Click="ExportToPdf_Click" Style="{StaticResource SecondaryButtonStyle}"/>
+                            <Button Content="Share Report" Click="ShareReport_Click" Style="{StaticResource SecondaryButtonStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -68,6 +68,28 @@ public sealed partial class MainWindow : Window
         ContentFrame.Navigate(typeof(Views.CategoryListView));
     }
 
+    private void ReportsNav_Click(object sender, RoutedEventArgs e)
+    {
+        ContentFrame.Navigate(typeof(Views.ReportView));
+    }
+
+    private async void GenerateDemoData_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var demoDataService = App.Services.GetRequiredService<DemoDataService>();
+            demoDataService.GenerateDemoData();
+            
+            var notificationService = App.Services.GetRequiredService<INotificationService>();
+            await notificationService.ShowSuccessAsync("Demo data generated successfully! Check the Reports page to see charts with data.");
+        }
+        catch (Exception ex)
+        {
+            var notificationService = App.Services.GetRequiredService<INotificationService>();
+            await notificationService.ShowErrorAsync($"Error generating demo data: {ex.Message}");
+        }
+    }
+
     private void AddItem_Click(object sender, RoutedEventArgs e)
     {
         if (ViewModel.AddItemCommand.CanExecute(null))

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
@@ -198,6 +200,75 @@ public class GroceryDataService : IGroceryDataService
     public IEnumerable<PriceRecord> GetRecentPriceUpdates(int count = 10)
     {
         return PriceRecords.GetRecentPriceUpdates(count);
+    }
+
+    // Reporting and analytics methods
+    public IEnumerable<PriceRecord> GetPriceHistory(string? itemId = null, string? placeId = null, DateTime? from = null, DateTime? to = null)
+    {
+        var allRecords = PriceRecords.GetAll();
+        
+        // Apply filters
+        if (!string.IsNullOrEmpty(itemId))
+            allRecords = allRecords.Where(r => r.ItemId == itemId);
+            
+        if (!string.IsNullOrEmpty(placeId))
+            allRecords = allRecords.Where(r => r.PlaceId == placeId);
+            
+        if (from.HasValue)
+            allRecords = allRecords.Where(r => r.DateRecorded >= from.Value);
+            
+        if (to.HasValue)
+            allRecords = allRecords.Where(r => r.DateRecorded <= to.Value);
+            
+        return allRecords.OrderBy(r => r.DateRecorded);
+    }
+
+    public IEnumerable<(string category, decimal avgPrice, int count)> GetCategoryStats()
+    {
+        var items = Items.GetAll().Where(i => !string.IsNullOrEmpty(i.Category));
+        
+        var categoryGroups = items.GroupBy(i => i.Category ?? "Unknown");
+        
+        foreach (var group in categoryGroups)
+        {
+            var categoryItems = group.ToList();
+            var totalPrice = 0m;
+            var priceCount = 0;
+            
+            foreach (var item in categoryItems)
+            {
+                var avgPrice = PriceRecords.GetAveragePrice(item.Id);
+                if (avgPrice.HasValue)
+                {
+                    totalPrice += avgPrice.Value;
+                    priceCount++;
+                }
+            }
+            
+            var avgCategoryPrice = priceCount > 0 ? totalPrice / priceCount : 0m;
+            yield return (group.Key, avgCategoryPrice, categoryItems.Count);
+        }
+    }
+
+    public IEnumerable<(string storeName, decimal avgPrice, int productCount)> GetStoreComparisonStats()
+    {
+        var places = Places.GetAll();
+        
+        foreach (var place in places)
+        {
+            var priceRecords = PriceRecords.GetAll()
+                .Where(pr => pr.PlaceId == place.Id)
+                .ToList();
+                
+            if (priceRecords.Any())
+            {
+                var avgPrice = priceRecords.Average(pr => pr.Price);
+                var uniqueItems = priceRecords.Select(pr => pr.ItemId).Distinct().Count();
+                
+                var storeName = !string.IsNullOrEmpty(place.Chain) ? place.Chain : place.Name;
+                yield return (storeName, avgPrice, uniqueItems);
+            }
+        }
     }
 
     public void Dispose()

@@ -53,6 +53,7 @@ public partial class App : Application
         services.AddSingleton<INotificationService, SimpleNotificationService>();
         services.AddSingleton<ServerConfigService>(new ServerConfigService(serverConfigPath));
         services.AddSingleton<NetworkManager>();
+        services.AddTransient<DemoDataService>();
 
         // ViewModels
         services.AddTransient<MainWindowViewModel>();

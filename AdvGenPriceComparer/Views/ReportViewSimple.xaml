@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AdvGenPriceComparer.Desktop.WinUI.Views.ReportViewSimple"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="24" Background="White">
+        <StackPanel Spacing="16">
+            <TextBlock Text="Grocery Price Reports" FontSize="24" FontWeight="SemiBold"/>
+            <TextBlock Text="This is a simplified report page to test XAML compilation." FontSize="14"/>
+            
+            <Border Background="#f0f9ff" CornerRadius="8" Padding="16">
+                <StackPanel>
+                    <TextBlock Text="Summary" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <TextBlock x:Name="SummaryText" Text="Report data will be displayed here." FontSize="14"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

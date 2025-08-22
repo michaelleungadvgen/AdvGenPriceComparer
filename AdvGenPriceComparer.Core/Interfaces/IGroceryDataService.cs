@@ -30,4 +30,9 @@ public interface IGroceryDataService : IDisposable
     // Search and analysis
     IEnumerable<(Item item, decimal lowestPrice, Place place)> FindBestDeals(string? category = null);
     Dictionary<string, object> GetDashboardStats();
+    
+    // Reporting and analytics
+    IEnumerable<PriceRecord> GetPriceHistory(string? itemId = null, string? placeId = null, DateTime? from = null, DateTime? to = null);
+    IEnumerable<(string category, decimal avgPrice, int count)> GetCategoryStats();
+    IEnumerable<(string storeName, decimal avgPrice, int productCount)> GetStoreComparisonStats();
 }
