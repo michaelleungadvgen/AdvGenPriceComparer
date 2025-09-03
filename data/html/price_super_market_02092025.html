@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Price Comparison | Michael Leung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .week-btn.current {
+            background: white;
+            color: #85c5d4;
+            border-color: white;
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .retailer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .retailer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .retailer-logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .coles-logo {
+            background: #e31e24;
+            color: white;
+        }
+        
+        .woolworths-logo {
+            background: #00a651;
+            color: white;
+        }
+        
+        .vs-separator {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #85c5d4;
+        }
+        
+        /* Price Comparison Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .price-comparison {
+            padding: 25px;
+        }
+        
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        
+        .store-price:last-child {
+            border-bottom: none;
+        }
+        
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .store-badge.coles {
+            background: #e31e24;
+        }
+        
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+        
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .price-info {
+            text-align: right;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+        
+        .savings {
+            background: #00a651;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .not-available {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            height: 40px;
+        }
+        
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .retailer-logos {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .week-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .store-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .price-info {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+                <div class="nav-title">Weekly Price Comparison</div>
+                <nav class="nav-links">
+                    <a href="https://www.michaelleung.info/prices/price_super_market_27082025.html">Last Week</a>
+                    <a href="#" class="active">This Week</a>
+                    <a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🛒 Smart Price Comparison</h1>
+            <p>AI-powered analysis comparing Coles vs Woolworths weekly deals</p>
+            
+            <div class="week-selector">
+                <a href="price_super_market_27082025.html" class="week-btn current">27 Aug 2025- 2 Sept 2025</a>
+                  <a href="#" class="week-btn current">3-9 Sept</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">🏆 Head-to-Head Price Battle</h2>
+            
+            <div class="retailer-logos">
+                <div class="retailer-logo coles-logo">COLES</div>
+                <div class="vs-separator">VS</div>
+                <div class="retailer-logo woolworths-logo">WOOLWORTHS</div>
+            </div>
+            
+            <div class="price-grid">
+                <!-- Cadbury Chocolate Fruit & Nut Comparison 1 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Chocolate Fruit & Nut</div>
+                        <div class="product-details">Premium chocolate varieties (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Cadbury Chocolate Coated Fruit or Nut 270g-340g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.50</div>
+                                <div><span class="original-price">$13.00</span><span class="savings">Save $6.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Cadbury Chocolate Bites 120-150g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div><span class="original-price">$7.00</span><span class="savings">Save $3.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfect Match Cadbury Comparison -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Fruit & Nut Perfect Match</div>
+                        <div class="product-details">Identical products (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Cadbury Chocolate Coated Fruit or Nut 270g-340g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.50</div>
+                                <div><span class="original-price">$13.00</span><span class="savings">Save $6.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Cadbury Chocolate Coated Fruit & Nut Varieties 270-340g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.50</div>
+                                <div><span class="original-price">$13.00</span><span class="savings">Save $6.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulla Ice Cream Comparison -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Bulla Ice Cream Tubs</div>
+                        <div class="product-details">Premium ice cream (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Bulla Creamy Classics Ice Cream Tub 2 Litre</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                <div><span class="original-price">$11.00</span><span class="savings">Save $5.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Bulla Ice Cream Tub 4 Litre</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.50</div>
+                                <div class="special-badge">REGULAR PRICE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cadbury Small vs Medium Chocolate -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Chocolate Bars</div>
+                        <div class="product-details">Different sizes (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Cadbury Chocolate Bar 30g-55g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.20</div>
+                                <div><span class="original-price">$3.00</span><span class="savings">Save $1.80</span></div>
+                                <div class="special-badge">60% OFF</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Cadbury Chocolate Bites 120-150g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div><span class="original-price">$7.00</span><span class="savings">Save $3.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cadbury Size Comparison -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Chocolate Range</div>
+                        <div class="product-details">Small bar vs large variety pack (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Cadbury Chocolate Bar 30g-55g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.20</div>
+                                <div><span class="original-price">$3.00</span><span class="savings">Save $1.80</span></div>
+                                <div class="special-badge">60% OFF</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Cadbury Chocolate Coated Fruit & Nut Varieties 270-340g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.50</div>
+                                <div><span class="original-price">$13.00</span><span class="savings">Save $6.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poppin Popcorn Comparison -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Poppin Microwave Popcorn</div>
+                        <div class="product-details">Different pack sizes (70% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Poppin Microwave Popcorn 400g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div><span class="original-price">$7.00</span><span class="savings">Save $3.50</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Poppin Microwave Popcorn 85-100g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.00</div>
+                                <div><span class="original-price">$2.00</span><span class="savings">Save $1.00</span></div>
+                                <div class="special-badge">HALF PRICE</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">📊 Weekly Analysis</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">35</div>
+                    <div class="stat-label">Products Compared</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$120+</div>
+                    <div class="stat-label">Total Savings Identified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Coles Best Deals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">Woolworths Best Deals</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="footer-logo">
+                <div class="footer-text">
+                    <p>AI-Powered Price Comparison | Generated by AdvGen Price Comparer</p>
+                    <p>Data sourced from official Coles and Woolworths catalogues - Week 3-9 Sept 2025</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.michaelleung.info/prices">Home</a>
+                    <a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">GitHub</a>
+                    <a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

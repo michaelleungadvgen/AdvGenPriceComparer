@@ -1,0 +1,222 @@
+[
+  {
+    "productID": "NES001",
+    "productName": "Nescafé Coffee Sachets",
+    "category": "Pantry",
+    "brand": "Nescafé",
+    "description": "Coffee Sachets, 8 Pack-10 Pack",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "ARN001",
+    "productName": "Arnott's Shapes Crackers",
+    "category": "Pantry",
+    "brand": "Arnott's",
+    "description": "Crackers, 130g-190g",
+    "price": "$2.00",
+    "originalPrice": "$4.00",
+    "savings": "$2.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "CAR001",
+    "productName": "Carman's Protein Bars",
+    "category": "Pantry",
+    "brand": "Carman's",
+    "description": "Protein Bars, 150g-200g",
+    "price": "$3.95",
+    "originalPrice": "$7.90",
+    "savings": "$3.95",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "STR001",
+    "productName": "Streets Magnum Sticks",
+    "category": "Frozen",
+    "brand": "Streets",
+    "description": "Ice Cream Sticks, 4 Pack-6 Pack, 360mL-428mL",
+    "price": "$6.00",
+    "originalPrice": "$12.00",
+    "savings": "$6.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "COL001",
+    "productName": "Coles Australian Pork Mince",
+    "category": "Meat",
+    "brand": "Coles",
+    "description": "Regular 3 Star Mince, 500g",
+    "price": "$5.00",
+    "originalPrice": "$6.00",
+    "savings": "$1.00",
+    "specialType": "DOWN DOWN"
+  },
+  {
+    "productID": "DOR001",
+    "productName": "Doritos or XXL Corn Chips",
+    "category": "Pantry",
+    "brand": "Doritos",
+    "description": "Corn Chips, 150g-170g",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "COC001",
+    "productName": "Coca-Cola, Fanta or Sprite",
+    "category": "Drinks",
+    "brand": "Coca-Cola",
+    "description": "Soft Drink, 10x375mL",
+    "price": "$10.00",
+    "originalPrice": "$20.00",
+    "savings": "$10.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "BON001",
+    "productName": "Bonds Kids Logo ¼ Crew Socks",
+    "category": "Clothing",
+    "brand": "BONDS",
+    "description": "Socks, Size 3-8, 3 Pack",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "HUG001",
+    "productName": "Huggies Ultra Dry Jumbo Nappy Pants",
+    "category": "Baby & Toddler",
+    "brand": "Huggies",
+    "description": "Nappy Pants, 48 Pack-62 Pack",
+    "price": "$29.00",
+    "originalPrice": "$39.00",
+    "savings": "$10.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "NES002",
+    "productName": "Moccona Liquid Espresso Coffee Sachets",
+    "category": "Pantry",
+    "brand": "Moccona",
+    "description": "Coffee Sachets, 8 Pack",
+    "price": "$4.30",
+    "originalPrice": "$8.60",
+    "savings": "$4.30",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "PEN001",
+    "productName": "Pantene Miracles Hyaluron Shampoo or Conditioner",
+    "category": "Beauty",
+    "brand": "Pantene",
+    "description": "Shampoo 375mL or Conditioner 350mL",
+    "price": "$6.50",
+    "originalPrice": "$13.00",
+    "savings": "$6.50",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "OMO001",
+    "productName": "Omo Laundry 3 in 1 Laundry Capsules",
+    "category": "Cleaning",
+    "brand": "Omo",
+    "description": "Capsules, 17 Pack",
+    "price": "$11.50",
+    "originalPrice": "$23.00",
+    "savings": "$11.50",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "FAI001",
+    "productName": "Fairy Platinum Dishwashing Tablets",
+    "category": "Cleaning",
+    "brand": "Fairy",
+    "description": "Tablets, 52 Pack",
+    "price": "$23.00",
+    "originalPrice": "$46.00",
+    "savings": "$23.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "COL002",
+    "productName": "Coles Australian No Added Hormones Beef Porterhouse Steak",
+    "category": "Meat",
+    "brand": "Coles",
+    "description": "Steak, 2 Pack, 450g",
+    "price": "$17.00",
+    "originalPrice": "$19.00",
+    "savings": "$2.00",
+    "specialType": "SAVE"
+  },
+  {
+    "productID": "MAL001",
+    "productName": "Maltesers Gift Box",
+    "category": "Confectionery",
+    "brand": "Maltesers",
+    "description": "Gift Box, 400g",
+    "price": "$7.75",
+    "originalPrice": "$15.50",
+    "savings": "$7.75",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "SCH001",
+    "productName": "Schweppes Soft Drink",
+    "category": "Drinks",
+    "brand": "Schweppes",
+    "description": "Soft Drink, 1.1 Litre",
+    "price": "$1.80",
+    "originalPrice": "$3.00",
+    "savings": "$1.20",
+    "specialType": "40% OFF"
+  },
+  {
+    "productID": "CAD001",
+    "productName": "Cadbury Dairy Milk Block Chocolate",
+    "category": "Confectionery",
+    "brand": "Cadbury",
+    "description": "Chocolate, 150g-190g",
+    "price": "$5.00",
+    "originalPrice": "$8.00",
+    "savings": "$3.00",
+    "specialType": "SAVE"
+  },
+  {
+    "productID": "DEV001",
+    "productName": "Devondale Butter",
+    "category": "Dairy",
+    "brand": "Devondale",
+    "description": "Butter, 250g",
+    "price": "$4.60",
+    "originalPrice": "$5.30",
+    "savings": "$0.70",
+    "specialType": "DOWN DOWN"
+  },
+  {
+    "productID": "BEN001",
+    "productName": "Ben & Jerry's Ice Cream Tub",
+    "category": "Frozen",
+    "brand": "Ben & Jerry's",
+    "description": "Ice Cream, 458mL",
+    "price": "$7.00",
+    "originalPrice": "$14.50",
+    "savings": "$7.50",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "DET001",
+    "productName": "Dettol Pro Fresh Shower Gel",
+    "category": "Personal Care",
+    "brand": "Dettol",
+    "description": "Shower Gel, 950mL",
+    "price": "$6.00",
+    "originalPrice": "$12.00",
+    "savings": "$6.00",
+    "specialType": "HALF PRICE"
+  }
+]

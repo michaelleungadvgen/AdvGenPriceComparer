@@ -324,6 +324,47 @@ public class ItemViewModel : BaseViewModel
             allergen.IsSelected = false;
     }
 
+    public void LoadFromItem(Item item)
+    {
+        Name = item.Name ?? string.Empty;
+        Brand = item.Brand ?? string.Empty;
+        Description = item.Description ?? string.Empty;
+        Category = item.Category ?? string.Empty;
+        SubCategory = item.SubCategory ?? string.Empty;
+        PackageSize = item.PackageSize ?? string.Empty;
+        Unit = item.Unit ?? string.Empty;
+        Barcode = item.Barcode ?? string.Empty;
+        ImageUrl = item.ImageUrl ?? string.Empty;
+
+        // Load dietary flags
+        if (item.DietaryFlags != null)
+        {
+            foreach (var flag in DietaryFlags)
+            {
+                flag.IsSelected = item.DietaryFlags.Contains(flag.Name);
+            }
+        }
+
+        // Load allergens
+        if (item.Allergens != null)
+        {
+            foreach (var allergen in Allergens)
+            {
+                allergen.IsSelected = item.Allergens.Contains(allergen.Name);
+            }
+        }
+
+        // Load tags
+        if (item.Tags != null && item.Tags.Any())
+        {
+            Tags = string.Join(", ", item.Tags);
+        }
+        else
+        {
+            Tags = string.Empty;
+        }
+    }
+
     #endregion
 }
 
