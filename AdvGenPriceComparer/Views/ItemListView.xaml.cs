@@ -322,7 +322,6 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
             {
                 if (sender is Button button && button.Tag is ItemWithPricesViewModel itemViewModel)
                 {
-                    // For now, show a simple dialog - in the future this could be a proper price entry dialog
                     var places = _groceryDataService.GetAllPlaces().ToList();
                     
                     if (places.Count == 0)
@@ -331,27 +330,139 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
                         return;
                     }
                     
-                    // Simple price entry - in a real app this would be a proper dialog
-                    var place = places.First();
-                    var random = new Random();
-                    var basePrice = itemViewModel.PriceHistory.Count > 0 
-                        ? itemViewModel.PriceHistory.First().Price 
-                        : 5.00m;
-                    var newPrice = Math.Max(0.50m, basePrice + ((decimal)(random.NextDouble() * 2 - 1))); // ±$1
-                    
-                    _groceryDataService.RecordPrice(itemViewModel.Id, place.Id, newPrice);
-                    
-                    // Update the view model by reloading price history
-                    var updatedPriceHistory = _groceryDataService.GetPriceHistory(itemViewModel.Id);
-                    itemViewModel.LoadPriceHistory(updatedPriceHistory);
-                    
-                    await _notificationService.ShowSuccessAsync($"Price ${newPrice:F2} added for {itemViewModel.Name} at {place.Name}!");
+                    // Create price entry dialog
+                    var dialog = new ContentDialog()
+                    {
+                        Title = $"Add Price for {itemViewModel.Name}",
+                        Content = CreatePriceEntryContent(places, itemViewModel),
+                        PrimaryButtonText = "Add Price",
+                        CloseButtonText = "Cancel",
+                        XamlRoot = this.XamlRoot
+                    };
+
+                    var result = await dialog.ShowAsync();
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        var content = dialog.Content as FrameworkElement;
+                        var panel = content as StackPanel;
+                        
+                        // Get values from dialog controls
+                        var storeComboBox = panel?.Children.OfType<ComboBox>().FirstOrDefault();
+                        var priceBox = panel?.Children.OfType<TextBox>().FirstOrDefault();
+                        var saleCheckBox = panel?.Children.OfType<CheckBox>().FirstOrDefault();
+                        var originalPriceBox = panel?.Children.OfType<TextBox>().Skip(1).FirstOrDefault();
+                        
+                        if (storeComboBox?.SelectedItem is Place selectedStore && 
+                            priceBox != null && decimal.TryParse(priceBox.Text, out decimal price) && price > 0)
+                        {
+                            var isOnSale = saleCheckBox?.IsChecked == true;
+                            decimal? originalPrice = null;
+                            
+                            if (isOnSale && originalPriceBox != null && 
+                                decimal.TryParse(originalPriceBox.Text, out decimal origPrice) && origPrice > 0)
+                            {
+                                originalPrice = origPrice;
+                            }
+                            
+                            _groceryDataService.RecordPrice(itemViewModel.Id, selectedStore.Id, price, 
+                                isOnSale: isOnSale, originalPrice: originalPrice);
+                            
+                            // Update the view model by reloading price history
+                            var updatedPriceHistory = _groceryDataService.GetPriceHistory(itemViewModel.Id);
+                            itemViewModel.LoadPriceHistory(updatedPriceHistory);
+                            
+                            var saleText = isOnSale ? " (on sale)" : "";
+                            await _notificationService.ShowSuccessAsync($"Price ${price:F2}{saleText} added for {itemViewModel.Name} at {selectedStore.Name}!");
+                        }
+                        else
+                        {
+                            await _notificationService.ShowWarningAsync("Please select a store and enter a valid price.");
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 await _notificationService.ShowErrorAsync($"Error adding price: {ex.Message}");
             }
+        }
+
+        private FrameworkElement CreatePriceEntryContent(List<Place> places, ItemWithPricesViewModel itemViewModel)
+        {
+            var panel = new StackPanel { Spacing = 12 };
+
+            // Store selection
+            panel.Children.Add(new TextBlock { Text = "Store *", FontWeight = Microsoft.UI.Text.FontWeights.SemiBold });
+            var storeComboBox = new ComboBox 
+            { 
+                ItemsSource = places,
+                DisplayMemberPath = "Name",
+                SelectedIndex = 0,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+            panel.Children.Add(storeComboBox);
+
+            // Price entry
+            panel.Children.Add(new TextBlock { Text = "Price *", FontWeight = Microsoft.UI.Text.FontWeights.SemiBold });
+            var priceBox = new TextBox 
+            { 
+                PlaceholderText = "0.00",
+                InputScope = new InputScope { Names = { new InputScopeName(InputScopeNameValue.Number) } }
+            };
+            
+            // Pre-fill with last known price if available
+            if (itemViewModel.PriceHistory.Count > 0)
+            {
+                priceBox.Text = itemViewModel.PriceHistory.First().Price.ToString("F2");
+            }
+            
+            panel.Children.Add(priceBox);
+
+            // Sale checkbox
+            var saleCheckBox = new CheckBox { Content = "This item is on sale" };
+            panel.Children.Add(saleCheckBox);
+
+            // Original price (only visible when on sale)
+            var originalPriceLabel = new TextBlock 
+            { 
+                Text = "Original Price", 
+                FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
+                Visibility = Visibility.Collapsed
+            };
+            panel.Children.Add(originalPriceLabel);
+            
+            var originalPriceBox = new TextBox 
+            { 
+                PlaceholderText = "0.00",
+                InputScope = new InputScope { Names = { new InputScopeName(InputScopeNameValue.Number) } },
+                Visibility = Visibility.Collapsed
+            };
+            panel.Children.Add(originalPriceBox);
+
+            // Show/hide original price field based on sale checkbox
+            saleCheckBox.Checked += (s, e) =>
+            {
+                originalPriceLabel.Visibility = Visibility.Visible;
+                originalPriceBox.Visibility = Visibility.Visible;
+            };
+            
+            saleCheckBox.Unchecked += (s, e) =>
+            {
+                originalPriceLabel.Visibility = Visibility.Collapsed;
+                originalPriceBox.Visibility = Visibility.Collapsed;
+                originalPriceBox.Text = "";
+            };
+
+            // Instructions
+            panel.Children.Add(new TextBlock 
+            { 
+                Text = "* Required fields",
+                FontSize = 12,
+                Opacity = 0.7,
+                Margin = new Thickness(0, 8, 0, 0)
+            });
+
+            return panel;
         }
     }
 }
