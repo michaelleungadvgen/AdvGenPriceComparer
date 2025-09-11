@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Price Comparison | Michael Leung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .week-btn.current {
+            background: white;
+            color: #85c5d4;
+            border-color: white;
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .retailer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .retailer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .retailer-logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .coles-logo {
+            background: #e31e24;
+            color: white;
+        }
+        
+        .woolworths-logo {
+            background: #00a651;
+            color: white;
+        }
+        
+        .vs-separator {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #85c5d4;
+        }
+        
+        /* Price Comparison Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .price-comparison {
+            padding: 25px;
+        }
+        
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        
+        .store-price:last-child {
+            border-bottom: none;
+        }
+        
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .store-badge.coles {
+            background: #e31e24;
+        }
+        
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+        
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .price-info {
+            text-align: right;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+        
+        .savings {
+            background: #00a651;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .not-available {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            height: 40px;
+        }
+        
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .retailer-logos {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .week-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .store-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .price-info {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+                <div class="nav-title">Weekly Price Comparison</div>
+                <nav class="nav-links">
+                    <a href="https://www.michaelleung.info/prices/price_super_market_02092025.html">Last Week</a>
+                    <a href="#" class="active">This Week</a>
+                    <a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🛒 Smart Price Comparison</h1>
+            <p>AI-powered analysis comparing Coles vs Woolworths weekly deals</p>
+            
+            <div class="week-selector">
+                <a href="price_super_market_02092025.html" class="week-btn current">02-09 Sept 2025</a>
+                  <a href="#" class="week-btn current">10-16 Sept</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">🏆 Head-to-Head Price Battle</h2>
+            
+            <div class="retailer-logos">
+                <div class="retailer-logo coles-logo">COLES</div>
+                <div class="vs-separator">VS</div>
+                <div class="retailer-logo woolworths-logo">WOOLWORTHS</div>
+            </div>
+            
+            <div class="price-grid">
+                <!-- Product Comparison 1 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Palmolive Liquid Hand Wash Refill 1 Litre</div>
+                        <div class="product-details">Personal Care (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Palmolive Liquid Hand Wash Refill 1 Litre</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.75</div>
+                                <div><span class="original-price">$7.50</span><span class="savings">Save $3.75</span></div>
+                                <div class="special-badge">1/2 PRICE</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Palmolive Foaming Hand Wash Refill 1 Litre</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.50</div>
+                                <div><span class="original-price">$9.00</span><span class="savings">Save $4.50</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 2 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Glow Lab Hand Wash 300mL</div>
+                        <div class="product-details">Personal Care (100% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Glow Lab Hand Wash 300mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div><span class="original-price">$8.00</span><span class="savings">Save $4.00</span></div>
+                                <div class="special-badge">SAVE $4</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Glow Lab Body Wash 900ml</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.00</div>
+                                <div><span class="original-price">$18.00</span><span class="savings">Save $9.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 3 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores Fish Oil 1000mg Capsules 400 Pack</div>
+                        <div class="product-details">Health & Wellness (98% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores Fish Oil 1000mg Capsules 400 Pack</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$30.00</div>
+                                <div><span class="original-price">$60.00</span><span class="savings">Save $30.00</span></div>
+                                <div class="special-badge">SAVE $30</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores Odourless Fish Oil 1000mg Omega-3 Capsules Pk 400</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$35.00</div>
+                                <div><span class="original-price">$70.00</span><span class="savings">Save $35.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 4 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Schwarzkopf Brilliance Colourant 1 Pack</div>
+                        <div class="product-details">Personal Care (94% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Schwarzkopf Brilliance Colourant 1 Pack</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">Save $20.00</span></div>
+                                <div class="special-badge">SAVE $20</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Schwarzkopf Brilliance Permanent Hair Colour</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$15.60</div>
+                                <div><span class="original-price">$26.00</span><span class="savings">Save $10.40</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 5 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink 1.25 Litre</div>
+                        <div class="product-details">Beverages (91% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Coca-Cola, Fanta or Sprite Soft Drink 1.25 Litre</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.75</div>
+                                <div><span class="original-price">$4.00</span><span class="savings">Save $2.00</span></div>
+                                <div class="special-badge">SAVE $2</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Coca-Cola Classic, Zero Sugar or Diet, Fanta or Sprite Soft </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.40</div>
+                                <div><span class="original-price">$4.00</span><span class="savings">Save $1.60</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 6 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dove Shampoo or Conditioner 850mL</div>
+                        <div class="product-details">Personal Care (90% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Dove Shampoo or Conditioner 850mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$15.00</div>
+                                <div><span class="original-price">$30.00</span><span class="savings">Save $15.00</span></div>
+                                <div class="special-badge">SAVE $15</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - OGX Shampoo or Conditioner 385ml</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$13.80</div>
+                                <div><span class="original-price">$23.00</span><span class="savings">Save $9.20</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 7 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sanitarium Up&Go Liquid Breakfast 3x250mL</div>
+                        <div class="product-details">Beverages (87% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Sanitarium Up&Go Liquid Breakfast 3x250mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.40</div>
+                                <div><span class="original-price">$6.80</span><span class="savings">Save $3.40</span></div>
+                                <div class="special-badge">SAVE $3.40</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Sanitarium UP&GO Energize or UP&GO Breakfast Drink 3 x 250ml</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.40</div>
+                                <div><span class="original-price">$6.80</span><span class="savings">Save $3.40</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 8 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lindt Excellence Block Chocolate 80g-100g</div>
+                        <div class="product-details">Confectionery (86% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Lindt Excellence Block Chocolate 80g-100g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.25</div>
+                                <div><span class="original-price">$8.50</span><span class="savings">Save $4.25</span></div>
+                                <div class="special-badge">1/2 PRICE</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Lindt Lindor Chocolate Box 235g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$14.00</div>
+                                <div><span class="original-price">$28.00</span><span class="savings">Save $14.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 9 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores Bio Magnesium Tablets 150 Pack</div>
+                        <div class="product-details">Health & Wellness (85% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores Bio Magnesium Tablets 150 Pack</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$30.00</div>
+                                <div><span class="original-price">$60.00</span><span class="savings">Save $30.00</span></div>
+                                <div class="special-badge">SAVE $30</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores Vitamin D3 1000IU Tablets Pk 130†</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$12.50</div>
+                                <div><span class="original-price">$25.00</span><span class="savings">Save $12.50</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 10 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Gatorade Sports Drink 600mL</div>
+                        <div class="product-details">Beverages (80% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Gatorade Sports Drink 600mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.10</div>
+                                <div><span class="original-price">$4.20</span><span class="savings">Save $2.10</span></div>
+                                <div class="special-badge">1/2 PRICE</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Gatorade Sports Drink or G-Active Flavoured Water 600ml</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.10</div>
+                                <div><span class="original-price">$4.20</span><span class="savings">Save $2.10</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 11 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Toni & Guy Shampoo or Conditioner 600mL</div>
+                        <div class="product-details">Personal Care (78% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Toni & Guy Shampoo or Conditioner 600mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$25.00</div>
+                                <div><span class="original-price">$50.00</span><span class="savings">Save $25.00</span></div>
+                                <div class="special-badge">SAVE $25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Glow Lab Shampoo or Conditioner 600ml</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                <div><span class="original-price">$20.00</span><span class="savings">Save $10.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 12 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores Executive B Stress Formula Tablets 125 ...</div>
+                        <div class="product-details">Health & Wellness (76% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores Executive B Stress Formula Tablets 125 Pack</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">Save $20.00</span></div>
+                                <div class="special-badge">SAVE $20</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores Glucosamine Sulfate 1500 Tablets Pk 90†</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">Save $20.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">TIED DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 13 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Herbal Essences Bio Renew Shampoo or Conditioner 4...</div>
+                        <div class="product-details">Personal Care (71% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Herbal Essences Bio Renew Shampoo or Conditioner 400mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.50</div>
+                                <div><span class="savings">Save $15.00</span></div>
+                                <div class="special-badge">SAVE $15</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Pantene Shampoo or Conditioner 900ml</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                <div><span class="original-price">$20.00</span><span class="savings">Save $10.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 14 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores Pregnancy & Breast-Feeding Gold Capsule...</div>
+                        <div class="product-details">Health & Wellness (70% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores Pregnancy & Breast-Feeding Gold Capsules 120 Pack</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$25.00</div>
+                                <div><span class="original-price">$50.00</span><span class="savings">Save $25.00</span></div>
+                                <div class="special-badge">SAVE $25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores Fish Oil 1000mg Omega-3 Capsules Pk 200†</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">Save $20.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 15 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Colgate 360 Degree Soft or Medium Toothbrush 2 Pac...</div>
+                        <div class="product-details">Personal Care (64% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Colgate 360 Degree Soft or Medium Toothbrush 2 Pack</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div><span class="original-price">$8.00</span><span class="savings">Save $4.00</span></div>
+                                <div class="special-badge">SAVE $4</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Colgate Advanced Whitening Tartar Control Toothpaste 200g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.00</div>
+                                <div><span class="original-price">$10.00</span><span class="savings">Save $5.00</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 16 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Peters Drumstick Cones 4-6 Pack 475mL-490mL</div>
+                        <div class="product-details">Food (64% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Peters Drumstick Cones 4-6 Pack 475mL-490mL</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.00</div>
+                                <div><span class="original-price">$9.50</span><span class="savings">Save $4.75</span></div>
+                                <div class="special-badge">SAVE $4.75</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Peters Drumstick Ice Cream 475-490ml Pk 4-6 – Excludes Plant</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.70</div>
+                                <div><span class="original-price">$9.50</span><span class="savings">Save $3.80</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 17 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pringles Potato Crisps 118g-134g</div>
+                        <div class="product-details">Snacks (62% similarity)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Pringles Potato Crisps 118g-134g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.75</div>
+                                <div><span class="original-price">$5.50</span><span class="savings">Save $2.75</span></div>
+                                <div class="special-badge">1/2 PRICE</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Smith’s Crinkle Cut Potato Chips 150-170g</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.50</div>
+                                <div><span class="original-price">$5.00</span><span class="savings">Save $2.50</span></div>
+                                <div class="special-badge">SPECIAL</div>
+                                <div class="best-deal">BEST DEAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">📊 Weekly Analysis</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Products Compared</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$384+</div>
+                    <div class="stat-label">Total Savings Identified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">41%</div>
+                    <div class="stat-label">Coles Best Deals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">41%</div>
+                    <div class="stat-label">Woolworths Best Deals</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="footer-logo">
+                <div class="footer-text">
+                    <p>AI-Powered Price Comparison | Generated by AdvGen Price Comparer</p>
+                    <p>Data sourced from official Coles and Woolworths catalogues - Week 10-16 Sept 2025</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.michaelleung.info/prices">Home</a>
+                    <a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">GitHub</a>
+                    <a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

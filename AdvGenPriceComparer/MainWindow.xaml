@@ -61,6 +61,10 @@
                     <Button Content="Add Store" HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.AddPlaceCommand}"/>
                     <Button Content="View Reports" HorizontalAlignment="Stretch" Click="ReportsNav_Click"/>
                     
+                    <!-- Import/Export -->
+                    <TextBlock Text="Import/Export" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <Button Content="Import JSON Data" HorizontalAlignment="Stretch" Click="ImportJsonData_Click"/>
+                    
                     <!-- Demo Data -->
                     <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8"/>
                     <Button Content="Generate Demo Data" HorizontalAlignment="Stretch" Click="GenerateDemoData_Click"/>

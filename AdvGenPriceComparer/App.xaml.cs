@@ -54,6 +54,7 @@ public partial class App : Application
         services.AddSingleton<ServerConfigService>(new ServerConfigService(serverConfigPath));
         services.AddSingleton<NetworkManager>();
         services.AddTransient<DemoDataService>();
+        services.AddTransient<JsonImportService>();
 
         // ViewModels
         services.AddTransient<MainWindowViewModel>();

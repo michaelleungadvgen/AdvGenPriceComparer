@@ -101,4 +101,39 @@ public sealed partial class MainWindow : Window
         if (ViewModel.AddPlaceCommand.CanExecute(null))
             ViewModel.AddPlaceCommand.Execute(null);
     }
+
+    private async void ImportJsonData_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var importService = App.Services.GetRequiredService<JsonImportService>();
+            var file = await importService.SelectJsonFileAsync(this);
+            
+            if (file != null)
+            {
+                var result = await importService.ImportJsonDataAsync(file);
+                var notificationService = App.Services.GetRequiredService<INotificationService>();
+                
+                if (result.Success)
+                {
+                    await notificationService.ShowSuccessAsync(result.Message ?? "Data imported successfully!");
+                    
+                    // Refresh the items view if currently showing
+                    if (ContentFrame.Content is Views.ItemListView)
+                    {
+                        ContentFrame.Navigate(typeof(Views.ItemListView));
+                    }
+                }
+                else
+                {
+                    await notificationService.ShowErrorAsync($"Import failed: {result.ErrorMessage}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            var notificationService = App.Services.GetRequiredService<INotificationService>();
+            await notificationService.ShowErrorAsync($"Error during import: {ex.Message}");
+        }
+    }
 }

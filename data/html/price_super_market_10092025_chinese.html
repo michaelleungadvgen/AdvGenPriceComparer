@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每週價格比較 | Michael Leung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .week-btn.current {
+            background: white;
+            color: #85c5d4;
+            border-color: white;
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .retailer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .retailer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .retailer-logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .coles-logo {
+            background: #e31e24;
+            color: white;
+        }
+        
+        .woolworths-logo {
+            background: #00a651;
+            color: white;
+        }
+        
+        .vs-separator {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #85c5d4;
+        }
+        
+        /* Price Comparison Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .price-comparison {
+            padding: 25px;
+        }
+        
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        
+        .store-price:last-child {
+            border-bottom: none;
+        }
+        
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .store-badge.coles {
+            background: #e31e24;
+        }
+        
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+        
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .price-info {
+            text-align: right;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+        
+        .savings {
+            background: #00a651;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .not-available {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            height: 40px;
+        }
+        
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .retailer-logos {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .week-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .store-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .price-info {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+                <div class="nav-title">每週價格比較</div>
+                <nav class="nav-links">
+                    <a href="https://www.michaelleung.info/prices/price_super_market_02092025.html">上週</a>
+                    <a href="#" class="active">本週</a>
+                    <a href="https://buymeacoffee.com/advgen">請我喝咖啡</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🛒 智能價格比較</h1>
+            <p>AI 驅動的分析，比較 Coles 與 Woolworths 每週優惠</p>
+            
+            <div class="week-selector">
+                <a href="price_super_market_02092025.html" class="week-btn">2025年9月02日</a>
+                <a href="#" class="week-btn current">9月10-16日</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">🏆 正面交鋒價格戰</h2>
+            
+            <div class="retailer-logos">
+                <div class="retailer-logo coles-logo">COLES</div>
+                <div class="vs-separator">對決</div>
+                <div class="retailer-logo woolworths-logo">WOOLWORTHS</div>
+            </div>
+            
+            <div class="price-grid">
+                <!-- Product Comparison 1 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Palmolive 液態洗手液補充包 1公升</div>
+                        <div class="product-details">個人護理 (100% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Palmolive 液態洗手液補充包 1公升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.75</div>
+                                <div><span class="original-price">$7.50</span><span class="savings">節省 $3.75</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Palmolive 泡沫洗手液補充包 1公升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.50</div>
+                                <div><span class="original-price">$9.00</span><span class="savings">節省 $4.50</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 2 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Glow Lab 洗手液 300毫升</div>
+                        <div class="product-details">個人護理 (100% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Glow Lab 洗手液 300毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div><span class="original-price">$8.00</span><span class="savings">節省 $4.00</span></div>
+                                <div class="special-badge">節省 $4</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Glow Lab 沐浴露 900毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.00</div>
+                                <div><span class="original-price">$18.00</span><span class="savings">節省 $9.00</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 3 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores 魚油 1000毫克 膠囊 400粒裝</div>
+                        <div class="product-details">健康與保健 (98% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores 魚油 1000毫克 膠囊 400粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$30.00</div>
+                                <div><span class="original-price">$60.00</span><span class="savings">節省 $30.00</span></div>
+                                <div class="special-badge">節省 $30</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores 無腥味魚油 1000毫克 Omega-3 膠囊 400粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$35.00</div>
+                                <div><span class="original-price">$70.00</span><span class="savings">節省 $35.00</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 4 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Schwarzkopf Brilliance 染髮劑 1盒裝</div>
+                        <div class="product-details">個人護理 (94% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Schwarzkopf Brilliance 染髮劑 1盒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">節省 $20.00</span></div>
+                                <div class="special-badge">節省 $20</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Schwarzkopf Brilliance 永久性染髮劑</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$15.60</div>
+                                <div><span class="original-price">$26.00</span><span class="savings">節省 $10.40</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 5 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">可口可樂、芬達或雪碧軟性飲料 1.25公升</div>
+                        <div class="product-details">飲料 (91% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 可口可樂、芬達或雪碧軟性飲料 1.25公升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.75</div>
+                                <div><span class="original-price">$4.00</span><span class="savings">節省 $2.00</span></div>
+                                <div class="special-badge">節省 $2</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 可口可樂經典、零糖或健怡、芬達或雪碧軟性飲料</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.40</div>
+                                <div><span class="original-price">$4.00</span><span class="savings">節省 $1.60</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 6 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dove 洗髮乳或潤髮乳 850毫升</div>
+                        <div class="product-details">個人護理 (90% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Dove 洗髮乳或潤髮乳 850毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$15.00</div>
+                                <div><span class="original-price">$30.00</span><span class="savings">節省 $15.00</span></div>
+                                <div class="special-badge">節省 $15</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - OGX 洗髮乳或潤髮乳 385毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$13.80</div>
+                                <div><span class="original-price">$23.00</span><span class="savings">節省 $9.20</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 7 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sanitarium Up&Go 液態早餐 3x250毫升</div>
+                        <div class="product-details">飲料 (87% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Sanitarium Up&Go 液態早餐 3x250毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.40</div>
+                                <div><span class="original-price">$6.80</span><span class="savings">節省 $3.40</span></div>
+                                <div class="special-badge">節省 $3.40</div>
+                                <div class="best-deal">平手優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Sanitarium UP&GO Energize 或 UP&GO 早餐飲品 3 x 250毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.40</div>
+                                <div><span class="original-price">$6.80</span><span class="savings">節省 $3.40</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">平手優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 8 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lindt Excellence 巧克力塊 80-100克</div>
+                        <div class="product-details">糖果 (86% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Lindt Excellence 巧克力塊 80-100克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.25</div>
+                                <div><span class="original-price">$8.50</span><span class="savings">節省 $4.25</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Lindt Lindor 巧克力禮盒 235克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$14.00</div>
+                                <div><span class="original-price">$28.00</span><span class="savings">節省 $14.00</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 9 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores 生物鎂片 150粒裝</div>
+                        <div class="product-details">健康與保健 (85% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores 生物鎂片 150粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$30.00</div>
+                                <div><span class="original-price">$60.00</span><span class="savings">節省 $30.00</span></div>
+                                <div class="special-badge">節省 $30</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores 維生素 D3 1000IU 錠劑 130粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$12.50</div>
+                                <div><span class="original-price">$25.00</span><span class="savings">節省 $12.50</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 10 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Gatorade 運動飲料 600毫升</div>
+                        <div class="product-details">飲料 (80% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Gatorade 運動飲料 600毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.10</div>
+                                <div><span class="original-price">$4.20</span><span class="savings">節省 $2.10</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">平手優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Gatorade 運動飲料或 G-Active 風味水 600毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.10</div>
+                                <div><span class="original-price">$4.20</span><span class="savings">節省 $2.10</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">平手優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 11 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Toni & Guy 洗髮乳或潤髮乳 600毫升</div>
+                        <div class="product-details">個人護理 (78% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Toni & Guy 洗髮乳或潤髮乳 600毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$25.00</div>
+                                <div><span class="original-price">$50.00</span><span class="savings">節省 $25.00</span></div>
+                                <div class="special-badge">節省 $25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Glow Lab 洗髮乳或潤髮乳 600毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                <div><span class="original-price">$20.00</span><span class="savings">節省 $10.00</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 12 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores Executive B 抗壓配方錠 125粒裝</div>
+                        <div class="product-details">健康與保健 (76% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores Executive B 抗壓配方錠 125粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">節省 $20.00</span></div>
+                                <div class="special-badge">節省 $20</div>
+                                <div class="best-deal">平手優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores 硫酸葡萄糖胺 1500 錠劑 90粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">節省 $20.00</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">平手優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 13 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Herbal Essences Bio Renew 洗髮乳或潤髮乳 400毫升</div>
+                        <div class="product-details">個人護理 (71% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Herbal Essences Bio Renew 洗髮乳或潤髮乳 400毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.50</div>
+                                <div><span class="savings">節省 $15.00</span></div>
+                                <div class="special-badge">節省 $15</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Pantene 洗髮乳或潤髮乳 900毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                <div><span class="original-price">$20.00</span><span class="savings">節省 $10.00</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 14 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Blackmores 懷孕及哺乳黃金膠囊 120粒裝</div>
+                        <div class="product-details">健康與保健 (70% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Blackmores 懷孕及哺乳黃金膠囊 120粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$25.00</div>
+                                <div><span class="original-price">$50.00</span><span class="savings">節省 $25.00</span></div>
+                                <div class="special-badge">節省 $25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Blackmores 魚油 1000毫克 Omega-3 膠囊 200粒裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$20.00</div>
+                                <div><span class="original-price">$40.00</span><span class="savings">節省 $20.00</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 15 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Colgate 360 度柔軟或中等牙刷 2支裝</div>
+                        <div class="product-details">個人護理 (64% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Colgate 360 度柔軟或中等牙刷 2支裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div><span class="original-price">$8.00</span><span class="savings">節省 $4.00</span></div>
+                                <div class="special-badge">節省 $4</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Colgate 先進美白抗牙垢牙膏 200克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.00</div>
+                                <div><span class="original-price">$10.00</span><span class="savings">節省 $5.00</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 16 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Peters Drumstick 甜筒 4-6支裝 475-490毫升</div>
+                        <div class="product-details">食品 (64% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Peters Drumstick 甜筒 4-6支裝 475-490毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.00</div>
+                                <div><span class="original-price">$9.50</span><span class="savings">節省 $4.75</span></div>
+                                <div class="special-badge">節省 $4.75</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Peters Drumstick 冰淇淋 475-490毫升 4-6支裝 – 不含植物系列</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.70</div>
+                                <div><span class="original-price">$9.50</span><span class="savings">節省 $3.80</span></div>
+                                <div class="special-badge">特價</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Comparison 17 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pringles 薯片 118-134克</div>
+                        <div class="product-details">零食 (62% 相似度)</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Pringles 薯片 118-134克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.75</div>
+                                <div><span class="original-price">$5.50</span><span class="savings">節省 $2.75</span></div>
+                                <div class="special-badge">半價</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Smith’s 波浪切薯片 150-170克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.50</div>
+                                <div><span class="original-price">$5.00</span><span class="savings">節省 $2.50</span></div>
+                                <div class="special-badge">特價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">📊 每週分析</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">比較產品數量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$384+</div>
+                    <div class="stat-label">識別總節省金額</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">41%</div>
+                    <div class="stat-label">Coles 最優惠</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">41%</div>
+                    <div class="stat-label">Woolworths 最優惠</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="footer-logo">
+                <div class="footer-text">
+                    <p>AI 驅動價格比較 | 由 AdvGen 價格比較器生成</p>
+                    <p>數據來源自官方 Coles 和 Woolworths 目錄 - 2025年9月10-16日當週</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.michaelleung.info/prices">首頁</a>
+                    <a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">GitHub</a>
+                    <a href="https://buymeacoffee.com/advgen">請我喝咖啡</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

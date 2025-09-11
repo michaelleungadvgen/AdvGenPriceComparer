@@ -1,0 +1,222 @@
+[
+  {
+    "productID": "COL001",
+    "productName": "Farmers Union Greek Style Yogurt Pouch 130g",
+    "category": "Food",
+    "brand": "Farmers Union",
+    "description": "No Added Sugar Kids Yogurt Pouch 130g, $0.92 per 100g",
+    "price": "$1.20",
+    "originalPrice": "$2.50",
+    "savings": "$1.30",
+    "specialType": "SAVE $1.30"
+  },
+  {
+    "productID": "COL002",
+    "productName": "Sanitarium Up&Go Liquid Breakfast 3x250mL",
+    "category": "Beverages",
+    "brand": "Sanitarium",
+    "description": "Liquid Breakfast 3x250mL, $4.53 per litre",
+    "price": "$3.40",
+    "originalPrice": "$6.80",
+    "savings": "$3.40",
+    "specialType": "SAVE $3.40"
+  },
+  {
+    "productID": "COL003",
+    "productName": "Peters Drumstick Cones 4-6 Pack 475mL-490mL",
+    "category": "Food",
+    "brand": "Peters",
+    "description": "Drumstick Cones 4 Pack-6 Pack 475mL-490mL",
+    "price": "$2.00",
+    "originalPrice": "$9.50",
+    "savings": "$4.75",
+    "specialType": "SAVE $4.75"
+  },
+  {
+    "productID": "COL004",
+    "productName": "Coca-Cola, Fanta or Sprite Soft Drink 1.25 Litre",
+    "category": "Beverages",
+    "brand": "Coca-Cola",
+    "description": "Coca-Cola, Fanta or Sprite Soft Drink 1.25 Litre, $1.60 per litre",
+    "price": "$4.75",
+    "originalPrice": "$4.00",
+    "savings": "$2.00",
+    "specialType": "SAVE $2"
+  },
+  {
+    "productID": "COL005",
+    "productName": "Coles Classic Burgers or Sausages 400g-550g",
+    "category": "Food",
+    "brand": "Coles",
+    "description": "Classic Burgers or Sausages 400g-550g",
+    "price": "$10.00",
+    "originalPrice": "$10.00",
+    "savings": "$3.00",
+    "specialType": "Any for $10"
+  },
+  {
+    "productID": "COL006",
+    "productName": "Gatorade Sports Drink 600mL",
+    "category": "Beverages",
+    "brand": "Gatorade",
+    "description": "Sports Drink or G Active Water 600mL, $3.50 per litre",
+    "price": "$2.10",
+    "originalPrice": "$4.20",
+    "savings": "$2.10",
+    "specialType": "1/2 PRICE"
+  },
+  {
+    "productID": "COL007",
+    "productName": "Pringles Potato Crisps 118g-134g",
+    "category": "Snacks",
+    "brand": "Pringles",
+    "description": "Potato Crisps 118g-134g",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75",
+    "specialType": "1/2 PRICE"
+  },
+  {
+    "productID": "COL008",
+    "productName": "Lindt Excellence Block Chocolate 80g-100g",
+    "category": "Confectionery",
+    "brand": "Lindt",
+    "description": "Excellence Block Chocolate 80g-100g",
+    "price": "$4.25",
+    "originalPrice": "$8.50",
+    "savings": "$4.25",
+    "specialType": "1/2 PRICE"
+  },
+  {
+    "productID": "COL009",
+    "productName": "Herbal Essences Bio Renew Shampoo or Conditioner 400mL",
+    "category": "Personal Care",
+    "brand": "Herbal Essences",
+    "description": "Bio Renew Shampoo or Conditioner 400mL, $1.69 per 100mL",
+    "price": "$9.50",
+    "originalPrice": "$9.50",
+    "savings": "$15.00",
+    "specialType": "SAVE $15"
+  },
+  {
+    "productID": "COL010",
+    "productName": "Dove Shampoo or Conditioner 850mL",
+    "category": "Personal Care",
+    "brand": "Dove",
+    "description": "Shampoo or Conditioner 850mL, $1.15 per 100mL",
+    "price": "$15.00",
+    "originalPrice": "$30.00",
+    "savings": "$15.00",
+    "specialType": "SAVE $15"
+  },
+  {
+    "productID": "COL011",
+    "productName": "Schwarzkopf Brilliance Colourant 1 Pack",
+    "category": "Personal Care",
+    "brand": "Schwarzkopf",
+    "description": "Brilliance Colourant 1 Pack, $13.00 per each",
+    "price": "$20.00",
+    "originalPrice": "$40.00",
+    "savings": "$20.00",
+    "specialType": "SAVE $20"
+  },
+  {
+    "productID": "COL012",
+    "productName": "Rexona 48hr Aerosol Deodorant 250mL",
+    "category": "Personal Care",
+    "brand": "Rexona",
+    "description": "48hr Aerosol Deodorant 250mL, $1.70 per 100mL",
+    "price": "$4.25",
+    "originalPrice": "$8.50",
+    "savings": "$4.25",
+    "specialType": "1/2 PRICE"
+  },
+  {
+    "productID": "COL013",
+    "productName": "Toni & Guy Shampoo or Conditioner 600mL",
+    "category": "Personal Care",
+    "brand": "Toni & Guy",
+    "description": "Shampoo or Conditioner 600mL, $2.50 per 100mL",
+    "price": "$25.00",
+    "originalPrice": "$50.00",
+    "savings": "$25.00",
+    "specialType": "SAVE $25"
+  },
+  {
+    "productID": "COL014",
+    "productName": "Blackmores Bio Magnesium Tablets 150 Pack",
+    "category": "Health & Wellness",
+    "brand": "Blackmores",
+    "description": "Bio Magnesium Tablets 150 Pack, $13.33 per 100 each. On sale for 2 weeks",
+    "price": "$30.00",
+    "originalPrice": "$60.00",
+    "savings": "$30.00",
+    "specialType": "SAVE $30"
+  },
+  {
+    "productID": "COL015",
+    "productName": "Blackmores Executive B Stress Formula Tablets 125 Pack",
+    "category": "Health & Wellness",
+    "brand": "Blackmores",
+    "description": "Executive B Stress Formula Tablets 125 Pack, $16.00 per 100 each. On sale for 2 weeks",
+    "price": "$20.00",
+    "originalPrice": "$40.00",
+    "savings": "$20.00",
+    "specialType": "SAVE $20"
+  },
+  {
+    "productID": "COL016",
+    "productName": "Blackmores Pregnancy & Breast-Feeding Gold Capsules 120 Pack",
+    "category": "Health & Wellness",
+    "brand": "Blackmores",
+    "description": "Pregnancy & Breast-Feeding Gold Capsules 120 Pack, $20.83 per 100 each",
+    "price": "$25.00",
+    "originalPrice": "$50.00",
+    "savings": "$25.00",
+    "specialType": "SAVE $25"
+  },
+  {
+    "productID": "COL017",
+    "productName": "Blackmores Fish Oil 1000mg Capsules 400 Pack",
+    "category": "Health & Wellness",
+    "brand": "Blackmores",
+    "description": "Fish Oil 1000mg Capsules 400 Pack, $7.50 per 100 each. On sale for 2 weeks",
+    "price": "$30.00",
+    "originalPrice": "$60.00",
+    "savings": "$30.00",
+    "specialType": "SAVE $30"
+  },
+  {
+    "productID": "COL018",
+    "productName": "Palmolive Liquid Hand Wash Refill 1 Litre",
+    "category": "Personal Care",
+    "brand": "Palmolive",
+    "description": "Liquid Hand Wash Refill 1 Litre, $0.38 per 100mL",
+    "price": "$3.75",
+    "originalPrice": "$7.50",
+    "savings": "$3.75",
+    "specialType": "1/2 PRICE"
+  },
+  {
+    "productID": "COL019",
+    "productName": "Glow Lab Hand Wash 300mL",
+    "category": "Personal Care",
+    "brand": "Glow Lab",
+    "description": "Hand Wash 300mL, $1.33 per 100mL",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00",
+    "specialType": "SAVE $4"
+  },
+  {
+    "productID": "COL020",
+    "productName": "Colgate 360 Degree Soft or Medium Toothbrush 2 Pack",
+    "category": "Personal Care",
+    "brand": "Colgate",
+    "description": "360 Degree Soft or Medium Toothbrush 2 Pack, $2.00 per each",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00",
+    "specialType": "SAVE $4"
+  }
+]
