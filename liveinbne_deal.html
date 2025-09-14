@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brisbane Grocery Deals - Weekly Specials</title>
+    <script type="text/javascript">
+var infolinks_pid = 356217;
+var infolinks_wsid = 0;
+</script>
+<script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            border-bottom: 3px solid #009900;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #009900;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 1rem;
+        }
+
+        .date-badge {
+            background: #009900;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            color: #333;
+            margin-bottom: 3rem;
+            background: #f8f8f8;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            border: 2px solid #009900;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #009900;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+         .support-link {
+            background: #FFDD02;
+            color: #333;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .support-link:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 221, 2, 0.3);
+        }
+
+
+        .category-section {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .category-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            background: #009900;
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-header:hover {
+            background: #007700;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-icon {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .category-content.expanded {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .deal-card {
+            background: white;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #009900;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 153, 0, 0.2);
+            border-color: #009900;
+        }
+
+        .store-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .aldi { background: #005ca9; color: white; }
+        .drakes { background: #e31837; color: white; }
+        .coles { background: #dc143c; color: white; }
+        .woolworths { background: #4caf50; color: white; }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e31837;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .savings {
+            background: #009900;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .deal-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .half-price { background: #ff6b35; color: white; }
+        .best-deal { background: #009900; color: white; }
+        .only-option { background: #9c27b0; color: white; }
+        .better-value { background: #2196f3; color: white; }
+
+        .unit-price {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .no-deal {
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .deals-grid { 
+                grid-template-columns: 1fr; 
+                padding: 1rem;
+            }
+            .main-container { padding: 0 1rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://www.liveinbne.info/wp-content/uploads/2016/10/logo.png" alt="Live in BNE Logo">
+                Brisbane Grocery Deals
+            </div>
+                      <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="https://buymeacoffee.com/advgen" target="_blank" class="support-link">
+                    ☕ Support Us
+                </a>
+                <div class="date-badge">2-9 September 2025</div>
+            </div>
+
+        </div>
+    </header>
+
+   <main class="main-container">
+        <div class="hero">
+            <h1>Weekly Grocery Specials</h1>
+            <p>Compare the best deals across Brisbane's top supermarkets</p>
+        </div>
+
+        <!-- Premium Chocolate -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('chocolate')">
+                <div class="category-title">
+                    <span class="category-icon">🍫</span>
+                    Premium Chocolate
+                </div>
+                <span class="expand-icon" id="chocolate-icon">+</span>
+            </div>
+            <div class="category-content" id="chocolate-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Cadbury Chocolate Bar 30g-55g</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.20</span>
+                            <span class="original-price">$3.00</span>
+                            <span class="savings">Save $1.80</span>
+                        </div>
+                        <div class="deal-badge half-price">½ PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Toblerone 340-360g</div>
+                        <div class="price-info">
+                            <span class="current-price">$8.00</span>
+                            <span class="original-price">$20.00</span>
+                            <span class="savings">Save $12.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">BETTER THAN ½ PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Toblerone 340g</div>
+                        <div class="price-info">
+                            <span class="current-price">$9.50</span>
+                            <span class="savings">Save $1.00</span>
+                        </div>
+                        <div class="deal-badge better-value">GOOD VALUE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Biscuits -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('biscuits')">
+                <div class="category-title">
+                    <span class="category-icon">🍪</span>
+                    Premium Biscuits
+                </div>
+                <span class="expand-icon" id="biscuits-icon">+</span>
+            </div>
+            <div class="category-content" id="biscuits-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Arnott's Tim Tam Chocolate Biscuits 165-200g</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.00</span>
+                            <span class="original-price">$6.00</span>
+                            <span class="savings">Save $3.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">½ PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Arnott's Shapes 130g-190g</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.00</span>
+                            <span class="savings">Save $1.95</span>
+                        </div>
+                        <div class="deal-badge better-value">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Smith's Crackers 160g</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.00</span>
+                            <span class="savings">Save $2.00</span>
+                        </div>
+                        <div class="deal-badge better-value">GOOD VALUE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canned Tuna -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('tuna')">
+                <div class="category-title">
+                    <span class="category-icon">🐟</span>
+                    Canned Tuna 95g
+                </div>
+                <span class="expand-icon" id="tuna-icon">+</span>
+            </div>
+            <div class="category-content" id="tuna-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">John West Tuna 95g</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.20</span>
+                        </div>
+                        <div class="unit-price">$14.21 per kg</div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Breakfast Cereals -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('cereal')">
+                <div class="category-title">
+                    <span class="category-icon">🥣</span>
+                    Breakfast Cereals
+                </div>
+                <span class="expand-icon" id="cereal-icon">+</span>
+            </div>
+            <div class="category-content" id="cereal-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Sanitarium Weet-Bix 575g</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.20</span>
+                        </div>
+                        <div class="unit-price">$0.38 per 100g</div>
+                        <div class="deal-badge half-price">½ PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Selected Kellogg's Cereal 450g-700g</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                            <span class="savings">Save $3.40</span>
+                        </div>
+                        <div class="deal-badge better-value">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Uncle Tobys Plus Antioxidants 435g</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.25</span>
+                            <span class="original-price">$6.50</span>
+                            <span class="savings">Save $3.25</span>
+                        </div>
+                        <div class="deal-badge half-price">½ PRICE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Potato Chips & Snacks -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('snacks')">
+                <div class="category-title">
+                    <span class="category-icon">🥨</span>
+                    Potato Chips & Snacks
+                </div>
+                <span class="expand-icon" id="snacks-icon">+</span>
+            </div>
+            <div class="category-content" id="snacks-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Doritos Corn Chips Share Pack 150-170g</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.50</span>
+                            <span class="original-price">$5.00</span>
+                            <span class="savings">Save $2.50</span>
+                        </div>
+                        <div class="deal-badge half-price">½ PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Smith's Double Crunch, Crinkle or Thinly Cut Chips 150g-175g</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="savings">Save $2.50</span>
+                        </div>
+                        <div class="deal-badge better-value">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Smith's Crinkle Cut or Double Crunch Potato Chips 150g-170g</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.50</span>
+                            <span class="original-price">$5.00</span>
+                            <span class="savings">Save $2.50</span>
+                        </div>
+                        <div class="deal-badge half-price">½ PRICE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Laundry Products -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('laundry')">
+                <div class="category-title">
+                    <span class="category-icon">🧺</span>
+                    Laundry Products
+                </div>
+                <span class="expand-icon" id="laundry-icon">+</span>
+            </div>
+            <div class="category-content" id="laundry-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Cold Power 2L/2kg</div>
+                        <div class="price-info">
+                            <span class="current-price">$12.00</span>
+                            <span class="original-price">$24.00</span>
+                            <span class="savings">Save $12.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">BEST DEAL</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Dynamo Professional 2L</div>
+                        <div class="price-info">
+                            <span class="current-price">$14.50</span>
+                            <span class="savings">Save $14.50</span>
+                        </div>
+                        <div class="deal-badge better-value">SALE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Cold Power Laundry Liquid</div>
+                        <div class="price-info">
+                            <span class="current-price">$12.00</span>
+                        </div>
+                        <div class="deal-badge better-value">MATCHES COLES</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Ice Cream -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('icecream')">
+                <div class="category-title">
+                    <span class="category-icon">🍦</span>
+                    Premium Ice Cream
+                </div>
+                <span class="expand-icon" id="icecream-icon">+</span>
+            </div>
+            <div class="category-content" id="icecream-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Connoisseur 4-6pk 360-400mL</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                            <span class="original-price">$12.00</span>
+                            <span class="savings">Save $6.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">BEST DEAL</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Streets Magnum 4-6pk</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                            <span class="savings">Save $6.00</span>
+                        </div>
+                        <div class="deal-badge better-value">EQUAL DEAL</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge drakes">DRAKES</div>
+                        <div class="product-name">Ben & Jerry's Ice Cream</div>
+                        <div class="price-info">
+                            <span class="current-price">$7.25</span>
+                        </div>
+                        <div class="deal-badge better-value">PREMIUM OPTION</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instant Coffee -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('coffee')">
+                <div class="category-title">
+                    <span class="category-icon">☕</span>
+                    Instant Coffee
+                </div>
+                <span class="expand-icon" id="coffee-icon">+</span>
+            </div>
+            <div class="category-content" id="coffee-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Moccona Café Classic 10pk</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.95</span>
+                            <span class="original-price">$7.90</span>
+                            <span class="savings">Save $3.95</span>
+                        </div>
+                        <div class="deal-badge best-deal">BEST DEAL</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Nescafe Coffee Sachets 8-10pk</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.00</span>
+                            <span class="savings">Save $4.00</span>
+                        </div>
+                        <div class="deal-badge better-value">SALE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ALDI</div>
+                        <div class="product-name">Moccona Coffee Jar</div>
+                        <div class="price-info">
+                            <span class="current-price">$25.99</span>
+                        </div>
+                        <div class="deal-badge special-buy">BULK VALUE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rice 5kg Bags -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('rice')">
+                <div class="category-title">
+                    <span class="category-icon">🍚</span>
+                    Rice 5kg Bags
+                </div>
+                <span class="expand-icon" id="rice-icon">+</span>
+            </div>
+            <div class="category-content" id="rice-content">
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Sunrice Jasmine 5kg</div>
+                        <div class="price-info">
+                            <span class="current-price">$13.50</span>
+                            <span class="original-price">$27.00</span>
+                            <span class="savings">Save $13.50</span>
+                        </div>
+                        <div class="deal-badge best-deal">BEST DEAL</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Allshaan Basmati 5kg</div>
+                        <div class="price-info">
+                            <span class="current-price">$16.00</span>
+                            <span class="savings">Save $16.00</span>
+                        </div>
+                        <div class="deal-badge better-value">SALE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ALDI Weekly Deals -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('aldi')">
+                <div class="category-title">
+                    <span class="category-icon">🏪</span>
+                    ALDI Special Buys Summary
+                </div>
+                <span class="expand-icon" id="aldi-icon">+</span>
+            </div>
+            <div class="category-content" id="aldi-content">
+                <div class="deals-grid">
+                    <!-- Available from Wed 3 Sep - Current Week -->
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - KITCHEN</div>
+                        <div class="product-name">30L Microwave Oven with Grill and Convection</div>
+                        <div class="price-info">
+                            <span class="current-price">$169</span>
+                        </div>
+                        <div class="unit-price">3 Year Warranty</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - KITCHEN</div>
+                        <div class="product-name">Ceramic Frying Pan with Spouts 28cm</div>
+                        <div class="price-info">
+                            <span class="current-price">$19.99</span>
+                        </div>
+                        <div class="unit-price">Made from cast aluminium, non-stick coating</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - KITCHEN</div>
+                        <div class="product-name">Stainless Steel Asparagus Pot</div>
+                        <div class="price-info">
+                            <span class="current-price">$24.99</span>
+                        </div>
+                        <div class="unit-price">Suitable for all stovetops including induction</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - PET</div>
+                        <div class="product-name">Elevated Dog Bed</div>
+                        <div class="price-info">
+                            <span class="current-price">$19.99</span>
+                        </div>
+                        <div class="unit-price">Powder-coated steel frame, water resistant</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - LIMITED TIME</div>
+                        <div class="product-name">Jack Daniel's Pulled Beef 400g</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.99</span>
+                        </div>
+                        <div class="unit-price">$27.48 per kg</div>
+                        <div class="deal-badge best-deal">LIMITED TIME</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - LIMITED TIME</div>
+                        <div class="product-name">Jack Daniel's Pulled Pork 400g</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.99</span>
+                        </div>
+                        <div class="unit-price">$27.48 per kg</div>
+                        <div class="deal-badge best-deal">LIMITED TIME</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 3 SEP - LIMITED TIME</div>
+                        <div class="product-name">Jack Daniel's Tennessee Honey Pulled Chicken 400g</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.99</span>
+                        </div>
+                        <div class="unit-price">$27.48 per kg</div>
+                        <div class="deal-badge best-deal">LIMITED TIME</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 6 SEP - CLEANING</div>
+                        <div class="product-name">ECOVACS DEEBOT NEO 2.0 Robot Vacuum Cleaner</div>
+                        <div class="price-info">
+                            <span class="current-price">$279</span>
+                        </div>
+                        <div class="unit-price">App controlled, 5000Pa suction, 180 min runtime</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 6 SEP - CLEANING</div>
+                        <div class="product-name">Tineco GO H2O Sense Floor Washer</div>
+                        <div class="price-info">
+                            <span class="current-price">$249</span>
+                        </div>
+                        <div class="unit-price">Cordless, vacuum and clean simultaneously</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 6 SEP - CLEANING</div>
+                        <div class="product-name">2-in-1 Cordless Stick Vacuum</div>
+                        <div class="price-info">
+                            <span class="current-price">$99.99</span>
+                        </div>
+                        <div class="unit-price">1 Year Warranty, cyclone technology</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+
+                    <!-- Available from Sat 13 Sep - Next Week -->
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 13 SEP - TECH/TOYS</div>
+                        <div class="product-name">Aston Martin F1 Go Kart</div>
+                        <div class="price-info">
+                            <span class="current-price">$199</span>
+                        </div>
+                        <div class="unit-price">Helmet not included</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 13 SEP - TECH</div>
+                        <div class="product-name">Metal Detector</div>
+                        <div class="price-info">
+                            <span class="current-price">$99.99</span>
+                        </div>
+                        <div class="unit-price">LCD screen, 10" waterproof coil</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 13 SEP - KITCHEN</div>
+                        <div class="product-name">Acerpure 2-in-1 Air Fryer</div>
+                        <div class="price-info">
+                            <span class="current-price">$129</span>
+                        </div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAT 13 SEP - FOOD</div>
+                        <div class="product-name">Huober Brezel Big Pretzels 10pk/200g</div>
+                        <div class="price-info">
+                            <span class="current-price">$5.99</span>
+                        </div>
+                        <div class="unit-price">$3.00 per 100g</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 10 SEP - FASHION</div>
+                        <div class="product-name">Children's Party Dress</div>
+                        <div class="price-info">
+                            <span class="current-price">$14.99</span>
+                        </div>
+                        <div class="unit-price">Assorted styles, Sizes: 3-10</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 10 SEP - TRAVEL</div>
+                        <div class="product-name">Hardcase Suitcase 2pc Set - Navy</div>
+                        <div class="price-info">
+                            <span class="current-price">$99.99</span>
+                        </div>
+                        <div class="unit-price">2 Year Warranty, TSA lock</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">WED 10 SEP - FASHION</div>
+                        <div class="product-name">Children's Hat</div>
+                        <div class="price-info">
+                            <span class="current-price">$7.99</span>
+                        </div>
+                        <div class="unit-price">Reversible Bucket or Cap</div>
+                        <div class="deal-badge best-deal">SPECIAL BUY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ONGOING - FASHION</div>
+                        <div class="product-name">Women's Midi Dress</div>
+                        <div class="price-info">
+                            <span class="current-price">$24.99</span>
+                        </div>
+                        <div class="unit-price">V-neck printed or sleeveless knit</div>
+                        <div class="deal-badge best-deal">SPRING COLLECTION</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ONGOING - FASHION</div>
+                        <div class="product-name">Men's Chino Pants</div>
+                        <div class="price-info">
+                            <span class="current-price">$17.99</span>
+                        </div>
+                        <div class="unit-price">Black or Taupe, Sizes: S-XXL</div>
+                        <div class="deal-badge best-deal">SPRING COLLECTION</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ONGOING - FASHION</div>
+                        <div class="product-name">Women's Lightweight Trench Coat</div>
+                        <div class="price-info">
+                            <span class="current-price">$34.99</span>
+                        </div>
+                        <div class="unit-price">Beige or Black, Sizes: 8-18</div>
+                        <div class="deal-badge best-deal">SPRING COLLECTION</div>
+                    </div>
+
+                    <!-- Ongoing Specials & Father's Day -->
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ONGOING - FATHER'S DAY</div>
+                        <div class="product-name">Jindurra Station Beef Scotch Fillet Steak 2pk/per kg</div>
+                        <div class="price-info">
+                            <span class="current-price">$38.49</span>
+                        </div>
+                        <div class="unit-price">per kg</div>
+                        <div class="deal-badge best-deal">FATHER'S DAY</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ONGOING - EVERYDAY</div>
+                        <div class="product-name">Australian Strawberries 250g Pack</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.49</span>
+                        </div>
+                        <div class="unit-price">$9.96 per kg, QLD grown</div>
+                        <div class="deal-badge better-value">FRESH PRODUCE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">ONGOING - EVERYDAY</div>
+                        <div class="product-name">Australian Brown Onions 1kg Pack</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.99</span>
+                        </div>
+                        <div class="unit-price">$1.99 per kg</div>
+                        <div class="deal-badge better-value">FRESH PRODUCE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAVE - LOW PRICE</div>
+                        <div class="product-name">Brookdale Pure Maple Syrup 250ml</div>
+                        <div class="price-info">
+                            <span class="current-price">$5.49</span>
+                            <span class="savings">Save 50¢</span>
+                        </div>
+                        <div class="unit-price">Was $5.99, $2.20 per 100ml</div>
+                        <div class="deal-badge best-deal">SUPER SAVER</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">SAVE - LOW PRICE</div>
+                        <div class="product-name">Berg Rindless Short Cut Bacon 1kg</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.79</span>
+                            <span class="savings">Save 90¢</span>
+                        </div>
+                        <div class="unit-price">Was $11.69, $10.79 per kg</div>
+                        <div class="deal-badge best-deal">SUPER SAVER</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">CAMP QUALITY</div>
+                        <div class="product-name">Camp Quality Double-Wall Drink Bottle 500ml</div>
+                        <div class="price-info">
+                            <span class="current-price">$9.99</span>
+                        </div>
+                        <div class="unit-price">Stainless steel, flip-top straw</div>
+                        <div class="deal-badge best-deal">CHARITY SUPPORT</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">OKTOBERFEST</div>
+                        <div class="product-name">Oktoberfest Peanut Puffs 200g</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.99</span>
+                        </div>
+                        <div class="unit-price">$1.50 per 100g</div>
+                        <div class="deal-badge best-deal">GERMAN SPECIAL</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge aldi">PEOPLE'S PICK 2025</div>
+                        <div class="product-name">Emporium Selection Triple Cream Brie Cheese 200g</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.49</span>
+                            <span class="savings">Save 50¢</span>
+                        </div>
+                        <div class="unit-price">$22.45 per kg</div>
+                        <div class="deal-badge best-deal">CUSTOMER FAVOURITE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function toggleCategory(categoryId) {
+            const content = document.getElementById(categoryId + '-content');
+            const icon = document.getElementById(categoryId + '-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('expanded');
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Add smooth scrolling and entrance animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
