@@ -1,0 +1,138 @@
+﻿<Window x:Class="AdvGenPriceComparer.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdvGenPriceComparer.WPF"
+        mc:Ignorable="d"
+        Title="AdvGen Price Comparer" Height="700" Width="1200"
+        Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Background="#f8fafb">
+            <MenuItem Header="_File">
+                <MenuItem Header="Import JSON Data..." Click="ImportJsonData_Click"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Data">
+                <MenuItem Header="Add Item" Command="{Binding AddItemCommand}"/>
+                <MenuItem Header="Add Store" Command="{Binding AddPlaceCommand}"/>
+                <Separator/>
+                <MenuItem Header="Generate Demo Data" Click="GenerateDemoData_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="About" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Title Bar -->
+        <Border Grid.Row="1" Background="#f8fafb" Padding="24,16" BorderBrush="#e2e8f0" BorderThickness="0,0,0,1">
+            <TextBlock Text="AdvGen Price Comparer" FontSize="18" FontWeight="SemiBold"/>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar -->
+            <Border Grid.Column="0" Background="#ffffff" BorderBrush="#e2e8f0" BorderThickness="0,0,1,0" Padding="16">
+                <StackPanel>
+                    <TextBlock Text="Navigation" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+                    <!-- Dashboard -->
+                    <Border Background="#dbeafe" Padding="12" CornerRadius="6" Margin="0,0,0,8">
+                        <TextBlock Text="Dashboard" FontWeight="Medium" Foreground="#3b82f6"/>
+                    </Border>
+
+                    <!-- Navigation Buttons -->
+                    <Button Content="Items" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="ItemsNav_Click"/>
+
+                    <Button Content="Stores" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="StoresNav_Click"/>
+
+                    <Button Content="Categories" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="CategoriesNav_Click"/>
+
+                    <Button Content="Reports" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                           Click="ReportsNav_Click"/>
+
+                    <!-- Quick Actions -->
+                    <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <Button Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Command="{Binding AddItemCommand}"/>
+                    <Button Content="Add Store" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Command="{Binding AddPlaceCommand}"/>
+                    <Button Content="View Reports" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Click="ReportsNav_Click"/>
+
+                    <!-- Import/Export -->
+                    <TextBlock Text="Import/Export" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <Button Content="Import JSON Data" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Click="ImportJsonData_Click"/>
+
+                    <!-- Demo Data -->
+                    <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <Button Content="Generate Demo Data" HorizontalAlignment="Stretch"
+                           Click="GenerateDemoData_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Content Area -->
+            <ScrollViewer Grid.Column="1" Padding="24">
+                <StackPanel>
+                    <!-- Dashboard Content -->
+                    <TextBlock Text="Dashboard" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                    <!-- Stats -->
+                    <Grid Margin="0,0,0,24">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="#f0f9ff" Padding="16" CornerRadius="8" Margin="0,0,8,0">
+                            <StackPanel>
+                                <TextBlock Text="Total Items" FontSize="14" Opacity="0.7"/>
+                                <TextBlock Text="{Binding TotalItems}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Background="#f0fdf4" Padding="16" CornerRadius="8" Margin="4,0">
+                            <StackPanel>
+                                <TextBlock Text="Tracked Stores" FontSize="14" Opacity="0.7"/>
+                                <TextBlock Text="{Binding TrackedStores}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="2" Background="#fefce8" Padding="16" CornerRadius="8" Margin="8,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Price Updates" FontSize="14" Opacity="0.7"/>
+                                <TextBlock Text="{Binding PriceUpdates}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Page Content Frame -->
+                    <Frame x:Name="ContentFrame" Background="Transparent" NavigationUIVisibility="Hidden"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

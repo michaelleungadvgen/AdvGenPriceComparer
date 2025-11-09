@@ -132,11 +132,11 @@ public class MainWindowViewModel : BaseViewModel
         try
         {
             var stats = _groceryDataService.GetDashboardStats();
-            
+
             TotalItems = (int)stats["totalItems"];
             TrackedStores = (int)stats["trackedStores"];
             PriceUpdates = (int)stats["priceRecords"];
-            
+
             // Network users is the count of connected peers
             NetworkUsers = ConnectedPeers.Count;
         }
@@ -144,6 +144,14 @@ public class MainWindowViewModel : BaseViewModel
         {
             await _notificationService.ShowErrorAsync($"Error loading dashboard data: {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Public method to refresh dashboard statistics
+    /// </summary>
+    public void RefreshDashboard()
+    {
+        _ = LoadDashboardDataAsync();
     }
 
     private async Task InitializeNetworkingAsync()

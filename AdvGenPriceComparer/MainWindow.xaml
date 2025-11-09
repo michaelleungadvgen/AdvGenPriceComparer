@@ -10,16 +10,59 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Menu Bar -->
+        <MenuBar Grid.Row="0" Background="#f8fafb">
+            <MenuBarItem Title="File">
+                <MenuFlyoutItem Text="Import JSON Data..." Click="ImportJsonData_Click">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE8B5;"/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem Text="Exit" Click="Exit_Click">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE711;"/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+            <MenuBarItem Title="Data">
+                <MenuFlyoutItem Text="Add Item" Command="{x:Bind ViewModel.AddItemCommand}">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE710;"/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Add Store" Command="{x:Bind ViewModel.AddPlaceCommand}">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE80F;"/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem Text="Generate Demo Data" Click="GenerateDemoData_Click">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE74D;"/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+            <MenuBarItem Title="Help">
+                <MenuFlyoutItem Text="About" Click="About_Click">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE946;"/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+        </MenuBar>
+
         <!-- Simple Title Bar -->
-        <Border Grid.Row="0" Background="#f8fafb" Padding="24,16" BorderBrush="#e2e8f0" BorderThickness="0,0,0,1">
+        <Border Grid.Row="1" Background="#f8fafb" Padding="24,16" BorderBrush="#e2e8f0" BorderThickness="0,0,0,1">
             <TextBlock Text="AdvGen Price Comparer" FontSize="18" FontWeight="SemiBold"/>
         </Border>
 
         <!-- Main Content Area -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>

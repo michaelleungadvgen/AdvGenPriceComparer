@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每週價格比較 | Michael Leung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .week-btn.current {
+            background: white;
+            color: #85c5d4;
+            border-color: white;
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .retailer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .retailer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .retailer-logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .coles-logo {
+            background: #e31e24;
+            color: white;
+        }
+        
+        .woolworths-logo {
+            background: #00a651;
+            color: white;
+        }
+        
+        .vs-separator {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #85c5d4;
+        }
+        
+        /* Price Comparison Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .price-comparison {
+            padding: 25px;
+        }
+        
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        
+        .store-price:last-child {
+            border-bottom: none;
+        }
+        
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .store-badge.coles {
+            background: #e31e24;
+        }
+        
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+        
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .price-info {
+            text-align: right;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+        
+        .savings {
+            background: #00a651;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .not-available {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            height: 40px;
+        }
+        
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .retailer-logos {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .week-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .store-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .price-info {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+                <div class="nav-title">每週價格比較</div>
+                <nav class="nav-links">
+                    <a href="https://www.michaelleung.info/prices/price_super_market_10092025_chinese.html">上週</a>
+                    <a href="#" class="active">本週</a>
+                     <a href="price_super_market_24092025_chinese.html">下週</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🛒 智能價格比較</h1>
+            <p>AI驅動分析比較 Coles 與 Woolworths 每週優惠</p>
+            
+            <div class="week-selector">
+                <a href="price_super_market_27082025.html" class="week-btn">2025年8月27日 - 9月2日</a>
+                <a href="#" class="week-btn current">2025年9月17-23日</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">🏆 價格對決</h2>
+            
+            <div class="retailer-logos">
+                <div class="retailer-logo coles-logo">COLES</div>
+                <div class="vs-separator">VS</div>
+                <div class="retailer-logo woolworths-logo">WOOLWORTHS</div>
+            </div>
+            
+            <div class="price-grid">
+                <!-- 牛肉沙朗牛排比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">牛肉沙朗牛排</div>
+                        <div class="product-details">無添加激素，2片裝（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 澳洲無添加激素牛肉沙朗牛排 2片裝 450克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$17.00</div>
+                                <div><span class="original-price">$19.00</span><span class="savings">節省 $2.00</span></div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 澳洲牛肉煎牛排 400克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$12.00</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 薯片比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Kettle薯片</div>
+                        <div class="product-details">優質薯片（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Kettle薯片 165克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.00</div>
+                                <div><span class="original-price">$6.00</span><span class="savings">節省 $3.00</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Kettle薯片 165克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.50</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 紙尿褲比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Huggies紙尿褲</div>
+                        <div class="product-details">大包裝（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - Huggies大包裝紙尿褲 24-36片裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$11.00</div>
+                                <div><span class="original-price">$22.00</span><span class="savings">節省 $11.00</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - Huggies超乾紙尿褲 30-54片裝</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$17.00</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 牙膏比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">高露潔牙膏</div>
+                        <div class="product-details">進階美白去牙垢（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 高露潔進階美白去牙垢 115克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.25</div>
+                                <div><span class="original-price">$6.50</span><span class="savings">節省 $3.25</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 高露潔牙膏 115克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 洗髮精比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">歐萊雅洗髮精</div>
+                        <div class="product-details">玻尿酸豐盈系列（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 歐萊雅Elvive玻尿酸豐盈 340毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                <div><span class="original-price">$11.00</span><span class="savings">節省 $5.50</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 歐萊雅洗髮精 340毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.50</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 可口可樂比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">可口可樂汽水</div>
+                        <div class="product-details">30x375毫升多罐裝（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 可口可樂零糖 30x375毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$19.95</div>
+                                <div><span class="original-price">$41.25</span><span class="savings">節省 $21.30</span></div>
+                                <div class="special-badge">半價</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 可口可樂 30x375毫升</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$30.00</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 吉百利巧克力比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">吉百利巧克力</div>
+                        <div class="product-details">巧克力塊 150-190克（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 吉百利巧克力條 30克-55克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.50</div>
+                                <div><span class="original-price">$3.00</span><span class="savings">節省 $1.50</span></div>
+                                <div class="special-badge">半價</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 吉百利巧克力塊 150-190克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div><span class="original-price">$8.00</span><span class="savings">節省 $4.00</span></div>
+                                <div class="special-badge">半價</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 小黃瓜比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">迷你黃瓜</div>
+                        <div class="product-details">250克包裝（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 澳洲迷你黃瓜 250克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 迷你黃瓜 250克</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.50</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 褐洋蔥比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">褐洋蔥</div>
+                        <div class="product-details">1公斤袋裝（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 澳洲褐洋蔥 1公斤</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.50</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 褐洋蔥 1公斤</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.00</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 馬鈴薯比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">刷洗馬鈴薯</div>
+                        <div class="product-details">2公斤袋裝（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 昆士蘭刷洗馬鈴薯 2公斤</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.50</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 刷洗馬鈴薯 2公斤</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 甜椒比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">甜椒</div>
+                        <div class="product-details">紅、綠或黃色（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 昆士蘭甜椒 每公斤</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.90/公斤</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">同價</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 甜椒 每公斤</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.90/公斤</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">同價</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 奇異果比較 -->
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">奇異果</div>
+                        <div class="product-details">金奇異果（100%相似度）</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div class="store-name">Coles - 金奇異果 每個</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.70</div>
+                                <div class="special-badge">正常價格</div>
+                                <div class="best-deal">最優惠</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div class="store-name">Woolworths - 綠奇異果 每個</div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$0.79</div>
+                                <div class="special-badge">正常價格</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">📊 每週分析</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">比較產品數量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$185+</div>
+                    <div class="stat-label">總計節省金額</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">Coles最優惠</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25%</div>
+                    <div class="stat-label">Woolworths最優惠</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="footer-logo">
+                <div class="footer-text">
+                    <p>AI驅動價格比較 | 由AdvGen價格比較器生成</p>
+                    <p>數據來源於Coles和Woolworths官方目錄 - 2025年9月17-23日週</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.michaelleung.info/prices">首頁</a>
+                    <a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">GitHub</a>
+                    <a href="https://buymeacoffee.com/advgen">請我喝咖啡</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+  

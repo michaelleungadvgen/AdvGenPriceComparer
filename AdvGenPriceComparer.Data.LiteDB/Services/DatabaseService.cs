@@ -10,22 +10,31 @@ public class DatabaseService : IDisposable
 
     public DatabaseService(string connectionString = "GroceryPrices.db")
     {
-        var mapper = BsonMapper.Global;
-        
-        // Configure ObjectId serialization for the entity models
-        mapper.Entity<ItemEntity>()
-            .Id(x => x.Id);
-            
-        mapper.Entity<PlaceEntity>()
-            .Id(x => x.Id);
-            
-        mapper.Entity<PriceRecordEntity>()
-            .Id(x => x.Id);
+        try
+        {
+            // Create a new mapper instance instead of modifying global
+            var mapper = new BsonMapper();
 
-        _database = new LiteDatabase(connectionString);
-        
-        // Create indexes for better performance
-        CreateIndexes();
+            // Configure ObjectId serialization for the entity models
+            mapper.Entity<ItemEntity>()
+                .Id(x => x.Id);
+
+            mapper.Entity<PlaceEntity>()
+                .Id(x => x.Id);
+
+            mapper.Entity<PriceRecordEntity>()
+                .Id(x => x.Id);
+
+            _database = new LiteDatabase(connectionString, mapper);
+
+            // Create indexes for better performance
+            CreateIndexes();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Database initialization failed: {ex}");
+            throw;
+        }
     }
 
     public ILiteCollection<ItemEntity> Items => _database.GetCollection<ItemEntity>("items");

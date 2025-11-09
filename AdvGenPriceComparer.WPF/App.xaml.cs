@@ -1,49 +1,42 @@
+﻿using System;
+using System.IO;
+using System.Windows;
 using AdvGenPriceComparer.Core.Helpers;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
-using AdvGenPriceComparer.Desktop.WinUI.Services;
-using AdvGenPriceComparer.Desktop.WinUI.ViewModels;
+using AdvGenPriceComparer.WPF.Services;
+using AdvGenPriceComparer.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI.Xaml;
-using System;
-using System.IO;
 
-namespace AdvGenPriceComparer.Desktop.WinUI;
+namespace AdvGenPriceComparer.WPF;
 
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
 public partial class App : Application
 {
-    public static IServiceProvider Services { get; private set; }
+    public IServiceProvider Services { get; private set; }
 
     public App()
     {
-        InitializeComponent();
-
-        // Initialize WinUI resources in code as workaround for resource loading issues
-        try
-        {
-            var resources = new Microsoft.UI.Xaml.Controls.XamlControlsResources();
-            this.Resources.MergedDictionaries.Add(resources);
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Debug.WriteLine($"Warning: Could not load XamlControlsResources: {ex.Message}");
-        }
-
         Services = ConfigureServices();
     }
 
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
+
         try
         {
-            var window = Services.GetRequiredService<MainWindow>();
-            window.Activate();
+            var mainWindow = Services.GetRequiredService<MainWindow>();
+            mainWindow.Show();
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Application launch failed: {ex}");
-            throw;
+            MessageBox.Show($"Application startup failed: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            Shutdown();
         }
     }
 
@@ -54,7 +47,9 @@ public partial class App : Application
             var services = new ServiceCollection();
 
             // Database Path
-            var appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AdvGenPriceComparer");
+            var appDataPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "AdvGenPriceComparer");
             Directory.CreateDirectory(appDataPath);
             var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
 
@@ -69,17 +64,21 @@ public partial class App : Application
                 }
             }
 
-            // Services
-            services.AddSingleton<IGroceryDataService>(provider => new GroceryDataService(dbPath));
+            // Core Services
+            services.AddSingleton<IGroceryDataService>(provider =>
+                new GroceryDataService(dbPath));
             services.AddSingleton<IDialogService, SimpleDialogService>();
             services.AddSingleton<INotificationService, SimpleNotificationService>();
-            services.AddSingleton<ServerConfigService>(provider => new ServerConfigService(serverConfigPath));
+            services.AddSingleton<ServerConfigService>(provider =>
+                new ServerConfigService(serverConfigPath));
             services.AddSingleton<NetworkManager>();
+
+            // Data Services
             services.AddTransient<DemoDataService>();
-            services.AddTransient<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>(provider =>
+            services.AddTransient<JsonImportService>(provider =>
             {
-                var dbService = new AdvGenPriceComparer.Data.LiteDB.Services.DatabaseService(dbPath);
-                return new AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService(dbService);
+                var dbService = new DatabaseService(dbPath);
+                return new JsonImportService(dbService);
             });
 
             // ViewModels
@@ -94,8 +93,10 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Service configuration failed: {ex}");
+            MessageBox.Show($"Service configuration failed: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
             throw;
         }
     }
 }
+

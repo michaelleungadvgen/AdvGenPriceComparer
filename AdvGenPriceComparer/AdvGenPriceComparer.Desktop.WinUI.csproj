@@ -19,6 +19,11 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <DisableMsixProjectCapabilityAddedByProject>true</DisableMsixProjectCapabilityAddedByProject>
     <DisableHasPackageAndPublishMenuAddedByProject>true</DisableHasPackageAndPublishMenuAddedByProject>
+    <GeneratePri>false</GeneratePri>
+    <AppxGeneratePriEnabled>false</AppxGeneratePriEnabled>
+    <GenerateAppxManifest>false</GenerateAppxManifest>
+    <AppxSkipPackageValidation>true</AppxSkipPackageValidation>
+    <AppxGeneratePackageRecipe>false</AppxGeneratePackageRecipe>
   </PropertyGroup>
 
   <ItemGroup>
