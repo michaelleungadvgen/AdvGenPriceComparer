@@ -85,6 +85,8 @@ public partial class App : Application
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<ItemViewModel>();
             services.AddTransient<PlaceViewModel>();
+            services.AddTransient<AddStoreViewModel>();
+            services.AddTransient<ImportDataViewModel>();
 
             // Main Window
             services.AddTransient<MainWindow>();

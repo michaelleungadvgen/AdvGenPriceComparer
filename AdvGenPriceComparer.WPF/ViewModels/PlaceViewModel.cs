@@ -5,6 +5,7 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
+using AdvGenPriceComparer.WPF.Views;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
@@ -71,7 +72,13 @@ public class PlaceViewModel : ViewModelBase
 
     private void AddPlace()
     {
-        _dialogService.ShowInfo("Add Store dialog will be implemented.");
+        var viewModel = new AddStoreViewModel(_dataService, _dialogService);
+        var window = new AddStoreWindow(viewModel);
+
+        if (window.ShowDialog() == true)
+        {
+            LoadPlaces();
+        }
     }
 
     private void EditPlace()

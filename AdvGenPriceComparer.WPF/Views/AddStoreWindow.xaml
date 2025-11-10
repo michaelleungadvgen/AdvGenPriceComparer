@@ -1,0 +1,178 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.AddStoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Add Store"
+        Height="550"
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="LabelStyle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,10,0,5"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="InputStyle">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderBrush" Value="#ddd"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="ComboStyle">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderBrush" Value="#ddd"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Form Content -->
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30,20,30,20">
+                <!-- Store Name -->
+                <TextBlock Text="Store Name *" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="StoreNameTextBox"
+                         Style="{StaticResource InputStyle}"
+                         Text="{Binding StoreName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Chain -->
+                <TextBlock Text="Chain *" Style="{StaticResource LabelStyle}"/>
+                <ComboBox x:Name="ChainComboBox"
+                          Style="{StaticResource ComboStyle}"
+                          IsEditable="True"
+                          Text="{Binding Chain, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Content="Coles"/>
+                    <ComboBoxItem Content="Woolworths"/>
+                    <ComboBoxItem Content="IGA"/>
+                    <ComboBoxItem Content="Drakes"/>
+                    <ComboBoxItem Content="ALDI"/>
+                    <ComboBoxItem Content="Foodland"/>
+                    <ComboBoxItem Content="FoodWorks"/>
+                    <ComboBoxItem Content="Independent"/>
+                    <ComboBoxItem Content="Other"/>
+                </ComboBox>
+
+                <!-- Address -->
+                <TextBlock Text="Address" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="AddressTextBox"
+                         Style="{StaticResource InputStyle}"
+                         Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Suburb -->
+                <TextBlock Text="Suburb" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="SuburbTextBox"
+                         Style="{StaticResource InputStyle}"
+                         Text="{Binding Suburb, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- State -->
+                <TextBlock Text="State" Style="{StaticResource LabelStyle}"/>
+                <ComboBox x:Name="StateComboBox"
+                          Style="{StaticResource ComboStyle}"
+                          SelectedValue="{Binding State, UpdateSourceTrigger=PropertyChanged}">
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">QLD</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">NSW</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">VIC</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">SA</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">WA</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">TAS</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">NT</System:String>
+                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">ACT</System:String>
+                </ComboBox>
+
+                <!-- Postcode -->
+                <TextBlock Text="Postcode" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="PostcodeTextBox"
+                         Style="{StaticResource InputStyle}"
+                         Text="{Binding Postcode, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="4"/>
+
+                <!-- Phone -->
+                <TextBlock Text="Phone" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="PhoneTextBox"
+                         Style="{StaticResource InputStyle}"
+                         Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#e8e8e8"
+                BorderThickness="0,1,0,0"
+                Padding="30,20">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel"
+                        Width="90"
+                        Height="36"
+                        Margin="0,0,12,0"
+                        Click="Cancel_Click"
+                        Background="Transparent"
+                        Foreground="#666"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        FontSize="14">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#333"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Content="Add Store"
+                        Width="90"
+                        Height="36"
+                        Click="AddStore_Click"
+                        Background="#111"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        FontSize="14">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="2"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#333"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

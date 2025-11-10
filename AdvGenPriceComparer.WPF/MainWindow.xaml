@@ -73,23 +73,33 @@
                            Click="ReportsNav_Click"/>
 
                     <!-- Quick Actions -->
-                    <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8"/>
-                    <Button Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Command="{Binding AddItemCommand}"/>
-                    <Button Content="Add Store" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Command="{Binding AddPlaceCommand}"/>
-                    <Button Content="View Reports" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Click="ReportsNav_Click"/>
+                    <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
+                    <Button Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding AddItemCommand}"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    <Button Content="Add Store" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding AddPlaceCommand}"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    <Button Content="View Reports" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Click="ReportsNav_Click"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
 
                     <!-- Import/Export -->
-                    <TextBlock Text="Import/Export" FontWeight="SemiBold" Margin="0,16,0,8"/>
-                    <Button Content="Import JSON Data" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Click="ImportJsonData_Click"/>
+                    <TextBlock Text="Import/Export" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
+                    <Button Content="Import JSON Data" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Click="ImportJsonData_Click"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
 
                     <!-- Demo Data -->
-                    <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
                     <Button Content="Generate Demo Data" HorizontalAlignment="Stretch"
-                           Click="GenerateDemoData_Click"/>
+                           Click="GenerateDemoData_Click"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
                 </StackPanel>
             </Border>
 

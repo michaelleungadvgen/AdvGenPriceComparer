@@ -3,6 +3,7 @@ using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
+using AdvGenPriceComparer.WPF.Views;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
@@ -72,9 +73,14 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     private void AddPlace()
     {
-        // Open Add Place dialog
-        _dialogService.ShowInfo("Add Store functionality will be implemented in the Stores view.");
-        OnStoreAdded?.Invoke();
+        var viewModel = new AddStoreViewModel(_dataService, _dialogService);
+        var window = new AddStoreWindow(viewModel);
+
+        if (window.ShowDialog() == true)
+        {
+            RefreshDashboard();
+            OnStoreAdded?.Invoke();
+        }
     }
 
     public void Dispose()

@@ -1,8 +1,11 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Services;
+using AdvGenPriceComparer.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 
@@ -74,6 +77,35 @@ public partial class MainWindow : Window
     }
 
     private void ImportJsonData_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+
+            // Get database path
+            var appDataPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "AdvGenPriceComparer");
+            var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
+
+            var viewModel = new ImportDataViewModel(dataService, dialogService, dbPath);
+            var window = new ImportDataWindow(viewModel) { Owner = this };
+
+            if (window.ShowDialog() == true)
+            {
+                // Refresh dashboard stats
+                ViewModel.RefreshDashboard();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening import dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void OldImportJsonData_Click_Backup(object sender, RoutedEventArgs e)
     {
         try
         {
