@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
@@ -13,17 +15,22 @@ public class ItemViewModel : ViewModelBase
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
     private ObservableCollection<Item> _items;
+    private ObservableCollection<string> _categories;
     private Item? _selectedItem;
+    private string _searchText = string.Empty;
+    private string _selectedCategory = "All Categories";
+    private List<Item> _allItems = new();
 
     public ItemViewModel(IGroceryDataService dataService, IDialogService dialogService)
     {
         _dataService = dataService;
         _dialogService = dialogService;
         _items = new ObservableCollection<Item>();
+        _categories = new ObservableCollection<string> { "All Categories" };
 
         AddItemCommand = new RelayCommand(AddItem);
-        EditItemCommand = new RelayCommand(EditItem, CanEditOrDelete);
-        DeleteItemCommand = new RelayCommand(DeleteItem, CanEditOrDelete);
+        EditItemCommand = new RelayCommand<Item>(EditItem);
+        DeleteItemCommand = new RelayCommand<Item>(DeleteItem);
         RefreshCommand = new RelayCommand(LoadItems);
 
         LoadItems();
@@ -33,6 +40,12 @@ public class ItemViewModel : ViewModelBase
     {
         get => _items;
         set => SetProperty(ref _items, value);
+    }
+
+    public ObservableCollection<string> Categories
+    {
+        get => _categories;
+        set => SetProperty(ref _categories, value);
     }
 
     public Item? SelectedItem
@@ -47,6 +60,32 @@ public class ItemViewModel : ViewModelBase
         }
     }
 
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            if (SetProperty(ref _searchText, value))
+            {
+                FilterItems();
+            }
+        }
+    }
+
+    public string SelectedCategory
+    {
+        get => _selectedCategory;
+        set
+        {
+            if (SetProperty(ref _selectedCategory, value))
+            {
+                FilterItems();
+            }
+        }
+    }
+
+    public string ItemCountText => $"{Items.Count} items";
+
     public ICommand AddItemCommand { get; }
     public ICommand EditItemCommand { get; }
     public ICommand DeleteItemCommand { get; }
@@ -56,12 +95,23 @@ public class ItemViewModel : ViewModelBase
     {
         try
         {
-            Items.Clear();
-            var items = _dataService.GetAllItems();
-            foreach (var item in items)
+            _allItems = _dataService.GetAllItems().ToList();
+
+            // Load categories
+            Categories.Clear();
+            Categories.Add("All Categories");
+            var categories = _allItems
+                .Where(i => !string.IsNullOrEmpty(i.Category))
+                .Select(i => i.Category!)
+                .Distinct()
+                .OrderBy(c => c);
+
+            foreach (var category in categories)
             {
-                Items.Add(item);
+                Categories.Add(category);
             }
+
+            FilterItems();
         }
         catch (Exception ex)
         {
@@ -69,31 +119,62 @@ public class ItemViewModel : ViewModelBase
         }
     }
 
+    private void FilterItems()
+    {
+        Items.Clear();
+
+        var filtered = _allItems.AsEnumerable();
+
+        // Filter by search text
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            var searchLower = SearchText.ToLowerInvariant();
+            filtered = filtered.Where(i =>
+                i.Name.ToLowerInvariant().Contains(searchLower) ||
+                (i.Brand?.ToLowerInvariant().Contains(searchLower) ?? false) ||
+                (i.Category?.ToLowerInvariant().Contains(searchLower) ?? false));
+        }
+
+        // Filter by category
+        if (SelectedCategory != "All Categories")
+        {
+            filtered = filtered.Where(i => i.Category == SelectedCategory);
+        }
+
+        foreach (var item in filtered)
+        {
+            Items.Add(item);
+        }
+
+        OnPropertyChanged(nameof(ItemCountText));
+    }
+
     private void AddItem()
     {
         _dialogService.ShowInfo("Add Item dialog will be implemented.");
     }
 
-    private void EditItem()
+    private void EditItem(Item? item)
     {
-        if (SelectedItem == null) return;
-        _dialogService.ShowInfo($"Edit Item dialog will be implemented for: {SelectedItem.Name}");
+        if (item == null) return;
+        _dialogService.ShowInfo($"Edit Item dialog will be implemented for: {item.Name}");
     }
 
-    private void DeleteItem()
+    private void DeleteItem(Item? item)
     {
-        if (SelectedItem == null) return;
+        if (item == null) return;
 
         var result = _dialogService.ShowConfirmation(
-            $"Are you sure you want to delete '{SelectedItem.Name}'?",
+            $"Are you sure you want to delete '{item.Name}'?",
             "Confirm Delete");
 
         if (result)
         {
             try
             {
-                _dataService.Items.Delete(SelectedItem.Id);
-                Items.Remove(SelectedItem);
+                _dataService.Items.Delete(item.Id);
+                _allItems.Remove(item);
+                FilterItems();
                 _dialogService.ShowSuccess("Item deleted successfully.");
             }
             catch (Exception ex)

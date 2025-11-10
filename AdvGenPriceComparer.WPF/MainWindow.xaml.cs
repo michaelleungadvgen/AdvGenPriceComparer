@@ -6,6 +6,8 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.WPF;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 
@@ -25,6 +27,20 @@ public partial class MainWindow : Window
         DataContext = ViewModel;
 
         this.Closed += OnClosed;
+        this.Loaded += OnLoaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        // Create charts programmatically to avoid XAML compilation issues
+        var categoryChart = new PieChart();
+        categoryChart.SetBinding(PieChart.SeriesProperty, nameof(ViewModel.CategorySeries));
+        CategoryChartContainer.Child = categoryChart;
+
+        var trendChart = new CartesianChart();
+        trendChart.SetBinding(CartesianChart.SeriesProperty, nameof(ViewModel.PriceTrendSeries));
+        trendChart.SetBinding(CartesianChart.XAxesProperty, nameof(ViewModel.XAxes));
+        TrendChartContainer.Child = trendChart;
     }
 
     private void OnClosed(object? sender, EventArgs e)
@@ -34,8 +50,19 @@ public partial class MainWindow : Window
 
     private void ItemsNav_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Navigate to Items view
-        MessageBox.Show("Items view - Coming soon!", "Navigation", MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var viewModel = new ItemViewModel(dataService, dialogService);
+            var page = new ItemsPage(viewModel);
+            ContentFrame.Navigate(page);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error navigating to Items: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void StoresNav_Click(object sender, RoutedEventArgs e)

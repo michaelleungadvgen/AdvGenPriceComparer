@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdvGenPriceComparer.WPF"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
         Title="AdvGen Price Comparer" Height="700" Width="1200"
         Background="White">
@@ -135,6 +136,30 @@
                             <StackPanel>
                                 <TextBlock Text="Price Updates" FontSize="14" Opacity="0.7"/>
                                 <TextBlock Text="{Binding PriceUpdates}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Charts -->
+                    <Grid x:Name="ChartsGrid" Margin="0,0,0,24">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Items by Category Chart -->
+                        <Border Grid.Column="0" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,8,0">
+                            <StackPanel>
+                                <TextBlock Text="Items by Category" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                                <Border x:Name="CategoryChartContainer" Height="300"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Price Trends Chart -->
+                        <Border Grid.Column="1" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="8,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Price Updates Over Time" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                                <Border x:Name="TrendChartContainer" Height="300"/>
                             </StackPanel>
                         </Border>
                     </Grid>

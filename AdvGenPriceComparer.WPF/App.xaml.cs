@@ -7,6 +7,7 @@ using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
+using AdvGenPriceComparer.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdvGenPriceComparer.WPF;
@@ -87,6 +88,9 @@ public partial class App : Application
             services.AddTransient<PlaceViewModel>();
             services.AddTransient<AddStoreViewModel>();
             services.AddTransient<ImportDataViewModel>();
+
+            // Views
+            services.AddTransient<ItemsPage>();
 
             // Main Window
             services.AddTransient<MainWindow>();
