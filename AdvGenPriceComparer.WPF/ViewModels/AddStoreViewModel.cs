@@ -9,6 +9,7 @@ public class AddStoreViewModel : ViewModelBase
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
 
+    private string? _storeId;
     private string _storeName = string.Empty;
     private string _chain = string.Empty;
     private string _address = string.Empty;
@@ -21,6 +22,12 @@ public class AddStoreViewModel : ViewModelBase
     {
         _dataService = dataService;
         _dialogService = dialogService;
+    }
+
+    public string? StoreId
+    {
+        get => _storeId;
+        set => SetProperty(ref _storeId, value);
     }
 
     public string StoreName
@@ -82,31 +89,54 @@ public class AddStoreViewModel : ViewModelBase
 
         try
         {
-            var storeId = _dataService.AddSupermarket(
-                StoreName,
-                Chain,
-                string.IsNullOrWhiteSpace(Address) ? null : Address,
-                string.IsNullOrWhiteSpace(Suburb) ? null : Suburb,
-                string.IsNullOrWhiteSpace(State) ? null : State,
-                string.IsNullOrWhiteSpace(Postcode) ? null : Postcode);
-
-            // Update phone if provided
-            if (!string.IsNullOrWhiteSpace(Phone))
+            if (string.IsNullOrEmpty(StoreId))
             {
-                var place = _dataService.GetPlaceById(storeId);
-                if (place != null)
+                // Add new store
+                var storeId = _dataService.AddSupermarket(
+                    StoreName,
+                    Chain,
+                    string.IsNullOrWhiteSpace(Address) ? null : Address,
+                    string.IsNullOrWhiteSpace(Suburb) ? null : Suburb,
+                    string.IsNullOrWhiteSpace(State) ? null : State,
+                    string.IsNullOrWhiteSpace(Postcode) ? null : Postcode);
+
+                // Update phone if provided
+                if (!string.IsNullOrWhiteSpace(Phone))
                 {
-                    place.Phone = Phone;
-                    _dataService.Places.Update(place);
+                    var place = _dataService.GetPlaceById(storeId);
+                    if (place != null)
+                    {
+                        place.Phone = Phone;
+                        _dataService.Places.Update(place);
+                    }
+                }
+
+                _dialogService.ShowSuccess($"Store '{StoreName}' added successfully!");
+            }
+            else
+            {
+                // Update existing store
+                var store = _dataService.GetPlaceById(StoreId);
+                if (store != null)
+                {
+                    store.Name = StoreName;
+                    store.Chain = Chain;
+                    store.Address = string.IsNullOrWhiteSpace(Address) ? null : Address;
+                    store.Suburb = string.IsNullOrWhiteSpace(Suburb) ? null : Suburb;
+                    store.State = string.IsNullOrWhiteSpace(State) ? null : State;
+                    store.Postcode = string.IsNullOrWhiteSpace(Postcode) ? null : Postcode;
+                    store.Phone = string.IsNullOrWhiteSpace(Phone) ? null : Phone;
+
+                    _dataService.Places.Update(store);
+                    _dialogService.ShowSuccess($"Store '{StoreName}' updated successfully!");
                 }
             }
 
-            _dialogService.ShowSuccess($"Store '{StoreName}' added successfully!");
             return true;
         }
         catch (Exception ex)
         {
-            _dialogService.ShowError($"Failed to add store: {ex.Message}");
+            _dialogService.ShowError($"Failed to save store: {ex.Message}");
             return false;
         }
     }

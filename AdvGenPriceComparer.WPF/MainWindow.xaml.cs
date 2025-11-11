@@ -48,6 +48,14 @@ public partial class MainWindow : Window
         ViewModel.Dispose();
     }
 
+    private void DashboardNav_Click(object sender, RoutedEventArgs e)
+    {
+        // Show dashboard and hide frame
+        DashboardContent.Visibility = Visibility.Visible;
+        ContentFrame.Visibility = Visibility.Collapsed;
+        UpdateNavigation("Dashboard");
+    }
+
     private void ItemsNav_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -56,7 +64,12 @@ public partial class MainWindow : Window
             var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
             var viewModel = new ItemViewModel(dataService, dialogService);
             var page = new ItemsPage(viewModel);
+
+            // Hide dashboard and show frame
+            DashboardContent.Visibility = Visibility.Collapsed;
+            ContentFrame.Visibility = Visibility.Visible;
             ContentFrame.Navigate(page);
+            UpdateNavigation("Items");
         }
         catch (Exception ex)
         {
@@ -67,8 +80,24 @@ public partial class MainWindow : Window
 
     private void StoresNav_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Navigate to Stores view
-        MessageBox.Show("Stores view - Coming soon!", "Navigation", MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var viewModel = new StoreViewModel(dataService, dialogService);
+            var page = new StoresPage(viewModel);
+
+            // Hide dashboard and show frame
+            DashboardContent.Visibility = Visibility.Collapsed;
+            ContentFrame.Visibility = Visibility.Visible;
+            ContentFrame.Navigate(page);
+            UpdateNavigation("Stores");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error navigating to Stores: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void CategoriesNav_Click(object sender, RoutedEventArgs e)
@@ -81,6 +110,52 @@ public partial class MainWindow : Window
     {
         // TODO: Navigate to Reports view
         MessageBox.Show("Reports view - Coming soon!", "Navigation", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private void UpdateNavigation(string activePage)
+    {
+        // Reset all buttons
+        DashboardNav.Background = System.Windows.Media.Brushes.Transparent;
+        DashboardNav.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+        DashboardNav.FontWeight = FontWeights.Normal;
+
+        ItemsNavBtn.Background = System.Windows.Media.Brushes.Transparent;
+        ItemsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+
+        StoresNavBtn.Background = System.Windows.Media.Brushes.Transparent;
+        StoresNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+
+        CategoriesNavBtn.Background = System.Windows.Media.Brushes.Transparent;
+        CategoriesNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+
+        ReportsNavBtn.Background = System.Windows.Media.Brushes.Transparent;
+        ReportsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+
+        // Highlight active button
+        switch (activePage)
+        {
+            case "Dashboard":
+                DashboardNav.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
+                DashboardNav.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                DashboardNav.FontWeight = FontWeights.Medium;
+                break;
+            case "Items":
+                ItemsNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
+                ItemsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                break;
+            case "Stores":
+                StoresNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
+                StoresNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                break;
+            case "Categories":
+                CategoriesNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
+                CategoriesNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                break;
+            case "Reports":
+                ReportsNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
+                ReportsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                break;
+        }
     }
 
     private void GenerateDemoData_Click(object sender, RoutedEventArgs e)

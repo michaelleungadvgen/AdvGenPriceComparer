@@ -52,25 +52,36 @@
                     <TextBlock Text="Navigation" FontWeight="SemiBold" Margin="0,0,0,12"/>
 
                     <!-- Dashboard -->
-                    <Border Background="#dbeafe" Padding="12" CornerRadius="6" Margin="0,0,0,8">
-                        <TextBlock Text="Dashboard" FontWeight="Medium" Foreground="#3b82f6"/>
-                    </Border>
+                    <Button x:Name="DashboardNav" Content="Dashboard" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="#dbeafe" Foreground="#3b82f6" BorderThickness="0"
+                           Padding="12,8" Cursor="Hand" FontWeight="Medium"
+                           Click="DashboardNav_Click">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="6"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
 
                     <!-- Navigation Buttons -->
-                    <Button Content="Items" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                    <Button x:Name="ItemsNavBtn" Content="Items" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="12,8" Cursor="Hand"
                            Click="ItemsNav_Click"/>
 
-                    <Button Content="Stores" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                    <Button x:Name="StoresNavBtn" Content="Stores" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="12,8" Cursor="Hand"
                            Click="StoresNav_Click"/>
 
-                    <Button Content="Categories" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                    <Button x:Name="CategoriesNavBtn" Content="Categories" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="12,8" Cursor="Hand"
                            Click="CategoriesNav_Click"/>
 
-                    <Button Content="Reports" HorizontalAlignment="Stretch" Margin="0,0,0,4"
-                           Background="Transparent" BorderThickness="0" Padding="12,8"
+                    <Button x:Name="ReportsNavBtn" Content="Reports" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="12,8" Cursor="Hand"
                            Click="ReportsNav_Click"/>
 
                     <!-- Quick Actions -->
@@ -105,69 +116,71 @@
             </Border>
 
             <!-- Content Area -->
-            <ScrollViewer Grid.Column="1" Padding="24">
-                <StackPanel>
-                    <!-- Dashboard Content -->
-                    <TextBlock Text="Dashboard" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,16"/>
+            <Grid Grid.Column="1">
+                <!-- Dashboard Content -->
+                <ScrollViewer x:Name="DashboardContent" Padding="24">
+                    <StackPanel>
+                        <TextBlock Text="Dashboard" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,16"/>
 
-                    <!-- Stats -->
-                    <Grid Margin="0,0,0,24">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <!-- Stats -->
+                        <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Background="#f0f9ff" Padding="16" CornerRadius="8" Margin="0,0,8,0">
-                            <StackPanel>
-                                <TextBlock Text="Total Items" FontSize="14" Opacity="0.7"/>
-                                <TextBlock Text="{Binding TotalItems}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
-                            </StackPanel>
-                        </Border>
+                            <Border Grid.Column="0" Background="#f0f9ff" Padding="16" CornerRadius="8" Margin="0,0,8,0">
+                                <StackPanel>
+                                    <TextBlock Text="Total Items" FontSize="14" Opacity="0.7"/>
+                                    <TextBlock Text="{Binding TotalItems}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
 
-                        <Border Grid.Column="1" Background="#f0fdf4" Padding="16" CornerRadius="8" Margin="4,0">
-                            <StackPanel>
-                                <TextBlock Text="Tracked Stores" FontSize="14" Opacity="0.7"/>
-                                <TextBlock Text="{Binding TrackedStores}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
-                            </StackPanel>
-                        </Border>
+                            <Border Grid.Column="1" Background="#f0fdf4" Padding="16" CornerRadius="8" Margin="4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Tracked Stores" FontSize="14" Opacity="0.7"/>
+                                    <TextBlock Text="{Binding TrackedStores}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
 
-                        <Border Grid.Column="2" Background="#fefce8" Padding="16" CornerRadius="8" Margin="8,0,0,0">
-                            <StackPanel>
-                                <TextBlock Text="Price Updates" FontSize="14" Opacity="0.7"/>
-                                <TextBlock Text="{Binding PriceUpdates}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
-                            </StackPanel>
-                        </Border>
-                    </Grid>
+                            <Border Grid.Column="2" Background="#fefce8" Padding="16" CornerRadius="8" Margin="8,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Price Updates" FontSize="14" Opacity="0.7"/>
+                                    <TextBlock Text="{Binding PriceUpdates}" FontSize="28" FontWeight="Bold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
 
-                    <!-- Charts -->
-                    <Grid x:Name="ChartsGrid" Margin="0,0,0,24">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <!-- Charts -->
+                        <Grid x:Name="ChartsGrid" Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <!-- Items by Category Chart -->
-                        <Border Grid.Column="0" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,8,0">
-                            <StackPanel>
-                                <TextBlock Text="Items by Category" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
-                                <Border x:Name="CategoryChartContainer" Height="300"/>
-                            </StackPanel>
-                        </Border>
+                            <!-- Items by Category Chart -->
+                            <Border Grid.Column="0" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,8,0">
+                                <StackPanel>
+                                    <TextBlock Text="Items by Category" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                                    <Border x:Name="CategoryChartContainer" Height="300"/>
+                                </StackPanel>
+                            </Border>
 
-                        <!-- Price Trends Chart -->
-                        <Border Grid.Column="1" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="8,0,0,0">
-                            <StackPanel>
-                                <TextBlock Text="Price Updates Over Time" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
-                                <Border x:Name="TrendChartContainer" Height="300"/>
-                            </StackPanel>
-                        </Border>
-                    </Grid>
+                            <!-- Price Trends Chart -->
+                            <Border Grid.Column="1" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="8,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Price Updates Over Time" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                                    <Border x:Name="TrendChartContainer" Height="300"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
 
-                    <!-- Page Content Frame -->
-                    <Frame x:Name="ContentFrame" Background="Transparent" NavigationUIVisibility="Hidden"/>
-                </StackPanel>
-            </ScrollViewer>
+                <!-- Page Content Frame -->
+                <Frame x:Name="ContentFrame" Background="White" NavigationUIVisibility="Hidden" Visibility="Collapsed"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

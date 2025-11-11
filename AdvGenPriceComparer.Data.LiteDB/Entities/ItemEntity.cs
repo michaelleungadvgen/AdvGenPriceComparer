@@ -4,72 +4,23 @@ using AdvGenPriceComparer.Data.LiteDB.Utilities;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Entities;
 
-public class ItemEntity
+/// <summary>
+/// Database entity for Item. Inherits from core Item model and adds LiteDB-specific mapping.
+/// The base.Id (string) is hidden in favor of ObjectId for LiteDB optimization.
+/// All other properties are inherited from the Item model with LiteDB field mappings applied via BsonMapper configuration.
+/// </summary>
+public class ItemEntity : Item
 {
+    // Shadow the Id property to use ObjectId for LiteDB optimization
     [BsonId]
-    public ObjectId Id { get; set; } = ObjectId.NewObjectId();
-    
-    [BsonField("name")]
-    public required string Name { get; set; }
-    
-    [BsonField("description")]
-    public string? Description { get; set; }
-    
-    [BsonField("brand")]
-    public string? Brand { get; set; }
-    
-    [BsonField("category")]
-    public string? Category { get; set; }
-    
-    [BsonField("subCategory")]
-    public string? SubCategory { get; set; }
-    
-    [BsonField("barcode")]
-    public string? Barcode { get; set; }
-    
-    [BsonField("packageSize")]
-    public string? PackageSize { get; set; }
-    
-    [BsonField("unit")]
-    public string? Unit { get; set; }
-    
-    [BsonField("weight")]
-    public decimal? Weight { get; set; }
-    
-    [BsonField("volume")]
-    public decimal? Volume { get; set; }
-    
-    [BsonField("imageUrl")]
-    public string? ImageUrl { get; set; }
-    
-    [BsonField("nutritionalInfo")]
-    public Dictionary<string, decimal> NutritionalInfo { get; set; } = new();
-    
-    [BsonField("allergens")]
-    public List<string> Allergens { get; set; } = new();
-    
-    [BsonField("dietaryFlags")]
-    public List<string> DietaryFlags { get; set; } = new();
-    
-    [BsonField("tags")]
-    public List<string> Tags { get; set; } = new();
-    
-    [BsonField("isActive")]
-    public bool IsActive { get; set; } = true;
-    
-    [BsonField("dateAdded")]
-    public DateTime DateAdded { get; set; } = DateTime.UtcNow;
-    
-    [BsonField("lastUpdated")]
-    public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
-    
-    [BsonField("extraInfo")]
-    public Dictionary<string, string> ExtraInformation { get; set; } = new();
+    public new ObjectId Id { get; set; } = ObjectId.NewObjectId();
 
-    // Convert from Core Item to LiteDB ItemEntity
+    /// <summary>
+    /// Creates an ItemEntity from a core Item model.
+    /// </summary>
     public static ItemEntity FromItem(Item item)
     {
-        return new ItemEntity
+        var entity = new ItemEntity
         {
             Id = ObjectIdHelper.ParseObjectIdOrDefault(item.Id),
             Name = item.Name,
@@ -92,9 +43,13 @@ public class ItemEntity
             LastUpdated = item.LastUpdated,
             ExtraInformation = new Dictionary<string, string>(item.ExtraInformation)
         };
+
+        return entity;
     }
 
-    // Convert from LiteDB ItemEntity to Core Item
+    /// <summary>
+    /// Converts this ItemEntity to a core Item model.
+    /// </summary>
     public Item ToItem()
     {
         return new Item

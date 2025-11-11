@@ -15,9 +15,28 @@ public class DatabaseService : IDisposable
             // Create a new mapper instance instead of modifying global
             var mapper = new BsonMapper();
 
-            // Configure ObjectId serialization for the entity models
+            // Configure ObjectId serialization and field mappings for entity models
             mapper.Entity<ItemEntity>()
-                .Id(x => x.Id);
+                .Id(x => x.Id)
+                .Field(x => x.Name, "name")
+                .Field(x => x.Description, "description")
+                .Field(x => x.Brand, "brand")
+                .Field(x => x.Category, "category")
+                .Field(x => x.SubCategory, "subCategory")
+                .Field(x => x.Barcode, "barcode")
+                .Field(x => x.PackageSize, "packageSize")
+                .Field(x => x.Unit, "unit")
+                .Field(x => x.Weight, "weight")
+                .Field(x => x.Volume, "volume")
+                .Field(x => x.ImageUrl, "imageUrl")
+                .Field(x => x.NutritionalInfo, "nutritionalInfo")
+                .Field(x => x.Allergens, "allergens")
+                .Field(x => x.DietaryFlags, "dietaryFlags")
+                .Field(x => x.Tags, "tags")
+                .Field(x => x.IsActive, "isActive")
+                .Field(x => x.DateAdded, "dateAdded")
+                .Field(x => x.LastUpdated, "lastUpdated")
+                .Field(x => x.ExtraInformation, "extraInfo");
 
             mapper.Entity<PlaceEntity>()
                 .Id(x => x.Id);
