@@ -1,8 +1,36 @@
 ﻿<Application x:Class="AdvGenPriceComparer.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AdvGenPriceComparer.WPF">
+             xmlns:local="clr-namespace:AdvGenPriceComparer.WPF"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
     <Application.Resources>
-        <!-- Application-wide resources -->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- WPF UI Theme Resources -->
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Light Blue Theme Color -->
+            <Color x:Key="PrimaryColor">#87CEEB</Color>
+            <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+
+            <!-- Accent colors for WPF UI -->
+            <Color x:Key="SystemAccentColor">#87CEEB</Color>
+            <Color x:Key="SystemAccentColorLight1">#A5D8F3</Color>
+            <Color x:Key="SystemAccentColorLight2">#C3E5F7</Color>
+            <Color x:Key="SystemAccentColorLight3">#E1F2FB</Color>
+            <Color x:Key="SystemAccentColorDark1">#6DBFE6</Color>
+            <Color x:Key="SystemAccentColorDark2">#53B0E1</Color>
+            <Color x:Key="SystemAccentColorDark3">#39A1DC</Color>
+
+            <SolidColorBrush x:Key="SystemAccentBrush" Color="{StaticResource SystemAccentColor}"/>
+            <SolidColorBrush x:Key="SystemAccentBrushLight1" Color="{StaticResource SystemAccentColorLight1}"/>
+            <SolidColorBrush x:Key="SystemAccentBrushLight2" Color="{StaticResource SystemAccentColorLight2}"/>
+            <SolidColorBrush x:Key="SystemAccentBrushLight3" Color="{StaticResource SystemAccentColorLight3}"/>
+            <SolidColorBrush x:Key="SystemAccentBrushDark1" Color="{StaticResource SystemAccentColorDark1}"/>
+            <SolidColorBrush x:Key="SystemAccentBrushDark2" Color="{StaticResource SystemAccentColorDark2}"/>
+            <SolidColorBrush x:Key="SystemAccentBrushDark3" Color="{StaticResource SystemAccentColorDark3}"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

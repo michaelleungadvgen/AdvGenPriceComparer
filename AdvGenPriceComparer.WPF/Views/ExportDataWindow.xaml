@@ -1,0 +1,162 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.ExportDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Export Data"
+        Height="450"
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        Background="White"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30">
+                <TextBlock Text="Export Data to JSON" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,20"/>
+
+                <!-- Export Options -->
+                <GroupBox Header="Export Options" Padding="15" Margin="0,0,0,20">
+                    <StackPanel>
+                        <CheckBox Content="Export Shops (Shop.json)" IsChecked="{Binding ExportShops}" FontSize="13" Margin="0,5"/>
+                        <CheckBox Content="Export Products (Goods.json)" IsChecked="{Binding ExportGoods}" FontSize="13" Margin="0,5"/>
+                        <CheckBox Content="Export Prices (price-{timestamp}.json)" IsChecked="{Binding ExportPrices}" FontSize="13" Margin="0,5"/>
+                        <CheckBox Content="Export Manifest (records.json)" IsChecked="{Binding ExportManifest}" FontSize="13" Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Date Range Filter (for Prices) -->
+                <GroupBox Header="Price Date Range (Optional)" Padding="15" Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="From:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <DatePicker Grid.Column="1" SelectedDate="{Binding FromDate}" FontSize="13"/>
+
+                        <TextBlock Grid.Column="3" Text="To:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <DatePicker Grid.Column="4" SelectedDate="{Binding ToDate}" FontSize="13"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Output Directory -->
+                <GroupBox Header="Output Directory" Padding="15" Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding OutputDirectory, UpdateSourceTrigger=PropertyChanged}"
+                                 FontSize="13"
+                                 Padding="8"
+                                 VerticalAlignment="Center"
+                                 IsReadOnly="True"
+                                 Background="#f9f9f9"/>
+
+                        <Button Grid.Column="1"
+                                Content="Browse..."
+                                Command="{Binding BrowseCommand}"
+                                Margin="10,0,0,0"
+                                Padding="15,8"
+                                Background="Transparent"
+                                Foreground="#555"
+                                BorderBrush="#ddd"
+                                BorderThickness="1"
+                                Cursor="Hand"
+                                FontSize="13"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Export Status -->
+                <Border Background="#f0f9ff"
+                        BorderBrush="#3b82f6"
+                        BorderThickness="1"
+                        Padding="15"
+                        CornerRadius="4"
+                        Visibility="{Binding StatusVisibility}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   FontSize="13"
+                                   Foreground="#1e3a8a"
+                                   TextWrapping="Wrap"/>
+                        <ItemsControl ItemsSource="{Binding ExportedFiles}" Margin="10,10,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"
+                                               FontSize="12"
+                                               Foreground="#666"
+                                               Margin="0,2"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <Border Grid.Row="1" BorderBrush="#e8e8e8" BorderThickness="0,1,0,0" Background="#f9f9f9" Padding="20">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel"
+                        Click="Cancel_Click"
+                        Width="90"
+                        Height="36"
+                        Background="Transparent"
+                        Foreground="#666"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        FontSize="14"
+                        Margin="0,0,10,0"/>
+
+                <Button Content="Export"
+                        Command="{Binding ExportCommand}"
+                        Width="90"
+                        Height="36"
+                        Background="#111"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        FontSize="14">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="2"
+                                                Padding="12,0">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#333"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#ccc"/>
+                                    <Setter Property="Foreground" Value="#999"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

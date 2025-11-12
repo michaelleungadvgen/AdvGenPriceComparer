@@ -10,13 +10,18 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.WPF;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
+using Wpf.Ui.Controls;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
+using MessageBoxImage = System.Windows.MessageBoxImage;
+using MessageBoxResult = System.Windows.MessageBoxResult;
 
 namespace AdvGenPriceComparer.WPF;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : FluentWindow
 {
     public MainWindowViewModel ViewModel { get; }
 
@@ -114,46 +119,51 @@ public partial class MainWindow : Window
 
     private void UpdateNavigation(string activePage)
     {
+        // Get theme colors from resources
+        var accentLight = (System.Windows.Media.SolidColorBrush)Application.Current.FindResource("SystemAccentBrushLight3");
+        var accentDark = (System.Windows.Media.SolidColorBrush)Application.Current.FindResource("SystemAccentBrushDark3");
+        var defaultColor = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+
         // Reset all buttons
         DashboardNav.Background = System.Windows.Media.Brushes.Transparent;
-        DashboardNav.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+        DashboardNav.Foreground = defaultColor;
         DashboardNav.FontWeight = FontWeights.Normal;
 
         ItemsNavBtn.Background = System.Windows.Media.Brushes.Transparent;
-        ItemsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+        ItemsNavBtn.Foreground = defaultColor;
 
         StoresNavBtn.Background = System.Windows.Media.Brushes.Transparent;
-        StoresNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+        StoresNavBtn.Foreground = defaultColor;
 
         CategoriesNavBtn.Background = System.Windows.Media.Brushes.Transparent;
-        CategoriesNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+        CategoriesNavBtn.Foreground = defaultColor;
 
         ReportsNavBtn.Background = System.Windows.Media.Brushes.Transparent;
-        ReportsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
+        ReportsNavBtn.Foreground = defaultColor;
 
-        // Highlight active button
+        // Highlight active button with light blue theme
         switch (activePage)
         {
             case "Dashboard":
-                DashboardNav.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
-                DashboardNav.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                DashboardNav.Background = accentLight;
+                DashboardNav.Foreground = accentDark;
                 DashboardNav.FontWeight = FontWeights.Medium;
                 break;
             case "Items":
-                ItemsNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
-                ItemsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                ItemsNavBtn.Background = accentLight;
+                ItemsNavBtn.Foreground = accentDark;
                 break;
             case "Stores":
-                StoresNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
-                StoresNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                StoresNavBtn.Background = accentLight;
+                StoresNavBtn.Foreground = accentDark;
                 break;
             case "Categories":
-                CategoriesNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
-                CategoriesNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                CategoriesNavBtn.Background = accentLight;
+                CategoriesNavBtn.Foreground = accentDark;
                 break;
             case "Reports":
-                ReportsNavBtn.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#dbeafe"));
-                ReportsNavBtn.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#3b82f6"));
+                ReportsNavBtn.Background = accentLight;
+                ReportsNavBtn.Foreground = accentDark;
                 break;
         }
     }
@@ -203,6 +213,25 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show($"Error opening import dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void ExportJsonData_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+
+            var viewModel = new ExportDataViewModel(dataService, dialogService);
+            var window = new ExportDataWindow(viewModel) { Owner = this };
+
+            window.ShowDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening export dialog: {ex.Message}",
                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
@@ -276,5 +305,43 @@ public partial class MainWindow : Window
             "About AdvGen Price Comparer",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
+    }
+
+    private void TitleBar_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (e.ClickCount == 2)
+        {
+            // Double-click to maximize/restore
+            MaximizeButton_Click(sender, e);
+        }
+        else
+        {
+            // Single-click to drag
+            this.DragMove();
+        }
+    }
+
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.WindowState = WindowState.Minimized;
+    }
+
+    private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (this.WindowState == WindowState.Maximized)
+        {
+            this.WindowState = WindowState.Normal;
+            MaximizeButton.Content = "□";
+        }
+        else
+        {
+            this.WindowState = WindowState.Maximized;
+            MaximizeButton.Content = "❐";
+        }
+    }
+
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
     }
 }
