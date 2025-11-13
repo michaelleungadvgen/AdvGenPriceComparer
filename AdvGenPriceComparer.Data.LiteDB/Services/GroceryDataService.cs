@@ -18,7 +18,8 @@ public class GroceryDataService : IGroceryDataService
         Items = new ItemRepository(_database);
         Places = new PlaceRepository(_database);
         PriceRecords = new PriceRecordRepository(_database);
-        
+        Alerts = new AlertRepository(_database);
+
         // Initialize with default supermarket chains if database is empty
         InitializeDefaultData();
     }
@@ -26,6 +27,7 @@ public class GroceryDataService : IGroceryDataService
     public IItemRepository Items { get; }
     public IPlaceRepository Places { get; }
     public IPriceRecordRepository PriceRecords { get; }
+    public IAlertRepository Alerts { get; }
 
     private void InitializeDefaultData()
     {
@@ -81,10 +83,13 @@ public class GroceryDataService : IGroceryDataService
         return Places.Add(place);
     }
 
-    public string RecordPrice(string itemId, string placeId, decimal price, 
+    public string RecordPrice(string itemId, string placeId, decimal price,
         bool isOnSale = false, decimal? originalPrice = null, string? saleDescription = null,
         DateTime? validFrom = null, DateTime? validTo = null, string source = "manual")
     {
+        // Get previous price for alert checking
+        var previousPriceRecord = PriceRecords.GetLatestPrice(itemId, placeId);
+
         var priceRecord = new PriceRecord
         {
             ItemId = itemId,
@@ -98,7 +103,47 @@ public class GroceryDataService : IGroceryDataService
             Source = source
         };
 
-        return PriceRecords.Add(priceRecord);
+        var recordId = PriceRecords.Add(priceRecord);
+
+        // Check and trigger alerts if price changed
+        if (previousPriceRecord != null && previousPriceRecord.Price != price)
+        {
+            CheckAndTriggerAlerts(itemId, placeId, previousPriceRecord.Price, price, isOnSale);
+        }
+
+        return recordId;
+    }
+
+    private void CheckAndTriggerAlerts(string itemId, string placeId, decimal oldPrice, decimal newPrice, bool isOnSale)
+    {
+        // Get alerts for this specific item/place combination
+        var itemAlerts = Alerts.GetAlertsByItem(itemId);
+
+        foreach (var alert in itemAlerts)
+        {
+            // Skip if alert is for a different place (when PlaceId is specified)
+            if (alert.PlaceId != null && alert.PlaceId != placeId)
+                continue;
+
+            // Check if alert should trigger
+            bool shouldTrigger = alert.Type switch
+            {
+                AlertType.OnSale => isOnSale,
+                _ => alert.ShouldTrigger(oldPrice, newPrice)
+            };
+
+            if (shouldTrigger)
+            {
+                alert.Trigger(newPrice, oldPrice);
+
+                // Generate message
+                var item = Items.GetById(itemId);
+                var place = Places.GetById(placeId);
+                alert.Message = alert.GenerateMessage(item?.Name ?? "Unknown Item", place?.Name);
+
+                Alerts.Update(alert);
+            }
+        }
     }
 
     // Grocery-specific search and analysis methods

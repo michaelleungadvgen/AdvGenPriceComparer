@@ -8,6 +8,7 @@ public interface IGroceryDataService : IDisposable
     IItemRepository Items { get; }
     IPlaceRepository Places { get; }
     IPriceRecordRepository PriceRecords { get; }
+    IAlertRepository Alerts { get; }
 
     // Item operations
     string AddGroceryItem(string name, string? brand = null, string? category = null, 

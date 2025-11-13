@@ -44,6 +44,9 @@ public class DatabaseService : IDisposable
             mapper.Entity<PriceRecordEntity>()
                 .Id(x => x.Id);
 
+            mapper.Entity<AlertEntity>()
+                .Id(x => x.Id);
+
             _database = new LiteDatabase(connectionString, mapper);
 
             // Create indexes for better performance
@@ -59,6 +62,7 @@ public class DatabaseService : IDisposable
     public ILiteCollection<ItemEntity> Items => _database.GetCollection<ItemEntity>("items");
     public ILiteCollection<PlaceEntity> Places => _database.GetCollection<PlaceEntity>("places");
     public ILiteCollection<PriceRecordEntity> PriceRecords => _database.GetCollection<PriceRecordEntity>("price_records");
+    public ILiteCollection<AlertEntity> Alerts => _database.GetCollection<AlertEntity>("alerts");
 
     private void CreateIndexes()
     {
@@ -84,6 +88,15 @@ public class DatabaseService : IDisposable
         PriceRecords.EnsureIndex(x => x.IsOnSale);
         PriceRecords.EnsureIndex(x => x.ValidFrom);
         PriceRecords.EnsureIndex(x => x.ValidTo);
+
+        // Alert indexes
+        Alerts.EnsureIndex(x => x.ItemId);
+        Alerts.EnsureIndex(x => x.PlaceId);
+        Alerts.EnsureIndex(x => x.IsActive);
+        Alerts.EnsureIndex(x => x.IsRead);
+        Alerts.EnsureIndex(x => x.IsDismissed);
+        Alerts.EnsureIndex(x => x.LastTriggered);
+        Alerts.EnsureIndex(x => x.DateCreated);
     }
 
     public void BackupDatabase(string backupPath)
