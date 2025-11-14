@@ -7,8 +7,11 @@
         Title="Import JSON Data"
         Height="600"
         Width="700"
-        WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        ShowInTaskbar="True"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="TextBlock" x:Key="LabelStyle">
             <Setter Property="FontSize" Value="13"/>
@@ -120,10 +123,141 @@
             </StackPanel>
         </ScrollViewer>
 
-        <!-- Step 2: Review and Import -->
+        <!-- Step 2: Preview Records -->
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Visibility="{Binding Step2Visibility}">
             <StackPanel Margin="40,30,40,30">
-                <TextBlock Text="Step 2: Review and Import" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,20"/>
+                <TextBlock Text="Step 2: Review Import Records" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                <TextBlock Text="Review the items below. Check the box to add a price record to an existing item, or uncheck to create a new item."
+                           FontSize="12"
+                           Foreground="#666"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,20"/>
+
+                <!-- Import Count Summary -->
+                <Border BorderBrush="#ddd" BorderThickness="1" Background="#f0f9ff" Padding="12" CornerRadius="4" Margin="0,0,0,15">
+                    <TextBlock FontSize="13">
+                        <Run Text="Total Records: " FontWeight="SemiBold"/>
+                        <Run Text="{Binding PreviewItems.Count, Mode=OneWay}"/>
+                    </TextBlock>
+                </Border>
+
+                <!-- Loading indicator -->
+                <ProgressBar Height="6"
+                             Margin="0,0,0,10"
+                             IsIndeterminate="{Binding IsImporting}"
+                             Visibility="{Binding ProgressVisibility}"/>
+
+                <!-- Preview Items List -->
+                <DataGrid ItemsSource="{Binding PreviewItems}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="False"
+                          SelectionMode="Single"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column"
+                          BorderThickness="1"
+                          BorderBrush="#ddd"
+                          Background="White"
+                          RowHeight="60"
+                          MaxHeight="400"
+                          CanUserResizeRows="False"
+                          CanUserReorderColumns="False"
+                          FontSize="12">
+
+                    <!-- Column Headers Style -->
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#f9f9f9"/>
+                            <Setter Property="Foreground" Value="#666"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Padding" Value="12,8"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="BorderBrush" Value="#ddd"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <!-- Row Style -->
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#f9f9f9"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <!-- Checkbox Column -->
+                        <DataGridTemplateColumn Header="Action" Width="140">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical" Margin="8,4">
+                                        <CheckBox IsChecked="{Binding AddPriceRecordOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                  IsEnabled="{Binding HasExistingItem}"
+                                                  Content="Add price record"
+                                                  FontSize="11"/>
+                                        <TextBlock Text="{Binding ActionDescription}"
+                                                   FontSize="10"
+                                                   Foreground="#666"
+                                                   Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Product Name Column -->
+                        <DataGridTemplateColumn Header="Product" Width="2*" MinWidth="200">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="8,4">
+                                        <TextBlock Text="{Binding ProductName}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding ExistingItemInfo}" FontSize="10" Foreground="#0066cc" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Brand Column -->
+                        <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*" MinWidth="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Margin" Value="8,0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Category Column -->
+                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="*" MinWidth="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Margin" Value="8,0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Price Column -->
+                        <DataGridTextColumn Header="Price" Binding="{Binding PriceDisplay}" Width="120">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Margin" Value="8,0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Step 3: Review and Import -->
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Visibility="{Binding Step3Visibility}">
+            <StackPanel Margin="40,30,40,30">
+                <TextBlock Text="Step 3: Import Progress" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,20"/>
 
                 <!-- Summary -->
                 <Border BorderBrush="#ddd" BorderThickness="1" Background="#f0f9ff" Padding="16" CornerRadius="4" Margin="0,0,0,20">
@@ -235,6 +369,52 @@
                             Height="36"
                             Margin="0,0,12,0"
                             Click="Back_Click"
+                            Background="Transparent"
+                            Foreground="#666"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            FontSize="14"
+                            IsEnabled="{Binding CanGoBack}"/>
+                    <Button Content="Next"
+                            Width="90"
+                            Height="36"
+                            Click="NextToStep3_Click"
+                            Background="#111"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            FontSize="14">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="2"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#333"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <!-- Step 3 Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding Step3Visibility}">
+                    <Button Content="Back"
+                            Width="90"
+                            Height="36"
+                            Margin="0,0,12,0"
+                            Click="BackToStep2_Click"
                             Background="Transparent"
                             Foreground="#666"
                             BorderThickness="0"

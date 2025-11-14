@@ -140,11 +140,12 @@
             </Grid.ColumnDefinitions>
 
             <!-- Sidebar -->
-            <Border Grid.Column="0" Background="#ffffff" BorderBrush="#e2e8f0" BorderThickness="0,0,1,0" Padding="16">
-                <StackPanel>
-                    <TextBlock Text="Navigation" FontWeight="SemiBold" Margin="0,0,0,12"/>
+            <Border Grid.Column="0" Background="#ffffff" BorderBrush="#e2e8f0" BorderThickness="0,0,1,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="16">
+                    <StackPanel>
+                        <TextBlock Text="Navigation" FontWeight="SemiBold" Margin="0,0,0,12"/>
 
-                    <!-- Dashboard -->
+                        <!-- Dashboard -->
                     <ui:Button x:Name="DashboardNav" Content="Dashboard" HorizontalAlignment="Stretch" Margin="0,0,0,4"
                            Background="{StaticResource SystemAccentBrushLight3}"
                            Foreground="{StaticResource SystemAccentBrushDark3}"
@@ -204,13 +205,14 @@
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
 
-                    <!-- Demo Data -->
-                    <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
-                    <ui:Button Content="Generate Demo Data" HorizontalAlignment="Stretch"
-                           Click="GenerateDemoData_Click"
-                           Appearance="Transparent"
-                           Padding="8,6" Cursor="Hand" FontSize="13"/>
-                </StackPanel>
+                        <!-- Demo Data -->
+                        <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
+                        <ui:Button Content="Generate Demo Data" HorizontalAlignment="Stretch"
+                               Click="GenerateDemoData_Click"
+                               Appearance="Transparent"
+                               Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
 
             <!-- Content Area -->

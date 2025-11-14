@@ -1,6 +1,10 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
+using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
@@ -23,18 +27,51 @@ public class AddItemViewModel : ViewModelBase
     private string _tagsText = string.Empty;
     private string _allergensText = string.Empty;
     private string _dietaryFlagsText = string.Empty;
+    private bool _isEditMode;
+    private string _newPrice = string.Empty;
+    private string _salePrice = string.Empty;
+    private bool _isOnSale;
+    private Place? _selectedStore;
 
     public AddItemViewModel(IGroceryDataService dataService, IDialogService dialogService)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+
+        AvailableStores = new ObservableCollection<Place>();
+        PriceRecords = new ObservableCollection<PriceRecordDisplay>();
+
+        AddPriceRecordCommand = new RelayCommand(AddPriceRecord, CanAddPriceRecord);
+
+        LoadStores();
     }
+
+    public ObservableCollection<Place> AvailableStores { get; }
+    public ObservableCollection<PriceRecordDisplay> PriceRecords { get; }
+    public ICommand AddPriceRecordCommand { get; }
 
     public string? ItemId
     {
         get => _itemId;
-        set => SetProperty(ref _itemId, value);
+        set
+        {
+            if (SetProperty(ref _itemId, value))
+            {
+                IsEditMode = !string.IsNullOrEmpty(value);
+                OnPropertyChanged(nameof(WindowTitle));
+                OnPropertyChanged(nameof(SaveButtonText));
+            }
+        }
     }
+
+    public bool IsEditMode
+    {
+        get => _isEditMode;
+        set => SetProperty(ref _isEditMode, value);
+    }
+
+    public string WindowTitle => IsEditMode ? "Edit Item" : "Add Item";
+    public string SaveButtonText => IsEditMode ? "Save" : "Add Item";
 
     public string Name
     {
@@ -108,6 +145,172 @@ public class AddItemViewModel : ViewModelBase
         set => SetProperty(ref _dietaryFlagsText, value);
     }
 
+    public string NewPrice
+    {
+        get => _newPrice;
+        set
+        {
+            if (SetProperty(ref _newPrice, value))
+            {
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+    }
+
+    public string SalePrice
+    {
+        get => _salePrice;
+        set
+        {
+            if (SetProperty(ref _salePrice, value))
+            {
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+    }
+
+    public bool IsOnSale
+    {
+        get => _isOnSale;
+        set
+        {
+            if (SetProperty(ref _isOnSale, value))
+            {
+                // Clear sale price when unchecked
+                if (!value)
+                {
+                    SalePrice = string.Empty;
+                }
+                OnPropertyChanged(nameof(SalePrice));
+            }
+        }
+    }
+
+    public Place? SelectedStore
+    {
+        get => _selectedStore;
+        set
+        {
+            if (SetProperty(ref _selectedStore, value))
+            {
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+    }
+
+    private void LoadStores()
+    {
+        AvailableStores.Clear();
+        var stores = _dataService.GetAllPlaces();
+        foreach (var store in stores)
+        {
+            AvailableStores.Add(store);
+        }
+
+        if (AvailableStores.Any())
+        {
+            SelectedStore = AvailableStores.First();
+        }
+    }
+
+    private void LoadPriceRecords()
+    {
+        if (string.IsNullOrEmpty(ItemId)) return;
+
+        PriceRecords.Clear();
+        var records = _dataService.PriceRecords.GetByItem(ItemId);
+
+        foreach (var record in records.OrderByDescending(r => r.DateRecorded))
+        {
+            var place = _dataService.GetPlaceById(record.PlaceId);
+            var display = new PriceRecordDisplay
+            {
+                Price = record.Price,
+                OriginalPrice = record.OriginalPrice,
+                PlaceName = place?.Name ?? "Unknown Store",
+                DateRecorded = record.DateRecorded,
+                IsOnSale = record.IsOnSale
+            };
+
+            // Calculate savings text
+            if (record.IsOnSale && record.OriginalPrice.HasValue)
+            {
+                var savings = record.OriginalPrice.Value - record.Price;
+                var savingsPercent = (savings / record.OriginalPrice.Value) * 100;
+                display.SavingsText = $"Save ${savings:F2} ({savingsPercent:F0}% off)";
+            }
+
+            PriceRecords.Add(display);
+        }
+    }
+
+    private bool CanAddPriceRecord()
+    {
+        return !string.IsNullOrEmpty(ItemId) &&
+               !string.IsNullOrWhiteSpace(NewPrice) &&
+               decimal.TryParse(NewPrice, out _) &&
+               SelectedStore != null;
+    }
+
+    private void AddPriceRecord()
+    {
+        if (!CanAddPriceRecord() || string.IsNullOrEmpty(ItemId) || SelectedStore == null)
+            return;
+
+        if (!decimal.TryParse(NewPrice, out var regularPrice))
+        {
+            _dialogService.ShowWarning("Please enter a valid regular price.");
+            return;
+        }
+
+        decimal? originalPrice = null;
+        decimal finalPrice = regularPrice;
+
+        // Handle sale price
+        if (IsOnSale && !string.IsNullOrWhiteSpace(SalePrice))
+        {
+            if (!decimal.TryParse(SalePrice, out var salePrice))
+            {
+                _dialogService.ShowWarning("Please enter a valid sale price.");
+                return;
+            }
+
+            if (salePrice >= regularPrice)
+            {
+                _dialogService.ShowWarning("Sale price must be less than regular price.");
+                return;
+            }
+
+            originalPrice = regularPrice;
+            finalPrice = salePrice;
+        }
+
+        try
+        {
+            _dataService.RecordPrice(
+                ItemId,
+                SelectedStore.Id,
+                finalPrice,
+                IsOnSale,
+                originalPrice);
+
+            var message = IsOnSale && originalPrice.HasValue
+                ? $"Sale price ${finalPrice:F2} (was ${originalPrice.Value:F2}) recorded for {SelectedStore.Name}"
+                : $"Price ${finalPrice:F2} recorded for {SelectedStore.Name}";
+
+            _dialogService.ShowSuccess(message);
+
+            LoadPriceRecords();
+            NewPrice = string.Empty;
+            SalePrice = string.Empty;
+            IsOnSale = false;
+        }
+        catch (Exception ex)
+        {
+            _dialogService.ShowError($"Failed to add price record: {ex.Message}");
+        }
+    }
+
     public bool SaveItem()
     {
         // Validate required fields
@@ -129,6 +332,7 @@ public class AddItemViewModel : ViewModelBase
                 {
                     UpdateItemFields(item);
                     _dataService.Items.Update(item);
+                    ItemId = itemId; // Set ItemId so user can add prices
                 }
 
                 _dialogService.ShowSuccess($"Item '{Name}' added successfully!");
@@ -155,7 +359,7 @@ public class AddItemViewModel : ViewModelBase
         }
     }
 
-    private void UpdateItemFields(Core.Models.Item item)
+    private void UpdateItemFields(Item item)
     {
         item.Brand = string.IsNullOrWhiteSpace(Brand) ? null : Brand;
         item.Category = string.IsNullOrWhiteSpace(Category) ? null : Category;
@@ -194,7 +398,7 @@ public class AddItemViewModel : ViewModelBase
         item.MarkAsUpdated();
     }
 
-    public void LoadItem(Core.Models.Item item)
+    public void LoadItem(Item item)
     {
         ItemId = item.Id;
         Name = item.Name;
@@ -209,5 +413,17 @@ public class AddItemViewModel : ViewModelBase
         TagsText = item.Tags.Any() ? string.Join(", ", item.Tags) : string.Empty;
         AllergensText = item.Allergens.Any() ? string.Join(", ", item.Allergens) : string.Empty;
         DietaryFlagsText = item.DietaryFlags.Any() ? string.Join(", ", item.DietaryFlags) : string.Empty;
+
+        LoadPriceRecords();
     }
+}
+
+public class PriceRecordDisplay
+{
+    public required decimal Price { get; set; }
+    public decimal? OriginalPrice { get; set; }
+    public required string PlaceName { get; set; }
+    public required DateTime DateRecorded { get; set; }
+    public required bool IsOnSale { get; set; }
+    public string? SavingsText { get; set; }
 }

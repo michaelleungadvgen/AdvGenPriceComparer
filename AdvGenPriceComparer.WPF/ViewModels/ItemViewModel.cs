@@ -151,13 +151,27 @@ public class ItemViewModel : ViewModelBase
 
     private void AddItem()
     {
-        _dialogService.ShowInfo("Add Item dialog will be implemented.");
+        var viewModel = new AddItemViewModel(_dataService, _dialogService);
+        var window = new Views.AddItemWindow(viewModel);
+
+        if (window.ShowDialog() == true)
+        {
+            LoadItems();
+        }
     }
 
     private void EditItem(Item? item)
     {
         if (item == null) return;
-        _dialogService.ShowInfo($"Edit Item dialog will be implemented for: {item.Name}");
+
+        var viewModel = new AddItemViewModel(_dataService, _dialogService);
+        viewModel.LoadItem(item);
+        var window = new Views.AddItemWindow(viewModel);
+
+        if (window.ShowDialog() == true)
+        {
+            LoadItems();
+        }
     }
 
     private void DeleteItem(Item? item)

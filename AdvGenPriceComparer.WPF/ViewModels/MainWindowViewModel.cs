@@ -180,8 +180,13 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     private void AddItem()
     {
-        // Open Add Item dialog
-        _dialogService.ShowInfo("Add Item functionality will be implemented in the Items view.");
+        var viewModel = new AddItemViewModel(_dataService, _dialogService);
+        var window = new Views.AddItemWindow(viewModel);
+
+        if (window.ShowDialog() == true)
+        {
+            RefreshDashboard();
+        }
     }
 
     private void AddPlace()

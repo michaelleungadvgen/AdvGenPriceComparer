@@ -14,7 +14,7 @@ public partial class AddItemWindow : Window
         DataContext = ViewModel;
     }
 
-    private void AddItem_Click(object sender, RoutedEventArgs e)
+    private void SaveItem_Click(object sender, RoutedEventArgs e)
     {
         if (ViewModel.SaveItem())
         {

@@ -28,15 +28,22 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
+        var logger = Services.GetRequiredService<ILoggerService>();
+        logger.LogInfo("OnStartup called");
+
         try
         {
+            logger.LogInfo("Creating MainWindow");
             var mainWindow = Services.GetRequiredService<MainWindow>();
+            logger.LogInfo("MainWindow created successfully");
             mainWindow.Show();
+            logger.LogInfo("MainWindow shown");
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Application startup failed: {ex.Message}", "Error",
-                MessageBoxButton.OK, MessageBoxImage.Error);
+            logger.LogCritical("Application startup failed", ex);
+            MessageBox.Show($"Application startup failed: {ex.Message}\n\nCheck logs at: {logger.GetLogFilePath()}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
         }
     }
@@ -66,6 +73,7 @@ public partial class App : Application
             }
 
             // Core Services
+            services.AddSingleton<ILoggerService, FileLoggerService>();
             services.AddSingleton<IGroceryDataService>(provider =>
                 new GroceryDataService(dbPath));
             services.AddSingleton<IDialogService, SimpleDialogService>();

@@ -190,29 +190,46 @@ public partial class MainWindow : FluentWindow
 
     private void ImportJsonData_Click(object sender, RoutedEventArgs e)
     {
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        logger.LogInfo("ImportJsonData_Click called");
+
         try
         {
+            logger.LogInfo("Getting services from DI container");
             var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
             var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            logger.LogInfo("Services retrieved successfully");
 
             // Get database path
             var appDataPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "AdvGenPriceComparer");
             var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
+            logger.LogInfo($"Database path: {dbPath}");
 
+            logger.LogInfo("Creating ImportDataViewModel");
             var viewModel = new ImportDataViewModel(dataService, dialogService, dbPath);
+            logger.LogInfo("ImportDataViewModel created");
+
+            logger.LogInfo("Creating ImportDataWindow");
             var window = new ImportDataWindow(viewModel) { Owner = this };
+            logger.LogInfo("ImportDataWindow created, showing dialog");
 
             if (window.ShowDialog() == true)
             {
+                logger.LogInfo("Import dialog closed with success result");
                 // Refresh dashboard stats
                 ViewModel.RefreshDashboard();
+            }
+            else
+            {
+                logger.LogInfo("Import dialog closed without success result");
             }
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error opening import dialog: {ex.Message}",
+            logger.LogError("Error in ImportJsonData_Click", ex);
+            MessageBox.Show($"Error opening import dialog: {ex.Message}\n\nCheck logs at: {logger.GetLogFilePath()}",
                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

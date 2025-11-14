@@ -4,11 +4,13 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
 
@@ -36,10 +38,12 @@ public class ImportDataViewModel : ViewModelBase
 
         Stores = new ObservableCollection<Place>();
         SelectedFiles = new ObservableCollection<string>();
+        PreviewItems = new ObservableCollection<ImportPreviewItem>();
     }
 
     public ObservableCollection<Place> Stores { get; }
     public ObservableCollection<string> SelectedFiles { get; }
+    public ObservableCollection<ImportPreviewItem> PreviewItems { get; }
 
     public int CurrentStep
     {
@@ -50,12 +54,14 @@ public class ImportDataViewModel : ViewModelBase
             {
                 OnPropertyChanged(nameof(Step1Visibility));
                 OnPropertyChanged(nameof(Step2Visibility));
+                OnPropertyChanged(nameof(Step3Visibility));
             }
         }
     }
 
     public Visibility Step1Visibility => CurrentStep == 1 ? Visibility.Visible : Visibility.Collapsed;
     public Visibility Step2Visibility => CurrentStep == 2 ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility Step3Visibility => CurrentStep == 3 ? Visibility.Visible : Visibility.Collapsed;
 
     public string SelectedFilesText => _selectedFilePaths.Length > 0
         ? $"{_selectedFilePaths.Length} file(s) selected"
@@ -139,7 +145,7 @@ public class ImportDataViewModel : ViewModelBase
         }
     }
 
-    public void GoToStep2()
+    public async void GoToStep2()
     {
         // Validate Step 1
         if (_selectedFilePaths.Length == 0)
@@ -155,12 +161,116 @@ public class ImportDataViewModel : ViewModelBase
         }
 
         CurrentStep = 2;
-        ImportStatus = "Ready to import...\n\nClick 'Import' to begin.";
+        await LoadPreviewData();
     }
 
     public void GoToStep1()
     {
         CurrentStep = 1;
+    }
+
+    public void GoToStep3()
+    {
+        CurrentStep = 3;
+        ImportStatus = "Ready to import...\n\nClick 'Import' to begin.";
+    }
+
+    private async Task LoadPreviewData()
+    {
+        PreviewItems.Clear();
+        IsImporting = true;
+
+        try
+        {
+            foreach (var filePath in _selectedFilePaths)
+            {
+                await Task.Run(() =>
+                {
+                    var jsonContent = File.ReadAllText(filePath);
+                    var products = JsonSerializer.Deserialize<List<ColesProduct>>(jsonContent, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                    if (products != null)
+                    {
+                        foreach (var product in products)
+                        {
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                var previewItem = CreatePreviewItem(product);
+                                PreviewItems.Add(previewItem);
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            _dialogService.ShowError($"Error loading preview: {ex.Message}");
+        }
+        finally
+        {
+            IsImporting = false;
+        }
+    }
+
+    private ImportPreviewItem CreatePreviewItem(ColesProduct product)
+    {
+        var price = ParsePrice(product.Price);
+        var originalPrice = ParsePrice(product.OriginalPrice);
+        var savings = ParsePrice(product.Savings);
+
+        // Try to find existing item by name and brand
+        var existingItems = _dataService.Items.SearchByName(product.ProductName)
+            .Where(i => i.Brand == product.Brand)
+            .ToList();
+
+        var previewItem = new ImportPreviewItem
+        {
+            ProductName = product.ProductName,
+            Category = product.Category ?? string.Empty,
+            Brand = product.Brand ?? string.Empty,
+            Price = price,
+            OriginalPrice = originalPrice > 0 ? originalPrice : null,
+            IsOnSale = savings > 0,
+            RawProductData = product
+        };
+
+        if (existingItems.Any())
+        {
+            var existingItem = existingItems.First();
+            previewItem.ExistingItemId = existingItem.Id;
+            previewItem.ExistingItemInfo = $"Match: {existingItem.Name}";
+            if (!string.IsNullOrEmpty(existingItem.PackageSize))
+            {
+                previewItem.ExistingItemInfo += $" {existingItem.PackageSize}";
+            }
+            if (!string.IsNullOrEmpty(existingItem.Category))
+            {
+                previewItem.ExistingItemInfo += $" - {existingItem.Category}";
+            }
+            previewItem.AddPriceRecordOnly = true; // Default to adding price record
+        }
+        else
+        {
+            previewItem.AddPriceRecordOnly = false; // Default to creating new item
+        }
+
+        return previewItem;
+    }
+
+    private decimal ParsePrice(string? priceString)
+    {
+        if (string.IsNullOrEmpty(priceString))
+            return 0;
+
+        var cleanPrice = priceString.Replace("$", "").Trim();
+        if (decimal.TryParse(cleanPrice, out var price))
+            return price;
+
+        return 0;
     }
 
     public async Task ImportData()
@@ -181,64 +291,114 @@ public class ImportDataViewModel : ViewModelBase
         statusBuilder.AppendLine($"Starting import...");
         statusBuilder.AppendLine($"Store: {SelectedStore?.Name}");
         statusBuilder.AppendLine($"Date: {CatalogueDate:dd/MM/yyyy}");
-        statusBuilder.AppendLine($"Files: {_selectedFilePaths.Length}");
+        statusBuilder.AppendLine($"Items: {PreviewItems.Count}");
         statusBuilder.AppendLine();
 
         ImportStatus = statusBuilder.ToString();
 
         try
         {
-            var dbService = new DatabaseService(_dbPath);
-            var importService = new JsonImportService(dbService);
+            int totalItemsCreated = 0;
+            int totalPriceRecordsCreated = 0;
+            int itemCount = 0;
 
-            int totalImported = 0;
-            int fileCount = 0;
-
-            foreach (var filePath in _selectedFilePaths)
+            foreach (var previewItem in PreviewItems)
             {
-                fileCount++;
-                statusBuilder.AppendLine($"[{fileCount}/{_selectedFilePaths.Length}] Processing: {Path.GetFileName(filePath)}");
-                ImportStatus = statusBuilder.ToString();
+                itemCount++;
 
-                await Task.Delay(100); // Allow UI to update
+                if (itemCount % 10 == 0) // Update UI every 10 items
+                {
+                    statusBuilder.AppendLine($"Processing: {itemCount}/{PreviewItems.Count}");
+                    ImportStatus = statusBuilder.ToString();
+                    await Task.Delay(10); // Allow UI to update
+                }
 
                 try
                 {
-                    var result = await Task.Run(() => importService.ImportFromFile(filePath));
+                    var product = previewItem.RawProductData as ColesProduct;
+                    if (product == null) continue;
 
-                    statusBuilder.AppendLine($"  ✓ Imported {result.ItemsProcessed} items, {result.PriceRecordsCreated} price records");
-                    totalImported += result.ItemsProcessed;
+                    string itemId;
 
-                    if (result.Errors.Any())
+                    if (previewItem.AddPriceRecordOnly && !string.IsNullOrEmpty(previewItem.ExistingItemId))
                     {
-                        statusBuilder.AppendLine($"  ⚠ {result.Errors.Count} errors/warnings");
-                        foreach (var error in result.Errors.Take(3))
-                        {
-                            statusBuilder.AppendLine($"    - {error}");
-                        }
-                        if (result.Errors.Count > 3)
-                        {
-                            statusBuilder.AppendLine($"    ... and {result.Errors.Count - 3} more");
-                        }
+                        // Add price record to existing item
+                        itemId = previewItem.ExistingItemId;
                     }
+                    else
+                    {
+                        // Create new item
+                        var item = new Item
+                        {
+                            Name = product.ProductName,
+                            Description = product.Description,
+                            Brand = product.Brand,
+                            Category = product.Category,
+                            PackageSize = product.Description,
+                            IsActive = true,
+                            DateAdded = DateTime.UtcNow,
+                            LastUpdated = DateTime.UtcNow,
+                            ExtraInformation = new Dictionary<string, string>
+                            {
+                                ["ProductID"] = product.ProductID,
+                                ["Store"] = SelectedStore?.Chain ?? "Unknown"
+                            }
+                        };
+
+                        if (!string.IsNullOrEmpty(product.UnitPrice))
+                        {
+                            item.ExtraInformation["UnitPrice"] = product.UnitPrice;
+                        }
+
+                        itemId = _dataService.Items.Add(item);
+                        totalItemsCreated++;
+                    }
+
+                    // Create price record
+                    var price = previewItem.Price;
+                    var originalPrice = previewItem.OriginalPrice;
+                    var savings = originalPrice.HasValue ? originalPrice.Value - price : 0;
+
+                    var saleDescription = savings > 0 ? $"Save ${savings:F2}" : null;
+                    if (!string.IsNullOrEmpty(product.SpecialType))
+                    {
+                        saleDescription = product.SpecialType;
+                    }
+
+                    var priceRecord = new PriceRecord
+                    {
+                        ItemId = itemId,
+                        PlaceId = SelectedStore!.Id!,
+                        Price = price,
+                        OriginalPrice = originalPrice,
+                        IsOnSale = previewItem.IsOnSale,
+                        SaleDescription = saleDescription,
+                        DateRecorded = CatalogueDate,
+                        ValidFrom = CatalogueDate,
+                        ValidTo = CatalogueDate.AddDays(7),
+                        Source = "Catalogue",
+                        CatalogueDate = CatalogueDate
+                    };
+
+                    _dataService.PriceRecords.Add(priceRecord);
+                    totalPriceRecordsCreated++;
                 }
                 catch (Exception ex)
                 {
-                    statusBuilder.AppendLine($"  ✗ Error: {ex.Message}");
+                    statusBuilder.AppendLine($"  ✗ Error processing {previewItem.ProductName}: {ex.Message}");
                 }
-
-                statusBuilder.AppendLine();
-                ImportStatus = statusBuilder.ToString();
             }
 
+            statusBuilder.AppendLine();
             statusBuilder.AppendLine("═══════════════════════════════");
             statusBuilder.AppendLine($"Import completed!");
-            statusBuilder.AppendLine($"Total items imported: {totalImported}");
+            statusBuilder.AppendLine($"New items created: {totalItemsCreated}");
+            statusBuilder.AppendLine($"Price records added: {totalPriceRecordsCreated}");
             statusBuilder.AppendLine("═══════════════════════════════");
 
             ImportStatus = statusBuilder.ToString();
 
-            _dialogService.ShowSuccess($"Successfully imported {totalImported} items from {_selectedFilePaths.Length} file(s)!");
+            _dialogService.ShowSuccess($"Successfully imported {totalItemsCreated} new items and {totalPriceRecordsCreated} price records!");
 
             _importCompleted = true;
             OnPropertyChanged(nameof(ImportButtonText));
@@ -257,4 +417,21 @@ public class ImportDataViewModel : ViewModelBase
             IsImporting = false;
         }
     }
+}
+
+/// <summary>
+/// Model for individual Coles product from JSON
+/// </summary>
+public class ColesProduct
+{
+    public string ProductID { get; set; } = string.Empty;
+    public string ProductName { get; set; } = string.Empty;
+    public string? Category { get; set; }
+    public string? Brand { get; set; }
+    public string? Description { get; set; }
+    public string Price { get; set; } = string.Empty;
+    public string? OriginalPrice { get; set; }
+    public string? Savings { get; set; }
+    public string? UnitPrice { get; set; }
+    public string? SpecialType { get; set; }
 }

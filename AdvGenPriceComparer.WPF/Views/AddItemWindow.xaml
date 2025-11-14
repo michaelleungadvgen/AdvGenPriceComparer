@@ -4,12 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Add Item"
-        Height="700"
-        Width="600"
+        Title="{Binding WindowTitle}"
+        Height="850"
+        Width="700"
         WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize">
+        ResizeMode="CanResize"
+        MinHeight="600"
+        MinWidth="650">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <Style TargetType="TextBlock" x:Key="LabelStyle">
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -35,7 +38,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Form Content -->
+        <!-- Form Content with Item Details and Price Records -->
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="30,20,30,20">
                 <!-- Item Name -->
@@ -138,6 +141,213 @@
                          Style="{StaticResource InputStyle}"
                          Text="{Binding DietaryFlagsText, UpdateSourceTrigger=PropertyChanged}"
                          ToolTip="e.g., vegan, gluten-free, organic"/>
+
+                <!-- Price Records Section (Only visible in Edit Mode) -->
+                <Border BorderBrush="#e8e8e8"
+                        BorderThickness="0,1,0,0"
+                        Margin="0,20,0,0"
+                        Padding="0,20,0,0"
+                        Visibility="{Binding IsEditMode, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel>
+                        <!-- Price Records Header -->
+                        <TextBlock Text="Price Records" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                        <!-- Add Price Record Section -->
+                        <Border Background="#f9f9f9" Padding="16" Margin="0,0,0,16" CornerRadius="4">
+                            <StackPanel>
+                                <TextBlock Text="Add New Price" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,12"/>
+
+                                <!-- Store Selection -->
+                                <StackPanel Margin="0,0,0,12">
+                                    <TextBlock Text="Store" FontSize="12" Margin="0,0,0,4"/>
+                                    <ComboBox ItemsSource="{Binding AvailableStores}"
+                                             SelectedItem="{Binding SelectedStore}"
+                                             DisplayMemberPath="Name"
+                                             Style="{StaticResource ComboStyle}"/>
+                                </StackPanel>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Regular Price Input -->
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="Regular Price ($)" FontSize="12" Margin="0,0,0,4"/>
+                                        <TextBox Text="{Binding NewPrice, UpdateSourceTrigger=PropertyChanged}"
+                                                Style="{StaticResource InputStyle}"/>
+                                    </StackPanel>
+
+                                    <!-- Sale Price Input -->
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock FontSize="12" Margin="0,0,0,4">
+                                            <Run Text="Sale Price ($)"/>
+                                            <Run Text=" (optional)" Foreground="#999"/>
+                                        </TextBlock>
+                                        <TextBox Text="{Binding SalePrice, UpdateSourceTrigger=PropertyChanged}"
+                                                Style="{StaticResource InputStyle}"
+                                                IsEnabled="{Binding IsOnSale}"/>
+                                    </StackPanel>
+
+                                    <!-- Add Button -->
+                                    <Button Grid.Column="4"
+                                           Content="Add"
+                                           Command="{Binding AddPriceRecordCommand}"
+                                           Width="80"
+                                           Height="34"
+                                           VerticalAlignment="Bottom"
+                                           Margin="0,0,0,0"
+                                           Background="#111"
+                                           Foreground="White"
+                                           BorderThickness="0"
+                                           Cursor="Hand"
+                                           FontSize="13">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                   CornerRadius="2"
+                                                                   Padding="{TemplateBinding Padding}">
+                                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                                VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#333"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsEnabled" Value="False">
+                                                        <Setter Property="Background" Value="#ccc"/>
+                                                        <Setter Property="Foreground" Value="#666"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </Grid>
+
+                                <!-- On Sale Checkbox -->
+                                <CheckBox Content="This item is on sale"
+                                         IsChecked="{Binding IsOnSale}"
+                                         Margin="0,12,0,0"
+                                         FontSize="13"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Price Records List -->
+                        <TextBlock Text="Price History" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+                        <ItemsControl ItemsSource="{Binding PriceRecords}" MaxHeight="300">
+                            <ItemsControl.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="300">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White"
+                                           BorderBrush="#e8e8e8"
+                                           BorderThickness="1"
+                                           Padding="12"
+                                           Margin="0,0,0,8"
+                                           CornerRadius="4">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0"
+                                                          Text="{Binding PlaceName}"
+                                                          FontWeight="SemiBold"
+                                                          FontSize="13"
+                                                          VerticalAlignment="Center"/>
+
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                    <!-- Original Price (crossed out if on sale) -->
+                                                    <TextBlock Text="{Binding OriginalPrice, StringFormat='${0:F2}'}"
+                                                              FontSize="14"
+                                                              Foreground="#999"
+                                                              Margin="0,0,8,0"
+                                                              VerticalAlignment="Center">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsOnSale}" Value="True">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+
+                                                    <!-- Current/Sale Price -->
+                                                    <TextBlock Text="{Binding Price, StringFormat='${0:F2}'}"
+                                                              FontSize="16"
+                                                              FontWeight="Bold"
+                                                              VerticalAlignment="Center">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Foreground" Value="#16a34a"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsOnSale}" Value="True">
+                                                                        <Setter Property="Foreground" Value="#ef4444"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <TextBlock Grid.Row="1"
+                                                      Text="{Binding DateRecorded, StringFormat='Recorded: {0:d MMM yyyy}'}"
+                                                      FontSize="11"
+                                                      Foreground="#666"
+                                                      Margin="0,4,0,0"/>
+
+                                            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,6,0,0"
+                                                       Visibility="{Binding IsOnSale, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                <Border Background="#ef4444"
+                                                       CornerRadius="2"
+                                                       Padding="6,3"
+                                                       Margin="0,0,8,0">
+                                                    <TextBlock Text="ON SALE"
+                                                              FontSize="10"
+                                                              FontWeight="Bold"
+                                                              Foreground="White"/>
+                                                </Border>
+                                                <TextBlock Text="{Binding SavingsText}"
+                                                          FontSize="11"
+                                                          FontWeight="SemiBold"
+                                                          Foreground="#ef4444"
+                                                          VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </ScrollViewer>
 
@@ -179,10 +389,10 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button Content="Add Item"
+                <Button Content="{Binding SaveButtonText}"
                         Width="90"
                         Height="36"
-                        Click="AddItem_Click"
+                        Click="SaveItem_Click"
                         Background="#111"
                         Foreground="White"
                         BorderThickness="0"
