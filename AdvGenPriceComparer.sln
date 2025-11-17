@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvGenPriceComparer.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvGenPriceComparer.Data.LiteDB", "AdvGenPriceComparer.Data.LiteDB\AdvGenPriceComparer.Data.LiteDB.csproj", "{1A2B3C4D-5E6F-7890-ABCD-EF1234567890}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvGenPriceComparer.WPF", "AdvGenPriceComparer.WPF\AdvGenPriceComparer.WPF.csproj", "{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,22 @@ Global
 		{1A2B3C4D-5E6F-7890-ABCD-EF1234567890}.Release|x64.Build.0 = Release|Any CPU
 		{1A2B3C4D-5E6F-7890-ABCD-EF1234567890}.Release|x86.ActiveCfg = Release|Any CPU
 		{1A2B3C4D-5E6F-7890-ABCD-EF1234567890}.Release|x86.Build.0 = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|x64.Build.0 = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Debug|x86.Build.0 = Debug|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|ARM64.Build.0 = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|x64.ActiveCfg = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|x64.Build.0 = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|x86.ActiveCfg = Release|Any CPU
+		{EACEFE04-D8AB-7ED4-C2A5-75C2C0A7D7D2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
