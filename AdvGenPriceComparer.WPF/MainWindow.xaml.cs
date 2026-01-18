@@ -6,6 +6,7 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
+using AdvGenPriceComparer.Data.LiteDB.Services;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.WPF;
 using Microsoft.Extensions.DependencyInjection;
@@ -107,8 +108,31 @@ public partial class MainWindow : FluentWindow
 
     private void CategoriesNav_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Navigate to Categories view
-        MessageBox.Show("Categories view - Coming soon!", "Navigation", MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+
+            // Cast to GroceryDataService since CategoryViewModel needs it
+            if (dataService is not GroceryDataService groceryDataService)
+            {
+                throw new InvalidOperationException("IGroceryDataService is not of type GroceryDataService");
+            }
+
+            var viewModel = new CategoryViewModel(groceryDataService, logger);
+            var page = new CategoryPage(viewModel);
+
+            // Hide dashboard and show frame
+            DashboardContent.Visibility = Visibility.Collapsed;
+            ContentFrame.Visibility = Visibility.Visible;
+            ContentFrame.Navigate(page);
+            UpdateNavigation("Categories");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error navigating to Categories: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void ReportsNav_Click(object sender, RoutedEventArgs e)

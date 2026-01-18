@@ -1,0 +1,155 @@
+﻿<Page x:Class="AdvGenPriceComparer.WPF.Views.CategoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:AdvGenPriceComparer.WPF.Views"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Categories">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="24">
+        <StackPanel>
+            <!-- Header -->
+            <Grid Margin="0,0,0,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Categories" FontSize="24" FontWeight="SemiBold"/>
+                    <TextBlock Text="Manage product categories" FontSize="14" Opacity="0.7" Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <ui:Button Grid.Column="1" Content="Refresh"
+                          Command="{Binding RefreshCommand}"
+                          Appearance="Primary"
+                          VerticalAlignment="Center"
+                          Padding="16,8"/>
+            </Grid>
+
+            <!-- Add New Category Section -->
+            <ui:Card Margin="0,0,0,16">
+                <Border Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Add New Category" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ui:TextBox Grid.Column="0"
+                                       Text="{Binding NewCategoryName, UpdateSourceTrigger=PropertyChanged}"
+                                       PlaceholderText="Enter category name..."
+                                       Margin="0,0,12,0"
+                                       Padding="12,8"
+                                       FontSize="14"/>
+
+                            <ui:Button Grid.Column="1"
+                                      Content="Add Category"
+                                      Command="{Binding AddCategoryCommand}"
+                                      Appearance="Primary"
+                                      Padding="16,8"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </ui:Card>
+
+            <!-- Categories List -->
+            <ui:Card>
+                <Border Padding="20">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="All Categories" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" FontSize="14" Opacity="0.7">
+                                <Run Text="{Binding Categories.Count, Mode=OneWay}"/>
+                                <Run Text="categories"/>
+                            </TextBlock>
+                        </Grid>
+
+                        <!-- Categories DataGrid -->
+                        <DataGrid ItemsSource="{Binding Categories}"
+                                 SelectedItem="{Binding SelectedCategory}"
+                                 AutoGenerateColumns="False"
+                                 CanUserAddRows="False"
+                                 CanUserDeleteRows="False"
+                                 GridLinesVisibility="Horizontal"
+                                 HeadersVisibility="Column"
+                                 SelectionMode="Single"
+                                 Height="400"
+                                 BorderThickness="1"
+                                 BorderBrush="#e2e8f0">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Category Name"
+                                                   Binding="{Binding .}"
+                                                   Width="*"
+                                                   IsReadOnly="True">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Padding" Value="12,8"/>
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="FontWeight" Value="Medium"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="Height" Value="48"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource SystemAccentBrushLight3}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>
+
+                        <!-- Category Details -->
+                        <Border Margin="0,16,0,0" Padding="16" Background="#f8fafb" BorderBrush="#e2e8f0" BorderThickness="1" CornerRadius="4">
+                            <StackPanel>
+                                <TextBlock Text="Category Details" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                        <TextBlock Text="Selected:" Margin="0,0,8,0" Opacity="0.7"/>
+                                        <TextBlock Text="{Binding SelectedCategory}" FontWeight="SemiBold"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="Items in category:" Margin="0,0,8,0" Opacity="0.7"/>
+                                        <TextBlock Text="{Binding ItemCount}" FontWeight="SemiBold" Foreground="{StaticResource SystemAccentBrush}"/>
+                                    </StackPanel>
+
+                                    <ui:Button Grid.Column="2"
+                                              Content="Delete Category"
+                                              Command="{Binding DeleteCategoryCommand}"
+                                              Appearance="Danger"
+                                              Padding="12,6"
+                                              FontSize="13"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </ui:Card>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
