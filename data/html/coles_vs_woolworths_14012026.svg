@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+    .title { font: bold 32px Inter, sans-serif; fill: #e63946; } /* Updated title to Coles red */
+    .subtitle { font: 600 20px Inter, sans-serif; fill: #2c5530; } /* Subtitle to Woolies green */
+    .section { font: bold 24px Inter, sans-serif; fill: #1d3557; }
+    .category { font: 600 18px Inter, sans-serif; fill: #457b9d; }
+    .product { font: 16px Inter, sans-serif; fill: #1d3557; }
+    .price { font: bold 16px Inter, sans-serif; fill: #2c5530; } /* Price now Woolies green */
+    .savings { font: 600 16px Inter, sans-serif; fill: #2a9d8f; }
+    .highlight { fill: #ffd166; }
+    .woolworths { fill: #2c5530; } /* SWAPPED: Woolworths = green */
+    .coles { fill: #e63946; }     /* SWAPPED: Coles = red */
+    .equal { fill: #457b9d; }
+    .divider { stroke: #a8dadc; stroke-width: 1; }
+    .tag { font: bold 12px Inter, sans-serif; fill: white; }
+    .footer { font: 14px Inter, sans-serif; fill: #6c757d; }
+    .hashtag { fill: #457b9d; }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="1200" fill="#f8f9fa"/>
+  
+  <!-- Header -->
+  <text x="400" y="60" text-anchor="middle" class="title">🛒 本週超市價格比拼！Coles vs Woolworths 省錢攻略 💰</text>
+  <text x="400" y="95" text-anchor="middle" class="subtitle">📅 有效期限：2026年1月14-20日</text>
+  
+  <!-- Battle Summary -->
+  <rect x="50" y="120" width="700" height="120" rx="10" fill="#e9ecef"/>
+  <text x="400" y="155" text-anchor="middle" class="section">📊 本週戰況分析</text>
+  
+  <!-- Woolworths Win -->
+  <circle cx="200" cy="200" r="40" class="woolworths"/>
+  <text x="200" y="205" text-anchor="middle" class="tag" dy="5">Woolworths</text>
+  <text x="200" y="225" text-anchor="middle" class="product">🏆 大獲全勝！</text>
+  <text x="200" y="245" text-anchor="middle" class="product">✅ 34個產品更便宜</text>
+  <text x="200" y="265" text-anchor="middle" class="product">✅ 佔總數 47%</text>
+  
+  <!-- Coles Performance -->
+  <circle cx="600" cy="200" r="40" class="coles"/>
+  <text x="600" y="205" text-anchor="middle" class="tag" dy="5">Coles</text>
+  <text x="600" y="225" text-anchor="middle" class="product">📈 表現</text>
+  <text x="600" y="245" text-anchor="middle" class="product">✅ 28個產品更便宜</text>
+  <text x="600" y="265" text-anchor="middle" class="product">✅ 佔總數 39%</text>
+  
+  <text x="400" y="295" text-anchor="middle" class="product">🔍 本週比較：72個產品</text>
+  
+  <!-- Divider -->
+  <line x1="50" y1="320" x2="750" y2="320" class="divider"/>
+  
+  <!-- Top Deals Section -->
+  <text x="400" y="355" text-anchor="middle" class="section">🔥 本週最超值優惠</text>
+  
+  <!-- Category Blocks -->
+  <!-- Drinks -->
+  <g transform="translate(50, 380)">
+    <rect width="700" height="140" rx="8" fill="#f1faee"/>
+    <text x="20" y="30" class="category">💧 【飲料類】</text>
+    
+    <g transform="translate(0, 50)">
+      <circle cx="15" cy="15" r="12" class="woolworths"/>
+      <text x="35" y="20" class="product">• Pepsi/Solo/Sunkist 汽水</text>
+      <text x="35" y="40" class="price">- Woolworths: $1.75 (原價$3.50) 🏆半價</text>
+      <text x="35" y="60" class="savings">- 節省 $20.75！</text>
+    </g>
+    
+    <g transform="translate(0, 100)">
+      <circle cx="15" cy="15" r="12" class="coles"/>
+      <text x="35" y="20" class="product">• 可口可樂 30x375ml</text>
+      <text x="35" y="40" class="price">- Coles: $2.00 (原價$4.00) 🏆半價</text>
+      <text x="35" y="60" class="savings">- 節省 $22.75！</text>
+    </g>
+  </g>
+  
+  <!-- Coffee -->
+  <g transform="translate(50, 530)">
+    <rect width="700" height="100" rx="8" fill="#f1faee"/>
+    <text x="20" y="30" class="category">☕ 【咖啡茶飲】</text>
+    
+    <g transform="translate(0, 50)">
+      <circle cx="15" cy="15" r="12" class="woolworths"/>
+      <text x="35" y="20" class="product">• Moccona 咖啡200g</text>
+      <text x="35" y="40" class="price">- Woolworths: $16.50 🏆最佳價格</text>
+      <text x="35" y="60" class="savings">- 節省 $9.50！</text>
+    </g>
+  </g>
+  
+  <!-- Meat -->
+  <g transform="translate(50, 640)">
+    <rect width="700" height="100" rx="8" fill="#f1faee"/>
+    <text x="20" y="30" class="category">🥩 【肉類海鮮】</text>
+    
+    <g transform="translate(0, 50)">
+      <circle cx="15" cy="15" r="12" class="woolworths"/>
+      <text x="35" y="20" class="product">• 澳洲新鮮雞胸肉片</text>
+      <text x="35" y="40" class="price">- Woolworths: $8.50 🏆最佳價格</text>
+      <text x="35" y="60" class="savings">- 節省 $2.50！</text>
+    </g>
+  </g>
+  
+  <!-- Dairy -->
+  <g transform="translate(50, 750)">
+    <rect width="700" height="100" rx="8" fill="#f1faee"/>
+    <text x="20" y="30" class="category">🥛 【乳製品】</text>
+    
+    <g transform="translate(0, 50)">
+      <circle cx="15" cy="15" r="12" class="coles"/>
+      <text x="35" y="20" class="product">• Dairy Farmers 濃稠乳酪 550-600g</text>
+      <text x="35" y="40" class="price">- Coles: $1.75 (原價$2.95) 🏆半價</text>
+      <text x="35" y="60" class="savings">- 節省 $2.40！</text>
+    </g>
+  </g>
+  
+  <!-- Snacks -->
+  <g transform="translate(50, 860)">
+    <rect width="700" height="100" rx="8" fill="#f1faee"/>
+    <text x="20" y="30" class="category">🍟 【零食小吃】</text>
+    
+    <g transform="translate(0, 50)">
+      <circle cx="15" cy="15" r="12" class="woolworths"/>
+      <text x="35" y="20" class="product">• Smith's 薯片 160g</text>
+      <text x="35" y="40" class="price">- Woolworths: $2.00 (原價$4.00) 🏆半價</text>
+      <text x="35" y="60" class="savings">- 節省 $0.80！</text>
+    </g>
+  </g>
+  
+  <!-- Chocolate -->
+  <g transform="translate(50, 970)">
+    <rect width="700" height="80" rx="8" fill="#f1faee"/>
+    <text x="20" y="30" class="category">🍫 【巧克力甜品】</text>
+    
+    <g transform="translate(0, 50)">
+      <circle cx="15" cy="15" r="12" class="coles"/>
+      <text x="35" y="20" class="product">• Cadbury 巧克力片/融化巧克力 180-225g</text>
+      <text x="35" y="40" class="price">- Coles: $2.00 🏆最佳價格</text>
+      <text x="35" y="60" class="savings">- 節省 $2.50！</text>
+    </g>
+  </g>
+  
+  <!-- Footer -->
+  <text x="400" y="1080" text-anchor="middle" class="section">💡 本週購物攻略</text>
+  
+  <g transform="translate(50, 1110)">
+    <rect width="340" height="70" rx="8" fill="#ffddd2"/>
+    <text x="20" y="25" class="category">🏆 Woolworths 佔優勢類別：</text>
+    <text x="20" y="45" class="product">飲料 | 海鮮肉類 | 咖啡 | 零食 | 冷凍甜品</text>
+  </g>
+  
+  <g transform="translate(410, 1110)">
+    <rect width="340" height="70" rx="8" fill="#d8f3dc"/>
+    <text x="20" y="25" class="category">🏆 Coles 佔優勢類別：</text>
+    <text x="20" y="45" class="product">水果 | 乳製品 | 巧克力 | 防曬 | 家居清潔</text>
+  </g>
+  
+  <text x="400" y="1200" text-anchor="middle" class="footer">📍 Brisbane 地區適用 | #布里斯本超市 #Coles #Woolworths #價格比較</text>
+</svg>

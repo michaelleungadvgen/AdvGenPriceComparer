@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1200 1600"
+   style="font-family: 'Arial', sans-serif;"
+   version="1.1"
+   id="svg76"
+   sodipodi:docname="supermarket_07012026.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs76" />
+  <sodipodi:namedview
+     id="namedview76"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.136875"
+     inkscape:cx="599.89005"
+     inkscape:cy="672.45739"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg76" />
+  <!-- 背景 -->
+  <rect
+     width="1200"
+     height="1600"
+     fill="#f8f9fa"
+     id="rect1" />
+  <!-- 標題部分 -->
+  <rect
+     x="0"
+     y="0"
+     width="1200"
+     height="120"
+     fill="#2c3e50"
+     id="rect2" />
+  <text
+     x="576"
+     y="55"
+     text-anchor="middle"
+     fill="#ffffff"
+     font-size="32px"
+     font-weight="bold"
+     id="text2">🛒 澳超特價分析週報</text>
+  <text
+     x="586"
+     y="90"
+     text-anchor="middle"
+     fill="#ecf0f1"
+     font-size="18px"
+     id="text3">Coles vs Woolworths (1月7-13日)</text>
+  <!-- 副標題 -->
+  <text
+     x="586"
+     y="140"
+     text-anchor="middle"
+     fill="#2c3e50"
+     font-size="24px"
+     font-weight="bold"
+     id="text4">AI智能分析報告</text>
+  <!-- 重點數據卡片 -->
+  <g
+     transform="translate(100, 180)"
+     id="g17">
+    <rect
+       width="1000"
+       height="200"
+       rx="15"
+       fill="white"
+       stroke="#ddd"
+       stroke-width="2"
+       id="rect4" />
+    <text
+       x="500"
+       y="40"
+       text-anchor="middle"
+       fill="#2c3e50"
+       font-size="22"
+       font-weight="bold"
+       id="text5">📊 本週重點數據</text>
+    <!-- 數據行1 -->
+    <g
+       transform="translate(50, 80)"
+       id="g7">
+      <rect
+         x="0"
+         y="0"
+         width="280"
+         height="50"
+         rx="8"
+         fill="#e8f4f8"
+         id="rect5" />
+      <text
+         x="140"
+         y="18"
+         text-anchor="middle"
+         fill="#2980b9"
+         font-weight="bold"
+         id="text6">✅ 比較商品</text>
+      <text
+         x="140"
+         y="44"
+         text-anchor="middle"
+         fill="#2c3e50"
+         font-size="22px"
+         font-weight="bold"
+         id="text7">49項</text>
+    </g>
+    <g
+       transform="translate(360, 80)"
+       id="g9">
+      <rect
+         x="0"
+         y="0"
+         width="280"
+         height="50"
+         rx="8"
+         fill="#e8f8e8"
+         id="rect7" />
+      <text
+         x="140"
+         y="18"
+         text-anchor="middle"
+         fill="#27ae60"
+         font-weight="bold"
+         id="text8">💰 總節省金額</text>
+      <text
+         x="140"
+         y="44"
+         text-anchor="middle"
+         fill="#2c3e50"
+         font-size="22px"
+         font-weight="bold"
+         id="text9">$359+</text>
+    </g>
+    <g
+       transform="translate(670, 80)"
+       id="g11">
+      <rect
+         x="0"
+         y="0"
+         width="280"
+         height="50"
+         rx="8"
+         fill="#fef9e7"
+         id="rect9" />
+      <text
+         x="140"
+         y="20"
+         text-anchor="middle"
+         fill="#f39c12"
+         font-weight="bold"
+         id="text10">🏆 本週勝者</text>
+      <text
+         x="140"
+         y="44"
+         text-anchor="middle"
+         fill="#2c3e50"
+         font-size="22px"
+         font-weight="bold"
+         id="text11">Woolworths</text>
+    </g>
+    <!-- 數據行2 - 優惠佔比 -->
+    <g
+       transform="translate(12,170)"
+       id="g16">
+      <!-- Coles佔比 -->
+      <text
+         x="0"
+         y="0"
+         fill="#2c3e50"
+         font-weight="bold"
+         id="text12">Coles最佳優惠:</text>
+      <rect
+         x="150"
+         y="-15"
+         width="300"
+         height="20"
+         fill="#e0e0e0"
+         rx="10"
+         id="rect12" />
+      <rect
+         x="150"
+         y="-15"
+         width="93"
+         height="20"
+         fill="#3498db"
+         rx="10"
+         id="rect13" />
+      <!-- 31% -->
+      <text
+         x="310"
+         y="0"
+         fill="#2c3e50"
+         font-weight="bold"
+         id="text13">31%</text>
+      <!-- Woolworths佔比 -->
+      <g
+         transform="translate(500)"
+         id="g15">
+        <text
+           x="0"
+           y="0"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text14">Woolworths最佳優惠:</text>
+        <rect
+           x="170"
+           y="-15"
+           width="300"
+           height="20"
+           fill="#e0e0e0"
+           rx="10"
+           id="rect14" />
+        <rect
+           x="170"
+           y="-15"
+           width="105"
+           height="20"
+           fill="#2ecc71"
+           rx="10"
+           id="rect15" />
+        <!-- 35% -->
+        <text
+           x="330"
+           y="0"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text15">35%</text>
+      </g>
+    </g>
+  </g>
+  <!-- 分類特價展示 -->
+  <g
+     transform="translate(99.120396,420)"
+     id="g72">
+    <rect
+       width="1000"
+       height="1000"
+       rx="15"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="2"
+       id="rect17"
+       x="0"
+       y="0" />
+    <text
+       x="500"
+       y="50"
+       text-anchor="middle"
+       fill="#2c3e50"
+       font-size="22px"
+       font-weight="bold"
+       id="text17">🔥 本週超值精選</text>
+    <!-- 保健品區域 -->
+    <g
+       transform="translate(50,100)"
+       id="g35">
+      <rect
+         width="900"
+         height="200"
+         rx="10"
+         fill="#f9f2ff"
+         id="rect18"
+         x="0"
+         y="0" />
+      <text
+         x="20"
+         y="30"
+         fill="#8e44ad"
+         font-size="20px"
+         font-weight="bold"
+         id="text18">💊 保健品大特價</text>
+      <!-- 商品1 -->
+      <g
+         transform="translate(30,60)"
+         id="g22">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#8e44ad"
+           id="circle18" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text19">Nature's Way兒童益生菌巧克力球</text>
+        <text
+           x="462"
+           y="15"
+           fill="#2c3e50"
+           id="text20">Woolworths</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text21">$9.00</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text22">節省 $17.50!</text>
+      </g>
+      <!-- 商品2 -->
+      <g
+         transform="translate(30,90)"
+         id="g26">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#8e44ad"
+           id="circle22" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text23">Cenovis鎂片200粒</text>
+        <text
+           x="464"
+           y="15"
+           fill="#2c3e50"
+           id="text24">Woolworths</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text25">$14.25</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text26">節省 $10.50</text>
+      </g>
+      <!-- 商品3 -->
+      <g
+         transform="translate(30,120)"
+         id="g30">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#8e44ad"
+           id="circle26" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text27">Swisse Ultiboost甘氨酸鎂片</text>
+        <text
+           x="464"
+           y="15"
+           fill="#2c3e50"
+           id="text28">Woolworths</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text29">$14.75</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text30">節省 $10.00</text>
+      </g>
+      <!-- 商品4 -->
+      <g
+         transform="translate(30,150)"
+         id="g34">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#8e44ad"
+           id="circle30" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text31">Nature's Way蛋白質粉400克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text32">Woolworths</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text33">$14.00</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text34">節省 $13.50</text>
+      </g>
+    </g>
+    <!-- 飲品零食區域 -->
+    <g
+       transform="translate(50,320)"
+       id="g48">
+      <rect
+         width="900"
+         height="150"
+         rx="10"
+         fill="#fff9e6"
+         id="rect35"
+         x="0"
+         y="0" />
+      <text
+         x="20"
+         y="30"
+         fill="#d35400"
+         font-size="20px"
+         font-weight="bold"
+         id="text35">🥤 飲品零食</text>
+      <!-- 商品1 -->
+      <g
+         transform="translate(30,60)"
+         id="g39">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#d35400"
+           id="circle35" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text36">V能量飲料 4 x 500毫升</text>
+        <text
+           x="464"
+           y="15"
+           fill="#2c3e50"
+           id="text37">Coles</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text38">$2.45</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text39">節省 $5.90!</text>
+      </g>
+      <!-- 商品2 -->
+      <g
+         transform="translate(30,90)"
+         id="g43">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#d35400"
+           id="circle39" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text40">品客薯片 118-134克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text41">Coles</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text42">$2.50</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text43">節省 $0.25</text>
+      </g>
+      <!-- 商品3 -->
+      <g
+         transform="translate(30,120)"
+         id="g47">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#d35400"
+           id="circle43" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text44">樂之餅乾 227克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text45">Woolworths</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text46">$1.75</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text47">節省 $0.25</text>
+      </g>
+    </g>
+    <!-- 新鮮肉類區域 -->
+    <g
+       transform="translate(50,490)"
+       id="g57">
+      <rect
+         width="900"
+         height="110"
+         rx="10"
+         fill="#ffe6e6"
+         id="rect48"
+         x="0"
+         y="0" />
+      <text
+         x="20"
+         y="30"
+         fill="#c0392b"
+         font-size="20px"
+         font-weight="bold"
+         id="text48">🥩 新鮮肉類</text>
+      <!-- 商品1 -->
+      <g
+         transform="translate(30,60)"
+         id="g52">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#c0392b"
+           id="circle48" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text49">澳洲羊腿排 540克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text50">Coles</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text51">$10.00</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text52">節省 $4.00</text>
+      </g>
+      <!-- 商品2 -->
+      <g
+         transform="translate(30,90)"
+         id="g56">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#c0392b"
+           id="circle52" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text53">澳洲豬肉片</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text54">Coles</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text55">$10.50</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text56">節省 $8.50</text>
+      </g>
+    </g>
+    <!-- 乳製品與食品區域 -->
+    <g
+       transform="translate(50,620)"
+       id="g66">
+      <rect
+         width="900"
+         height="110"
+         rx="10"
+         fill="#e6f7ff"
+         id="rect57"
+         x="0"
+         y="0" />
+      <text
+         x="20"
+         y="30"
+         fill="#2980b9"
+         font-size="20px"
+         font-weight="bold"
+         id="text57">🧈 乳製品與食品</text>
+      <!-- 商品1 -->
+      <g
+         transform="translate(30,60)"
+         id="g61">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#2980b9"
+           id="circle57" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text58">Bega花生醬 755克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text59">Coles</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text60">$2.70</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text61">節省 $4.70</text>
+      </g>
+      <!-- 商品2 -->
+      <g
+         transform="translate(30,90)"
+         id="g65">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#2980b9"
+           id="circle61" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text62">Perfect Italiano芝士 150克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text63">Woolworths</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text64">$4.00</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text65">節省 $2.90</text>
+      </g>
+    </g>
+    <!-- 咖啡區域 -->
+    <g
+       transform="translate(50,750)"
+       id="g71">
+      <rect
+         width="900"
+         height="80"
+         rx="10"
+         fill="#f5e6ff"
+         id="rect66"
+         x="0"
+         y="0" />
+      <text
+         x="20"
+         y="30"
+         fill="#9b59b6"
+         font-size="20px"
+         font-weight="bold"
+         id="text66">☕ 咖啡愛好者必看</text>
+      <!-- 商品 -->
+      <g
+         transform="translate(30,55)"
+         id="g70">
+        <circle
+           cx="15"
+           cy="10"
+           r="8"
+           fill="#9b59b6"
+           id="circle66" />
+        <text
+           x="35"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text67">Moccona冷凍乾燥咖啡 400克</text>
+        <text
+           x="466"
+           y="15"
+           fill="#2c3e50"
+           id="text68">Coles</text>
+        <text
+           x="646"
+           y="15"
+           fill="#2c3e50"
+           font-weight="bold"
+           id="text69">$19.50</text>
+        <text
+           x="782"
+           y="15"
+           fill="#e74c3c"
+           font-weight="bold"
+           id="text70">節省 $6.50</text>
+      </g>
+    </g>
+  </g>
+  <!-- 購物小貼士 -->
+  <g
+     transform="translate(100, 1450)"
+     id="g73">
+    <rect
+       width="1000"
+       height="100"
+       rx="15"
+       fill="#e8f6f3"
+       id="rect72" />
+    <text
+       x="30"
+       y="35"
+       fill="#2c3e50"
+       font-size="20"
+       font-weight="bold"
+       id="text72">💡 購物小貼士</text>
+    <text
+       x="30"
+       y="65"
+       fill="#2c3e50"
+       id="text73">本週保健品和維他命類商品折扣力度特別大，適合囤貨！兩家超市都有大量半價商品，記得貨比三家哦！</text>
+  </g>
+  <!-- 頁腳 -->
+  <g
+     transform="translate(100, 1570)"
+     id="g74">
+    <rect
+       width="1000"
+       height="30"
+       rx="10"
+       fill="#2c3e50"
+       id="rect73" />
+    <text
+       x="500"
+       y="20"
+       text-anchor="middle"
+       fill="white"
+       font-size="14"
+       id="text74">🤖 本報告由AI智能分析生成，助您聰明購物，省錢省心！</text>
+  </g>
+  <!-- Coles和Woolworths標識 -->
+  <g
+     transform="translate(496,402)"
+     id="g75">
+    <rect
+       x="0"
+       y="0"
+       width="80"
+       height="30"
+       rx="5"
+       fill="#3498db"
+       id="rect74" />
+    <text
+       x="40"
+       y="19"
+       text-anchor="middle"
+       fill="#ffffff"
+       font-weight="bold"
+       id="text75">Coles</text>
+  </g>
+  <g
+     transform="translate(596,402)"
+     id="g76">
+    <rect
+       x="0"
+       y="0"
+       width="120"
+       height="30"
+       rx="5"
+       fill="#2ecc71"
+       id="rect75" />
+    <text
+       x="60"
+       y="19"
+       text-anchor="middle"
+       fill="#ffffff"
+       font-weight="bold"
+       id="text76">Woolworths</text>
+  </g>
+</svg>

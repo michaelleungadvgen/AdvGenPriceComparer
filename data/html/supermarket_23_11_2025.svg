@@ -1,0 +1,53 @@
+<svg width="600" height="900" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#fdf6e3"/>
+
+  <!-- Title Banner -->
+  <rect x="0" y="0" width="600" height="60" fill="#d32f2f" />
+  <text x="300" y="38" font-size="20" font-weight="bold" fill="white" text-anchor="middle">
+    🛒 【每週慳錢情報】ALDI Black Wednesday + Drakes 半價最後召集！🇦🇺
+  </text>
+
+  <!-- Drakes Section -->
+  <rect x="20" y="80" width="560" height="360" rx="10" fill="#f5f5f5" stroke="#ccc"/>
+  <text x="50" y="110" font-size="18" font-weight="bold" fill="#1976d2">🔥 Drakes Supermarkets (至 11月25日 星期二)</text>
+  <text x="50" y="140" font-size="14" fill="#333">✅ 半價飲品/零食：</text>
+  <text x="70" y="160" font-size="13" fill="#555">Pringles 薯片 ($2.50)、Smith's 薯片、Coke/Pepsi (24/30罐)</text>
+  <text x="50" y="185" font-size="14" fill="#333">✅ 半價家品：</text>
+  <text x="70" y="205" font-size="13" fill="#555">Sorbent 廁紙 24卷 ($15)、Omo 洗衣液 ($14)</text>
+  <text x="50" y="230" font-size="14" fill="#333">✅ 生鮮特惠：</text>
+  <text x="70" y="250" font-size="13" fill="#555">Calypso 芒果 ($2.50/個)、澳洲老虎蝦 ($32/kg)</text>
+  <text x="50" y="275" font-size="14" fill="#333">✅ 雪糕優惠：</text>
+  <text x="70" y="295" font-size="13" fill="#555">Magnum 4支裝 ($6)、Bulla 1L ($5.40)</text>
+
+  <!-- ALDI Section -->
+  <rect x="20" y="460" width="560" height="380" rx="10" fill="#f5f5f5" stroke="#ccc"/>
+  <text x="50" y="490" font-size="18" font-weight="bold" fill="#388e3c">⚡ ALDI Special Buys</text>
+
+  <!-- Black Wednesday -->
+  <text x="50" y="520" font-size="15" font-weight="bold" fill="#e65100">🗓️ 11月26日 (星期三) - Black Wednesday 科技家電日</text>
+  <text x="70" y="545" font-size="13" fill="#444">🔹 Ecovacs Deebot Neo 3.0 掃地機械人 - $599</text>
+  <text x="70" y="565" font-size="13" fill="#444">🔹 65吋 4K WebOS 電視 - $549</text>
+  <text x="70" y="585" font-size="13" fill="#444">🔹 15.6吋 便攜顯示器 - $109</text>
+  <text x="70" y="605" font-size="13" fill="#444">🔹 機械鍵盤 - $119</text>
+  <text x="70" y="625" font-size="13" fill="#444">🔹 De'Longhi 水煲/多士爐 - $99.99</text>
+
+  <!-- Beach Series -->
+  <text x="50" y="655" font-size="15" font-weight="bold" fill="#e65100">🗓️ 11月22日 - 夏日沙灘系列</text>
+  <text x="70" y="675" font-size="13" fill="#444">🔹 沙灘遮光帳篷 - $17.99</text>
+  <text x="70" y="695" font-size="13" fill="#444">🔹 防曬衣及泳衣 - $8.99起</text>
+
+  <!-- Christmas Preview -->
+  <text x="50" y="725" font-size="15" font-weight="bold" fill="#e65100">🗓️ 12月3日 - 聖誕禮物篇</text>
+  <text x="70" y="745" font-size="13" fill="#444">🔹 ALDI Mania 泳衣/毛巾、Moccona 咖啡 (400g) - $25.99</text>
+  <text x="70" y="765" font-size="13" fill="#444">🔹 聖誕禮物套装 (護膚品、玩具)</text>
+
+  <!-- Tip Box -->
+  <rect x="20" y="850" width="560" height="40" rx="8" fill="#fff3e0"/>
+  <text x="50" y="875" font-size="14" font-weight="bold" fill="#e65100">💡 小貼士：Drakes優惠明天截止！ALDI 電器手快有手慢無，朝早排隊！🏃‍♂️💨</text>
+
+  <!-- Footer Tags -->
+  <text x="300" y="930" font-size="10" fill="#888" text-anchor="middle">
+    #澳洲生活 #布里斯本 #ALDI #Drakes #省錢攻略 #BlackFriday #特價情報 #澳洲超市
+  </text>
+</svg>

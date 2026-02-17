@@ -1,0 +1,3535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Comparison Report | Coles vs Woolworths | 2025-12-02</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .week-btn.current {
+            background: rgba(255,255,255,0.9);
+            color: #85c5d4;
+            border-color: white;
+        }
+
+        .winner-announcement {
+            background: #00a651;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* Retailer Logos Section */
+        .retailer-section {
+            background: white;
+            padding: 40px 0;
+            border-bottom: 3px solid #f1f3f4;
+            text-align: center;
+        }
+
+        .retailer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .retailer-logo {
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .coles-logo {
+            background: #e31e24;
+        }
+
+        .woolworths-logo {
+            background: #00a651;
+        }
+
+        .vs-separator {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #333;
+            padding: 0 20px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Product Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .price-comparison {
+            padding: 25px;
+        }
+
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .store-price:last-child {
+            border-bottom: none;
+        }
+
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .store-badge.coles {
+            background: #e31e24;
+        }
+
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .price-info {
+            text-align: right;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-text p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+                <div class="nav-title">Weekly Price Comparison</div>
+                <nav class="nav-links">
+                    <a href="price_super_market_26112025.html">Last Week</a>
+                    <a href="#" class="active">This Week</a>
+               <a href="price_super_market_07012026.html">Next Week</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🛒 Smart Price Comparison</h1>
+            <p>AI-powered analysis comparing Coles vs Woolworths weekly deals</p>
+
+            <div class="week-selector">
+                <a href="price_super_market_26112025.html" class="week-btn">26-Nov to 2Dec 2025</a>
+                <a href="#" class="week-btn current">03-09 Dec 2025</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retailer Logos Section -->
+    <section class="retailer-section">
+        <div class="container">
+            <h2 class="section-title">🏆 Head-to-Head Price Battle</h2>
+
+            <div class="retailer-logos">
+                <div class="retailer-logo coles-logo">COLES</div>
+                <div class="vs-separator">VS</div>
+                <div class="retailer-logo woolworths-logo">WOOLWORTHS</div>
+            </div>
+            <div class="winner-announcement">Woolworths wins with 46 cheaper products</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <h2 class="section-title">📊 Weekly Analysis</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">89</div>
+                    <div class="stat-label">Products Compared</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$431+</div>
+                    <div class="stat-label">Total Savings Identified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">Coles Best Deals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">52%</div>
+                    <div class="stat-label">Woolworths Best Deals</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Comparison Section -->
+    <section class="comparison-section" id="products">
+        <div class="container">
+            <h2 class="section-title">Product Price Comparisons</h2>
+            <div class="comparison-grid">
+                
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Calypso® Mangoes</div>
+                        <div class="product-details">General • Similarity: 77.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.00</div>
+                                <div class="best-deal">BEST DEAL - Save $0.90</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$2.90</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Christmas Stocking 180g</div>
+                        <div class="product-details">General • Similarity: 69.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.00</div>
+                                <div class="best-deal">BEST DEAL - Save $9.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Kirks Soft Drink Can Varieties 10 x 375ml</div>
+                        <div class="product-details">Drinks • Similarity: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$15.00</span>$7.50</div>
+                                <div class="best-deal">BEST DEAL - Save $17.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$28.00</span>$25.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Favourites 470g</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$24.00</span>$11.00</div>
+                                <div class="best-deal">BEST DEAL - Save $4.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Pork Shoulder Boneless Roast</div>
+                        <div class="product-details">General • Similarity: 64.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$8.00</div>
+                                <div class="best-deal">BEST DEAL - Save $8.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.00</span>$16.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Carbonell Olive Oil 1 Litre</div>
+                        <div class="product-details">General • Similarity: 63.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$16.00</span>$9.00</div>
+                                <div class="best-deal">BEST DEAL - Save $4.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Toblerone 340-360g</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Moccona Coffee Sachets Pk 8-10</div>
+                        <div class="product-details">General • Similarity: 65.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.90</span>$3.95</div>
+                                <div class="best-deal">BEST DEAL - Save $0.05</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Nescafé Blend 43 Coffee 140-150g</div>
+                        <div class="product-details">General • Similarity: 62.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$14.50</span>$7.25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.25</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola Classic, Zero Sugar or Diet Soft Drink V...</div>
+                        <div class="product-details">Drinks • Similarity: 70.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$24.75</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.40</span>$2.60</div>
+                                <div class="best-deal">BEST DEAL - Save $22.15</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola Classic, Zero Sugar or Diet Soft Drink V...</div>
+                        <div class="product-details">Drinks • Similarity: 70.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.40</span>$2.60</div>
+                                <div class="best-deal">BEST DEAL - Save $3.40</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pepsi or Pepsi Max Soft Drink Cans 30 x 375ml</div>
+                        <div class="product-details">Drinks • Similarity: 68.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$25.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$28.00</span>$25.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Chocolate Coated Fruit or Nut Varieties 27...</div>
+                        <div class="product-details">Confectionery • Similarity: 94.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Christmas Share Packs 144-175g</div>
+                        <div class="product-details">General • Similarity: 76.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div class="best-deal">BEST DEAL - Save $6.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Mini Frosted Baubles 80g</div>
+                        <div class="product-details">General • Similarity: 63.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div class="best-deal">BEST DEAL - Save $6.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lindt Lindor Bon Bon 85g</div>
+                        <div class="product-details">General • Similarity: 77.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$15.00</span>$7.50</div>
+                                <div class="best-deal">BEST DEAL - Save $0.30</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$7.80</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lindt Lindor Cornet 327-333g</div>
+                        <div class="product-details">General • Similarity: 77.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$34.00</span>$17.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$34.00</span>$17.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Ferrero Rocher Gift Box 125g</div>
+                        <div class="product-details">General • Similarity: 80.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                <div class="best-deal">BEST DEAL - Save $6.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$32.00</span>$16.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Dairy Milk Tin 430g</div>
+                        <div class="product-details">Dairy • Similarity: 89.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$12.00</span>$7.20</div>
+                                <div class="best-deal">BEST DEAL - Save $7.80</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Tibaldi Ham off the Bone 500g – From the Fridge</div>
+                        <div class="product-details">General • Similarity: 75.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$13.70</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.50</span>$4.50</div>
+                                <div class="best-deal">BEST DEAL - Save $9.20</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian White Seedless Grapes</div>
+                        <div class="product-details">General • Similarity: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.90</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$3.90</div>
+                                <div class="best-deal">BEST DEAL - Save $6.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Hans Mild Twiggy Sticks 500g – From the Deli</div>
+                        <div class="product-details">General • Similarity: 65.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$11.00</div>
+                                <div class="best-deal">BEST DEAL - Save $11.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$36.00</span>$22.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Cherries</div>
+                        <div class="product-details">General • Similarity: 86.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$16.90</div>
+                                <div class="best-deal">BEST DEAL - Save $3.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$19.90</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Ritz Crackers 227g</div>
+                        <div class="product-details">General • Similarity: 71.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.00</div>
+                                <div class="best-deal">BEST DEAL - Save $2.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$5.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dollar Sweets Christmas Baking Decorations</div>
+                        <div class="product-details">General • Similarity: 64.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.00</div>
+                                <div class="best-deal">BEST DEAL - Save $5.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Nestlé Bakers’ Choice Smarties 150g</div>
+                        <div class="product-details">General • Similarity: 62.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$4.20</div>
+                                <div class="best-deal">BEST DEAL - Save $0.80</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sandhurst Italian Maraschino Cherries 225g</div>
+                        <div class="product-details">General • Similarity: 64.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.50</div>
+                                <div class="best-deal">BEST DEAL - Save $10.40</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$16.90</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Tassal Smoked Salmon 150g</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                <div class="best-deal">BEST DEAL - Save $5.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$21.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Birch & Waite Seafood Sauce Varieties 250ml</div>
+                        <div class="product-details">Condiments • Similarity: 81.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.25</span>$4.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Thawed Large Australian Green Banana Prawns</div>
+                        <div class="product-details">General • Similarity: 62.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$17.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$22.00</span>$17.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Red Papaya</div>
+                        <div class="product-details">General • Similarity: 68.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.90</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$2.90</div>
+                                <div class="best-deal">BEST DEAL - Save $1.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian White or Yellow Peaches</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.90</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$3.90</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Iceberg Lettuce</div>
+                        <div class="product-details">General • Similarity: 67.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$2.40</div>
+                                <div class="best-deal">BEST DEAL - Save $0.10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths Australian Roasted & Salted Pistachios ...</div>
+                        <div class="product-details">General • Similarity: 60.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$12.00</span>$8.40</div>
+                                <div class="best-deal">BEST DEAL - Save $1.60</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Fresh RSPCA Approved Chicken Breast Fil...</div>
+                        <div class="product-details">Meat & Seafood • Similarity: 75.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$8.50</div>
+                                <div class="best-deal">BEST DEAL - Save $2.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$11.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths Plain RSPCA Approved Chicken Burgers 44...</div>
+                        <div class="product-details">Meat & Seafood • Similarity: 67.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                <div class="best-deal">BEST DEAL - Save $3.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$9.50</span>$8.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Macro Australian Grass Fed Beef Rump Steak 300g</div>
+                        <div class="product-details">Meat & Seafood • Similarity: 71.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$11.00</div>
+                                <div class="best-deal">BEST DEAL - Save $0.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$15.00</span>$11.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Rana Filled Pasta Varieties 325g – From the Fridge</div>
+                        <div class="product-details">General • Similarity: 68.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.40</div>
+                                <div class="best-deal">BEST DEAL - Save $2.40</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$7.80</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Western Star Cultured Gold 340g</div>
+                        <div class="product-details">General • Similarity: 71.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.20</span>$4.70</div>
+                                <div class="best-deal">BEST DEAL - Save $0.80</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths Thickened Cream 300ml – From the Fridge</div>
+                        <div class="product-details">General • Similarity: 60.3%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.40</div>
+                                <div class="best-deal">BEST DEAL - Save $1.80</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$5.20</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Tegel Take Outs Chicken Tenders 500g</div>
+                        <div class="product-details">Meat & Seafood • Similarity: 61.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$8.40</div>
+                                <div class="best-deal">BEST DEAL - Save $1.60</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$12.50</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Maggi Noodle Cups 58-65g</div>
+                        <div class="product-details">General • Similarity: 61.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$2.50</span>$1.25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$2.50</span>$1.00</div>
+                                <div class="best-deal">BEST DEAL - Save $0.25</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">John West Tuna 185g</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div class="best-deal">BEST DEAL - Save $1.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.30</span>$5.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">La Gina Classic Olive Oil or Extra Virgin Olive Oi...</div>
+                        <div class="product-details">General • Similarity: 60.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$45.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$25.00</span>$15.00</div>
+                                <div class="best-deal">BEST DEAL - Save $30.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">El Rustico Deli Style Potato Chips 150g</div>
+                        <div class="product-details">Snacks • Similarity: 67.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.00</span>$3.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola Classic or Zero Soft Drink 2 Litre</div>
+                        <div class="product-details">Drinks • Similarity: 70.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.40</span>$2.60</div>
+                                <div class="best-deal">BEST DEAL - Save $0.90</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sunkist, Solo or Schweppes Lemonade Soft Drink Can...</div>
+                        <div class="product-details">Drinks • Similarity: 76.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$25.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">All</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">None</span>$25.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths Spring Water 24 x 600ml</div>
+                        <div class="product-details">General • Similarity: 65.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$8.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.75</span>$4.95</div>
+                                <div class="best-deal">BEST DEAL - Save $3.05</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Grinders Coffee Beans 1 kg</div>
+                        <div class="product-details">General • Similarity: 60.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$32.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+                                <div class="best-deal">BEST DEAL - Save $28.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">H2Coco Coconut Water 1 Litre</div>
+                        <div class="product-details">General • Similarity: 68.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.75</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.50</span>$2.75</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">CocoCoast Sparkling Coconut Water Mango 4 x 320ml</div>
+                        <div class="product-details">General • Similarity: 61.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.35</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.75</span>$4.95</div>
+                                <div class="best-deal">BEST DEAL - Save $0.40</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sunsilk Shampoo or Conditioner 700ml</div>
+                        <div class="product-details">General • Similarity: 75.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.50</span>$6.75</div>
+                                <div class="best-deal">BEST DEAL - Save $6.25</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">TRESemmé Shampoo or Conditioner 940ml</div>
+                        <div class="product-details">General • Similarity: 71.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.50</span>$9.25</div>
+                                <div class="best-deal">BEST DEAL - Save $3.75</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pantene Pro-V Shampoo or Conditioner 375ml</div>
+                        <div class="product-details">General • Similarity: 68.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.00</span>$5.00</div>
+                                <div class="best-deal">BEST DEAL - Save $8.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">being Shampoo or Conditioner 354ml</div>
+                        <div class="product-details">General • Similarity: 71.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$7.80</div>
+                                <div class="best-deal">BEST DEAL - Save $5.20</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Nivea 72hr Antiperspirant Deodorant 250ml</div>
+                        <div class="product-details">General • Similarity: 63.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$9.50</span>$4.75</div>
+                                <div class="best-deal">BEST DEAL - Save $0.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.50</span>$5.25</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">OGX Shampoo or Conditioner 385ml</div>
+                        <div class="product-details">General • Similarity: 73.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$23.00</span>$11.50</div>
+                                <div class="best-deal">BEST DEAL - Save $1.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Colgate Plax Alcohol Free Mouthwash 500ml</div>
+                        <div class="product-details">General • Similarity: 64.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+                                <div class="best-deal">BEST DEAL - Save $2.40</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$9.90</span>$5.90</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Colgate Total Active Prevention Deep Clean Toothpa...</div>
+                        <div class="product-details">General • Similarity: 91.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$5.50</div>
+                                <div class="best-deal">BEST DEAL - Save $2.20</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$7.70</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Glow Lab Hand Wash 300ml</div>
+                        <div class="product-details">General • Similarity: 61.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+                                <div class="best-deal">BEST DEAL - Save $1.47</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.95</span>$5.47</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Glow Lab Shampoo or Conditioner 600ml</div>
+                        <div class="product-details">General • Similarity: 67.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dove Whole Body Deodorant 230ml</div>
+                        <div class="product-details">General • Similarity: 64.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$14.00</span>$7.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dove Shampoo or Conditioner 850ml</div>
+                        <div class="product-details">General • Similarity: 79.3%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$19.50</span>$9.75</div>
+                                <div class="best-deal">BEST DEAL - Save $3.25</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Huggies Baby Wipes Pk 216-240</div>
+                        <div class="product-details">General • Similarity: 76.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$10.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.00</span>$3.50</div>
+                                <div class="best-deal">BEST DEAL - Save $6.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Only Organic Baby Food Pouch 120g</div>
+                        <div class="product-details">General • Similarity: 68.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.80</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.30</span>$1.80</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sistema Stainless Steel Bottle 600ml</div>
+                        <div class="product-details">General • Similarity: 72.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.75</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$33.50</span>$16.75</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Bonds Men’s Hipster Guy Front Trunk Assorted Pk 1</div>
+                        <div class="product-details">General • Similarity: 69.3%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$25.00</span>$12.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$25.00</span>$12.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cold Power Laundry Liquid 2 Litre or Powder 2 kg</div>
+                        <div class="product-details">General • Similarity: 77.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$24.00</span>$12.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Morning Fresh Dishwashing Liquid 900ml</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.00</span>$5.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.00</span>$3.00</div>
+                                <div class="best-deal">BEST DEAL - Save $2.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">OMO Ultimate Laundry Liquid 2 Litre or Powder 2 kg</div>
+                        <div class="product-details">General • Similarity: 78.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$36.00</span>$18.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Friskies Dry Cat Food 700g</div>
+                        <div class="product-details">General • Similarity: 62.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.30</div>
+                                <div class="best-deal">BEST DEAL - Save $6.70</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$14.50</span>$10.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pedigree Dry Dog Food 2.5-3 kg</div>
+                        <div class="product-details">General • Similarity: 95.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.00</div>
+                                <div class="best-deal">BEST DEAL - Save $15.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.50</span>$24.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Fancy Feast Medleys Wet Cat Food 85g</div>
+                        <div class="product-details">General • Similarity: 65.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.80</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$1.60</span>$1.00</div>
+                                <div class="best-deal">BEST DEAL - Save $0.80</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Fancy Feast Dry Cat Food 1.4 kg</div>
+                        <div class="product-details">General • Similarity: 62.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$19.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$1.60</span>$1.00</div>
+                                <div class="best-deal">BEST DEAL - Save $18.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Supercoat Dry Dog Food 6.7-7 kg</div>
+                        <div class="product-details">General • Similarity: 95.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$27.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.00</span>$12.50</div>
+                                <div class="best-deal">BEST DEAL - Save $14.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Arnott’s Shapes Crackers 160-190g</div>
+                        <div class="product-details">General • Similarity: 90.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.00</span>$2.00</div>
+                                <div class="best-deal">BEST DEAL - Save $1.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.00</span>$3.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">V Energy Drink 4 x 250ml</div>
+                        <div class="product-details">Drinks • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.75</span>$5.85</div>
+                                <div class="best-deal">BEST DEAL - Save $4.65</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$16.75</span>$10.50</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Dairy Milk Baubles 112-114g</div>
+                        <div class="product-details">Dairy • Similarity: 78.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                <div class="best-deal">BEST DEAL - Save $3.20</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$12.00</span>$7.20</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cadbury Christmas Stocking 244g</div>
+                        <div class="product-details">General • Similarity: 69.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$7.00</div>
+                                <div class="best-deal">BEST DEAL - Save $8.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Toblerone Pralines 45g</div>
+                        <div class="product-details">General • Similarity: 69.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+                                <div class="best-deal">BEST DEAL - Save $11.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Toblerone Gift Box 400g</div>
+                        <div class="product-details">General • Similarity: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$22.00</span>$11.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$15.50</span>$7.75</div>
+                                <div class="best-deal">BEST DEAL - Save $3.25</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">amaysim $35 Starter Pack†</div>
+                        <div class="product-details">General • Similarity: 64.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$35.00</span>$12.00</div>
+                                <div class="best-deal">BEST DEAL - Save $2.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$35.00</span>$14.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lebara $24.90 Starter Pack§</div>
+                        <div class="product-details">General • Similarity: 95.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$24.90</span>$10.00</div>
+                                <div class="best-deal">BEST DEAL - Save $2.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$29.90</span>$12.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Telstra T Inspire 2^</div>
+                        <div class="product-details">General • Similarity: 82.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$79.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$129.00</span>$79.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus $35 SIM Starter Kit€</div>
+                        <div class="product-details">General • Similarity: 95.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">HALF_PRICE</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$35.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$39.00</span>$13.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus X Start 5€</div>
+                        <div class="product-details">General • Similarity: 71.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$49.00</div>
+                                <div class="best-deal">BEST DEAL - Save $40.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$129.00</span>$89.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus X – Total€</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$89.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$129.00</span>$89.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus $180 SIM Starter Kit€</div>
+                        <div class="product-details">General • Similarity: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$119.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$180.00</span>$119.00</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus X Pro2 5G€</div>
+                        <div class="product-details">General • Similarity: 95.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$149.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Half Price Specials</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$169.00</span>$139.00</div>
+                                <div class="best-deal">BEST DEAL - Save $10.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="footer-logo">
+                <div class="footer-text">
+                    <p>AI-Powered Price Comparison | Generated by AdvGen Price Comparer</p>
+                    <p>Data sourced from official Coles and Woolworths catalogues - Week 1-7 Oct 2025</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.michaelleung.info/prices">Home</a>
+                    <a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">GitHub</a>
+                    <a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

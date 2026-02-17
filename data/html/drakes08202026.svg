@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1200" viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffebee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e3f2fd;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="redHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d32f2f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b71c1c;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="blueHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1565c0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d47a1;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0,0,0,0.3)" />
+    </filter>
+    
+    <style type="text/css">
+      <![CDATA[
+        .title { font-family: Arial, sans-serif; font-weight: bold; }
+        .header { font-family: Arial, sans-serif; font-weight: bold; }
+        .category { font-family: Arial, sans-serif; font-weight: bold; }
+        .item { font-family: Arial, sans-serif; }
+        .price { font-family: Arial, sans-serif; font-weight: bold; }
+        .saving { font-family: Arial, sans-serif; }
+        .tip { font-family: Arial, sans-serif; }
+        .hashtag { font-family: Arial, sans-serif; }
+      ]]>
+    </style>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="1200" fill="url(#bgGradient)" />
+  
+  <!-- 標題區域 -->
+  <rect x="0" y="0" width="800" height="120" fill="#e53935" />
+  <circle cx="100" cy="60" r="30" fill="white" />
+  <circle cx="700" cy="60" r="30" fill="white" />
+  
+  <!-- 購物車圖標 -->
+  <g transform="translate(70, 35)">
+    <rect x="10" y="25" width="40" height="20" fill="#4CAF50" rx="5" />
+    <circle cx="20" cy="35" r="8" fill="white" />
+    <circle cx="40" cy="35" r="8" fill="white" />
+    <rect x="5" y="15" width="50" height="15" fill="#2196F3" rx="3" />
+  </g>
+  
+  <!-- 星星圖標 -->
+  <g transform="translate(670, 35)">
+    <polygon points="30,15 36,30 52,30 39,39 43,55 30,45 17,55 21,39 8,30 24,30" fill="#FFC107" />
+  </g>
+  
+  <!-- 主標題 -->
+  <text x="400" y="50" text-anchor="middle" class="title" font-size="28" fill="white" filter="url(#shadow)">
+    🛒✨ 布里斯本超市特價快報 ✨🛒
+  </text>
+  <text x="400" y="85" text-anchor="middle" class="title" font-size="20" fill="white">
+    📅 2026年2月4日 - 2月14日
+  </text>
+  
+  <!-- Drakes 特價區 -->
+  <rect x="50" y="140" width="700" height="40" fill="url(#redHeader)" rx="5" />
+  <text x="400" y="168" text-anchor="middle" class="header" font-size="22" fill="white">
+    🔴 DRAKES 超市特價 (4/2 - 10/2)
+  </text>
+  
+  <!-- Drakes 內容 -->
+  <g transform="translate(60, 200)">
+    <!-- 冰淇淋 -->
+    <rect x="0" y="0" width="680" height="30" fill="#ffcdd2" rx="3" />
+    <text x="10" y="22" class="category" font-size="18" fill="#d32f2f">🍦 冰淇淋半價優惠！</text>
+    
+    <text x="20" y="55" class="item" font-size="16">• Streets Magnum 雪糕 4-6支裝</text>
+    <text x="500" y="55" class="price" font-size="16" fill="#d32f2f">$6.25</text>
+    <text x="620" y="55" class="saving" font-size="14" fill="#388e3c">(半價)</text>
+    
+    <text x="20" y="85" class="item" font-size="16">• Connoisseur 冰淇淋 1公升</text>
+    <text x="500" y="85" class="price" font-size="16" fill="#d32f2f">$5.50</text>
+    <text x="620" y="85" class="saving" font-size="14" fill="#388e3c">(省$5.50)</text>
+    
+    <!-- 肉類 -->
+    <rect x="0" y="110" width="680" height="30" fill="#ffcdd2" rx="3" />
+    <text x="10" y="132" class="category" font-size="18" fill="#d32f2f">🍗 肉類超值優惠！</text>
+    
+    <text x="20" y="165" class="item" font-size="16">• 澳洲雞胸肉</text>
+    <text x="500" y="165" class="price" font-size="16" fill="#d32f2f">$7.90/公斤</text>
+    <text x="620" y="165" class="saving" font-size="14" fill="#388e3c">⭐超值</text>
+    
+    <text x="20" y="195" class="item" font-size="16">• 牛腰肉扒 Bulk Tray</text>
+    <text x="500" y="195" class="price" font-size="16" fill="#d32f2f">$24.00/公斤</text>
+    
+    <text x="20" y="225" class="item" font-size="16">• 特瘦牛肉碎 (最少1.2kg)</text>
+    <text x="500" y="225" class="price" font-size="16" fill="#d32f2f">$16.90/公斤</text>
+    <text x="620" y="225" class="saving" font-size="14" fill="#388e3c">(省$4.10)</text>
+    
+    <text x="20" y="255" class="item" font-size="16">• 澳洲豬柳</text>
+    <text x="500" y="255" class="price" font-size="16" fill="#d32f2f">$14.00/公斤</text>
+    <text x="620" y="255" class="saving" font-size="14" fill="#388e3c">(省$7)</text>
+    
+    <!-- 零食 -->
+    <rect x="0" y="280" width="680" height="30" fill="#ffcdd2" rx="3" />
+    <text x="10" y="302" class="category" font-size="18" fill="#d32f2f">🍫 零食甜點！</text>
+    
+    <text x="20" y="335" class="item" font-size="16">• Arnott's 奶油餅乾</text>
+    <text x="500" y="335" class="price" font-size="16" fill="#d32f2f">$2.58</text>
+    <text x="620" y="335" class="saving" font-size="14" fill="#388e3c">(半價)</text>
+    
+    <text x="20" y="365" class="item" font-size="16">• Nestle 朱古力磚</text>
+    <text x="500" y="365" class="price" font-size="16" fill="#d32f2f">$5.25</text>
+    <text x="620" y="365" class="saving" font-size="14" fill="#388e3c">(半價)</text>
+    
+    <text x="20" y="395" class="item" font-size="16">• CC's 粟米片 175g</text>
+    <text x="500" y="395" class="price" font-size="16" fill="#d32f2f">$2.50</text>
+    <text x="620" y="395" class="saving" font-size="14" fill="#388e3c">(省$2.50)</text>
+    
+    <text x="20" y="425" class="item" font-size="16">• Toblerone 牛奶朱古力 340g</text>
+    <text x="500" y="425" class="price" font-size="16" fill="#d32f2f">$10</text>
+    <text x="620" y="425" class="saving" font-size="14" fill="#388e3c">(省$10)</text>
+  </g>
+  
+  <!-- ALDI 特價區 -->
+  <rect x="50" y="480" width="700" height="40" fill="url(#blueHeader)" rx="5" />
+  <text x="400" y="508" text-anchor="middle" class="header" font-size="22" fill="white">
+    🔵 ALDI 特別優惠
+  </text>
+  
+  <!-- ALDI 內容 -->
+  <g transform="translate(60, 550)">
+    <!-- 2月11日 -->
+    <rect x="0" y="0" width="680" height="30" fill="#bbdefb" rx="3" />
+    <text x="10" y="22" class="category" font-size="18" fill="#1565c0">📅 2月11日 星期三開賣：</text>
+    
+    <rect x="0" y="35" width="680" height="30" fill="#e3f2fd" rx="3" />
+    <text x="10" y="57" class="category" font-size="18" fill="#1565c0">🥜 堅果大特賣！</text>
+    
+    <text x="20" y="90" class="item" font-size="16">• 杏仁乾烤 1公斤</text>
+    <text x="500" y="90" class="price" font-size="16" fill="#1565c0">$16.99</text>
+    
+    <text x="20" y="120" class="item" font-size="16">• 腰果天然 1.2公斤</text>
+    <text x="500" y="120" class="price" font-size="16" fill="#1565c0">$19.99</text>
+    <text x="620" y="120" class="saving" font-size="14" fill="#388e3c">($16.66/kg)</text>
+    
+    <text x="20" y="150" class="item" font-size="16">• 開心果烤鹽 1公斤</text>
+    <text x="500" y="150" class="price" font-size="16" fill="#1565c0">$19.99</text>
+    
+    <text x="20" y="180" class="item" font-size="16">• 核桃天然 1公斤</text>
+    <text x="500" y="180" class="price" font-size="16" fill="#1565c0">$17.99</text>
+    
+    <!-- 肉類 -->
+    <rect x="0" y="205" width="680" height="30" fill="#e3f2fd" rx="3" />
+    <text x="10" y="227" class="category" font-size="18" fill="#1565c0">🍖 肉類優惠！</text>
+    
+    <text x="20" y="260" class="item" font-size="16">• 新鮮全鴨 2.1公斤</text>
+    <text x="500" y="260" class="price" font-size="16" fill="#1565c0">$17.99</text>
+    <text x="620" y="260" class="saving" font-size="14" fill="#388e3c">($9.00/kg) 🔥</text>
+    
+    <!-- 2月14日 -->
+    <rect x="0" y="295" width="680" height="30" fill="#bbdefb" rx="3" />
+    <text x="10" y="317" class="category" font-size="18" fill="#1565c0">📅 2月14日 星期六開賣：</text>
+    
+    <rect x="0" y="330" width="680" height="30" fill="#e3f2fd" rx="3" />
+    <text x="10" y="352" class="category" font-size="18" fill="#1565c0">🌿 園藝用品！</text>
+    
+    <text x="20" y="385" class="item" font-size="16">• 20V 2合1修枝機</text>
+    <text x="500" y="385" class="price" font-size="16" fill="#1565c0">$99.99</text>
+    
+    <text x="20" y="415" class="item" font-size="16">• 20V 無線吹葉機</text>
+    <text x="500" y="415" class="price" font-size="16" fill="#1565c0">$49.99</text>
+  </g>
+  
+  <!-- 購物小貼士 -->
+  <rect x="50" y="880" width="700" height="100" fill="#c8e6c9" rx="10" />
+  <text x="400" y="910" text-anchor="middle" class="header" font-size="22" fill="#1b5e20">
+    💡 精明購物小貼士：
+  </text>
+  
+  <text x="70" y="945" class="tip" font-size="16" fill="#1b5e20">✅ 雞胸肉 Drakes $7.90/kg 超抵買！</text>
+  <text x="70" y="970" class="tip" font-size="16" fill="#1b5e20">✅ 堅果控必買 ALDI 1公斤裝大包！</text>
+  <text x="70" y="995" class="tip" font-size="16" fill="#1b5e20">✅ 冰淇淋半價 屯貨好時機！</text>
+  
+  <!-- 底部資訊 -->
+  <rect x="0" y="1000" width="800" height="200" fill="#455a64" />
+  
+  <text x="400" y="1030" text-anchor="middle" class="tip" font-size="16" fill="white">
+    📍 優惠數量有限，售完即止
+  </text>
+  <text x="400" y="1060" text-anchor="middle" class="tip" font-size="16" fill="white">
+    👍 Like & Share 分享給朋友！
+  </text>
+  <text x="400" y="1090" text-anchor="middle" class="tip" font-size="16" fill="white">
+    💬 留言話我知你最想買咩？
+  </text>
+  
+  <!-- 主題標籤 -->
+  <text x="400" y="1130" text-anchor="middle" class="hashtag" font-size="14" fill="#bbdefb">
+    #布里斯本 #Brisbane #超市特價 #Drakes #ALDI
+  </text>
+  <text x="400" y="1155" text-anchor="middle" class="hashtag" font-size="14" fill="#bbdefb">
+    #半價優惠 #澳洲生活 #慳錢攻略 #GroceryDeals #BrisbaneDeals
+  </text>
+  
+  <!-- 分隔線 -->
+  <line x1="50" y1="125" x2="750" y2="125" stroke="#e53935" stroke-width="3" stroke-dasharray="10,5" />
+  <line x1="50" y1="475" x2="750" y2="475" stroke="#1565c0" stroke-width="3" stroke-dasharray="10,5" />
+  <line x1="50" y1="875" x2="750" y2="875" stroke="#388e3c" stroke-width="3" stroke-dasharray="10,5" />
+</svg>

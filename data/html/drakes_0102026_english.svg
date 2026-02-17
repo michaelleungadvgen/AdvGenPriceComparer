@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        text { font-family: Arial, sans-serif; }
+        .title { font-size: 28px; font-weight: bold; fill: #e63946; }
+        .subtitle { font-size: 20px; font-weight: bold; fill: #333; }
+        .header { font-size: 18px; font-weight: bold; fill: #1d3557; }
+        .item { font-size: 14px; fill: #222; }
+        .price { font-size: 14px; fill: #2a9d8f; font-weight: bold; }
+        .store { font-size: 22px; font-weight: bold; fill: #e76f51; }
+        .date { font-size: 16px; fill: #666; }
+        .footer { font-size: 12px; fill: #555; }
+        .highlight { fill: #f4a261; font-weight: bold; }
+        .savings { fill: #e63946; font-size: 12px; }
+        rect { stroke: #ccc; stroke-width: 1; }
+    </style>
+    
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="#f8f9fa"/>
+    <rect x="20" y="20" width="760" height="1160" rx="15" fill="white" stroke="#e9ecef" stroke-width="2"/>
+    
+    <!-- Header Decoration -->
+    <rect x="20" y="20" width="760" height="80" fill="#1d3557" rx="15"/>
+    <rect x="20" y="85" width="760" height="4" fill="#e63946"/>
+    
+    <!-- Title -->
+    <text x="400" y="65" text-anchor="middle" class="title" fill="white">🛒✨ WEEKLY SUPERMARKET SPECIALS ✨🛒</text>
+    <text x="400" y="100" text-anchor="middle" class="date">January 28 - February 7, 2026</text>
+    
+    <!-- DRAKES Section -->
+    <rect x="40" y="120" width="720" height="300" rx="8" fill="#f1faee" stroke="#a8dadc" stroke-width="1"/>
+    <text x="400" y="150" text-anchor="middle" class="store">🏪 DRAKES SUPERMARKET</text>
+    <text x="400" y="175" text-anchor="middle" class="date">Valid: Jan 28 - Feb 3</text>
+    
+    <!-- Special Offers -->
+    <rect x="60" y="190" width="680" height="40" rx="5" fill="#a8dadc" opacity="0.3"/>
+    <text x="400" y="215" text-anchor="middle" class="header">🎯 SPECIAL PROMOTIONS</text>
+    
+    <text x="60" y="250" class="item">• FREE socks with every $60 spent! (Limited stock)</text>
+    <text x="60" y="275" class="item">• Spend $40 + promotional item = Entry to win $10,000 family holiday!</text>
+    
+    <!-- Drakes Products -->
+    <text x="60" y="310" class="header">🔥 HOT DEALS</text>
+    
+    <text x="80" y="340" class="item">🍚 SunRice Medium Grain White Rice 5kg</text>
+    <text x="600" y="340" class="price">$5</text>
+    <text x="650" y="340" class="savings">SAVE $7.50</text>
+    
+    <text x="80" y="365" class="item">🥩 Australian Beef Lean Mince 1.2kg+</text>
+    <text x="600" y="365" class="price">$15.90/kg</text>
+    
+    <text x="80" y="390" class="item">🍫 Cadbury Chocolate Blocks 150g-190g</text>
+    <text x="600" y="390" class="price">$3</text>
+    <text x="650" y="390" class="savings">SAVE $1.50</text>
+    
+    <text x="80" y="415" class="item">🦐 Fresh Jumbo Cooked Ocean King Prawns</text>
+    <text x="600" y="415" class="price">$34/kg</text>
+    
+    <!-- ALDI Section -->
+    <rect x="40" y="440" width="720" height="650" rx="8" fill="#fff9e6" stroke="#f4a261" stroke-width="1"/>
+    <text x="400" y="470" text-anchor="middle" class="store">🏪 ALDI SPECIAL BUYS</text>
+    <text x="400" y="495" text-anchor="middle" class="date">Available on specific dates only</text>
+    
+    <!-- Jan 31 -->
+    <rect x="60" y="515" width="680" height="30" rx="5" fill="#f4a261" opacity="0.2"/>
+    <text x="100" y="535" class="header">📅 SATURDAY, JAN 31</text>
+    
+    <text x="80" y="565" class="item">🍫 Maltesers Gift Box 400g</text>
+    <text x="600" y="565" class="price">$7.75</text>
+    
+    <text x="80" y="590" class="item">🍫 Cadbury Roses Gift Box 380g</text>
+    <text x="600" y="590" class="price">$9.99</text>
+    
+    <!-- Feb 4 - Lunar New Year -->
+    <rect x="60" y="620" width="680" height="30" rx="5" fill="#e63946" opacity="0.1"/>
+    <text x="100" y="640" class="header">📅 WEDNESDAY, FEB 4 - LUNAR NEW YEAR</text>
+    
+    <text x="80" y="670" class="item">🎎 Thai Fragrant Rice 5kg</text>
+    <text x="600" y="670" class="price">$12.98</text>
+    
+    <text x="80" y="695" class="item">🎎 Bamboo Steamer Set</text>
+    <text x="600" y="695" class="price">$14.88</text>
+    
+    <text x="80" y="720" class="item">🍾 Glen Marnoch Sherry Cask Whisky 700ml</text>
+    <text x="600" y="720" class="price">$55.99</text>
+    
+    <text x="80" y="745" class="item">🍯 Manuka Honey MGO88+ 500g</text>
+    <text x="600" y="745" class="price">$13.88</text>
+    
+    <!-- Feb 7 -->
+    <rect x="60" y="775" width="680" height="30" rx="5" fill="#2a9d8f" opacity="0.1"/>
+    <text x="100" y="795" class="header">📅 SATURDAY, FEB 7</text>
+    
+    <text x="80" y="825" class="item">📺 24" HD Smart TV (Built-in Battery)</text>
+    <text x="600" y="825" class="price">$189.00</text>
+    
+    <text x="80" y="850" class="item">👟 Adult Waterproof Jacket</text>
+    <text x="600" y="850" class="price">$34.99</text>
+    
+    <text x="80" y="875" class="item">🚗 200W Flexible Solar Panel</text>
+    <text x="600" y="875" class="price">$159.00</text>
+    
+    <!-- Tips Section -->
+    <rect x="40" y="910" width="720" height="120" rx="8" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+    <text x="400" y="935" text-anchor="middle" class="header">💡 SMART SHOPPING TIPS</text>
+    
+    <text x="60" y="965" class="item">✅ Plan your shopping list in advance</text>
+    <text x="60" y="990" class="item">✅ Compare prices between stores</text>
+    <text x="60" y="1015" class="item">✅ Stock up on non-perishable specials</text>
+    <text x="400" y="965" class="item">✅ Check for member-only discounts</text>
+    <text x="400" y="990" class="item">✅ Shop early for best selection</text>
+    
+    <!-- Footer -->
+    <rect x="20" y="1045" width="760" height="4" fill="#e63946"/>
+    
+    <text x="400" y="1075" text-anchor="middle" class="footer" font-weight="bold">
+        📍 Locations: Glenmore Park 2745 (ALDI) & Drakes stores nationwide
+    </text>
+    
+    <text x="400" y="1095" text-anchor="middle" class="footer">
+        ⚠️ While stocks last. Prices may vary by location. Quantities limited.
+    </text>
+    
+    <text x="400" y="1120" text-anchor="middle" class="footer">
+        🔔 Share with friends! #SupermarketSpecials #SmartShopping #WeeklyDeals
+    </text>
+    
+    <!-- Decorative Elements -->
+    <circle cx="50" cy="50" r="8" fill="#e63946"/>
+    <circle cx="750" cy="50" r="8" fill="#e63946"/>
+    <circle cx="50" cy="1150" r="8" fill="#2a9d8f"/>
+    <circle cx="750" cy="1150" r="8" fill="#2a9d8f"/>
+</svg>

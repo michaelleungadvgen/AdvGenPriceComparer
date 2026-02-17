@@ -1,0 +1,85 @@
+🛒 Good Deals Product URLs - January 2026
+==========================================
+
+✅ = URL Found
+⚠️ = Model verification needed
+❌ = Not found/needs manual search
+
+---
+
+1. LG 77" C5 Evo 4K OLED TV
+   Retailer: JB Hi-Fi
+   Status: ✅ FOUND
+   URL: https://www.jbhifi.com.au/products/lg-77-oled-evo-c5-ai-4k-uhd-smart-tv-2025
+   Notes: Confirmed 2025 model at JB Hi-Fi
+
+2. Samsung Galaxy Tab S9 (Wi-Fi, 128GB)
+   Retailer: JB Hi-Fi
+   Status: ⚠️ VERIFICATION NEEDED
+   Collection URL: https://www.jbhifi.com.au/collections/computers-tablets/samsung-galaxy-tab-s9
+   Direct URL (5G version): https://www.jbhifi.com.au/products/samsung-galaxy-tab-s9-11-5g-128gb-graphite
+   Notes: Need to confirm Wi-Fi 128GB specific model URL. Collection page available.
+
+3. Roborock Q70V+ Robotic Vacuum
+   Retailer: JB Hi-Fi
+   Status: ❌ MODEL NOT FOUND
+   Collection URL: https://www.jbhifi.com.au/collections/home-appliances/roborock
+   Notes: Q70V+ model not found. Possible alternatives: Q10V+, Q7+. Manual verification needed.
+
+4. HP OmniBook 5 AI 16" OLED Laptop
+   Retailer: Harvey Norman
+   Status: ⚠️ SIZE MISMATCH
+   URL (14" model): https://www.harveynorman.com.au/hp-omnibook-5-14-inch-oled-snapdragon-x-x1-26-100-16gb-512gb-ssd-next-gen-ai-copilot-pc-laptop.html
+   Notes: Found 14" model at Harvey Norman. 16" model needs verification.
+
+5. Dyson V8 Origin Stick Vacuum
+   Retailer: JB Hi-Fi / The Good Guys
+   Status: ✅ FOUND
+   URL: https://www.jbhifi.com.au/products/dyson-v8-origin-stick-vacuum
+   Notes: Confirmed at JB Hi-Fi
+
+6. Samsung 85" Q7F QLED 4K TV
+   Retailer: JB Hi-Fi
+   Status: ❌ NOT SEARCHED YET
+   Notes: Requires manual search at JB Hi-Fi
+
+7. JBL Bar 1000MK2 7.1.4 Soundbar
+   Retailer: Harvey Norman
+   Status: ❌ NOT SEARCHED YET
+   Notes: Requires manual search at Harvey Norman
+
+8. Haier 508L Quad Door Refrigerator
+   Retailer: The Good Guys
+   Status: ✅ FOUND (Multiple Models)
+   URLs:
+   - Model HRF580YHC: https://www.thegoodguys.com.au/haier-508l-quad-door-refrigerator-hrf580yhc
+   - Model HRF580YHS: https://www.thegoodguys.com.au/haier-508l-quad-door-refrigerator-hrf580yhs
+   - Model HRF580YHN: https://www.thegoodguys.com.au/haier-508l-quad-door-refrigerator-hrf580yhn
+   Notes: Multiple color/feature variants available. Need to specify which one.
+
+9. ASUS Vivobook 16" (Snapdragon X1)
+   Retailer: JB Hi-Fi
+   Status: ❌ NOT SEARCHED YET
+   Notes: Requires manual search at JB Hi-Fi
+
+10. Hisense 85" Q6QAU QLED TV
+    Retailer: The Good Guys
+    Status: ✅ FOUND
+    URL: https://www.thegoodguys.com.au/hisense-85-inches-q6qau-qled-4k-smart-tv-2025-85q6qau
+    Notes: Confirmed 2025 model at The Good Guys
+
+---
+
+SUMMARY:
+- Fully confirmed URLs: 3/10
+- Partial/needs verification: 2/10
+- Not found/needs manual search: 5/10
+
+NEXT STEPS:
+1. Verify Samsung Tab S9 Wi-Fi 128GB specific URL at JB Hi-Fi
+2. Confirm Roborock model - likely Q10V+ or Q7+ instead of Q70V+
+3. Verify HP OmniBook 5 16" OLED at Harvey Norman (currently only 14" found)
+4. Search for Samsung 85" Q7F QLED TV at JB Hi-Fi
+5. Search for JBL Bar 1000MK2 at Harvey Norman
+6. Search for ASUS Vivobook 16" Snapdragon X1 at JB Hi-Fi
+7. Choose specific Haier 508L model variant (HRF580YHC, YHS, or YHN)

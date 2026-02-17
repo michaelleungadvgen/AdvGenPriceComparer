@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1200"
+   height="630"
+   viewBox="0 0 1200 630"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="coles_vs_woolworths_dec2025.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.5783333"
+     inkscape:cx="600"
+     inkscape:cy="315.12605"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12" />
+  <!-- Background -->
+  <rect
+     width="1200"
+     height="630"
+     fill="#f8f9fa"
+     id="rect1" />
+  <!-- Header Ribbon -->
+  <rect
+     x="0"
+     y="0"
+     width="1200"
+     height="80"
+     fill="#85c5d4"
+     id="rect2" />
+  <text
+     x="600"
+     y="50"
+     font-family="PingFang TC, Microsoft JhengHei, sans-serif"
+     font-size="32"
+     fill="white"
+     text-anchor="middle"
+     font-weight="700"
+     id="text2">
+    🛒 Coles vs Woolworths 本週比價 (3–9 Dec 2025)
+  </text>
+  <!-- Coles Side -->
+  <rect
+     x="0"
+     y="80"
+     width="600"
+     height="550"
+     fill="#ffecec"
+     id="rect3" />
+  <rect
+     x="60"
+     y="130"
+     width="480"
+     height="120"
+     rx="12"
+     fill="#e31e24"
+     id="rect4" />
+  <text
+     x="300"
+     y="180"
+     font-family="Arial, sans-serif"
+     font-size="28"
+     fill="white"
+     text-anchor="middle"
+     font-weight="bold"
+     id="text4">Coles</text>
+  <text
+     x="300"
+     y="215"
+     font-family="PingFang TC, sans-serif"
+     font-size="24"
+     fill="white"
+     text-anchor="middle"
+     id="text5">30% 商品最便宜</text>
+  <!-- Woolworths Side -->
+  <rect
+     x="600"
+     y="80"
+     width="600"
+     height="550"
+     fill="#ecf8f0"
+     id="rect5" />
+  <rect
+     x="660"
+     y="130"
+     width="480"
+     height="120"
+     rx="12"
+     fill="#00a651"
+     id="rect6" />
+  <text
+     x="900"
+     y="180"
+     font-family="Arial, sans-serif"
+     font-size="28"
+     fill="white"
+     text-anchor="middle"
+     font-weight="bold"
+     id="text6">Woolworths</text>
+  <text
+     x="900"
+     y="215"
+     font-family="PingFang TC, sans-serif"
+     font-size="24"
+     fill="white"
+     text-anchor="middle"
+     id="text7">52% 商品最便宜</text>
+  <!-- VS Divider -->
+  <text
+     x="600"
+     y="320"
+     font-family="Arial"
+     font-size="64"
+     font-weight="900"
+     fill="#555"
+     text-anchor="middle"
+     id="text8">VS</text>
+  <!-- Summary Stats -->
+  <rect
+     x="150"
+     y="380"
+     width="900"
+     height="140"
+     rx="20"
+     fill="white"
+     stroke="#ddd"
+     stroke-width="2"
+     id="rect8" />
+  <text
+     x="600"
+     y="435"
+     font-family="PingFang TC, sans-serif"
+     font-size="28"
+     fill="#333"
+     text-anchor="middle"
+     font-weight="600"
+     id="text9">
+    🏆 本週共比對 89 項商品｜總計可省超過 $431！
+  </text>
+  <text
+     x="600"
+     y="480"
+     font-family="Arial, sans-serif"
+     font-size="22"
+     fill="#666"
+     text-anchor="middle"
+     id="text10">
+    AI 智能比價 · 數據來源：官方特賣目錄
+  </text>
+  <!-- Festive Accent (subtle) -->
+  <circle
+     cx="1150"
+     cy="50"
+     r="6"
+     fill="#e31e24"
+     id="circle10" />
+  <circle
+     cx="1165"
+     cy="65"
+     r="4"
+     fill="#00a651"
+     id="circle11" />
+  <circle
+     cx="1180"
+     cy="50"
+     r="5"
+     fill="#e67e22"
+     id="circle12" />
+  <!-- Footer -->
+  <text
+     x="600"
+     y="610"
+     font-family="Arial"
+     font-size="16px"
+     fill="#888888"
+     text-anchor="middle"
+     id="text12">Powered by MichaelLeung Info AI • 每週更新 • #澳洲超市比價 #精明消費</text>
+</svg>

@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" style="background-color:#f8f9fa;font-family:Arial,sans-serif">
+  <!-- Header Area -->
+  <defs>
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2e7d32" />
+      <stop offset="50%" stop-color="#f9a825" />
+      <stop offset="100%" stop-color="#c62828" />
+    </linearGradient>
+    
+    <linearGradient id="drakesGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1565c0" />
+      <stop offset="100%" stop-color="#42a5f5" />
+    </linearGradient>
+    
+    <linearGradient id="aldiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c62828" />
+      <stop offset="100%" stop-color="#ef5350" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0,0,0,0.2)"/>
+    </filter>
+    
+    <style>
+      .title { font-weight: bold; font-size: 28px; fill: url(#titleGradient); }
+      .store-title { font-weight: bold; font-size: 22px; }
+      .section-title { font-weight: bold; font-size: 18px; fill: #333; }
+      .item-name { font-size: 14px; fill: #333; }
+      .item-price { font-size: 14px; font-weight: bold; fill: #c62828; }
+      .date { font-size: 14px; fill: #666; }
+      .note { font-size: 12px; fill: #777; }
+      .highlight { font-weight: bold; fill: #2e7d32; }
+      .special-offer { font-size: 14px; fill: #d84315; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Main Header -->
+  <rect x="20" y="20" width="760" height="80" rx="10" fill="white" filter="url(#shadow)"/>
+  <text x="400" y="60" text-anchor="middle" class="title">🛒 WEEKLY SUPERMARKET SPECIALS!</text>
+  <text x="400" y="90" text-anchor="middle" class="date">21-31 January 2026 | Brisbane</text>
+  
+  <!-- Drakes Supermarket Section -->
+  <rect x="20" y="120" width="760" height="500" rx="10" fill="white" filter="url(#shadow)"/>
+  
+  <!-- Drakes Header -->
+  <rect x="20" y="120" width="760" height="50" rx="10" fill="url(#drakesGradient)"/>
+  <text x="400" y="152" text-anchor="middle" class="store-title" fill="white">📍 DRAKES SPECIALS (21-27 Jan)</text>
+  
+  <!-- Special Promotion -->
+  <rect x="40" y="185" width="720" height="40" rx="5" fill="#fff3e0"/>
+  <text x="60" y="210" class="special-offer">🎁 Get FREE Peanuts socks with every $60 spent!</text>
+  
+  <!-- Drakes Products Grid -->
+  <!-- Column 1 -->
+  <g transform="translate(40, 240)">
+    <text x="0" y="0" class="section-title">💰 VALUE DEALS</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• Maggi 2-min Noodles 5-pack</text>
+      <text x="300" y="0" class="item-price">$2</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• Coca-Cola 1.25L</text>
+      <text x="300" y="0" class="item-price">$2</text>
+    </g>
+    
+    <g transform="translate(0, 80)">
+      <text x="0" y="0" class="item-name">• Doritos Corn Chips 150g-170g</text>
+      <text x="300" y="0" class="item-price">$2</text>
+    </g>
+    
+    <g transform="translate(0, 105)">
+      <text x="0" y="0" class="item-name">• Smith's Chips 130g</text>
+      <text x="300" y="0" class="item-price">$3</text>
+    </g>
+    
+    <g transform="translate(0, 130)">
+      <text x="0" y="0" class="item-name">• Pringles Potato Crisps 134g-165g</text>
+      <text x="300" y="0" class="item-price">$3</text>
+    </g>
+    
+    <g transform="translate(0, 155)">
+      <text x="0" y="0" class="item-name">• Sunrice Microwave Rice 2-pack</text>
+      <text x="300" y="0" class="item-price">$1</text>
+    </g>
+    
+    <g transform="translate(0, 180)">
+      <text x="0" y="0" class="item-name">• Old El Paso Mexican Kit</text>
+      <text x="300" y="0" class="item-price">$4</text>
+    </g>
+  </g>
+  
+  <!-- Column 2 -->
+  <g transform="translate(400, 240)">
+    <text x="0" y="0" class="section-title">🥩 FRESH MEAT</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• Boneless Chicken Breast</text>
+      <text x="200" y="0" class="item-price">$8.99/kg</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• Pork Sausages 1kg</text>
+      <text x="200" y="0" class="item-price">$7.80</text>
+    </g>
+    
+    <g transform="translate(0, 80)">
+      <text x="0" y="0" class="item-name">• Beef Sausages 1kg</text>
+      <text x="200" y="0" class="item-price">$8.80</text>
+    </g>
+    
+    <text x="0" y="125" class="section-title">🍎 FRESH PRODUCE</text>
+    
+    <g transform="translate(0, 155)">
+      <text x="0" y="0" class="item-name">• Kiwifruit</text>
+      <text x="200" y="0" class="item-price">$0.99/ea</text>
+    </g>
+    
+    <g transform="translate(0, 180)">
+      <text x="0" y="0" class="item-name">• Avocado</text>
+      <text x="200" y="0" class="item-price">$1.90/ea</text>
+    </g>
+    
+    <g transform="translate(0, 205)">
+      <text x="0" y="0" class="item-name">• Mango</text>
+      <text x="200" y="0" class="item-price">$0.99/ea</text>
+    </g>
+    
+    <g transform="translate(0, 230)">
+      <text x="0" y="0" class="item-name">• Strawberries 250g</text>
+      <text x="200" y="0" class="item-price">$3.90</text>
+    </g>
+  </g>
+  
+  <!-- Frozen & Drinks Column -->
+  <g transform="translate(40, 350)">
+    <text x="0" y="0" class="section-title">🧊 FROZEN FOODS</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• McCain Fries 900g-1kg</text>
+      <text x="250" y="0" class="item-price">$4.50</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• Edgell Frozen Veg 500g-1kg</text>
+      <text x="250" y="0" class="item-price">$2.80</text>
+    </g>
+    
+    <g transform="translate(0, 80)">
+      <text x="0" y="0" class="item-name">• Ice Cream 2L</text>
+      <text x="250" y="0" class="item-price">$7</text>
+    </g>
+  </g>
+  
+  <!-- ALDI Supermarket Section -->
+  <rect x="20" y="640" width="760" height="540" rx="10" fill="white" filter="url(#shadow)"/>
+  
+  <!-- ALDI Header -->
+  <rect x="20" y="640" width="760" height="50" rx="10" fill="url(#aldiGradient)"/>
+  <text x="400" y="672" text-anchor="middle" class="store-title" fill="white">📍 ALDI SPECIALS (24, 28 & 31 Jan)</text>
+  
+  <!-- ALDI Products Grid -->
+  <!-- Column 1 -->
+  <g transform="translate(40, 710)">
+    <text x="0" y="0" class="section-title">🍫 SNACKS & FOOD</text>
+    <text x="0" y="20" class="note" font-size="11px">(From 24 Jan)</text>
+    
+    <g transform="translate(0, 45)">
+      <text x="0" y="0" class="item-name">• Carman's Oat Sachets 840g</text>
+      <text x="250" y="0" class="item-price">$19.99</text>
+    </g>
+    
+    <g transform="translate(0, 70)">
+      <text x="0" y="0" class="item-name">• Pringles Mini Variety 570g</text>
+      <text x="250" y="0" class="item-price">$16.99</text>
+    </g>
+    
+    <g transform="translate(0, 95)">
+      <text x="0" y="0" class="item-name">• Nutella Hazelnut Spread 900g</text>
+      <text x="250" y="0" class="item-price">$11.99</text>
+    </g>
+    
+    <g transform="translate(0, 120)">
+      <text x="0" y="0" class="item-name">• Cashews 1kg</text>
+      <text x="250" y="0" class="item-price">$16.99</text>
+    </g>
+    
+    <text x="0" y="165" class="section-title">📺 TECH & APPLIANCES</text>
+    <text x="0" y="185" class="note" font-size="11px">(From 24 Jan)</text>
+    
+    <g transform="translate(0, 210)">
+      <text x="0" y="0" class="item-name">• 70" 4K Smart TV</text>
+      <text x="250" y="0" class="item-price highlight">$499</text>
+    </g>
+    
+    <g transform="translate(0, 235)">
+      <text x="0" y="0" class="item-name">• Mesh Wi-Fi Router 3-pack</text>
+      <text x="250" y="0" class="item-price">$119</text>
+    </g>
+  </g>
+  
+  <!-- Column 2 -->
+  <g transform="translate(400, 710)">
+    <text x="0" y="0" class="section-title">🍖 MEAT SPECIALS</text>
+    <text x="0" y="20" class="note" font-size="11px">(From 28 Jan)</text>
+    
+    <g transform="translate(0, 45)">
+      <text x="0" y="0" class="item-name">• Kangaroo Mince 1kg</text>
+      <text x="200" y="0" class="item-price">$10.99</text>
+    </g>
+    
+    <g transform="translate(0, 70)">
+      <text x="0" y="0" class="item-name">• Pork Hock (approx. 1.1kg)</text>
+      <text x="200" y="0" class="item-price">$12.09</text>
+    </g>
+    
+    <g transform="translate(0, 95)">
+      <text x="0" y="0" class="item-name">• RSPCA Chicken Schnitzel 1.2kg</text>
+      <text x="200" y="0" class="item-price">$11.99</text>
+    </g>
+    
+    <text x="0" y="140" class="section-title">🏢 OFFICE FURNITURE</text>
+    <text x="0" y="160" class="note" font-size="11px">(From 31 Jan)</text>
+    
+    <g transform="translate(0, 185)">
+      <text x="0" y="0" class="item-name">• Office Desk</text>
+      <text x="200" y="0" class="item-price">$79.99</text>
+    </g>
+    
+    <g transform="translate(0, 210)">
+      <text x="0" y="0" class="item-name">• Gaming Chair</text>
+      <text x="200" y="0" class="item-price">$119</text>
+    </g>
+    
+    <g transform="translate(0, 235)">
+      <text x="0" y="0" class="item-name">• Laptop Stand</text>
+      <text x="200" y="0" class="item-price highlight">$19.99</text>
+    </g>
+  </g>
+  
+  <!-- Column 3 - Bottom Row -->
+  <g transform="translate(40, 920)">
+    <text x="0" y="0" class="section-title">🧹 CLEANING</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• 2-in-1 Cordless Vacuum</text>
+      <text x="220" y="0" class="item-price">$99.99</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• The Pink Stuff Cleaning Set</text>
+      <text x="220" y="0" class="item-price">$7.99</text>
+    </g>
+  </g>
+  
+  <g transform="translate(280, 920)">
+    <text x="0" y="0" class="section-title">👕 CLOTHING</text>
+    <text x="0" y="20" class="note" font-size="11px">(From 28 Jan)</text>
+    
+    <g transform="translate(0, 45)">
+      <text x="0" y="0" class="item-name">• Men's Underwear 7-pack</text>
+      <text x="200" y="0" class="item-price">$14.99</text>
+    </g>
+    
+    <g transform="translate(0, 70)">
+      <text x="0" y="0" class="item-name">• Women's Bras 2-pack</text>
+      <text x="200" y="0" class="item-price">$14.99</text>
+    </g>
+  </g>
+  
+  <g transform="translate(520, 920)">
+    <text x="0" y="0" class="section-title">🎧 OFFICE TECH</text>
+    <text x="0" y="20" class="note" font-size="11px">(From 31 Jan)</text>
+    
+    <g transform="translate(0, 45)">
+      <text x="0" y="0" class="item-name">• Wireless Office Headset</text>
+      <text x="180" y="0" class="item-price">$34.99</text>
+    </g>
+    
+    <g transform="translate(0, 70)">
+      <text x="0" y="0" class="item-name">• Noise Cancelling Earbuds</text>
+      <text x="180" y="0" class="item-price">$29.99</text>
+    </g>
+  </g>
+  
+  <!-- Important Notes -->
+  <rect x="40" y="1020" width="720" height="70" rx="5" fill="#e3f2fd"/>
+  <g transform="translate(60, 1045)">
+    <text x="0" y="0" class="section-title">⚠️ IMPORTANT REMINDERS</text>
+    <text x="0" y="25" class="note">• Limited stock, while supplies last • Prices may vary by store • Shop early for best selection</text>
+  </g>
+  
+  <!-- Bottom Hashtags -->
+  <g transform="translate(40, 1110)">
+    <circle cx="10" cy="10" r="8" fill="#2e7d32"/>
+    <text x="25" y="15" class="note">#Brisbane #SupermarketSpecials #Drakes #ALDI #SavingsGuide #WeeklySpecials</text>
+  </g>
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="15" fill="#ff9800" opacity="0.3"/>
+  <circle cx="700" cy="150" r="20" fill="#2196f3" opacity="0.3"/>
+  <circle cx="150" cy="600" r="12" fill="#4caf50" opacity="0.3"/>
+  <circle cx="650" cy="650" r="18" fill="#f44336" opacity="0.3"/>
+  
+  <!-- Shopping Cart Icon -->
+  <g transform="translate(720, 30)" opacity="0.8">
+    <path d="M10,5 L50,5 L55,20 L15,20 Z" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+    <circle cx="20" cy="35" r="8" fill="#666"/>
+    <circle cx="45" cy="35" r="8" fill="#666"/>
+    <path d="M15,20 L20,35 M25,20 L30,35 M35,20 L40,35 M45,20 L50,35" stroke="#666" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Special Highlight -->
+  <rect x="600" y="540" width="180" height="30" rx="5" fill="#ffeb3b" stroke="#ff9800" stroke-width="1"/>
+  <text x="690" y="560" text-anchor="middle" class="note" font-weight="bold" fill="#d84315">BEST DEALS HIGHLIGHTED!</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f8fafc"/>
+
+  <!-- Header Banner -->
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#85c5d4"/>
+      <stop offset="100%" stop-color="#6bb0c0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1200" height="100" fill="url(#headerGradient)"/>
+
+  <!-- Logo / Title -->
+  <text x="60" y="65" font-family="Segoe UI, -apple-system, sans-serif" font-size="28" font-weight="700" fill="white">
+    MichaelLeung.info
+  </text>
+
+  <!-- Main Headline -->
+  <text x="600" y="150" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="40" font-weight="800" fill="#1e293b">
+    🤖 AI 智能掃描 · 本週超市特價
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="195" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="22" fill="#64748b">
+    Drakes + ALDI 超值優惠一覽
+  </text>
+
+  <!-- AI Badge -->
+  <rect x="480" y="215" width="240" height="36" rx="18" fill="url(#aiBadgeGradient)"/>
+  <defs>
+    <linearGradient id="aiBadgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <text x="600" y="242" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600" fill="white">
+    🤖 AI 即時分析 · 全澳門市掃描
+  </text>
+
+  <!-- Drakes Section -->
+  <g transform="translate(100, 270)">
+    <text x="0" y="0" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#1e293b">📍 Drakes（11/12–11/18）</text>
+    <text x="0" y="35" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 澳洲米 5kg — <tspan fill="#059669" font-weight="700">$10.00</tspan>（省 $11.05）</text>
+    <text x="0" y="65" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• OMO 洗衣粉 — <tspan fill="#059669" font-weight="700">$18.00</tspan>（5 折！）</text>
+    <text x="0" y="95" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 可口可樂 24罐 — <tspan fill="#059669" font-weight="700">$12.60</tspan>（省 $17）</text>
+    <text x="0" y="125" font-family="Segoe UI, sans-serif" font-size="20" fill="#ef4444" font-weight="600">🎁 滿 $60 送 Hot Wheels！大獎 $4,000</text>
+  </g>
+
+  <!-- ALDI Section -->
+  <g transform="translate(620, 270)">
+    <text x="0" y="0" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#1e293b">🛒 ALDI 黑色星期三</text>
+    <text x="0" y="35" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 65" 4K 電視 — <tspan fill="#059669" font-weight="700">$549</tspan></text>
+    <text x="0" y="65" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 掃地機器人 — <tspan fill="#059669" font-weight="700">$599</tspan></text>
+    <text x="0" y="95" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 氣炸鍋 — <tspan fill="#059669" font-weight="700">$89.99</tspan></text>
+    <text x="0" y="125" font-family="Segoe UI, sans-serif" font-size="20" fill="#ef4444" font-weight="600">⏰ 11/26 起 · 限量供應！</text>
+  </g>
+
+  <!-- Footer CTA -->
+  <rect x="0" y="530" width="1200" height="100" fill="#1e293b"/>
+  <text x="600" y="585" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="600" fill="white">
+    獲取每週 AI 優惠提醒 → michaelleung.info
+  </text>
+
+  <!-- Decorative Elements -->
+  <circle cx="110" cy="285" r="6" fill="#2563eb"/>
+  <circle cx="630" cy="285" r="6" fill="#2563eb"/>
+</svg>

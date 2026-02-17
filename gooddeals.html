@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛒 Good Deals - MichaelLeung.info</title>
+    <meta name="description" content="AI-powered analysis of the best deals from JB Hi-Fi, The Good Guys, and Harvey Norman">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* Header Styling - MichaelLeung.info style */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .site-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-tagline {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-left: 15px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #2563eb;
+        }
+
+        .language-toggle {
+            display: flex;
+            gap: 8px;
+        }
+
+        .language-btn {
+            background: #e2e8f0;
+            color: #475569;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+           /* Header */
+        .header {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .nav-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 15px 0;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .deal-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #e2e8f0;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .deal-rank {
+            position: absolute;
+            top: -8px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .epic-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .deal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .deal-store {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .deal-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 16px;
+        }
+
+        .deal-link {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .deal-link:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .no-link {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .no-link:hover {
+            background: #94a3b8;
+            transform: none;
+        }
+
+        /* Footer Styling - MichaelLeung.info style */
+        .footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #334155;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        /* Language switching */
+        .chinese {
+            display: none;
+        }
+
+        .chinese.active {
+            display: block;
+        }
+
+        .english.active {
+            display: block;
+        }
+
+        .english {
+            display: none;
+        }
+         /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+        
+            .nav-title .english .active
+            {
+                display: none!important;
+            }
+            .nav-title .english .active
+            {
+                display: 
+            }
+            .header-content {
+                padding: 12px 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            /* Hide desktop nav on mobile */
+            nav {
+                display: none!important;
+            
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #2c3e50;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+           
+            nav a {
+                padding: 10px 0;
+                border-bottom: 1px solid #34495e;
+                width: 100%;
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            main {
+                padding: 20px 15px;
+            }
+
+            .page-title {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .deals-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+     #title-container {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            .deal-card {
+                padding: 15px;
+            }
+
+            .deal-title {
+                font-size: 15px;
+                min-height: auto;
+            }
+
+            .deal-price {
+                font-size: 22px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+         nav.active {
+                display: flex!important;
+            }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+         <div class="container">        <div class="header-content">
+            <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+            <div id="title-container">
+                <span class="nav-title english active">AI-Powered Deal Analytics</span>
+                <span class="nav-title chinese">AI 智能優惠分析</span>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <nav id="nav-menu" class="nav-links">
+                <a href="https://www.michaelleung.info">Portfolio</a>
+                <a href="https://buymeacoffee.com/advgen">Buy Me A Coffee</a>
+                <div class="language-toggle">
+                    <button class="language-btn active" onclick="switchLanguage('english')">EN</button>
+                    <button class="language-btn" onclick="switchLanguage('chinese')">中文</button>
+                </div>
+            </nav>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title english active">🛒 Best Deals</h1>
+            <h1 class="page-title chinese">🛒 最佳優惠</h1>
+            
+            <p class="page-subtitle english active">
+                Discover the best deals from Australia's top retailers with AI-powered price tracking
+            </p>
+            <p class="page-subtitle chinese">
+                透過 AI 智能價格追蹤，發現澳洲頂級零售商的最佳優惠
+            </p>
+            
+            <div class="ai-badge english active">
+                🤖 AI Data from JB Hi-Fi, The Good Guys & Harvey Norman
+            </div>
+            <div class="ai-badge chinese">
+                🤖 來自 JB Hi-Fi、The Good Guys 和 Harvey Norman 的 AI 數據
+            </div>
+        </div>
+
+      <!-- English Version -->
+        <div class="content english active">
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-rank">1</div>
+                    <div class="epic-badge">WEARABLE!</div>
+                    <div class="deal-title">Garmin Epix Pro (Gen 2) Sapphire</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">50% OFF (Save $850)</div>
+                    <div class="deal-price">$849</div>
+                    <a href="https://www.jbhifi.com.au/products/garmin-epix-pro-gen-2-sapphire-edition-47mm-carbon-grey-dlc-titanium-with-black-band" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">2</div>
+                    <div class="epic-badge">BIG SCREEN TV!</div>
+                    <div class="deal-title">Hisense 85" U6QAU PRO 4K Mini LED</div>
+                    <div class="deal-store">The Good Guys</div>
+                    <div class="deal-savings">Hot Deal (Save $1,059)</div>
+                    <div class="deal-price">$1,936</div>
+                    <a href="https://www.thegoodguys.com.au/hisense-85-inches-u6qau-pro-4k-uled-mini-led-tv-2025-85u6qau-pro" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">3</div>
+                    <div class="epic-badge">HOME APPLIANCE!</div>
+                    <div class="deal-title">Dyson V8 Handstick Vacuum</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">Red Hot Price (Save $422)</div>
+                    <div class="deal-price">$377</div>
+                    <a href="https://www.jbhifi.com.au/products/dyson-v8-handstick-vacuum" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">4</div>
+                    <div class="epic-badge">PHONE DEAL!</div>
+                    <div class="deal-title">Samsung Galaxy A26 5G (128GB)</div>
+                    <div class="deal-store">Harvey Norman</div>
+                    <div class="deal-savings">Special Offer (Save $80)</div>
+                    <div class="deal-price">$418</div>
+                    <a href="https://www.harveynorman.com.au/samsung-galaxy-a26-5g-128gb-black.html" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">5</div>
+                    <div class="epic-badge">LAPTOP DEAL!</div>
+                    <div class="deal-title">HP 15.6" AI Laptop (Ultra 7/16GB/512GB)</div>
+                    <div class="deal-store">The Good Guys</div>
+                    <div class="deal-savings">Hot Buy (Save $540)</div>
+                    <div class="deal-price">$1,359</div>
+                    <a href="https://www.thegoodguys.com.au/hp-156-inches-ai-core-ultra-7-16gb-512gb-laptop-bq4e0pa" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">6</div>
+                    <div class="epic-badge">APPLE DEAL!</div>
+                    <div class="deal-title">MacBook Air 15-inch (M4 Chip/256GB)</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">Special Offer (Save $158)</div>
+                    <div class="deal-price">$1,799</div>
+                    <a href="https://www.jbhifi.com.au/products/apple-macbook-air-15-inch-with-m4-chip-256gb-16gb-midnight" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">7</div>
+                    <div class="epic-badge">HOME APPLIANCE!</div>
+                    <div class="deal-title">Dyson V15 Detect Absolute</div>
+                    <div class="deal-store">The Good Guys</div>
+                    <div class="deal-savings">Hot Deal (Save $561)</div>
+                    <div class="deal-price">$888</div>
+                    <a href="https://www.thegoodguys.com.au/dyson-v15-detect-absolute-cordless-vacuum-447955-01" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">8</div>
+                    <div class="epic-badge">TV DEAL!</div>
+                    <div class="deal-title">Hisense 65" Q6QAU 4K QLED TV</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">Red Hot Deal</div>
+                    <div class="deal-price">$895</div>
+                    <a href="https://www.jbhifi.com.au/products/hisense-65-q6qau-4k-qled-smart-tv-2025" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">9</div>
+                    <div class="epic-badge">GAMING!</div>
+                    <div class="deal-title">Lenovo LOQ 17.3" (RTX 5070)</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">Hot Deal (Save $600)</div>
+                    <div class="deal-price">$2,399</div>
+                    <a href="https://www.jbhifi.com.au/products/lenovo-loq-171rx10-17-3-gaming-laptop-intel-core-i7-geforce-rtx-5070" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">10</div>
+                    <div class="epic-badge">AI PC!</div>
+                    <div class="deal-title">HP OmniBook 5 14" OLED (Snapdragon X)</div>
+                    <div class="deal-store">Harvey Norman</div>
+                    <div class="deal-savings">Hot Deal</div>
+                    <div class="deal-price">$1,198</div>
+                    <a href="https://www.harveynorman.com.au/hp-omnibook-5-14-inch-oled-snapdragon-x-x1-26-100-16gb-512gb-ssd-next-gen-ai-copilot-pc-laptop.html" class="deal-link" target="_blank">View Deal</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Chinese Version -->
+       <div class="content chinese">
+        <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-rank">1</div>
+                    <div class="epic-badge">穿戴裝置！</div>
+                    <div class="deal-title">Garmin Epix Pro (Gen 2) Sapphire 智能手錶</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">50% 折扣 (節省 $850)</div>
+                    <div class="deal-price">$849</div>
+                    <a href="https://www.jbhifi.com.au/products/garmin-epix-pro-gen-2-sapphire-edition-47mm-carbon-grey-dlc-titanium-with-black-band" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">2</div>
+                    <div class="epic-badge">大螢幕電視！</div>
+                    <div class="deal-title">Hisense 85吋 U6QAU PRO 4K Mini LED 電視</div>
+                    <div class="deal-store">The Good Guys</div>
+                    <div class="deal-savings">熱賣優惠 (節省 $1,059)</div>
+                    <div class="deal-price">$1,936</div>
+                    <a href="https://www.thegoodguys.com.au/hisense-85-inches-u6qau-pro-4k-uled-mini-led-tv-2025-85u6qau-pro" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">3</div>
+                    <div class="epic-badge">家電優惠！</div>
+                    <div class="deal-title">Dyson V8 手持式吸塵器</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">超值特價 (節省 $422)</div>
+                    <div class="deal-price">$377</div>
+                    <a href="https://www.jbhifi.com.au/products/dyson-v8-handstick-vacuum" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">4</div>
+                    <div class="epic-badge">手機優惠！</div>
+                    <div class="deal-title">Samsung Galaxy A26 5G (128GB) 手機</div>
+                    <div class="deal-store">Harvey Norman</div>
+                    <div class="deal-savings">特別優惠 (節省 $80)</div>
+                    <div class="deal-price">$418</div>
+                    <a href="https://www.harveynorman.com.au/samsung-galaxy-a26-5g-128gb-black.html" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">5</div>
+                    <div class="epic-badge">筆電優惠！</div>
+                    <div class="deal-title">HP 15.6吋 AI 筆電 (Ultra 7/16GB/512GB)</div>
+                    <div class="deal-store">The Good Guys</div>
+                    <div class="deal-savings">熱賣優惠 (節省 $540)</div>
+                    <div class="deal-price">$1,359</div>
+                    <a href="https://www.thegoodguys.com.au/hp-156-inches-ai-core-ultra-7-16gb-512gb-laptop-bq4e0pa" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">6</div>
+                    <div class="epic-badge">Apple 優惠！</div>
+                    <div class="deal-title">MacBook Air 15吋 (M4 晶片/256GB)</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">特別優惠 (節省 $158)</div>
+                    <div class="deal-price">$1,799</div>
+                    <a href="https://www.jbhifi.com.au/products/apple-macbook-air-15-inch-with-m4-chip-256gb-16gb-midnight" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">7</div>
+                    <div class="epic-badge">家電優惠！</div>
+                    <div class="deal-title">Dyson V15 Detect Absolute 無線吸塵器</div>
+                    <div class="deal-store">The Good Guys</div>
+                    <div class="deal-savings">熱賣優惠 (節省 $561)</div>
+                    <div class="deal-price">$888</div>
+                    <a href="https://www.thegoodguys.com.au/dyson-v15-detect-absolute-cordless-vacuum-447955-01" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">8</div>
+                    <div class="epic-badge">電視優惠！</div>
+                    <div class="deal-title">Hisense 65吋 Q6QAU 4K QLED 電視</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">超值特價</div>
+                    <div class="deal-price">$895</div>
+                    <a href="https://www.jbhifi.com.au/products/hisense-65-q6qau-4k-qled-smart-tv-2025" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">9</div>
+                    <div class="epic-badge">遊戲筆電！</div>
+                    <div class="deal-title">Lenovo LOQ 17.3吋 (RTX 5070) 遊戲筆電</div>
+                    <div class="deal-store">JB Hi-Fi</div>
+                    <div class="deal-savings">熱賣優惠 (節省 $600)</div>
+                    <div class="deal-price">$2,399</div>
+                    <a href="https://www.jbhifi.com.au/products/lenovo-loq-171rx10-17-3-gaming-laptop-intel-core-i7-geforce-rtx-5070" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-rank">10</div>
+                    <div class="epic-badge">AI 電腦！</div>
+                    <div class="deal-title">HP OmniBook 5 14吋 OLED (Snapdragon X)</div>
+                    <div class="deal-store">Harvey Norman</div>
+                    <div class="deal-savings">熱賣優惠</div>
+                    <div class="deal-price">$1,198</div>
+                    <a href="https://www.harveynorman.com.au/hp-omnibook-5-14-inch-oled-snapdragon-x-x1-26-100-16gb-512gb-ssd-next-gen-ai-copilot-pc-laptop.html" class="deal-link" target="_blank">查看優惠</a>
+                </div>
+
+            </div>
+        </div>
+
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="english active">About Good Deals</h3>
+                    <h3 class="chinese">關於最佳優惠</h3>
+                    <p class="english active">
+                        AI-powered deal tracking across Australia's leading retailers. We monitor prices weekly to bring you the best offers from JB Hi-Fi, The Good Guys, and Harvey Norman.
+                    </p>
+                    <p class="chinese">
+                        AI 智能追蹤澳洲領先零售商的優惠。我們每週監控價格，為您帶來 JB Hi-Fi、The Good Guys 和 Harvey Norman 的最佳優惠。
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="english active">Contact</h3>
+                    <h3 class="chinese">聯繫我們</h3>
+                    <p class="english active">
+                        Have questions about our deals or want to suggest a feature? Get in touch with us.
+                    </p>
+                    <p class="chinese">
+                        對我們的優惠有疑問或想建議新功能？請聯繫我們。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="english active">
+                    <p>&copy; 2025 MichaelLeung.info. All rights reserved. | Powered by AI</p>
+                </div>
+                <div class="chinese">
+                    <p>&copy; 2025 MichaelLeung.info. 保留所有權利。| AI 驅動</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script>
+        function switchLanguage(lang) {
+            // Hide all content
+            document.querySelectorAll('.english').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll('.chinese').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected language content
+            document.querySelectorAll('.' + lang).forEach(el => {
+                el.classList.add('active');
+            });
+            
+            // Update button states
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.deal-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (index * 0.1) + 's';
+                card.style.animation = 'fadeInUp 0.6s ease forwards';
+            });
+        });
+
+        // Add CSS for fade in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+         function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!nav.contains(event.target) && !menuBtn.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

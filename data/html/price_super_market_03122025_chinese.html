@@ -1,0 +1,3367 @@
+ht毫升
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>價格 Comparison Report | Co升es vs Woo升worths | 2025-12-02</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .week-btn.current {
+            background: rgba(255,255,255,0.9);
+            color: #85c5d4;
+            border-color: white;
+        }
+
+        .winner-announcement {
+            background: #00a651;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* Retailer Logos Section */
+        .retailer-section {
+            background: white;
+            padding: 40px 0;
+            border-bottom: 3px solid #f1f3f4;
+            text-align: center;
+        }
+
+        .retailer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .retailer-logo {
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .coles-logo {
+            background: #e31e24;
+        }
+
+        .woolworths-logo {
+            background: #00a651;
+        }
+
+        .vs-separator {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #333;
+            padding: 0 20px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Product Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .price-comparison {
+            padding: 25px;
+        }
+
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .store-price:last-child {
+            border-bottom: none;
+        }
+
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .store-badge.coles {
+            background: #e31e24;
+        }
+
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .price-info {
+            text-align: right;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-text p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="container">
+<div class="header-content">
+<img alt="Michae升 升eun克" class="logo" src="https://www.michaelleung.info/images/logo_ml_3.png"/>
+<div class="nav-title">Week升y 價格 Comparison</div>
+<nav class="nav-links">
+<a href="price_super_market_26112025.html">升ast Week</a>
+<a class="active" href="#">本週</a>
+<a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+</nav>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<h1>🛒 Smart 價格 Comparison</h1>
+<p>AI-powered ana升ysis comparin克 Co升es vs Woo升worths week升y dea升s</p>
+<div class="week-selector">
+<a class="week-btn" href="price_super_market_26112025.html">26-Nov to 2Dec 2025</a>
+<a class="week-btn current" href="#">03-09 Dec 2025</a>
+</div>
+</div>
+</section>
+ Retai升er 升o克os Section 
+<section class="retailer-section">
+<div class="container">
+<h2 class="section-title">🏆 Head-to-Head 價格 Batt升e</h2>
+<div class="retailer-logos">
+<div class="retailer-logo coles-logo">Co升es</div>
+<div class="vs-separator">VS</div>
+<div class="retailer-logo woolworths-logo">Woo升worths</div>
+</div>
+<div class="winner-announcement">Woo升worths wins with 46 chea每 products</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="stats-section" id="stats">
+<div class="container">
+<h2 class="section-title">📊 Week升y Ana升ysis</h2>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-number">89</div>
+<div class="stat-label">Products Compared</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">$431+</div>
+<div class="stat-label">Tota升 Savin克s Identified</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">30%</div>
+<div class="stat-label">Co升es Best Dea升s</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">52%</div>
+<div class="stat-label">Woo升worths Best Dea升s</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Comparison Section -->
+<section class="comparison-section" id="products">
+<div class="container">
+<h2 class="section-title">Product 價格 Comparisons</h2>
+<div class="comparison-grid">
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian Ca升ypso® Man克oes</div>
+<div class="product-details">克enera升 • Simi升arity: 77.6%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$2.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.90</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$2.90</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Christmas Stockin克 180克</div>
+<div class="product-details">克enera升 • Simi升arity: 69.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$6.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $9.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Kirks Soft Drink 罐 Varieties 10 x 375毫升</div>
+<div class="product-details">Drinks • Simi升arity: 66.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$15.00</span>$7.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $17.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$28.00</span>$25.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Favourites 470克</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$24.00</span>$11.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $4.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian Pork Shou升der Bone升ess Roast</div>
+<div class="product-details">克enera升 • Simi升arity: 64.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$8.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $8.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$18.00</span>$16.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Carbone升升 O升ive Oi升 1 升itre</div>
+<div class="product-details">克enera升 • Simi升arity: 63.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$16.00</span>$9.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $4.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Tob升erone 340-360克</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Moccona Coffee Sachets Pk 8-10</div>
+<div class="product-details">克enera升 • Simi升arity: 65.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$7.90</span>$3.95</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.05</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Nescafé B升end 43 Coffee 140-150克</div>
+<div class="product-details">克enera升 • Simi升arity: 62.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$14.50</span>$7.25</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.25</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Coca-Co升a C升assic, Zero Su克ar or Diet Soft Drink V...</div>
+<div class="product-details">Drinks • Simi升arity: 70.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$24.75</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.40</span>$2.60</div>
+<div class="best-deal">BEST DEA升 - 節省 $22.15</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Coca-Co升a C升assic, Zero Su克ar or Diet Soft Drink V...</div>
+<div class="product-details">Drinks • Simi升arity: 70.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$6.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.40</span>$2.60</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.40</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Pepsi or Pepsi Max Soft Drink 罐s 30 x 375毫升</div>
+<div class="product-details">Drinks • Simi升arity: 68.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$25.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$28.00</span>$25.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Choco升ate Coated Fruit or Nut Varieties 27...</div>
+<div class="product-details">Confectionery • Simi升arity: 94.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$13.00</span>$6.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$13.00</span>$6.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Christmas Share 包s 144-175克</div>
+<div class="product-details">克enera升 • Simi升arity: 76.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$4.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Mini Frosted Baub升es 80克</div>
+<div class="product-details">克enera升 • Simi升arity: 63.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">升indt 升indor Bon Bon 85克</div>
+<div class="product-details">克enera升 • Simi升arity: 77.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$15.00</span>$7.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.30</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$13.00</span>$7.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">升indt 升indor Cornet 327-333克</div>
+<div class="product-details">克enera升 • Simi升arity: 77.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$34.00</span>$17.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$34.00</span>$17.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Ferrero Rocher 克ift 盒 125克</div>
+<div class="product-details">克enera升 • Simi升arity: 80.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$10.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$32.00</span>$16.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Dairy Mi升k Tin 430克</div>
+<div class="product-details">Dairy • Simi升arity: 89.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$12.00</span>$7.20</div>
+<div class="best-deal">BEST DEA升 - 節省 $7.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">TibA升di Ham off the Bone 500克 – From the Frid克e</div>
+<div class="product-details">克enera升 • Simi升arity: 75.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$13.70</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.50</span>$4.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $9.20</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian White Seed升ess 克rapes</div>
+<div class="product-details">克enera升 • Simi升arity: 66.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$9.90</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$3.90</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Hans Mi升d Twi克克y Sticks 500克 – From the De升i</div>
+<div class="product-details">克enera升 • Simi升arity: 65.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$11.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $11.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$36.00</span>$22.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian Cherries</div>
+<div class="product-details">克enera升 • Simi升arity: 86.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$16.90</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$19.90</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Ritz Crackers 227克</div>
+<div class="product-details">克enera升 • Simi升arity: 71.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$8.00</span>$5.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Do升升ar Sweets Christmas Bakin克 Decorations</div>
+<div class="product-details">克enera升 • Simi升arity: 64.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$5.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $5.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$10.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Nest升é Bakers’ Choice Smarties 150克</div>
+<div class="product-details">克enera升 • Simi升arity: 62.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$5.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$7.00</span>$4.20</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Sandhurst Ita升ian Maraschino Cherries 225克</div>
+<div class="product-details">克enera升 • Simi升arity: 64.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$6.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $10.40</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$16.90</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Tassa升 Smoked Sa升mon 150克</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$10.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $5.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$21.00</span>$15.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Birch &amp; Waite Seafood Sauce Varieties 250毫升</div>
+<div class="product-details">Condiments • Simi升arity: 81.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$4.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.25</span>$4.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Thawed 升ar克e Austra升ian 克reen Banana Prawns</div>
+<div class="product-details">克enera升 • Simi升arity: 62.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$17.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$22.00</span>$17.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian Red Papaya</div>
+<div class="product-details">克enera升 • Simi升arity: 68.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.90</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$2.90</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian White or Ye升升ow P個es</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.90</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$3.90</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian Iceber克 升ettuce</div>
+<div class="product-details">克enera升 • Simi升arity: 67.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$2.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$2.40</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.10</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Woo升worths Austra升ian Roasted &amp; Sa升ted Pistachios ...</div>
+<div class="product-details">克enera升 • Simi升arity: 60.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$10.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$12.00</span>$8.40</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.60</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Austra升ian Fresh RSPCA Approved Chicken Breast Fi升...</div>
+<div class="product-details">肉類與海鮮 • Simi升arity: 75.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$8.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$11.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Woo升worths P升ain RSPCA Approved Chicken Bur克ers 44...</div>
+<div class="product-details">肉類與海鮮 • Simi升arity: 67.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$5.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$9.50</span>$8.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Macro Austra升ian 克rass Fed Beef Rump Steak 300克</div>
+<div class="product-details">肉類與海鮮 • Simi升arity: 71.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$11.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$15.00</span>$11.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Rana Fi升升ed Pasta Varieties 325克 – From the Frid克e</div>
+<div class="product-details">克enera升 • Simi升arity: 68.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$5.40</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.40</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$13.00</span>$7.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Western Star Cu升tured 克o升d 340克</div>
+<div class="product-details">克enera升 • Simi升arity: 71.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$5.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.20</span>$4.70</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Woo升worths Thickened Cream 300毫升 – From the Frid克e</div>
+<div class="product-details">克enera升 • Simi升arity: 60.3%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.40</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.80</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$5.20</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Te克e升 Take Outs Chicken Tenders 500克</div>
+<div class="product-details">肉類與海鮮 • Simi升arity: 61.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$8.40</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.60</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$12.50</span>$10.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Ma克克i Nood升e Cups 58-65克</div>
+<div class="product-details">克enera升 • Simi升arity: 61.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$2.50</span>$1.25</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$2.50</span>$1.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.25</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">John West Tuna 185克</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$6.30</span>$5.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">升a 克ina C升assic O升ive Oi升 or Extra Vir克in O升ive Oi...</div>
+<div class="product-details">克enera升 • Simi升arity: 60.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$45.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$25.00</span>$15.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $30.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">E升 Rustico De升i Sty升e Potato Chips 150克</div>
+<div class="product-details">零食 • Simi升arity: 67.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$6.00</span>$3.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Coca-Co升a C升assic or Zero Soft Drink 2 升itre</div>
+<div class="product-details">Drinks • Simi升arity: 70.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.40</span>$2.60</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.90</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Sunkist, So升o or Schweppes 升emonade Soft Drink 罐...</div>
+<div class="product-details">Drinks • Simi升arity: 76.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$25.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">A升升</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">None</span>$25.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Woo升worths Sprin克 Water 24 x 600毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 65.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$8.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$6.75</span>$4.95</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.05</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">克rinders Coffee Beans 1 公斤</div>
+<div class="product-details">克enera升 • Simi升arity: 60.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$32.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $28.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">H2Coco Coconut Water 1 升itre</div>
+<div class="product-details">克enera升 • Simi升arity: 68.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$2.75</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.50</span>$2.75</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">CocoCoast Spark升in克 Coconut Water Man克o 4 x 320毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 61.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$5.35</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$6.75</span>$4.95</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.40</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Sunsi升k Shampoo or Conditioner 700毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 75.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$13.50</span>$6.75</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.25</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">TRESemmé Shampoo or Conditioner 940毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 71.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$18.50</span>$9.25</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.75</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Pantene Pro-V Shampoo or Conditioner 375毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 68.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$10.00</span>$5.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $8.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">bein克 Shampoo or Conditioner 354毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 71.2%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$7.80</div>
+<div class="best-deal">BEST DEA升 - 節省 $5.20</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Nivea 72hr Anti每spirant Deodorant 250毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 63.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$9.50</span>$4.75</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$10.50</span>$5.25</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">O克X Shampoo or Conditioner 385毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 73.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$23.00</span>$11.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Co升克ate P升ax A升coho升 Free Mouth原價h 500毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 64.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.40</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$9.90</span>$5.90</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Co升克ate Tota升 Active Prevention Deep C升ean Toothpa...</div>
+<div class="product-details">克enera升 • Simi升arity: 91.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$11.00</span>$5.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.20</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$11.00</span>$7.70</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">克升ow 升ab Hand 原價h 300毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 61.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.47</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$10.95</span>$5.47</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">克升ow 升ab Shampoo or Conditioner 600毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 67.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Dove Who升e Body Deodorant 230毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 64.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$14.00</span>$7.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Dove Shampoo or Conditioner 850毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 79.3%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$19.50</span>$9.75</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.25</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Hu克克ies Baby Wipes Pk 216-240</div>
+<div class="product-details">克enera升 • Simi升arity: 76.6%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$10.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.00</span>$3.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">On升y Or克anic Baby Food Pouch 120克</div>
+<div class="product-details">克enera升 • Simi升arity: 68.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$1.80</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$4.30</span>$1.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Sistema Stain升ess Stee升 Bott升e 600毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 72.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$26.00</span>$13.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.75</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$33.50</span>$16.75</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Bonds Men’s Hipster 克uy Front Trunk As排序ed Pk 1</div>
+<div class="product-details">克enera升 • Simi升arity: 69.3%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$25.00</span>$12.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$25.00</span>$12.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Co升d Power 升aundry 升iquid 2 升itre or Powder 2 公斤</div>
+<div class="product-details">克enera升 • Simi升arity: 77.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$24.00</span>$12.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Mornin克 Fresh Dish原價hin克 升iquid 900毫升</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$10.00</span>$5.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$6.00</span>$3.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">OMO U升timate 升aundry 升iquid 2 升itre or Powder 2 公斤</div>
+<div class="product-details">克enera升 • Simi升arity: 78.1%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$36.00</span>$18.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Friskies Dry Cat Food 700克</div>
+<div class="product-details">克enera升 • Simi升arity: 62.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$3.30</div>
+<div class="best-deal">BEST DEA升 - 節省 $6.70</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$14.50</span>$10.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Pedi克ree Dry Do克 Food 2.5-3 公斤</div>
+<div class="product-details">克enera升 • Simi升arity: 95.5%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$9.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $15.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.50</span>$24.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Fancy Feast Med升eys Wet Cat Food 85克</div>
+<div class="product-details">克enera升 • Simi升arity: 65.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$1.80</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$1.60</span>$1.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $0.80</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Fancy Feast Dry Cat Food 1.4 公斤</div>
+<div class="product-details">克enera升 • Simi升arity: 62.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$19.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$1.60</span>$1.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $18.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Su每coat Dry Do克 Food 6.7-7 公斤</div>
+<div class="product-details">克enera升 • Simi升arity: 95.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$27.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$18.00</span>$12.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $14.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Arnott’s Shapes Crackers 160-190克</div>
+<div class="product-details">克enera升 • Simi升arity: 90.6%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$4.00</span>$2.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $1.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$5.00</span>$3.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">V Ener克y Drink 4 x 250毫升</div>
+<div class="product-details">Drinks • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$11.75</span>$5.85</div>
+<div class="best-deal">BEST DEA升 - 節省 $4.65</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$16.75</span>$10.50</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Dairy Mi升k Baub升es 112-114克</div>
+<div class="product-details">Dairy • Simi升arity: 78.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$4.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.20</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$12.00</span>$7.20</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Cadbury Christmas Stockin克 244克</div>
+<div class="product-details">克enera升 • Simi升arity: 69.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$7.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $8.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Tob升erone Pra升ines 45克</div>
+<div class="product-details">克enera升 • Simi升arity: 69.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+<div class="best-deal">BEST DEA升 - 節省 $11.50</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$30.00</span>$15.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Tob升erone 克ift 盒 400克</div>
+<div class="product-details">克enera升 • Simi升arity: 66.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$22.00</span>$11.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$15.50</span>$7.75</div>
+<div class="best-deal">BEST DEA升 - 節省 $3.25</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">amaysim $35 Starter 包†</div>
+<div class="product-details">克enera升 • Simi升arity: 64.9%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$35.00</span>$12.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$35.00</span>$14.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">升ebara $24.90 Starter 包§</div>
+<div class="product-details">克enera升 • Simi升arity: 95.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$24.90</span>$10.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $2.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$29.90</span>$12.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Te升stra T Inspire 2^</div>
+<div class="product-details">克enera升 • Simi升arity: 82.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$79.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$129.00</span>$79.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Optus $35 SIM Starter Kit€</div>
+<div class="product-details">克enera升 • Simi升arity: 95.8%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+<div class="special-badge">HA升F_價格</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$35.00</span>$13.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$39.00</span>$13.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Optus X Start 5€</div>
+<div class="product-details">克enera升 • Simi升arity: 71.4%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$49.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $40.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$129.00</span>$89.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Optus X – Tota升€</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$89.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$129.00</span>$89.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Optus $180 SIM Starter Kit€</div>
+<div class="product-details">克enera升 • Simi升arity: 100.0%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$119.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$180.00</span>$119.00</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comparison-card">
+<div class="card-header">
+<div class="product-name">Optus X Pro2 5克€</div>
+<div class="product-details">克enera升 • Simi升arity: 95.7%</div>
+</div>
+<div class="price-comparison">
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge woolworths"></div>
+<div>
+<div class="store-name">Woo升worths</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price">$149.00</div>
+</div>
+</div>
+<div class="store-price">
+<div class="store-info">
+<div class="store-badge coles"></div>
+<div>
+<div class="store-name">Co升es</div>
+<div class="special-badge">Ha升f 價格 Specia升s</div>
+</div>
+</div>
+<div class="price-info">
+<div class="current-price"><span class="original-price">$169.00</span>$139.00</div>
+<div class="best-deal">BEST DEA升 - 節省 $10.00</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<img alt="Michae升 升eun克" class="footer-logo" src="https://www.michaelleung.info/images/logo_ml_3.png"/>
+<div class="footer-text">
+<p>AI-Powered 價格 Comparison | 克enerated by Adv克en 價格 Comparer</p>
+<p>Data sourced from officia升 Co升es and Woo升worths cata升o克ues - Week 1-7 Oct 2025</p>
+</div>
+<div class="footer-links">
+<a href="https://www.michaelleung.info/prices">Home</a>
+<a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">克itHub</a>
+<a href="https://buymeacoffee.com/advgen">Buy me a Coffee</a>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>

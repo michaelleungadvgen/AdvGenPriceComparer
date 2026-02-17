@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <!-- 背景 -->
+  <rect width="800" height="1000" fill="#f8f9fa"/>
+  
+  <!-- 标题区域 -->
+  <rect x="0" y="0" width="800" height="120" fill="#2c3e50"/>
+  <text x="400" y="50" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="bold">
+    🛒 本週超市價格大比拼
+  </text>
+  <text x="400" y="85" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20">
+    Coles vs Woolworths | 2026年1月21-27日
+  </text>
+  
+  <!-- 本周结果 -->
+  <rect x="50" y="140" width="700" height="100" rx="10" fill="#27ae60"/>
+  <text x="400" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    🏆 本週結果：Woolworths 大獲全勝！
+  </text>
+  <text x="400" y="205" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="22">
+    40個產品更便宜 | 總潛在節省：$546+
+  </text>
+  
+  <!-- 数据对比 -->
+  <rect x="50" y="260" width="700" height="180" rx="10" fill="white" stroke="#ddd" stroke-width="2"/>
+  <text x="400" y="290" text-anchor="middle" fill="#2c3e50" font-family="Arial, sans-serif" font-size="22" font-weight="bold">
+    📊 本週數據
+  </text>
+  
+  <!-- 比较产品数量 -->
+  <rect x="100" y="320" width="250" height="40" rx="5" fill="#3498db"/>
+  <text x="225" y="345" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">
+    ✅ 比較了89個產品
+  </text>
+  
+  <!-- Coles优惠比例 -->
+  <rect x="450" y="320" width="250" height="40" rx="5" fill="#e74c3c"/>
+  <text x="575" y="345" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">
+    📈 Coles最佳優惠: 37%
+  </text>
+  
+  <!-- Woolworths优惠比例 -->
+  <rect x="100" y="380" width="250" height="40" rx="5" fill="#2ecc71"/>
+  <text x="225" y="405" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">
+    📈 Woolworths最佳優惠: 45%
+  </text>
+  
+  <!-- 节省金额 -->
+  <rect x="450" y="380" width="250" height="40" rx="5" fill="#f39c12"/>
+  <text x="575" y="405" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">
+    💰 總潛在節省: $546+
+  </text>
+  
+  <!-- 最佳优惠精选标题 -->
+  <rect x="50" y="460" width="700" height="50" rx="10" fill="#9b59b6"/>
+  <text x="400" y="490" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="22" font-weight="bold">
+    🔥 本週最佳優惠精選
+  </text>
+  
+  <!-- 饮料类 -->
+  <rect x="50" y="530" width="700" height="40" rx="5" fill="#1abc9c"/>
+  <text x="60" y="555" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    💧 飲料類：
+  </text>
+  <text x="160" y="555" fill="white" font-family="Arial, sans-serif" font-size="16">
+    Coca-Cola 可口可樂系列 - 最多節省$18.00
+  </text>
+  
+  <!-- 肉类海鲜 -->
+  <rect x="50" y="580" width="700" height="120" rx="5" fill="#e74c3c"/>
+  <text x="60" y="605" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🥩 肉類海鮮：
+  </text>
+  <text x="160" y="605" fill="white" font-family="Arial, sans-serif" font-size="16">
+    • 澳洲新鮮熟虎蝦 - 節省$25.50
+  </text>
+  <text x="160" y="635" fill="white" font-family="Arial, sans-serif" font-size="16">
+    • 澳洲羊腿烤肉 - 節省$29.00
+  </text>
+  <text x="160" y="665" fill="white" font-family="Arial, sans-serif" font-size="16">
+    • 澳洲牛肉T骨牛排 - 節省$8.00
+  </text>
+  
+  <!-- 新鲜水果 -->
+  <rect x="50" y="710" width="700" height="80" rx="5" fill="#2ecc71"/>
+  <text x="60" y="735" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🍎 新鮮水果：
+  </text>
+  <text x="160" y="735" fill="white" font-family="Arial, sans-serif" font-size="16">
+    • 澳洲黃桃或白桃
+  </text>
+  <text x="160" y="765" fill="white" font-family="Arial, sans-serif" font-size="16">
+    • 澳洲白無籽葡萄 • 澳洲Croc Egg™李子
+  </text>
+  
+  <!-- 零食酱料 -->
+  <rect x="50" y="800" width="340" height="60" rx="5" fill="#f39c12"/>
+  <text x="60" y="825" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🍟 零食醬料：
+  </text>
+  <text x="60" y="850" fill="white" font-family="Arial, sans-serif" font-size="14">
+    Smith's薯片 - 節省$9.00
+  </text>
+  
+  <!-- 乳制品 -->
+  <rect x="410" y="800" width="340" height="60" rx="5" fill="#3498db"/>
+  <text x="420" y="825" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🧀 乳製品：
+  </text>
+  <text x="420" y="850" fill="white" font-family="Arial, sans-serif" font-size="14">
+    Tasmanian Heritage乳酪 - 節省$4.00
+  </text>
+  
+  <!-- 省钱小贴士 -->
+  <rect x="50" y="880" width="700" height="60" rx="10" fill="#34495e"/>
+  <text x="400" y="900" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16">
+    💡 省錢小貼士：本週Woolworths在大部分商品上更具價格優勢！
+  </text>
+  <text x="400" y="925" text-anchor="middle" fill="#f1c40f" font-family="Arial, sans-serif" font-size="14">
+    特別是肉類和海鮮類產品！建議在Woolworths採購可以省下更多！
+  </text>
+  
+  <!-- 底部信息 -->
+  <rect x="0" y="950" width="800" height="50" fill="#2c3e50"/>
+  <text x="400" y="975" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">
+    #超市比價 #省錢攻略 #Coles #Woolworths #澳洲生活 #聰明購物
+  </text>
+</svg>

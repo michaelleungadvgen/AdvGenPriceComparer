@@ -1,0 +1,3362 @@
+[
+  {
+    "productID": "CL001",
+    "productName": "Coles Australian Lamb Whole or Half Leg Roast",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$14.00",
+    "originalPrice": "$17.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL002",
+    "productName": "Nescafé Coffee Sachets",
+    "category": "Drinks",
+    "brand": "Nescafé",
+    "description": "8 Pack-10 Pack",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL003",
+    "productName": "Bulla Creamy Classics Ice Cream Tub",
+    "category": "Frozen",
+    "brand": "Bulla",
+    "description": "2 Litre",
+    "price": "$6.00",
+    "originalPrice": "$12.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL004",
+    "productName": "V Energy Drink",
+    "category": "Drinks",
+    "brand": "V",
+    "description": "4x250mL",
+    "price": "$5.87",
+    "originalPrice": "$11.75",
+    "savings": "$5.88"
+  },
+  {
+    "productID": "CL005",
+    "productName": "Ferrero Rocher Diamond Gift Box",
+    "category": "Snacks",
+    "brand": "Ferrero Rocher",
+    "description": "300g",
+    "price": "$16.50",
+    "originalPrice": "$33.00",
+    "savings": "$16.50"
+  },
+  {
+    "productID": "CL006",
+    "productName": "Pringles Potato Crisps",
+    "category": "Snacks",
+    "brand": "Pringles",
+    "description": "118g-134g",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+  },
+  {
+    "productID": "CL007",
+    "productName": "Nestlé Block Chocolate",
+    "category": "Snacks",
+    "brand": "Nestlé",
+    "description": "118g-180g",
+    "price": "$3.75",
+    "originalPrice": "$7.50",
+    "savings": "$3.75"
+  },
+  {
+    "productID": "CL008",
+    "productName": "Sunrice Jasmine Rice",
+    "category": "Pantry",
+    "brand": "Sunrice",
+    "description": "5kg",
+    "price": "$12.50",
+    "originalPrice": "$27.00",
+    "savings": "$14.50"
+  },
+  {
+    "productID": "CL009",
+    "productName": "Colgate Advanced Whitening & Tartar or Max Fresh Toothpaste",
+    "category": "Health & Beauty",
+    "brand": "Colgate",
+    "description": "200g",
+    "price": "$5.00",
+    "originalPrice": "$10.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL010",
+    "productName": "Cold Power Laundry Liquid or Powder",
+    "category": "Household",
+    "brand": "Cold Power",
+    "description": "2 Litre or 2kg",
+    "price": "$12.00",
+    "originalPrice": "$24.00",
+    "savings": "$12.00"
+  },
+  {
+    "productID": "CL011",
+    "productName": "Nature's Way Kids Smart Vita Gummies Multi-Vitamin Plus or Vitamin C + Zinc",
+    "category": "Health & Beauty",
+    "brand": "Nature's Way",
+    "description": "120 Pack",
+    "price": "$16.00",
+    "originalPrice": "$32.00",
+    "savings": "$16.00"
+  },
+  {
+    "productID": "CL012",
+    "productName": "Coles Australian Baby Cucumbers",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "250g Pack",
+    "price": "$3.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL013",
+    "productName": "Cadbury Chocolate Bar",
+    "category": "Snacks",
+    "brand": "Cadbury",
+    "description": "30g-55g",
+    "price": "$1.25",
+    "originalPrice": "$3.00",
+    "savings": "$1.75"
+  },
+  {
+    "productID": "CL014",
+    "productName": "Life Savers Lollies",
+    "category": "Snacks",
+    "brand": "Life Savers",
+    "description": "150g-200g",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL015",
+    "productName": "Kettle Potato Chips",
+    "category": "Snacks",
+    "brand": "Kettle",
+    "description": "165g",
+    "price": "$3.00",
+    "originalPrice": "$6.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL016",
+    "productName": "Pepsi or Solo Soft Drink",
+    "category": "Drinks",
+    "brand": "Pepsi or Solo",
+    "description": "1.25 Litre",
+    "price": "$1.75",
+    "originalPrice": "$3.50",
+    "savings": "$1.75"
+  },
+  {
+    "productID": "CL017",
+    "productName": "Powerade Sports Drink",
+    "category": "Drinks",
+    "brand": "Powerade",
+    "description": "600mL",
+    "price": "$2.20",
+    "originalPrice": "$4.40",
+    "savings": "$2.20"
+  },
+  {
+    "productID": "CL018",
+    "productName": "Lipton Ice Tea",
+    "category": "Drinks",
+    "brand": "Lipton",
+    "description": "1.5 Litre",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+  },
+  {
+    "productID": "CL019",
+    "productName": "Schweppes Mixers",
+    "category": "Drinks",
+    "brand": "Schweppes",
+    "description": "4x300mL",
+    "price": "$3.75",
+    "originalPrice": "$7.50",
+    "savings": "$3.75"
+  },
+  {
+    "productID": "CL020",
+    "productName": "Kirks Soft Drink",
+    "category": "Drinks",
+    "brand": "Kirks",
+    "description": "10x375mL",
+    "price": "$7.50",
+    "originalPrice": "$15.00",
+    "savings": "$7.50"
+  },
+  {
+    "productID": "CL021",
+    "productName": "Schweppes Infused Sparkling Water",
+    "category": "Drinks",
+    "brand": "Schweppes",
+    "description": "10x375mL",
+    "price": "$9.50",
+    "originalPrice": "$19.00",
+    "savings": "$9.50"
+  },
+  {
+    "productID": "CL022",
+    "productName": "Coles Beechwood Smoked Half Leg Ham",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$8.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL023",
+    "productName": "Coles Brown Sugar Glazed Easy Carve Picnic Ham",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$11.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL024",
+    "productName": "Coles Crackling Leg Ham",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$23.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL025",
+    "productName": "Coles Cooked Prawns with Cocktail Sauce",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "260g",
+    "price": "$11.00",
+    "originalPrice": "$12.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL026",
+    "productName": "Ocean Blue Smoked Salmon",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Ocean Blue",
+    "description": "300g",
+    "price": "$16.00",
+    "originalPrice": "$19.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL027",
+    "productName": "Coles Tasmanian Salmon Portions Skin Off",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$36.00",
+    "originalPrice": "$42.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL028",
+    "productName": "Ocean Blue Mini Blinis",
+    "category": "Bread & Bakery",
+    "brand": "Ocean Blue",
+    "description": "168g",
+    "price": "$4.90",
+    "originalPrice": "$5.80",
+    "savings": "$0.90"
+  },
+  {
+    "productID": "CL029",
+    "productName": "Coles Hot Roast RSPCA Approved Chicken",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$12.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL030",
+    "productName": "Coles Pre-Packed Antipasto",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "110g-135g",
+    "price": "$3.25",
+    "originalPrice": "$4.25",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL031",
+    "productName": "Black Swan Crafted Dip",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Black Swan",
+    "description": "150g-170g",
+    "price": "$4.20",
+    "originalPrice": "$5.00",
+    "savings": "$0.80"
+  },
+  {
+    "productID": "CL032",
+    "productName": "Coles Bakery Stone Baked by Laurent Mini Pane di Casa",
+    "category": "Bread & Bakery",
+    "brand": "Coles Bakery",
+    "description": "each",
+    "price": "$2.50",
+    "originalPrice": "$3.25",
+    "savings": "$0.75"
+  },
+  {
+    "productID": "CL033",
+    "productName": "Don Premium Melosi Leg Ham",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Don",
+    "description": "per kg",
+    "price": "$24.00",
+    "originalPrice": "$32.50",
+    "savings": "$8.50"
+  },
+  {
+    "productID": "CL034",
+    "productName": "Tasmanian Heritage Cheese Wedge",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Tasmanian Heritage",
+    "description": "180g",
+    "price": "$6.50",
+    "originalPrice": "$7.00",
+    "savings": "$0.50"
+  },
+  {
+    "productID": "CL035",
+    "productName": "Hans Twiggy Sticks",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Hans",
+    "description": "500g",
+    "price": "$11.00",
+    "originalPrice": "$16.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL036",
+    "productName": "Castello Half Moon Cheese",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Castello",
+    "description": "150g",
+    "price": "$7.20",
+    "originalPrice": "$8.50",
+    "savings": "$1.30"
+  },
+  {
+    "productID": "CL037",
+    "productName": "Arnott's Gold Label Seeded Crackers or Cheds Crackers",
+    "category": "Snacks",
+    "brand": "Arnott's",
+    "description": "100g-250g",
+    "price": "$3.50",
+    "originalPrice": "$5.50",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL038",
+    "productName": "Black Swan Favourites Dip",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Black Swan",
+    "description": "180g-200g",
+    "price": "$3.50",
+    "originalPrice": "$5.50",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL039",
+    "productName": "Coles Christmas Koala Biscuit",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "40g",
+    "price": "$2.80",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL040",
+    "productName": "Coles Christmas Chocolate Dipped Biscuits",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "185g",
+    "price": "$5.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL041",
+    "productName": "Coles Christmas Florentines",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "150g",
+    "price": "$6.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL042",
+    "productName": "Coles Christmas Brandy Snaps 8 Pack",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "128g",
+    "price": "$6.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL043",
+    "productName": "Coles Finest Jamaican Rum Brown Butter Fruit Mince Pies 6 Pack",
+    "category": "Bread & Bakery",
+    "brand": "Coles Finest",
+    "description": "350g",
+    "price": "$9.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL044",
+    "productName": "Coles Finest Luxury Jewelled Fruit Cake",
+    "category": "Bread & Bakery",
+    "brand": "Coles Finest",
+    "description": "800g",
+    "price": "$14.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL045",
+    "productName": "Coles Finest Duck Fat Roast Potatoes",
+    "category": "Frozen",
+    "brand": "Coles Finest",
+    "description": "600g",
+    "price": "$5.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL046",
+    "productName": "Coles Finest Luxury Chocolate & Hazelnut Buche",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "480g",
+    "price": "$20.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL047",
+    "productName": "Coles Finest Chicken Prosciutto Wrapped with Fromager D'affinois",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles Finest",
+    "description": "1kg",
+    "price": "$28.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL048",
+    "productName": "Coles Christmas Spiced Rum, Fig & Mascarpone Ice Cream Tub",
+    "category": "Frozen",
+    "brand": "Coles",
+    "description": "1 Litre",
+    "price": "$7.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL049",
+    "productName": "Coles Christmas Macaron Selection 12 Pack",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "152g",
+    "price": "$10.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL050",
+    "productName": "Coles Kitchen Atlantic Salmon with Herb Crust",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles Kitchen",
+    "description": "700g",
+    "price": "$26.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL051",
+    "productName": "Christmas Plush",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "26cm",
+    "price": "$12.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL052",
+    "productName": "Plush Pudding",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$12.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL053",
+    "productName": "Christmas Tree or Wreath",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$15.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL054",
+    "productName": "Christmas Bubble Wand",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$3.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL055",
+    "productName": "Wine Bottle Holder and Star Stopper",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$25.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL056",
+    "productName": "Santa Jar",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$8.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL057",
+    "productName": "Christmas Tin Set 2 Pack",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$8.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL058",
+    "productName": "Elf On The Shelf Magnetic Tin Playset or Assorted Games",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$15.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL059",
+    "productName": "Nutcracker Bath Set",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$20.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL060",
+    "productName": "Gingerbread House or Iridescent Mug",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$9.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL061",
+    "productName": "Christmas Socks Licensed",
+    "category": "Clothing",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$8.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL062",
+    "productName": "Christmas Countdown Calendar",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$12.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL063",
+    "productName": "Pom Pom Pen",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$3.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL064",
+    "productName": "Striped Baubles 4 Pack",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$5.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL065",
+    "productName": "Paper Honeycomb Tree",
+    "category": "Stationery & Media",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$6.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL066",
+    "productName": "Lindt Lindor Assorted Gift Box",
+    "category": "Snacks",
+    "brand": "Lindt",
+    "description": "148g",
+    "price": "$10.00",
+    "originalPrice": "$20.00",
+    "savings": "$10.00"
+  },
+  {
+    "productID": "CL067",
+    "productName": "Cadbury Favourites",
+    "category": "Snacks",
+    "brand": "Cadbury",
+    "description": "470g",
+    "price": "$12.00",
+    "originalPrice": "$24.00",
+    "savings": "$12.00"
+  },
+  {
+    "productID": "CL068",
+    "productName": "Coles Finest Tiramisu or Berry Pavlova Block Chocolate",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "90g",
+    "price": "$4.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL069",
+    "productName": "Coles Finest Milk Chocolate Turkish Delights or Dark Chocolate Mint Thins",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "135g",
+    "price": "$5.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL070",
+    "productName": "Coles Christmas Party Mix",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "1kg",
+    "price": "$7.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL071",
+    "productName": "Coles Finest Milk Chocolate Speculoos or Salted Caramel Thins",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "135g",
+    "price": "$5.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL072",
+    "productName": "Coles Finest Cherry Choc Liqueurs",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "250g",
+    "price": "$10.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL073",
+    "productName": "Kit Kat Christmas Cabin Kit",
+    "category": "Snacks",
+    "brand": "Kit Kat",
+    "description": "949g",
+    "price": "$30.00",
+    "originalPrice": "$35.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL074",
+    "productName": "Cadbury Christmas Chocolate Classics Pack",
+    "category": "Snacks",
+    "brand": "Cadbury",
+    "description": "415g",
+    "price": "$10.00",
+    "originalPrice": "$20.00",
+    "savings": "$10.00"
+  },
+  {
+    "productID": "CL075",
+    "productName": "Cadbury Dairy Milk Advent Calendar",
+    "category": "Snacks",
+    "brand": "Cadbury",
+    "description": "90g",
+    "price": "$4.50",
+    "originalPrice": "$9.00",
+    "savings": "$4.50"
+  },
+  {
+    "productID": "CL076",
+    "productName": "Coles Christmas Milk Chocolate Feast or Coins",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "100g",
+    "price": "$3.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL077",
+    "productName": "Nestlé Naughty or Nice Chocolate Bites",
+    "category": "Snacks",
+    "brand": "Nestlé",
+    "description": "140g",
+    "price": "$4.80",
+    "originalPrice": "$6.00",
+    "savings": "$1.20"
+  },
+  {
+    "productID": "CL078",
+    "productName": "Mars M&Ms Red & Green Share Bag",
+    "category": "Snacks",
+    "brand": "Mars",
+    "description": "165g",
+    "price": "$4.90",
+    "originalPrice": "$7.00",
+    "savings": "$2.10"
+  },
+  {
+    "productID": "CL079",
+    "productName": "Monetta Wafers",
+    "category": "Snacks",
+    "brand": "Monetta",
+    "description": "350g",
+    "price": "$5.00",
+    "originalPrice": "$6.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL080",
+    "productName": "Walker's Shortbread Festive Shapes",
+    "category": "Snacks",
+    "brand": "Walker's",
+    "description": "175g",
+    "price": "$6.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL081",
+    "productName": "Famous Dane Danish Butter Cookies",
+    "category": "Snacks",
+    "brand": "Famous Dane",
+    "description": "454g",
+    "price": "$6.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL082",
+    "productName": "Coles Apple Sauce",
+    "category": "Pantry",
+    "brand": "Coles",
+    "description": "375g",
+    "price": "$2.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL083",
+    "productName": "Nestlé Sweetened Condensed Milk Tube",
+    "category": "Pantry",
+    "brand": "Nestlé",
+    "description": "170g",
+    "price": "$3.20",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL084",
+    "productName": "White Wings Plain or Self Raising Flour",
+    "category": "Pantry",
+    "brand": "White Wings",
+    "description": "2kg",
+    "price": "$4.95",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL085",
+    "productName": "Coles Ultimate 40% Chocolate Chip Cookies",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "400g",
+    "price": "$6.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL086",
+    "productName": "Arnott's Marie or Milk Arrowroot Biscuits",
+    "category": "Snacks",
+    "brand": "Arnott's",
+    "description": "250g",
+    "price": "$2.00",
+    "originalPrice": "$3.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL087",
+    "productName": "Arnott's Scotch Finger or Choc Ripple Biscuits",
+    "category": "Snacks",
+    "brand": "Arnott's",
+    "description": "250g",
+    "price": "$2.50",
+    "originalPrice": "$4.10",
+    "savings": "$1.60"
+  },
+  {
+    "productID": "CL088",
+    "productName": "Cadbury Baking Chocolate Chips, Melts or Blocks",
+    "category": "Pantry",
+    "brand": "Cadbury",
+    "description": "180g-225g",
+    "price": "$4.50",
+    "originalPrice": "$7.50",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL089",
+    "productName": "Foster Clark's Original Liquid Custard",
+    "category": "Pantry",
+    "brand": "Foster Clark's",
+    "description": "1 Litre",
+    "price": "$5.00",
+    "originalPrice": "$6.20",
+    "savings": "$1.20"
+  },
+  {
+    "productID": "CL090",
+    "productName": "Sunbeam Dried Mixed Fruit",
+    "category": "Pantry",
+    "brand": "Sunbeam",
+    "description": "375g",
+    "price": "$5.40",
+    "originalPrice": "$6.00",
+    "savings": "$0.60"
+  },
+  {
+    "productID": "CL091",
+    "productName": "Nutella Hazelnut Chocolate Spread",
+    "category": "Pantry",
+    "brand": "Nutella",
+    "description": "750g",
+    "price": "$10.00",
+    "originalPrice": "$12.50",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL092",
+    "productName": "Viva Paper Towel",
+    "category": "Household",
+    "brand": "Viva",
+    "description": "2 Pack",
+    "price": "$2.25",
+    "originalPrice": "$4.50",
+    "savings": "$2.25"
+  },
+  {
+    "productID": "CL093",
+    "productName": "Radiant Laundry Capsules",
+    "category": "Household",
+    "brand": "Radiant",
+    "description": "28 Pack",
+    "price": "$11.00",
+    "originalPrice": "$22.00",
+    "savings": "$11.00"
+  },
+  {
+    "productID": "CL094",
+    "productName": "Downy Light Laundry Scent Booster Beads",
+    "category": "Household",
+    "brand": "Downy",
+    "description": "379g",
+    "price": "$15.50",
+    "originalPrice": "$31.00",
+    "savings": "$15.50"
+  },
+  {
+    "productID": "CL095",
+    "productName": "White King Power Gel Toilet Cleaner",
+    "category": "Household",
+    "brand": "White King",
+    "description": "700mL",
+    "price": "$3.10",
+    "originalPrice": "$6.20",
+    "savings": "$3.10"
+  },
+  {
+    "productID": "CL096",
+    "productName": "Radiant Laundry Liquid or Powder",
+    "category": "Household",
+    "brand": "Radiant",
+    "description": "2 Litre or 2kg",
+    "price": "$10.00",
+    "originalPrice": "$20.00",
+    "savings": "$10.00"
+  },
+  {
+    "productID": "CL097",
+    "productName": "Vanish NapiSan Oxi Action Gold Stain Remover Powder",
+    "category": "Household",
+    "brand": "Vanish",
+    "description": "2kg",
+    "price": "$16.00",
+    "originalPrice": "$32.00",
+    "savings": "$16.00"
+  },
+  {
+    "productID": "CL098",
+    "productName": "Morning Fresh Dishwashing Liquid",
+    "category": "Household",
+    "brand": "Morning Fresh",
+    "description": "400mL",
+    "price": "$3.00",
+    "originalPrice": "$6.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL099",
+    "productName": "Finish Ultimate Dishwashing Tablets",
+    "category": "Household",
+    "brand": "Finish",
+    "description": "46 Pack",
+    "price": "$24.50",
+    "originalPrice": "$49.00",
+    "savings": "$24.50"
+  },
+  {
+    "productID": "CL100",
+    "productName": "Biozet Attack Plus Laundry Liquid or Powder",
+    "category": "Household",
+    "brand": "Biozet",
+    "description": "2 Litre or 2kg",
+    "price": "$13.00",
+    "originalPrice": "$26.00",
+    "savings": "$13.00"
+  },
+  {
+    "productID": "CL101",
+    "productName": "Colgate Plax Fresh Mint or Peppermint Mouthwash",
+    "category": "Health & Beauty",
+    "brand": "Colgate",
+    "description": "500mL",
+    "price": "$3.50",
+    "originalPrice": "$7.00",
+    "savings": "$3.50"
+  },
+  {
+    "productID": "CL102",
+    "productName": "Colgate 360 Degree Soft or Medium Toothbrush",
+    "category": "Health & Beauty",
+    "brand": "Colgate",
+    "description": "2 Pack",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL103",
+    "productName": "Palmolive Liquid Hand Wash Refill",
+    "category": "Health & Beauty",
+    "brand": "Palmolive",
+    "description": "1 Litre",
+    "price": "$3.75",
+    "originalPrice": "$7.50",
+    "savings": "$3.75"
+  },
+  {
+    "productID": "CL104",
+    "productName": "Hask Shampoo or Conditioner",
+    "category": "Health & Beauty",
+    "brand": "Hask",
+    "description": "355mL",
+    "price": "$8.50",
+    "originalPrice": "$17.00",
+    "savings": "$8.50"
+  },
+  {
+    "productID": "CL105",
+    "productName": "Dove Body Wash",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "1 Litre",
+    "price": "$9.50",
+    "originalPrice": "$19.00",
+    "savings": "$9.50"
+  },
+  {
+    "productID": "CL106",
+    "productName": "Curash Fragrance Free Sensitive Skin Baby Wipes",
+    "category": "Baby",
+    "brand": "Curash",
+    "description": "240 Pack",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00"
+  },
+  {
+    "productID": "CL107",
+    "productName": "Cancer Council Daily Moisturiser Sunscreen SPF50+",
+    "category": "Health & Beauty",
+    "brand": "Cancer Council",
+    "description": "150mL",
+    "price": "$10.50",
+    "originalPrice": "$21.00",
+    "savings": "$10.50"
+  },
+  {
+    "productID": "CL108",
+    "productName": "Cancer Council Hydrating Serum SPF50+",
+    "category": "Health & Beauty",
+    "brand": "Cancer Council",
+    "description": "50mL",
+    "price": "$11.50",
+    "originalPrice": "$23.00",
+    "savings": "$11.50"
+  },
+  {
+    "productID": "CL109",
+    "productName": "Nature's Way Adult Vita Gummies Women's Multivitamin or Vitamin C",
+    "category": "Health & Beauty",
+    "brand": "Nature's Way",
+    "description": "100 Pack or 120 Pack",
+    "price": "$14.00",
+    "originalPrice": "$28.00",
+    "savings": "$14.00"
+  },
+  {
+    "productID": "CL110",
+    "productName": "Nature's Way Adult Vita Gummies Probiotic + Prebiotic or High Strength Adult Vita Gummies Collagen",
+    "category": "Health & Beauty",
+    "brand": "Nature's Way",
+    "description": "65 Pack or 50 Pack",
+    "price": "$14.00",
+    "originalPrice": "$28.00",
+    "savings": "$14.00"
+  },
+  {
+    "productID": "CL111",
+    "productName": "Nature's Way Beauty Collagen Shot",
+    "category": "Health & Beauty",
+    "brand": "Nature's Way",
+    "description": "50mL x 10 Pack",
+    "price": "$19.00",
+    "originalPrice": "$38.00",
+    "savings": "$19.00"
+  },
+  {
+    "productID": "CL112",
+    "productName": "Blackmores Omega Triple Super Strength Capsules",
+    "category": "Health & Beauty",
+    "brand": "Blackmores",
+    "description": "60 Pack",
+    "price": "$22.50",
+    "originalPrice": "$45.00",
+    "savings": "$22.50"
+  },
+  {
+    "productID": "CL113",
+    "productName": "Blackmores Fish Oil 1000mg Capsules",
+    "category": "Health & Beauty",
+    "brand": "Blackmores",
+    "description": "400 Pack",
+    "price": "$30.00",
+    "originalPrice": "$60.00",
+    "savings": "$30.00"
+  },
+  {
+    "productID": "CL114",
+    "productName": "Swisse Ultiboost Odourless High Strength Wild Fish Oil Capsules or Ultiboost Magnesium Tablets",
+    "category": "Health & Beauty",
+    "brand": "Swisse",
+    "description": "200 Pack",
+    "price": "$24.75",
+    "originalPrice": "$49.50",
+    "savings": "$24.75"
+  },
+  {
+    "productID": "CL115",
+    "productName": "Hb Belly Me Shot",
+    "category": "Health & Beauty",
+    "brand": "Hb",
+    "description": "60mL",
+    "price": "$2.45",
+    "originalPrice": "$4.90",
+    "savings": "$2.45"
+  },
+  {
+    "productID": "CL116",
+    "productName": "Voost Effervescent Tablets",
+    "category": "Health & Beauty",
+    "brand": "Voost",
+    "description": "20 Pack",
+    "price": "$5.50",
+    "originalPrice": "$11.00",
+    "savings": "$5.50"
+  },
+  {
+    "productID": "CL117",
+    "productName": "Caltrate Bone & Muscle Health Tablets",
+    "category": "Health & Beauty",
+    "brand": "Caltrate",
+    "description": "100 Pack",
+    "price": "$10.50",
+    "originalPrice": "$21.00",
+    "savings": "$10.50"
+  },
+  {
+    "productID": "CL118",
+    "productName": "Berocca Energy Effervescent Tablets",
+    "category": "Health & Beauty",
+    "brand": "Berocca",
+    "description": "45 Pack",
+    "price": "$13.00",
+    "originalPrice": "$26.00",
+    "savings": "$13.00"
+  },
+  {
+    "productID": "CL119",
+    "productName": "Ostelin Vitamin D3 1000IU Capsules or Calcium & Vitamin D3 Tablets",
+    "category": "Health & Beauty",
+    "brand": "Ostelin",
+    "description": "250 Pack",
+    "price": "$24.50",
+    "originalPrice": "$49.00",
+    "savings": "$24.50"
+  },
+  {
+    "productID": "CL120",
+    "productName": "Life Botanics Vitality Greens Powder or Pure Collagen Peptides Powder",
+    "category": "Health & Beauty",
+    "brand": "Life Botanics",
+    "description": "450g or 300g",
+    "price": "$25.00",
+    "originalPrice": "$50.00",
+    "savings": "$25.00"
+  },
+  {
+    "productID": "CL121",
+    "productName": "Australian Raspberries",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "125g Punnet",
+    "price": "$4.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL122",
+    "productName": "Australian R2E2 Mangoes",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$3.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL123",
+    "productName": "Gold Kiwifruit",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$1.50",
+    "originalPrice": "$1.70",
+    "savings": "$0.20"
+  },
+  {
+    "productID": "CL124",
+    "productName": "Coles Australian Red Perino Tomatoes",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "200g Pack",
+    "price": "$3.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL125",
+    "productName": "Coles Australian Brown Onions",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "1kg Bag",
+    "price": "$2.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL126",
+    "productName": "Coles Australian Baby Beetroot",
+    "category": "Fruit & Vegetables",
+    "brand": "Coles",
+    "description": "250g Pack",
+    "price": "$2.50",
+    "originalPrice": "$3.00",
+    "savings": "$0.50"
+  },
+  {
+    "productID": "CL127",
+    "productName": "Coles Dry Roasted, Natural, Smoked or Roasted & Salted Almonds",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "400g Pack",
+    "price": "$9.00",
+    "originalPrice": "$10.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL128",
+    "productName": "Coles Australian Natural or Roasted & Salted Macadamias",
+    "category": "Snacks",
+    "brand": "Coles",
+    "description": "400g Pack",
+    "price": "$16.00",
+    "originalPrice": "$18.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL129",
+    "productName": "Coles Classic Burgers",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "400g-500g",
+    "price": "$7.50",
+    "originalPrice": "$8.50",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL130",
+    "productName": "Coles RSPCA Approved Chicken Boneless Herb & Garlic",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "1kg",
+    "price": "$11.00",
+    "originalPrice": "$13.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL131",
+    "productName": "Coles No Added Hormones Beef Porterhouse Steak with Thyme and Pepper Butter",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "500g",
+    "price": "$19.00",
+    "originalPrice": "$20.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL132",
+    "productName": "Coles RSPCA Approved Chicken Whole",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$4.80",
+    "originalPrice": "$5.50",
+    "savings": "$0.70"
+  },
+  {
+    "productID": "CL133",
+    "productName": "Coles Made Easy Slow Cooked Beef Brisket in Peppercorn Sauce",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "500g",
+    "price": "$12.00",
+    "originalPrice": "$14.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL134",
+    "productName": "Coles No Added Hormones Slow Cook Beef Ribs",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$16.00",
+    "originalPrice": "$18.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL135",
+    "productName": "Coles Australian Pork Forequarter Cutlets",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "800g",
+    "price": "$10.50",
+    "originalPrice": "$12.50",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL136",
+    "productName": "Coles Mini Chicken Kebabs Teriyaki 18 Pack",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "850g",
+    "price": "$14.00",
+    "originalPrice": "$16.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL137",
+    "productName": "Coles Australian Lamb Forequarter Chops",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$19.00",
+    "originalPrice": "$23.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL138",
+    "productName": "Coles Australian No Added Hormones Beef Rump Steak",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Coles",
+    "description": "per kg",
+    "price": "$23.00",
+    "originalPrice": "$29.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL139",
+    "productName": "Provedore Prosciutto, Salami Tasting Plate or Italian Style Tasting Plate",
+    "category": "Meat, Seafood & Deli",
+    "brand": "Provedore",
+    "description": "100g",
+    "price": "$6.25",
+    "originalPrice": "$8.75",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL140",
+    "productName": "Coles Christmas Traditional Fruit Mince Pies 6 Pack",
+    "category": "Bread & Bakery",
+    "brand": "Coles",
+    "description": "360g",
+    "price": "$4.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL141",
+    "productName": "Tip Top English Muffins 6 Pack",
+    "category": "Bread & Bakery",
+    "brand": "Tip Top",
+    "description": "400g",
+    "price": "$3.20",
+    "originalPrice": "$6.40",
+    "savings": "$3.20"
+  },
+  {
+    "productID": "CL142",
+    "productName": "Coles Bakery Cookies or Biscuits",
+    "category": "Bread & Bakery",
+    "brand": "Coles Bakery",
+    "description": "12 Pack",
+    "price": "$3.50",
+    "originalPrice": "$4.00",
+    "savings": "$0.50"
+  },
+  {
+    "productID": "CL143",
+    "productName": "Cadbury Cake Bars or Mini Rolls",
+    "category": "Snacks",
+    "brand": "Cadbury",
+    "description": "105g-125g",
+    "price": "$3.90",
+    "originalPrice": "$6.50",
+    "savings": "$2.60"
+  },
+  {
+    "productID": "CL144",
+    "productName": "Coles Bakery Tear & Share",
+    "category": "Bread & Bakery",
+    "brand": "Coles Bakery",
+    "description": "each",
+    "price": "$4.00",
+    "originalPrice": "$5.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL145",
+    "productName": "Coles Bakery Stone Baked by Laurent Sourdough Vienna or Pane di Casa",
+    "category": "Bread & Bakery",
+    "brand": "Coles Bakery",
+    "description": "each",
+    "price": "$4.50",
+    "originalPrice": "$5.00",
+    "savings": "$0.50"
+  },
+  {
+    "productID": "CL146",
+    "productName": "Mission Wraps 8 Pack",
+    "category": "Bread & Bakery",
+    "brand": "Mission",
+    "description": "567g",
+    "price": "$4.50",
+    "originalPrice": "$5.50",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL147",
+    "productName": "Coles All Butter Croissants 3 Pack or 4 Pack",
+    "category": "Bread & Bakery",
+    "brand": "Coles",
+    "description": "each",
+    "price": "$2.95",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL148",
+    "productName": "Tip Top The One Gluten Free Bread",
+    "category": "Bread & Bakery",
+    "brand": "Tip Top",
+    "description": "550g",
+    "price": "$7.40",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL149",
+    "productName": "Heinz Baked Beanz or Spaghetti",
+    "category": "Pantry",
+    "brand": "Heinz",
+    "description": "535g-555g",
+    "price": "$2.50",
+    "originalPrice": "$3.80",
+    "savings": "$1.30"
+  },
+  {
+    "productID": "CL150",
+    "productName": "Heinz Ketchup",
+    "category": "Pantry",
+    "brand": "Heinz",
+    "description": "500mL",
+    "price": "$4.00",
+    "originalPrice": "$5.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL151",
+    "productName": "Coles Finest 70% Cocoa or 85% Cocoa Block Chocolate",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "100g",
+    "price": "$4.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL152",
+    "productName": "Coca-Cola Zero Sugar Soft Drink",
+    "category": "Drinks",
+    "brand": "Coca-Cola",
+    "description": "1.25 Litre",
+    "price": "$2.60",
+    "originalPrice": "$5.40",
+    "savings": "$2.80"
+  },
+  {
+    "productID": "CL153",
+    "productName": "Coca-Cola Zero Sugar Soft Drink",
+    "category": "Drinks",
+    "brand": "Coca-Cola",
+    "description": "6x250mL",
+    "price": "$6.00",
+    "originalPrice": "$10.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL154",
+    "productName": "Coca-Cola Zero Sugar Soft Drink",
+    "category": "Drinks",
+    "brand": "Coca-Cola",
+    "description": "12x300mL",
+    "price": "$12.00",
+    "originalPrice": "$20.00",
+    "savings": "$8.00"
+  },
+  {
+    "productID": "CL155",
+    "productName": "Coca-Cola Zero Sugar Soft Drink",
+    "category": "Drinks",
+    "brand": "Coca-Cola",
+    "description": "24x375mL",
+    "price": "$24.75",
+    "originalPrice": "$41.25",
+    "savings": "$16.50"
+  },
+  {
+    "productID": "CL156",
+    "productName": "Kirks Soft Drink",
+    "category": "Drinks",
+    "brand": "Kirks",
+    "description": "1.25 Litre",
+    "price": "$1.70",
+    "originalPrice": "$2.85",
+    "savings": "$1.15"
+  },
+  {
+    "productID": "CL157",
+    "productName": "Cocobella Straight Up Coconut Water",
+    "category": "Drinks",
+    "brand": "Cocobella",
+    "description": "1 Litre",
+    "price": "$3.30",
+    "originalPrice": "$5.50",
+    "savings": "$2.20"
+  },
+  {
+    "productID": "CL158",
+    "productName": "Coca-Cola, Fanta or Sprite Soft Drink",
+    "category": "Drinks",
+    "brand": "Coca-Cola, Fanta or Sprite",
+    "description": "6x250mL",
+    "price": "$6.00",
+    "originalPrice": "$10.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL159",
+    "productName": "Mt Franklin Lightly Sparkling Water",
+    "category": "Drinks",
+    "brand": "Mt Franklin",
+    "description": "6x250mL",
+    "price": "$6.00",
+    "originalPrice": "$10.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL160",
+    "productName": "Pepsi or Solo Soft Drink",
+    "category": "Drinks",
+    "brand": "Pepsi or Solo",
+    "description": "10x375mL",
+    "price": "$11.40",
+    "originalPrice": "$19.00",
+    "savings": "$7.60"
+  },
+  {
+    "productID": "CL161",
+    "productName": "Sprite or Fanta Soft Drink",
+    "category": "Drinks",
+    "brand": "Sprite or Fanta",
+    "description": "18x375mL",
+    "price": "$19.80",
+    "originalPrice": "$33.00",
+    "savings": "$13.20"
+  },
+  {
+    "productID": "CL162",
+    "productName": "Sanpellegrino Sparkling Water",
+    "category": "Drinks",
+    "brand": "Sanpellegrino",
+    "description": "1 Litre",
+    "price": "$2.95",
+    "originalPrice": "$4.15",
+    "savings": "$1.20"
+  },
+  {
+    "productID": "CL163",
+    "productName": "V8 Juice",
+    "category": "Drinks",
+    "brand": "V8",
+    "description": "1.25 Litre",
+    "price": "$3.85",
+    "originalPrice": "$5.50",
+    "savings": "$1.65"
+  },
+  {
+    "productID": "CL164",
+    "productName": "Bickford's Cordial",
+    "category": "Drinks",
+    "brand": "Bickford's",
+    "description": "750mL",
+    "price": "$4.40",
+    "originalPrice": "$5.50",
+    "savings": "$1.10"
+  },
+  {
+    "productID": "CL165",
+    "productName": "Golden Circle Cordial",
+    "category": "Drinks",
+    "brand": "Golden Circle",
+    "description": "2 Litre",
+    "price": "$4.00",
+    "originalPrice": "$7.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL166",
+    "productName": "Schweppes Mixers",
+    "category": "Drinks",
+    "brand": "Schweppes",
+    "description": "10x375mL",
+    "price": "$11.40",
+    "originalPrice": "$19.00",
+    "savings": "$7.60"
+  },
+  {
+    "productID": "CL167",
+    "productName": "Infuzions Air Fries",
+    "category": "Snacks",
+    "brand": "Infuzions",
+    "description": "90g",
+    "price": "$2.45",
+    "originalPrice": "$4.90",
+    "savings": "$2.45"
+  },
+  {
+    "productID": "CL168",
+    "productName": "Nestlé Kit Kat Aero Milk or Mint Block Chocolate",
+    "category": "Snacks",
+    "brand": "Nestlé Kit Kat",
+    "description": "155g",
+    "price": "$3.75",
+    "originalPrice": "$7.50",
+    "savings": "$3.75"
+  },
+  {
+    "productID": "CL169",
+    "productName": "Celsius Energy Drink",
+    "category": "Drinks",
+    "brand": "Celsius",
+    "description": "300mL",
+    "price": "$2.80",
+    "originalPrice": "$4.00",
+    "savings": "$1.20"
+  },
+  {
+    "productID": "CL170",
+    "productName": "Monster Energy Ultra Vice Guava Drink",
+    "category": "Drinks",
+    "brand": "Monster",
+    "description": "500mL",
+    "price": "$3.00",
+    "originalPrice": "$4.30",
+    "savings": "$1.30"
+  },
+  {
+    "productID": "CL171",
+    "productName": "Sunsol Low Sugar Toasted Muesli Apple & Cinnamon",
+    "category": "Pantry",
+    "brand": "Sunsol",
+    "description": "450g",
+    "price": "$4.80",
+    "originalPrice": "$8.00",
+    "savings": "$3.20"
+  },
+  {
+    "productID": "CL172",
+    "productName": "Solo Lemon & Orange Soft Drink",
+    "category": "Drinks",
+    "brand": "Solo",
+    "description": "10x375mL",
+    "price": "$11.40",
+    "originalPrice": "$19.00",
+    "savings": "$7.60"
+  },
+  {
+    "productID": "CL173",
+    "productName": "Bhuja Mix",
+    "category": "Snacks",
+    "brand": "Bhuja",
+    "description": "140g-160g",
+    "price": "$2.25",
+    "originalPrice": "$4.50",
+    "savings": "$2.25"
+  },
+  {
+    "productID": "CL174",
+    "productName": "Olina's Artisan Crackers",
+    "category": "Snacks",
+    "brand": "Olina's",
+    "description": "90g-100g",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL175",
+    "productName": "Red Rock Deli Style Crackers",
+    "category": "Snacks",
+    "brand": "Red Rock Deli",
+    "description": "135g",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL176",
+    "productName": "Cadbury Old Gold Block Chocolate",
+    "category": "Snacks",
+    "brand": "Cadbury",
+    "description": "170g-180g",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL177",
+    "productName": "Allen's Lollies",
+    "category": "Snacks",
+    "brand": "Allen's",
+    "description": "140g-200g",
+    "price": "$3.00",
+    "originalPrice": "$5.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL178",
+    "productName": "Cadbury or Europe Bitesize",
+    "category": "Snacks",
+    "brand": "Cadbury or Europe",
+    "description": "120g-150g",
+    "price": "$4.90",
+    "originalPrice": "$7.00",
+    "savings": "$2.10"
+  },
+  {
+    "productID": "CL179",
+    "productName": "Arnott's Jatz or Shapes Crackers",
+    "category": "Snacks",
+    "brand": "Arnott's",
+    "description": "130g-225g",
+    "price": "$3.00",
+    "originalPrice": "$5.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL180",
+    "productName": "Sunbites Grain Waves",
+    "category": "Snacks",
+    "brand": "Sunbites",
+    "description": "170g",
+    "price": "$3.00",
+    "originalPrice": "$5.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL181",
+    "productName": "Smith's Crinkle Cut Potato Chips",
+    "category": "Snacks",
+    "brand": "Smith's",
+    "description": "150g-170g",
+    "price": "$3.00",
+    "originalPrice": "$7.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL182",
+    "productName": "Jumpy's or Kettle Potato Chips 5 Pack",
+    "category": "Snacks",
+    "brand": "Jumpy's or Kettle",
+    "description": "90g-92g",
+    "price": "$3.50",
+    "originalPrice": "$5.50",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL183",
+    "productName": "Cottee's Cordial",
+    "category": "Drinks",
+    "brand": "Cottee's",
+    "description": "1 Litre",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+  },
+  {
+    "productID": "CL184",
+    "productName": "Green's Deluxe Baking Mix",
+    "category": "Pantry",
+    "brand": "Green's",
+    "description": "380g-630g",
+    "price": "$2.75",
+    "originalPrice": "$5.50",
+    "savings": "$2.75"
+  },
+  {
+    "productID": "CL185",
+    "productName": "Queen Victoria Tea Bags",
+    "category": "Drinks",
+    "brand": "Queen Victoria",
+    "description": "100 Pack",
+    "price": "$6.00",
+    "originalPrice": "$12.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL186",
+    "productName": "Carmelina Beans",
+    "category": "Pantry",
+    "brand": "Carmelina",
+    "description": "400g",
+    "price": "$1.50",
+    "originalPrice": "$1.90",
+    "savings": "$0.40"
+  },
+  {
+    "productID": "CL187",
+    "productName": "Dolmio Pasta Sauce",
+    "category": "Pantry",
+    "brand": "Dolmio",
+    "description": "490g-500g",
+    "price": "$2.75",
+    "originalPrice": "$4.60",
+    "savings": "$1.85"
+  },
+  {
+    "productID": "CL188",
+    "productName": "Gravox Liquid Gravy or Finishing Sauce",
+    "category": "Pantry",
+    "brand": "Gravox",
+    "description": "165g",
+    "price": "$2.80",
+    "originalPrice": "$3.50",
+    "savings": "$0.70"
+  },
+  {
+    "productID": "CL189",
+    "productName": "Bertolli Olive Oil",
+    "category": "Pantry",
+    "brand": "Bertolli",
+    "description": "750mL",
+    "price": "$15.00",
+    "originalPrice": "$23.00",
+    "savings": "$8.00"
+  },
+  {
+    "productID": "CL190",
+    "productName": "Cobram Estate Extra Virgin Olive Oil",
+    "category": "Pantry",
+    "brand": "Cobram Estate",
+    "description": "750mL",
+    "price": "$20.00",
+    "originalPrice": "$25.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL191",
+    "productName": "Moro Extra Virgin Olive Oil",
+    "category": "Pantry",
+    "brand": "Moro",
+    "description": "4 Litre",
+    "price": "$45.00",
+    "originalPrice": "$65.00",
+    "savings": "$20.00"
+  },
+  {
+    "productID": "CL192",
+    "productName": "Bega Smooth or Crunchy Peanut Butter",
+    "category": "Pantry",
+    "brand": "Bega",
+    "description": "470g",
+    "price": "$5.50",
+    "originalPrice": "$6.90",
+    "savings": "$1.40"
+  },
+  {
+    "productID": "CL193",
+    "productName": "Devondale Instant Full Cream Milk Powder",
+    "category": "Pantry",
+    "brand": "Devondale",
+    "description": "1kg",
+    "price": "$14.50",
+    "originalPrice": "$16.50",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL194",
+    "productName": "Caffé Ducale Coffee Beans",
+    "category": "Drinks",
+    "brand": "Caffé Ducale",
+    "description": "500g",
+    "price": "$15.00",
+    "originalPrice": "$19.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL195",
+    "productName": "Moccona Freeze Dried Instant Coffee",
+    "category": "Drinks",
+    "brand": "Moccona",
+    "description": "200g",
+    "price": "$16.50",
+    "originalPrice": "$23.60",
+    "savings": "$7.10"
+  },
+  {
+    "productID": "CL196",
+    "productName": "Lavazza Espresso Barista Coffee Beans",
+    "category": "Drinks",
+    "brand": "Lavazza",
+    "description": "1kg",
+    "price": "$35.00",
+    "originalPrice": "$44.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL197",
+    "productName": "Musashi Creatine",
+    "category": "Health & Beauty",
+    "brand": "Musashi",
+    "description": "350g",
+    "price": "$36.00",
+    "originalPrice": "$45.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL198",
+    "productName": "Musashi Energy Drink",
+    "category": "Drinks",
+    "brand": "Musashi",
+    "description": "500mL",
+    "price": "$3.15",
+    "originalPrice": "$4.50",
+    "savings": "$1.35"
+  },
+  {
+    "productID": "CL199",
+    "productName": "Musashi Hydrate Drink",
+    "category": "Drinks",
+    "brand": "Musashi",
+    "description": "600mL",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL200",
+    "productName": "Freedom Crafted Blends Granola or Muesli",
+    "category": "Pantry",
+    "brand": "Freedom",
+    "description": "400g",
+    "price": "$5.00",
+    "originalPrice": "$8.50",
+    "savings": "$3.50"
+  },
+  {
+    "productID": "CL201",
+    "productName": "Kellogg's Just Right Cereal",
+    "category": "Pantry",
+    "brand": "Kellogg's",
+    "description": "740g",
+    "price": "$6.00",
+    "originalPrice": "$10.80",
+    "savings": "$4.80"
+  },
+  {
+    "productID": "CL202",
+    "productName": "Vittoria Freeze Dried Instant Coffee",
+    "category": "Drinks",
+    "brand": "Vittoria",
+    "description": "400g",
+    "price": "$23.00",
+    "originalPrice": "$39.00",
+    "savings": "$16.00"
+  },
+  {
+    "productID": "CL203",
+    "productName": "Carman's Natural or Toasted Muesli",
+    "category": "Pantry",
+    "brand": "Carman's",
+    "description": "500g",
+    "price": "$5.00",
+    "originalPrice": "$7.50",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL204",
+    "productName": "Uncle Tobys Oats Big Bowl Sachets",
+    "category": "Pantry",
+    "brand": "Uncle Tobys",
+    "description": "368g",
+    "price": "$5.00",
+    "originalPrice": "$6.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL205",
+    "productName": "Jordan's Clusters or Granola",
+    "category": "Pantry",
+    "brand": "Jordan's",
+    "description": "500g-750g",
+    "price": "$7.00",
+    "originalPrice": "$9.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL206",
+    "productName": "Uncle Tobys Muesli Bars or Roll Ups",
+    "category": "Snacks",
+    "brand": "Uncle Tobys",
+    "description": "145g-185g or 94g",
+    "price": "$4.00",
+    "originalPrice": "$5.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL207",
+    "productName": "Carman's Protein Bars 5 Pack",
+    "category": "Snacks",
+    "brand": "Carman's",
+    "description": "200g",
+    "price": "$5.50",
+    "originalPrice": "$7.90",
+    "savings": "$2.40"
+  },
+  {
+    "productID": "CL208",
+    "productName": "Kellogg's LCMs or Nutri Grain Bars 12 Pack",
+    "category": "Snacks",
+    "brand": "Kellogg's",
+    "description": "240g-264g",
+    "price": "$6.00",
+    "originalPrice": "$7.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL209",
+    "productName": "Coles Finest Triple Cream Brie",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Coles Finest",
+    "description": "200g",
+    "price": "$5.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL210",
+    "productName": "Coles Finest Parmesan & Garlic Crackers",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "120g",
+    "price": "$4.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL211",
+    "productName": "Coles Finest All Butter Mini Cheese Twists",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "75g",
+    "price": "$2.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL212",
+    "productName": "Coles Finest All Butter Cheese & Onion Pinwheels",
+    "category": "Snacks",
+    "brand": "Coles Finest",
+    "description": "90g",
+    "price": "$3.60",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL213",
+    "productName": "Danone Ultimate Yoghurt",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Danone",
+    "description": "4x115g",
+    "price": "$2.85",
+    "originalPrice": "$5.75",
+    "savings": "$2.90"
+  },
+  {
+    "productID": "CL214",
+    "productName": "Chobani Fit Yogurt Pouch",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Chobani",
+    "description": "140g",
+    "price": "$1.80",
+    "originalPrice": "$3.00",
+    "savings": "$1.20"
+  },
+  {
+    "productID": "CL215",
+    "productName": "Vaalia Probiotics Kids Yoghurt Pouch",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Vaalia",
+    "description": "140g",
+    "price": "$2.00",
+    "originalPrice": "$4.50",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL216",
+    "productName": "Dare Flavoured Milk",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Dare",
+    "description": "500mL",
+    "price": "$3.40",
+    "originalPrice": "$4.25",
+    "savings": "$0.85"
+  },
+  {
+    "productID": "CL217",
+    "productName": "Pauls Plus + Protein Low Fat Milk",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Pauls",
+    "description": "400mL",
+    "price": "$3.40",
+    "originalPrice": "$4.40",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL218",
+    "productName": "Yumi's Falafel Balls",
+    "category": "Frozen",
+    "brand": "Yumi's",
+    "description": "225g",
+    "price": "$4.50",
+    "originalPrice": "$6.50",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL219",
+    "productName": "Western Star Spreadable Blend",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Western Star",
+    "description": "375g",
+    "price": "$4.80",
+    "originalPrice": "$6.00",
+    "savings": "$1.20"
+  },
+  {
+    "productID": "CL220",
+    "productName": "Perfect Italiano Grated Cheese",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Perfect Italiano",
+    "description": "250g",
+    "price": "$5.80",
+    "originalPrice": "$6.50",
+    "savings": "$0.70"
+  },
+  {
+    "productID": "CL221",
+    "productName": "Bega Cheese Block, Slices or Grated",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Bega",
+    "description": "250g",
+    "price": "$6.00",
+    "originalPrice": "$7.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL222",
+    "productName": "Cheer Cheese Slices",
+    "category": "Dairy, Eggs & Meals",
+    "brand": "Cheer",
+    "description": "500g",
+    "price": "$10.00",
+    "originalPrice": "$11.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL223",
+    "productName": "Coles Kitchen Garlic Baguette Twin Pack",
+    "category": "Bread & Bakery",
+    "brand": "Coles Kitchen",
+    "description": "450g",
+    "price": "$3.40",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL224",
+    "productName": "Coles Kitchen Lasagne Sheets",
+    "category": "Frozen",
+    "brand": "Coles Kitchen",
+    "description": "375g",
+    "price": "$5.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL225",
+    "productName": "Coles Kitchen Filled Pasta",
+    "category": "Frozen",
+    "brand": "Coles Kitchen",
+    "description": "600g",
+    "price": "$6.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL226",
+    "productName": "Coles Kitchen Potato Gnocchi",
+    "category": "Frozen",
+    "brand": "Coles Kitchen",
+    "description": "500g",
+    "price": "$6.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL227",
+    "productName": "Coles Beef Lasagne",
+    "category": "Frozen",
+    "brand": "Coles",
+    "description": "1.8kg",
+    "price": "$12.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL228",
+    "productName": "Coles Kitchen Pasta Sauce",
+    "category": "Pantry",
+    "brand": "Coles Kitchen",
+    "description": "480g",
+    "price": "$4.95",
+    "originalPrice": "$5.40",
+    "savings": "$0.45"
+  },
+  {
+    "productID": "CL229",
+    "productName": "Coles Kitchen Meal",
+    "category": "Frozen",
+    "brand": "Coles Kitchen",
+    "description": "310g-400g",
+    "price": "$7.50",
+    "originalPrice": "$8.50",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL230",
+    "productName": "Mars Smooth & Creamy Frozen Dessert Bars 5 Pack",
+    "category": "Frozen",
+    "brand": "Mars",
+    "description": "247mL",
+    "price": "$4.75",
+    "originalPrice": "$9.50",
+    "savings": "$4.75"
+  },
+  {
+    "productID": "CL231",
+    "productName": "Streets Paddle Pop Sticks 8 Pack",
+    "category": "Frozen",
+    "brand": "Streets",
+    "description": "544mL",
+    "price": "$4.50",
+    "originalPrice": "$9.00",
+    "savings": "$4.50"
+  },
+  {
+    "productID": "CL232",
+    "productName": "Streets Golden Gaytime Sticks 4 Pack",
+    "category": "Frozen",
+    "brand": "Streets",
+    "description": "400mL",
+    "price": "$6.00",
+    "originalPrice": "$10.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL233",
+    "productName": "Connoisseur Ice Cream Tub",
+    "category": "Frozen",
+    "brand": "Connoisseur",
+    "description": "1 Litre",
+    "price": "$9.00",
+    "originalPrice": "$12.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL234",
+    "productName": "Connoisseur Ice Cream Sticks 4 Pack-6 Pack",
+    "category": "Frozen",
+    "brand": "Connoisseur",
+    "description": "360mL-400mL",
+    "price": "$7.90",
+    "originalPrice": "$12.00",
+    "savings": "$4.10"
+  },
+  {
+    "productID": "CL235",
+    "productName": "Peters Drumstick Cones 4 Pack-6 Pack",
+    "category": "Frozen",
+    "brand": "Peters",
+    "description": "475mL-490mL",
+    "price": "$5.70",
+    "originalPrice": "$9.50",
+    "savings": "$3.80"
+  },
+  {
+    "productID": "CL236",
+    "productName": "Streets Solero Sticks 3 Pack",
+    "category": "Frozen",
+    "brand": "Streets",
+    "description": "270mL",
+    "price": "$4.00",
+    "originalPrice": "$8.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL237",
+    "productName": "Family Faves Chicken Tenders",
+    "category": "Frozen",
+    "brand": "Family Faves",
+    "description": "1kg",
+    "price": "$10.00",
+    "originalPrice": "$12.50",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL238",
+    "productName": "Steggles Chicken Dinosnacks",
+    "category": "Frozen",
+    "brand": "Steggles",
+    "description": "1kg",
+    "price": "$10.50",
+    "originalPrice": "$13.50",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL239",
+    "productName": "Dr. Oetker Ristorante Pizza",
+    "category": "Frozen",
+    "brand": "Dr. Oetker",
+    "description": "310g-390g",
+    "price": "$7.00",
+    "originalPrice": "$9.50",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL240",
+    "productName": "Four'N Twenty Angus Meat Pies 4 Pack",
+    "category": "Frozen",
+    "brand": "Four'N Twenty",
+    "description": "700g",
+    "price": "$7.50",
+    "originalPrice": "$12.50",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL241",
+    "productName": "Canon Foods Chicken Nuggets",
+    "category": "Frozen",
+    "brand": "Canon Foods",
+    "description": "1kg",
+    "price": "$6.50",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL242",
+    "productName": "Patties Party Pack Meat Pies 12 Pack",
+    "category": "Frozen",
+    "brand": "Patties",
+    "description": "560g",
+    "price": "$7.70",
+    "originalPrice": "$9.70",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL243",
+    "productName": "Peters Maxibon 4 Pack",
+    "category": "Frozen",
+    "brand": "Peters",
+    "description": "560mL",
+    "price": "$8.50",
+    "originalPrice": "$11.50",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL244",
+    "productName": "McCain Beer Batter Chips",
+    "category": "Frozen",
+    "brand": "McCain",
+    "description": "750g",
+    "price": "$4.00",
+    "originalPrice": "$5.80",
+    "savings": "$1.80"
+  },
+  {
+    "productID": "CL245",
+    "productName": "McCain Pub Style Fries",
+    "category": "Frozen",
+    "brand": "McCain",
+    "description": "750g",
+    "price": "$4.20",
+    "originalPrice": "$6.00",
+    "savings": "$1.80"
+  },
+  {
+    "productID": "CL246",
+    "productName": "McCain Rustica Pizza",
+    "category": "Frozen",
+    "brand": "McCain",
+    "description": "370g-460g",
+    "price": "$8.80",
+    "originalPrice": "$11.00",
+    "savings": "$2.20"
+  },
+  {
+    "productID": "CL247",
+    "productName": "Ingham's Crumbed Chicken Tenders",
+    "category": "Frozen",
+    "brand": "Ingham's",
+    "description": "400g",
+    "price": "$4.50",
+    "originalPrice": "$5.50",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL248",
+    "productName": "McCain Red Box Tray",
+    "category": "Frozen",
+    "brand": "McCain",
+    "description": "375g-400g",
+    "price": "$4.50",
+    "originalPrice": "$5.60",
+    "savings": "$1.10"
+  },
+  {
+    "productID": "CL249",
+    "productName": "I&J Fish Fillets",
+    "category": "Frozen",
+    "brand": "I&J",
+    "description": "425g",
+    "price": "$6.40",
+    "originalPrice": "$8.00",
+    "savings": "$1.60"
+  },
+  {
+    "productID": "CL250",
+    "productName": "Core Powerfoods Frozen Meal",
+    "category": "Frozen",
+    "brand": "Core Powerfoods",
+    "description": "350g",
+    "price": "$6.50",
+    "originalPrice": "$9.50",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL251",
+    "productName": "I&J Raw Peeled Prawns Tail Off",
+    "category": "Frozen",
+    "brand": "I&J",
+    "description": "500g",
+    "price": "$18.00",
+    "originalPrice": "$24.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL252",
+    "productName": "Nivea Antiperspirant Roll On Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Nivea",
+    "description": "50mL",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL253",
+    "productName": "Dove 48hr Aerosol Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "250mL",
+    "price": "$4.75",
+    "originalPrice": "$9.50",
+    "savings": "$4.75"
+  },
+  {
+    "productID": "CL254",
+    "productName": "Lynx Deodorant Body Spray",
+    "category": "Health & Beauty",
+    "brand": "Lynx",
+    "description": "165mL",
+    "price": "$5.00",
+    "originalPrice": "$8.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL255",
+    "productName": "Just For Men Dark Brown Black Hair Colour",
+    "category": "Health & Beauty",
+    "brand": "Just For Men",
+    "description": "1 Each",
+    "price": "$7.75",
+    "originalPrice": "$15.50",
+    "savings": "$7.75"
+  },
+  {
+    "productID": "CL256",
+    "productName": "Dove Whole Body Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "230mL",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00"
+  },
+  {
+    "productID": "CL257",
+    "productName": "Depend Real Fit Continence Underwear for Men Size L",
+    "category": "Health & Beauty",
+    "brand": "Depend",
+    "description": "8 Pack",
+    "price": "$14.00",
+    "originalPrice": "$17.50",
+    "savings": "$3.50"
+  },
+  {
+    "productID": "CL258",
+    "productName": "Brut 72hr Antiperspirant Aerosol Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Brut",
+    "description": "212mL",
+    "price": "$4.75",
+    "originalPrice": "$9.50",
+    "savings": "$4.75"
+  },
+  {
+    "productID": "CL259",
+    "productName": "Brut Endurance 48hr Antiperspirant Aerosol Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Brut",
+    "description": "212mL",
+    "price": "$4.25",
+    "originalPrice": "$8.50",
+    "savings": "$4.25"
+  },
+  {
+    "productID": "CL260",
+    "productName": "U By Kotex Regular or Super Tampons",
+    "category": "Health & Beauty",
+    "brand": "U By Kotex",
+    "description": "16 Pack",
+    "price": "$3.50",
+    "originalPrice": "$5.00",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL261",
+    "productName": "Rascals Premium Nappy Pants",
+    "category": "Baby",
+    "brand": "Rascals",
+    "description": "22 Pack-29 Pack",
+    "price": "$9.50",
+    "originalPrice": "$17.50",
+    "savings": "$8.00"
+  },
+  {
+    "productID": "CL262",
+    "productName": "BabyLove Cosifit Jumbo Nappies",
+    "category": "Baby",
+    "brand": "BabyLove",
+    "description": "48 Pack-84 Pack",
+    "price": "$24.00",
+    "originalPrice": "$30.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL263",
+    "productName": "Only Organic Banana Biscotti or Apple, Coconut & Flaxseed Biscuits",
+    "category": "Snacks",
+    "brand": "Only Organic",
+    "description": "100g",
+    "price": "$4.00",
+    "originalPrice": "$5.00",
+    "savings": "$1.00"
+  },
+  {
+    "productID": "CL264",
+    "productName": "Karicare Stage 3 or 4 Toddler Milk Drink",
+    "category": "Baby",
+    "brand": "Karicare",
+    "description": "900g",
+    "price": "$16.00",
+    "originalPrice": "$20.00",
+    "savings": "$4.00"
+  },
+  {
+    "productID": "CL265",
+    "productName": "Oli6 Goat Milk Stage 3 Premium Toddler Drink",
+    "category": "Baby",
+    "brand": "Oli6",
+    "description": "800g",
+    "price": "$33.50",
+    "originalPrice": "$39.50",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL266",
+    "productName": "Little Bellies Organic Softcorn Sweet Cinnamon or Sweet & Salty",
+    "category": "Snacks",
+    "brand": "Little Bellies",
+    "description": "32g",
+    "price": "$5.25",
+    "originalPrice": "$7.50",
+    "savings": "$2.25"
+  },
+  {
+    "productID": "CL267",
+    "productName": "Garnier Fructis Hair Food",
+    "category": "Health & Beauty",
+    "brand": "Garnier",
+    "description": "390mL",
+    "price": "$9.00",
+    "originalPrice": "$15.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL268",
+    "productName": "Batiste Dry Shampoo Original or Blush",
+    "category": "Health & Beauty",
+    "brand": "Batiste",
+    "description": "350mL",
+    "price": "$11.00",
+    "originalPrice": "$19.00",
+    "savings": "$8.00"
+  },
+  {
+    "productID": "CL269",
+    "productName": "Ogx Bond Protein Shampoo or Conditioner",
+    "category": "Health & Beauty",
+    "brand": "Ogx",
+    "description": "385mL",
+    "price": "$15.00",
+    "originalPrice": "$25.00",
+    "savings": "$10.00"
+  },
+  {
+    "productID": "CL270",
+    "productName": "E.L.F. Glow Reviver Lip Oil",
+    "category": "Health & Beauty",
+    "brand": "E.L.F.",
+    "description": "7.6mL",
+    "price": "$18.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL271",
+    "productName": "L'Oréal Paris Telescopic Mascara",
+    "category": "Health & Beauty",
+    "brand": "L'Oréal Paris",
+    "description": "8mL",
+    "price": "$18.00",
+    "originalPrice": "$30.00",
+    "savings": "$12.00"
+  },
+  {
+    "productID": "CL272",
+    "productName": "L'Oréal Paris True Match Liquid Foundation",
+    "category": "Health & Beauty",
+    "brand": "L'Oréal Paris",
+    "description": "30mL",
+    "price": "$20.00",
+    "originalPrice": "$34.00",
+    "savings": "$14.00"
+  },
+  {
+    "productID": "CL273",
+    "productName": "Dove Advanced 72hr Aerosol Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "250mL",
+    "price": "$5.75",
+    "originalPrice": "$11.50",
+    "savings": "$5.75"
+  },
+  {
+    "productID": "CL274",
+    "productName": "Dove Advanced Body Wash",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "700mL",
+    "price": "$11.00",
+    "originalPrice": "$22.00",
+    "savings": "$11.00"
+  },
+  {
+    "productID": "CL275",
+    "productName": "Dove Shampoo or Conditioner",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "850mL",
+    "price": "$9.75",
+    "originalPrice": "$19.50",
+    "savings": "$9.75"
+  },
+  {
+    "productID": "CL276",
+    "productName": "Scentory Room Spray Air Freshner",
+    "category": "Household",
+    "brand": "Scentory",
+    "description": "250mL",
+    "price": "$5.00",
+    "originalPrice": "$10.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL277",
+    "productName": "Mortein PowerGard Cockroach Baits",
+    "category": "Household",
+    "brand": "Mortein",
+    "description": "12 Pack",
+    "price": "$12.25",
+    "originalPrice": "$17.50",
+    "savings": "$5.25"
+  },
+  {
+    "productID": "CL278",
+    "productName": "Mortein Fast Knockdown Multi Insect Killer",
+    "category": "Household",
+    "brand": "Mortein",
+    "description": "300g",
+    "price": "$7.00",
+    "originalPrice": "$10.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL279",
+    "productName": "Air Wick Aerosol Free Automatic Spray + Refill",
+    "category": "Household",
+    "brand": "Air Wick",
+    "description": "1 Pack",
+    "price": "$13.00",
+    "originalPrice": "$26.00",
+    "savings": "$13.00"
+  },
+  {
+    "productID": "CL280",
+    "productName": "Duracell Coppertop Batteries AA or AAA",
+    "category": "Stationery & Media",
+    "brand": "Duracell",
+    "description": "20 Pack",
+    "price": "$14.50",
+    "originalPrice": "$29.00",
+    "savings": "$14.50"
+  },
+  {
+    "productID": "CL281",
+    "productName": "Earth Choice All In 1 Dishwashing Tablets",
+    "category": "Household",
+    "brand": "Earth Choice",
+    "description": "42 Pack",
+    "price": "$14.20",
+    "originalPrice": "$17.80",
+    "savings": "$3.60"
+  },
+  {
+    "productID": "CL282",
+    "productName": "Omo Ultimate Laundry Capsules",
+    "category": "Household",
+    "brand": "Omo",
+    "description": "28 Pack",
+    "price": "$18.00",
+    "originalPrice": "$36.00",
+    "savings": "$18.00"
+  },
+  {
+    "productID": "CL283",
+    "productName": "My Dog Dog Food Tray",
+    "category": "Pet",
+    "brand": "My Dog",
+    "description": "100g",
+    "price": "$1.40",
+    "originalPrice": "$1.80",
+    "savings": "$0.40"
+  },
+  {
+    "productID": "CL284",
+    "productName": "Schmackos Dog Treats",
+    "category": "Pet",
+    "brand": "Schmackos",
+    "description": "200g",
+    "price": "$5.50",
+    "originalPrice": "$8.00",
+    "savings": "$2.50"
+  },
+  {
+    "productID": "CL285",
+    "productName": "Supercoat Dry Dog Food",
+    "category": "Pet",
+    "brand": "Supercoat",
+    "description": "6.7kg-7kg",
+    "price": "$27.00",
+    "originalPrice": "$36.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL286",
+    "productName": "Fancy Feast Classic or Creamy Delights Cat Food",
+    "category": "Pet",
+    "brand": "Fancy Feast",
+    "description": "85g",
+    "price": "$1.20",
+    "originalPrice": "$1.60",
+    "savings": "$0.40"
+  },
+  {
+    "productID": "CL287",
+    "productName": "Temptations Cat Treats",
+    "category": "Pet",
+    "brand": "Temptations",
+    "description": "85g",
+    "price": "$4.00",
+    "originalPrice": "$5.50",
+    "savings": "$1.50"
+  },
+  {
+    "productID": "CL288",
+    "productName": "Fussy Cat Cat Food Pouches 12x80g",
+    "category": "Pet",
+    "brand": "Fussy Cat",
+    "description": "12x80g",
+    "price": "$9.45",
+    "originalPrice": "$13.50",
+    "savings": "$4.05"
+  },
+  {
+    "productID": "CL289",
+    "productName": "Bref In The Bowl Toilet Cleaner",
+    "category": "Household",
+    "brand": "Bref",
+    "description": "2 Pack 100g",
+    "price": "$5.00",
+    "originalPrice": "$11.00",
+    "savings": "$6.00"
+  },
+  {
+    "productID": "CL290",
+    "productName": "Sistema Ultra Container",
+    "category": "Household",
+    "brand": "Sistema",
+    "description": "460mL",
+    "price": "$4.25",
+    "originalPrice": "$8.50",
+    "savings": "$4.25"
+  },
+  {
+    "productID": "CL291",
+    "productName": "Sistema Ultra Container",
+    "category": "Household",
+    "brand": "Sistema",
+    "description": "4 Litre",
+    "price": "$14.20",
+    "originalPrice": "$28.40",
+    "savings": "$14.20"
+  },
+  {
+    "productID": "CL292",
+    "productName": "Décor Tellfresh Container",
+    "category": "Household",
+    "brand": "Décor",
+    "description": "1 Litre",
+    "price": "$3.00",
+    "originalPrice": "$6.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL293",
+    "productName": "Brunnings 1 Hour Fast Action Weed Killer",
+    "category": "Garden",
+    "brand": "Brunnings",
+    "description": "1 Litre",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00"
+  },
+  {
+    "productID": "CL294",
+    "productName": "Brita Water Filter Maxtra Pro Limescale Expert",
+    "category": "Household",
+    "brand": "Brita",
+    "description": "2 Pack",
+    "price": "$28.00",
+    "originalPrice": "$35.00",
+    "savings": "$7.00"
+  },
+  {
+    "productID": "CL295",
+    "productName": "Telstra T-Prime 5G",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Telstra",
+    "description": "each",
+    "price": "$159.00",
+    "originalPrice": "$199.00",
+    "savings": "$40.00"
+  },
+  {
+    "productID": "CL296",
+    "productName": "Disney Throw Rug or Licensed Throw Rug",
+    "category": "Clothing",
+    "brand": "Disney",
+    "description": "each",
+    "price": "$25.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL297",
+    "productName": "Disney Cushion or Licensed Cushion",
+    "category": "Clothing",
+    "brand": "Disney",
+    "description": "each",
+    "price": "$25.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL298",
+    "productName": "Telstra Samsung A17 5G",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Telstra",
+    "description": "each",
+    "price": "$279.00",
+    "originalPrice": "$329.00",
+    "savings": "$50.00"
+  },
+  {
+    "productID": "CL299",
+    "productName": "Flybuys 2000 Bonus Points on $100 and $250 Coles Mastercard Gift Cards",
+    "category": "Gift Cards",
+    "brand": "Coles",
+    "description": "each",
+    "price": null,
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL300",
+    "productName": "Optus X-Value 5G",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Optus",
+    "description": "each",
+    "price": "$129.00",
+    "originalPrice": "$149.00",
+    "savings": "$20.00"
+  },
+  {
+    "productID": "CL301",
+    "productName": "Optus X Pro 5G",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Optus",
+    "description": "each",
+    "price": "$139.00",
+    "originalPrice": "$169.00",
+    "savings": "$30.00"
+  },
+  {
+    "productID": "CL302",
+    "productName": "Motorola moto g35 5G",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Motorola",
+    "description": "each",
+    "price": "$99.00",
+    "originalPrice": "$199.00",
+    "savings": "$100.00"
+  },
+  {
+    "productID": "CL303",
+    "productName": "Optus $35 AutoRecharge Only Prepaid SIM Starter Kit",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Optus",
+    "description": "each",
+    "price": "$13.00",
+    "originalPrice": "$35.00",
+    "savings": "$22.00"
+  },
+  {
+    "productID": "CL304",
+    "productName": "Optus $49 Prepaid SIM Starter Kit",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Optus",
+    "description": "each",
+    "price": "$17.00",
+    "originalPrice": "$49.00",
+    "savings": "$32.00"
+  },
+  {
+    "productID": "CL305",
+    "productName": "Optus $350 Prepaid SIM Starter Kit",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Optus",
+    "description": "each",
+    "price": "$229.00",
+    "originalPrice": "$350.00",
+    "savings": "$121.00"
+  },
+  {
+    "productID": "CL306",
+    "productName": "Dodo $23 SIM + Credit Pack",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Dodo",
+    "description": "each",
+    "price": "$10.00",
+    "originalPrice": "$23.00",
+    "savings": "$13.00"
+  },
+  {
+    "productID": "CL307",
+    "productName": "Lyca $30 Starter Pack",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Lyca",
+    "description": "each",
+    "price": "$9.00",
+    "originalPrice": "$30.00",
+    "savings": "$21.00"
+  },
+  {
+    "productID": "CL308",
+    "productName": "Boost $49 SIM Pack",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Boost",
+    "description": "each",
+    "price": "$17.00",
+    "originalPrice": "$49.00",
+    "savings": "$32.00"
+  },
+  {
+    "productID": "CL309",
+    "productName": "iPhone SE3 (2022) 64GB Premium Refurbished",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Apple",
+    "description": "each",
+    "price": "$299.00",
+    "originalPrice": "$349.00",
+    "savings": "$50.00"
+  },
+  {
+    "productID": "CL310",
+    "productName": "Coles Mobile $30 Prepaid SIM",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Coles Mobile",
+    "description": "each",
+    "price": "$11.00",
+    "originalPrice": "$30.00",
+    "savings": "$19.00"
+  },
+  {
+    "productID": "CL311",
+    "productName": "Coles Mobile $240 Prepaid SIM",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Coles Mobile",
+    "description": "each",
+    "price": "$189.00",
+    "originalPrice": "$240.00",
+    "savings": "$51.00"
+  },
+  {
+    "productID": "CL312",
+    "productName": "Coles Mobile $55 2 SIM Bundle",
+    "category": "Mobile & Tech Accessories",
+    "brand": "Coles Mobile",
+    "description": "each",
+    "price": "$55.00",
+    "originalPrice": null,
+    "savings": null
+  },
+  {
+    "productID": "CL313",
+    "productName": "amaysim $35 Starter Pack",
+    "category": "Mobile & Tech Accessories",
+    "brand": "amaysim",
+    "description": "each",
+    "price": "$12.00",
+    "originalPrice": "$35.00",
+    "savings": "$23.00"
+  },
+  {
+    "productID": "CL314",
+    "productName": "amaysim $320 Starter Pack",
+    "category": "Mobile & Tech Accessories",
+    "brand": "amaysim",
+    "description": "each",
+    "price": "$240.00",
+    "originalPrice": "$320.00",
+    "savings": "$80.00"
+  },
+  {
+    "productID": "CL315",
+    "productName": "Hahn Super Dry Bottles",
+    "category": "Liquor",
+    "brand": "Hahn",
+    "description": "24x330mL",
+    "price": "$58.00",
+    "originalPrice": "$60.00",
+    "savings": "$2.00"
+  },
+  {
+    "productID": "CL316",
+    "productName": "Hahn Ultra Zero Carb Bottles",
+    "category": "Liquor",
+    "brand": "Hahn",
+    "description": "6x330mL",
+    "price": "$21.00",
+    "originalPrice": "$24.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL317",
+    "productName": "Kim Crawford Marlborough Sauvignon Blanc",
+    "category": "Liquor",
+    "brand": "Kim Crawford",
+    "description": "750mL",
+    "price": "$15.00",
+    "originalPrice": "$29.00",
+    "savings": "$14.00"
+  },
+  {
+    "productID": "CL318",
+    "productName": "Sisters Run Cabernet Sauvignon",
+    "category": "Liquor",
+    "brand": "Sisters Run",
+    "description": "750mL",
+    "price": "$15.00",
+    "originalPrice": "$20.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL319",
+    "productName": "Jack Daniels & Cola Cans",
+    "category": "Liquor",
+    "brand": "Jack Daniels",
+    "description": "6x375mL",
+    "price": "$30.00",
+    "originalPrice": "$39.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL320",
+    "productName": "Woodstock Bourbon & Cola 12% Cans",
+    "category": "Liquor",
+    "brand": "Woodstock",
+    "description": "10x200mL",
+    "price": "$57.00",
+    "originalPrice": "$64.00",
+    "savings": "$7.00"
+  },
+  {
+    "productID": "CL321",
+    "productName": "Jack Daniels Gentleman Jack Tennessee Whiskey",
+    "category": "Liquor",
+    "brand": "Jack Daniels",
+    "description": "700mL",
+    "price": "$62.00",
+    "originalPrice": "$79.00",
+    "savings": "$17.00"
+  },
+  {
+    "productID": "CL322",
+    "productName": "The Kraken Spiced Rum",
+    "category": "Liquor",
+    "brand": "The Kraken",
+    "description": "700mL",
+    "price": "$60.00",
+    "originalPrice": "$72.00",
+    "savings": "$12.00"
+  },
+  {
+    "productID": "CL323",
+    "productName": "Matso's Ginger Beer Cans",
+    "category": "Liquor",
+    "brand": "Matso's",
+    "description": "6x330mL",
+    "price": "$27.00",
+    "originalPrice": "$32.50",
+    "savings": "$5.50"
+  },
+  {
+    "productID": "CL324",
+    "productName": "Victoria Bitter Block Cans",
+    "category": "Liquor",
+    "brand": "Victoria Bitter",
+    "description": "30x375mL",
+    "price": "$64.00",
+    "originalPrice": "$73.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL325",
+    "productName": "Squealini Zesty Lemon Spritz",
+    "category": "Liquor",
+    "brand": "Squealini",
+    "description": "750mL",
+    "price": "$16.00",
+    "originalPrice": "$21.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL326",
+    "productName": "Winton Road Eden Valley Chardonnay",
+    "category": "Liquor",
+    "brand": "Winton Road",
+    "description": "750mL",
+    "price": "$18.00",
+    "originalPrice": "$30.00",
+    "savings": "$12.00"
+  },
+  {
+    "productID": "CL327",
+    "productName": "-196 Double Lemon & Vodka Cans",
+    "category": "Liquor",
+    "brand": "-196",
+    "description": "10x330mL",
+    "price": "$47.00",
+    "originalPrice": "$56.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL328",
+    "productName": "Smirnoff Crush Passionfruit & Guava 6% Cans",
+    "category": "Liquor",
+    "brand": "Smirnoff",
+    "description": "4x440mL",
+    "price": "$28.00",
+    "originalPrice": "$33.00",
+    "savings": "$5.00"
+  },
+  {
+    "productID": "CL329",
+    "productName": "Altos Plata Tequila",
+    "category": "Liquor",
+    "brand": "Altos",
+    "description": "700mL",
+    "price": "$60.00",
+    "originalPrice": "$76.00",
+    "savings": "$16.00"
+  },
+  {
+    "productID": "CL330",
+    "productName": "Grey Goose Vodka",
+    "category": "Liquor",
+    "brand": "Grey Goose",
+    "description": "700mL",
+    "price": "$74.00",
+    "originalPrice": "$85.00",
+    "savings": "$11.00"
+  },
+  {
+    "productID": "CL331",
+    "productName": "Dove Advanced 72hr Roll On Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Dove",
+    "description": "50mL",
+    "price": "$3.00",
+    "originalPrice": "$6.00",
+    "savings": "$3.00"
+  },
+  {
+    "productID": "CL332",
+    "productName": "David Beckham Body Spray",
+    "category": "Health & Beauty",
+    "brand": "David Beckham",
+    "description": "150mL",
+    "price": "$4.50",
+    "originalPrice": "$9.00",
+    "savings": "$4.50"
+  },
+  {
+    "productID": "CL333",
+    "productName": "Nivea Antiperspirant Aerosol Deodorant",
+    "category": "Health & Beauty",
+    "brand": "Nivea",
+    "description": "250mL",
+    "price": "$4.75",
+    "originalPrice": "$9.50",
+    "savings": "$4.75"
+  },
+  {
+    "productID": "CL334",
+    "productName": "Nivea Men Protect Moisturiser SPF15",
+    "category": "Health & Beauty",
+    "brand": "Nivea",
+    "description": "75mL",
+    "price": "$7.00",
+    "originalPrice": "$14.00",
+    "savings": "$7.00"
+  },
+  {
+    "productID": "CL335",
+    "productName": "Schick Quattro 4 Titanium Razor Kit with 5 Refill Blades",
+    "category": "Health & Beauty",
+    "brand": "Schick",
+    "description": "1 Pack",
+    "price": "$9.00",
+    "originalPrice": "$18.00",
+    "savings": "$9.00"
+  },
+  {
+    "productID": "CL336",
+    "productName": "Gillette Blue 3 Disposable Razors",
+    "category": "Health & Beauty",
+    "brand": "Gillette",
+    "description": "20 Pack",
+    "price": "$24.30",
+    "originalPrice": null,
+    "savings": null
+  }
+]

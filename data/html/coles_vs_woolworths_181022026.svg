@@ -1,0 +1,80 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1080" fill="#F8F6F2"/>
+<!-- 主標題區域 -->
+<rect x="60" y="40" width="960" height="160" rx="20" fill="#2A5C4E"/>
+<path d="M140 110 L220 110 L180 160 L140 110Z" fill="#E7B42C" opacity="0.8"/>
+<text x="280" y="140" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">🛒 本週超市價格大比拼</text>
+<text x="280" y="190" font-family="Arial, sans-serif" font-size="36" fill="#E7E5D9">2月18日 - 2月24日</text>
+<!-- 對戰卡片：Woolworths vs Coles -->
+<g transform="translate(60, 240)">
+  <!-- Woolworths 卡片 (左) -->
+  <rect x="0" y="0" width="450" height="200" rx="30" fill="white" stroke="#D32F2F" stroke-width="4"/>
+  <text x="40" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#2A5C4E">Woolworths</text>
+  <text x="40" y="130" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#D32F2F">38</text>
+  <text x="120" y="140" font-family="Arial, sans-serif" font-size="36" fill="#333">件價格較低</text>
+  <text x="40" y="190" font-family="Arial, sans-serif" font-size="36" fill="#2A5C4E">最佳優惠 45%</text>
+  <circle cx="370" cy="100" r="40" fill="#D32F2F" opacity="0.2"/>
+  <path d="M370 80 L390 110 L350 110 L370 80Z" fill="#D32F2F" transform="rotate(180, 370, 100)"/>
+  <!-- VS 圓圈 -->
+  <circle cx="510" cy="100" r="50" fill="#E7B42C"/>
+  <text x="485" y="125" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="white">VS</text>
+  <!-- Coles 卡片 (右) -->
+  <rect x="570" y="0" width="450" height="200" rx="30" fill="white" stroke="#1E4D7C" stroke-width="4"/>
+  <text x="610" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#1E4D7C">Coles</text>
+  <text x="610" y="130" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#1E4D7C">--</text>
+  <text x="690" y="140" font-family="Arial, sans-serif" font-size="36" fill="#333">件價格較低</text>
+  <text x="610" y="190" font-family="Arial, sans-serif" font-size="36" fill="#1E4D7C">最佳優惠 37%</text>
+  <circle cx="940" cy="100" r="40" fill="#1E4D7C" opacity="0.2"/>
+  <path d="M940 80 L960 110 L920 110 L940 80Z" fill="#1E4D7C"/>
+</g>
+<!-- 統計摘要 -->
+<g transform="translate(60, 480)">
+  <rect x="0" y="0" width="960" height="100" rx="20" fill="white" stroke="#AAAAAA" stroke-width="2" stroke-dasharray="10 10"/>
+  <text x="40" y="50" font-family="Arial, sans-serif" font-size="40" fill="#333">📊 比較商品：<tspan font-weight="bold">84件</tspan>　|　💰 總節省：<tspan font-weight="bold">超過 $708</tspan></text>
+  <text x="40" y="90" font-family="Arial, sans-serif" font-size="32" fill="#666">🏆 本週贏家：<tspan fill="#D32F2F" font-weight="bold">Woolworths</tspan></text>
+</g>
+<!-- 精選半價優惠標題 -->
+<rect x="60" y="610" width="400" height="60" rx="30" fill="#D32F2F"/>
+<text x="140" y="655" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white">🔥 精選半價優惠</text>
+<!-- 優惠列表 - 兩列網格 -->
+<g transform="translate(60, 690)">
+  <!-- 列1 -->
+  <rect x="0" y="0" width="460" height="110" rx="15" fill="white" stroke="#DDD"/>
+  <text x="30" y="45" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#333">Bulla 雪糕 2L</text>
+  <text x="30" y="85" font-family="Arial, sans-serif" font-size="32" fill="#D32F2F">$6</text>
+  <text x="80" y="85" font-family="Arial, sans-serif" font-size="28" fill="#999" text-decoration="line-through">$12</text>
+  <!-- 列2 -->
+  <rect x="500" y="0" width="460" height="110" rx="15" fill="white" stroke="#DDD"/>
+  <text x="530" y="45" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#333">Arnott's 餅乾</text>
+  <text x="530" y="85" font-family="Arial, sans-serif" font-size="32" fill="#D32F2F">$2</text>
+  <text x="580" y="85" font-family="Arial, sans-serif" font-size="28" fill="#999" text-decoration="line-through">$4</text>
+  <!-- 列3 -->
+  <rect x="0" y="130" width="460" height="110" rx="15" fill="white" stroke="#DDD"/>
+  <text x="30" y="175" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#333">OMO 洗衣液/粉</text>
+  <text x="30" y="215" font-family="Arial, sans-serif" font-size="32" fill="#D32F2F">$15</text>
+  <text x="80" y="215" font-family="Arial, sans-serif" font-size="28" fill="#999" text-decoration="line-through">$30</text>
+  <!-- 列4 -->
+  <rect x="500" y="130" width="460" height="110" rx="15" fill="white" stroke="#DDD"/>
+  <text x="530" y="175" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#333">汽水 (多款)</text>
+  <text x="530" y="215" font-family="Arial, sans-serif" font-size="32" fill="#D32F2F">半價</text>
+  <!-- 列5 -->
+  <rect x="0" y="260" width="460" height="110" rx="15" fill="white" stroke="#DDD"/>
+  <text x="30" y="305" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#333">Cadbury 朱古力</text>
+  <text x="30" y="345" font-family="Arial, sans-serif" font-size="32" fill="#D32F2F">半價</text>
+  <!-- 列6 -->
+  <rect x="500" y="260" width="460" height="110" rx="15" fill="white" stroke="#DDD"/>
+  <text x="530" y="305" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#333">Raw C 椰子水 1L</text>
+  <text x="530" y="345" font-family="Arial, sans-serif" font-size="32" fill="#D32F2F">$2.75</text>
+  <text x="600" y="345" font-family="Arial, sans-serif" font-size="28" fill="#999" text-decoration="line-through">$5.50</text>
+</g>
+<!-- 底部額外優惠 + 行動呼籲 -->
+<g transform="translate(60, 940)">
+  <text x="0" y="30" font-family="Arial, sans-serif" font-size="32" fill="#333">• Nestlé Milo 1kg 半價　• Grinders 咖啡豆 1kg 半價</text>
+  <rect x="0" y="60" width="960" height="80" rx="40" fill="#2A5C4E"/>
+  <text x="50" y="110" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white">👉 想知更多優惠詳情？立即睇完整報告！</text>
+  <text x="340" y="160" font-family="Arial, sans-serif" font-size="28" fill="#E7B42C" text-decoration="underline">https://www.michaelleung.info/prices/...</text>
+</g>
+<!-- 頁腳標籤和裝飾 -->
+<text x="60" y="1030" font-family="Arial, sans-serif" font-size="28" fill="#666">#超市優惠 #Coles #Woolworths #澳洲生活 #價格比較 #半價優惠</text>
+<text x="60" y="1070" font-family="Arial, sans-serif" font-size="28" fill="#666">#精明消費 #布里斯本 #悉尼 #墨爾本 #澳洲華人</text>
+</svg>

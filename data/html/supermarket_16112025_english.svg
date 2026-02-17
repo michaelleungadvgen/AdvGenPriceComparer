@@ -1,0 +1,68 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f8fafc"/>
+
+  <!-- Header Banner -->
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#85c5d4"/>
+      <stop offset="100%" stop-color="#6bb0c0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1200" height="100" fill="url(#headerGradient)"/>
+
+  <!-- Logo / Brand -->
+  <text x="60" y="65" font-family="Segoe UI, -apple-system, sans-serif" font-size="28" font-weight="700" fill="white">
+    MichaelLeung.info
+  </text>
+
+  <!-- Main Headline -->
+  <text x="600" y="150" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="40" font-weight="800" fill="#1e293b">
+    🤖 AI-Powered Supermarket Deals
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="195" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="22" fill="#64748b">
+    Drakes + ALDI Weekly Savings (Australia)
+  </text>
+
+  <!-- AI Badge -->
+  <rect x="470" y="215" width="260" height="36" rx="18" fill="url(#aiBadgeGradient)"/>
+  <defs>
+    <linearGradient id="aiBadgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <text x="600" y="242" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600" fill="white">
+    🤖 AI-Scanned • Real-Time Price Tracking
+  </text>
+
+  <!-- Drakes Section -->
+  <g transform="translate(100, 270)">
+    <text x="0" y="0" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#1e293b">📍 Drakes (Nov 12–18)</text>
+    <text x="0" y="35" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 5kg Aussie Rice — <tspan fill="#059669" font-weight="700">$10.00</tspan> (save $11!)</text>
+    <text x="0" y="65" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• OMO Laundry — <tspan fill="#059669" font-weight="700">$18.00</tspan> (50% off!)</text>
+    <text x="0" y="95" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• Coca-Cola 24-pack — <tspan fill="#059669" font-weight="700">$12.60</tspan> (save $17)</text>
+    <text x="0" y="125" font-family="Segoe UI, sans-serif" font-size="20" fill="#ef4444" font-weight="600">🎁 Spend $60 → Get Hot Wheels! Grand Prize: $4,000</text>
+  </g>
+
+  <!-- ALDI Section -->
+  <g transform="translate(620, 270)">
+    <text x="0" y="0" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#1e293b">🛒 ALDI Black Wednesday</text>
+    <text x="0" y="35" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• 65" 4K TV — <tspan fill="#059669" font-weight="700">$549</tspan></text>
+    <text x="0" y="65" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• Robo Vacuum — <tspan fill="#059669" font-weight="700">$599</tspan></text>
+    <text x="0" y="95" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">• Dual Air Fryer — <tspan fill="#059669" font-weight="700">$89.99</tspan></text>
+    <text x="0" y="125" font-family="Segoe UI, sans-serif" font-size="20" fill="#ef4444" font-weight="600">⏰ Starts Nov 26 • Limited Stock!</text>
+  </g>
+
+  <!-- Footer CTA -->
+  <rect x="0" y="530" width="1200" height="100" fill="#1e293b"/>
+  <text x="600" y="585" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="600" fill="white">
+    Get Weekly AI Deal Alerts → michaelleung.info
+  </text>
+
+  <!-- Decorative Dots -->
+  <circle cx="110" cy="285" r="6" fill="#2563eb"/>
+  <circle cx="630" cy="285" r="6" fill="#2563eb"/>
+</svg>

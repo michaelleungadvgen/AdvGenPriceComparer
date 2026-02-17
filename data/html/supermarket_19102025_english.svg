@@ -1,0 +1,69 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Arial', sans-serif">
+  
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <text x="400" y="50" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">
+    This Week's Supermarket Showdown!
+  </text>
+  <text x="400" y="80" font-size="18" text-anchor="middle" fill="#555">
+    Drakes Final 1/2 Price Deals + Aldi New Buys
+  </text>
+
+  <g id="drakes-column">
+    <rect x="20" y="110" width="370" height="460" fill="#FFF0F0" stroke="#E60000" stroke-width="2" rx="10" />
+    
+    <text x="205" y="155" font-size="28" font-weight="bold" text-anchor="middle" fill="#D00000">
+      Drakes: Last Chance Dash
+    </text>
+    <text x="205" y="185" font-size="16" text-anchor="middle" fill="#333">
+      (Ends Tues, Oct 21!)
+    </text>
+
+    <circle cx="205" cy="255" r="50" fill="#FFD700" stroke="#D00000" stroke-width="2" />
+    <text x="205" y="255" font-size="32" font-weight="bold" text-anchor="middle" fill="#D00000" dy=".1em">
+      1/2 Price
+    </text>
+    <text x="205" y="280" font-size="18" font-weight="bold" text-anchor="middle" fill="#D00000">
+      50% OFF
+    </text>
+
+    <text x="40" y="350" font-size="18" fill="#000" font-weight="bold">🛒 Must-Grab 1/2 Price:</text>
+    <text x="55" y="380" font-size="15" fill="#333">• Omo Laundry Liquid (Save $15!)</text>
+    <text x="55" y="405" font-size="15" fill="#333">• Finish Dishwasher Tabs</text>
+    <text x="55" y="430" font-size="15" fill="#333">• Pantene Hair Care</text>
+    <text x="55" y="455" font-size="15" fill="#333">• Smith's Crinkle Cut Chips</text>
+    <text x="55" y="480" font-size="15" fill="#333">• Nanna's Pies</text>
+
+    <text x="205" y="535" font-size="16" text-anchor="middle" fill="#D00000" font-weight="bold">
+      🏎️ Hot Wheels with $60 Spend!
+    </text>
+  </g>
+
+  <g id="aldi-column">
+    <rect x="410" y="110" width="370" height="460" fill="#EFF5FF" stroke="#00509A" stroke-width="2" rx="10" />
+
+    <text x="595" y="155" font-size="28" font-weight="bold" text-anchor="middle" fill="#00509A">
+      Aldi: Get Ready!
+    </text>
+    <text x="595" y="185" font-size="16" text-anchor="middle" fill="#333">
+      (Starts Wed, Oct 22!)
+    </text>
+
+    <rect x="450" y="220" width="290" height="50" fill="#F0F0F0" rx="5" />
+    <text x="595" y="255" font-size="24" font-weight="bold" text-anchor="middle" fill="#00509A">
+      🌟 Special Buys 🌟
+    </text>
+
+    <text x="430" y="350" font-size="18" fill="#000" font-weight="bold">🛍️ Must-Grab New Buys:</text>
+    <text x="445" y="380" font-size="15" fill="#333">• Toni & Guy Hair Care (600ml)</text>
+    <text x="445" y="405" font-size="15" fill="#333">• Ambiano Ionic Hairdryer</text>
+    <text x="445" y="430" font-size="15" fill="#333">• Lacura Beauty/Skincare</text>
+    <text x="445" y="455" font-size="15" fill="#333">• Fitness Protein Powders</text>
+    <text x="445" y="480" font-size="15" fill="#333">• Arnott's Shapes Biscuits</text>
+
+    <text x="595" y="535" font-size="16" text-anchor="middle" fill="#00509A" font-weight="bold">
+      (Middle Aisle on Wednesday!)
+    </text>
+  </g>
+
+</svg>

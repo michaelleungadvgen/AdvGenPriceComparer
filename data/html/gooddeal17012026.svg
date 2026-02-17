@@ -1,0 +1,178 @@
+<svg width="800" height="1200" viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    text {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .title {
+      font-weight: 700;
+      font-size: 32px;
+      fill: #2D3748;
+    }
+    
+    .subtitle {
+      font-weight: 600;
+      font-size: 20px;
+      fill: #4A5568;
+    }
+    
+    .deal-title {
+      font-weight: 600;
+      font-size: 18px;
+      fill: #2D3748;
+    }
+    
+    .store-name {
+      font-weight: 500;
+      font-size: 16px;
+      fill: #4A5568;
+    }
+    
+    .price {
+      font-weight: 700;
+      font-size: 20px;
+      fill: #2B6CB0;
+    }
+    
+    .savings {
+      font-weight: 600;
+      font-size: 16px;
+      fill: #38A169;
+    }
+    
+    .tag {
+      font-weight: 600;
+      font-size: 14px;
+      fill: #FFFFFF;
+    }
+    
+    .footer {
+      font-weight: 500;
+      font-size: 14px;
+      fill: #718096;
+    }
+    
+    .cta {
+      font-weight: 700;
+      font-size: 18px;
+      fill: #FFFFFF;
+    }
+  </style>
+  
+  <!-- Background -->
+  <rect width="800" height="1200" fill="#F7FAFC"/>
+  
+  <!-- Header Section -->
+  <rect width="800" height="180" fill="#2D3748"/>
+  <rect x="20" y="20" width="760" height="140" rx="12" fill="#4A5568"/>
+  
+  <!-- AI Icon -->
+  <circle cx="100" cy="90" r="30" fill="#4299E1"/>
+  <path d="M85 75 L115 75 L115 105 L85 105 Z" fill="#FFFFFF" stroke="#4299E1" stroke-width="2"/>
+  <path d="M90 90 L110 90 M100 80 L100 100" stroke="#4299E1" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="100" cy="90" r="8" fill="#4299E1" stroke="#FFFFFF" stroke-width="2"/>
+  
+  <!-- Header Text -->
+  <text x="150" y="85" class="title" fill="#FFFFFF">🛒 本週最佳科技優惠！</text>
+  <text x="150" y="115" class="subtitle" fill="#CBD5E0">AI 智能精選 🤖</text>
+  
+  <!-- Content Area -->
+  <g transform="translate(40, 200)">
+    
+    <!-- Deal 1 -->
+    <g transform="translate(0, 0)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">📱 Samsung Galaxy S25 Ultra</text>
+      <text x="20" y="55" class="store-name">Harvey Norman 限時優惠</text>
+      <text x="500" y="35" class="price">$1,698</text>
+      <text x="500" y="60" class="savings">省 $450</text>
+    </g>
+    
+    <!-- Deal 2 -->
+    <g transform="translate(0, 100)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">📺 LG 75吋 QNED81 4K 智能電視</text>
+      <text x="20" y="55" class="store-name">JB Hi-Fi 超級優惠</text>
+      <text x="500" y="35" class="price">$1,540</text>
+      <text x="500" y="60" class="savings">省 $1,455</text>
+    </g>
+    
+    <!-- Deal 3 -->
+    <g transform="translate(0, 200)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">🖥️ TCL 98吋 P7K 144Hz QLED 電視</text>
+      <text x="20" y="55" class="store-name">The Good Guys 特價</text>
+      <text x="500" y="35" class="price">$3,495</text>
+      <text x="500" y="60" class="savings">省 $1,000</text>
+    </g>
+    
+    <!-- Deal 4 -->
+    <g transform="translate(0, 300)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">🧹 Dyson Gen5detect Absolute 吸塵器</text>
+      <text x="20" y="55" class="store-name">Harvey Norman 清倉價</text>
+      <text x="500" y="35" class="price">$978</text>
+      <text x="500" y="60" class="savings">機會難得</text>
+    </g>
+    
+    <!-- Deal 5 -->
+    <g transform="translate(0, 400)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">📱 Samsung Galaxy Tab S10 Ultra</text>
+      <text x="20" y="55" class="store-name">JB Hi-Fi</text>
+      <text x="500" y="35" class="price">$2,099</text>
+      <text x="500" y="60" class="savings">專業級平板</text>
+    </g>
+    
+    <!-- Deal 6 -->
+    <g transform="translate(0, 500)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">💻 HP OmniBook 5 AI 筆記本電腦</text>
+      <text x="20" y="55" class="store-name">Harvey Norman</text>
+      <text x="500" y="35" class="price">$1,498</text>
+      <text x="500" y="60" class="savings">省 $190</text>
+    </g>
+    
+    <!-- Deal 7 -->
+    <g transform="translate(0, 600)">
+      <rect width="720" height="80" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="30" class="deal-title">🍎 Apple MacBook Air (M4 芯片)</text>
+      <text x="20" y="55" class="store-name">JB Hi-Fi 🔥火熱優惠</text>
+      <text x="500" y="35" class="price">$1,367</text>
+      <text x="500" y="60" class="savings">最新 M4 芯片</text>
+    </g>
+    
+    <!-- Info Section -->
+    <g transform="translate(0, 700)">
+      <rect width="720" height="100" rx="8" fill="#4299E1"/>
+      <text x="20" y="40" class="footer" fill="#FFFFFF">💡 所有優惠由 AI 智能追蹤，每週更新</text>
+      <text x="20" y="65" class="footer" fill="#FFFFFF">🏪 來自 JB Hi-Fi、The Good Guys 和 Harvey Norman 的最新優惠</text>
+      <text x="20" y="90" class="footer" fill="#FFFFFF">⚡ 限時特價，售完即止！</text>
+    </g>
+    
+    <!-- CTA Button -->
+    <g transform="translate(200, 820)">
+      <rect width="320" height="60" rx="30" fill="#38A169"/>
+      <text x="160" y="38" class="cta" text-anchor="middle">👉 立即前往購買！</text>
+    </g>
+    
+    <!-- Store Logos -->
+    <g transform="translate(0, 900)">
+      <rect x="0" y="0" width="230" height="60" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="115" y="35" class="store-name" text-anchor="middle" fill="#E53E3E">JB Hi-Fi</text>
+      
+      <rect x="250" y="0" width="230" height="60" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="365" y="35" class="store-name" text-anchor="middle" fill="#3182CE">The Good Guys</text>
+      
+      <rect x="500" y="0" width="230" height="60" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="615" y="35" class="store-name" text-anchor="middle" fill="#38A169">Harvey Norman</text>
+    </g>
+    
+  </g>
+  
+  <!-- Footer -->
+  <text x="400" y="1150" class="footer" text-anchor="middle">把握最佳優惠時機！ | AI 智能精選科技優惠</text>
+  
+</svg>

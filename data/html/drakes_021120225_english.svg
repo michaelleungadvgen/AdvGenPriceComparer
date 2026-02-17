@@ -1,0 +1,67 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#ffffff"/>
+
+  <!-- Top Banner -->
+  <rect width="1200" height="80" fill="#c1272d"/>
+  <text x="600" y="52" font-size="32" fill="white" text-anchor="middle" font-weight="bold">
+    🎄 Drakes + ALDI Double Savings!
+  </text>
+
+  <!-- Drakes Section -->
+  <rect x="40" y="100" width="520" height="460" rx="16" fill="#e6f4ff" stroke="#007bff" stroke-width="2"/>
+  <text x="300" y="140" font-size="24" fill="#007bff" text-anchor="middle" font-weight="bold">
+    🛒 Drakes Specials (29 Oct – 4 Nov)
+  </text>
+  <text x="60" y="175" font-size="18" fill="#333">• Cold Power Laundry 2L/2kg — $9</text>
+  <text x="60" y="200" font-size="18" fill="#333">• Cadbury Share Pack — $3</text>
+  <text x="60" y="225" font-size="18" fill="#333">• Kleenex Viva 2 Pack — $2</text>
+  <text x="60" y="250" font-size="18" fill="#333">• CC’s Chips 175g — $2</text>
+  <text x="60" y="275" font-size="18" fill="#333">• Continental Meal 80g — $1</text>
+  
+  <text x="60" y="305" font-size="18" fill="#c1272d" font-weight="bold">🥩 Meat & Seafood:</text>
+  <text x="80" y="330" font-size="18" fill="#333">• Chicken Drumsticks — $3.20/kg</text>
+  <text x="80" y="355" font-size="18" fill="#333">• Lamb Loin Chops — $24/kg</text>
+  <text x="80" y="380" font-size="18" fill="#333">• Wagyu Rump — $35/kg</text>
+  <text x="80" y="405" font-size="18" fill="#333">• Pork Medallions — $14/kg</text>
+  
+  <text x="60" y="435" font-size="18" fill="#c1272d" font-weight="bold">🍦 Ice Cream & Dairy:</text>
+  <text x="80" y="460" font-size="18" fill="#333">• Golden Gaytime — $12.50</text>
+  <text x="80" y="485" font-size="18" fill="#333">• Bega Cheese 1kg — $12.90</text>
+  
+  <text x="60" y="520" font-size="18" fill="#007bff" font-weight="bold">🎁 Spend $60 → Get Hot Wheels Car!</text>
+
+  <!-- ALDI Section -->
+  <rect x="640" y="100" width="520" height="460" rx="16" fill="#fff8e1" stroke="#d32f2f" stroke-width="2"/>
+  <text x="900" y="140" font-size="24" fill="#d32f2f" text-anchor="middle" font-weight="bold">
+    🎅 ALDI Special Buys (From 1 Nov)
+  </text>
+  <text x="660" y="170" font-size="18" fill="#333">🔸 From Sat 1 Nov:</text>
+  <text x="680" y="195" font-size="18" fill="#333">• Advent Calendars from $3.99</text>
+  <text x="680" y="220" font-size="18" fill="#333">• Bluey Calendar — $29.99</text>
+  <text x="680" y="245" font-size="18" fill="#333">• Felix Cat Food 48-pack — $32.99</text>
+  <text x="680" y="270" font-size="18" fill="#333">• Clothing from $4.99</text>
+  
+  <text x="660" y="300" font-size="18" fill="#333">🔸 From Wed 5 Nov:</text>
+  <text x="680" y="325" font-size="18" fill="#333">• Lemax, Lionel Train Set</text>
+  <text x="680" y="350" font-size="18" fill="#333">• Kids’ Craft Kits from $2.99</text>
+  <text x="680" y="375" font-size="18" fill="#333">• Xmas PJs from $14.99</text>
+
+  <text x="660" y="405" font-size="18" fill="#333">🔸 From Sat 8 Nov:</text>
+  <text x="680" y="430" font-size="18" fill="#333">• Air Fryer — $59.99</text>
+  <text x="680" y="455" font-size="18" fill="#333">• Dishwasher — $349</text>
+  <text x="680" y="480" font-size="18" fill="#333">• Fridge / Freezer — $299</text>
+  <text x="680" y="505" font-size="18" fill="#333">• Vacuum — $69.99</text>
+
+  <text x="660" y="535" font-size="18" fill="#d32f2f" font-weight="bold">⏰ Wed & Sat at 8:30 AM!</text>
+
+  <!-- Footer -->
+  <rect y="590" width="1200" height="40" fill="#333"/>
+  <text x="600" y="618" font-size="18" fill="white" text-anchor="middle">
+    #Drakes #ALDI #WeeklySpecials #ChristmasSavings #Australia
+  </text>
+
+  <!-- Icons -->
+  <text x="50" y="140" font-size="24" fill="#007bff">🛒</text>
+  <text x="650" y="140" font-size="24" fill="#d32f2f">🎅</text>
+</svg>

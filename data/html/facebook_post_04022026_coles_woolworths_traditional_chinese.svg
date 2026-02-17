@@ -1,0 +1,345 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="coles-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e2001a;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#c40015;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <linearGradient id="woolies-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a6e28;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#145c20;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.2)"/>
+    </filter>
+    
+    <style>
+      <![CDATA[
+        text {
+          font-family: Arial, sans-serif;
+        }
+        .title {
+          font-size: 24px;
+          font-weight: bold;
+          fill: #333;
+        }
+        .subtitle {
+          font-size: 16px;
+          fill: #666;
+        }
+        .category-title {
+          font-size: 14px;
+          font-weight: bold;
+          fill: #444;
+        }
+        .product-name {
+          font-size: 12px;
+          fill: #333;
+        }
+        .price {
+          font-size: 13px;
+          font-weight: bold;
+        }
+        .discount-badge {
+          font-size: 10px;
+          font-weight: bold;
+          fill: white;
+        }
+        .legend-text {
+          font-size: 12px;
+          fill: #333;
+        }
+        .store-name {
+          font-size: 14px;
+          font-weight: bold;
+          fill: white;
+        }
+        .savings-tip {
+          font-size: 11px;
+          fill: #555;
+          font-style: italic;
+        }
+        .header-bg {
+          fill: url(#bg-gradient);
+        }
+      ]]>
+    </style>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="1200" fill="#f8f9fa"/>
+  
+  <!-- 标题区域 -->
+  <rect x="0" y="0" width="800" height="140" class="header-bg" filter="url(#shadow)"/>
+  <rect x="0" y="140" width="800" height="5" fill="#ddd"/>
+  
+  <text x="400" y="50" text-anchor="middle" class="title">🛒 本週超市價格比拼！</text>
+  <text x="400" y="80" text-anchor="middle" class="title">Coles vs Woolworths 省錢攻略</text>
+  
+  <text x="400" y="110" text-anchor="middle" class="subtitle">有效期限：2026年2月4日 - 2月10日</text>
+  <text x="400" y="130" text-anchor="middle" class="subtitle">📊 本週比較：280+個產品 | 💰 半價優惠大放送！</text>
+  
+  <!-- 图例 -->
+  <rect x="50" y="160" width="700" height="60" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+  
+  <rect x="80" y="180" width="20" height="20" fill="url(#coles-gradient)" rx="3" ry="3"/>
+  <text x="110" y="195" class="legend-text">Coles 優惠</text>
+  
+  <rect x="200" y="180" width="20" height="20" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+  <text x="230" y="195" class="legend-text">Woolworths 優惠</text>
+  
+  <rect x="370" y="180" width="20" height="20" fill="#6c757d" rx="3" ry="3"/>
+  <text x="400" y="195" class="legend-text">兩家同價</text>
+  
+  <rect x="500" y="180" width="20" height="20" fill="#ffc107" rx="3" ry="3"/>
+  <text x="530" y="195" class="legend-text">🏆 本週最超值</text>
+  
+  <!-- 商品比较区域 -->
+  <g transform="translate(0, 240)">
+    
+    <!-- 零食糖果 -->
+    <rect x="50" y="0" width="700" height="40" fill="#e3f2fd" rx="5" ry="5"/>
+    <text x="70" y="25" class="category-title">🍫 零食糖果</text>
+    
+    <!-- Cadbury巧克力 -->
+    <rect x="70" y="45" width="660" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="65" class="product-name">Cadbury 巧克力塊 150-190g</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="90" y="75" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="95" y="86" class="store-name">Woolworths</text>
+    <text x="250" y="86" class="price" fill="white">$4.00</text>
+    <rect x="260" y="75" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="265" y="86" class="discount-badge">半價</text>
+    
+    <!-- 比较线 -->
+    <line x1="400" y1="70" x2="400" y2="95" stroke="#ddd" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="410" y="85" class="savings-tip">原價$8.00</text>
+    
+    <!-- Coles价格 -->
+    <rect x="500" y="75" width="150" height="15" fill="#e0e0e0" rx="3" ry="3"/>
+    <text x="505" y="86" class="store-name">Coles</text>
+    <text x="650" y="86" class="price" fill="#333">$8.00</text>
+    
+    <!-- 咖啡饮品 -->
+    <rect x="50" y="110" width="700" height="40" fill="#f3e5f5" rx="5" ry="5"/>
+    <text x="70" y="135" class="category-title">☕ 咖啡飲品</text>
+    
+    <!-- Nescafé Blend 43 -->
+    <rect x="70" y="155" width="660" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="175" class="product-name">Nescafé Blend 43 140-150g / Gold 90-100g</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="90" y="185" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="95" y="196" class="store-name">Woolworths</text>
+    <text x="250" y="196" class="price" fill="white">$7.25</text>
+    <rect x="260" y="185" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="265" y="196" class="discount-badge">半價</text>
+    
+    <!-- 比较线 -->
+    <line x1="400" y1="180" x2="400" y2="205" stroke="#ddd" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="410" y="195" class="savings-tip">節省 $7.25</text>
+    
+    <!-- Coles价格 -->
+    <rect x="500" y="185" width="150" height="15" fill="#e0e0e0" rx="3" ry="3"/>
+    <text x="505" y="196" class="store-name">Coles</text>
+    <text x="650" y="196" class="price" fill="#333">$14.50</text>
+    
+    <!-- 饮料类 -->
+    <rect x="50" y="220" width="700" height="40" fill="#e8f5e9" rx="5" ry="5"/>
+    <text x="70" y="245" class="category-title">🥤 飲料類</text>
+    
+    <!-- 椰子水 -->
+    <rect x="70" y="265" width="660" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="285" class="product-name">Cocobella/Raw C 天然椰子水 1公升</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="90" y="295" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="95" y="306" class="store-name">Woolworths</text>
+    <text x="250" y="306" class="price" fill="white">$2.75</text>
+    
+    <!-- Coles价格 -->
+    <rect x="500" y="295" width="150" height="15" fill="url(#coles-gradient)" rx="3" ry="3"/>
+    <text x="505" y="306" class="store-name">Coles</text>
+    <text x="650" y="306" class="price" fill="white">$2.75</text>
+    
+    <!-- 同价标签 -->
+    <rect x="350" y="285" width="100" height="20" fill="#6c757d" rx="10" ry="10"/>
+    <text x="400" y="300" text-anchor="middle" class="discount-badge">兩家同價</text>
+    <text x="410" y="315" class="savings-tip">原價$5.50</text>
+    
+    <!-- 罐头食品 -->
+    <rect x="50" y="330" width="700" height="40" fill="#fff3e0" rx="5" ry="5"/>
+    <text x="70" y="355" class="category-title">🥫 罐頭食品</text>
+    
+    <!-- 吞拿鱼 -->
+    <rect x="70" y="375" width="320" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="395" class="product-name">John West 吞拿魚 95g</text>
+    
+    <!-- Coles价格 -->
+    <rect x="90" y="405" width="150" height="15" fill="url(#coles-gradient)" rx="3" ry="3"/>
+    <text x="95" y="416" class="store-name">Coles</text>
+    <text x="250" y="416" class="price" fill="white">$1.45</text>
+    <rect x="260" y="405" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="265" y="416" class="discount-badge">半價</text>
+    
+    <!-- 三文鱼 -->
+    <rect x="410" y="375" width="320" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="430" y="395" class="product-name">John West 三文魚 95g</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="430" y="405" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="435" y="416" class="store-name">Woolworths</text>
+    <text x="590" y="416" class="price" fill="white">$1.75</text>
+    <rect x="600" y="405" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="605" y="416" class="discount-badge">半價</text>
+    
+    <!-- 速食便当 -->
+    <rect x="50" y="440" width="700" height="40" fill="#fce4ec" rx="5" ry="5"/>
+    <text x="70" y="465" class="category-title">🍜 速食便當</text>
+    
+    <!-- 即食面 -->
+    <rect x="70" y="485" width="660" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="505" class="product-name">Fantastic 即食麵杯 45-70g</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="90" y="515" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="95" y="526" class="store-name">Woolworths</text>
+    <text x="250" y="526" class="price" fill="white">$1.00</text>
+    <rect x="260" y="515" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="265" y="526" class="discount-badge">超低價</text>
+    
+    <!-- 比较线 -->
+    <line x1="400" y1="510" x2="400" y2="535" stroke="#ddd" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="410" y="525" class="savings-tip">節省 $1.50</text>
+    
+    <!-- Coles价格 -->
+    <rect x="500" y="515" width="150" height="15" fill="#e0e0e0" rx="3" ry="3"/>
+    <text x="505" y="526" class="store-name">Coles</text>
+    <text x="650" y="526" class="price" fill="#333">$2.50</text>
+    
+    <!-- 乳制品 -->
+    <rect x="50" y="550" width="700" height="40" fill="#e0f7fa" rx="5" ry="5"/>
+    <text x="70" y="575" class="category-title">🥛 乳製品</text>
+    
+    <!-- 希腊乳酪 -->
+    <rect x="70" y="595" width="660" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="615" class="product-name">Farmers Union 希臘式乳酪杯 150g</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="90" y="625" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="95" y="636" class="store-name">Woolworths</text>
+    <text x="250" y="636" class="price" fill="white">$1.25</text>
+    <rect x="260" y="625" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="265" y="636" class="discount-badge">半價</text>
+    
+    <!-- 比较线 -->
+    <line x1="400" y1="620" x2="400" y2="645" stroke="#ddd" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="410" y="635" class="savings-tip">原價$2.50</text>
+    
+    <!-- Coles价格 -->
+    <rect x="500" y="625" width="150" height="15" fill="#e0e0e0" rx="3" ry="3"/>
+    <text x="505" y="636" class="store-name">Coles</text>
+    <text x="650" y="636" class="price" fill="#333">$2.50</text>
+    
+    <!-- 个人护理 -->
+    <rect x="50" y="660" width="700" height="40" fill="#f3e5f5" rx="5" ry="5"/>
+    <text x="70" y="685" class="category-title">🧴 個人護理</text>
+    
+    <!-- 牙膏 -->
+    <rect x="70" y="705" width="320" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="90" y="725" class="product-name">Colgate Total 牙膏 200g</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="90" y="735" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="95" y="746" class="store-name">Woolworths</text>
+    <text x="250" y="746" class="price" fill="white">$5.50</text>
+    <rect x="260" y="735" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="265" y="746" class="discount-badge">半價</text>
+    
+    <!-- 洗发水 -->
+    <rect x="410" y="705" width="320" height="50" fill="white" rx="5" ry="5" filter="url(#shadow)"/>
+    <text x="430" y="725" class="product-name">Head & Shoulders 洗髮水 660ml</text>
+    
+    <!-- Woolworths价格 -->
+    <rect x="430" y="735" width="150" height="15" fill="url(#woolies-gradient)" rx="3" ry="3"/>
+    <text x="435" y="746" class="store-name">Woolworths</text>
+    <text x="590" y="746" class="price" fill="white">$10.50</text>
+    <rect x="600" y="735" width="50" height="15" fill="#ffc107" rx="3" ry="3"/>
+    <text x="605" y="746" class="discount-badge">超值</text>
+    
+    <!-- 购物攻略 -->
+    <rect x="50" y="770" width="700" height="180" fill="white" rx="10" ry="10" filter="url(#shadow)"/>
+    
+    <rect x="70" y="785" width="200" height="30" fill="url(#woolies-gradient)" rx="5" ry="5"/>
+    <text x="170" y="805" text-anchor="middle" class="store-name">Woolworths 優勢類別</text>
+    
+    <rect x="300" y="785" width="200" height="30" fill="url(#coles-gradient)" rx="5" ry="5"/>
+    <text x="400" y="805" text-anchor="middle" class="store-name">Coles 優勢類別</text>
+    
+    <!-- Woolworths优势 -->
+    <g transform="translate(70, 830)">
+      <circle cx="10" cy="5" r="5" fill="#1a6e28"/>
+      <text x="20" y="10" class="legend-text">咖啡類 (Nescafé全線半價)</text>
+      
+      <circle cx="10" cy="25" r="5" fill="#1a6e28"/>
+      <text x="20" y="30" class="legend-text">個人護理 (Dove、Head & Shoulders)</text>
+      
+      <circle cx="10" cy="45" r="5" fill="#1a6e28"/>
+      <text x="20" y="50" class="legend-text">乳製品 (希臘乳酪超低價)</text>
+      
+      <circle cx="10" cy="65" r="5" fill="#1a6e28"/>
+      <text x="20" y="70" class="legend-text">即食麵 ($1超低價)</text>
+      
+      <circle cx="10" cy="85" r="5" fill="#1a6e28"/>
+      <text x="20" y="90" class="legend-text">家居清潔 (洗碗片半價)</text>
+    </g>
+    
+    <!-- Coles优势 -->
+    <g transform="translate(300, 830)">
+      <circle cx="10" cy="5" r="5" fill="#e2001a"/>
+      <text x="20" y="10" class="legend-text">吞拿魚罐頭</text>
+      
+      <circle cx="10" cy="25" r="5" fill="#e2001a"/>
+      <text x="20" y="30" class="legend-text">早餐麥片條</text>
+      
+      <circle cx="10" cy="45" r="5" fill="#e2001a"/>
+      <text x="20" y="50" class="legend-text">零食薯片 (大包裝)</text>
+      
+      <circle cx="10" cy="65" r="5" fill="#e2001a"/>
+      <text x="20" y="70" class="legend-text">新鮮雞肉</text>
+      
+      <circle cx="10" cy="85" r="5" fill="#e2001a"/>
+      <text x="20" y="90" class="legend-text">椰子水 (同價優惠)</text>
+    </g>
+    
+    <!-- 底部信息 -->
+    <rect x="50" y="970" width="700" height="100" fill="#f8f9fa" rx="5" ry="5"/>
+    
+    <text x="400" y="995" text-anchor="middle" class="subtitle">📋 採購建議：根據需求選擇超市，善用半價優惠！</text>
+    
+    <rect x="150" y="1010" width="500" height="40" fill="#6c757d" rx="5" ry="5"/>
+    <text x="400" y="1035" text-anchor="middle" class="store-name">📍 Brisbane 地區適用 | ⚠️ 特價商品售完為止</text>
+    
+    <!-- 装饰元素 -->
+    <circle cx="750" cy="30" r="20" fill="#ffc107"/>
+    <text x="750" y="35" text-anchor="middle" font-weight="bold" font-size="18" fill="white">$</text>
+    
+    <circle cx="50" cy="30" r="20" fill="#1a6e28"/>
+    <text x="50" y="35" text-anchor="middle" font-weight="bold" font-size="18" fill="white">W</text>
+    
+    <circle cx="50" cy="1150" r="20" fill="#e2001a"/>
+    <text x="50" y="1155" text-anchor="middle" font-weight="bold" font-size="18" fill="white">C</text>
+    
+    <!-- 50% off标签 -->
+    <path d="M 700 200 L 730 200 L 740 215 L 730 230 L 700 230 L 690 215 Z" fill="#dc3545"/>
+    <text x="715" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="white">50%</text>
+    <text x="715" y="228" text-anchor="middle" font-size="9" fill="white">OFF</text>
+  </g>
+</svg>

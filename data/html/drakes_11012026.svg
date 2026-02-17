@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="1200" viewBox="0 0 800 1200">
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4ECDC4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#45B7D1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aldiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0056A4;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#0056A4;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="drakesGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D32F2F;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#D32F2F;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#333333" flood-opacity="0.3"/>
+    </filter>
+    <style type="text/css">
+      <![CDATA[
+        .title { font-family: Arial, sans-serif; font-weight: bold; font-size: 28px; fill: #333; }
+        .subtitle { font-family: Arial, sans-serif; font-size: 16px; fill: #666; }
+        .header { font-family: Arial, sans-serif; font-weight: bold; font-size: 20px; fill: #fff; }
+        .section-title { font-family: Arial, sans-serif; font-weight: bold; font-size: 18px; fill: #333; }
+        .item-name { font-family: Arial, sans-serif; font-size: 14px; fill: #333; }
+        .item-price { font-family: Arial, sans-serif; font-weight: bold; font-size: 14px; fill: #D32F2F; }
+        .item-save { font-family: Arial, sans-serif; font-size: 12px; fill: #4CAF50; }
+        .store-title { font-family: Arial, sans-serif; font-weight: bold; font-size: 22px; fill: #fff; }
+        .date { font-family: Arial, sans-serif; font-size: 14px; fill: #fff; }
+        .tip-title { font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; fill: #333; }
+        .tip-text { font-family: Arial, sans-serif; font-size: 13px; fill: #333; }
+        .icon-text { font-family: Arial, sans-serif; font-size: 10px; fill: #666; }
+      ]]>
+    </style>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="1200" fill="#F8F9FA"/>
+  
+  <!-- 標題區 -->
+  <rect x="0" y="0" width="800" height="100" fill="url(#headerGradient)"/>
+  <text x="400" y="40" class="title" text-anchor="middle">🛒 本週超市特價精選</text>
+  <text x="400" y="70" class="subtitle" text-anchor="middle">ALDI & Drakes 省錢攻略 💰</text>
+  
+  <!-- 有效期 -->
+  <rect x="50" y="110" width="700" height="50" rx="10" fill="#E3F2FD" filter="url(#shadow)"/>
+  <text x="400" y="130" class="section-title" text-anchor="middle">📅 有效期限</text>
+  <text x="400" y="150" class="item-name" text-anchor="middle">ALDI：1月10日(週六)及1月14日(週三)起 | Drakes：1月7日(週三)至1月13日(週二)</text>
+  
+  <!-- ALDI 區域 -->
+  <rect x="50" y="180" width="700" height="40" rx="5" fill="#0056A4"/>
+  <text x="400" y="207" class="store-title" text-anchor="middle">🏪 ALDI 特賣精選</text>
+  
+  <!-- ALDI 特價項目 -->
+  <rect x="50" y="230" width="700" height="380" fill="url(#aldiGradient)" rx="10" filter="url(#shadow)"/>
+  
+  <!-- 臥室用品 -->
+  <rect x="70" y="250" width="320" height="30" rx="5" fill="#0056A4"/>
+  <text x="85" y="270" class="header">🛏️ 臥室用品</text>
+  
+  <text x="85" y="300" class="item-name">• 涼感乳膠枕</text>
+  <text x="300" y="300" class="item-price">$39.99</text>
+  
+  <text x="85" y="325" class="item-name">• 溫度調節枕套</text>
+  <text x="300" y="325" class="item-price">$27.99</text>
+  
+  <text x="85" y="350" class="item-name">• 棉竹華夫格毯</text>
+  <text x="300" y="350" class="item-price">$49.99</text>
+  
+  <!-- 廚房用品 -->
+  <rect x="70" y="380" width="320" height="30" rx="5" fill="#0056A4"/>
+  <text x="85" y="400" class="header">🍳 廚房用品</text>
+  
+  <text x="85" y="430" class="item-name">• 陶瓷煎鍋28cm</text>
+  <text x="300" y="430" class="item-price">$14.99</text>
+  
+  <text x="85" y="455" class="item-name">• 橄欖木砧板</text>
+  <text x="300" y="455" class="item-price">$19.99</text>
+  
+  <text x="85" y="480" class="item-name">• 餐具套裝</text>
+  <text x="300" y="480" class="item-price">$29.99</text>
+  
+  <!-- 科技產品 -->
+  <rect x="420" y="250" width="320" height="30" rx="5" fill="#0056A4"/>
+  <text x="435" y="270" class="header">💻 科技產品</text>
+  
+  <text x="435" y="300" class="item-name">• Lenovo筆記本電腦</text>
+  <text x="650" y="300" class="item-price">$599.00</text>
+  <text x="650" y="315" class="item-save">⭐超值！</text>
+  
+  <text x="435" y="340" class="item-name">• Lenovo平板電腦</text>
+  <text x="650" y="340" class="item-price">$269.00</text>
+  
+  <!-- 健康食品 -->
+  <rect x="420" y="380" width="320" height="30" rx="5" fill="#0056A4"/>
+  <text x="435" y="400" class="header">🥜 健康食品</text>
+  
+  <text x="435" y="430" class="item-name">• 澳洲夏威夷果仁600g</text>
+  <text x="650" y="430" class="item-price">$19.99</text>
+  
+  <text x="435" y="455" class="item-name">• 有機藜麥1kg</text>
+  <text x="650" y="455" class="item-price">$9.99</text>
+  
+  <text x="435" y="480" class="item-name">• 奇亞籽1kg</text>
+  <text x="650" y="480" class="item-price">$12.99</text>
+  
+  <!-- Drakes 區域 -->
+  <rect x="50" y="630" width="700" height="40" rx="5" fill="#D32F2F"/>
+  <text x="400" y="657" class="store-title" text-anchor="middle">🛒 Drakes 超市特惠</text>
+  
+  <!-- Drakes 特價項目 -->
+  <rect x="50" y="680" width="700" height="380" fill="url(#drakesGradient)" rx="10" filter="url(#shadow)"/>
+  
+  <!-- 特別活動 -->
+  <rect x="70" y="700" width="660" height="30" rx="5" fill="#D32F2F"/>
+  <text x="85" y="720" class="header">🎁 特別活動：每消費$60送Peanuts襪子 + 抽獎度假大獎！</text>
+  
+  <!-- 肉類海鮮 -->
+  <rect x="70" y="740" width="320" height="30" rx="5" fill="#D32F2F"/>
+  <text x="85" y="760" class="header">🥩 肉類海鮮 - 半價優惠</text>
+  
+  <text x="85" y="790" class="item-name">• 澳洲混合熟虎蝦</text>
+  <text x="300" y="790" class="item-price">$16.90/kg</text>
+  <text x="300" y="805" class="item-save">🔥半價</text>
+  
+  <text x="85" y="830" class="item-name">• 澳洲草飼肋眼牛排</text>
+  <text x="300" y="830" class="item-price">$44.00/kg</text>
+  <text x="300" y="845" class="item-save">⭐頂級</text>
+  
+  <text x="85" y="870" class="item-name">• 塔斯曼尼亞三文魚片</text>
+  <text x="300" y="870" class="item-price">$36.00/kg</text>
+  
+  <!-- 乳製品零食 -->
+  <rect x="420" y="740" width="320" height="30" rx="5" fill="#D32F2F"/>
+  <text x="435" y="760" class="header">🧀 乳製品 & 零食</text>
+  
+  <text x="435" y="790" class="item-name">• Bega芝士片500g</text>
+  <text x="650" y="790" class="item-price">$9.50</text>
+  <text x="650" y="805" class="item-save">🔥半價</text>
+  
+  <text x="435" y="830" class="item-name">• Arnott's Tim Tams</text>
+  <text x="650" y="830" class="item-price">$3.60</text>
+  <text x="650" y="845" class="item-save">🔥半價</text>
+  
+  <text x="435" y="870" class="item-name">• 澳洲櫻桃</text>
+  <text x="650" y="870" class="item-price">$13.90/kg</text>
+  <text x="650" y="885" class="item-save">🍒季節</text>
+  
+  <!-- 清潔用品 -->
+  <rect x="70" y="910" width="320" height="30" rx="5" fill="#D32F2F"/>
+  <text x="85" y="930" class="header">🧼 清潔用品</text>
+  
+  <text x="85" y="960" class="item-name">• Omo洗衣液/膠囊</text>
+  <text x="300" y="960" class="item-price">$18.00</text>
+  <text x="300" y="975" class="item-save">🔥半價</text>
+  
+  <text x="85" y="1000" class="item-name">• Glen 20消毒噴霧</text>
+  <text x="300" y="1000" class="item-price">$5.50</text>
+  
+  <!-- 飲料咖啡 -->
+  <rect x="420" y="910" width="320" height="30" rx="5" fill="#D32F2F"/>
+  <text x="435" y="930" class="header">🥤 飲料 & 咖啡</text>
+  
+  <text x="435" y="960" class="item-name">• 可口可樂24x375ml</text>
+  <text x="650" y="960" class="item-price">$24.75</text>
+  
+  <text x="435" y="990" class="item-name">• Moccona咖啡200g</text>
+  <text x="650" y="990" class="item-price">$16.50</text>
+  <text x="650" y="1005" class="item-save">🔥半價</text>
+  
+  <!-- 省錢小貼士 -->
+  <rect x="50" y="1080" width="700" height="100" rx="10" fill="#FFF3CD" filter="url(#shadow)"/>
+  <text x="400" y="1100" class="tip-title" text-anchor="middle">💡 省錢小貼士</text>
+  
+  <text x="60" y="1125" class="tip-text">✅ ALDI科技產品超值 - Lenovo筆記本$599</text>
+  <text x="60" y="1145" class="tip-text">✅ Drakes半價優惠多 - 零食、清潔用品、乳製品</text>
+  <text x="60" y="1165" class="tip-text">✅ 新鮮澳洲櫻桃上市 - 季節限定 | 海鮮特價 - 虎蝦、三文魚大優惠</text>
+  
+  <!-- 底部信息 -->
+  <rect x="0" y="1190" width="800" height="10" fill="url(#headerGradient)"/>
+  <text x="400" y="1185" class="icon-text" text-anchor="middle">#布里斯本超市 #ALDI特賣 #Drakes優惠 #半價優惠 #澳洲超市 #省錢攻略</text>
+</svg>

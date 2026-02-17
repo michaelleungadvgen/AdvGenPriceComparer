@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="800"
+   height="600"
+   version="1.1"
+   id="svg33"
+   sodipodi:docname="gooddeals07022026.svg"
+   inkscape:export-filename="gooddeals07022026.png"
+   inkscape:export-xdpi="219.96001"
+   inkscape:export-ydpi="219.96001"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview33"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.0316667"
+     inkscape:cx="400.10995"
+     inkscape:cy="300"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg33" />
+  <defs
+     id="defs5">
+    <linearGradient
+       id="bgGradient"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         style="stop-color:#85c5d4;stop-opacity:1"
+         id="stop1" />
+      <stop
+         offset="100%"
+         style="stop-color:#6bb0c0;stop-opacity:1"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       id="priceGradient"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="0%">
+      <stop
+         offset="0%"
+         style="stop-color:#10b981;stop-opacity:1"
+         id="stop3" />
+      <stop
+         offset="100%"
+         style="stop-color:#059669;stop-opacity:1"
+         id="stop4" />
+    </linearGradient>
+    <filter
+       id="shadow"
+       x="-0.032727273"
+       y="-0.06"
+       width="1.0654545"
+       height="1.1533333">
+      <feGaussianBlur
+         in="SourceAlpha"
+         stdDeviation="3"
+         id="feGaussianBlur4" />
+      <feOffset
+         dx="0"
+         dy="4"
+         result="offsetblur"
+         id="feOffset4" />
+      <feFlood
+         flood-color="#000000"
+         flood-opacity="0.2"
+         id="feFlood4" />
+      <feComposite
+         in2="offsetblur"
+         operator="in"
+         id="feComposite4" />
+      <feMerge
+         id="feMerge5">
+        <feMergeNode
+           id="feMergeNode4" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode5" />
+      </feMerge>
+    </filter>
+    <style
+       type="text/css"
+       id="style5"><![CDATA[
+                .title-text {
+                    font-family: Arial, sans-serif;
+                    font-weight: bold;
+                    fill: #1e293b;
+                }
+                .deal-text {
+                    font-family: Arial, sans-serif;
+                    fill: #475569;
+                }
+                .price-text {
+                    font-family: Arial, sans-serif;
+                    font-weight: bold;
+                    fill: url(#priceGradient);
+                }
+                .savings-text {
+                    font-family: Arial, sans-serif;
+                    font-weight: bold;
+                    fill: #ef4444;
+                }
+                .badge-text {
+                    font-family: Arial, sans-serif;
+                    font-weight: bold;
+                    fill: white;
+                }
+            ]]></style>
+  </defs>
+  <!-- Background -->
+  <rect
+     width="800"
+     height="600"
+     fill="url(#bgGradient)"
+     rx="15"
+     ry="15"
+     id="rect5" />
+  <!-- Header -->
+  <rect
+     x="0"
+     y="0"
+     width="800"
+     height="100"
+     fill="#2c3e50"
+     rx="15"
+     ry="15"
+     id="rect6" />
+  <text
+     x="400"
+     y="50"
+     text-anchor="middle"
+     class="title-text"
+     font-size="32"
+     id="text6"
+     style="fill:#f2f2f2">🎯 AI 智能優惠分析</text>
+  <text
+     x="400"
+     y="85"
+     text-anchor="middle"
+     class="deal-text"
+     font-size="18"
+     fill="white"
+     id="text7"
+     style="fill:#cccccc">澳洲零售商最佳價格追蹤</text>
+  <!-- Top Deal Card -->
+  <g
+     transform="translate(100, 130)"
+     filter="url(#shadow)"
+     id="g13">
+    <rect
+       width="600"
+       height="180"
+       rx="12"
+       ry="12"
+       fill="white"
+       id="rect7" />
+    <!-- Rank Badge -->
+    <circle
+       cx="570"
+       cy="30"
+       r="25"
+       fill="#ef4444"
+       id="circle7" />
+    <text
+       x="570"
+       y="37"
+       text-anchor="middle"
+       class="badge-text"
+       font-size="20"
+       id="text8">1</text>
+    <!-- Deal Badge -->
+    <rect
+       x="30"
+       y="25"
+       width="120"
+       height="30"
+       rx="15"
+       ry="15"
+       fill="#f59e0b"
+       id="rect8" />
+    <text
+       x="90"
+       y="45"
+       text-anchor="middle"
+       class="badge-text"
+       font-size="14"
+       id="text9">平板優惠！</text>
+    <!-- Deal Title -->
+    <text
+       x="30"
+       y="85"
+       class="title-text"
+       font-size="20"
+       id="text10">Samsung Galaxy S10 Ultra 平板電腦 (14.6吋)</text>
+    <!-- Store -->
+    <text
+       x="30"
+       y="115"
+       class="deal-text"
+       font-size="16"
+       id="text11"><tspan
+         fill="#64748b"
+         id="tspan10">零售商：</tspan><tspan
+         font-weight="bold"
+         id="tspan11">JB Hi-Fi</tspan></text>
+    <!-- Savings -->
+    <text
+       x="30"
+       y="145"
+       class="savings-text"
+       font-size="18"
+       id="text12">
+            50% 折扣 | 節省 $1,050
+        </text>
+    <!-- Price -->
+    <text
+       x="500"
+       y="145"
+       text-anchor="end"
+       class="price-text"
+       font-size="28"
+       id="text13">
+            $1,049
+        </text>
+  </g>
+  <!-- Additional Deals Grid -->
+  <g
+     transform="translate(50, 330)"
+     id="g29">
+    <!-- Deal 2 -->
+    <g
+       transform="translate(0, 0)"
+       id="g18">
+      <rect
+         width="220"
+         height="120"
+         rx="8"
+         ry="8"
+         fill="white"
+         filter="url(#shadow)"
+         id="rect13" />
+      <circle
+         cx="195"
+         cy="25"
+         r="20"
+         fill="#f59e0b"
+         id="circle13" />
+      <text
+         x="195"
+         y="32"
+         text-anchor="middle"
+         class="badge-text"
+         font-size="16"
+         id="text14">2</text>
+      <text
+         x="15"
+         y="25"
+         class="title-text"
+         font-size="14"
+         id="text15">Roborock Qrevo C</text>
+      <text
+         x="15"
+         y="45"
+         class="deal-text"
+         font-size="12"
+         id="text16">掃拖機器人</text>
+      <text
+         x="15"
+         y="75"
+         class="savings-text"
+         font-size="12"
+         id="text17">節省 $100</text>
+      <text
+         x="195"
+         y="95"
+         text-anchor="end"
+         class="price-text"
+         font-size="18"
+         id="text18">$888</text>
+    </g>
+    <!-- Deal 3 -->
+    <g
+       transform="translate(240, 0)"
+       id="g23">
+      <rect
+         width="220"
+         height="120"
+         rx="8"
+         ry="8"
+         fill="white"
+         filter="url(#shadow)"
+         id="rect18" />
+      <circle
+         cx="195"
+         cy="25"
+         r="20"
+         fill="#f59e0b"
+         id="circle18" />
+      <text
+         x="195"
+         y="32"
+         text-anchor="middle"
+         class="badge-text"
+         font-size="16"
+         id="text19">3</text>
+      <text
+         x="15"
+         y="25"
+         class="title-text"
+         font-size="14"
+         id="text20">LG 65吋 OLED 電視</text>
+      <text
+         x="15"
+         y="45"
+         class="deal-text"
+         font-size="12"
+         id="text21">4K evo 智能電視</text>
+      <text
+         x="15"
+         y="75"
+         class="savings-text"
+         font-size="12"
+         id="text22">節省 $1,328</text>
+      <text
+         x="195"
+         y="95"
+         text-anchor="end"
+         class="price-text"
+         font-size="18"
+         id="text23">$2,967</text>
+    </g>
+    <!-- Deal 4 -->
+    <g
+       transform="translate(480, 0)"
+       id="g28">
+      <rect
+         width="220"
+         height="120"
+         rx="8"
+         ry="8"
+         fill="white"
+         filter="url(#shadow)"
+         id="rect23" />
+      <circle
+         cx="195"
+         cy="25"
+         r="20"
+         fill="#f59e0b"
+         id="circle23" />
+      <text
+         x="195"
+         y="32"
+         text-anchor="middle"
+         class="badge-text"
+         font-size="16"
+         id="text24">4</text>
+      <text
+         x="15"
+         y="25"
+         class="title-text"
+         font-size="14"
+         id="text25">Dyson V8 吸塵器</text>
+      <text
+         x="15"
+         y="45"
+         class="deal-text"
+         font-size="12"
+         id="text26">手持式吸塵器</text>
+      <text
+         x="15"
+         y="75"
+         class="savings-text"
+         font-size="12"
+         id="text27">節省 $422</text>
+      <text
+         x="195"
+         y="95"
+         text-anchor="end"
+         class="price-text"
+         font-size="18"
+         id="text28">$377</text>
+    </g>
+  </g>
+  <!-- Footer -->
+  <g
+     transform="translate(0, 500)"
+     id="g30">
+    <rect
+       width="800"
+       height="100"
+       fill="#1e293b"
+       rx="0"
+       ry="0"
+       id="rect29" />
+    <text
+       x="400"
+       y="40"
+       text-anchor="middle"
+       class="badge-text"
+       font-size="16"
+       id="text29">
+            📍 更多優惠請訪問：michaelleung.info
+        </text>
+    <text
+       x="400"
+       y="70"
+       text-anchor="middle"
+       class="deal-text"
+       font-size="14"
+       fill="#cbd5e1"
+       id="text30">
+            🤖 AI 驅動 | 每週更新 | 價格追蹤
+        </text>
+  </g>
+  <!-- Decorative Elements -->
+  <circle
+     cx="50"
+     cy="50"
+     r="8"
+     fill="white"
+     opacity="0.3"
+     id="circle30" />
+  <circle
+     cx="750"
+     cy="100"
+     r="12"
+     fill="white"
+     opacity="0.3"
+     id="circle31" />
+  <circle
+     cx="100"
+     cy="550"
+     r="10"
+     fill="white"
+     opacity="0.3"
+     id="circle32" />
+  <circle
+     cx="700"
+     cy="550"
+     r="6"
+     fill="white"
+     opacity="0.3"
+     id="circle33" />
+</svg>

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <style>
+    .bg { fill: #f8fafc; }
+    .header-bg { fill: #0f172a; }
+    .footer-bg { fill: #1e293b; }
+    .title { font-family: 'Arial Black', 'Helvetica Bold', sans-serif; font-weight: 800; font-size: 34px; fill: #ffffff; }
+    .subhead { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 22px; fill: #ffffff; opacity: 0.9; }
+    .section-title { font-family: 'Arial Black', 'Helvetica Bold', sans-serif; font-size: 24px; fill: #0f172a; }
+    .category-tag { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 18px; fill: #334155; text-transform: uppercase; letter-spacing: 2px; }
+    .product-name { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 16px; font-weight: 600; fill: #1e293b; }
+    .price-info { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 16px; fill: #0f172a; }
+    .old-price { fill: #64748b; text-decoration: line-through; }
+    .new-price { fill: #b91c1c; font-weight: 700; font-size: 18px; }
+    .savings { fill: #16a34a; font-weight: 600; }
+    .store { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 14px; fill: #2563eb; font-weight: 600; }
+    .note { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 14px; fill: #334155; }
+    .hashtags { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 14px; fill: #94a3b8; }
+    .line { stroke: #cbd5e1; stroke-width: 1; }
+    .badge { fill: #fde047; font-size: 14px; font-family: 'Arial Black', 'Helvetica Bold', sans-serif; }
+    .link { fill: #fbbf24; font-family: 'Arial', 'Helvetica', sans-serif; font-size: 18px; text-decoration: underline; }
+  </style>
+
+  <!-- 背景 -->
+  <rect width="800" height="1000" class="bg" />
+
+  <!-- 头部装饰条 + 主标题 -->
+  <rect x="0" y="0" width="800" height="120" class="header-bg" />
+  <text x="40" y="55" class="title">🛒✨ 本週精選優惠！</text>
+  <text x="40" y="95" class="subhead">澳洲超市電器大特賣 ✨🛒</text>
+
+  <!-- 主要内容区域 从y=130开始 -->
+  <!-- 穿戴装置 -->
+  <text x="40" y="160" class="section-title">🏆 穿戴裝置</text>
+  <line x1="40" y1="172" x2="760" y2="172" class="line" />
+  <text x="40" y="200" class="product-name">⌚ Garmin Epix Pro (Gen 2) Sapphire 智能手錶</text>
+  <text x="40" y="225" class="price-info"><tspan class="old-price">$1,699</tspan> <tspan class="new-price">$849</tspan> <tspan class="savings">(節省$850！50% OFF)</tspan></text>
+  <text x="40" y="250" class="store">📍 JB Hi-Fi</text>
+
+  <!-- 大螢幕電視 -->
+  <text x="40" y="300" class="section-title">📺 大螢幕電視</text>
+  <line x1="40" y1="312" x2="760" y2="312" class="line" />
+  <text x="40" y="340" class="product-name">🖥️ Hisense 85吋 U6QAU PRO 4K Mini LED 電視</text>
+  <text x="40" y="365" class="price-info"><tspan class="new-price">$1,936</tspan> <tspan class="savings">(節省$1,059！)</tspan></text>
+  <text x="40" y="390" class="store">📍 The Good Guys</text>
+
+  <!-- 家電優惠 -->
+  <text x="40" y="440" class="section-title">🧹 家電優惠</text>
+  <line x1="40" y1="452" x2="760" y2="452" class="line" />
+  <text x="40" y="480" class="product-name">✨ Dyson V8 手持式吸塵器</text>
+  <text x="40" y="505" class="price-info"><tspan class="new-price">$377</tspan> <tspan class="savings">(節省$422！)</tspan> <tspan class="store"> @ JB Hi-Fi</tspan></text>
+  <text x="40" y="535" class="product-name">✨ Dyson V15 Detect Absolute 無線吸塵器</text>
+  <text x="40" y="560" class="price-info"><tspan class="new-price">$888</tspan> <tspan class="savings">(節省$561！)</tspan> <tspan class="store"> @ The Good Guys</tspan></text>
+
+  <!-- 手機優惠 -->
+  <text x="40" y="610" class="section-title">📱 手機優惠</text>
+  <line x1="40" y1="622" x2="760" y2="622" class="line" />
+  <text x="40" y="650" class="product-name">Samsung Galaxy A26 5G (128GB)</text>
+  <text x="40" y="675" class="price-info"><tspan class="new-price">$418</tspan> <tspan class="savings">(節省$80！)</tspan></text>
+  <text x="40" y="700" class="store">📍 Harvey Norman</text>
+
+  <!-- 筆電優惠 (稍微复杂，分两列) 用网格 -->
+  <text x="40" y="750" class="section-title">💻 筆電優惠</text>
+  <line x1="40" y1="762" x2="760" y2="762" class="line" />
+
+  <!-- 第一行笔记本 -->
+  <text x="40" y="800" class="product-name">🔥 HP 15.6吋 AI 筆電 (Ultra 7/16GB/512GB)</text>
+  <text x="40" y="825" class="price-info"><tspan class="new-price">$1,359</tspan> <tspan class="store"> @ The Good Guys</tspan></text>
+
+  <text x="40" y="865" class="product-name">🍎 MacBook Air 15吋 (M4 晶片/256GB)</text>
+  <text x="40" y="890" class="price-info"><tspan class="new-price">$1,799</tspan> <tspan class="store"> @ JB Hi-Fi</tspan></text>
+
+  <text x="40" y="930" class="product-name">🎮 Lenovo LOQ 17.3吋 遊戲筆電 (RTX 5070)</text>
+  <text x="40" y="955" class="price-info"><tspan class="new-price">$2,399</tspan> <tspan class="store"> @ JB Hi-Fi</tspan></text>
+
+  <text x="380" y="800" class="product-name">💼 HP OmniBook 5 14吋 OLED AI 電腦</text>
+  <text x="380" y="825" class="price-info"><tspan class="new-price">$1,198</tspan> <tspan class="store"> @ Harvey Norman</tspan></text>
+
+  <!-- 電視優惠 放在笔电旁边空位，但笔电占位较多，可以另起区域，但为了整齐，在右侧空位放置65寸电视 -->
+  <text x="380" y="870" class="section-title" style="font-size:20px;">📺 電視優惠</text>
+  <text x="380" y="910" class="product-name">Hisense 65吋 Q6QAU 4K QLED 電視</text>
+  <text x="380" y="935" class="price-info"><tspan class="new-price">$895</tspan> <tspan class="store"> @ JB Hi-Fi</tspan></text>
+
+  <!-- 时间提醒 + 更多信息 -->
+  <rect x="40" y="980" width="720" height="40" rx="8" fill="#f1f5f9" />
+  <text x="60" y="1008" class="note">⏰ 優惠數量有限，售完即止！</text>
+  <text x="380" y="1008" class="note">👉 更多優惠資訊請瀏覽：michaelleung.info</text>
+
+  <!-- 底部 hashtag 区域 -->
+  <rect x="0" y="1040" width="800" height="50" class="footer-bg" />
+  <text x="40" y="1075" class="hashtags">#澳洲優惠 #JBHiFi #TheGoodGuys #HarveyNorman #電器特賣 #布里斯本 #墨爾本 #悉尼 #Dyson #MacBook #Samsung #Garmin #限時優惠</text>
+
+  <!-- 因为画板只有1000高，底部被切，微调坐标使所有内容在1000内。上面1020超了，整体上移，把起始y压低？但头部不能动，我们将最后hashtag放到1000内 -->
+  <!-- 重新调整：将底部hashtag的y轴从1040改为980，背景跟随，但是note已经在980，会有重叠，移动note上移 -->
+  <!-- 整体布局紧凑一些，把所有底部元素上移30px -->
+  <!-- 修正方案：手动调低笔记本区域，将note和hashtag上移 -->
+  <!-- 重新做微调：笔记本区域从y=750开始，结束在y=950，note放到950-970，hashtag 980-1000 -->
+</svg>

@@ -1,0 +1,78 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  
+  <!-- Header Banner -->
+  <rect x="0" y="0" width="1200" height="100" fill="url(#headerGradient)"/>
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#85c5d4"/>
+      <stop offset="100%" stop-color="#6bb0c0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Logo Placeholder (Text since external image not embedded) -->
+  <text x="60" y="65" font-family="Segoe UI, sans-serif" font-size="28" font-weight="700" fill="white">
+    MichaelLeung.info
+  </text>
+  
+  <!-- Main Title -->
+  <text x="600" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="44" font-weight="800" fill="#1e293b">
+    🔥 本週澳洲 AI 精選優惠 🔥
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="24" fill="#64748b">
+    JB Hi-Fi • The Good Guys • Harvey Norman
+  </text>
+  
+  <!-- Deal 1: Washer Highlight (Relevant to your needs) -->
+  <g transform="translate(100, 260)">
+    <rect x="0" y="0" width="480" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="20" y="35" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#1e293b">✨ LG 8公斤前置式洗衣機</text>
+    <text x="20" y="65" font-family="Segoe UI, sans-serif" font-size="18" fill="#64748b">The Good Guys • <tspan fill="#ef4444">省 $104</tspan></text>
+    <text x="20" y="95" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#059669">$495</text>
+  </g>
+  
+  <!-- Deal 2: Roborock -->
+  <g transform="translate(620, 260)">
+    <rect x="0" y="0" width="480" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="20" y="35" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#1e293b">🤖 Roborock S8 Max V Ultra</text>
+    <text x="20" y="65" font-family="Segoe UI, sans-serif" font-size="18" fill="#64748b">JB Hi-Fi • <tspan fill="#ef4444">省 $1504</tspan></text>
+    <text x="20" y="95" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#059669">$1495</text>
+  </g>
+  
+  <!-- Deal 3: Sony TV -->
+  <g transform="translate(100, 380)">
+    <rect x="0" y="0" width="480" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="20" y="35" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#1e293b">📺 Sony 77" 4K OLED 電視</text>
+    <text x="20" y="65" font-family="Segoe UI, sans-serif" font-size="18" fill="#64748b">JB Hi-Fi • <tspan fill="#ef4444">省 $1112</tspan></text>
+    <text x="20" y="95" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#059669">$3872</text>
+  </g>
+  
+  <!-- Deal 4: Dryer -->
+  <g transform="translate(620, 380)">
+    <rect x="0" y="0" width="480" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="20" y="35" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#1e293b">🌀 Fisher & Paykel 9kg 乾衣機</text>
+    <text x="20" y="65" font-family="Segoe UI, sans-serif" font-size="18" fill="#64748b">The Good Guys • <tspan fill="#ef4444">省 $500</tspan></text>
+    <text x="20" y="95" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#059669">$995</text>
+  </g>
+  
+  <!-- Footer CTA -->
+  <rect x="0" y="530" width="1200" height="100" fill="#1e293b"/>
+  <text x="600" y="585" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="600" fill="white">
+    立即查看完整優惠清單 → michaelleung.info
+  </text>
+  
+  <!-- AI Badge -->
+  <rect x="450" y="500" width="300" height="40" rx="20" fill="url(#aiGradient)"/>
+  <defs>
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <text x="600" y="528" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600" fill="white">
+    🤖 AI 智能價格追蹤
+  </text>
+</svg>

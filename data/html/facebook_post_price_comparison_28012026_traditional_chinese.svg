@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="800"
+   height="1200"
+   viewBox="0 0 800 1200"
+   version="1.1"
+   id="svg75"
+   sodipodi:docname="facebook_post_price_comparison_28012026_traditional_chinese.svg"
+   inkscape:export-filename="facebook_post_price_comparison_28012026_traditional_chinese.png"
+   inkscape:export-xdpi="219.96001"
+   inkscape:export-ydpi="219.96001"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs75" />
+  <sodipodi:namedview
+     id="namedview75"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.5158333"
+     inkscape:cx="399.7801"
+     inkscape:cy="1022.21"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg75" />
+  <style
+     id="style1">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700=swap');
+    
+    * {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    
+    .title {
+      font-weight: 700;
+      font-size: 28px;
+      fill: #333;
+    }
+    
+    .subtitle {
+      font-weight: 500;
+      font-size: 18px;
+      fill: #666;
+    }
+    
+    .header-bg {
+      fill: #4CAF50;
+    }
+    
+    .section-title {
+      font-weight: 700;
+      font-size: 20px;
+      fill: #fff;
+    }
+    
+    .product-category {
+      font-weight: 500;
+      font-size: 16px;
+      fill: #4CAF50;
+    }
+    
+    .product-name {
+      font-weight: 400;
+      font-size: 14px;
+      fill: #333;
+    }
+    
+    .price {
+      font-weight: 700;
+      font-size: 14px;
+    }
+    
+    .coles-price {
+      fill: #E11B22;
+    }
+    
+    .woolworths-price {
+      fill: #2B7BB9;
+    }
+    
+    .both-price {
+      fill: #9C27B0;
+    }
+    
+    .savings {
+      font-weight: 400;
+      font-size: 12px;
+      fill: #FF9800;
+    }
+    
+    .winner-badge {
+      font-weight: 700;
+      font-size: 12px;
+      fill: #fff;
+    }
+    
+    .legend-text {
+      font-weight: 400;
+      font-size: 12px;
+      fill: #333;
+    }
+    
+    .footer-text {
+      font-weight: 400;
+      font-size: 10px;
+      fill: #777;
+    }
+    
+    .date-range {
+      font-weight: 500;
+      font-size: 14px;
+      fill: #fff;
+    }
+  </style>
+  <!-- 背景 -->
+  <rect
+     width="800"
+     height="1200"
+     fill="#F9F9F9"
+     id="rect1" />
+  <!-- 标题 -->
+  <rect
+     x="0"
+     y="0"
+     width="800"
+     height="100"
+     fill="#4CAF50"
+     id="rect2" />
+  <text
+     x="400"
+     y="40"
+     text-anchor="middle"
+     class="title"
+     id="text2">🛒 本週超市價格比拼</text>
+  <text
+     x="400"
+     y="70"
+     text-anchor="middle"
+     class="subtitle"
+     id="text3">Coles vs Woolworths 省錢攻略</text>
+  <text
+     x="400"
+     y="95"
+     text-anchor="middle"
+     class="date-range"
+     id="text4">有效期限：2026年1月28日 - 2月3日</text>
+  <!-- 本周战况分析 -->
+  <rect
+     x="20"
+     y="120"
+     width="760"
+     height="120"
+     fill="#fff"
+     stroke="#E0E0E0"
+     stroke-width="1"
+     id="rect4" />
+  <text
+     x="30"
+     y="145"
+     class="section-title"
+     fill="#333"
+     id="text5">📊 本週戰況分析</text>
+  <!-- Woolworths 胜出 -->
+  <rect
+     x="40"
+     y="160"
+     width="340"
+     height="70"
+     fill="#2B7BB9"
+     rx="5"
+     id="rect5" />
+  <text
+     x="50"
+     y="180"
+     class="section-title"
+     fill="#fff"
+     id="text6">🏆 Woolworths 大獲全勝！</text>
+  <text
+     x="50"
+     y="200"
+     class="subtitle"
+     fill="#fff"
+     font-size="14px"
+     id="text7"
+     style="fill:#ffffff">✅ 49個產品更便宜</text>
+  <text
+     x="50"
+     y="220"
+     class="subtitle"
+     fill="#fff"
+     font-size="14px"
+     id="text8"
+     style="fill:#ffffff">✅ 總潛在節省：$500+</text>
+  <!-- Coles 表现 -->
+  <rect
+     x="420"
+     y="160"
+     width="340"
+     height="70"
+     fill="#E11B22"
+     rx="5"
+     id="rect8" />
+  <text
+     x="430"
+     y="180"
+     class="section-title"
+     fill="#fff"
+     id="text9">📈 Coles 表現</text>
+  <text
+     x="430"
+     y="200.6597"
+     class="subtitle"
+     fill="#fff"
+     font-size="14px"
+     id="text10"
+     style="fill:#ffffff">✅ 多個產品更便宜</text>
+  <text
+     x="430"
+     y="220"
+     class="subtitle"
+     fill="#fff"
+     font-size="14px"
+     id="text11"
+     style="fill:#ffffff">✅ 在特定類別有優勢</text>
+  <!-- 产品比较数量 -->
+  <rect
+     x="270"
+     y="250"
+     width="260"
+     height="40"
+     fill="#FF9800"
+     rx="5"
+     id="rect11" />
+  <text
+     x="400"
+     y="275"
+     text-anchor="middle"
+     class="section-title"
+     fill="#fff"
+     id="text12">🔍 本週比較：80+個產品</text>
+  <!-- 产品价格比较 -->
+  <rect
+     x="20"
+     y="310"
+     width="760"
+     height="800"
+     fill="#fff"
+     stroke="#E0E0E0"
+     stroke-width="1"
+     id="rect12"
+     style="fill:#ffffff" />
+  <text
+     x="30"
+     y="335"
+     class="section-title"
+     fill="#333"
+     id="text13">🔥 本週最超值優惠</text>
+  <!-- 饮料类 -->
+  <text
+     x="30"
+     y="365"
+     class="product-category"
+     id="text14">💧 【飲料類】</text>
+  <!-- Pepsi/Solo/Sunkist 汽水 -->
+  <text
+     x="40"
+     y="390"
+     class="product-name"
+     id="text15">Pepsi/Solo/Sunkist 汽水</text>
+  <text
+     x="450"
+     y="390"
+     class="price woolworths-price"
+     id="text16">Woolworths: $1.75</text>
+  <rect
+     x="630"
+     y="375"
+     width="60"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect16" />
+  <text
+     x="660"
+     y="390"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text17">🏆半價</text>
+  <!-- 可口可樂系列 -->
+  <text
+     x="40"
+     y="415"
+     class="product-name"
+     id="text18">可口可樂系列 30x375ml</text>
+  <text
+     x="450"
+     y="415"
+     class="price coles-price"
+     id="text19">Coles: $2.00</text>
+  <rect
+     x="630"
+     y="400"
+     width="60"
+     height="20"
+     fill="#E11B22"
+     rx="3"
+     id="rect19" />
+  <text
+     x="660"
+     y="415"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text20">🏆半價</text>
+  <!-- 紅牛能量飲料 -->
+  <text
+     x="40"
+     y="440"
+     class="product-name"
+     id="text21">紅牛能量飲料 4x250ml</text>
+  <text
+     x="450"
+     y="440"
+     class="price woolworths-price"
+     id="text22">Woolworths: $6.25</text>
+  <rect
+     x="630"
+     y="425"
+     width="60"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect22" />
+  <text
+     x="660"
+     y="440"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text23">🏆半價</text>
+  <!-- 咖啡茶饮 -->
+  <text
+     x="30"
+     y="475"
+     class="product-category"
+     id="text24">☕ 【咖啡茶飲】</text>
+  <!-- Moccona 咖啡200g -->
+  <text
+     x="40"
+     y="500"
+     class="product-name"
+     id="text25">Moccona 咖啡200g</text>
+  <text
+     x="450"
+     y="500"
+     class="price woolworths-price"
+     id="text26">Woolworths: $16.50</text>
+  <rect
+     x="630"
+     y="485"
+     width="70"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect26" />
+  <text
+     x="665"
+     y="500"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text27">🏆最佳價格</text>
+  <!-- 肉類海鮮 -->
+  <text
+     x="30"
+     y="535"
+     class="product-category"
+     id="text28">🥩 【肉類海鮮】</text>
+  <!-- 澳洲新鮮雞胸肉片 -->
+  <text
+     x="40"
+     y="560"
+     class="product-name"
+     id="text29">澳洲新鮮雞胸肉片</text>
+  <text
+     x="450"
+     y="560"
+     class="price woolworths-price"
+     id="text30">Woolworths: $8.50/kg</text>
+  <rect
+     x="630"
+     y="545"
+     width="70"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect30" />
+  <text
+     x="665"
+     y="560"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text31">🏆最佳價格</text>
+  <!-- 乳製品 -->
+  <text
+     x="30"
+     y="595"
+     class="product-category"
+     id="text32">🥛 【乳製品】</text>
+  <!-- Dairy Farmers 濃稠乳酪 -->
+  <text
+     x="40"
+     y="620"
+     class="product-name"
+     id="text33">Dairy Farmers 濃稠乳酪 550-600g</text>
+  <text
+     x="450"
+     y="620"
+     class="price coles-price"
+     id="text34">Coles: $1.75</text>
+  <rect
+     x="630"
+     y="605"
+     width="60"
+     height="20"
+     fill="#E11B22"
+     rx="3"
+     id="rect34" />
+  <text
+     x="660"
+     y="620"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text35">🏆半價</text>
+  <!-- 零食小吃 -->
+  <text
+     x="30"
+     y="655"
+     class="product-category"
+     id="text36">🍟 【零食小吃】</text>
+  <!-- Smith's 薯片 160g -->
+  <text
+     x="40"
+     y="680"
+     class="product-name"
+     id="text37">Smith's 薯片 160g</text>
+  <text
+     x="450"
+     y="680"
+     class="price woolworths-price"
+     id="text38">Woolworths: $2.00</text>
+  <rect
+     x="630"
+     y="665"
+     width="60"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect38" />
+  <text
+     x="660"
+     y="680"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text39">🏆半價</text>
+  <!-- 巧克力甜品 -->
+  <text
+     x="30"
+     y="715"
+     class="product-category"
+     id="text40">🍫 【巧克力甜品】</text>
+  <!-- Cadbury 巧克力片 -->
+  <text
+     x="40"
+     y="740"
+     class="product-name"
+     id="text41">Cadbury 巧克力片/融化巧克力 180-225g</text>
+  <text
+     x="450"
+     y="740"
+     class="price coles-price"
+     id="text42">Coles: $2.00</text>
+  <rect
+     x="630"
+     y="725"
+     width="70"
+     height="20"
+     fill="#E11B22"
+     rx="3"
+     id="rect42" />
+  <text
+     x="665"
+     y="740"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text43">🏆最佳價格</text>
+  <!-- 冷凍甜品 -->
+  <text
+     x="30"
+     y="775"
+     class="product-category"
+     id="text44">🍦 【冷凍甜品】</text>
+  <!-- Kinder Bueno 雪糕筒 -->
+  <text
+     x="40"
+     y="800"
+     class="product-name"
+     id="text45">Kinder Bueno 雪糕筒 360ml 4支裝</text>
+  <text
+     x="450"
+     y="800"
+     class="price woolworths-price"
+     id="text46">Woolworths: $6.00</text>
+  <rect
+     x="630"
+     y="785"
+     width="60"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect46" />
+  <text
+     x="660"
+     y="800"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text47">🏆半價</text>
+  <!-- 個人護理 -->
+  <text
+     x="30"
+     y="835"
+     class="product-category"
+     id="text48">🧴 【個人護理】</text>
+  <!-- Pantene 洗髮水/護髮素 -->
+  <text
+     x="40"
+     y="860"
+     class="product-name"
+     id="text49">Pantene 洗髮水/護髮素 900ml</text>
+  <text
+     x="450"
+     y="860"
+     class="price coles-price"
+     id="text50">Coles: $9.50</text>
+  <rect
+     x="630"
+     y="845"
+     width="60"
+     height="20"
+     fill="#E11B22"
+     rx="3"
+     id="rect50" />
+  <text
+     x="660"
+     y="860"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text51">🏆半價</text>
+  <!-- 保健品 -->
+  <text
+     x="30"
+     y="895"
+     class="product-category"
+     id="text52">💊 【保健品】</text>
+  <!-- Nature's Way 成人維他命軟糖 -->
+  <text
+     x="40"
+     y="920"
+     class="product-name"
+     id="text53">Nature's Way 成人維他命軟糖 100粒</text>
+  <text
+     x="450"
+     y="920"
+     class="price woolworths-price"
+     id="text54">Woolworths: $14.00</text>
+  <rect
+     x="630"
+     y="905"
+     width="60"
+     height="20"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect54" />
+  <text
+     x="660"
+     y="920"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text55">🏆半價</text>
+  <!-- 防曬產品 -->
+  <text
+     x="30"
+     y="955"
+     class="product-category"
+     id="text56">☀️ 【防曬產品】</text>
+  <!-- Nivea SPF50+ 防曬乳 -->
+  <text
+     x="40"
+     y="980"
+     class="product-name"
+     id="text57">Nivea SPF50+ 防曬乳 400ml</text>
+  <text
+     x="450"
+     y="980"
+     class="price coles-price"
+     id="text58">Coles: $7.50</text>
+  <rect
+     x="630"
+     y="965"
+     width="70"
+     height="20"
+     fill="#E11B22"
+     rx="3"
+     id="rect58" />
+  <text
+     x="665"
+     y="980"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text59">🏆最佳價格</text>
+  <!-- 水果 -->
+  <text
+     x="30"
+     y="1015"
+     class="product-category"
+     id="text60">🍎 【水果】</text>
+  <!-- 澳洲荔枝 -->
+  <text
+     x="40"
+     y="1040"
+     class="product-name"
+     id="text61">澳洲荔枝</text>
+  <text
+     x="450"
+     y="1040"
+     class="price coles-price"
+     id="text62">Coles: $3.50/kg</text>
+  <rect
+     x="630"
+     y="1025"
+     width="70"
+     height="20"
+     fill="#E11B22"
+     rx="3"
+     id="rect62" />
+  <text
+     x="665"
+     y="1040"
+     text-anchor="middle"
+     class="winner-badge"
+     id="text63">🏆最佳價格</text>
+  <!-- 优势类别总结 -->
+  <rect
+     x="20"
+     y="1075"
+     width="760"
+     height="100"
+     fill="#fff"
+     stroke="#E0E0E0"
+     stroke-width="1"
+     id="rect63" />
+  <text
+     x="30"
+     y="1095"
+     class="section-title"
+     fill="#333"
+     id="text64">💡 本週購物攻略</text>
+  <!-- Woolworths 优势 -->
+  <rect
+     x="40"
+     y="1110"
+     width="340"
+     height="55"
+     fill="#2B7BB9"
+     opacity="0.1"
+     rx="5"
+     id="rect64" />
+  <text
+     x="50"
+     y="1125"
+     class="product-category"
+     fill="#2B7BB9"
+     id="text65">🏆 Woolworths 佔優勢類別：</text>
+  <text
+     x="50"
+     y="1145"
+     class="product-name"
+     font-size="12px"
+     id="text66">✅ 飲料類 ✅ 海鮮肉類 ✅ 咖啡茶飲 ✅ 零食薯片</text>
+  <!-- Coles 优势 -->
+  <rect
+     x="420"
+     y="1110"
+     width="340"
+     height="55"
+     fill="#E11B22"
+     opacity="0.1"
+     rx="5"
+     id="rect66" />
+  <text
+     x="430"
+     y="1125"
+     class="product-category"
+     fill="#E11B22"
+     id="text67">🏆 Coles 佔優勢類別：</text>
+  <text
+     x="430"
+     y="1145"
+     class="product-name"
+     font-size="12px"
+     id="text68">✅ 水果類 ✅ 乳製品 ✅ 巧克力 ✅ 防曬產品</text>
+  <!-- 图例 -->
+  <rect
+     x="500"
+     cy="1202"
+     width="16"
+     height="16"
+     fill="#2B7BB9"
+     rx="3"
+     id="rect71" />
+  <rect
+     x="640"
+     cy="1202"
+     width="16"
+     height="16"
+     fill="#E11B22"
+     rx="3"
+     id="rect72" />
+  <!-- 数据来源 -->
+</svg>

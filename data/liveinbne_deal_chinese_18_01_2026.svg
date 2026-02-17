@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="2200" viewBox="0 0 800 2200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style type="text/css">
+            <![CDATA[
+                .title {
+                    font-family: Arial, sans-serif;
+                    font-size: 36px;
+                    font-weight: bold;
+                    fill: #e63946;
+                    text-anchor: middle;
+                }
+                .store-title {
+                    font-family: Arial, sans-serif;
+                    font-size: 28px;
+                    font-weight: bold;
+                    fill: #2a9d8f;
+                }
+                .section-title {
+                    font-family: Arial, sans-serif;
+                    font-size: 24px;
+                    font-weight: bold;
+                    fill: #e76f51;
+                }
+                .item {
+                    font-family: Arial, sans-serif;
+                    font-size: 20px;
+                    fill: #333333;
+                }
+                .price {
+                    font-family: Arial, sans-serif;
+                    font-size: 20px;
+                    font-weight: bold;
+                    fill: #2a9d8f;
+                }
+                .save {
+                    font-family: Arial, sans-serif;
+                    font-size: 18px;
+                    font-style: italic;
+                    fill: #e63946;
+                }
+                .highlight {
+                    font-family: Arial, sans-serif;
+                    font-size: 22px;
+                    font-weight: bold;
+                    fill: #264653;
+                }
+                .footer {
+                    font-family: Arial, sans-serif;
+                    font-size: 18px;
+                    fill: #666666;
+                    text-anchor: middle;
+                }
+                .divider {
+                    stroke: #cccccc;
+                    stroke-width: 2;
+                }
+            ]]>
+        </style>
+    </defs>
+    
+    <!-- 背景 -->
+    <rect width="800" height="2200" fill="#f8f9fa"/>
+    
+    <!-- 主標題 -->
+    <text x="400" y="60" class="title">🎉 本週超市特價優惠來啦！</text>
+    <text x="400" y="105" class="title">🛒 14-24/1/2026 🛒</text>
+    <line x1="50" y1="140" x2="750" y2="140" class="divider"/>
+    
+    <!-- Drakes 超市部分 -->
+    <text x="50" y="190" class="store-title">📍 Drakes超市特賣（14-20/1/2026）</text>
+    
+    <text x="50" y="240" class="section-title">🍫 零食狂歡</text>
+    <text x="70" y="280" class="item">• 多力多滋玉米片 150g-170g</text>
+    <text x="600" y="280" class="price">$2.00</text>
+    <text x="700" y="280" class="save">省$2.50</text>
+    
+    <text x="70" y="320" class="item">• 品客洋芋片 134g-165g</text>
+    <text x="600" y="320" class="price">$3.00</text>
+    <text x="700" y="320" class="save">省$3.00</text>
+    
+    <text x="70" y="360" class="item">• Smith's洋芋片 130g</text>
+    <text x="600" y="360" class="price">$3.00</text>
+    <text x="700" y="360" class="save">省$2.80</text>
+    
+    <text x="70" y="400" class="item">• 奧利奧迷你餅乾 204g</text>
+    <text x="600" y="400" class="price">$2.00</text>
+    <text x="700" y="400" class="save">省$2.50</text>
+    
+    <text x="50" y="460" class="section-title">🥤 飲料特價</text>
+    <text x="70" y="500" class="item">• 可口可樂系列 1.25升</text>
+    <text x="600" y="500" class="price">$2.00</text>
+    <text x="700" y="500" class="save">省$2.00</text>
+    
+    <text x="70" y="540" class="item">• 可口可樂 30罐裝375ml</text>
+    <text x="600" y="540" class="price">$28.00</text>
+    <text x="700" y="540" class="save">省$12.00</text>
+    
+    <text x="70" y="580" class="item">• Lipton冰茶 1.5升</text>
+    <text x="600" y="580" class="price">$2.00</text>
+    <text x="700" y="580" class="save">省$2.75</text>
+    
+    <text x="50" y="640" class="section-title">🥩 新鮮肉類</text>
+    <text x="70" y="680" class="item">• 澳洲雞胸肉片</text>
+    <text x="600" y="680" class="price">$8.90/公斤</text>
+    <text x="700" y="680" class="save">省$3.10</text>
+    
+    <text x="70" y="720" class="item">• 昆士蘭熟帝王蝦</text>
+    <text x="600" y="720" class="price">$36.00/公斤</text>
+    <text x="700" y="720" class="save">省$9.00</text>
+    
+    <text x="50" y="780" class="section-title">🎁 特別優惠</text>
+    <text x="70" y="820" class="highlight">• 每消費$60即可獲贈一雙史努比襪子！</text>
+    <text x="70" y="860" class="highlight">• 還可參加抽獎贏取家庭度假套餐！</text>
+    
+    <line x1="50" y1="920" x2="750" y2="920" class="divider"/>
+    
+    <!-- ALDI 部分 -->
+    <text x="50" y="980" class="store-title">📍 ALDI特賣會</text>
+    
+    <text x="50" y="1030" class="section-title">🗓 週三特賣（1月21日起）</text>
+    <text x="70" y="1070" class="item">• 零食小吃（全部$2特價！）</text>
+    <text x="70" y="1110" class="item">• 美容護理（全部$2特價！）</text>
+    <text x="70" y="1150" class="item">• 洗髮精/護髮素系列</text>
+    <text x="600" y="1150" class="price">$2.00</text>
+    
+    <text x="50" y="1210" class="section-title">🗓 週六特賣（1月24日起）</text>
+    <text x="70" y="1250" class="item">• 70吋4K智能電視</text>
+    <text x="600" y="1250" class="price">$499.00</text>
+    <text x="700" y="1250" class="save">🔥</text>
+    
+    <text x="70" y="1290" class="item">• 49吋全高清智能電視</text>
+    <text x="600" y="1290" class="price">$329.00</text>
+    <text x="700" y="1290" class="save">🔥</text>
+    
+    <text x="70" y="1330" class="item">• Mesh網絡系統3件裝</text>
+    <text x="600" y="1330" class="price">$119.00</text>
+    
+    <text x="70" y="1370" class="item">• AMBIANO無線吸塵器</text>
+    <text x="600" y="1370" class="price">$99.99</text>
+    
+    <line x1="50" y1="1430" x2="750" y2="1430" class="divider"/>
+    
+    <!-- 省錢攻略 -->
+    <text x="400" y="1490" class="section-title" text-anchor="middle">💰 本週省錢攻略</text>
+    
+    <text x="70" y="1540" class="highlight">✅ Drakes零食飲料超低價</text>
+    <text x="70" y="1580" class="highlight">✅ ALDI週三$2專區不容錯過</text>
+    <text x="70" y="1620" class="highlight">✅ 70吋電視只要$499</text>
+    <text x="70" y="1660" class="highlight">✅ 每$60送史努比襪子</text>
+    
+    <line x1="50" y1="1720" x2="750" y2="1720" class="divider"/>
+    
+    <!-- 頁腳資訊 -->
+    <text x="400" y="1780" class="footer">📱 更多優惠詳情請瀏覽我們的網站</text>
+    <text x="400" y="1820" class="footer">🏪 數量有限，售完即止</text>
+    
+    <text x="400" y="1880" class="footer">#布里斯本購物 #超市特價 #本週優惠 #省錢攻略</text>
+    <text x="400" y="1920" class="footer">#Drakes #ALDI #澳洲特價 #智慧消費 #折扣優惠</text>
+    
+    <!-- 裝飾元素 -->
+    <circle cx="400" cy="2000" r="30" fill="#e63946" opacity="0.1"/>
+    <circle cx="200" cy="2050" r="25" fill="#2a9d8f" opacity="0.1"/>
+    <circle cx="600" cy="2050" r="25" fill="#e76f51" opacity="0.1"/>
+    
+    <text x="400" y="2100" class="footer" font-size="16px">特價期間：2026年1月14日 - 1月24日</text>
+</svg>

@@ -1,0 +1,317 @@
+{
+  "products": [
+    {
+      "productID": "CL001",
+      "productName": "Coles Australian No Added Hormones Beef Porterhouse Steak 2 Pack",
+      "category": "Meat",
+      "brand": "Coles",
+      "description": "450g pack, product sold uncooked",
+      "price": "$17.00",
+      "originalPrice": "$19.00",
+      "savings": "$2.00",
+      "unitPrice": "$37.78 per kg"
+    },
+    {
+      "productID": "CL002",
+      "productName": "Kettle Potato Chips",
+      "category": "Snacks",
+      "brand": "Kettle",
+      "description": "165g",
+      "price": "$3.00",
+      "originalPrice": "$6.00",
+      "savings": "$3.00"
+    },
+    {
+      "productID": "CL003",
+      "productName": "Huggies Bulk Nappy Pants",
+      "category": "Baby Care",
+      "brand": "Huggies",
+      "description": "24 Pack-36 Pack",
+      "price": "$11.00",
+      "originalPrice": "$22.00",
+      "savings": "$11.00",
+      "specialType": "Advertiser Promotion"
+    },
+    {
+      "productID": "CL004",
+      "productName": "Colgate Advanced Whitening & Tartar or Max Fresh Toothpaste",
+      "category": "Personal Care",
+      "brand": "Colgate",
+      "description": "115g",
+      "price": "$3.25",
+      "originalPrice": "$6.50",
+      "savings": "$3.25",
+      "unitPrice": "$2.83 per 100g",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL005",
+      "productName": "L'Oréal Elvive Hyaluron Plump Shampoo or Conditioner",
+      "category": "Personal Care",
+      "brand": "L'Oréal",
+      "description": "340mL",
+      "price": "$5.50",
+      "originalPrice": "$11.00",
+      "savings": "$5.50",
+      "unitPrice": "$1.62 per 100mL"
+    },
+    {
+      "productID": "CL006",
+      "productName": "Coles Australian Baby Cucumbers",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "250g Pack",
+      "price": "$3.50",
+      "unitPrice": "$14.00 per kg"
+    },
+    {
+      "productID": "CL007",
+      "productName": "Coles Australian Brown Onions",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "1kg Bag",
+      "price": "$2.50",
+      "unitPrice": "$2.50 per kg"
+    },
+    {
+      "productID": "CL008",
+      "productName": "Coles Queensland Brushed Potatoes",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "2kg Bag",
+      "price": "$4.50",
+      "unitPrice": "$2.25 per kg"
+    },
+    {
+      "productID": "CL009",
+      "productName": "Coles Queensland Red, Green or Yellow Capsicums",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "Per kg",
+      "price": "$4.90 per kg"
+    },
+    {
+      "productID": "CL010",
+      "productName": "Gold Kiwifruit",
+      "category": "Produce",
+      "brand": "",
+      "description": "Single sell",
+      "price": "$1.70 each",
+      "specialPrice": "$1.50 each when you buy 4"
+    },
+    {
+      "productID": "CL011",
+      "productName": "Coles Australian Baby Gem Lettuce",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "3 Pack",
+      "price": "$3.50",
+      "unitPrice": "$1.17 per each"
+    },
+    {
+      "productID": "CL012",
+      "productName": "Coles Australian Sweet Corn",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "3 Pack",
+      "price": "$3.90",
+      "unitPrice": "$1.30 per each"
+    },
+    {
+      "productID": "CL013",
+      "productName": "Coles Australian 4 Leaf Salad Mix",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "200g Pack",
+      "price": "$2.50",
+      "unitPrice": "$12.50 per kg"
+    },
+    {
+      "productID": "CL014",
+      "productName": "Coles Australian Organic Bananas",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "Per kg",
+      "price": "$5.50 per kg"
+    },
+    {
+      "productID": "CL015",
+      "productName": "Coles Australian Organic Brushed Potatoes",
+      "category": "Produce",
+      "brand": "Coles",
+      "description": "2kg Bag",
+      "price": "$8.90",
+      "unitPrice": "$4.45 per kg"
+    },
+    {
+      "productID": "CL016",
+      "productName": "Coles Honey, Natural or Roasted & Salted Macadamias",
+      "category": "Snacks",
+      "brand": "Coles",
+      "description": "400g Pack",
+      "price": "$16.00",
+      "originalPrice": "$18.00",
+      "savings": "$2.00",
+      "unitPrice": "$40.00 per kg"
+    },
+    {
+      "productID": "CL017",
+      "productName": "Australian Kanzi Apples",
+      "category": "Produce",
+      "brand": "",
+      "description": "Per kg",
+      "price": "$6.90 per kg"
+    },
+    {
+      "productID": "CL018",
+      "productName": "Cadbury Chocolate Bar",
+      "category": "Confectionery",
+      "brand": "Cadbury",
+      "description": "30g-55g",
+      "price": "$1.50",
+      "originalPrice": "$3.00",
+      "savings": "$1.50",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL019",
+      "productName": "Cadbury Old Gold Block Chocolate",
+      "category": "Confectionery",
+      "brand": "Cadbury",
+      "description": "170g-180g",
+      "price": "$4.00",
+      "originalPrice": "$8.00",
+      "savings": "$4.00",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL020",
+      "productName": "V Energy Drink",
+      "category": "Beverages",
+      "brand": "V",
+      "description": "4x250mL",
+      "price": "$5.87",
+      "originalPrice": "$11.75",
+      "savings": "$5.88",
+      "unitPrice": "$5.87 per litre",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL021",
+      "productName": "Kirks Soft Drink",
+      "category": "Beverages",
+      "brand": "Kirks",
+      "description": "10x375mL",
+      "price": "$7.50",
+      "originalPrice": "$15.00",
+      "savings": "$7.50",
+      "unitPrice": "$2.00 per litre",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL022",
+      "productName": "Vittoria Freeze Dried Instant Coffee",
+      "category": "Beverages",
+      "brand": "Vittoria",
+      "description": "400g",
+      "price": "$19.50",
+      "originalPrice": "$39.00",
+      "savings": "$19.50",
+      "unitPrice": "$4.88 per 100g",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL023",
+      "productName": "Sistema Klip It Plus Container",
+      "category": "Home",
+      "brand": "Sistema",
+      "description": "1 Litre",
+      "price": "$3.20",
+      "originalPrice": "$6.40",
+      "savings": "$3.20",
+      "unitPrice": "$3.20 per each",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL024",
+      "productName": "Quilton 3-Ply Softness White Toilet Tissue",
+      "category": "Home",
+      "brand": "Quilton",
+      "description": "6 Pack",
+      "price": "$3.25",
+      "originalPrice": "$6.50",
+      "savings": "$3.25",
+      "unitPrice": "$0.30 per 100 sheets",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL025",
+      "productName": "Cold Power Laundry Liquid",
+      "category": "Home",
+      "brand": "Cold Power",
+      "description": "2 Litre or Powder 2kg",
+      "price": "$12.00",
+      "originalPrice": "$24.00",
+      "savings": "$12.00",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL026",
+      "productName": "Nature's Way Kids Smart Vita Gummies Multi-Vitamin Plus Vitamin C + Zinc",
+      "category": "Health",
+      "brand": "Nature's Way",
+      "description": "120 Pack",
+      "price": "$16.00",
+      "originalPrice": "$32.00",
+      "savings": "$16.00",
+      "unitPrice": "$13.33 per 100 each",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL027",
+      "productName": "Nice & Natural Nut Bars",
+      "category": "Snacks",
+      "brand": "Nice & Natural",
+      "description": "180g-192g",
+      "price": "$2.75",
+      "originalPrice": "$5.50",
+      "savings": "$2.75",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL028",
+      "productName": "Betty Crocker Baking Mix",
+      "category": "Baking",
+      "brand": "Betty Crocker",
+      "description": "485g-500g",
+      "price": "$3.50",
+      "originalPrice": "$7.00",
+      "savings": "$3.50",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL029",
+      "productName": "Moccona Café Classics Coffee Sachets",
+      "category": "Beverages",
+      "brand": "Moccona",
+      "description": "10 Pack",
+      "price": "$3.95",
+      "originalPrice": "$7.90",
+      "savings": "$3.95",
+      "unitPrice": "$0.40 per each",
+      "specialType": "1/2 Price"
+    },
+    {
+      "productID": "CL030",
+      "productName": "Pepsi or Solo Soft Drink",
+      "category": "Beverages",
+      "brand": "Pepsi/Solo",
+      "description": "1.25 Litre",
+      "price": "$1.75",
+      "originalPrice": "$3.50",
+      "savings": "$1.75",
+      "unitPrice": "$1.40 per litre",
+      "specialType": "1/2 Price"
+    }
+  ]
+}

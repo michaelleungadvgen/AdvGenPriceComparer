@@ -1,0 +1,95 @@
+<svg width="800" height="1200" viewBox="0 0 800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="1200" fill="#F5F7FA" />
+
+  <!-- Header Banner -->
+  <rect x="0" y="0" width="800" height="130" fill="#003366" />
+  <text x="40" y="55" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="white">布里斯班超市特價</text>
+  <text x="40" y="95" font-family="Arial, sans-serif" font-size="28" fill="#FFD966">Drakes & ALDI 精選優惠</text>
+  <text x="40" y="125" font-family="Arial, sans-serif" font-size="18" fill="white">2026年2月份最新優惠</text>
+
+  <!-- Subheader -->
+  <rect x="0" y="140" width="800" height="45" fill="#004C99" />
+  <text x="40" y="170" font-family="Arial, sans-serif" font-size="20" fill="white">我們的AI掃瞄了Drakes超市及ALDI特賣精選，幫您慳錢購物！</text>
+
+  <!-- Drakes Section -->
+  <rect x="30" y="195" width="740" height="360" fill="#E6F0FF" rx="12" />
+  <text x="50" y="230" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#003366">🛒 DRAKES 超市特價</text>
+  <text x="50" y="260" font-family="Arial, sans-serif" font-size="16" fill="#666">(2月4日-10日)</text>
+
+  <!-- Meat Specials -->
+  <text x="70" y="300" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#B22222">🥩 肉類特價</text>
+  <text x="90" y="330" font-family="Arial, sans-serif" font-size="15">• 澳洲雞胸肉 - $7.90/公斤</text>
+  <text x="300" y="330" font-family="Arial, sans-serif" font-size="15">• 西冷牛排 (大包裝) - $24.00/公斤</text>
+  <text x="90" y="355" font-family="Arial, sans-serif" font-size="15">• 特瘦牛肉碎 - $16.90/公斤 (慳 $4.10)</text>
+  <text x="300" y="355" font-family="Arial, sans-serif" font-size="15">• 豬柳 - $14.00/公斤 (慳 $7)</text>
+
+  <!-- Half Price Ice Cream -->
+  <text x="70" y="390" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1E7E34">🍦 半價雪糕</text>
+  <text x="90" y="420" font-family="Arial, sans-serif" font-size="15">• Streets Magnum 雪糕 4支裝 - $6.25 (半價)</text>
+  <text x="300" y="420" font-family="Arial, sans-serif" font-size="15">• Connoisseur 雪糕 1升 - $5.50 (慳 $5.50)</text>
+
+  <!-- Snacks & Drinks -->
+  <text x="70" y="455" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#B45F06">🥤 零食飲品</text>
+  <text x="90" y="485" font-family="Arial, sans-serif" font-size="15">• Coca-Cola 24罐裝 - $24.75 (慳 $12.75)</text>
+  <text x="300" y="485" font-family="Arial, sans-serif" font-size="15">• Pepsi/Schweppes 2升 - $3.00 (半價)</text>
+  <text x="90" y="510" font-family="Arial, sans-serif" font-size="15">• Monster Energy 4罐裝 - $8.25 (半價)</text>
+  <text x="300" y="510" font-family="Arial, sans-serif" font-size="15">• Toblerone 朱古力 340g - $10.00 (慳 $10)</text>
+
+  <!-- Household & Fresh Produce - Row 1 -->
+  <text x="70" y="545" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#6A1B9A">🧹 家居清潔</text>
+  <text x="90" y="575" font-family="Arial, sans-serif" font-size="15">• Finish 洗碗機片 - 半價</text>
+  <text x="250" y="575" font-family="Arial, sans-serif" font-size="15">• Radiant 洗衣液 2升 - $19.00 (慳 $10)</text>
+  <text x="90" y="600" font-family="Arial, sans-serif" font-size="15">• Glen 20 消毒噴霧 - $5.50 (慳 $4)</text>
+
+  <text x="70" y="635" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#C44536">🥑 新鮮蔬果</text>
+  <text x="90" y="665" font-family="Arial, sans-serif" font-size="15">• 牛油果 - $1.80/個</text>
+  <text x="250" y="665" font-family="Arial, sans-serif" font-size="15">• 南瓜 - $1.90/公斤</text>
+  <text x="90" y="690" font-family="Arial, sans-serif" font-size="15">• 藍寶石葡萄 400g - $5.90</text>
+
+  <!-- ALDI Special Buys -->
+  <rect x="30" y="715" width="740" height="390" fill="#FFF2CC" rx="12" />
+  <text x="50" y="750" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#8B4513">🏪 ALDI 特賣優惠</text>
+
+  <!-- Nuts Series - Feb 11 -->
+  <text x="70" y="790" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#B85C00">📅 2月11日 (星期三) 開售 - 堅果系列</text>
+  <rect x="90" y="800" width="660" height="65" fill="#FFF9E6" rx="6" />
+  <text x="110" y="825" font-family="Arial, sans-serif" font-size="14">• 烤混合果仁 1kg - $22.99</text>
+  <text x="300" y="825" font-family="Arial, sans-serif" font-size="14">• 烤杏仁 1kg - $16.99</text>
+  <text x="480" y="825" font-family="Arial, sans-serif" font-size="14">• 烤腰果 1kg - $19.99</text>
+  <text x="110" y="850" font-family="Arial, sans-serif" font-size="14">• 開心果 1kg - $19.99</text>
+  <text x="300" y="850" font-family="Arial, sans-serif" font-size="14">• 合桃 1kg - $17.99</text>
+  <text x="480" y="850" font-family="Arial, sans-serif" font-size="14">• 椰棗 1kg - $15.99</text>
+  <text x="110" y="875" font-family="Arial, sans-serif" font-size="14">• 印度香米 5kg - $14.99</text>
+
+  <!-- Garden Tools - Feb 14 -->
+  <text x="70" y="910" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2E7D32">📅 2月14日 (星期六) 開售 - 園藝工具</text>
+  <rect x="90" y="920" width="660" height="45" fill="#E8F5E8" rx="6" />
+  <text x="110" y="945" font-family="Arial, sans-serif" font-size="14">• FERREX 20V 割草機套裝 - $249.00</text>
+  <text x="350" y="945" font-family="Arial, sans-serif" font-size="14">• 20V 修枝機 - $99.99</text>
+  <text x="530" y="945" font-family="Arial, sans-serif" font-size="14">• 20V 吹葉機 - $49.99</text>
+  <text x="110" y="970" font-family="Arial, sans-serif" font-size="14">• 蔬菜種植床 - $24.99</text>
+  <text x="300" y="970" font-family="Arial, sans-serif" font-size="14">• 優質培養土 22升 - $4.99</text>
+  <text x="530" y="970" font-family="Arial, sans-serif" font-size="14">• 園藝水管 20米 - $19.99</text>
+
+  <!-- Kitchen Appliances - Feb 18 -->
+  <text x="70" y="1010" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1976D2">📅 2月18日 (星期三) 開售 - 廚房電器</text>
+  <rect x="90" y="1020" width="350" height="60" fill="#E3F2FD" rx="6" />
+  <text x="110" y="1045" font-family="Arial, sans-serif" font-size="14">• BRAUN 食物處理器 - $89.99</text>
+  <text x="300" y="1045" font-family="Arial, sans-serif" font-size="14">• DE'LONGHI 咖啡機 - $99.99</text>
+  <text x="110" y="1070" font-family="Arial, sans-serif" font-size="14">• 真空封口機 - $49.99</text>
+  <text x="300" y="1070" font-family="Arial, sans-serif" font-size="14">• 電熱水壺 1.7升 - $24.99</text>
+  <text x="110" y="1095" font-family="Arial, sans-serif" font-size="14">• 多士爐 - $24.99</text>
+
+  <!-- British Snacks - Feb 21 -->
+  <text x="70" y="1125" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#C2185B">📅 2月21日 (星期六) 開售 - 英國零食</text>
+  <rect x="90" y="1135" width="350" height="45" fill="#FCE4EC" rx="6" />
+  <text x="110" y="1160" font-family="Arial, sans-serif" font-size="14">• Yorkshire Tea 100包 - $5.79</text>
+  <text x="300" y="1160" font-family="Arial, sans-serif" font-size="14">• McVitie's 朱古力消化餅 - $2.75</text>
+  <text x="110" y="1185" font-family="Arial, sans-serif" font-size="14">• Jaffa Cakes - $1.99</text>
+  <text x="300" y="1185" font-family="Arial, sans-serif" font-size="14">• Pot Noodle 杯麵 - $3.49</text>
+
+  <!-- Footer -->
+  <rect x="0" y="1230" width="800" height="30" fill="#003366" />
+  <text x="40" y="1250" font-family="Arial, sans-serif" font-size="14" fill="white">數量有限，售完即止！祝大家購物愉快！</text>
+  <text x="40" y="1270" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC">#布里斯班優惠 #超市特價 #Drakes #ALDI #半價優惠 #慳錢攻略 #BrisbaneDeals #澳洲生活</text>
+</svg>

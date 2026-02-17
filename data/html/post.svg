@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#f0f9ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; font-weight: 800; }
+      .label { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; font-weight: 700; }
+      .text  { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+      .mono  { font-family: ui-monospace, Menlo, Monaco, "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Header -->
+  <rect x="40" y="30" width="1120" height="110" rx="16" fill="#0f172a" filter="url(#shadow)"/>
+  <text x="80" y="100" class="title" font-size="36" fill="#fff">🎉 每周價格大比拼：Coles vs Woolworths 🛒</text>
+  <text x="80" y="136" class="text" font-size="18" fill="#cbd5e1">2025/9/17 – 2025/9/23 ｜ 比較 42 種商品 ｜ 估計節省 $185+</text>
+
+  <!-- Left column: Highlights -->
+  <g transform="translate(40,160)">
+    <rect x="0" y="0" width="540" height="430" rx="14" fill="#ffffff" stroke="#e6edf3" filter="url(#shadow)"/>
+    <text x="30" y="40" class="label" font-size="22" fill="#0f172a">🎯 本周亮點</text>
+
+    <text x="30" y="85" class="text" font-size="20" fill="#1f2937">• 牛肉沙朗牛排（Coles）：現價 $17.00（原價 $19.00）省 $2</text>
+    <text x="30" y="118" class="text" font-size="20" fill="#1f2937">• Kettle 薯片（Coles）：現價 $3.00（原價 $6.00）半價</text>
+    <text x="30" y="151" class="text" font-size="20" fill="#1f2937">• Huggies 紙尿褲（Coles）：現價 $11.00（原價 $22.00）半價</text>
+    <text x="30" y="184" class="text" font-size="20" fill="#1f2937">• 高露潔牙膏（Coles）：現價 $3.25（原價 $6.50）半價</text>
+
+    <rect x="30" y="210" width="480" height="160" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="50" y="240" class="label" font-size="20" fill="#0b0f1a">📊 每周分析</text>
+    <text x="50" y="270" class="text" font-size="18" fill="#334155">比較產品數量：42 種</text>
+    <text x="50" y="295" class="text" font-size="18" fill="#334155">總計節省金額：$185+</text>
+    <text x="50" y="320" class="text" font-size="18" fill="#334155">Coles 最優惠：75%  ｜  Woolworths 最優惠：25%</text>
+
+    <text x="30" y="398" class="text" font-size="14" fill="#475569">資料來源：Coles / Woolworths 官方目錄（2025/9/17–9/23）</text>
+  </g>
+
+  <!-- Right column: CTA and site -->
+  <g transform="translate(620,160)">
+    <rect x="0" y="0" width="520" height="430" rx="14" fill="#ffffff" stroke="#e6f6ef" filter="url(#shadow)"/>
+    <text x="30" y="40" class="label" font-size="22" fill="#065f46">🌟 更多詳情 & 支持</text>
+    <text x="30" y="80" class="text" font-size="18" fill="#0b3a2d">想看完整價格比較與數據分析，歡迎到我的網站：</text>
+    <text x="30" y="108" class="label" font-size="20" fill="#0b3a2d">Michael Leung Prices</text>
+
+    <rect x="30" y="138" width="460" height="120" rx="10" fill="#f0fdf4" stroke="#c7f1db"/>
+    <text x="50" y="170" class="text" font-size="18" fill="#065f46">如果你覺得這個價格比較對你有幫助，唔妨請我喝杯咖啡，</text>
+    <text x="50" y="196" class="text" font-size="18" fill="#065f46">支持我繼續提供更優質內容！👉 請我喝咖啡</text>
+
+    <rect x="30" y="270" width="460" height="120" rx="10" fill="#fff7ed" stroke="#ffedd5"/>
+    <text x="50" y="300" class="label" font-size="20" fill="#92400e">📌 小提醒</text>
+    <text x="50" y="328" class="text" font-size="18" fill="#92400e">價格以門店及官網為準，實際優惠以販售時為主。</text>
+
+    <g transform="translate(30,404)">
+      <text x="0" y="0" class="mono" font-size="16" fill="#475569">#價格比較  #Coles  #Woolworths  #省錢攻略  #本週優惠</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(40,600)">
+    <text x="0" y="0" class="text" font-size="12" fill="#94a3b8">製作：Michael Leung Prices ・ 比較期間：2025/9/17–9/23</text>
+  </g>
+</svg>

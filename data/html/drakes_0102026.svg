@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        text { font-family: Arial, sans-serif; }
+        .title { font-size: 28px; font-weight: bold; fill: #ff6600; }
+        .subtitle { font-size: 20px; font-weight: bold; fill: #333; }
+        .header { font-size: 18px; font-weight: bold; fill: #0066cc; }
+        .item { font-size: 14px; fill: #222; }
+        .price { font-size: 14px; fill: #cc0000; font-weight: bold; }
+        .store { font-size: 22px; font-weight: bold; fill: #009933; }
+        .date { font-size: 16px; fill: #666; }
+        .footer { font-size: 12px; fill: #555; }
+        rect { fill: #f9f9f9; stroke: #ccc; stroke-width: 1; }
+    </style>
+    <rect x="10" y="10" width="780" height="1180" rx="10" fill="#fff9e6" stroke="#ffcc00" stroke-width="2"/>
+    
+    <!-- 標題 -->
+    <text x="400" y="60" text-anchor="middle" class="title">🛒✨ 本週超市特價精選！✨🛒</text>
+    <text x="400" y="90" text-anchor="middle" class="date">2026年1月28日 - 2月7日</text>
+    
+    <!-- Drakes 特價區 -->
+    <rect x="30" y="120" width="740" height="500" rx="5"/>
+    <text x="400" y="150" text-anchor="middle" class="store">🏪 DRAKES 超市特價</text>
+    <text x="400" y="180" text-anchor="middle" class="date">1月28日 - 2月3日</text>
+    
+    <text x="50" y="220" class="header">🎁 特別活動：</text>
+    <text x="70" y="250" class="item">✅ 每消費$60即可獲得一雙免費襪子！</text>
+    <text x="70" y="280" class="item">✅ 消費$40並購買促銷商品參加抽獎，贏取$10,000家庭度假！</text>
+    
+    <text x="50" y="320" class="header">🌟 精選特價商品：</text>
+    <text x="70" y="350" class="item">🍚 太陽米中粒白米 5公斤</text><text x="500" y="350" class="price">$5</text>
+    <text x="70" y="380" class="item">🥩 澳洲牛肉精瘦絞肉 最少1.2公斤</text><text x="500" y="380" class="price">$15.90/公斤</text>
+    <text x="70" y="410" class="item">🍫 Cadbury巧克力塊 150g-190g</text><text x="500" y="410" class="price">$3</text>
+    <text x="70" y="440" class="item">🦐 新鮮巨型熟海洋王蝦</text><text x="500" y="440" class="price">$34/公斤</text>
+    <text x="70" y="470" class="item">🧼 Cold Power洗衣液 4公升</text><text x="500" y="470" class="price">$19</text>
+    
+    <!-- ALDI 特價區 -->
+    <rect x="30" y="640" width="740" height="500" rx="5"/>
+    <text x="400" y="670" text-anchor="middle" class="store">🏪 ALDI 特別促銷</text>
+    
+    <text x="50" y="710" class="header">📅 1月31日週六上架：</text>
+    <text x="70" y="740" class="item">🍫 Maltesers禮盒 400g</text><text x="500" y="740" class="price">$7.75</text>
+    <text x="70" y="770" class="item">🍫 Cadbury Roses禮盒 380g</text><text x="500" y="770" class="price">$9.99</text>
+    
+    <text x="50" y="810" class="header">📅 2月4日週三上架 - 農曆新年特輯：</text>
+    <text x="70" y="840" class="item">🎎 泰國香米 5公斤</text><text x="500" y="840" class="price">$12.98</text>
+    <text x="70" y="870" class="item">🎎 竹製蒸籠</text><text x="500" y="870" class="price">$14.88</text>
+    <text x="70" y="900" class="item">🍾 Glen Marnoch雪莉桶威士忌 700ml</text><text x="500" y="900" class="price">$55.99</text>
+    
+    <text x="50" y="940" class="header">📅 2月7日週六上架：</text>
+    <text x="70" y="970" class="item">🚗 24吋高清智能電視（內置電池）</text><text x="500" y="970" class="price">$189.00</text>
+    <text x="70" y="1000" class="item">👟 成人防水外套</text><text x="500" y="1000" class="price">$34.99</text>
+    
+    <!-- 底部資訊 -->
+    <text x="400" y="1180" text-anchor="middle" class="footer">📍 Glenmore Park 2745 (ALDI) & Drakes各分店 | 特價商品售完為止</text>
+</svg>

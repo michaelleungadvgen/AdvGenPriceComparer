@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" style="background-color:#f8f9fa;font-family:Arial,sans-serif">
+  <!-- 标题区域 -->
+  <defs>
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2e7d32" />
+      <stop offset="50%" stop-color="#f9a825" />
+      <stop offset="100%" stop-color="#c62828" />
+    </linearGradient>
+    
+    <linearGradient id="drakesGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1565c0" />
+      <stop offset="100%" stop-color="#42a5f5" />
+    </linearGradient>
+    
+    <linearGradient id="aldiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c62828" />
+      <stop offset="100%" stop-color="#ef5350" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0,0,0,0.2)"/>
+    </filter>
+    
+    <style>
+      .title { font-weight: bold; font-size: 28px; fill: url(#titleGradient); }
+      .store-title { font-weight: bold; font-size: 22px; }
+      .section-title { font-weight: bold; font-size: 18px; fill: #333; }
+      .item-name { font-size: 14px; fill: #333; }
+      .item-price { font-size: 14px; font-weight: bold; fill: #c62828; }
+      .date { font-size: 14px; fill: #666; }
+      .note { font-size: 12px; fill: #777; }
+      .highlight { font-weight: bold; fill: #2e7d32; }
+    </style>
+  </defs>
+  
+  <!-- 主标题 -->
+  <rect x="20" y="20" width="760" height="80" rx="10" fill="white" filter="url(#shadow)"/>
+  <text x="400" y="60" text-anchor="middle" class="title">🛒 本週超市特價精選!</text>
+  <text x="400" y="90" text-anchor="middle" class="date">21-31 January 2026 | 布里斯本</text>
+  
+  <!-- Drakes超市区域 -->
+  <rect x="20" y="120" width="760" height="500" rx="10" fill="white" filter="url(#shadow)"/>
+  
+  <!-- Drakes标题 -->
+  <rect x="20" y="120" width="760" height="50" rx="10" fill="url(#drakesGradient)"/>
+  <text x="400" y="152" text-anchor="middle" class="store-title" fill="white">📍 Drakes 超市特價 (21-27 Jan)</text>
+  
+  <!-- 特别活动 -->
+  <rect x="40" y="185" width="720" height="40" rx="5" fill="#fff3e0"/>
+  <text x="60" y="210" class="section-title">🎁 每消費$60即可獲得一雙Peanuts襪子!</text>
+  
+  <!-- Drakes商品网格 -->
+  <!-- 第一列 -->
+  <g transform="translate(40, 240)">
+    <text x="0" y="0" class="section-title">💰 精選超值優惠</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• Maggi 2分鐘麵 5包裝</text>
+      <text x="300" y="0" class="item-price">$2</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• Coca-Cola 可樂 1.25升</text>
+      <text x="300" y="0" class="item-price">$2</text>
+    </g>
+    
+    <g transform="translate(0, 80)">
+      <text x="0" y="0" class="item-name">• Doritos 粟米片 150g-170g</text>
+      <text x="300" y="0" class="item-price">$2</text>
+    </g>
+    
+    <g transform="translate(0, 105)">
+      <text x="0" y="0" class="item-name">• Smith's 薯片 130g</text>
+      <text x="300" y="0" class="item-price">$3</text>
+    </g>
+    
+    <g transform="translate(0, 130)">
+      <text x="0" y="0" class="item-name">• 品客洋芋片 Pringles 134g-165g</text>
+      <text x="300" y="0" class="item-price">$3</text>
+    </g>
+    
+    <g transform="translate(0, 155)">
+      <text x="0" y="0" class="item-name">• Sunrice 即食飯 2包裝</text>
+      <text x="300" y="0" class="item-price">$1</text>
+    </g>
+  </g>
+  
+  <!-- 第二列 -->
+  <g transform="translate(400, 240)">
+    <text x="0" y="0" class="section-title">🥩 新鮮肉類特價</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• 去骨雞胸肉</text>
+      <text x="200" y="0" class="item-price">$8.99/kg</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• 豬肉香腸 1kg</text>
+      <text x="200" y="0" class="item-price">$7.80</text>
+    </g>
+    
+    <g transform="translate(0, 80)">
+      <text x="0" y="0" class="item-name">• 牛肉香腸 1kg</text>
+      <text x="200" y="0" class="item-price">$8.80</text>
+    </g>
+    
+    <text x="0" y="125" class="section-title">🍎 新鮮蔬果</text>
+    
+    <g transform="translate(0, 155)">
+      <text x="0" y="0" class="item-name">• 奇異果</text>
+      <text x="200" y="0" class="item-price">$0.99/ea</text>
+    </g>
+    
+    <g transform="translate(0, 180)">
+      <text x="0" y="0" class="item-name">• 牛油果</text>
+      <text x="200" y="0" class="item-price">$1.90/ea</text>
+    </g>
+    
+    <g transform="translate(0, 205)">
+      <text x="0" y="0" class="item-name">• 芒果</text>
+      <text x="200" y="0" class="item-price">$0.99/ea</text>
+    </g>
+  </g>
+  
+  <!-- ALDI超市区域 -->
+  <rect x="20" y="640" width="760" height="540" rx="10" fill="white" filter="url(#shadow)"/>
+  
+  <!-- ALDI标题 -->
+  <rect x="20" y="640" width="760" height="50" rx="10" fill="url(#aldiGradient)"/>
+  <text x="400" y="672" text-anchor="middle" class="store-title" fill="white">📍 ALDI 特價 (24, 28 & 31 Jan)</text>
+  
+  <!-- ALDI商品网格 -->
+  <!-- 第一列 -->
+  <g transform="translate(40, 710)">
+    <text x="0" y="0" class="section-title">🍫 零食美食 (24 Jan)</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• Carman's 燕麥片 840g</text>
+      <text x="250" y="0" class="item-price">$19.99</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• Pringles 迷你裝綜合包 570g</text>
+      <text x="250" y="0" class="item-price">$16.99</text>
+    </g>
+    
+    <g transform="translate(0, 80)">
+      <text x="0" y="0" class="item-name">• Nutella 榛果醬 900g</text>
+      <text x="250" y="0" class="item-price">$11.99</text>
+    </g>
+    
+    <text x="0" y="125" class="section-title">📺 科技電器 (24 Jan)</text>
+    
+    <g transform="translate(0, 155)">
+      <text x="0" y="0" class="item-name">• 70吋 4K 智能電視</text>
+      <text x="250" y="0" class="item-price highlight">$499</text>
+    </g>
+    
+    <g transform="translate(0, 180)">
+      <text x="0" y="0" class="item-name">• Mesh網路路由器 3個裝</text>
+      <text x="250" y="0" class="item-price">$119</text>
+    </g>
+  </g>
+  
+  <!-- 第二列 -->
+  <g transform="translate(400, 710)">
+    <text x="0" y="0" class="section-title">🍖 限時肉類 (28 Jan)</text>
+    
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" class="item-name">• 袋鼠肉碎 1kg</text>
+      <text x="200" y="0" class="item-price">$10.99</text>
+    </g>
+    
+    <g transform="translate(0, 55)">
+      <text x="0" y="0" class="item-name">• RSPCA認證雞肉排 1.2kg</text>
+      <text x="200" y="0" class="item-price">$11.99</text>
+    </g>
+    
+    <text x="0" y="90" class="section-title">🏢 辦公家具 (31 Jan)</text>
+    
+    <g transform="translate(0, 120)">
+      <text x="0" y="0" class="item-name">• 辦公桌</text>
+      <text x="200" y="0" class="item-price">$79.99</text>
+    </g>
+    
+    <g transform="translate(0, 145)">
+      <text x="0" y="0" class="item-name">• 電競椅</text>
+      <text x="200" y="0" class="item-price">$119</text>
+    </g>
+    
+    <g transform="translate(0, 170)">
+      <text x="0" y="0" class="item-name">• 筆記本電腦升降桌</text>
+      <text x="200" y="0" class="item-price highlight">$19.99</text>
+    </g>
+  </g>
+  
+  <!-- 温馨提示 -->
+  <rect x="40" y="1020" width="720" height="70" rx="5" fill="#e3f2fd"/>
+  <g transform="translate(60, 1045)">
+    <text x="0" y="0" class="section-title">⚠️ 溫馨提示</text>
+    <text x="0" y="25" class="note">• 特價商品數量有限，售完即止 • 價格可能因分店而異 • 建議提早前往選購</text>
+  </g>
+  
+  <!-- 底部标签 -->
+  <g transform="translate(40, 1110)">
+    <circle cx="10" cy="10" r="8" fill="#2e7d32"/>
+    <text x="25" y="15" class="note">#布里斯本 #超市特價 #Drakes #ALDI #省錢攻略</text>
+  </g>
+  
+  <!-- 装饰元素 -->
+  <circle cx="100" cy="100" r="15" fill="#ff9800" opacity="0.3"/>
+  <circle cx="700" cy="150" r="20" fill="#2196f3" opacity="0.3"/>
+  <circle cx="150" cy="600" r="12" fill="#4caf50" opacity="0.3"/>
+  <circle cx="650" cy="650" r="18" fill="#f44336" opacity="0.3"/>
+  
+  <!-- 购物车图标 -->
+  <g transform="translate(720, 30)" opacity="0.8">
+    <path d="M10,5 L50,5 L55,20 L15,20 Z" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+    <circle cx="20" cy="35" r="8" fill="#666"/>
+    <circle cx="45" cy="35" r="8" fill="#666"/>
+    <path d="M15,20 L20,35 M25,20 L30,35 M35,20 L40,35 M45,20 L50,35" stroke="#666" stroke-width="1.5"/>
+  </g>
+</svg>

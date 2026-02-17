@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1400" viewBox="0 0 800 1400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e3f2fd;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d32f2f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b71c1c;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1976d2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d47a1;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffd54f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb300;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Filters -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0,0,0,0.2)" />
+    </filter>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <!-- Styles -->
+    <style type="text/css">
+      <![CDATA[
+        .title { font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+        .header { font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+        .section-title { font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+        .deal-category { font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+        .deal-item { font-family: Arial, Helvetica, sans-serif; }
+        .deal-price { font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+        .savings { font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+        .tips { font-family: Arial, Helvetica, sans-serif; }
+        .hashtag { font-family: Arial, Helvetica, sans-serif; }
+        .date { font-family: Arial, Helvetica, sans-serif; }
+      ]]>
+    </style>
+    
+    <!-- Icons -->
+    <symbol id="shopping-cart" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+    </symbol>
+    
+    <symbol id="fire-icon" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M11.71 19C9.93 19 8.5 17.59 8.5 15.86c0-1.09.53-1.85 1.47-2.76c.57-.57.92-1.45.92-2.41c0-.87-.25-1.73-.75-2.48C10.11 7.07 10 6.55 10 6c0-1.26.59-2.16 1.33-2.66c.74-.5 1.67-.84 2.67-.84c2.21 0 4 1.79 4 4c0 .45-.08.88-.22 1.29c.63.79 1.02 1.77 1.02 2.83c0 1.3-.53 2.54-1.47 3.43c.91.58 1.47 1.51 1.47 2.57C17.5 17.59 16.07 19 14.29 19H11.71zM13.5 4c-.46 0-.89.11-1.28.3c.33.74.28 1.7-.03 2.66c-.31.96-.94 1.91-1.78 2.63c-.48.42-.91.93-1.09 1.5c-.18.57-.04 1.17.32 1.62c.39.49.9.89 1.43 1.27c.58.41 1.18.9 1.6 1.44c.43.54.65 1.18.65 1.88c0 .83-.67 1.5-1.5 1.5h2.5c.83 0 1.5-.67 1.5-1.5c0-.6-.3-1.14-.77-1.47c.62-.73.77-1.79.77-2.53c0-.96-.36-1.81-.93-2.47c.72-.68 1.18-1.62 1.18-2.63c0-1.1-.45-2.1-1.18-2.83c-.32-.32-.69-.58-1.08-.77C13.95 4.1 13.73 4 13.5 4z"/>
+    </symbol>
+    
+    <symbol id="heart-icon" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </symbol>
+    
+    <symbol id="star-icon" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2L9.19 8.63L2 9.24l5.46 4.73L5.82 21z"/>
+    </symbol>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="1400" fill="url(#bgGradient)" />
+  
+  <!-- Header Section -->
+  <rect x="0" y="0" width="800" height="150" fill="url(#yellowGradient)" filter="url(#dropShadow)" />
+  
+  <!-- Shopping Cart Icons -->
+  <g transform="translate(100, 60)" fill="#d32f2f">
+    <use xlink:href="#shopping-cart" width="40" height="40" />
+  </g>
+  
+  <g transform="translate(660, 60)" fill="#1976d2">
+    <use xlink:href="#shopping-cart" width="40" height="40" />
+  </g>
+  
+  <!-- Main Title -->
+  <text x="400" y="70" text-anchor="middle" class="title" font-size="32" fill="#1a237e" filter="url(#dropShadow)">
+    🛒✨ BRISBANE GROCERY DEALS ALERT ✨🛒
+  </text>
+  
+  <text x="400" y="110" text-anchor="middle" class="date" font-size="22" fill="#1a237e">
+    📅 February 4 - February 14, 2026
+  </text>
+  
+  <!-- Divider -->
+  <line x1="50" x2="750" y1="140" y2="140" stroke="#ff9800" stroke-width="3" stroke-dasharray="10,5" />
+  
+  <!-- DRAKES SECTION -->
+  <rect x="50" y="160" width="700" height="50" fill="url(#redGradient)" rx="10" filter="url(#dropShadow)" />
+  <text x="400" y="195" text-anchor="middle" class="header" font-size="26" fill="white">
+    🔴 DRAKES SUPERMARKET (4-10 Feb)
+  </text>
+  
+  <!-- Drakes Content -->
+  <g transform="translate(60, 230)">
+    <!-- Ice Cream -->
+    <rect x="0" y="0" width="680" height="35" fill="#ffebee" rx="5" />
+    <text x="15" y="25" class="deal-category" font-size="20" fill="#d32f2f">🍦 ICE CREAM HALF PRICE!</text>
+    
+    <text x="30" y="60" class="deal-item" font-size="16">• Streets Magnum 4-6 Pack</text>
+    <text x="480" y="60" class="deal-price" font-size="16" fill="#d32f2f">$6.25</text>
+    <text x="600" y="60" class="savings" font-size="14" fill="#388e3c">(1/2 Price)</text>
+    
+    <text x="30" y="90" class="deal-item" font-size="16">• Connoisseur Ice Cream 1L</text>
+    <text x="480" y="90" class="deal-price" font-size="16" fill="#d32f2f">$5.50</text>
+    <text x="600" y="90" class="savings" font-size="14" fill="#388e3c">(Save $5.50)</text>
+    
+    <!-- Meat -->
+    <rect x="0" y="110" width="680" height="35" fill="#ffebee" rx="5" />
+    <text x="15" y="135" class="deal-category" font-size="20" fill="#d32f2f">🍗 MEAT SPECIALS!</text>
+    
+    <text x="30" y="170" class="deal-item" font-size="16">• Chicken Breast Fillets</text>
+    <text x="480" y="170" class="deal-price" font-size="16" fill="#d32f2f">$7.90/kg</text>
+    <text x="600" y="170" class="savings" font-size="14" fill="#388e3c">⭐BEST VALUE</text>
+    
+    <text x="30" y="200" class="deal-item" font-size="16">• Porterhouse Steak Bulk Tray</text>
+    <text x="480" y="200" class="deal-price" font-size="16" fill="#d32f2f">$24.00/kg</text>
+    
+    <text x="30" y="230" class="deal-item" font-size="16">• Extra Lean Beef Mince (min 1.2kg)</text>
+    <text x="480" y="230" class="deal-price" font-size="16" fill="#d32f2f">$16.90/kg</text>
+    <text x="600" y="230" class="savings" font-size="14" fill="#388e3c">(Save $4.10)</text>
+    
+    <text x="30" y="260" class="deal-item" font-size="16">• Pork Fillet</text>
+    <text x="480" y="260" class="deal-price" font-size="16" fill="#d32f2f">$14.00/kg</text>
+    <text x="600" y="260" class="savings" font-size="14" fill="#388e3c">(Save $7)</text>
+    
+    <!-- Snacks -->
+    <rect x="0" y="290" width="680" height="35" fill="#ffebee" rx="5" />
+    <text x="15" y="315" class="deal-category" font-size="20" fill="#d32f2f">🍫 SNACKS &amp; SWEETS!</text>
+    
+    <text x="30" y="350" class="deal-item" font-size="16">• Arnott's Cream Biscuits</text>
+    <text x="480" y="350" class="deal-price" font-size="16" fill="#d32f2f">$2.58</text>
+    <text x="600" y="350" class="savings" font-size="14" fill="#388e3c">(1/2 Price)</text>
+    
+    <text x="30" y="380" class="deal-item" font-size="16">• Nestle Chocolate Blocks</text>
+    <text x="480" y="380" class="deal-price" font-size="16" fill="#d32f2f">$5.25</text>
+    <text x="600" y="380" class="savings" font-size="14" fill="#388e3c">(1/2 Price)</text>
+    
+    <text x="30" y="410" class="deal-item" font-size="16">• CC's Corn Chips 175g</text>
+    <text x="480" y="410" class="deal-price" font-size="16" fill="#d32f2f">$2.50</text>
+    <text x="600" y="410" class="savings" font-size="14" fill="#388e3c">(Save $2.50)</text>
+    
+    <text x="30" y="440" class="deal-item" font-size="16">• Toblerone 340g</text>
+    <text x="480" y="440" class="deal-price" font-size="16" fill="#d32f2f">$10</text>
+    <text x="600" y="440" class="savings" font-size="14" fill="#388e3c">(Save $10!)</text>
+    
+    <!-- Drinks -->
+    <rect x="0" y="470" width="680" height="35" fill="#ffebee" rx="5" />
+    <text x="15" y="495" class="deal-category" font-size="20" fill="#d32f2f">🥤 DRINKS!</text>
+    
+    <text x="30" y="530" class="deal-item" font-size="16">• Coca-Cola 24 Pack</text>
+    <text x="480" y="530" class="deal-price" font-size="16" fill="#d32f2f">$24.75</text>
+    <text x="600" y="530" class="savings" font-size="14" fill="#388e3c">(Save $12.75)</text>
+    
+    <text x="30" y="560" class="deal-item" font-size="16">• Monster Energy 4x500ml</text>
+    <text x="480" y="560" class="deal-price" font-size="16" fill="#d32f2f">$8.25</text>
+    <text x="600" y="560" class="savings" font-size="14" fill="#388e3c">(1/2 Price)</text>
+    
+    <text x="30" y="590" class="deal-item" font-size="16">• Powerade 1L</text>
+    <text x="480" y="590" class="deal-price" font-size="16" fill="#d32f2f">$2.90</text>
+    <text x="600" y="590" class="savings" font-size="14" fill="#388e3c">(1/2 Price)</text>
+    
+    <!-- Household -->
+    <rect x="0" y="620" width="680" height="35" fill="#ffebee" rx="5" />
+    <text x="15" y="645" class="deal-category" font-size="20" fill="#d32f2f">🧹 HOUSEHOLD!</text>
+    
+    <text x="30" y="680" class="deal-item" font-size="16">• Finish Dishwasher Tablets 34-70pk</text>
+    <text x="600" y="680" class="savings" font-size="14" fill="#388e3c">HALF PRICE</text>
+    
+    <text x="30" y="710" class="deal-item" font-size="16">• Glen 20 Disinfectant 300g</text>
+    <text x="480" y="710" class="deal-price" font-size="16" fill="#d32f2f">$5.50</text>
+    <text x="600" y="710" class="savings" font-size="14" fill="#388e3c">(Save $4)</text>
+    
+    <text x="30" y="740" class="deal-item" font-size="16">• Radiant Laundry 2L/2kg</text>
+    <text x="480" y="740" class="deal-price" font-size="16" fill="#d32f2f">$19</text>
+    <text x="600" y="740" class="savings" font-size="14" fill="#388e3c">(Save $10)</text>
+  </g>
+  
+  <!-- Divider -->
+  <line x1="50" x2="750" y1="780" y2="780" stroke="#d32f2f" stroke-width="3" stroke-dasharray="10,5" />
+  
+  <!-- ALDI SECTION -->
+  <rect x="50" y="800" width="700" height="50" fill="url(#blueGradient)" rx="10" filter="url(#dropShadow)" />
+  <text x="400" y="835" text-anchor="middle" class="header" font-size="26" fill="white">
+    🔵 ALDI SPECIAL BUYS
+  </text>
+  
+  <!-- ALDI Content -->
+  <g transform="translate(60, 870)">
+    <!-- Feb 11 -->
+    <rect x="0" y="0" width="680" height="35" fill="#e3f2fd" rx="5" />
+    <text x="15" y="25" class="section-title" font-size="20" fill="#1565c0">📅 WEDNESDAY 11 FEB:</text>
+    
+    <!-- Nuts -->
+    <rect x="0" y="45" width="680" height="35" fill="#bbdefb" rx="5" />
+    <text x="15" y="70" class="deal-category" font-size="20" fill="#1565c0">🥜 NUTS MEGA SALE!</text>
+    
+    <text x="30" y="105" class="deal-item" font-size="16">• Dry Roasted Almonds 1kg</text>
+    <text x="480" y="105" class="deal-price" font-size="16" fill="#1565c0">$16.99</text>
+    
+    <text x="30" y="135" class="deal-item" font-size="16">• Natural Cashews 1.2kg</text>
+    <text x="480" y="135" class="deal-price" font-size="16" fill="#1565c0">$19.99</text>
+    <text x="600" y="135" class="savings" font-size="14" fill="#388e3c">($16.66/kg)</text>
+    
+    <text x="30" y="165" class="deal-item" font-size="16">• Roasted Pistachios 1kg</text>
+    <text x="480" y="165" class="deal-price" font-size="16" fill="#1565c0">$19.99</text>
+    
+    <text x="30" y="195" class="deal-item" font-size="16">• Natural Walnuts 1kg</text>
+    <text x="480" y="195" class="deal-price" font-size="16" fill="#1565c0">$17.99</text>
+    
+    <!-- Meat -->
+    <rect x="0" y="225" width="680" height="35" fill="#bbdefb" rx="5" />
+    <text x="15" y="250" class="deal-category" font-size="20" fill="#1565c0">🍖 MEAT!</text>
+    
+    <text x="30" y="285" class="deal-item" font-size="16">• Fresh Whole Duck 2.1kg</text>
+    <text x="480" y="285" class="deal-price" font-size="16" fill="#1565c0">$17.99</text>
+    <g transform="translate(600, 270)">
+      <use xlink:href="#fire-icon" width="20" height="20" fill="#ff5722" />
+      <text x="25" y="17" class="savings" font-size="14" fill="#ff5722">HOT DEAL</text>
+    </g>
+    
+    <!-- Household Brands -->
+    <rect x="0" y="315" width="680" height="35" fill="#bbdefb" rx="5" />
+    <text x="15" y="340" class="deal-category" font-size="20" fill="#1565c0">🏠 HOUSEHOLD BRANDS!</text>
+    
+    <text x="30" y="375" class="deal-item" font-size="16">• Fairy Dishwasher Tablets 70pk</text>
+    <text x="480" y="375" class="deal-price" font-size="16" fill="#1565c0">$29.99</text>
+    
+    <text x="30" y="405" class="deal-item" font-size="16">• OMO Ultimate Laundry Liquid 2L</text>
+    <text x="480" y="405" class="deal-price" font-size="16" fill="#1565c0">$17.99</text>
+    
+    <text x="30" y="435" class="deal-item" font-size="16">• VIVA Paper Towel 4pk</text>
+    <text x="480" y="435" class="deal-price" font-size="16" fill="#1565c0">$9.49</text>
+    
+    <!-- Feb 14 -->
+    <rect x="0" y="475" width="680" height="35" fill="#e3f2fd" rx="5" />
+    <text x="15" y="500" class="section-title" font-size="20" fill="#1565c0">📅 SATURDAY 14 FEB:</text>
+    
+    <!-- Garden -->
+    <rect x="0" y="520" width="680" height="35" fill="#bbdefb" rx="5" />
+    <text x="15" y="545" class="deal-category" font-size="20" fill="#1565c0">🌿 GARDEN &amp; OUTDOOR!</text>
+    
+    <text x="30" y="580" class="deal-item" font-size="16">• 20V Pole Pruner Hedger</text>
+    <text x="480" y="580" class="deal-price" font-size="16" fill="#1565c0">$99.99</text>
+    
+    <text x="30" y="610" class="deal-item" font-size="16">• 20V Cordless Blower</text>
+    <text x="480" y="610" class="deal-price" font-size="16" fill="#1565c0">$49.99</text>
+    
+    <text x="30" y="640" class="deal-item" font-size="16">• 2x20V Mower Kit</text>
+    <text x="480" y="640" class="deal-price" font-size="16" fill="#1565c0">$249</text>
+    
+    <!-- Health -->
+    <rect x="0" y="670" width="680" height="35" fill="#bbdefb" rx="5" />
+    <text x="15" y="695" class="deal-category" font-size="20" fill="#1565c0">💪 HEALTH &amp; WELLNESS!</text>
+    
+    <text x="30" y="730" class="deal-item" font-size="16">• Fisiocrem 250g</text>
+    <text x="480" y="730" class="deal-price" font-size="16" fill="#1565c0">$29.99</text>
+    
+    <text x="30" y="760" class="deal-item" font-size="16">• Pain Away 70g</text>
+    <text x="480" y="760" class="deal-price" font-size="16" fill="#1565c0">$9.49</text>
+  </g>
+  
+  <!-- Divider -->
+  <line x1="50" x2="750" y1="1120" y2="1120" stroke="#1976d2" stroke-width="3" stroke-dasharray="10,5" />
+  
+  <!-- TOP PICKS SECTION -->
+  <rect x="50" y="1140" width="700" height="130" fill="#e8f5e8" rx="15" filter="url(#dropShadow)" />
+  <text x="400" y="1170" text-anchor="middle" class="header" font-size="26" fill="#2e7d32">
+    💡 TOP PICKS THIS WEEK:
+  </text>
+  
+  <g transform="translate(70, 1200)">
+    <g transform="translate(0, 0)" fill="#388e3c">
+      <use xlink:href="#star-icon" width="20" height="20" />
+    </g>
+    <text x="30" y="17" class="tips" font-size="18" fill="#2e7d32">
+      Chicken Breast $7.90/kg at Drakes = UNBEATABLE!
+    </text>
+    
+    <g transform="translate(0, 35)" fill="#388e3c">
+      <use xlink:href="#star-icon" width="20" height="20" />
+    </g>
+    <text x="30" y="52" class="tips" font-size="18" fill="#2e7d32">
+      ALDI Nuts 1kg bags = Stock up &amp; save!
+    </text>
+    
+    <g transform="translate(0, 70)" fill="#388e3c">
+      <use xlink:href="#star-icon" width="20" height="20" />
+    </g>
+    <text x="30" y="87" class="tips" font-size="18" fill="#2e7d32">
+      Ice cream 1/2 price = Perfect for summer!
+    </text>
+    
+    <g transform="translate(0, 105)" fill="#e91e63">
+      <use xlink:href="#heart-icon" width="20" height="20" />
+    </g>
+    <text x="30" y="122" class="tips" font-size="18" fill="#c2185b">
+      Valentine's Day gardening gifts at ALDI Sat 14th! 💝
+    </text>
+  </g>
+  
+  <!-- Footer -->
+  <rect x="0" y="1290" width="800" height="110" fill="#37474f" />
+  
+  <text x="400" y="1320" text-anchor="middle" class="tips" font-size="18" fill="white">
+    📍 Limited stock - while supplies last!
+  </text>
+  <text x="400" y="1350" text-anchor="middle" class="tips" font-size="18" fill="white">
+    👍 Like &amp; Share to help others save!
+  </text>
+  <text x="400" y="1380" text-anchor="middle" class="tips" font-size="18" fill="white">
+    💬 What deals are you grabbing this week?
+  </text>
+  
+  <!-- Hashtags -->
+  <text x="400" y="1410" text-anchor="middle" class="hashtag" font-size="16" fill="#bbdefb">
+    #Brisbane #BrisbaneDeals #GroceryDeals #Drakes #ALDI #HalfPrice #SaveMoney #AustralianShopping
+  </text>
+</svg>

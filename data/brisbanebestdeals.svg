@@ -1,0 +1,29 @@
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="120" fill="white" rx="12"/>
+
+  <!-- Leaf (freshness) -->
+  <path d="M20 60 C15 55, 10 50, 15 40 C20 30, 35 30, 40 40 C45 50, 40 60, 30 65 C25 68, 22 65, 20 60 Z"
+        fill="#009900"/>
+
+  <!-- Shopping cart icon -->
+  <path d="M60 50 L75 50 L82 35 L100 35 L100 50 L115 50 L115 65 L100 65 L98 75 L84 75 L82 65 L60 65 Z"
+        fill="#e31837" stroke="#cc0022" stroke-width="1"/>
+
+  <!-- Text "Brisbane Grocery Deals" -->
+  <text x="125" y="50" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="20" font-weight="700" fill="#333">
+    Brisbane Grocery
+  </text>
+  <text x="125" y="80" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="20" font-weight="600" fill="#009900">
+    Deals
+  </text>
+
+  <!-- Tag (savings badge) -->
+  <g transform="translate(340,20)">
+    <path d="M0 20 L20 0 L50 0 L50 30 L30 50 L0 50 Z" fill="#FFDD02"/>
+    <text x="25" y="22" font-size="10" font-weight="bold" fill="#333" text-anchor="middle"
+          font-family="sans-serif">SALE</text>
+  </g>
+</svg>

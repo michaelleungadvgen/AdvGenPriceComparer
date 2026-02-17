@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 1600" style="background-color:#fff0f5;font-family:'Arial',sans-serif;">
+  
+  <!-- 背景装饰 -->
+  <defs>
+    <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffebee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fce4ec;stop-opacity:1" />
+    </linearGradient>
+    
+    <pattern id="heartPattern" patternUnits="userSpaceOnUse" width="40" height="40">
+      <path d="M20,10 C25,5 30,5 35,10 C40,15 40,20 35,25 L20,40 L5,25 C0,20 0,15 5,10 C10,5 15,5 20,10 Z" fill="#ff4081" opacity="0.1"/>
+    </pattern>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="100%" height="100%" fill="url(#pinkGradient)"/>
+  <rect width="100%" height="100%" fill="url(#heartPattern)"/>
+  
+  <!-- 标题区域 -->
+  <rect x="50" y="50" width="1100" height="120" rx="20" fill="#e91e63" stroke="#c2185b" stroke-width="3"/>
+  <text x="600" y="120" text-anchor="middle" fill="white" font-size="42" font-weight="bold">
+    🛒💕 超市價格大比拼 | 情人節特輯 💕🛒
+  </text>
+  <text x="600" y="160" text-anchor="middle" fill="white" font-size="24">
+    📅 2026年2月11日 - 17日
+  </text>
+  
+  <!-- 本周赢家 -->
+  <rect x="100" y="200" width="1000" height="180" rx="15" fill="#4caf50" stroke="#388e3c" stroke-width="2"/>
+  <text x="600" y="260" text-anchor="middle" fill="white" font-size="36" font-weight="bold">
+    🏆 本週贏家：Woolworths！
+  </text>
+  <text x="600" y="310" text-anchor="middle" fill="white" font-size="28">
+    共49件商品價格更低！
+  </text>
+  <text x="600" y="350" text-anchor="middle" fill="white" font-size="22">
+    🟢 優勝項目：鮮花價格更抵 | 🔴 Coles：朱古力優惠較多
+  </text>
+  
+  <!-- 数据分析卡片 -->
+  <g transform="translate(100, 400)">
+    <rect width="500" height="200" rx="15" fill="#2196f3" stroke="#1976d2" stroke-width="2"/>
+    <text x="250" y="50" text-anchor="middle" fill="white" font-size="32" font-weight="bold">
+      📊 本週分析數據
+    </text>
+    <g>
+      <text x="50" y="100" fill="white" font-size="22">✅ 比較商品：102件</text>
+      <text x="50" y="140" fill="white" font-size="22">💰 可節省總額：$482+</text>
+      <text x="50" y="180" fill="white" font-size="22">🔴 Coles最佳優惠：37%</text>
+      <text x="270" y="180" fill="white" font-size="22">🟢 Woolworths：48%</text>
+    </g>
+  </g>
+  
+  <!-- 节省金额可视化 -->
+  <g transform="translate(650, 400)">
+    <rect width="450" height="200" rx="15" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+    <text x="225" y="50" text-anchor="middle" fill="white" font-size="32" font-weight="bold">
+      💰 節省可視化
+    </text>
+    <!-- 条形图 -->
+    <rect x="80" y="100" width="300" height="30" fill="#e0e0e0" rx="5"/>
+    <rect x="80" y="100" width="180" height="30" fill="#4caf50" rx="5"/>
+    <text x="230" y="125" text-anchor="middle" fill="#333" font-size="18" font-weight="bold">
+      可節省 $482+
+    </text>
+    
+    <text x="225" y="170" text-anchor="middle" fill="white" font-size="18">
+      💡 足夠購買3束玫瑰花 + 2盒朱古力
+    </text>
+  </g>
+  
+  <!-- 情人节精选优惠 -->
+  <rect x="100" y="620" width="1000" height="500" rx="15" fill="#9c27b0" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="600" y="670" text-anchor="middle" fill="white" font-size="36" font-weight="bold">
+    💝 情人節精選優惠
+  </text>
+  
+  <!-- 鲜花部分 -->
+  <g transform="translate(150, 720)">
+    <text x="0" y="0" fill="#ffeb3b" font-size="28" font-weight="bold">🌹 鮮花</text>
+    <text x="0" y="40" fill="white" font-size="20">• 6枝紅玫瑰：<tspan fill="#4caf50">Woolworths $30</tspan> vs <tspan fill="#f44336">Coles $35</tspan>（省$5）</text>
+    <text x="0" y="70" fill="white" font-size="20">• 彩色玫瑰花束：<tspan fill="#4caf50">Woolworths $20</tspan> vs <tspan fill="#f44336">Coles $35</tspan>（省$15！）</text>
+    
+    <!-- 鲜花图标 -->
+    <g transform="translate(400, 0)">
+      <path d="M0,20 Q10,0 20,20 Q30,40 20,60 Q10,80 0,60 Q-10,40 0,20 Z" fill="#ff4081"/>
+      <path d="M10,60 L10,100" stroke="#ff4081" stroke-width="4" stroke-linecap="round"/>
+      <path d="M5,85 L15,95 M15,85 L5,95" stroke="#4caf50" stroke-width="3"/>
+    </g>
+  </g>
+  
+  <!-- 巧克力部分 -->
+  <g transform="translate(150, 830)">
+    <text x="0" y="0" fill="#ffeb3b" font-size="28" font-weight="bold">🍫 朱古力</text>
+    <text x="0" y="40" fill="white" font-size="20">• Lindt Lindor 心形朱古力 147g：<tspan fill="#f44336">Coles $9</tspan>（半價）</text>
+    <text x="0" y="70" fill="white" font-size="20">• Cadbury Favourites 470g：<tspan fill="#f44336">Coles $7</tspan> vs <tspan fill="#4caf50">Woolworths $12</tspan></text>
+    <text x="0" y="100" fill="white" font-size="20">• Lindt Lindor Cornet 327-333g：<tspan fill="#f44336">Coles $9</tspan>（省$8！）</text>
+    <text x="0" y="130" fill="white" font-size="20">• Cadbury Roses 380g：兩間都係 $10（半價）</text>
+    
+    <!-- 巧克力图标 -->
+    <g transform="translate(400, 40)">
+      <rect x="0" y="0" width="40" height="30" rx="5" fill="#5d4037"/>
+      <rect x="5" y="5" width="30" height="20" rx="3" fill="#8d6e63"/>
+    </g>
+  </g>
+  
+  <!-- 甜品部分 -->
+  <g transform="translate(150, 1000)">
+    <text x="0" y="0" fill="#ffeb3b" font-size="28" font-weight="bold">🍦 甜品</text>
+    <text x="0" y="40" fill="white" font-size="20">• Connoisseur 雪糕 1L：<tspan fill="#4caf50">Woolworths $6</tspan>（半價）</text>
+    
+    <!-- 冰淇淋图标 -->
+    <g transform="translate(400, 0)">
+      <path d="M20,0 Q40,20 20,40 Q0,20 20,0 Z" fill="#ffccbc"/>
+      <ellipse cx="20" cy="25" rx="15" ry="10" fill="#ffab91"/>
+      <circle cx="20" cy="15" r="3" fill="#fff"/>
+    </g>
+  </g>
+  
+  <!-- 购物小贴士 -->
+  <g transform="translate(100, 1140)">
+    <rect width="1000" height="150" rx="15" fill="#ff5722" stroke="#e64a19" stroke-width="2"/>
+    <text x="500" y="50" text-anchor="middle" fill="white" font-size="32" font-weight="bold">
+      💡 精明購物貼士
+    </text>
+    <text x="100" y="100" fill="white" font-size="22">
+      🔴 <tspan font-weight="bold">Coles優勢：</tspan>朱古力優惠較多，心形朱古力半價！
+    </text>
+    <text x="100" y="130" fill="white" font-size="22">
+      🟢 <tspan font-weight="bold">Woolworths優勢：</tspan>鮮花價格更抵，最高可節省$15！
+    </text>
+  </g>
+  
+  <!-- 底部信息 -->
+  <g transform="translate(100, 1320)">
+    <rect width="1000" height="120" rx="15" fill="#607d8b" stroke="#455a64" stroke-width="2"/>
+    <text x="500" y="40" text-anchor="middle" fill="white" font-size="24">
+      🔗 完整價格比較報告：www.michaelleung.info/prices
+    </text>
+    <text x="500" y="80" text-anchor="middle" fill="#ffeb3b" font-size="28" font-weight="bold">
+      ❤️ 祝大家情人節快樂！記得比較價格，精明消費！
+    </text>
+  </g>
+  
+  <!-- 标签 -->
+  <text x="600" y="1500" text-anchor="middle" fill="#e91e63" font-size="22">
+    #超市優惠 #價格比較 #Coles #Woolworths #澳洲生活 #情人節 #ValentinesDay 
+  </text>
+  <text x="600" y="1535" text-anchor="middle" fill="#e91e63" font-size="22">
+    #半價優惠 #布里斯本 #Brisbane #省錢攻略 #智能購物
+  </text>
+  
+  <!-- 超市Logo装饰 -->
+  <g transform="translate(150, 150)">
+    <!-- Coles Logo示意 -->
+    <rect x="0" y="0" width="60" height="60" rx="10" fill="#e4002b"/>
+    <text x="30" y="35" text-anchor="middle" fill="white" font-size="24" font-weight="bold">C</text>
+    
+    <!-- Woolworths Logo示意 -->
+    <rect x="990" y="0" width="60" height="60" rx="10" fill="#1b5e20"/>
+    <text x="1020" y="35" text-anchor="middle" fill="white" font-size="24" font-weight="bold">W</text>
+  </g>
+  
+  <!-- 装饰性爱心 -->
+  <g opacity="0.6">
+    <path d="M100,400 Q120,380 140,400 Q160,420 140,440 Q120,460 100,440 Q80,420 100,400 Z" fill="#ff4081"/>
+    <path d="M1100,800 Q1120,780 1140,800 Q1160,820 1140,840 Q1120,860 1100,840 Q1080,820 1100,800 Z" fill="#ff4081"/>
+    <path d="M80,1200 Q100,1180 120,1200 Q140,1220 120,1240 Q100,1260 80,1240 Q60,1220 80,1200 Z" fill="#ff4081"/>
+  </g>
+</svg>
