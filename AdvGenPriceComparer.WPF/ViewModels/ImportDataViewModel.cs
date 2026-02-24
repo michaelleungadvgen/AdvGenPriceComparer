@@ -5,22 +5,31 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Services;
-using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
 
+// Use WPF Models ImportPreviewItem and Service ColesProduct
+using ImportPreviewItem = AdvGenPriceComparer.WPF.Models.ImportPreviewItem;
+using ColesProduct = AdvGenPriceComparer.Data.LiteDB.Services.ColesProduct;
+
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
+/// <summary>
+/// ViewModel for importing data using JsonImportService
+/// </summary>
 public class ImportDataViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly JsonImportService _jsonImportService;
     private readonly string _dbPath;
+    private CancellationTokenSource? _cancellationTokenSource;
 
     private int _currentStep = 1;
     private string[] _selectedFilePaths = Array.Empty<string>();
@@ -35,6 +44,22 @@ public class ImportDataViewModel : ViewModelBase
         _dataService = dataService;
         _dialogService = dialogService;
         _dbPath = dbPath;
+        _jsonImportService = new JsonImportService(new DatabaseService(dbPath));
+
+        Stores = new ObservableCollection<Place>();
+        SelectedFiles = new ObservableCollection<string>();
+        PreviewItems = new ObservableCollection<ImportPreviewItem>();
+    }
+
+    /// <summary>
+    /// Constructor with JsonImportService injection (preferred)
+    /// </summary>
+    public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, JsonImportService jsonImportService)
+    {
+        _dataService = dataService;
+        _dialogService = dialogService;
+        _jsonImportService = jsonImportService;
+        _dbPath = string.Empty;
 
         Stores = new ObservableCollection<Place>();
         SelectedFiles = new ObservableCollection<string>();
@@ -179,32 +204,27 @@ public class ImportDataViewModel : ViewModelBase
     {
         PreviewItems.Clear();
         IsImporting = true;
+        _cancellationTokenSource = new CancellationTokenSource();
 
         try
         {
             foreach (var filePath in _selectedFilePaths)
             {
-                await Task.Run(() =>
+                // Use JsonImportService for preview - get raw products
+                var products = await _jsonImportService.PreviewImportAsync(filePath, _cancellationTokenSource.Token);
+                
+                foreach (var product in products)
                 {
-                    var jsonContent = File.ReadAllText(filePath);
-                    var products = JsonSerializer.Deserialize<List<ColesProduct>>(jsonContent, new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
-
-                    if (products != null)
-                    {
-                        foreach (var product in products)
-                        {
-                            Application.Current.Dispatcher.Invoke(() =>
-                            {
-                                var previewItem = CreatePreviewItem(product);
-                                PreviewItems.Add(previewItem);
-                            });
-                        }
-                    }
-                });
+                    // Create preview item from product
+                    var previewItem = CreatePreviewItem(product);
+                    PreviewItems.Add(previewItem);
+                }
             }
+        }
+        catch (OperationCanceledException)
+        {
+            // Preview was cancelled
+            ImportStatus = "Preview cancelled by user";
         }
         catch (Exception ex)
         {
@@ -213,6 +233,8 @@ public class ImportDataViewModel : ViewModelBase
         finally
         {
             IsImporting = false;
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
         }
     }
 
@@ -261,6 +283,14 @@ public class ImportDataViewModel : ViewModelBase
         return previewItem;
     }
 
+    /// <summary>
+    /// Cancel ongoing import or preview operation
+    /// </summary>
+    public void CancelOperation()
+    {
+        _cancellationTokenSource?.Cancel();
+    }
+
     private decimal ParsePrice(string? priceString)
     {
         if (string.IsNullOrEmpty(priceString))
@@ -286,6 +316,12 @@ public class ImportDataViewModel : ViewModelBase
             return;
         }
 
+        if (SelectedStore?.Id == null)
+        {
+            _dialogService.ShowWarning("Please select a store before importing.");
+            return;
+        }
+
         IsImporting = true;
         var statusBuilder = new StringBuilder();
         statusBuilder.AppendLine($"Starting import...");
@@ -298,107 +334,61 @@ public class ImportDataViewModel : ViewModelBase
 
         try
         {
-            int totalItemsCreated = 0;
-            int totalPriceRecordsCreated = 0;
-            int itemCount = 0;
-
-            foreach (var previewItem in PreviewItems)
+            // Create progress reporter for UI updates
+            var progress = new Progress<ImportProgress>(p =>
             {
-                itemCount++;
+                statusBuilder.AppendLine($"Processing: {p.ProcessedItems}/{p.TotalItems} - {p.CurrentItem}");
+                ImportStatus = statusBuilder.ToString();
+            });
 
-                if (itemCount % 10 == 0) // Update UI every 10 items
-                {
-                    statusBuilder.AppendLine($"Processing: {itemCount}/{PreviewItems.Count}");
-                    ImportStatus = statusBuilder.ToString();
-                    await Task.Delay(10); // Allow UI to update
-                }
+            // Build mapping of products to existing items (for items where we only want to add price records)
+            var existingItemMappings = PreviewItems
+                .Where(p => p.AddPriceRecordOnly && !string.IsNullOrEmpty(p.ExistingItemId))
+                .ToDictionary(
+                    p => (p.RawProductData as ColesProduct)?.ProductID ?? Guid.NewGuid().ToString(),
+                    p => p.ExistingItemId!
+                );
 
-                try
-                {
-                    var product = previewItem.RawProductData as ColesProduct;
-                    if (product == null) continue;
+            // Get the list of ColesProducts from preview items
+            var products = PreviewItems
+                .Select(p => p.RawProductData as ColesProduct)
+                .Where(p => p != null)
+                .Cast<ColesProduct>()
+                .ToList();
 
-                    string itemId;
-
-                    if (previewItem.AddPriceRecordOnly && !string.IsNullOrEmpty(previewItem.ExistingItemId))
-                    {
-                        // Add price record to existing item
-                        itemId = previewItem.ExistingItemId;
-                    }
-                    else
-                    {
-                        // Create new item
-                        var item = new Item
-                        {
-                            Name = product.ProductName,
-                            Description = product.Description,
-                            Brand = product.Brand,
-                            Category = product.Category,
-                            PackageSize = product.Description,
-                            IsActive = true,
-                            DateAdded = DateTime.UtcNow,
-                            LastUpdated = DateTime.UtcNow,
-                            ExtraInformation = new Dictionary<string, string>
-                            {
-                                ["ProductID"] = product.ProductID,
-                                ["Store"] = SelectedStore?.Chain ?? "Unknown"
-                            }
-                        };
-
-                        if (!string.IsNullOrEmpty(product.UnitPrice))
-                        {
-                            item.ExtraInformation["UnitPrice"] = product.UnitPrice;
-                        }
-
-                        itemId = _dataService.Items.Add(item);
-                        totalItemsCreated++;
-                    }
-
-                    // Create price record
-                    var price = previewItem.Price;
-                    var originalPrice = previewItem.OriginalPrice;
-                    var savings = originalPrice.HasValue ? originalPrice.Value - price : 0;
-
-                    var saleDescription = savings > 0 ? $"Save ${savings:F2}" : null;
-                    if (!string.IsNullOrEmpty(product.SpecialType))
-                    {
-                        saleDescription = product.SpecialType;
-                    }
-
-                    var priceRecord = new PriceRecord
-                    {
-                        ItemId = itemId,
-                        PlaceId = SelectedStore!.Id!,
-                        Price = price,
-                        OriginalPrice = originalPrice,
-                        IsOnSale = previewItem.IsOnSale,
-                        SaleDescription = saleDescription,
-                        DateRecorded = CatalogueDate,
-                        ValidFrom = CatalogueDate,
-                        ValidTo = CatalogueDate.AddDays(7),
-                        Source = "Catalogue",
-                        CatalogueDate = CatalogueDate
-                    };
-
-                    _dataService.PriceRecords.Add(priceRecord);
-                    totalPriceRecordsCreated++;
-                }
-                catch (Exception ex)
-                {
-                    statusBuilder.AppendLine($"  ✗ Error processing {previewItem.ProductName}: {ex.Message}");
-                }
-            }
+            // Use JsonImportService to import the products
+            var result = await Task.Run(() => 
+                _jsonImportService.ImportColesProducts(products, SelectedStore!.Id!, CatalogueDate, existingItemMappings, progress));
 
             statusBuilder.AppendLine();
             statusBuilder.AppendLine("═══════════════════════════════");
             statusBuilder.AppendLine($"Import completed!");
-            statusBuilder.AppendLine($"New items created: {totalItemsCreated}");
-            statusBuilder.AppendLine($"Price records added: {totalPriceRecordsCreated}");
+            statusBuilder.AppendLine($"New items created: {result.ItemsProcessed}");
+            statusBuilder.AppendLine($"Price records added: {result.PriceRecordsCreated}");
+            if (result.Errors.Count > 0)
+            {
+                statusBuilder.AppendLine($"Errors: {result.Errors.Count}");
+                foreach (var error in result.Errors.Take(5))
+                {
+                    statusBuilder.AppendLine($"  ✗ {error}");
+                }
+                if (result.Errors.Count > 5)
+                {
+                    statusBuilder.AppendLine($"  ... and {result.Errors.Count - 5} more");
+                }
+            }
             statusBuilder.AppendLine("═══════════════════════════════");
 
             ImportStatus = statusBuilder.ToString();
 
-            _dialogService.ShowSuccess($"Successfully imported {totalItemsCreated} new items and {totalPriceRecordsCreated} price records!");
+            if (result.Success)
+            {
+                _dialogService.ShowSuccess($"Successfully imported {result.ItemsProcessed} new items and {result.PriceRecordsCreated} price records!");
+            }
+            else
+            {
+                _dialogService.ShowWarning($"Import completed with {result.Errors.Count} errors. {result.ItemsProcessed} items created.");
+            }
 
             _importCompleted = true;
             OnPropertyChanged(nameof(ImportButtonText));
@@ -417,21 +407,4 @@ public class ImportDataViewModel : ViewModelBase
             IsImporting = false;
         }
     }
-}
-
-/// <summary>
-/// Model for individual Coles product from JSON
-/// </summary>
-public class ColesProduct
-{
-    public string ProductID { get; set; } = string.Empty;
-    public string ProductName { get; set; } = string.Empty;
-    public string? Category { get; set; }
-    public string? Brand { get; set; }
-    public string? Description { get; set; }
-    public string Price { get; set; } = string.Empty;
-    public string? OriginalPrice { get; set; }
-    public string? Savings { get; set; }
-    public string? UnitPrice { get; set; }
-    public string? SpecialType { get; set; }
 }

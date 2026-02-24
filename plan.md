@@ -41,8 +41,8 @@ Migration of AdvGenPriceComparer from WinUI 3 to WPF with enhanced features for:
 - ✅ INotificationService / SimpleNotificationService
 - ✅ ILoggerService / FileLoggerService
 - ✅ DemoDataService
-- ⚠️ **JsonImportService** - MISSING (referenced in App.xaml.cs line 87-91)
-- ⚠️ **ServerConfigService** - MISSING (referenced in App.xaml.cs line 81-82)
+- ✅ **JsonImportService** - IMPLEMENTED in AdvGenPriceComparer.Data.LiteDB/Services/
+- ✅ **ServerConfigService** - IMPLEMENTED in AdvGenPriceComparer.Core/Services/
 - ✅ **ExportService** - IMPLEMENTED in AdvGenPriceComparer.WPF/Services/
 
 ### Views (All Implemented)
@@ -257,16 +257,16 @@ public class ExportService
 - [ ] **Test app startup** - should run without errors
 
 ### Phase 2: Complete Import Functionality (3-4 hours)
-- [ ] Connect ImportDataViewModel to JsonImportService
+- [x] Connect ImportDataViewModel to JsonImportService
 - [ ] Test JSON import with existing data files:
   - [ ] `data/coles_28012026.json`
   - [ ] `data/woolworths_28012026.json`
   - [ ] `data/coles_24072025.json` (older format test)
 - [ ] Test markdown import with `drakes.md`
-- [ ] Implement import preview before saving
-- [ ] Add error handling and validation
-- [ ] Test duplicate detection strategies
-- [ ] Add import progress UI updates
+- [x] Implement import preview before saving
+- [x] Add error handling and validation
+- [x] Test duplicate detection strategies
+- [x] Add import progress UI updates
 
 ### Phase 3: Implement Export (2-3 hours)
 - [x] Create ExportService.cs

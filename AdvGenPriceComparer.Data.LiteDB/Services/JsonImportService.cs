@@ -5,6 +5,9 @@ using AdvGenPriceComparer.Data.LiteDB.Repositories;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Services;
 
+// Note: ImportPreviewItem is defined in WPF.Models, not here to avoid duplication
+// The service uses ColesProduct directly for data transfer
+
 /// <summary>
 /// Service for importing grocery data from JSON files into LiteDB
 /// </summary>
@@ -21,6 +24,107 @@ public class JsonImportService
         _itemRepository = new ItemRepository(dbService);
         _placeRepository = new PlaceRepository(dbService);
         _priceRecordRepository = new PriceRecordRepository(dbService);
+    }
+
+    /// <summary>
+    /// Preview import from JSON file without saving to database
+    /// Returns ColesProduct list that can be converted to preview items by the ViewModel
+    /// </summary>
+    public async Task<List<ColesProduct>> PreviewImportAsync(string filePath, CancellationToken cancellationToken = default)
+    {
+        return await Task.Run(() =>
+        {
+            try
+            {
+                var jsonContent = File.ReadAllText(filePath);
+                var colesData = JsonSerializer.Deserialize<List<ColesProduct>>(jsonContent, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                return colesData ?? new List<ColesProduct>();
+            }
+            catch (Exception)
+            {
+                // Return empty list on error - let the caller handle errors
+                return new List<ColesProduct>();
+            }
+        }, cancellationToken);
+    }
+
+    /// <summary>
+    /// Import Coles products with specified store and date
+    /// </summary>
+    public ImportResult ImportColesProducts(List<ColesProduct> products, string storeId, DateTime catalogueDate, 
+        Dictionary<string, string>? existingItemMappings = null, IProgress<ImportProgress>? progress = null)
+    {
+        var result = new ImportResult();
+        existingItemMappings ??= new Dictionary<string, string>();
+        
+        // Get the store
+        var store = _placeRepository.GetById(storeId);
+        if (store == null)
+        {
+            result.Success = false;
+            result.ErrorMessage = "Store not found";
+            return result;
+        }
+
+        int totalItems = products.Count;
+        int processedCount = 0;
+
+        foreach (var product in products)
+        {
+            try
+            {
+                string itemId;
+                bool addPriceRecordOnly = existingItemMappings.TryGetValue(product.ProductID, out var existingId) 
+                    && !string.IsNullOrEmpty(existingId);
+
+                if (addPriceRecordOnly)
+                {
+                    // Add price record to existing item
+                    itemId = existingId;
+                }
+                else
+                {
+                    // Create new item
+                    var item = CreateOrUpdateItem(product, store.Chain ?? "Unknown");
+                    if (item != null)
+                    {
+                        itemId = item.Id!;
+                        result.ItemsProcessed++;
+                    }
+                    else
+                    {
+                        result.Errors.Add($"Failed to create item for {product.ProductName}");
+                        continue;
+                    }
+                }
+
+                // Create price record
+                var priceRecord = CreatePriceRecord(product, itemId, storeId, catalogueDate);
+                _priceRecordRepository.Add(priceRecord);
+                result.PriceRecordsCreated++;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add($"Error processing {product.ProductName}: {ex.Message}");
+            }
+
+            processedCount++;
+            progress?.Report(new ImportProgress
+            {
+                TotalItems = totalItems,
+                ProcessedItems = processedCount,
+                CurrentItem = product.ProductName
+            });
+        }
+
+        result.Success = result.Errors.Count == 0;
+        result.Message = $"Successfully imported {result.ItemsProcessed} new items and {result.PriceRecordsCreated} price records";
+        
+        return result;
     }
 
     /// <summary>
@@ -369,5 +473,18 @@ public class ImportResult
     public string? ErrorMessage { get; set; }
     public int ItemsProcessed { get; set; }
     public int PriceRecordsCreated { get; set; }
+    public int ItemsSkipped { get; set; }
+    public int ItemsFailed { get; set; }
     public List<string> Errors { get; set; } = new();
+}
+
+/// <summary>
+/// Progress report for import operations
+/// </summary>
+public class ImportProgress
+{
+    public int TotalItems { get; set; }
+    public int ProcessedItems { get; set; }
+    public string CurrentItem { get; set; } = string.Empty;
+    public double PercentComplete => TotalItems > 0 ? (double)ProcessedItems / TotalItems * 100 : 0;
 }

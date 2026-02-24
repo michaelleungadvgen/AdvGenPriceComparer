@@ -35,7 +35,7 @@
 
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Connect ImportDataViewModel to JsonImportService | 🔴 TODO | - | Needs wiring in ViewModel |
+| Connect ImportDataViewModel to JsonImportService | 🟢 DONE | Agent-002 | ViewModel now uses JsonImportService for preview and import |
 | Test JSON import with data/coles_28012026.json | 🔴 TODO | - | Manual testing required |
 | Test JSON import with data/woolworths_28012026.json | 🔴 TODO | - | Manual testing required |
 | Test markdown import with drakes.md | 🔴 TODO | - | Manual testing required |
@@ -91,6 +91,7 @@
 | 2026-02-25 | ServerConfigService implementation | Pre-existing |
 | 2026-02-25 | servers.json created | Pre-existing |
 | 2026-02-25 | ExportService.cs with JSON export, filters, compression | Agent-001 |
+| 2026-02-25 | Connect ImportDataViewModel to JsonImportService | Agent-002 |
 
 ---
 
