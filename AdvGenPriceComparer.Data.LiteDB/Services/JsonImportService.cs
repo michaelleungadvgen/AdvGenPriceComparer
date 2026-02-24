@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Entities;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
@@ -436,6 +437,303 @@ public class JsonImportService
 
         return 0;
     }
+
+    /// <summary>
+    /// Import from Drakes markdown catalogue file
+    /// </summary>
+    public ImportResult ImportFromDrakesMarkdown(string filePath, string storeName = "Drakes", DateTime? validDate = null)
+    {
+        var result = new ImportResult();
+        var parser = new DrakesMarkdownParser();
+        var parseResult = parser.ParseFile(filePath);
+
+        if (!parseResult.Success)
+        {
+            result.Success = false;
+            result.ErrorMessage = parseResult.ErrorMessage ?? "Failed to parse markdown file";
+            return result;
+        }
+
+        // Get or create store
+        var store = GetOrCreateStore(storeName, "Drakes");
+        var importDate = validDate ?? parseResult.ValidFrom;
+
+        // Import products
+        return ImportColesProducts(parseResult.Products, store.Id!, importDate);
+    }
+
+    /// <summary>
+    /// Preview import from Drakes markdown file without saving
+    /// </summary>
+    public async Task<List<ColesProduct>> PreviewDrakesMarkdownAsync(string filePath, CancellationToken cancellationToken = default)
+    {
+        return await Task.Run(() =>
+        {
+            try
+            {
+                var parser = new DrakesMarkdownParser();
+                var result = parser.ParseFile(filePath);
+                return result.Products;
+            }
+            catch (Exception)
+            {
+                return new List<ColesProduct>();
+            }
+        }, cancellationToken);
+    }
+}
+
+/// <summary>
+/// Parser for Drakes markdown catalogue format
+/// </summary>
+public class DrakesMarkdownParser
+{
+    public ParseResult ParseFile(string filePath)
+    {
+        try
+        {
+            var content = File.ReadAllText(filePath);
+            var products = new List<ColesProduct>();
+            var categories = new HashSet<string>();
+
+            // Extract date range
+            var (validFrom, validTo) = ExtractDateRange(content);
+
+            // Extract categories and products from markdown tables
+            var sections = ExtractSections(content);
+
+            foreach (var section in sections)
+            {
+                categories.Add(section.Category);
+                var sectionProducts = ParseTableProducts(section.Content, section.Category);
+                products.AddRange(sectionProducts);
+            }
+
+            return new ParseResult
+            {
+                Success = products.Count > 0,
+                Products = products,
+                Categories = categories.ToList(),
+                ValidFrom = validFrom,
+                ValidTo = validTo,
+                FilePath = filePath
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ParseResult
+            {
+                Success = false,
+                ErrorMessage = ex.Message,
+                Products = new List<ColesProduct>(),
+                Categories = new List<string>()
+            };
+        }
+    }
+
+    private (DateTime fromDate, DateTime toDate) ExtractDateRange(string content)
+    {
+        // Pattern: **Sale Period:** Wednesday 4/2/2026 to Tuesday 10/2/2026
+        var pattern = @"(?:Sale Period|Valid):?\s*(?:\*\*)?\s*(?:\w+\s+)?(\d{1,2}[\/\.]\d{1,2}[\/\.]\d{2,4})\s*(?:to|-)\s*(?:\w+\s+)?(\d{1,2}[\/\.]\d{1,2}[\/\.]\d{2,4})";
+        var match = Regex.Match(content, pattern, RegexOptions.IgnoreCase);
+
+        DateTime fromDate = DateTime.Today;
+        DateTime toDate = DateTime.Today.AddDays(7);
+
+        if (match.Success)
+        {
+            DateTime.TryParse(match.Groups[1].Value, out fromDate);
+            DateTime.TryParse(match.Groups[2].Value, out toDate);
+        }
+
+        return (fromDate, toDate);
+    }
+
+    private List<SectionInfo> ExtractSections(string content)
+    {
+        var sections = new List<SectionInfo>();
+
+        // Split by ## headers (category sections)
+        var sectionPattern = @"##\s+(.+?)\n\n*(?:\|[^\n]*\|\n\|[-:\s|]*\|\n)?([^#]*?)(?=\n##\s+|\z)";
+        var matches = Regex.Matches(content, sectionPattern, RegexOptions.Singleline);
+
+        foreach (Match match in matches)
+        {
+            var category = match.Groups[1].Value.Trim();
+            var sectionContent = match.Groups[2].Value;
+            
+            sections.Add(new SectionInfo
+            {
+                Category = category,
+                Content = sectionContent
+            });
+        }
+
+        return sections;
+    }
+
+    private List<ColesProduct> ParseTableProducts(string tableContent, string category)
+    {
+        var products = new List<ColesProduct>();
+
+        // Parse markdown table rows
+        var rowPattern = @"\|\s*([^|\n]+)\|\s*([^|\n]+)\|\s*([^|\n]+)\|\s*";
+        var rows = Regex.Matches(tableContent, rowPattern);
+
+        int rowIndex = 0;
+        foreach (Match row in rows)
+        {
+            // Skip header row and separator row
+            if (rowIndex++ < 2) continue;
+
+            var productName = row.Groups[1].Value.Trim();
+            var priceStr = row.Groups[2].Value.Trim();
+            var savingsStr = row.Groups[3].Value.Trim();
+
+            // Skip empty rows or header-like rows
+            if (string.IsNullOrWhiteSpace(productName) || 
+                productName.Contains("Product", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var product = CreateProduct(productName, priceStr, savingsStr, category);
+            if (product != null)
+            {
+                products.Add(product);
+            }
+        }
+
+        return products;
+    }
+
+    private ColesProduct? CreateProduct(string productName, string priceStr, string savingsStr, string category)
+    {
+        // Extract price - handle formats like "$24.75", "$7.90/kg"
+        var priceMatch = Regex.Match(priceStr, @"\$([\d.,]+)");
+        if (!priceMatch.Success) return null;
+
+        var price = "$" + priceMatch.Groups[1].Value;
+
+        // Determine special type from savings
+        string? specialType = null;
+        string? originalPrice = null;
+
+        if (savingsStr.Contains("1/2 Price", StringComparison.OrdinalIgnoreCase))
+        {
+            specialType = "Half Price";
+            // Calculate original price
+            if (decimal.TryParse(priceMatch.Groups[1].Value, out var p))
+            {
+                originalPrice = "$" + (p * 2).ToString("F2");
+            }
+        }
+        else if (savingsStr.Contains("SAVE", StringComparison.OrdinalIgnoreCase))
+        {
+            var saveMatch = Regex.Match(savingsStr, @"SAVE\s*\$?([\d.,]+)");
+            if (saveMatch.Success)
+            {
+                specialType = savingsStr.Trim();
+                if (decimal.TryParse(priceMatch.Groups[1].Value, out var p) &&
+                    decimal.TryParse(saveMatch.Groups[1].Value, out var s))
+                {
+                    originalPrice = "$" + (p + s).ToString("F2");
+                }
+            }
+        }
+        else if (!string.IsNullOrWhiteSpace(savingsStr) && !savingsStr.Contains("Value", StringComparison.OrdinalIgnoreCase))
+        {
+            specialType = savingsStr.Trim();
+        }
+
+        // Extract size from product name if present
+        var sizeMatch = Regex.Match(productName, @"(\d+(?:\.\d+)?\s*(?:g|kg|ml|L|lt|pack))", RegexOptions.IgnoreCase);
+        var description = sizeMatch.Success ? sizeMatch.Value : "";
+
+        // Extract brand from product name
+        var brand = ExtractBrand(productName);
+
+        return new ColesProduct
+        {
+            ProductID = $"DRK_{Guid.NewGuid().ToString("N")[..8].ToUpper()}",
+            ProductName = productName,
+            Category = MapCategory(category),
+            Brand = brand,
+            Description = description,
+            Price = price,
+            OriginalPrice = originalPrice,
+            Savings = savingsStr.Contains("SAVE") ? savingsStr : null,
+            SpecialType = specialType
+        };
+    }
+
+    private string MapCategory(string category)
+    {
+        // Map Drakes categories to standard categories
+        var categoryLower = category.ToLower();
+
+        if (categoryLower.Contains("meat") || categoryLower.Contains("seafood"))
+            return "Meat & Seafood";
+        if (categoryLower.Contains("fruit") || categoryLower.Contains("vegetable") || categoryLower.Contains("fresh produce"))
+            return "Fruits & Vegetables";
+        if (categoryLower.Contains("dairy") || categoryLower.Contains("egg"))
+            return "Dairy & Eggs";
+        if (categoryLower.Contains("bakery") || categoryLower.Contains("bread"))
+            return "Bakery";
+        if (categoryLower.Contains("frozen"))
+            return "Frozen Foods";
+        if (categoryLower.Contains("drink") || categoryLower.Contains("beverage"))
+            return "Beverages";
+        if (categoryLower.Contains("snack") || categoryLower.Contains("confectionery"))
+            return "Snacks & Confectionery";
+        if (categoryLower.Contains("deli"))
+            return "Deli";
+        if (categoryLower.Contains("half price") || categoryLower.Contains("special"))
+            return "Specials";
+
+        return "Grocery";
+    }
+
+    private string? ExtractBrand(string productName)
+    {
+        // Common brands to detect
+        var brands = new[]
+        {
+            "Streets", "Arnott's", "Connoisseur", "Chobani", "McCain",
+            "Coca-Cola", "Nice & Natural", "Golden Circle", "Pepsi", "Schweppes",
+            "Smith's", "Cadbury", "Nestle", "Wonder", "Joojoos", "Fini",
+            "Kellogg's", "Latina Fresh", "Cottee's", "Leggo's", "Ingham's",
+            "I & J", "Nescafe", "Uncle Tobys", "Sanitarium", "Moccona"
+        };
+
+        foreach (var brand in brands)
+        {
+            if (productName.Contains(brand, StringComparison.OrdinalIgnoreCase))
+                return brand;
+        }
+
+        // Try to extract first word as brand
+        var firstWord = productName.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+        if (!string.IsNullOrEmpty(firstWord) && firstWord.Length > 2)
+            return firstWord;
+
+        return null;
+    }
+}
+
+public class SectionInfo
+{
+    public string Category { get; set; } = string.Empty;
+    public string Content { get; set; } = string.Empty;
+}
+
+public class ParseResult
+{
+    public bool Success { get; set; }
+    public string? ErrorMessage { get; set; }
+    public List<ColesProduct> Products { get; set; } = new();
+    public List<string> Categories { get; set; } = new();
+    public DateTime ValidFrom { get; set; }
+    public DateTime ValidTo { get; set; }
+    public string FilePath { get; set; } = string.Empty;
 }
 
 /// <summary>

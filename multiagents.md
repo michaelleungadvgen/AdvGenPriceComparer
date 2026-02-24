@@ -38,7 +38,7 @@
 | Connect ImportDataViewModel to JsonImportService | 🟢 DONE | Agent-002 | ViewModel now uses JsonImportService for preview and import |
 | Test JSON import with data/coles_28012026.json | 🟢 DONE | Agent-004 | CLI test created and passed - all 4 tests successful |
 | Test JSON import with data/woolworths_28012026.json | 🟢 DONE | Agent-005 | CLI test created and passed - all 6 tests successful
-| Test markdown import with drakes.md | 🔴 TODO | - | Manual testing required |
+| Test markdown import with drakes.md | 🟢 DONE | Agent-006 | Test CLI created, all 4 tests passed (3 parsing + 1 DB import)
 | Implement import preview before saving | 🔴 TODO | - | UI enhancement |
 | Add error handling and validation | 🔴 TODO | - | Enhance existing |
 | Test duplicate detection strategies | 🔴 TODO | - | Unit tests needed |
@@ -95,6 +95,7 @@
 | 2026-02-25 | Connect ExportService to ExportDataWindow UI | Agent-003 |
 | 2026-02-25 | Test JSON import with data/coles_28012026.json | Agent-004 |
 | 2026-02-25 | Test JSON import with data/woolworths_28012026.json | Agent-005 |
+| 2026-02-25 | Test markdown import with drakes.md - 4 tests passed | Agent-006 |
 
 ---
 

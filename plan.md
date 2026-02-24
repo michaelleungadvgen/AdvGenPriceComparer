@@ -262,7 +262,7 @@ public class ExportService
   - [x] `data/coles_28012026.json`
   - [x] `data/woolworths_28012026.json`
   - [ ] `data/coles_24072025.json` (older format test)
-- [ ] Test markdown import with `drakes.md`
+- [x] Test markdown import with `drakes.md` - COMPLETED: Created TestMarkdownImport CLI, all 4 tests passed
 - [x] Implement import preview before saving
 - [x] Add error handling and validation
 - [x] Test duplicate detection strategies
