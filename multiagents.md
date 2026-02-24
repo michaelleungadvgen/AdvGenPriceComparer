@@ -39,9 +39,10 @@
 | Test JSON import with data/coles_28012026.json | 🟢 DONE | Agent-004 | CLI test created and passed - all 4 tests successful |
 | Test JSON import with data/woolworths_28012026.json | 🟢 DONE | Agent-005 | CLI test created and passed - all 6 tests successful
 | Test markdown import with drakes.md | 🟢 DONE | Agent-006 | Test CLI created, all 4 tests passed (3 parsing + 1 DB import)
-| Implement import preview before saving | 🔴 TODO | - | UI enhancement |
+| Implement import preview before saving | 🟢 DONE | - | Already implemented in existing code |
+| Add support for JSON files without productID | 🟢 DONE | Agent-009 | JsonImportService now generates stable IDs for products without ProductID field |
 | Add error handling and validation | 🔴 TODO | - | Enhance existing |
-| Test duplicate detection strategies | 🔴 TODO | - | Unit tests needed |
+| Test duplicate detection strategies | 🟡 DOING | Agent-008 | Creating xUnit test project for duplicate detection |
 | Add import progress UI updates | 🔴 TODO | - | Progress bar implementation |
 
 ---
@@ -76,6 +77,16 @@
 
 ## Active Agent Assignments
 
+### Agent-008
+- **Current Task:** Test duplicate detection strategies - Create xUnit test project
+- **Started:** 2026-02-25
+- **Estimated Completion:** 2-3 hours
+
+### Agent-009
+- **Completed Task:** Add support for JSON files without productID - Enhanced JsonImportService
+- **Completed:** 2026-02-25
+- **Notes:** Made ProductID nullable, added GetProductId() method that generates stable IDs based on product name and brand
+
 ### Agent-001
 - **Current Task:** Create ExportService.cs with JSON export functionality
 - **Started:** 2026-02-25
@@ -97,6 +108,7 @@
 | 2026-02-25 | Test JSON import with data/woolworths_28012026.json | Agent-005 |
 | 2026-02-25 | Test markdown import with drakes.md - 4 tests passed | Agent-006 |
 | 2026-02-25 | Test full export workflow - 10 tests passed | Agent-007 |
+| 2026-02-25 | Add support for JSON files without productID - GetProductId() method added | Agent-009 |
 
 ---
 

@@ -345,7 +345,7 @@ public class ImportDataViewModel : ViewModelBase
             var existingItemMappings = PreviewItems
                 .Where(p => p.AddPriceRecordOnly && !string.IsNullOrEmpty(p.ExistingItemId))
                 .ToDictionary(
-                    p => (p.RawProductData as ColesProduct)?.ProductID ?? Guid.NewGuid().ToString(),
+                    p => (p.RawProductData as ColesProduct)?.GetProductId() ?? Guid.NewGuid().ToString(),
                     p => p.ExistingItemId!
                 );
 

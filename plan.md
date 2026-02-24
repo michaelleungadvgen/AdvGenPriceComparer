@@ -923,18 +923,40 @@ public class MockDataGenerator
 
 ### 8.8 Testing Checklist
 
-- [ ] Set up xUnit test project
-- [ ] Install testing dependencies (xUnit, Moq, FluentAssertions)
-- [ ] Create test data samples
-- [ ] Implement JsonImportService tests (all scenarios)
+- [x] Set up xUnit test project
+- [x] Install testing dependencies (xUnit, Moq, FluentAssertions)
+- [x] Create test data samples
+- [x] Implement JsonImportService tests (all scenarios)
 - [ ] Implement ServerConfigService tests
-- [ ] Implement ExportService tests
+- [x] Implement ExportService tests
 - [ ] Implement Repository layer tests
 - [ ] Implement ViewModel tests
 - [ ] Create integration tests
 - [ ] Set up CI/CD pipeline for automated testing
 - [ ] Generate code coverage reports
 - [ ] Document testing strategy
+
+### 8.9 Import Enhancements (Completed)
+
+#### Support for JSON Files Without ProductID
+**Implemented by:** Agent-009 (2026-02-25)
+
+**Changes Made:**
+- Made `ColesProduct.ProductID` property nullable (`string?`)
+- Added XML documentation comments to all `ColesProduct` properties
+- Implemented `GetProductId()` method that:
+  - Returns existing ProductID if available
+  - Generates stable ID based on brand + product name hash when ProductID is null
+  - Uses MD5 hashing to create deterministic IDs for the same product across imports
+
+**Benefits:**
+- Can now import JSON files that don't have productID fields
+- Same product (same name + brand) gets same generated ID across different imports
+- Maintains backward compatibility with files that have explicit ProductIDs
+
+**Files Modified:**
+- `AdvGenPriceComparer.Data.LiteDB/Services/JsonImportService.cs` - ColesProduct class
+- `AdvGenPriceComparer.WPF/ViewModels/ImportDataViewModel.cs` - Uses GetProductId() for mappings
 
 ### 8.9 Continuous Integration
 

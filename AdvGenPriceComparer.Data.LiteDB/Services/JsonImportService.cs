@@ -79,7 +79,7 @@ public class JsonImportService
             try
             {
                 string itemId;
-                bool addPriceRecordOnly = existingItemMappings.TryGetValue(product.ProductID, out var existingId) 
+                bool addPriceRecordOnly = existingItemMappings.TryGetValue(product.GetProductId(), out var existingId) 
                     && !string.IsNullOrEmpty(existingId);
 
                 if (addPriceRecordOnly)
@@ -211,7 +211,7 @@ public class JsonImportService
                 }
                 catch (Exception ex)
                 {
-                    result.Errors.Add($"Error processing product {product.ProductID}: {ex.Message}");
+                    result.Errors.Add($"Error processing product '{product.ProductName}': {ex.Message}");
                 }
             }
 
@@ -305,7 +305,7 @@ public class JsonImportService
                 }
                 catch (Exception ex)
                 {
-                    result.Errors.Add($"Error processing product {product.ProductID}: {ex.Message}");
+                    result.Errors.Add($"Error processing product '{product.ProductName}': {ex.Message}");
                 }
             }
 
@@ -356,7 +356,7 @@ public class JsonImportService
                 LastUpdated = DateTime.UtcNow,
                 ExtraInformation = new Dictionary<string, string>
                 {
-                    ["ProductID"] = product.ProductID,
+                    ["ProductID"] = product.GetProductId(),
                     ["Store"] = chain
                 }
             };
@@ -749,16 +749,70 @@ public class ColesJsonData
 /// </summary>
 public class ColesProduct
 {
-    public string ProductID { get; set; } = string.Empty;
+    /// <summary>
+    /// Product ID from source (optional - will be auto-generated if not provided)
+    /// </summary>
+    public string? ProductID { get; set; }
+    
+    /// <summary>
+    /// Product name (required)
+    /// </summary>
     public string ProductName { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Product category (optional)
+    /// </summary>
+    public string? Category { get; set; }
+    
+    /// <summary>
+    /// Brand name (optional)
+    /// </summary>
     public string? Brand { get; set; }
+    
+    /// <summary>
+    /// Product description (optional)
+    /// </summary>
     public string? Description { get; set; }
+    
+    /// <summary>
+    /// Current price (required)
+    /// </summary>
     public string Price { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Original price before discount (optional)
+    /// </summary>
     public string? OriginalPrice { get; set; }
+    
+    /// <summary>
+    /// Savings amount (optional)
+    /// </summary>
     public string? Savings { get; set; }
+    
+    /// <summary>
+    /// Unit price (e.g., per 100g, per kg) (optional)
+    /// </summary>
     public string? UnitPrice { get; set; }
+    
+    /// <summary>
+    /// Type of special offer (optional)
+    /// </summary>
     public string? SpecialType { get; set; }
+    
+    /// <summary>
+    /// Get or generate a product ID for this product
+    /// </summary>
+    public string GetProductId()
+    {
+        if (!string.IsNullOrEmpty(ProductID))
+            return ProductID;
+        
+        // Generate a stable ID based on product name and brand
+        // This allows the same product to be matched across different files
+        var idSource = $"{Brand?.ToLowerInvariant() ?? "unknown"}_{ProductName.ToLowerInvariant().Replace(" ", "_")}";
+        var hash = System.Security.Cryptography.MD5.HashData(System.Text.Encoding.UTF8.GetBytes(idSource));
+        return "GEN_" + BitConverter.ToString(hash).Replace("-", "")[..12];
+    }
 }
 
 /// <summary>
