@@ -42,7 +42,9 @@
 | Implement import preview before saving | 🟢 DONE | - | Already implemented in existing code |
 | Add support for JSON files without productID | 🟢 DONE | Agent-009 | JsonImportService now generates stable IDs for products without ProductID field |
 | Add error handling and validation | 🔴 TODO | - | Enhance existing |
-| Test duplicate detection strategies | 🟡 DOING | Agent-008 | Creating xUnit test project for duplicate detection |
+| Test duplicate detection strategies | 🟢 DONE | Agent-008 | Creating xUnit test project for duplicate detection |
+| Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
+| Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
 | Add import progress UI updates | 🔴 TODO | - | Progress bar implementation |
 
 ---
@@ -109,6 +111,7 @@
 | 2026-02-25 | Test markdown import with drakes.md - 4 tests passed | Agent-006 |
 | 2026-02-25 | Test full export workflow - 10 tests passed | Agent-007 |
 | 2026-02-25 | Add support for JSON files without productID - GetProductId() method added | Agent-009 |
+| 2026-02-25 | Implement ServerConfigService tests - 30 tests created, fixed JSON deserialization bug | Agent-010 |
 
 ---
 

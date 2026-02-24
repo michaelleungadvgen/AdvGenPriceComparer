@@ -79,7 +79,11 @@ public class ServerConfigService
             if (File.Exists(_configPath))
             {
                 var json = File.ReadAllText(_configPath);
-                var servers = System.Text.Json.JsonSerializer.Deserialize<List<ServerInfo>>(json);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var servers = System.Text.Json.JsonSerializer.Deserialize<List<ServerInfo>>(json, options);
                 _servers = servers ?? new List<ServerInfo>();
             }
             else

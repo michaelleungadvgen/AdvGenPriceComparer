@@ -927,7 +927,7 @@ public class MockDataGenerator
 - [x] Install testing dependencies (xUnit, Moq, FluentAssertions)
 - [x] Create test data samples
 - [x] Implement JsonImportService tests (all scenarios)
-- [ ] Implement ServerConfigService tests
+- [x] Implement ServerConfigService tests
 - [x] Implement ExportService tests
 - [ ] Implement Repository layer tests
 - [ ] Implement ViewModel tests
