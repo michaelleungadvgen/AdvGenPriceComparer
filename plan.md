@@ -274,7 +274,7 @@ public class ExportService
 - [x] Add export filters (date range, store, category)
 - [x] Add compression support (.json.gz)
 - [x] Connect to ExportDataWindow UI
-- [ ] Test full export workflow
+- [x] Test full export workflow
 - [x] Add export progress tracking
 
 ### Phase 4: Server Integration (Future - 5-7 days)

@@ -55,7 +55,7 @@
 | Add export filters (date range, store, category) | 🟢 DONE | Agent-001 | Filter logic implemented |
 | Add compression support (.json.gz) | 🟢 DONE | Agent-001 | GZip compression implemented |
 | Connect to ExportDataWindow UI | 🟢 DONE | Agent-003 | ExportService fully integrated with ViewModel and UI |
-| Test full export workflow | 🔴 TODO | - | End-to-end testing |
+| Test full export workflow | 🟢 DONE | Agent-007 | CLI test created with 10 test cases - all passed!
 | Add export progress tracking | 🟢 DONE | Agent-001 | Progress reporting implemented |
 
 ---
@@ -96,6 +96,7 @@
 | 2026-02-25 | Test JSON import with data/coles_28012026.json | Agent-004 |
 | 2026-02-25 | Test JSON import with data/woolworths_28012026.json | Agent-005 |
 | 2026-02-25 | Test markdown import with drakes.md - 4 tests passed | Agent-006 |
+| 2026-02-25 | Test full export workflow - 10 tests passed | Agent-007 |
 
 ---
 
