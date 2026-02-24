@@ -258,9 +258,9 @@ public class ExportService
 
 ### Phase 2: Complete Import Functionality (3-4 hours)
 - [x] Connect ImportDataViewModel to JsonImportService
-- [ ] Test JSON import with existing data files:
-  - [ ] `data/coles_28012026.json`
-  - [ ] `data/woolworths_28012026.json`
+- [x] Test JSON import with existing data files:
+  - [x] `data/coles_28012026.json`
+  - [x] `data/woolworths_28012026.json`
   - [ ] `data/coles_24072025.json` (older format test)
 - [ ] Test markdown import with `drakes.md`
 - [x] Implement import preview before saving
