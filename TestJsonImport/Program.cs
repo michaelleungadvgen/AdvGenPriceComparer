@@ -29,6 +29,7 @@ class Program
         var colesFile = Path.Combine(repoRoot, "data", "coles_28012026.json");
         var woolworthsFile = Path.Combine(repoRoot, "data", "woolworths_28012026.json");
         var testDbPath = Path.Combine(Path.GetTempPath(), $"test_import_{DateTime.Now:yyyyMMdd_HHmmss}.db");
+        var woolworthsDbPath = Path.Combine(Path.GetTempPath(), $"test_woolworths_{DateTime.Now:yyyyMMdd_HHmmss}.db");
 
         int totalErrors = 0;
 
@@ -46,20 +47,33 @@ class Program
             totalErrors += TestPreviewImport(woolworthsFile, "Woolworths");
             Console.WriteLine();
 
-            // Test 3: Full Import with Database
-            Console.WriteLine("TEST 3: Full Import with Database");
-            Console.WriteLine("---------------------------------");
-            totalErrors += TestFullImport(colesFile, testDbPath);
+            // Test 3: Full Import with Database (Coles)
+            Console.WriteLine("TEST 3: Full Import with Database (Coles)");
+            Console.WriteLine("-----------------------------------------");
+            totalErrors += TestFullImport(colesFile, testDbPath, "Coles");
             Console.WriteLine();
 
-            // Test 4: Verify Data Integrity
-            Console.WriteLine("TEST 4: Verify Data Integrity");
-            Console.WriteLine("-----------------------------");
-            totalErrors += TestDataIntegrity(testDbPath);
+            // Test 4: Verify Data Integrity (Coles)
+            Console.WriteLine("TEST 4: Verify Data Integrity (Coles)");
+            Console.WriteLine("-------------------------------------");
+            totalErrors += TestDataIntegrity(testDbPath, "Coles");
+            Console.WriteLine();
+
+            // Test 5: Full Import with Database (Woolworths) - NEW TEST
+            Console.WriteLine("TEST 5: Full Import with Database (Woolworths)");
+            Console.WriteLine("----------------------------------------------");
+            totalErrors += TestFullImport(woolworthsFile, woolworthsDbPath, "Woolworths");
+            Console.WriteLine();
+
+            // Test 6: Verify Data Integrity (Woolworths) - NEW TEST
+            Console.WriteLine("TEST 6: Verify Data Integrity (Woolworths)");
+            Console.WriteLine("------------------------------------------");
+            totalErrors += TestDataIntegrity(woolworthsDbPath, "Woolworths");
             Console.WriteLine();
 
             // Cleanup
             CleanupTestDatabase(testDbPath);
+            CleanupTestDatabase(woolworthsDbPath);
 
             // Summary
             Console.WriteLine("========================================");
@@ -72,7 +86,8 @@ class Program
                 Console.WriteLine("The JsonImportService is working correctly:");
                 Console.WriteLine("  - Coles JSON format: PARSED OK");
                 Console.WriteLine("  - Woolworths JSON format: PARSED OK");
-                Console.WriteLine("  - Database import: WORKING OK");
+                Console.WriteLine("  - Coles database import: WORKING OK");
+                Console.WriteLine("  - Woolworths database import: WORKING OK");
                 Console.WriteLine("  - Data integrity: VERIFIED OK");
                 return 0;
             }
@@ -87,6 +102,7 @@ class Program
             Console.WriteLine($"FATAL ERROR: {ex.Message}");
             Console.WriteLine(ex.StackTrace);
             CleanupTestDatabase(testDbPath);
+            CleanupTestDatabase(woolworthsDbPath);
             return 1;
         }
     }
@@ -185,10 +201,8 @@ class Program
         }
     }
 
-    static int TestFullImport(string filePath, string dbPath)
+    static int TestFullImport(string filePath, string dbPath, string storeName)
     {
-        int errors = 0;
-        
         try
         {
             using (var dbService = new DatabaseService(dbPath))
@@ -204,7 +218,7 @@ class Program
                     return 1;
                 }
 
-                Console.WriteLine($"  [PASS] Import completed successfully");
+                Console.WriteLine($"  [PASS] {storeName} import completed successfully");
                 Console.WriteLine($"         Items processed: {result.ItemsProcessed}");
                 Console.WriteLine($"         Price records created: {result.PriceRecordsCreated}");
                 Console.WriteLine($"         Errors: {result.Errors.Count}");
@@ -231,7 +245,7 @@ class Program
         }
     }
 
-    static int TestDataIntegrity(string dbPath)
+    static int TestDataIntegrity(string dbPath, string storeName)
     {
         int errors = 0;
         
@@ -243,46 +257,46 @@ class Program
                 var places = dbService.Places.Query().ToList();
                 var priceRecords = dbService.PriceRecords.Query().ToList();
 
-                Console.WriteLine($"  [INFO] Database contains:");
+                Console.WriteLine($"  [INFO] {storeName} database contains:");
                 Console.WriteLine($"         - {items.Count} items");
                 Console.WriteLine($"         - {places.Count} stores");
                 Console.WriteLine($"         - {priceRecords.Count} price records");
 
                 if (items.Count == 0)
                 {
-                    Console.WriteLine($"  [FAIL] No items in database after import");
+                    Console.WriteLine($"  [FAIL] No items in database after {storeName} import");
                     errors++;
                 }
                 else
                 {
-                    Console.WriteLine($"  [PASS] Items imported: {items.Count}");
+                    Console.WriteLine($"  [PASS] {storeName} items imported: {items.Count}");
                 }
 
                 if (places.Count == 0)
                 {
-                    Console.WriteLine($"  [FAIL] No stores in database after import");
+                    Console.WriteLine($"  [FAIL] No stores in database after {storeName} import");
                     errors++;
                 }
                 else
                 {
-                    Console.WriteLine($"  [PASS] Stores created: {places.Count}");
+                    Console.WriteLine($"  [PASS] {storeName} stores created: {places.Count}");
                 }
 
                 if (priceRecords.Count == 0)
                 {
-                    Console.WriteLine($"  [FAIL] No price records in database after import");
+                    Console.WriteLine($"  [FAIL] No price records in database after {storeName} import");
                     errors++;
                 }
                 else
                 {
-                    Console.WriteLine($"  [PASS] Price records created: {priceRecords.Count}");
+                    Console.WriteLine($"  [PASS] {storeName} price records created: {priceRecords.Count}");
                 }
 
                 // Verify price parsing
                 var sampleRecord = priceRecords.FirstOrDefault();
                 if (sampleRecord != null)
                 {
-                    Console.WriteLine($"  [PASS] Sample price record: ${sampleRecord.Price:F2}");
+                    Console.WriteLine($"  [PASS] Sample {storeName} price record: ${sampleRecord.Price:F2}");
                     if (sampleRecord.OriginalPrice.HasValue)
                     {
                         Console.WriteLine($"         Original: ${sampleRecord.OriginalPrice.Value:F2}");
@@ -294,7 +308,7 @@ class Program
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"  [FAIL] Error during data integrity check: {ex.Message}");
+            Console.WriteLine($"  [FAIL] Error during {storeName} data integrity check: {ex.Message}");
             return 1;
         }
     }
