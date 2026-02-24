@@ -262,10 +262,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
-
-            var viewModel = new ExportDataViewModel(dataService, dialogService);
+            var viewModel = ((App)Application.Current).Services.GetRequiredService<ExportDataViewModel>();
             var window = new ExportDataWindow(viewModel) { Owner = this };
 
             window.ShowDialog();

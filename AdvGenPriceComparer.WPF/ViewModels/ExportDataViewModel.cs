@@ -1,51 +1,69 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using AdvGenPriceComparer.Core.Interfaces;
-using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 using Microsoft.Win32;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
+/// <summary>
+/// ViewModel for exporting data with advanced filtering and progress tracking
+/// </summary>
 public class ExportDataViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
+    private readonly ExportService _exportService;
     private readonly IDialogService _dialogService;
-    private readonly JsonExportService _exportService;
 
+    // Export Options
     private bool _exportShops = true;
     private bool _exportGoods = true;
     private bool _exportPrices = true;
     private bool _exportManifest = true;
+    private bool _enableCompression = false;
+
+    // Filters
+    private string? _selectedCategory;
     private DateTime? _fromDate;
     private DateTime? _toDate;
-    private string _outputDirectory = string.Empty;
+    private decimal? _minPrice;
+    private decimal? _maxPrice;
+    private bool _onlyOnSale;
+
+    // Progress
+    private int _progressPercentage;
+    private string _progressStatus = string.Empty;
+    private bool _isExporting;
+
+    // Output
+    private string _outputPath = string.Empty;
     private string _statusMessage = string.Empty;
     private Visibility _statusVisibility = Visibility.Collapsed;
     private ObservableCollection<string> _exportedFiles = new();
 
     public event EventHandler<bool>? ExportCompleted;
 
-    public ExportDataViewModel(IGroceryDataService dataService, IDialogService dialogService)
+    public ExportDataViewModel(ExportService exportService, IDialogService dialogService)
     {
-        _dataService = dataService;
+        _exportService = exportService;
         _dialogService = dialogService;
-        _exportService = new JsonExportService(dataService);
 
         // Initialize commands
         BrowseCommand = new RelayCommand(BrowseDirectory);
-        ExportCommand = new RelayCommand(PerformExport, CanExport);
+        ExportCommand = new RelayCommand(async () => await PerformExportAsync(), CanExport);
 
         // Set default output directory
-        _outputDirectory = Path.Combine(
+        _outputPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             "AdvGenPriceComparer",
             "Exports",
-            DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            $"export_{DateTime.Now:yyyyMMdd_HHmmss}.json");
     }
+
+    #region Export Options
 
     public bool ExportShops
     {
@@ -71,6 +89,22 @@ public class ExportDataViewModel : ViewModelBase
         set => SetProperty(ref _exportManifest, value);
     }
 
+    public bool EnableCompression
+    {
+        get => _enableCompression;
+        set => SetProperty(ref _enableCompression, value);
+    }
+
+    #endregion
+
+    #region Filters
+
+    public string? SelectedCategory
+    {
+        get => _selectedCategory;
+        set => SetProperty(ref _selectedCategory, value);
+    }
+
     public DateTime? FromDate
     {
         get => _fromDate;
@@ -83,10 +117,58 @@ public class ExportDataViewModel : ViewModelBase
         set => SetProperty(ref _toDate, value);
     }
 
-    public string OutputDirectory
+    public decimal? MinPrice
     {
-        get => _outputDirectory;
-        set => SetProperty(ref _outputDirectory, value);
+        get => _minPrice;
+        set => SetProperty(ref _minPrice, value);
+    }
+
+    public decimal? MaxPrice
+    {
+        get => _maxPrice;
+        set => SetProperty(ref _maxPrice, value);
+    }
+
+    public bool OnlyOnSale
+    {
+        get => _onlyOnSale;
+        set => SetProperty(ref _onlyOnSale, value);
+    }
+
+    #endregion
+
+    #region Progress
+
+    public int ProgressPercentage
+    {
+        get => _progressPercentage;
+        set => SetProperty(ref _progressPercentage, value);
+    }
+
+    public string ProgressStatus
+    {
+        get => _progressStatus;
+        set => SetProperty(ref _progressStatus, value);
+    }
+
+    public bool IsExporting
+    {
+        get => _isExporting;
+        set
+        {
+            SetProperty(ref _isExporting, value);
+            ExportCommand.RaiseCanExecuteChanged();
+        }
+    }
+
+    #endregion
+
+    #region Output
+
+    public string OutputPath
+    {
+        get => _outputPath;
+        set => SetProperty(ref _outputPath, value);
     }
 
     public string StatusMessage
@@ -107,6 +189,8 @@ public class ExportDataViewModel : ViewModelBase
         set => SetProperty(ref _exportedFiles, value);
     }
 
+    #endregion
+
     public RelayCommand BrowseCommand { get; }
     public RelayCommand ExportCommand { get; }
 
@@ -114,80 +198,123 @@ public class ExportDataViewModel : ViewModelBase
     {
         var dialog = new SaveFileDialog
         {
-            Title = "Select Export Directory",
-            FileName = "Select Folder",
-            Filter = "Folder|*.folder",
-            CheckFileExists = false,
-            CheckPathExists = true
+            Title = "Export Data",
+            FileName = Path.GetFileName(OutputPath),
+            Filter = EnableCompression
+                ? "Compressed JSON (*.json.gz)|*.json.gz|JSON files (*.json)|*.json"
+                : "JSON files (*.json)|*.json|Compressed JSON (*.json.gz)|*.json.gz",
+            DefaultExt = EnableCompression ? ".json.gz" : ".json"
         };
 
         if (dialog.ShowDialog() == true)
         {
-            OutputDirectory = Path.GetDirectoryName(dialog.FileName) ?? OutputDirectory;
+            OutputPath = dialog.FileName;
         }
     }
 
     private bool CanExport()
     {
-        return !string.IsNullOrWhiteSpace(OutputDirectory) &&
+        return !IsExporting &&
+               !string.IsNullOrWhiteSpace(OutputPath) &&
                (ExportShops || ExportGoods || ExportPrices || ExportManifest);
     }
 
-    private void PerformExport()
+    private async Task PerformExportAsync()
     {
         try
         {
-            // Create output directory
-            Directory.CreateDirectory(OutputDirectory);
-
+            IsExporting = true;
             ExportedFiles.Clear();
-            StatusMessage = "Exporting data...";
+            StatusMessage = "Starting export...";
             StatusVisibility = Visibility.Visible;
+            ProgressPercentage = 0;
 
-            var timestamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
-
-            // Export Shops
-            if (ExportShops)
+            // Ensure output directory exists
+            var outputDir = Path.GetDirectoryName(OutputPath);
+            if (!string.IsNullOrEmpty(outputDir))
             {
-                var shopsPath = Path.Combine(OutputDirectory, "Shop.json");
-                _exportService.ExportShops(shopsPath);
-                ExportedFiles.Add($"✓ Shop.json ({new FileInfo(shopsPath).Length / 1024} KB)");
+                Directory.CreateDirectory(outputDir);
             }
 
-            // Export Goods
-            if (ExportGoods)
+            // Build export options
+            var options = new ExportOptions
             {
-                var goodsPath = Path.Combine(OutputDirectory, "Goods.json");
-                _exportService.ExportGoods(goodsPath);
-                ExportedFiles.Add($"✓ Goods.json ({new FileInfo(goodsPath).Length / 1024} KB)");
+                Category = SelectedCategory,
+                ValidFrom = FromDate,
+                ValidTo = ToDate,
+                MinPrice = MinPrice,
+                MaxPrice = MaxPrice,
+                OnlyOnSale = OnlyOnSale,
+                ActiveOnly = true,
+                LocationSuburb = "Brisbane",
+                LocationState = "QLD",
+                LocationCountry = "Australia"
+            };
+
+            // Create progress reporter
+            var progress = new Progress<ExportProgress>(p =>
+            {
+                ProgressPercentage = p.Percentage;
+                ProgressStatus = p.Status ?? string.Empty;
+                StatusMessage = $"{p.Percentage}% - {p.Status}";
+            });
+
+            ExportResult result;
+
+            // Perform export based on compression setting
+            if (EnableCompression)
+            {
+                // Ensure correct extension
+                if (!OutputPath.EndsWith(".json.gz"))
+                {
+                    OutputPath = OutputPath.EndsWith(".json")
+                        ? OutputPath + ".gz"
+                        : OutputPath + ".json.gz";
+                }
+
+                result = await _exportService.ExportToJsonGzAsync(options, OutputPath, progress);
+            }
+            else
+            {
+                // Ensure correct extension
+                if (!OutputPath.EndsWith(".json"))
+                {
+                    OutputPath = OutputPath.EndsWith(".json.gz")
+                        ? OutputPath.Replace(".json.gz", ".json")
+                        : OutputPath + ".json";
+                }
+
+                result = await _exportService.ExportToJsonAsync(options, OutputPath, progress);
             }
 
-            // Export Prices
-            if (ExportPrices)
+            if (result.Success)
             {
-                var pricesPath = Path.Combine(OutputDirectory, $"price-{timestamp}.json");
-                _exportService.ExportPrices(pricesPath, FromDate, ToDate);
-                ExportedFiles.Add($"✓ price-{timestamp}.json ({new FileInfo(pricesPath).Length / 1024} KB)");
-            }
+                var fileSize = result.FileSizeBytes / 1024.0;
+                var compressionInfo = EnableCompression && result.CompressionRatio < 1.0
+                    ? $" (compressed to {result.CompressionRatio:P0})"
+                    : string.Empty;
 
-            // Export Manifest
-            if (ExportManifest)
+                ExportedFiles.Add($"✓ {Path.GetFileName(result.FilePath)} ({fileSize:F1} KB{compressionInfo})");
+                StatusMessage = $"Export completed successfully!\n\n{result.ItemsExported} items exported to:\n{result.FilePath}";
+                _dialogService.ShowSuccess($"Successfully exported {result.ItemsExported} items to:\n{result.FilePath}");
+                ExportCompleted?.Invoke(this, true);
+            }
+            else
             {
-                var recordsPath = Path.Combine(OutputDirectory, "records.json");
-                _exportService.ExportRecordsManifest(recordsPath, OutputDirectory);
-                ExportedFiles.Add($"✓ records.json ({new FileInfo(recordsPath).Length / 1024} KB)");
+                StatusMessage = $"Export failed: {result.ErrorMessage}";
+                _dialogService.ShowError($"Export failed: {result.ErrorMessage}");
+                ExportCompleted?.Invoke(this, false);
             }
-
-            StatusMessage = $"Export completed successfully!\n\nFiles exported to:\n{OutputDirectory}";
-            _dialogService.ShowSuccess($"Successfully exported {ExportedFiles.Count} file(s) to:\n{OutputDirectory}");
-
-            ExportCompleted?.Invoke(this, true);
         }
         catch (Exception ex)
         {
             StatusMessage = $"Export failed: {ex.Message}";
             _dialogService.ShowError($"Export failed: {ex.Message}");
             ExportCompleted?.Invoke(this, false);
+        }
+        finally
+        {
+            IsExporting = false;
         }
     }
 }

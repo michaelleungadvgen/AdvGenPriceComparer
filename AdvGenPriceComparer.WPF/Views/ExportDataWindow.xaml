@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Export Data"
-        Height="450"
-        Width="600"
+        Height="550"
+        Width="650"
         WindowStartupLocation="CenterOwner"
         Background="White"
         ResizeMode="NoResize">
@@ -22,36 +22,98 @@
                 <TextBlock Text="Export Data to JSON" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,20"/>
 
                 <!-- Export Options -->
-                <GroupBox Header="Export Options" Padding="15" Margin="0,0,0,20">
+                <GroupBox Header="Export Options" Padding="15" Margin="0,0,0,15">
                     <StackPanel>
-                        <CheckBox Content="Export Shops (Shop.json)" IsChecked="{Binding ExportShops}" FontSize="13" Margin="0,5"/>
-                        <CheckBox Content="Export Products (Goods.json)" IsChecked="{Binding ExportGoods}" FontSize="13" Margin="0,5"/>
-                        <CheckBox Content="Export Prices (price-{timestamp}.json)" IsChecked="{Binding ExportPrices}" FontSize="13" Margin="0,5"/>
-                        <CheckBox Content="Export Manifest (records.json)" IsChecked="{Binding ExportManifest}" FontSize="13" Margin="0,5"/>
+                        <CheckBox Content="Export Shops" IsChecked="{Binding ExportShops}" FontSize="13" Margin="0,3"/>
+                        <CheckBox Content="Export Products" IsChecked="{Binding ExportGoods}" FontSize="13" Margin="0,3"/>
+                        <CheckBox Content="Export Prices" IsChecked="{Binding ExportPrices}" FontSize="13" Margin="0,3"/>
+                        <CheckBox Content="Export Manifest" IsChecked="{Binding ExportManifest}" FontSize="13" Margin="0,3"/>
+                        <Separator Margin="0,10"/>
+                        <CheckBox Content="Enable Compression (.json.gz)" IsChecked="{Binding EnableCompression}" FontSize="13" Margin="0,3"/>
+                        <TextBlock Text="Reduces file size significantly" FontSize="11" Foreground="Gray" Margin="20,0,0,0"/>
                     </StackPanel>
                 </GroupBox>
 
-                <!-- Date Range Filter (for Prices) -->
-                <GroupBox Header="Price Date Range (Optional)" Padding="15" Margin="0,0,0,20">
+                <!-- Filters -->
+                <GroupBox Header="Filters (Optional)" Padding="15" Margin="0,0,0,15">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="20"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="From:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <DatePicker Grid.Column="1" SelectedDate="{Binding FromDate}" FontSize="13"/>
+                        <!-- Category Filter -->
+                        <Grid Grid.Row="0" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Category:" VerticalAlignment="Center" FontSize="13"/>
+                            <ComboBox Grid.Column="1" 
+                                      Text="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="True"
+                                      FontSize="13"
+                                      Padding="5">
+                                <ComboBoxItem Content="(All Categories)"/>
+                                <ComboBoxItem Content="Meat &amp; Seafood"/>
+                                <ComboBoxItem Content="Dairy &amp; Eggs"/>
+                                <ComboBoxItem Content="Fruits &amp; Vegetables"/>
+                                <ComboBoxItem Content="Bakery"/>
+                                <ComboBoxItem Content="Pantry Staples"/>
+                                <ComboBoxItem Content="Snacks &amp; Confectionery"/>
+                                <ComboBoxItem Content="Beverages"/>
+                                <ComboBoxItem Content="Frozen Foods"/>
+                                <ComboBoxItem Content="Household Products"/>
+                                <ComboBoxItem Content="Personal Care"/>
+                            </ComboBox>
+                        </Grid>
 
-                        <TextBlock Grid.Column="3" Text="To:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <DatePicker Grid.Column="4" SelectedDate="{Binding ToDate}" FontSize="13"/>
+                        <!-- Date Range Filter -->
+                        <Grid Grid.Row="1" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Date Range:" VerticalAlignment="Center" FontSize="13"/>
+                            <DatePicker Grid.Column="1" SelectedDate="{Binding FromDate}" FontSize="13"/>
+                            <TextBlock Grid.Column="2" Text="-" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="3" SelectedDate="{Binding ToDate}" FontSize="13"/>
+                        </Grid>
+
+                        <!-- Price Range and On Sale -->
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Price Range ($):" VerticalAlignment="Center" FontSize="13"/>
+                            <TextBox Grid.Column="1" 
+                                     Text="{Binding MinPrice, UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="13"
+                                     Padding="5"/>
+                            <TextBlock Grid.Column="2" Text="-" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="3" 
+                                     Text="{Binding MaxPrice, UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="13"
+                                     Padding="5"/>
+                            <CheckBox Grid.Column="5" 
+                                      Content="Only on sale" 
+                                      IsChecked="{Binding OnlyOnSale}"
+                                      VerticalAlignment="Center"
+                                      FontSize="13"/>
+                        </Grid>
                     </Grid>
                 </GroupBox>
 
-                <!-- Output Directory -->
-                <GroupBox Header="Output Directory" Padding="15" Margin="0,0,0,20">
+                <!-- Output Path -->
+                <GroupBox Header="Output File" Padding="15" Margin="0,0,0,15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -59,7 +121,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.Column="0"
-                                 Text="{Binding OutputDirectory, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding OutputPath, UpdateSourceTrigger=PropertyChanged}"
                                  FontSize="13"
                                  Padding="8"
                                  VerticalAlignment="Center"
@@ -80,17 +142,43 @@
                     </Grid>
                 </GroupBox>
 
-                <!-- Export Status -->
+                <!-- Progress Bar -->
                 <Border Background="#f0f9ff"
                         BorderBrush="#3b82f6"
                         BorderThickness="1"
                         Padding="15"
                         CornerRadius="4"
-                        Visibility="{Binding StatusVisibility}">
+                        Visibility="{Binding IsExporting, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding ProgressStatus}"
+                                   FontSize="13"
+                                   Foreground="#1e3a8a"
+                                   Margin="0,0,0,5"/>
+                        <ProgressBar Value="{Binding ProgressPercentage}" 
+                                     Maximum="100"
+                                     Height="20"
+                                     Background="#e0e7ff"
+                                     Foreground="#3b82f6"/>
+                        <TextBlock Text="{Binding ProgressPercentage, StringFormat='{}{0} %'}"
+                                   FontSize="11"
+                                   Foreground="#666"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Export Status -->
+                <Border Background="#f0fdf4"
+                        BorderBrush="#22c55e"
+                        BorderThickness="1"
+                        Padding="15"
+                        CornerRadius="4"
+                        Visibility="{Binding StatusVisibility}"
+                        Margin="0,10,0,0">
                     <StackPanel>
                         <TextBlock Text="{Binding StatusMessage}"
                                    FontSize="13"
-                                   Foreground="#1e3a8a"
+                                   Foreground="#166534"
                                    TextWrapping="Wrap"/>
                         <ItemsControl ItemsSource="{Binding ExportedFiles}" Margin="10,10,0,0">
                             <ItemsControl.ItemTemplate>
@@ -123,6 +211,7 @@
 
                 <Button Content="Export"
                         Command="{Binding ExportCommand}"
+                        IsEnabled="{Binding IsExporting, Converter={StaticResource InverseBooleanConverter}}"
                         Width="90"
                         Height="36"
                         Background="#111"

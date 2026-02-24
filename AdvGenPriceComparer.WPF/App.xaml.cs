@@ -105,6 +105,12 @@ public partial class App : Application
             services.AddTransient<PlaceViewModel>();
             services.AddTransient<AddStoreViewModel>();
             services.AddTransient<ImportDataViewModel>();
+            services.AddTransient<ExportDataViewModel>(provider =>
+            {
+                var exportService = provider.GetRequiredService<ExportService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                return new ExportDataViewModel(exportService, dialogService);
+            });
 
             // Views
             services.AddTransient<ItemsPage>();

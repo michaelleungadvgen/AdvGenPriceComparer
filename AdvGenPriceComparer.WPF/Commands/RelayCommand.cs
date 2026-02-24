@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace AdvGenPriceComparer.WPF.Commands;
 
+/// <summary>
+/// A command that relays its functionality to other objects by invoking delegates.
+/// </summary>
 public class RelayCommand : ICommand
 {
     private readonly Action _execute;
@@ -29,8 +32,19 @@ public class RelayCommand : ICommand
     {
         _execute();
     }
+
+    /// <summary>
+    /// Raises the CanExecuteChanged event to refresh command status.
+    /// </summary>
+    public void RaiseCanExecuteChanged()
+    {
+        CommandManager.InvalidateRequerySuggested();
+    }
 }
 
+/// <summary>
+/// A command that relays its functionality to other objects by invoking delegates with a parameter.
+/// </summary>
 public class RelayCommand<T> : ICommand
 {
     private readonly Action<T?> _execute;
@@ -56,5 +70,13 @@ public class RelayCommand<T> : ICommand
     public void Execute(object? parameter)
     {
         _execute((T?)parameter);
+    }
+
+    /// <summary>
+    /// Raises the CanExecuteChanged event to refresh command status.
+    /// </summary>
+    public void RaiseCanExecuteChanged()
+    {
+        CommandManager.InvalidateRequerySuggested();
     }
 }

@@ -54,7 +54,7 @@
 | Implement JSON export with standardized format | 🟢 DONE | Agent-001 | Part of ExportService |
 | Add export filters (date range, store, category) | 🟢 DONE | Agent-001 | Filter logic implemented |
 | Add compression support (.json.gz) | 🟢 DONE | Agent-001 | GZip compression implemented |
-| Connect to ExportDataWindow UI | 🔴 TODO | - | After service created |
+| Connect to ExportDataWindow UI | 🟢 DONE | Agent-003 | ExportService fully integrated with ViewModel and UI |
 | Test full export workflow | 🔴 TODO | - | End-to-end testing |
 | Add export progress tracking | 🟢 DONE | Agent-001 | Progress reporting implemented |
 
@@ -92,6 +92,7 @@
 | 2026-02-25 | servers.json created | Pre-existing |
 | 2026-02-25 | ExportService.cs with JSON export, filters, compression | Agent-001 |
 | 2026-02-25 | Connect ImportDataViewModel to JsonImportService | Agent-002 |
+| 2026-02-25 | Connect ExportService to ExportDataWindow UI | Agent-003 |
 
 ---
 

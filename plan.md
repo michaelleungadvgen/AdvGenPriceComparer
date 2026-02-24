@@ -273,7 +273,7 @@ public class ExportService
 - [x] Implement JSON export with standardized format
 - [x] Add export filters (date range, store, category)
 - [x] Add compression support (.json.gz)
-- [ ] Connect to ExportDataWindow UI
+- [x] Connect to ExportDataWindow UI
 - [ ] Test full export workflow
 - [x] Add export progress tracking
 
@@ -450,7 +450,7 @@ AdvGenPriceComparer.WPF/
 6. Implement JSON import logic for Coles/Woolworths
 7. Implement markdown import for Drakes
 8. ✅ Implement export logic (ExportService created)
-9. Connect ExportDataWindow UI to ExportService
+9. ✅ Connect ExportDataWindow UI to ExportService
 10. Test end-to-end workflows
 
 ---
