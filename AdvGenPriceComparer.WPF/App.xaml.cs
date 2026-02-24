@@ -89,6 +89,15 @@ public partial class App : Application
                 var dbService = new DatabaseService(dbPath);
                 return new JsonImportService(dbService);
             });
+            services.AddTransient<ExportService>(provider =>
+            {
+                var dbService = new DatabaseService(dbPath);
+                var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
+                var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
+                var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new ExportService(itemRepo, placeRepo, priceRepo, logger);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();

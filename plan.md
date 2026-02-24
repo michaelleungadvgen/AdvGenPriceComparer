@@ -43,7 +43,7 @@ Migration of AdvGenPriceComparer from WinUI 3 to WPF with enhanced features for:
 - ✅ DemoDataService
 - ⚠️ **JsonImportService** - MISSING (referenced in App.xaml.cs line 87-91)
 - ⚠️ **ServerConfigService** - MISSING (referenced in App.xaml.cs line 81-82)
-- ⚠️ **ExportService** - MISSING (export logic not implemented)
+- ✅ **ExportService** - IMPLEMENTED in AdvGenPriceComparer.WPF/Services/
 
 ### Views (All Implemented)
 - ✅ ItemsPage.xaml
@@ -269,13 +269,13 @@ public class ExportService
 - [ ] Add import progress UI updates
 
 ### Phase 3: Implement Export (2-3 hours)
-- [ ] Create ExportService.cs
-- [ ] Implement JSON export with standardized format
-- [ ] Add export filters (date range, store, category)
-- [ ] Add compression support (.json.gz)
+- [x] Create ExportService.cs
+- [x] Implement JSON export with standardized format
+- [x] Add export filters (date range, store, category)
+- [x] Add compression support (.json.gz)
 - [ ] Connect to ExportDataWindow UI
 - [ ] Test full export workflow
-- [ ] Add export progress tracking
+- [x] Add export progress tracking
 
 ### Phase 4: Server Integration (Future - 5-7 days)
 - [ ] Create ASP.NET Core Web API project (AdvGenPriceComparer.Server)
@@ -400,7 +400,7 @@ AdvGenPriceComparer.WPF/
 ├── App.xaml.cs ✅
 ├── MainWindow.xaml ✅
 ├── MainWindow.xaml.cs ✅
-├── servers.json ⚠️ MISSING (create this)
+├── servers.json ✅ (already exists)
 ├── Commands/
 │   └── RelayCommand.cs ✅
 ├── Services/
@@ -411,9 +411,9 @@ AdvGenPriceComparer.WPF/
 │   ├── ILoggerService.cs ✅
 │   ├── FileLoggerService.cs ✅
 │   ├── DemoDataService.cs ✅
-│   ├── JsonImportService.cs ⚠️ MISSING - CREATE THIS
-│   ├── ServerConfigService.cs ⚠️ MISSING - CREATE THIS
-│   └── ExportService.cs ⚠️ MISSING - CREATE THIS
+│   ├── JsonImportService.cs ✅ (in Data.LiteDB project)
+│   ├── ServerConfigService.cs ✅ (in Core project)
+│   └── ExportService.cs ✅ IMPLEMENTED
 ├── ViewModels/
 │   ├── ViewModelBase.cs ✅
 │   ├── MainWindowViewModel.cs ✅
@@ -443,13 +443,15 @@ AdvGenPriceComparer.WPF/
 1. ✅ Create `JsonImportService.cs` (blocks app startup)
 2. ✅ Create `ServerConfigService.cs` (blocks app startup)
 3. ✅ Create `servers.json` in project root
-4. Test app runs without errors
+4. ✅ Create `ExportService.cs`
+5. Test app runs without errors
 
 **To make it functional:**
-5. Implement JSON import logic for Coles/Woolworths
-6. Implement markdown import for Drakes
-7. Implement export logic
-8. Test end-to-end workflows
+6. Implement JSON import logic for Coles/Woolworths
+7. Implement markdown import for Drakes
+8. ✅ Implement export logic (ExportService created)
+9. Connect ExportDataWindow UI to ExportService
+10. Test end-to-end workflows
 
 ---
 
@@ -1633,6 +1635,775 @@ public class CategoryFeedbackService
 - **Phase 8 (Unit Testing):** 3-5 days
 - **Phase 9 (ML.NET Auto-Categorization):** 2-3 days
 - **Total Full Implementation:** 30-40 days
+
+---
+
+## ⚙️ Phase 10: Database Provider Selection & Settings
+
+### 10.1 Overview
+Implement a flexible database provider system that allows users to choose between:
+- **LiteDB** - Local embedded database (default, no server required)
+- **AdvGenNoSQLServer** - Remote NoSQL server for multi-device synchronization
+
+### 10.2 Database Provider Interface
+
+**Create IDatabaseProvider Interface:**
+```csharp
+public interface IDatabaseProvider : IDisposable
+{
+    string ProviderName { get; }
+    bool IsConnected { get; }
+    Task<bool> ConnectAsync(DatabaseConnectionSettings settings);
+    Task DisconnectAsync();
+    
+    // Repository accessors
+    IItemRepository Items { get; }
+    IPlaceRepository Places { get; }
+    IPriceRecordRepository PriceRecords { get; }
+    ICategoryRepository Categories { get; }
+}
+```
+
+**DatabaseProviderType Enum:**
+```csharp
+public enum DatabaseProviderType
+{
+    LiteDB,
+    AdvGenNoSQLServer
+}
+```
+
+**DatabaseConnectionSettings:**
+```csharp
+public class DatabaseConnectionSettings
+{
+    public DatabaseProviderType ProviderType { get; set; }
+    
+    // LiteDB specific
+    public string LiteDbPath { get; set; } = "GroceryPrices.db";
+    
+    // AdvGenNoSQLServer specific
+    public string ServerHost { get; set; } = "localhost";
+    public int ServerPort { get; set; } = 5000;
+    public string ApiKey { get; set; }
+    public string DatabaseName { get; set; } = "GroceryPrices";
+    public bool UseSsl { get; set; } = true;
+    
+    // Connection pool settings
+    public int ConnectionTimeout { get; set; } = 30;
+    public int RetryCount { get; set; } = 3;
+}
+```
+
+### 10.3 Database Provider Factory
+
+**DatabaseProviderFactory:**
+```csharp
+public class DatabaseProviderFactory
+{
+    private readonly IServiceProvider _serviceProvider;
+    private readonly ILoggerService _logger;
+
+    public DatabaseProviderFactory(IServiceProvider serviceProvider, ILoggerService logger)
+    {
+        _serviceProvider = serviceProvider;
+        _logger = logger;
+    }
+
+    public IDatabaseProvider CreateProvider(DatabaseProviderType type)
+    {
+        return type switch
+        {
+            DatabaseProviderType.LiteDB => _serviceProvider.GetRequiredService<LiteDbProvider>(),
+            DatabaseProviderType.AdvGenNoSQLServer => _serviceProvider.GetRequiredService<AdvGenNoSqlProvider>(),
+            _ => throw new NotSupportedException($"Database provider '{type}' is not supported")
+        };
+    }
+}
+```
+
+### 10.4 LiteDB Provider Implementation
+
+**LiteDbProvider:**
+```csharp
+public class LiteDbProvider : IDatabaseProvider
+{
+    private readonly LiteDatabase _database;
+    private readonly ILoggerService _logger;
+
+    public string ProviderName => "LiteDB";
+    public bool IsConnected => _database != null;
+
+    public IItemRepository Items { get; }
+    public IPlaceRepository Places { get; }
+    public IPriceRecordRepository PriceRecords { get; }
+    public ICategoryRepository Categories { get; }
+
+    public LiteDbProvider(ILoggerService logger)
+    {
+        _logger = logger;
+    }
+
+    public Task<bool> ConnectAsync(DatabaseConnectionSettings settings)
+    {
+        try
+        {
+            _logger.LogInfo($"Connecting to LiteDB: {settings.LiteDbPath}");
+            
+            var connectionString = $"Filename={settings.LiteDbPath};Connection=Shared";
+            _database = new LiteDatabase(connectionString);
+            
+            // Initialize repositories
+            Items = new LiteDbItemRepository(_database, _logger);
+            Places = new LiteDbPlaceRepository(_database, _logger);
+            PriceRecords = new LiteDbPriceRecordRepository(_database, _logger);
+            Categories = new LiteDbCategoryRepository(_database, _logger);
+            
+            _logger.LogInfo("LiteDB connected successfully");
+            return Task.FromResult(true);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Failed to connect to LiteDB", ex);
+            return Task.FromResult(false);
+        }
+    }
+
+    public Task DisconnectAsync()
+    {
+        _database?.Dispose();
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        _database?.Dispose();
+    }
+}
+```
+
+### 10.5 AdvGenNoSQLServer Provider Implementation
+
+**AdvGenNoSqlProvider:**
+```csharp
+public class AdvGenNoSqlProvider : IDatabaseProvider
+{
+    private readonly HttpClient _httpClient;
+    private readonly ILoggerService _logger;
+    private DatabaseConnectionSettings _settings;
+
+    public string ProviderName => "AdvGenNoSQLServer";
+    public bool IsConnected { get; private set; }
+
+    public IItemRepository Items { get; private set; }
+    public IPlaceRepository Places { get; private set; }
+    public IPriceRecordRepository PriceRecords { get; private set; }
+    public ICategoryRepository Categories { get; private set; }
+
+    public AdvGenNoSqlProvider(ILoggerService logger)
+    {
+        _logger = logger;
+        _httpClient = new HttpClient();
+    }
+
+    public async Task<bool> ConnectAsync(DatabaseConnectionSettings settings)
+    {
+        try
+        {
+            _settings = settings;
+            var scheme = settings.UseSsl ? "https" : "http";
+            var baseUrl = $"{scheme}://{settings.ServerHost}:{settings.ServerPort}/api";
+            
+            _logger.LogInfo($"Connecting to AdvGenNoSQLServer: {baseUrl}");
+            
+            _httpClient.BaseAddress = new Uri(baseUrl);
+            _httpClient.DefaultRequestHeaders.Add("X-API-Key", settings.ApiKey);
+            _httpClient.Timeout = TimeSpan.FromSeconds(settings.ConnectionTimeout);
+            
+            // Test connection
+            var response = await _httpClient.GetAsync("/health");
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogError($"Health check failed: {response.StatusCode}");
+                return false;
+            }
+            
+            // Initialize repositories
+            Items = new AdvGenNoSqlItemRepository(_httpClient, _logger);
+            Places = new AdvGenNoSqlPlaceRepository(_httpClient, _logger);
+            PriceRecords = new AdvGenNoSqlPriceRecordRepository(_httpClient, _logger);
+            Categories = new AdvGenNoSqlCategoryRepository(_httpClient, _logger);
+            
+            IsConnected = true;
+            _logger.LogInfo("AdvGenNoSQLServer connected successfully");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Failed to connect to AdvGenNoSQLServer", ex);
+            IsConnected = false;
+            return false;
+        }
+    }
+
+    public Task DisconnectAsync()
+    {
+        IsConnected = false;
+        _httpClient?.Dispose();
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        _httpClient?.Dispose();
+    }
+}
+```
+
+### 10.6 Settings Service
+
+**ISettingsService Interface:**
+```csharp
+public interface ISettingsService
+{
+    DatabaseConnectionSettings DatabaseSettings { get; set; }
+    
+    // General settings
+    string DefaultExportPath { get; set; }
+    string DefaultImportPath { get; set; }
+    string Culture { get; set; }
+    bool AutoCheckForUpdates { get; set; }
+    
+    // ML Settings
+    string MLModelPath { get; set; }
+    float AutoCategorizationThreshold { get; set; }
+    bool EnableAutoCategorization { get; set; }
+    
+    // Notification settings
+    bool EnablePriceDropAlerts { get; set; }
+    bool EnableExpirationAlerts { get; set; }
+    int AlertCheckIntervalHours { get; set; }
+    
+    // Load/Save
+    Task LoadSettingsAsync();
+    Task SaveSettingsAsync();
+}
+```
+
+**SettingsService Implementation:**
+```csharp
+public class SettingsService : ISettingsService
+{
+    private readonly string _settingsPath;
+    private readonly ILoggerService _logger;
+    private readonly object _lock = new();
+
+    public DatabaseConnectionSettings DatabaseSettings { get; set; } = new();
+    public string DefaultExportPath { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    public string DefaultImportPath { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    public string Culture { get; set; } = "en-AU";
+    public bool AutoCheckForUpdates { get; set; } = true;
+    public string MLModelPath { get; set; }
+    public float AutoCategorizationThreshold { get; set; } = 0.7f;
+    public bool EnableAutoCategorization { get; set; } = true;
+    public bool EnablePriceDropAlerts { get; set; } = true;
+    public bool EnableExpirationAlerts { get; set; } = true;
+    public int AlertCheckIntervalHours { get; set; } = 24;
+
+    public SettingsService(ILoggerService logger)
+    {
+        _logger = logger;
+        var appDataPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "AdvGenPriceComparer");
+        _settingsPath = Path.Combine(appDataPath, "settings.json");
+        
+        MLModelPath = Path.Combine(appDataPath, "MLModels", "category_model.zip");
+    }
+
+    public async Task LoadSettingsAsync()
+    {
+        try
+        {
+            if (!File.Exists(_settingsPath))
+            {
+                _logger.LogInfo("Settings file not found, using defaults");
+                return;
+            }
+
+            var json = await File.ReadAllTextAsync(_settingsPath);
+            var settings = JsonSerializer.Deserialize<AppSettings>(json);
+            
+            if (settings != null)
+            {
+                DatabaseSettings = settings.DatabaseSettings;
+                DefaultExportPath = settings.DefaultExportPath;
+                DefaultImportPath = settings.DefaultImportPath;
+                Culture = settings.Culture;
+                AutoCheckForUpdates = settings.AutoCheckForUpdates;
+                MLModelPath = settings.MLModelPath ?? MLModelPath;
+                AutoCategorizationThreshold = settings.AutoCategorizationThreshold;
+                EnableAutoCategorization = settings.EnableAutoCategorization;
+                EnablePriceDropAlerts = settings.EnablePriceDropAlerts;
+                EnableExpirationAlerts = settings.EnableExpirationAlerts;
+                AlertCheckIntervalHours = settings.AlertCheckIntervalHours;
+                
+                _logger.LogInfo("Settings loaded successfully");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Failed to load settings", ex);
+        }
+    }
+
+    public async Task SaveSettingsAsync()
+    {
+        try
+        {
+            lock (_lock)
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(_settingsPath));
+            }
+
+            var settings = new AppSettings
+            {
+                DatabaseSettings = DatabaseSettings,
+                DefaultExportPath = DefaultExportPath,
+                DefaultImportPath = DefaultImportPath,
+                Culture = Culture,
+                AutoCheckForUpdates = AutoCheckForUpdates,
+                MLModelPath = MLModelPath,
+                AutoCategorizationThreshold = AutoCategorizationThreshold,
+                EnableAutoCategorization = EnableAutoCategorization,
+                EnablePriceDropAlerts = EnablePriceDropAlerts,
+                EnableExpirationAlerts = EnableExpirationAlerts,
+                AlertCheckIntervalHours = AlertCheckIntervalHours
+            };
+
+            var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
+            await File.WriteAllTextAsync(_settingsPath, json);
+            
+            _logger.LogInfo("Settings saved successfully");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Failed to save settings", ex);
+        }
+    }
+}
+
+public class AppSettings
+{
+    public DatabaseConnectionSettings DatabaseSettings { get; set; } = new();
+    public string DefaultExportPath { get; set; }
+    public string DefaultImportPath { get; set; }
+    public string Culture { get; set; } = "en-AU";
+    public bool AutoCheckForUpdates { get; set; } = true;
+    public string MLModelPath { get; set; }
+    public float AutoCategorizationThreshold { get; set; } = 0.7f;
+    public bool EnableAutoCategorization { get; set; } = true;
+    public bool EnablePriceDropAlerts { get; set; } = true;
+    public bool EnableExpirationAlerts { get; set; } = true;
+    public int AlertCheckIntervalHours { get; set; } = 24;
+}
+```
+
+### 10.7 Settings Page UI
+
+**SettingsWindow.xaml:**
+```xml
+<Window x:Class="AdvGenPriceComparer.WPF.Views.SettingsWindow"
+        Title="Settings" Height="600" Width="800"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{DynamicResource SystemAccentColorBrush}" Padding="20,15">
+            <TextBlock Text="Settings" FontSize="24" FontWeight="Bold" Foreground="White"/>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                
+                <!-- Database Settings -->
+                <GroupBox Header="Database Configuration" Margin="0,0,0,20">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Database Provider:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <ComboBox x:Name="DatabaseProviderCombo"
+                                  SelectedValuePath="Tag"
+                                  SelectedValue="{Binding DatabaseSettings.ProviderType}">
+                            <ComboBoxItem Tag="LiteDB" Content="LiteDB (Local)"/>
+                            <ComboBoxItem Tag="AdvGenNoSQLServer" Content="AdvGenNoSQLServer (Remote)"/>
+                        </ComboBox>
+
+                        <!-- LiteDB Settings -->
+                        <StackPanel x:Name="LiteDbSettingsPanel" Margin="0,15,0,0"
+                                    Visibility="{Binding IsLiteDbSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock Text="Database File Path:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" 
+                                         Text="{Binding DatabaseSettings.LiteDbPath}"
+                                         IsReadOnly="True"/>
+                                <Button Grid.Column="1" Content="Browse..." 
+                                        Margin="10,0,0,0" Padding="15,5"
+                                        Click="BrowseLiteDbPath_Click"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- AdvGenNoSQLServer Settings -->
+                        <StackPanel x:Name="AdvGenNoSqlSettingsPanel" Margin="0,15,0,0"
+                                    Visibility="{Binding IsAdvGenNoSqlSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Server Host -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Server Host:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="0" 
+                                         Text="{Binding DatabaseSettings.ServerHost}"/>
+
+                                <!-- Server Port -->
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="Port:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="2" Width="80"
+                                         Text="{Binding DatabaseSettings.ServerPort}"/>
+
+                                <!-- Database Name -->
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Database Name:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                         Text="{Binding DatabaseSettings.DatabaseName}"/>
+                            </Grid>
+
+                            <TextBlock Text="API Key:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                            <PasswordBox x:Name="ApiKeyPasswordBox" PasswordChanged="ApiKeyPasswordBox_PasswordChanged"/>
+
+                            <CheckBox Margin="0,10,0,0" 
+                                      Content="Use SSL/TLS"
+                                      IsChecked="{Binding DatabaseSettings.UseSsl}"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                <Button Content="Test Connection" Padding="15,5"
+                                        Click="TestConnection_Click"/>
+                                <TextBlock x:Name="ConnectionTestResult" Margin="15,0,0,0" 
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- General Settings -->
+                <GroupBox Header="General Settings" Margin="0,0,0,20">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Default Import Path:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Text="{Binding DefaultImportPath}" IsReadOnly="True"/>
+                            <Button Grid.Column="1" Content="..." Margin="5,0,0,0" Padding="10,0"
+                                    Click="BrowseImportPath_Click"/>
+                        </Grid>
+
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Default Export Path:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Text="{Binding DefaultExportPath}" IsReadOnly="True"/>
+                            <Button Grid.Column="1" Content="..." Margin="5,0,0,0" Padding="10,0"
+                                    Click="BrowseExportPath_Click"/>
+                        </Grid>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Culture/Language:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                        <ComboBox Grid.Row="3" Grid.Column="0" 
+                                  SelectedValue="{Binding Culture}"
+                                  SelectedValuePath="Tag">
+                            <ComboBoxItem Tag="en-AU" Content="English (Australia)"/>
+                            <ComboBoxItem Tag="zh-TW" Content="繁體中文 (Traditional Chinese)"/>
+                            <ComboBoxItem Tag="zh-CN" Content="简体中文 (Simplified Chinese)"/>
+                        </ComboBox>
+
+                        <CheckBox Grid.Row="2" Grid.Column="2" Grid.RowSpan="2"
+                                  Margin="0,10,0,0" VerticalAlignment="Center"
+                                  Content="Automatically check for updates"
+                                  IsChecked="{Binding AutoCheckForUpdates}"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- ML Settings -->
+                <GroupBox Header="Machine Learning Settings" Margin="0,0,0,20">
+                    <StackPanel Margin="10">
+                        <CheckBox Content="Enable auto-categorization"
+                                  IsChecked="{Binding EnableAutoCategorization}"
+                                  Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Confidence Threshold:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <Slider Minimum="0" Maximum="1" TickFrequency="0.05" 
+                                Value="{Binding AutoCategorizationThreshold}"
+                                IsEnabled="{Binding EnableAutoCategorization}"/>
+                        <TextBlock Text="{Binding AutoCategorizationThreshold, StringFormat=P0}"
+                                   HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Notification Settings -->
+                <GroupBox Header="Notification Settings" Margin="0,0,0,20">
+                    <StackPanel Margin="10">
+                        <CheckBox Content="Enable price drop alerts"
+                                  IsChecked="{Binding EnablePriceDropAlerts}"
+                                  Margin="0,0,0,10"/>
+                        <CheckBox Content="Enable deal expiration alerts"
+                                  IsChecked="{Binding EnableExpirationAlerts}"
+                                  Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Alert Check Interval (hours):" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                        <TextBox Text="{Binding AlertCheckIntervalHours}" Width="100" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Buttons -->
+        <Border Grid.Row="2" Background="{DynamicResource SystemAltMediumColor}" Padding="20,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel" Padding="20,8" Margin="0,0,10,0"
+                        Click="Cancel_Click"/>
+                <Button Content="Save" Padding="20,8" 
+                        Background="{DynamicResource SystemAccentColorBrush}"
+                        Foreground="White"
+                        Click="Save_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+```
+
+**SettingsViewModel:**
+```csharp
+public class SettingsViewModel : ViewModelBase
+{
+    private readonly ISettingsService _settingsService;
+    private readonly IDatabaseProvider _currentProvider;
+    private readonly DatabaseProviderFactory _providerFactory;
+    private readonly ILoggerService _logger;
+
+    public DatabaseConnectionSettings DatabaseSettings { get; set; }
+    public string DefaultExportPath { get; set; }
+    public string DefaultImportPath { get; set; }
+    public string Culture { get; set; }
+    public bool AutoCheckForUpdates { get; set; }
+    public float AutoCategorizationThreshold { get; set; }
+    public bool EnableAutoCategorization { get; set; }
+    public bool EnablePriceDropAlerts { get; set; }
+    public bool EnableExpirationAlerts { get; set; }
+    public int AlertCheckIntervalHours { get; set; }
+
+    public bool IsLiteDbSelected => DatabaseSettings?.ProviderType == DatabaseProviderType.LiteDB;
+    public bool IsAdvGenNoSqlSelected => DatabaseSettings?.ProviderType == DatabaseProviderType.AdvGenNoSQLServer;
+
+    public ICommand TestConnectionCommand { get; }
+    public ICommand SaveCommand { get; }
+    public ICommand CancelCommand { get; }
+
+    public SettingsViewModel(
+        ISettingsService settingsService,
+        IDatabaseProvider currentProvider,
+        DatabaseProviderFactory providerFactory,
+        ILoggerService logger)
+    {
+        _settingsService = settingsService;
+        _currentProvider = currentProvider;
+        _providerFactory = providerFactory;
+        _logger = logger;
+
+        // Load current settings
+        DatabaseSettings = settingsService.DatabaseSettings;
+        DefaultExportPath = settingsService.DefaultExportPath;
+        DefaultImportPath = settingsService.DefaultImportPath;
+        Culture = settingsService.Culture;
+        AutoCheckForUpdates = settingsService.AutoCheckForUpdates;
+        AutoCategorizationThreshold = settingsService.AutoCategorizationThreshold;
+        EnableAutoCategorization = settingsService.EnableAutoCategorization;
+        EnablePriceDropAlerts = settingsService.EnablePriceDropAlerts;
+        EnableExpirationAlerts = settingsService.EnableExpirationAlerts;
+        AlertCheckIntervalHours = settingsService.AlertCheckIntervalHours;
+
+        TestConnectionCommand = new RelayCommand(async () => await TestConnectionAsync());
+        SaveCommand = new RelayCommand(async () => await SaveAsync());
+        CancelCommand = new RelayCommand(Cancel);
+    }
+
+    private async Task TestConnectionAsync()
+    {
+        try
+        {
+            var provider = _providerFactory.CreateProvider(DatabaseSettings.ProviderType);
+            var result = await provider.ConnectAsync(DatabaseSettings);
+            
+            // Show result to user (via dialog service)
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Connection test failed", ex);
+        }
+    }
+
+    private async Task SaveAsync()
+    {
+        // Update settings service
+        _settingsService.DatabaseSettings = DatabaseSettings;
+        _settingsService.DefaultExportPath = DefaultExportPath;
+        _settingsService.DefaultImportPath = DefaultImportPath;
+        _settingsService.Culture = Culture;
+        _settingsService.AutoCheckForUpdates = AutoCheckForUpdates;
+        _settingsService.AutoCategorizationThreshold = AutoCategorizationThreshold;
+        _settingsService.EnableAutoCategorization = EnableAutoCategorization;
+        _settingsService.EnablePriceDropAlerts = EnablePriceDropAlerts;
+        _settingsService.EnableExpirationAlerts = EnableExpirationAlerts;
+        _settingsService.AlertCheckIntervalHours = AlertCheckIntervalHours;
+
+        await _settingsService.SaveSettingsAsync();
+        
+        // May need to restart app if database provider changed
+        var requiresRestart = _currentProvider.ProviderName != DatabaseSettings.ProviderType.ToString();
+        
+        // Close settings window
+    }
+
+    private void Cancel()
+    {
+        // Close without saving
+    }
+}
+```
+
+### 10.8 App.xaml.cs Updates
+
+**Updated DI Configuration:**
+```csharp
+private void ConfigureServices(IServiceCollection services)
+{
+    // ... existing services ...
+
+    // Settings Service
+    services.AddSingleton<ISettingsService, SettingsService>();
+    services.AddSingleton<SettingsViewModel>();
+
+    // Database Provider Factory
+    services.AddSingleton<DatabaseProviderFactory>();
+
+    // Database Providers
+    services.AddSingleton<LiteDbProvider>();
+    services.AddSingleton<AdvGenNoSqlProvider>();
+
+    // Current Database Provider (resolved based on settings)
+    services.AddSingleton<IDatabaseProvider>(provider =>
+    {
+        var settingsService = provider.GetRequiredService<ISettingsService>();
+        settingsService.LoadSettingsAsync().Wait();
+        
+        var factory = provider.GetRequiredService<DatabaseProviderFactory>();
+        var databaseProvider = factory.CreateProvider(settingsService.DatabaseSettings.ProviderType);
+        databaseProvider.ConnectAsync(settingsService.DatabaseSettings).Wait();
+        
+        return databaseProvider;
+    });
+}
+```
+
+### 10.9 AdvGenNoSQLServer Repository
+
+**Question:** Should the AdvGenNoSQLServer repository be included in this project?
+
+**Answer:** The AdvGenNoSQLServer repository can be:
+
+1. **Option A - Separate Repository (Recommended):** 
+   - Create a separate `AdvGenNoSQLServer` repository for the server component
+   - The WPF app references it via NuGet package or git submodule
+   - Server can be deployed independently
+   - Better separation of concerns
+
+2. **Option B - Same Repository, Separate Project:**
+   - Include server code in this repository as `AdvGenPriceComparer.Server`
+   - Easier for development and testing
+   - Single codebase for both client and server
+
+3. **Option C - No Server Code (Client Only):**
+   - Just implement the client-side provider
+   - Assume server is managed separately
+   - Document the API protocol for server implementers
+
+**Recommendation:** Start with Option C for now - implement the client-side provider interface with stubs/API contracts. The actual server implementation can be added later as a separate repository (Option A) when needed.
+
+### 10.10 Implementation Checklist
+
+- [ ] Create `IDatabaseProvider` interface
+- [ ] Create `DatabaseConnectionSettings` class
+- [ ] Create `DatabaseProviderFactory`
+- [ ] Implement `LiteDbProvider`
+- [ ] Implement `AdvGenNoSqlProvider` (client-side)
+- [ ] Create `ISettingsService` interface
+- [ ] Implement `SettingsService`
+- [ ] Create `SettingsWindow.xaml` UI
+- [ ] Create `SettingsViewModel`
+- [ ] Update `App.xaml.cs` for provider selection
+- [ ] Add menu item to open Settings
+- [ ] Implement connection testing for AdvGenNoSQLServer
+- [ ] Handle provider switching (with restart notification)
+- [ ] Document AdvGenNoSQLServer API protocol
+- [ ] Test database switching workflow
+
+### 10.11 File Structure Updates
+
+```
+AdvGenPriceComparer.WPF/
+├── Services/
+│   ├── ISettingsService.cs
+│   ├── SettingsService.cs
+│   ├── DatabaseProviderFactory.cs
+│   └── Providers/
+│       ├── IDatabaseProvider.cs
+│       ├── LiteDbProvider.cs
+│       └── AdvGenNoSqlProvider.cs
+├── ViewModels/
+│   └── SettingsViewModel.cs
+└── Views/
+    └── SettingsWindow.xaml
+```
 
 ---
 
