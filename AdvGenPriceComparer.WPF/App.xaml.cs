@@ -133,6 +133,18 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new GlobalSearchService(dataService, logger);
             });
+            services.AddSingleton<IBarcodeService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new BarcodeService(logger);
+            });
+            services.AddSingleton<IPriceDropNotificationService>(provider =>
+            {
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var notificationService = provider.GetRequiredService<INotificationService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new PriceDropNotificationService(groceryData, notificationService, logger);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
@@ -147,6 +159,12 @@ public partial class App : Application
                 var exportService = provider.GetRequiredService<ExportService>();
                 var dialogService = provider.GetRequiredService<IDialogService>();
                 return new ExportDataViewModel(exportService, dialogService);
+            });
+            services.AddTransient<PriceDropNotificationViewModel>(provider =>
+            {
+                var notificationService = provider.GetRequiredService<IPriceDropNotificationService>();
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                return new PriceDropNotificationViewModel(notificationService, groceryData);
             });
 
             // Views

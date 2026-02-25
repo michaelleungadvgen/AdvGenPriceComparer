@@ -32,6 +32,8 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         AddPlaceCommand = new RelayCommand(AddPlace);
         ComparePricesCommand = new RelayCommand(ComparePrices);
         GlobalSearchCommand = new RelayCommand(ShowGlobalSearch);
+        ScanBarcodeCommand = new RelayCommand(ScanBarcode);
+        PriceDropNotificationsCommand = new RelayCommand(ShowPriceDropNotifications);
 
         RefreshDashboard();
     }
@@ -58,6 +60,8 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand AddPlaceCommand { get; }
     public ICommand ComparePricesCommand { get; }
     public ICommand GlobalSearchCommand { get; }
+    public ICommand ScanBarcodeCommand { get; }
+    public ICommand PriceDropNotificationsCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -219,6 +223,16 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         {
             RefreshDashboard();
         }
+    }
+
+    private void ScanBarcode()
+    {
+        _dialogService.ShowBarcodeScannerDialog();
+    }
+
+    private void ShowPriceDropNotifications()
+    {
+        _dialogService.ShowPriceDropNotificationsDialog();
     }
 
     public void Dispose()

@@ -11,4 +11,6 @@ public interface IDialogService
     bool ShowConfirmation(string message, string title = "Confirmation");
     void ShowComparePricesDialog(string category = null);
     SearchResult? ShowGlobalSearchDialog();
+    void ShowBarcodeScannerDialog();
+    void ShowPriceDropNotificationsDialog();
 }

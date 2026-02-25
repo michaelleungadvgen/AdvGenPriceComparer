@@ -57,4 +57,22 @@ public class SimpleDialogService : IDialogService
         
         return null;
     }
+
+    public void ShowBarcodeScannerDialog()
+    {
+        var barcodeService = ((App)Application.Current).Services.GetRequiredService<IBarcodeService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var viewModel = new ViewModels.ScanBarcodeViewModel(barcodeService, this, logger);
+        var window = new ScanBarcodeWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowPriceDropNotificationsDialog()
+    {
+        var notificationService = ((App)Application.Current).Services.GetRequiredService<IPriceDropNotificationService>();
+        var groceryData = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var viewModel = new ViewModels.PriceDropNotificationViewModel(notificationService, groceryData);
+        var window = new PriceDropNotificationsWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

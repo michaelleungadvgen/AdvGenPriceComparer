@@ -15,10 +15,12 @@
             <!-- Converters -->
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
-            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
-            <converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
-            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
             <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+            <converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
+            <converters:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
+            <converters:BarcodeFormatDescriptionConverter x:Key="BarcodeFormatDescriptionConverter"/>
 
             <!-- Light Blue Theme Color -->
             <Color x:Key="PrimaryColor">#87CEEB</Color>

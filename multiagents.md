@@ -89,8 +89,9 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Price comparison view (side-by-side store comparison) | 🟢 DONE | Agent-021 | Implemented ComparePricesWindow with store comparison |
-| Historical price charts for individual items | 🟡 DOING | Agent-022 | Implementing price history visualization with LiveCharts |
-| Barcode scanner integration | 🔴 TODO | - | |
+| Historical price charts for individual items | 🟢 DONE | Agent-022 | Price history visualization with LiveCharts fully implemented in PriceHistoryViewModel/PriceHistoryPage |
+| Barcode scanner integration | 🟡 DOING | Agent-024 | Implementing barcode scanning for items using ZXing library |
+| Price drop notifications | 🟢 DONE | Agent-025 | Price drop notification service fully implemented |
 | Search across all entities | 🟢 DONE | Agent-023 | Implemented Global Search with UI - searches across Items, Places, and PriceRecords with relevance scoring |
 
 ---
@@ -168,6 +169,7 @@
 | 2026-02-26 | Update README.md for WPF - Updated architecture docs, project structure, roadmap; fixed ComparePricesWindow.cs missing using statement | Agent-021 |
 | 2026-02-26 | Add Price Comparison View - Created ComparePricesWindow with side-by-side store comparison, added to IDialogService, MainWindowViewModel, and Quick Actions | Agent-021 |
 | 2026-02-26 | Search across all entities - Implemented Global Search (IGlobalSearchService, GlobalSearchService, GlobalSearchWindow, GlobalSearchViewModel) with relevance scoring, recent searches, and categorized results | Agent-023 |
+| 2026-02-26 | Price drop notifications - Implemented IPriceDropNotificationService, PriceDropNotificationService, PriceDropNotificationViewModel, PriceDropNotificationsWindow with monitoring, alert creation, and notification UI | Agent-025 |
 
 ---
 
