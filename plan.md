@@ -428,7 +428,7 @@ public class ExportService
 - [x] Test JSON import with existing data files:
   - [x] `data/coles_28012026.json`
   - [x] `data/woolworths_28012026.json`
-  - [ ] `data/coles_24072025.json` (older format test)
+  - [x] `data/coles_24072025.json` (older format test)
 - [x] Test markdown import with `drakes.md` - COMPLETED: Created TestMarkdownImport CLI, all 4 tests passed
 - [x] Implement import preview before saving
 - [x] Add error handling and validation
@@ -4621,6 +4621,1357 @@ services.AddTransient<PriceChatViewModel>();
 - Parameterized queries to prevent injection
 - Rate limiting for API calls
 - Error handling to prevent information leakage
+
+---
+
+### 12.16 Standard Price Query Language (SPQL) - JSON Specification
+
+#### Overview
+The Standard Price Query Language (SPQL) provides a unified JSON-based interface for querying grocery price data across LiteDB, AdvGenNoSqlServer, and future data sources. This specification ensures consistency between the Ollama chat interface, direct API calls, and programmatic access.
+
+#### Design Principles
+1. **Simplicity**: Easy to read, write, and understand
+2. **Consistency**: Same structure across all query types
+3. **Extensibility**: Easy to add new query types and filters
+4. **Type Safety**: Clear data types for all fields
+5. **Versioning**: Support for future spec versions
+
+---
+
+#### Core Query Structure
+
+**Base Query Format:**
+```json
+{
+  "version": "1.0",
+  "queryType": "string",
+  "target": "LiteDB|AdvGenNoSqlServer|Both",
+  "filters": {
+    "product": { },
+    "price": { },
+    "store": { },
+    "time": { },
+    "category": { }
+  },
+  "options": {
+    "limit": 10,
+    "offset": 0,
+    "sortBy": "price",
+    "sortOrder": "asc|desc",
+    "includeHistory": false
+  }
+}
+```
+
+---
+
+#### Query Types
+
+##### 1. **Price Query** (`priceQuery`)
+Get current price(s) for specific product(s).
+
+```json
+{
+  "version": "1.0",
+  "queryType": "priceQuery",
+  "target": "Both",
+  "filters": {
+    "product": {
+      "name": "Milk",
+      "nameMatch": "contains|exact|startsWith",
+      "brand": "Dairy Farmers",
+      "barcode": "9300632123456"
+    },
+    "store": {
+      "name": "Coles",
+      "chain": "Coles",
+      "suburb": "Chermside",
+      "state": "QLD"
+    }
+  },
+  "options": {
+    "limit": 10,
+    "includeHistory": false
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "version": "1.0",
+  "queryType": "priceQuery",
+  "timestamp": "2026-02-25T10:30:00Z",
+  "itemCount": 3,
+  "items": [
+    {
+      "itemId": "item_001",
+      "name": "Milk Full Cream 2L",
+      "brand": "Dairy Farmers",
+      "category": "Dairy & Eggs",
+      "barcode": "9300632123456",
+      "currentPrice": {
+        "price": 3.99,
+        "currency": "AUD",
+        "store": "Coles Chermside",
+        "storeId": "place_001",
+        "dateRecorded": "2026-02-25T08:00:00Z",
+        "isOnSale": false,
+        "originalPrice": null
+      }
+    }
+  ]
+}
+```
+
+---
+
+##### 2. **Price Comparison** (`priceComparison`)
+Compare prices across multiple stores.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "priceComparison",
+  "target": "Both",
+  "filters": {
+    "product": {
+      "name": "Milk Full Cream 2L",
+      "nameMatch": "exact"
+    },
+    "store": {
+      "chains": ["Coles", "Woolworths", "IGA"],
+      "state": "QLD"
+    }
+  },
+  "options": {
+    "sortBy": "price",
+    "sortOrder": "asc"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "version": "1.0",
+  "queryType": "priceComparison",
+  "timestamp": "2026-02-25T10:30:00Z",
+  "product": "Milk Full Cream 2L",
+  "comparison": [
+    {
+      "store": "Woolworths Chermside",
+      "chain": "Woolworths",
+      "price": 3.79,
+      "isOnSale": true,
+      "originalPrice": 4.50,
+      "savings": 0.71,
+      "savingsPercent": 15.8
+    },
+    {
+      "store": "Coles Chermside",
+      "chain": "Coles",
+      "price": 3.99,
+      "isOnSale": false
+    },
+    {
+      "store": "IGA Chermside",
+      "chain": "IGA",
+      "price": 4.20,
+      "isOnSale": false
+    }
+  ],
+  "bestDeal": {
+    "store": "Woolworths Chermside",
+    "price": 3.79,
+    "savings": 0.71
+  }
+}
+```
+
+---
+
+##### 3. **Category Query** (`categoryQuery`)
+Get all items in a category.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "categoryQuery",
+  "target": "LiteDB",
+  "filters": {
+    "category": {
+      "name": "Dairy & Eggs",
+      "subcategory": "Milk"
+    },
+    "price": {
+      "min": 0,
+      "max": 10.00
+    },
+    "store": {
+      "chain": "Coles"
+    }
+  },
+  "options": {
+    "limit": 20,
+    "sortBy": "price",
+    "sortOrder": "asc"
+  }
+}
+```
+
+---
+
+##### 4. **Sale Items Query** (`saleItemsQuery`)
+Find items currently on sale.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "saleItemsQuery",
+  "target": "Both",
+  "filters": {
+    "store": {
+      "chain": "Woolworths",
+      "state": "QLD"
+    },
+    "price": {
+      "minDiscount": 20,
+      "minDiscountType": "percent"
+    },
+    "category": {
+      "names": ["Dairy & Eggs", "Bakery", "Meat & Seafood"]
+    }
+  },
+  "options": {
+    "limit": 50,
+    "sortBy": "discountPercent",
+    "sortOrder": "desc"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "version": "1.0",
+  "queryType": "saleItemsQuery",
+  "timestamp": "2026-02-25T10:30:00Z",
+  "itemCount": 23,
+  "items": [
+    {
+      "itemId": "item_042",
+      "name": "Butter Unsalted 500g",
+      "brand": "Western Star",
+      "category": "Dairy & Eggs",
+      "store": "Woolworths Chermside",
+      "salePrice": 4.50,
+      "originalPrice": 9.00,
+      "savings": 4.50,
+      "discountPercent": 50.0,
+      "saleType": "Half Price",
+      "validFrom": "2026-02-25",
+      "validTo": "2026-03-03"
+    }
+  ]
+}
+```
+
+---
+
+##### 5. **Price History Query** (`priceHistoryQuery`)
+Get historical price data for a product.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "priceHistoryQuery",
+  "target": "Both",
+  "filters": {
+    "product": {
+      "name": "Milk Full Cream 2L",
+      "brand": "Dairy Farmers"
+    },
+    "time": {
+      "from": "2025-11-25T00:00:00Z",
+      "to": "2026-02-25T23:59:59Z"
+    },
+    "store": {
+      "chain": "Coles"
+    }
+  },
+  "options": {
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "aggregation": "daily|weekly|monthly"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "version": "1.0",
+  "queryType": "priceHistoryQuery",
+  "timestamp": "2026-02-25T10:30:00Z",
+  "product": {
+    "itemId": "item_001",
+    "name": "Milk Full Cream 2L",
+    "brand": "Dairy Farmers"
+  },
+  "history": [
+    {
+      "date": "2026-02-25",
+      "price": 3.99,
+      "store": "Coles Chermside",
+      "isOnSale": false
+    },
+    {
+      "date": "2026-02-18",
+      "price": 3.99,
+      "store": "Coles Chermside",
+      "isOnSale": false
+    },
+    {
+      "date": "2026-02-11",
+      "price": 3.50,
+      "store": "Coles Chermside",
+      "isOnSale": true,
+      "originalPrice": 4.50
+    }
+  ],
+  "statistics": {
+    "averagePrice": 3.82,
+    "minPrice": 3.50,
+    "maxPrice": 4.50,
+    "currentPrice": 3.99,
+    "trend": "stable",
+    "volatility": 0.15
+  }
+}
+```
+
+---
+
+##### 6. **Best Deals Query** (`bestDealsQuery`)
+Find the best current deals.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "bestDealsQuery",
+  "target": "Both",
+  "filters": {
+    "price": {
+      "minDiscount": 30,
+      "minDiscountType": "percent"
+    },
+    "store": {
+      "state": "QLD"
+    },
+    "category": {
+      "exclude": ["Alcohol", "Tobacco"]
+    }
+  },
+  "options": {
+    "limit": 20,
+    "sortBy": "discountPercent",
+    "sortOrder": "desc",
+    "verifyDiscount": true
+  }
+}
+```
+
+---
+
+##### 7. **Budget Query** (`budgetQuery`)
+Find items within a budget.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "budgetQuery",
+  "target": "LiteDB",
+  "filters": {
+    "price": {
+      "totalBudget": 50.00,
+      "maxItemPrice": 10.00
+    },
+    "category": {
+      "names": ["Meat & Seafood", "Fruits & Vegetables", "Pantry Staples"]
+    },
+    "store": {
+      "chain": "Coles"
+    }
+  },
+  "options": {
+    "limit": 100,
+    "sortBy": "price",
+    "sortOrder": "asc",
+    "optimizeFor": "quantity|variety|nutrition"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "version": "1.0",
+  "queryType": "budgetQuery",
+  "timestamp": "2026-02-25T10:30:00Z",
+  "budget": 50.00,
+  "totalCost": 48.75,
+  "remaining": 1.25,
+  "itemCount": 12,
+  "items": [
+    {
+      "name": "Chicken Breast 1kg",
+      "category": "Meat & Seafood",
+      "price": 12.00,
+      "store": "Coles"
+    },
+    {
+      "name": "Tomatoes 1kg",
+      "category": "Fruits & Vegetables",
+      "price": 4.50,
+      "store": "Coles"
+    }
+  ]
+}
+```
+
+---
+
+##### 8. **Store Inventory Query** (`storeInventoryQuery`)
+Get available items at a specific store.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "storeInventoryQuery",
+  "target": "Both",
+  "filters": {
+    "store": {
+      "name": "Coles Chermside",
+      "chain": "Coles"
+    },
+    "category": {
+      "names": ["Dairy & Eggs"]
+    }
+  },
+  "options": {
+    "limit": 100,
+    "includeOutOfStock": false
+  }
+}
+```
+
+---
+
+##### 9. **Cheapest Item Query** (`cheapestItemQuery`)
+Find cheapest options for a product type.
+
+```json
+{
+  "version": "1.0",
+  "queryType": "cheapestItemQuery",
+  "target": "Both",
+  "filters": {
+    "product": {
+      "keywords": ["bread", "white"],
+      "category": "Bakery"
+    },
+    "store": {
+      "state": "QLD",
+      "maxDistance": 10,
+      "distanceUnit": "km",
+      "fromLocation": {
+        "suburb": "Chermside",
+        "postcode": "4032"
+      }
+    }
+  },
+  "options": {
+    "limit": 5,
+    "includeUnitPrice": true
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "version": "1.0",
+  "queryType": "cheapestItemQuery",
+  "timestamp": "2026-02-25T10:30:00Z",
+  "searchCriteria": "bread, white",
+  "items": [
+    {
+      "itemId": "item_123",
+      "name": "White Bread 650g",
+      "brand": "Helga's",
+      "price": 2.50,
+      "unitPrice": 0.38,
+      "unitPriceLabel": "per 100g",
+      "store": "Woolworths Chermside",
+      "distance": 2.3,
+      "distanceUnit": "km"
+    },
+    {
+      "itemId": "item_124",
+      "name": "White Sliced Bread 700g",
+      "brand": "TipTop",
+      "price": 2.80,
+      "unitPrice": 0.40,
+      "unitPriceLabel": "per 100g",
+      "store": "Coles Chermside",
+      "distance": 1.8,
+      "distanceUnit": "km"
+    }
+  ]
+}
+```
+
+---
+
+#### Filter Specifications
+
+##### Product Filters
+```json
+{
+  "product": {
+    "name": "string",                    // Product name
+    "nameMatch": "contains|exact|startsWith|regex",
+    "brand": "string",                   // Brand name
+    "barcode": "string",                 // EAN/UPC barcode
+    "keywords": ["string"],              // Search keywords (OR logic)
+    "excludeKeywords": ["string"],       // Exclude items containing these
+    "packageSize": "string",             // e.g., "2L", "1kg", "500g"
+    "packageSizeRange": {
+      "min": "number",
+      "max": "number",
+      "unit": "L|kg|g|ml"
+    }
+  }
+}
+```
+
+##### Price Filters
+```json
+{
+  "price": {
+    "min": 0.00,                         // Minimum price
+    "max": 999.99,                       // Maximum price
+    "currency": "AUD",                   // Currency code
+    "minDiscount": 20,                   // Minimum discount amount/percent
+    "minDiscountType": "amount|percent", // Discount type
+    "maxUnitPrice": 5.00,                // Max price per unit (kg, L, etc.)
+    "totalBudget": 100.00,               // Total budget constraint
+    "maxItemPrice": 20.00                // Max price per item (for budget queries)
+  }
+}
+```
+
+##### Store Filters
+```json
+{
+  "store": {
+    "name": "string",                    // Exact store name
+    "chain": "string",                   // Chain name: Coles, Woolworths, etc.
+    "chains": ["string"],                // Multiple chains (OR logic)
+    "suburb": "string",                  // Suburb name
+    "state": "QLD|NSW|VIC|SA|WA|TAS|NT|ACT",
+    "postcode": "string",                // Postcode
+    "maxDistance": 10,                   // Maximum distance
+    "distanceUnit": "km|miles",
+    "fromLocation": {
+      "suburb": "string",
+      "postcode": "string",
+      "latitude": -27.3853,
+      "longitude": 153.0356
+    }
+  }
+}
+```
+
+##### Time Filters
+```json
+{
+  "time": {
+    "from": "2026-01-01T00:00:00Z",      // ISO 8601 datetime
+    "to": "2026-02-25T23:59:59Z",        // ISO 8601 datetime
+    "validOn": "2026-02-25",             // Items valid on specific date
+    "daysBack": 30,                      // Last N days (alternative to from/to)
+    "includeExpired": false              // Include expired sales
+  }
+}
+```
+
+##### Category Filters
+```json
+{
+  "category": {
+    "name": "string",                    // Single category
+    "names": ["string"],                 // Multiple categories (OR logic)
+    "subcategory": "string",             // Subcategory within category
+    "exclude": ["string"]                // Exclude these categories
+  }
+}
+```
+
+---
+
+#### Options Specification
+
+```json
+{
+  "options": {
+    "limit": 10,                         // Max results (default: 10)
+    "offset": 0,                         // Pagination offset (default: 0)
+    "sortBy": "price|name|date|discount|distance",
+    "sortOrder": "asc|desc",             // Sort direction (default: asc)
+    "includeHistory": false,             // Include price history (default: false)
+    "includeUnitPrice": true,            // Calculate unit prices (default: true)
+    "includeOutOfStock": false,          // Include out of stock items
+    "aggregation": "daily|weekly|monthly", // Time aggregation for history
+    "optimizeFor": "price|quantity|variety|nutrition", // Budget optimization
+    "verifyDiscount": true               // Verify discount against history
+  }
+}
+```
+
+---
+
+#### Error Response Format
+
+```json
+{
+  "version": "1.0",
+  "error": true,
+  "errorCode": "INVALID_QUERY|DATABASE_ERROR|NOT_FOUND|PERMISSION_DENIED",
+  "message": "Human-readable error message",
+  "details": {
+    "field": "filters.product.name",
+    "reason": "Field cannot be empty"
+  },
+  "timestamp": "2026-02-25T10:30:00Z"
+}
+```
+
+---
+
+#### Implementation Notes
+
+1. **Backward Compatibility**: Always include `version` field to support future schema changes
+2. **Validation**: Validate all queries against JSON schema before execution
+3. **Security**: Sanitize all string inputs to prevent injection attacks
+4. **Performance**: Index frequently queried fields (name, category, price, date)
+5. **Caching**: Cache query results for common queries (configurable TTL)
+6. **Logging**: Log all queries for analytics and debugging
+7. **Rate Limiting**: Implement rate limiting to prevent abuse
+
+---
+
+#### JSON Schema Validation
+
+**Query Schema:**
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["version", "queryType"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$"
+    },
+    "queryType": {
+      "type": "string",
+      "enum": [
+        "priceQuery",
+        "priceComparison",
+        "categoryQuery",
+        "saleItemsQuery",
+        "priceHistoryQuery",
+        "bestDealsQuery",
+        "budgetQuery",
+        "storeInventoryQuery",
+        "cheapestItemQuery"
+      ]
+    },
+    "target": {
+      "type": "string",
+      "enum": ["LiteDB", "AdvGenNoSqlServer", "Both"],
+      "default": "Both"
+    },
+    "filters": {
+      "type": "object"
+    },
+    "options": {
+      "type": "object"
+    }
+  }
+}
+```
+
+---
+
+#### Usage Example: Ollama Integration
+
+```csharp
+// Natural language query
+var userQuery = "What's the cheapest milk at Coles?";
+
+// LLM extracts intent and generates SPQL
+var spqlQuery = await ollamaService.ExtractIntentToSPQLAsync(userQuery);
+// Result:
+// {
+//   "version": "1.0",
+//   "queryType": "cheapestItemQuery",
+//   "target": "Both",
+//   "filters": {
+//     "product": { "keywords": ["milk"] },
+//     "store": { "chain": "Coles" }
+//   },
+//   "options": { "limit": 5 }
+// }
+
+// Execute query
+var results = await spqlExecutor.ExecuteAsync(spqlQuery);
+
+// Generate natural language response
+var response = await ollamaService.GenerateResponseAsync(results);
+```
+
+---
+
+#### Benefits of SPQL
+
+1. **Standardization**: Consistent query format across all components
+2. **Interoperability**: Easy integration with external systems via JSON
+3. **Documentation**: Self-documenting with clear field names
+4. **Validation**: JSON schema validation ensures correctness
+5. **Versioning**: Built-in version support for future compatibility
+6. **Flexibility**: Extensible for new query types and filters
+7. **Testing**: Easy to write test queries in JSON format
+8. **API-Ready**: Can be used directly as REST API request body
+
+---
+
+### 12.17 P2P Data Exchange Format Specification
+
+#### Overview
+The AdvGenPriceComparer P2P network uses five interconnected JSON file formats for decentralized peer-to-peer data exchange. This format enables both active P2P nodes and static HTTP-hosted data sharing, supporting the distributed grocery price tracking network.
+
+**Official Specification**: [JSON File Format Wiki](https://github.com/michaelleungadvgen/AdvGenPriceComparer/wiki/Json-File-Format)
+
+#### Design Principles
+1. **Decentralization**: No central authority required for data sharing
+2. **Simplicity**: Easy to generate, parse, and validate
+3. **Interoperability**: Works with both active P2P nodes and static file hosting
+4. **Temporal Tracking**: All pricing data includes timestamps for historical analysis
+5. **Extensibility**: Schema supports future additions without breaking changes
+
+---
+
+#### 1. Discovery.json - Peer Network Registry
+
+Lists available servers sharing price information, enabling decentralized peer discovery.
+
+**Purpose:**
+- Enable peers to discover other price-sharing nodes
+- Support both full P2P nodes and static file servers
+- Track server availability and geographic coverage
+
+**File Location:**
+- Full peers: `http(s)://{server}/discovery.json`
+- Static peers: `http(s)://{server}/data/discovery.json`
+
+**Schema:**
+```json
+[
+  {
+    "id": "string (required)",
+    "type": "full_peer|static_peer (required)",
+    "address": "string (required)",
+    "location": "string (optional)",
+    "last_seen": "ISO 8601 timestamp (optional)",
+    "last_updated": "ISO 8601 timestamp (optional)",
+    "description": "string (optional)"
+  }
+]
+```
+
+**Example:**
+```json
+[
+  {
+    "id": "aus-qld-brisbane-01",
+    "type": "full_peer",
+    "address": "https://price.brisbane.example.com:8080",
+    "location": "Brisbane, QLD, Australia",
+    "last_seen": "2026-02-25T10:30:00Z",
+    "description": "Brisbane grocery price sharing node"
+  },
+  {
+    "id": "static-sydney-01",
+    "type": "static_peer",
+    "address": "https://pricedata.sydney.example.com/data",
+    "location": "Sydney, NSW, Australia",
+    "last_updated": "2026-02-25T08:00:00Z",
+    "description": "Sydney static price data archive"
+  }
+]
+```
+
+**Field Descriptions:**
+- `id`: Unique identifier for the server (convention: region-city-number)
+- `type`:
+  - `full_peer`: Active P2P node with real-time sync capabilities
+  - `static_peer`: HTTP-hosted static JSON files, updated periodically
+- `address`: Base URL for accessing peer data
+- `location`: Human-readable geographic location
+- `last_seen`: Last successful connection (for full_peer)
+- `last_updated`: Last data update (for static_peer)
+- `description`: Human-readable purpose/description
+
+---
+
+#### 2. Shop.json - Retail Location Registry
+
+Stores information about physical and online retail locations (supermarkets).
+
+**Purpose:**
+- Maintain consistent store identifiers across the network
+- Enable geographic filtering of price data
+- Support multi-chain price comparison
+
+**File Location:** `{address}/shop.json` or `{address}/data/shop.json`
+
+**Schema:**
+```json
+[
+  {
+    "shopID": "string (required)",
+    "shopName": "string (required)",
+    "chain": "string (optional)",
+    "location": "string (required)",
+    "suburb": "string (optional)",
+    "state": "string (optional)",
+    "postcode": "string (optional)",
+    "latitude": "number (optional)",
+    "longitude": "number (optional)",
+    "contact": "string (required)"
+  }
+]
+```
+
+**Example:**
+```json
+[
+  {
+    "shopID": "coles-chermside-qld",
+    "shopName": "Coles Chermside",
+    "chain": "Coles",
+    "location": "Westfield Chermside, Gympie Rd, Chermside QLD 4032",
+    "suburb": "Chermside",
+    "state": "QLD",
+    "postcode": "4032",
+    "latitude": -27.3853,
+    "longitude": 153.0356,
+    "contact": "(07) 3123 4567"
+  },
+  {
+    "shopID": "woolworths-toowong-qld",
+    "shopName": "Woolworths Toowong",
+    "chain": "Woolworths",
+    "location": "52 Sherwood Rd, Toowong QLD 4066",
+    "suburb": "Toowong",
+    "state": "QLD",
+    "postcode": "4066",
+    "latitude": -27.4856,
+    "longitude": 152.9897,
+    "contact": "(07) 3371 2345"
+  }
+]
+```
+
+**Field Descriptions:**
+- `shopID`: Unique identifier (convention: chain-suburb-state)
+- `shopName`: Display name of the store
+- `chain`: Supermarket chain (Coles, Woolworths, IGA, Aldi, Drakes, etc.)
+- `location`: Full street address
+- `suburb`, `state`, `postcode`: Geographic identifiers for filtering
+- `latitude`, `longitude`: GPS coordinates for proximity searches
+- `contact`: Phone number or contact information
+
+---
+
+#### 3. Goods.json - Product Catalog
+
+Product catalog with detailed specifications and identifiers.
+
+**Purpose:**
+- Maintain consistent product identifiers across the network
+- Enable accurate price comparisons across different stores
+- Support product search and filtering
+
+**File Location:** `{address}/goods.json` or `{address}/data/goods.json`
+
+**Schema:**
+```json
+[
+  {
+    "productID": "string (required)",
+    "productName": "string (required)",
+    "brand": "string (optional)",
+    "category": "string (required)",
+    "description": "string (required)",
+    "packageSize": "string (optional)",
+    "barcode": "string (optional)",
+    "unit": "string (optional)"
+  }
+]
+```
+
+**Example:**
+```json
+[
+  {
+    "productID": "milk-dairy-farmers-2l",
+    "productName": "Milk Full Cream 2L",
+    "brand": "Dairy Farmers",
+    "category": "Dairy & Eggs",
+    "description": "Fresh full cream milk",
+    "packageSize": "2L",
+    "barcode": "9300632123456",
+    "unit": "each"
+  },
+  {
+    "productID": "bread-wonder-white-700g",
+    "productName": "Wonder White Sandwich Bread",
+    "brand": "Wonder White",
+    "category": "Bakery",
+    "description": "Soft white sandwich bread",
+    "packageSize": "700g",
+    "barcode": "9310072012345",
+    "unit": "each"
+  }
+]
+```
+
+**Field Descriptions:**
+- `productID`: Unique identifier (convention: category-brand-size)
+- `productName`: Display name of the product
+- `brand`: Manufacturer or brand name
+- `category`: Product category (must match standard categories)
+- `description`: Brief product overview
+- `packageSize`: Size specification (e.g., "2L", "500g", "6 pack")
+- `barcode`: EAN/UPC barcode for precise matching
+- `unit`: Pricing unit (each, kg, L, etc.)
+
+---
+
+#### 4. records.json - Price History Index
+
+Index/manifest of available historical price files from static peers.
+
+**Purpose:**
+- Provide directory of available historical price data
+- Enable efficient data synchronization
+- Support incremental updates
+
+**File Location:** `{address}/records.json` or `{address}/data/records.json`
+
+**Schema:**
+```json
+{
+  "generated_at": "ISO 8601 timestamp (required)",
+  "price_records": [
+    "string (filename)"
+  ]
+}
+```
+
+**Example:**
+```json
+{
+  "generated_at": "2026-02-25T10:30:00Z",
+  "price_records": [
+    "price-2026-02-25.json",
+    "price-2026-02-24.json",
+    "price-2026-02-23.json",
+    "price-2026-02-22.json",
+    "price-2026-02-21.json"
+  ]
+}
+```
+
+**Field Descriptions:**
+- `generated_at`: Timestamp when the index was last updated
+- `price_records`: Array of available price file names (format: `price-{timestamp}.json`)
+
+**Usage Pattern:**
+```csharp
+// Fetch records index
+var recordsUrl = $"{peerAddress}/data/records.json";
+var recordsIndex = await httpClient.GetFromJsonAsync<RecordsIndex>(recordsUrl);
+
+// Determine which files we need
+var lastSync = await GetLastSyncTimestampAsync();
+var newFiles = recordsIndex.PriceRecords
+    .Where(filename => ExtractDate(filename) > lastSync)
+    .ToList();
+
+// Download only new files
+foreach (var filename in newFiles)
+{
+    var priceUrl = $"{peerAddress}/data/{filename}";
+    var priceData = await httpClient.GetFromJsonAsync<PriceData>(priceUrl);
+    await ImportPriceDataAsync(priceData);
+}
+```
+
+---
+
+#### 5. price-{timestamp}.json - Price Data
+
+Actual pricing data with temporal markers for historical tracking.
+
+**Purpose:**
+- Store actual grocery prices with timestamps
+- Support historical price analysis
+- Enable illusory discount detection
+
+**File Location:** `{address}/price-{timestamp}.json` or `{address}/data/price-{timestamp}.json`
+
+**Filename Convention:** `price-YYYY-MM-DD.json` (one file per day)
+
+**Schema:**
+```json
+{
+  "timestamp": "ISO 8601 timestamp (required)",
+  "source": "string (optional)",
+  "region": "string (optional)",
+  "prices": [
+    {
+      "shopID": "string (required)",
+      "productID": "string (required)",
+      "price": "number (required)",
+      "currency": "string (required)",
+      "isOnSale": "boolean (optional)",
+      "originalPrice": "number (optional)",
+      "saleDescription": "string (optional)",
+      "validFrom": "ISO 8601 timestamp (optional)",
+      "validTo": "ISO 8601 timestamp (optional)",
+      "recordedAt": "ISO 8601 timestamp (optional)"
+    }
+  ]
+}
+```
+
+**Example:**
+```json
+{
+  "timestamp": "2026-02-25T10:30:00Z",
+  "source": "brisbane-p2p-node-01",
+  "region": "QLD",
+  "prices": [
+    {
+      "shopID": "coles-chermside-qld",
+      "productID": "milk-dairy-farmers-2l",
+      "price": 3.99,
+      "currency": "AUD",
+      "isOnSale": false,
+      "recordedAt": "2026-02-25T10:00:00Z"
+    },
+    {
+      "shopID": "woolworths-toowong-qld",
+      "productID": "milk-dairy-farmers-2l",
+      "price": 3.79,
+      "currency": "AUD",
+      "isOnSale": true,
+      "originalPrice": 4.50,
+      "saleDescription": "50% Off - Special",
+      "validFrom": "2026-02-25T00:00:00Z",
+      "validTo": "2026-02-28T23:59:59Z",
+      "recordedAt": "2026-02-25T10:15:00Z"
+    },
+    {
+      "shopID": "aldi-kedron-qld",
+      "productID": "bread-wonder-white-700g",
+      "price": 2.49,
+      "currency": "AUD",
+      "isOnSale": false,
+      "recordedAt": "2026-02-25T09:30:00Z"
+    }
+  ]
+}
+```
+
+**Field Descriptions:**
+- `timestamp`: When this price data file was generated
+- `source`: Identifier of the node/system that recorded these prices
+- `region`: Geographic region for this data (NSW, VIC, QLD, etc.)
+- `prices`: Array of individual price records
+  - `shopID`: References Shop.json entry
+  - `productID`: References Goods.json entry
+  - `price`: Current price (decimal number)
+  - `currency`: Currency code (ISO 4217, typically "AUD")
+  - `isOnSale`: Whether this is a sale/special price
+  - `originalPrice`: Regular price before discount
+  - `saleDescription`: Marketing description of the sale
+  - `validFrom`, `validTo`: Sale validity period
+  - `recordedAt`: When this specific price was observed
+
+---
+
+#### Data Exchange Workflow
+
+**For Full Peers (Active P2P Nodes):**
+```csharp
+// 1. Server starts and advertises itself
+var serverInfo = new ServerInfo
+{
+    Id = "aus-qld-brisbane-01",
+    Type = "full_peer",
+    Address = "https://localhost:8080",
+    Location = "Brisbane, QLD",
+    LastSeen = DateTime.UtcNow
+};
+
+// 2. Discover other peers
+var discoveryUrl = "https://known-peer.example.com/discovery.json";
+var peers = await httpClient.GetFromJsonAsync<List<ServerInfo>>(discoveryUrl);
+
+// 3. Connect to peers and sync data
+foreach (var peer in peers.Where(p => p.Type == "full_peer"))
+{
+    await networkManager.ConnectToServer(peer.Address, peer.Port);
+    await networkManager.RequestPriceSync(region: "QLD");
+}
+
+// 4. Share local prices with network
+await networkManager.SharePrice(
+    itemId: "milk-dairy-farmers-2l",
+    placeId: "coles-chermside-qld",
+    price: 3.99m,
+    isOnSale: false
+);
+
+// 5. Generate static files for backup/archive
+await dataExporter.ExportToStaticFiles(
+    outputPath: "./export/data",
+    includeDays: 30
+);
+```
+
+**For Static Peers (HTTP File Hosting):**
+```csharp
+// 1. Generate JSON files on schedule (e.g., daily)
+var exporter = new StaticDataExporter(groceryDataService);
+
+// Export current catalog
+await exporter.ExportShops("./wwwroot/data/shop.json");
+await exporter.ExportGoods("./wwwroot/data/goods.json");
+
+// Export today's prices
+var today = DateTime.UtcNow.Date;
+var filename = $"price-{today:yyyy-MM-dd}.json";
+await exporter.ExportPrices($"./wwwroot/data/{filename}", today);
+
+// Update records index
+await exporter.UpdateRecordsIndex("./wwwroot/data/records.json");
+
+// Update discovery (advertise this static peer)
+var discovery = new List<ServerInfo>
+{
+    new()
+    {
+        Id = "static-brisbane-archive",
+        Type = "static_peer",
+        Address = "https://archive.example.com/data",
+        Location = "Brisbane, QLD",
+        LastUpdated = DateTime.UtcNow,
+        Description = "Brisbane price data archive (updated daily)"
+    }
+};
+await File.WriteAllTextAsync(
+    "./wwwroot/data/discovery.json",
+    JsonSerializer.Serialize(discovery, new JsonSerializerOptions { WriteIndented = true })
+);
+
+// 2. Files are now accessible via HTTP
+// https://archive.example.com/data/discovery.json
+// https://archive.example.com/data/shop.json
+// https://archive.example.com/data/goods.json
+// https://archive.example.com/data/records.json
+// https://archive.example.com/data/price-2026-02-25.json
+```
+
+**Consuming Data from Static Peer:**
+```csharp
+// 1. Discover static peer
+var discovery = await httpClient.GetFromJsonAsync<List<ServerInfo>>(
+    "https://known-peer.example.com/discovery.json"
+);
+
+var staticPeer = discovery.FirstOrDefault(p => p.Type == "static_peer");
+
+// 2. Load catalog data
+var shops = await httpClient.GetFromJsonAsync<List<Shop>>(
+    $"{staticPeer.Address}/shop.json"
+);
+
+var goods = await httpClient.GetFromJsonAsync<List<Product>>(
+    $"{staticPeer.Address}/goods.json"
+);
+
+// 3. Check available price history
+var records = await httpClient.GetFromJsonAsync<RecordsIndex>(
+    $"{staticPeer.Address}/records.json"
+);
+
+// 4. Load recent price data
+foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
+{
+    var priceData = await httpClient.GetFromJsonAsync<PriceData>(
+        $"{staticPeer.Address}/{recordFile}"
+    );
+
+    await ImportPriceDataAsync(priceData);
+}
+```
+
+---
+
+#### Validation Rules
+
+**All Files:**
+- Must be valid UTF-8 encoded JSON
+- Must use ISO 8601 format for all timestamps (`YYYY-MM-DDTHH:MM:SSZ`)
+- Must not exceed 50MB per file (for static hosting compatibility)
+
+**Discovery.json:**
+- Must contain at least one server entry
+- Each `id` must be unique within the file
+- `address` must be valid HTTP(S) URL
+- `type` must be exactly "full_peer" or "static_peer"
+
+**Shop.json:**
+- Each `shopID` must be unique
+- `shopID` should follow convention: `{chain}-{suburb}-{state}` (lowercase, hyphens)
+- `location` must be a valid street address
+
+**Goods.json:**
+- Each `productID` must be unique
+- `productID` should follow convention: `{category}-{brand}-{size}` (lowercase, hyphens)
+- `category` should match standard category names
+
+**Price Files:**
+- `shopID` must reference valid entry in Shop.json
+- `productID` must reference valid entry in Goods.json
+- `price` must be positive number with 2 decimal places
+- `currency` must be valid ISO 4217 code
+- If `isOnSale` is true, `originalPrice` should be provided
+- `validFrom` must be before `validTo`
+
+---
+
+#### Implementation Checklist
+
+**Export Functionality:**
+- [ ] Create `StaticDataExporter` service
+- [ ] Implement `ExportShops()` method
+- [ ] Implement `ExportGoods()` method
+- [ ] Implement `ExportPrices()` method with date parameter
+- [ ] Implement `UpdateRecordsIndex()` method
+- [ ] Implement `ExportDiscovery()` method
+- [ ] Add scheduled export job (daily/hourly)
+- [ ] Add validation before export
+- [ ] Add file size monitoring
+- [ ] Add export history tracking
+
+**Import Functionality:**
+- [ ] Create `StaticDataImporter` service
+- [ ] Implement `ImportShops()` method with deduplication
+- [ ] Implement `ImportGoods()` method with deduplication
+- [ ] Implement `ImportPrices()` method with conflict resolution
+- [ ] Implement `SyncFromStaticPeer()` method
+- [ ] Add incremental sync (only new files)
+- [ ] Add validation on import
+- [ ] Add error handling for malformed data
+- [ ] Add import progress tracking
+- [ ] Add import history tracking
+
+**P2P Integration:**
+- [ ] Update `NetworkManager` to generate these formats
+- [ ] Add discovery file update on server start
+- [ ] Add automatic export of price updates
+- [ ] Add periodic refresh of records.json
+- [ ] Add peer discovery from multiple sources
+- [ ] Add fallback to static peers if full peers unavailable
+- [ ] Add data consistency verification
+
+**UI Features:**
+- [ ] Add "Export Data" button in settings
+- [ ] Add "Import from URL" dialog
+- [ ] Add static peer configuration UI
+- [ ] Add export/import progress indicators
+- [ ] Add data validation reports
+- [ ] Add export file browser
+
+---
+
+#### Security Considerations
+
+1. **Data Validation:**
+   - Validate all JSON against schemas before import
+   - Sanitize product names and descriptions to prevent XSS
+   - Verify numeric values are within reasonable ranges
+   - Check timestamps are not in the future
+
+2. **Trust Model:**
+   - Data from unknown peers should be flagged
+   - Allow users to configure trusted peer lists
+   - Implement reputation system for peers (future)
+   - Detect and reject obviously fraudulent prices
+
+3. **Rate Limiting:**
+   - Limit import frequency per peer (e.g., once per hour)
+   - Limit total file size downloaded per day
+   - Implement exponential backoff on errors
+
+4. **HTTPS Requirement:**
+   - Prefer HTTPS URLs for static peers
+   - Warn users when importing from HTTP sources
+   - Support certificate validation
+
+---
+
+#### Testing Data
+
+Create test files for development:
+
+**test-discovery.json:**
+```json
+[
+  {
+    "id": "test-static-peer",
+    "type": "static_peer",
+    "address": "http://localhost:8080/data",
+    "location": "Local Test",
+    "last_updated": "2026-02-25T10:30:00Z",
+    "description": "Local testing peer"
+  }
+]
+```
+
+**Test Import Command:**
+```csharp
+var importer = new StaticDataImporter(groceryDataService);
+await importer.ImportFromStaticPeer("http://localhost:8080/data");
+```
 
 ---
 

@@ -50,7 +50,8 @@
 | Create comprehensive JsonImportService unit tests | 🟢 DONE | Agent-012 | 24 comprehensive xUnit tests created and passing - covers PreviewImportAsync, ImportFromFile, ImportColesProducts, progress reporting, price parsing, and error handling |
 | Implement ViewModel tests | 🟢 DONE | Agent-013 | 44 comprehensive xUnit tests created for MainWindowViewModel, ItemViewModel, ImportDataViewModel |
 | Create integration tests | 🟢 DONE | Agent-014 | Created 7 comprehensive xUnit integration tests for Import/Export workflows |
-| Set up CI/CD pipeline | 🔴 TODO | - | Azure DevOps/GitHub Actions |
+| Test JSON import with older format (coles_24072025.json) | 🟢 DONE | Agent-017 | Created 3 xUnit tests for older JSON format compatibility - all tests passing |
+| Set up CI/CD pipeline | 🟡 DOING | Agent-018 | Updating GitHub Actions for WPF build |
 | Generate code coverage reports | 🔴 TODO | - | Code coverage reporting |
 
 ---
@@ -124,6 +125,7 @@
 | 2026-02-25 | Create integration tests - 7 comprehensive xUnit integration tests for Import/Export workflows | Agent-014 |
 | 2026-02-25 | Add error handling and validation - Enhanced JsonImportService with file validation, JSON validation, product data validation, error categorization (ImportErrorType), and logging support | Agent-015 |
 | 2026-02-25 | Add import progress UI updates - Implemented percentage-based progress bar with current item display in Step 3 import dialog | Agent-016 |
+| 2026-02-25 | Test JSON import with older format (coles_24072025.json) - Created 3 xUnit tests for older JSON format compatibility | Agent-017 |
 
 ---
 

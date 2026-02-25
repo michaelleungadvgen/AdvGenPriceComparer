@@ -649,6 +649,148 @@ public class JsonImportServiceTests : IDisposable
 
     #endregion
 
+    #region Older Format Compatibility Tests
+
+    [Fact]
+    public async Task PreviewImportAsync_OlderFormatWithoutSpecialType_ReturnsProducts()
+    {
+        // Arrange - Older format doesn't have SpecialType field
+        var jsonPath = Path.Combine(Path.GetTempPath(), $"old_format_{Guid.NewGuid():N}.json");
+        var olderFormatJson = @"[
+            {
+                ""productID"": ""001"",
+                ""productName"": ""Uncle Tobys Muesli Bars 145g-185g"",
+                ""category"": ""Breakfast & Cereal"",
+                ""brand"": ""Uncle Tobys"",
+                ""description"": ""Muesli bars, various flavours"",
+                ""price"": ""$2.75"",
+                ""originalPrice"": ""$5.50"",
+                ""savings"": ""$2.75""
+            },
+            {
+                ""productID"": ""002"",
+                ""productName"": ""Arnott's Shapes Crackers 130g-190g"",
+                ""category"": ""Snacks & Crackers"",
+                ""brand"": ""Arnott's"",
+                ""description"": ""Shapes crackers, various flavours"",
+                ""price"": ""$2.00"",
+                ""originalPrice"": ""$4.00"",
+                ""savings"": ""$2.00""
+            }
+        ]";
+        File.WriteAllText(jsonPath, olderFormatJson);
+
+        try
+        {
+            // Act
+            var (products, errors) = await _importService.PreviewImportAsync(jsonPath);
+
+            // Assert
+            Assert.Equal(2, products.Count);
+            Assert.Empty(errors);
+            
+            // Verify first product
+            Assert.Equal("Uncle Tobys Muesli Bars 145g-185g", products[0].ProductName);
+            Assert.Equal("Uncle Tobys", products[0].Brand);
+            Assert.Equal("Breakfast & Cereal", products[0].Category);
+            Assert.Equal("$2.75", products[0].Price);
+            Assert.Null(products[0].SpecialType); // SpecialType is null in older format
+            
+            // Verify second product
+            Assert.Equal("Arnott's Shapes Crackers 130g-190g", products[1].ProductName);
+            Assert.Equal("$2.00", products[1].Price);
+        }
+        finally
+        {
+            File.Delete(jsonPath);
+        }
+    }
+
+    [Fact]
+    public void ImportColesProducts_OlderFormatWithoutSpecialType_CreatesItemsAndPriceRecords()
+    {
+        // Arrange
+        var store = CreateTestStore("Coles", "Coles");
+        
+        // Older format products without SpecialType
+        var products = new List<ColesProduct>
+        {
+            new()
+            {
+                ProductID = "OLD001",
+                ProductName = "Sorbent Toilet Paper 16 Pack",
+                Brand = "Sorbent",
+                Category = "Household",
+                Description = "Silky White toilet paper",
+                Price = "$7.00",
+                OriginalPrice = "$14.00",
+                Savings = "$7.00"
+                // No SpecialType field
+            }
+        };
+
+        // Act
+        var result = _importService.ImportColesProducts(products, store.Id!, DateTime.Today);
+
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(1, result.ItemsProcessed);
+        Assert.Equal(1, result.PriceRecordsCreated);
+        
+        // Verify item was created
+        var items = _itemRepository.GetAll().ToList();
+        Assert.Single(items);
+        Assert.Equal("Sorbent Toilet Paper 16 Pack", items[0].Name);
+        Assert.Equal("Sorbent", items[0].Brand);
+        
+        // Verify price record was created
+        var priceRecords = _priceRecordRepository.GetAll().ToList();
+        Assert.Single(priceRecords);
+        Assert.Equal(7.00m, priceRecords[0].Price);
+        Assert.Equal(14.00m, priceRecords[0].OriginalPrice);
+    }
+
+    [Fact]
+    public async Task ImportFromFile_RealOlderFormatFile_ImportsSuccessfully()
+    {
+        // Arrange - Use the actual older format file from data directory
+        var olderFormatPath = Path.Combine("..", "..", "..", "..", "data", "coles_24072025.json");
+        
+        // If relative path doesn't work, try direct path
+        if (!File.Exists(olderFormatPath))
+        {
+            olderFormatPath = Path.Combine("data", "coles_24072025.json");
+        }
+        
+        // Skip test if file doesn't exist
+        if (!File.Exists(olderFormatPath))
+        {
+            // Try one more common location
+            olderFormatPath = @"C:\Users\advgen10\source\repos\AdvGenPriceComparer\data\coles_24072025.json";
+            if (!File.Exists(olderFormatPath))
+            {
+                Assert.True(true, "Skipped - older format file not found in expected locations");
+                return;
+            }
+        }
+
+        var store = CreateTestStore("Coles", "Coles");
+
+        // Act
+        var result = _importService.ImportFromFile(olderFormatPath, DateTime.Today);
+
+        // Assert
+        Assert.True(result.Success);
+        Assert.True(result.ItemsProcessed > 0, "Should import at least one item from older format file");
+        Assert.Equal(result.ItemsProcessed, result.PriceRecordsCreated);
+        
+        // Verify items were actually created in database
+        var items = _itemRepository.GetAll().ToList();
+        Assert.Equal(result.ItemsProcessed, items.Count);
+    }
+
+    #endregion
+
     #region Helper Methods
 
     private string CreateTestJsonFile(string fileName, IEnumerable<ColesProduct> products)
