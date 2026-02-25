@@ -7,8 +7,7 @@ on:
     branches: [ "master", "main" ]
 
 jobs:
-  # Build Core Library (always works)
-  build-core:
+  build:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -18,102 +17,64 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup .NET 8
+    - name: Setup .NET 9
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
-    - name: Restore Core Library
-      run: dotnet restore AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj
-
-    - name: Build Core Library
-      run: dotnet build AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj -c ${{ matrix.configuration }} --no-restore
-
-    - name: Test Core Library
-      run: dotnet test AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj -c ${{ matrix.configuration }} --no-build
-      continue-on-error: true
-
-    - name: Upload Core Library Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: Core-Library-${{ matrix.configuration }}
-        path: AdvGenPriceComparer.Core\bin\${{ matrix.configuration }}\**\*
-
-  # Attempt WinUI build (may fail due to Windows App SDK issues)
-  build-winui:
-    runs-on: windows-latest
-    needs: build-core
-    strategy:
-      matrix:
-        configuration: [Release]
-        platform: [x64]  # Limit to x64 only for CI stability
-        
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Setup .NET 8
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-
-    # Try to install WinUI workload
-    - name: Install WinUI workload
-      run: |
-        dotnet workload install maui-windows
-      continue-on-error: true
-
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
-
-    - name: Restore packages
+    - name: Restore dependencies
       run: dotnet restore AdvGenPriceComparer.sln
 
     - name: Build Core Library
-      run: dotnet build AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj -c ${{ matrix.configuration }} --no-restore
+      run: dotnet build AdvGenPriceComparer.Core/AdvGenPriceComparer.Core.csproj -c ${{ matrix.configuration }} --no-restore
 
-    # Attempt WinUI build with all packaging disabled
-    - name: Build WinUI Application (may fail)
-      run: |
-        dotnet build AdvGenPriceComparer\AdvGenPriceComparer.Desktop.WinUI.csproj -c ${{ matrix.configuration }} -p:Platform=${{ matrix.platform }} -p:EnableMsixTooling=false -p:GenerateAppxPackageOnBuild=false -p:AppxPackageSigningEnabled=false -p:WindowsPackageType=None --no-restore
-      continue-on-error: true
+    - name: Build Data.LiteDB Library
+      run: dotnet build AdvGenPriceComparer.Data.LiteDB/AdvGenPriceComparer.Data.LiteDB.csproj -c ${{ matrix.configuration }} --no-restore
 
-    # If build succeeds, try to publish
-    - name: Publish WinUI Application (if build succeeded)
-      run: |
-        dotnet publish AdvGenPriceComparer\AdvGenPriceComparer.Desktop.WinUI.csproj -c ${{ matrix.configuration }} -p:Platform=${{ matrix.platform }} -p:EnableMsixTooling=false -p:WindowsPackageType=None -p:SelfContained=true -o publish\winui-${{ matrix.platform }}
-      continue-on-error: true
+    - name: Build WPF Application
+      run: dotnet build AdvGenPriceComparer.WPF/AdvGenPriceComparer.WPF.csproj -c ${{ matrix.configuration }} --no-restore
 
-    - name: Upload WinUI Build Artifacts (if available)
+    - name: Upload WPF Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: WinUI-Build-${{ matrix.configuration }}-${{ matrix.platform }}
+        name: WPF-Build-${{ matrix.configuration }}
         path: |
-          publish\winui-${{ matrix.platform }}\**
-          AdvGenPriceComparer\bin\${{ matrix.platform }}\${{ matrix.configuration }}\**\*.exe
-          AdvGenPriceComparer\bin\${{ matrix.platform }}\${{ matrix.configuration }}\**\*.dll
-      continue-on-error: true
-      if: always()
+          AdvGenPriceComparer.WPF/bin/${{ matrix.configuration }}/**/*.exe
+          AdvGenPriceComparer.WPF/bin/${{ matrix.configuration }}/**/*.dll
 
-  # Job for testing Python components
-  test-python:
+  test:
     runs-on: windows-latest
+    needs: build
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      
-    - name: Setup Python
-      uses: actions/setup-python@v4
+
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
       with:
-        python-version: '3.9'
-        
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        
-    - name: Test Python scripts
-      run: |
-        python -c "import sys; print('Python version:', sys.version)"
-        python -c "import PyPDF2; print('PyPDF2 imported successfully')"
-      continue-on-error: true
+        dotnet-version: 9.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore AdvGenPriceComparer.sln
+
+    - name: Build solution
+      run: dotnet build AdvGenPriceComparer.sln --no-restore
+
+    - name: Run Tests
+      run: dotnet test AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj --no-build --verbosity normal --collect:"XPlat Code Coverage"
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: Test-Results
+        path: |
+          **/TestResults/**/*.trx
+          **/coverage.cobertura.xml
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: Coverage-Report
+        path: **/coverage.cobertura.xml

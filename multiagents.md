@@ -51,7 +51,7 @@
 | Implement ViewModel tests | 🟢 DONE | Agent-013 | 44 comprehensive xUnit tests created for MainWindowViewModel, ItemViewModel, ImportDataViewModel |
 | Create integration tests | 🟢 DONE | Agent-014 | Created 7 comprehensive xUnit integration tests for Import/Export workflows |
 | Test JSON import with older format (coles_24072025.json) | 🟢 DONE | Agent-017 | Created 3 xUnit tests for older JSON format compatibility - all tests passing |
-| Set up CI/CD pipeline | 🟡 DOING | Agent-018 | Updating GitHub Actions for WPF build |
+| Set up CI/CD pipeline | 🟢 DONE | Agent-018 | Updated GitHub Actions for WPF build, .NET 9, and test execution |
 | Generate code coverage reports | 🔴 TODO | - | Code coverage reporting |
 
 ---
@@ -101,6 +101,11 @@
 - **Started:** 2026-02-25
 - **Estimated Completion:** 2-3 hours
 
+### Agent-018
+- **Completed Task:** Set up CI/CD pipeline - Updated GitHub Actions for WPF build
+- **Completed:** 2026-02-25
+- **Notes:** Updated workflow to build WPF project (not WinUI), added .NET 9 support, added test execution with 217 tests passing
+
 ---
 
 ## Completed Tasks Log
@@ -126,6 +131,7 @@
 | 2026-02-25 | Add error handling and validation - Enhanced JsonImportService with file validation, JSON validation, product data validation, error categorization (ImportErrorType), and logging support | Agent-015 |
 | 2026-02-25 | Add import progress UI updates - Implemented percentage-based progress bar with current item display in Step 3 import dialog | Agent-016 |
 | 2026-02-25 | Test JSON import with older format (coles_24072025.json) - Created 3 xUnit tests for older JSON format compatibility | Agent-017 |
+| 2026-02-25 | Set up CI/CD pipeline - Updated GitHub Actions for WPF build, .NET 9, test execution (217 tests passing) | Agent-018 |
 
 ---
 

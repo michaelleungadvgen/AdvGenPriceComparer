@@ -1099,7 +1099,7 @@ public class MockDataGenerator
 - [x] Implement Repository layer tests
 - [x] Implement ViewModel tests
 - [x] Create integration tests - 7 comprehensive xUnit integration tests covering ImportThenExport, ExportAndReimport, ImportMultipleFormats, DateFiltering, StoreFiltering, Compression, and DuplicateData handling
-- [ ] Set up CI/CD pipeline for automated testing
+- [x] Set up CI/CD pipeline for automated testing - Agent-018: Updated GitHub Actions for WPF build with .NET 9
 - [ ] Generate code coverage reports
 - [ ] Document testing strategy
 
