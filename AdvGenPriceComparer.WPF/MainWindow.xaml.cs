@@ -135,6 +135,25 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void PriceHistoryNav_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var priceHistoryViewModel = ((App)Application.Current).Services.GetRequiredService<PriceHistoryViewModel>();
+            var page = new PriceHistoryPage(priceHistoryViewModel);
+
+            DashboardContent.Visibility = Visibility.Collapsed;
+            ContentFrame.Visibility = Visibility.Visible;
+            ContentFrame.Navigate(page);
+            UpdateNavigation("PriceHistory");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error navigating to Price History: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void ReportsNav_Click(object sender, RoutedEventArgs e)
     {
         // TODO: Navigate to Reports view
@@ -162,6 +181,9 @@ public partial class MainWindow : FluentWindow
         CategoriesNavBtn.Background = System.Windows.Media.Brushes.Transparent;
         CategoriesNavBtn.Foreground = defaultColor;
 
+        PriceHistoryNavBtn.Background = System.Windows.Media.Brushes.Transparent;
+        PriceHistoryNavBtn.Foreground = defaultColor;
+
         ReportsNavBtn.Background = System.Windows.Media.Brushes.Transparent;
         ReportsNavBtn.Foreground = defaultColor;
 
@@ -184,6 +206,10 @@ public partial class MainWindow : FluentWindow
             case "Categories":
                 CategoriesNavBtn.Background = accentLight;
                 CategoriesNavBtn.Foreground = accentDark;
+                break;
+            case "PriceHistory":
+                PriceHistoryNavBtn.Background = accentLight;
+                PriceHistoryNavBtn.Foreground = accentDark;
                 break;
             case "Reports":
                 ReportsNavBtn.Background = accentLight;

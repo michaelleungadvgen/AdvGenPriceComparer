@@ -21,7 +21,8 @@ public class PlaceRepository : IPlaceRepository
         place.DateAdded = DateTime.UtcNow;
         var entity = PlaceEntity.FromPlace(place);
         var insertedId = _database.Places.Insert(entity);
-        return insertedId.ToString();
+        // Handle BsonValue properly - if it's an ObjectId, extract the string value
+        return insertedId.IsObjectId ? insertedId.AsObjectId.ToString() : insertedId.ToString();
     }
 
     public bool Update(Place place)

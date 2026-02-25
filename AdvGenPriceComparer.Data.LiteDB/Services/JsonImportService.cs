@@ -866,9 +866,12 @@ public class JsonImportService
 
     private Item CreateOrUpdateItem(ColesProduct product, string chain)
     {
-        // Try to find existing item by name and brand
-        var existingItems = _itemRepository.SearchByName(product.ProductName)
-            .Where(i => i.Brand == product.Brand);
+        // Try to find existing item by exact name match and brand
+        // Use exact matching to avoid false positives (e.g., "Coca-Cola 1.25L" vs "Coca-Cola 2L")
+        var existingItems = _itemRepository.GetAll()
+            .Where(i => i.Name.Equals(product.ProductName, StringComparison.OrdinalIgnoreCase) 
+                && i.Brand == product.Brand
+                && i.IsActive);
 
         Item item;
 

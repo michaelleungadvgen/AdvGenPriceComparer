@@ -1,0 +1,183 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.AddPriceRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="{Binding Title}"
+        Height="550"
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="White">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="SemiBold"/>
+            <TextBlock Text="Enter the price record details below" 
+                       FontSize="13" 
+                       Foreground="#666" 
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Form -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Item Selection -->
+                <TextBlock Text="Item *" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                <ComboBox ItemsSource="{Binding Items}"
+                          SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Name"
+                          Padding="12,10"
+                          FontSize="13"
+                          BorderBrush="#ddd"
+                          BorderThickness="1"/>
+
+                <!-- Store Selection -->
+                <TextBlock Text="Store *" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                <ComboBox ItemsSource="{Binding Places}"
+                          SelectedItem="{Binding SelectedPlace, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Name"
+                          Padding="12,10"
+                          FontSize="13"
+                          BorderBrush="#ddd"
+                          BorderThickness="1"/>
+
+                <!-- Price -->
+                <TextBlock Text="Price *" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                <TextBox Text="{Binding Price, StringFormat='{}{0:F2}', UpdateSourceTrigger=PropertyChanged}"
+                         Padding="12,10"
+                         FontSize="13"
+                         BorderBrush="#ddd"
+                         BorderThickness="1"/>
+
+                <!-- Is On Sale Checkbox -->
+                <CheckBox Content="This is a sale/discounted price"
+                          IsChecked="{Binding IsOnSale}"
+                          Margin="0,16,0,0"
+                          FontSize="13"/>
+
+                <!-- Original Price (shown when on sale) -->
+                <StackPanel Visibility="{Binding IsOnSale, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Text="Original Price" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <TextBox Text="{Binding OriginalPrice, StringFormat='{}{0:F2}', UpdateSourceTrigger=PropertyChanged}"
+                             Padding="12,10"
+                             FontSize="13"
+                             BorderBrush="#ddd"
+                             BorderThickness="1"/>
+
+                    <TextBlock Text="Sale Description" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                    <TextBox Text="{Binding SaleDescription, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="12,10"
+                             FontSize="13"
+                             BorderBrush="#ddd"
+                             BorderThickness="1"
+                             ToolTip="e.g., 50% off, Buy 1 Get 1 Free"/>
+                </StackPanel>
+
+                <!-- Date Recorded -->
+                <TextBlock Text="Date Recorded *" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                <DatePicker SelectedDate="{Binding DateRecorded, UpdateSourceTrigger=PropertyChanged}"
+                            Padding="12,10"
+                            FontSize="13"
+                            BorderBrush="#ddd"
+                            BorderThickness="1"/>
+
+                <!-- Expiry Date -->
+                <TextBlock Text="Expiry Date (Optional)" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                <DatePicker SelectedDate="{Binding ValidTo, UpdateSourceTrigger=PropertyChanged}"
+                            Padding="12,10"
+                            FontSize="13"
+                            BorderBrush="#ddd"
+                            BorderThickness="1"/>
+                <TextBlock Text="When does this price/sale expire? Defaults to 7 days if not set." 
+                           FontSize="11" 
+                           Foreground="#666" 
+                           Margin="0,4,0,0"/>
+
+                <!-- Source -->
+                <TextBlock Text="Source" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                <TextBox Text="{Binding Source, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="12,10"
+                         FontSize="13"
+                         BorderBrush="#ddd"
+                         BorderThickness="1"
+                         ToolTip="e.g., Manual, Catalogue, API"/>
+
+                <!-- Notes -->
+                <TextBlock Text="Notes" FontSize="13" FontWeight="SemiBold" Margin="0,16,0,8"/>
+                <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="12,10"
+                         FontSize="13"
+                         BorderBrush="#ddd"
+                         BorderThickness="1"
+                         Height="80"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"
+                         ToolTip="Any additional notes about this price record..."/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,24,0,0">
+            <Button Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    Width="90"
+                    Height="40"
+                    Margin="0,0,12,0"
+                    Background="Transparent"
+                    Foreground="#666"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    FontSize="14"
+                    Click="CancelButton_Click"/>
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"
+                    Width="90"
+                    Height="40"
+                    Background="#111"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    FontSize="14"
+                    Click="SaveButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="2"
+                                            Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#333"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#ccc"/>
+                                <Setter Property="Foreground" Value="#888"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -21,7 +21,8 @@ public class PriceRecordRepository : IPriceRecordRepository
         priceRecord.DateRecorded = DateTime.UtcNow;
         var entity = PriceRecordEntity.FromPriceRecord(priceRecord);
         var insertedId = _database.PriceRecords.Insert(entity);
-        return insertedId.ToString();
+        // Handle BsonValue properly - if it's an ObjectId, extract the string value
+        return insertedId.IsObjectId ? insertedId.AsObjectId.ToString() : insertedId.ToString();
     }
 
     public bool Update(PriceRecord priceRecord)

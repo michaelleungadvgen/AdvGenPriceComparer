@@ -23,7 +23,8 @@ public class ItemRepository : IItemRepository
         
         var entity = ItemEntity.FromItem(item);
         var insertedId = _database.Items.Insert(entity);
-        return insertedId.ToString();
+        // Handle BsonValue properly - if it's an ObjectId, extract the string value
+        return insertedId.IsObjectId ? insertedId.AsObjectId.ToString() : insertedId.ToString();
     }
 
     public bool Update(Item item)

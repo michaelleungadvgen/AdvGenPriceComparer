@@ -21,7 +21,8 @@ public class AlertRepository : IAlertRepository
         alert.DateCreated = DateTime.UtcNow;
         var entity = AlertEntity.FromAlert(alert);
         var insertedId = _database.Alerts.Insert(entity);
-        return insertedId.ToString();
+        // Handle BsonValue properly - if it's an ObjectId, extract the string value
+        return insertedId.IsObjectId ? insertedId.AsObjectId.ToString() : insertedId.ToString();
     }
 
     public bool Update(CoreAlert alert)

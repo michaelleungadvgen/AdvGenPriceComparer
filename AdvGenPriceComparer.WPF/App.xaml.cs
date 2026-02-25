@@ -90,6 +90,24 @@ public partial class App : Application
                 var dbService = provider.GetRequiredService<DatabaseService>();
                 return new GroceryDataService(dbService);
             });
+            
+            // Register Repositories
+            services.AddSingleton<IPriceRecordRepository>(provider =>
+            {
+                var dbService = provider.GetRequiredService<DatabaseService>();
+                return new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
+            });
+            services.AddSingleton<IItemRepository>(provider =>
+            {
+                var dbService = provider.GetRequiredService<DatabaseService>();
+                return new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
+            });
+            services.AddSingleton<IPlaceRepository>(provider =>
+            {
+                var dbService = provider.GetRequiredService<DatabaseService>();
+                return new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
+            });
+            
             services.AddTransient<DemoDataService>();
             services.AddTransient<JsonImportService>(provider =>
             {
@@ -103,9 +121,9 @@ public partial class App : Application
             services.AddTransient<ExportService>(provider =>
             {
                 var dbService = provider.GetRequiredService<DatabaseService>();
-                var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
-                var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
-                var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new ExportService(itemRepo, placeRepo, priceRepo, logger);
             });
@@ -116,6 +134,8 @@ public partial class App : Application
             services.AddTransient<PlaceViewModel>();
             services.AddTransient<AddStoreViewModel>();
             services.AddTransient<ImportDataViewModel>();
+            services.AddTransient<PriceHistoryViewModel>();
+            services.AddTransient<AddPriceRecordViewModel>();
             services.AddTransient<ExportDataViewModel>(provider =>
             {
                 var exportService = provider.GetRequiredService<ExportService>();
@@ -125,6 +145,7 @@ public partial class App : Application
 
             // Views
             services.AddTransient<ItemsPage>();
+            services.AddTransient<PriceHistoryPage>();
 
             // Main Window
             services.AddTransient<MainWindow>();

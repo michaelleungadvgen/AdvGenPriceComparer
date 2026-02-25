@@ -173,6 +173,12 @@
                            Click="CategoriesNav_Click"
                            Appearance="Secondary"/>
 
+                    <ui:Button x:Name="PriceHistoryNavBtn" Content="Price History" HorizontalAlignment="Stretch" Margin="0,0,0,4"
+                           Background="Transparent" Foreground="#555" BorderThickness="0"
+                           Padding="12,8" Cursor="Hand"
+                           Click="PriceHistoryNav_Click"
+                           Appearance="Secondary"/>
+
                     <ui:Button x:Name="ReportsNavBtn" Content="Reports" HorizontalAlignment="Stretch" Margin="0,0,0,4"
                            Background="Transparent" Foreground="#555" BorderThickness="0"
                            Padding="12,8" Cursor="Hand"
