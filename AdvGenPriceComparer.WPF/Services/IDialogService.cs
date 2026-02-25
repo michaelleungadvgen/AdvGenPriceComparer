@@ -7,4 +7,5 @@ public interface IDialogService
     void ShowWarning(string message, string title = "Warning");
     void ShowError(string message, string title = "Error");
     bool ShowConfirmation(string message, string title = "Confirmation");
+    void ShowComparePricesDialog(string category = null);
 }

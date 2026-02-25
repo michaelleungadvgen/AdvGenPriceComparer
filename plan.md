@@ -1117,6 +1117,31 @@ public class MockDataGenerator
 
 **Files Modified:**
 - `README.md` - Updated architecture, features, roadmap, project structure
+
+---
+
+## Phase 9: Enhanced Features (High Priority from PROJECT_STATUS.md)
+
+### 9.1 Price Comparison View
+**Implemented by:** Agent-021 (2026-02-26)
+
+**Changes Made:**
+- Added `ShowComparePricesDialog` method to IDialogService interface
+- Implemented `ShowComparePricesDialog` in SimpleDialogService
+- Created PriceComparisonViewModel with store comparison data
+- Created ComparePricesWindow with side-by-side store comparison UI
+- Added ComparePricesCommand to MainWindowViewModel
+- Added "Compare Prices" button to Quick Actions in MainWindow sidebar
+- Features: Shows average prices across stores, highlights best value store, displays item count
+
+**Files Modified:**
+- `AdvGenPriceComparer.WPF/Services/IDialogService.cs` - Added ShowComparePricesDialog method
+- `AdvGenPriceComparer.WPF/Services/SimpleDialogService.cs` - Implemented ShowComparePricesDialog
+- `AdvGenPriceComparer.WPF/ViewModels/PriceComparisonViewModel.cs` - Created new ViewModel
+- `AdvGenPriceComparer.WPF/ViewModels/MainWindowViewModel.cs` - Added ComparePricesCommand
+- `AdvGenPriceComparer.WPF/Views/ComparePricesWindow.xaml` - Created new window
+- `AdvGenPriceComparer.WPF/Views/ComparePricesWindow.xaml.cs` - Created code-behind
+- `AdvGenPriceComparer.WPF/MainWindow.xaml` - Added Compare Prices button
 - `AdvGenPriceComparer.WPF/Views/ComparePricesWindow.xaml.cs` - Added missing using statement
 
 ### 8.11 Import Enhancements (Completed)

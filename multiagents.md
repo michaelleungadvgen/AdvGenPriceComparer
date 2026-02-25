@@ -88,8 +88,8 @@
 
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Price comparison view (side-by-side store comparison) | 🟡 DOING | Agent-021 | Implementing ComparePricesWindow |
-| Historical price charts for individual items | 🔴 TODO | - | |
+| Price comparison view (side-by-side store comparison) | 🟢 DONE | Agent-021 | Implemented ComparePricesWindow with store comparison |
+| Historical price charts for individual items | 🟡 DOING | Agent-022 | Implementing price history visualization with LiveCharts |
 | Barcode scanner integration | 🔴 TODO | - | |
 | Search across all entities | 🔴 TODO | - | |
 
@@ -97,11 +97,10 @@
 
 ## Active Agent Assignments
 
-### Agent-021 (Current Session)
-- **Current Task:** Add Price Comparison View - Create ComparePricesWindow with side-by-side store comparison
-- **Started:** 2026-02-26
-- **Estimated Completion:** 2-3 hours
-- **Status:** 🟡 DOING
+### Agent-021 (Completed)
+- **Completed Task:** Add Price Comparison View - Create ComparePricesWindow with side-by-side store comparison
+- **Completed:** 2026-02-26
+- **Notes:** Added ShowComparePricesDialog to IDialogService and SimpleDialogService, created PriceComparisonViewModel and ComparePricesWindow, added ComparePricesCommand to MainWindowViewModel, added Compare Prices button to sidebar. Build succeeded, all 217 tests pass.
 
 ### Agent-008
 - **Current Task:** Test duplicate detection strategies - Create xUnit test project
@@ -167,6 +166,7 @@
 | 2026-02-25 | Set up CI/CD pipeline - Updated GitHub Actions for WPF build, .NET 9, test execution (217 tests passing) | Agent-018 |
 | 2026-02-25 | Generate code coverage reports - Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage) | Agent-019 |
 | 2026-02-26 | Update README.md for WPF - Updated architecture docs, project structure, roadmap; fixed ComparePricesWindow.cs missing using statement | Agent-021 |
+| 2026-02-26 | Add Price Comparison View - Created ComparePricesWindow with side-by-side store comparison, added to IDialogService, MainWindowViewModel, and Quick Actions | Agent-021 |
 
 ---
 

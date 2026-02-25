@@ -1,4 +1,6 @@
 using System.Windows;
+using AdvGenPriceComparer.WPF.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdvGenPriceComparer.WPF.Services;
 
@@ -28,5 +30,13 @@ public class SimpleDialogService : IDialogService
     {
         var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
         return result == MessageBoxResult.Yes;
+    }
+
+    public void ShowComparePricesDialog(string category = null)
+    {
+        var dataService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var viewModel = new ViewModels.PriceComparisonViewModel(dataService, category);
+        var window = new ComparePricesWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
     }
 }
