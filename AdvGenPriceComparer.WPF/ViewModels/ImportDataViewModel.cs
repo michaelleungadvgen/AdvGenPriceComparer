@@ -39,6 +39,10 @@ public class ImportDataViewModel : ViewModelBase
     private string _importStatus = "Ready to import...";
     private bool _isImporting = false;
     private bool _importCompleted = false;
+    private int _progressPercent = 0;
+    private string _currentItem = string.Empty;
+    private int _totalItems = 0;
+    private int _processedItems = 0;
 
     public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, string dbPath)
     {
@@ -145,6 +149,30 @@ public class ImportDataViewModel : ViewModelBase
     }
 
     public Visibility ProgressVisibility => IsImporting ? Visibility.Visible : Visibility.Collapsed;
+
+    public int ProgressPercent
+    {
+        get => _progressPercent;
+        set => SetProperty(ref _progressPercent, value);
+    }
+
+    public string CurrentItem
+    {
+        get => _currentItem;
+        set => SetProperty(ref _currentItem, value);
+    }
+
+    public int TotalItems
+    {
+        get => _totalItems;
+        set => SetProperty(ref _totalItems, value);
+    }
+
+    public int ProcessedItems
+    {
+        get => _processedItems;
+        set => SetProperty(ref _processedItems, value);
+    }
 
     public bool CanImport => !IsImporting && !_importCompleted;
     public bool CanGoBack => !IsImporting;
@@ -369,9 +397,20 @@ public class ImportDataViewModel : ViewModelBase
 
         try
         {
+            // Reset progress
+            ProgressPercent = 0;
+            ProcessedItems = 0;
+            TotalItems = PreviewItems.Count;
+            CurrentItem = "Starting...";
+
             // Create progress reporter for UI updates
             var progress = new Progress<ImportProgress>(p =>
             {
+                ProcessedItems = p.ProcessedItems;
+                TotalItems = p.TotalItems;
+                ProgressPercent = p.TotalItems > 0 ? (int)((double)p.ProcessedItems / p.TotalItems * 100) : 0;
+                CurrentItem = p.CurrentItem;
+                
                 statusBuilder.AppendLine($"Processing: {p.ProcessedItems}/{p.TotalItems} - {p.CurrentItem}");
                 ImportStatus = statusBuilder.ToString();
             });

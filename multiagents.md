@@ -46,7 +46,7 @@
 | Implement Repository layer tests | 🟢 DONE | Agent-011 | Created 98 comprehensive xUnit tests for ItemRepository, PlaceRepository, PriceRecordRepository |
 | Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
 | Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
-| Add import progress UI updates | 🔴 TODO | - | Progress bar implementation |
+| Add import progress UI updates | 🟢 DONE | Agent-016 | Implemented percentage-based progress bar with current item display in Step 3 import dialog |
 | Create comprehensive JsonImportService unit tests | 🟢 DONE | Agent-012 | 24 comprehensive xUnit tests created and passing - covers PreviewImportAsync, ImportFromFile, ImportColesProducts, progress reporting, price parsing, and error handling |
 | Implement ViewModel tests | 🟢 DONE | Agent-013 | 44 comprehensive xUnit tests created for MainWindowViewModel, ItemViewModel, ImportDataViewModel |
 | Create integration tests | 🟢 DONE | Agent-014 | Created 7 comprehensive xUnit integration tests for Import/Export workflows |
@@ -123,6 +123,7 @@
 | 2026-02-25 | Implement ViewModel tests - 44 comprehensive xUnit tests for MainWindowViewModel, ItemViewModel, ImportDataViewModel | Agent-013 |
 | 2026-02-25 | Create integration tests - 7 comprehensive xUnit integration tests for Import/Export workflows | Agent-014 |
 | 2026-02-25 | Add error handling and validation - Enhanced JsonImportService with file validation, JSON validation, product data validation, error categorization (ImportErrorType), and logging support | Agent-015 |
+| 2026-02-25 | Add import progress UI updates - Implemented percentage-based progress bar with current item display in Step 3 import dialog | Agent-016 |
 
 ---
 
