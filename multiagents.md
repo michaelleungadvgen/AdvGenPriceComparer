@@ -41,7 +41,7 @@
 | Test markdown import with drakes.md | 🟢 DONE | Agent-006 | Test CLI created, all 4 tests passed (3 parsing + 1 DB import)
 | Implement import preview before saving | 🟢 DONE | - | Already implemented in existing code |
 | Add support for JSON files without productID | 🟢 DONE | Agent-009 | JsonImportService now generates stable IDs for products without ProductID field |
-| Add error handling and validation | 🔴 TODO | - | Enhance existing |
+| Add error handling and validation | 🟢 DONE | Agent-015 | Enhanced JsonImportService with comprehensive validation: file path validation, JSON validation, product data validation, error categorization, and detailed logging support |
 | Test duplicate detection strategies | 🟢 DONE | Agent-008 | Creating xUnit test project for duplicate detection |
 | Implement Repository layer tests | 🟢 DONE | Agent-011 | Created 98 comprehensive xUnit tests for ItemRepository, PlaceRepository, PriceRecordRepository |
 | Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
@@ -122,6 +122,7 @@
 | 2026-02-25 | Create comprehensive JsonImportService unit tests - 24 xUnit tests for JSON parsing, import results, progress tracking, error handling | Agent-012 |
 | 2026-02-25 | Implement ViewModel tests - 44 comprehensive xUnit tests for MainWindowViewModel, ItemViewModel, ImportDataViewModel | Agent-013 |
 | 2026-02-25 | Create integration tests - 7 comprehensive xUnit integration tests for Import/Export workflows | Agent-014 |
+| 2026-02-25 | Add error handling and validation - Enhanced JsonImportService with file validation, JSON validation, product data validation, error categorization (ImportErrorType), and logging support | Agent-015 |
 
 ---
 

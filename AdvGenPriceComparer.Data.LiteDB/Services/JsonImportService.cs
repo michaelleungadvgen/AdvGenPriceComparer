@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.RegularExpressions;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Entities;
@@ -10,6 +10,42 @@ namespace AdvGenPriceComparer.Data.LiteDB.Services;
 // The service uses ColesProduct directly for data transfer
 
 /// <summary>
+/// Exception types for import errors
+/// </summary>
+public enum ImportErrorType
+{
+    ValidationError,
+    FileNotFound,
+    InvalidJson,
+    InvalidData,
+    DatabaseError,
+    ParsingError,
+    UnknownError
+}
+
+/// <summary>
+/// Detailed import error information
+/// </summary>
+public class ImportError
+{
+    public ImportErrorType ErrorType { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public string? FieldName { get; set; }
+    public string? ProductName { get; set; }
+    public int? LineNumber { get; set; }
+    public string? RawData { get; set; }
+}
+
+/// <summary>
+/// Validation result for input data
+/// </summary>
+public class ValidationResult
+{
+    public bool IsValid { get; set; }
+    public List<ImportError> Errors { get; set; } = new();
+}
+
+/// <summary>
 /// Service for importing grocery data from JSON files into LiteDB
 /// </summary>
 public class JsonImportService
@@ -18,37 +54,429 @@ public class JsonImportService
     private readonly ItemRepository _itemRepository;
     private readonly PlaceRepository _placeRepository;
     private readonly PriceRecordRepository _priceRecordRepository;
+    private readonly Action<string>? _logInfo;
+    private readonly Action<string, Exception>? _logError;
+    private readonly Action<string>? _logWarning;
 
-    public JsonImportService(DatabaseService dbService)
+    public JsonImportService(DatabaseService dbService, 
+        Action<string>? logInfo = null, 
+        Action<string, Exception>? logError = null,
+        Action<string>? logWarning = null)
     {
         _dbService = dbService;
         _itemRepository = new ItemRepository(dbService);
         _placeRepository = new PlaceRepository(dbService);
         _priceRecordRepository = new PriceRecordRepository(dbService);
+        _logInfo = logInfo;
+        _logError = logError;
+        _logWarning = logWarning;
+    }
+
+    private void LogInfo(string message) => _logInfo?.Invoke(message);
+    private void LogError(string message, Exception? ex = null) => _logError?.Invoke(message, ex ?? new Exception(message));
+    private void LogWarning(string message) => _logWarning?.Invoke(message);
+
+    /// <summary>
+    /// Validates a file path for import
+    /// </summary>
+    private ValidationResult ValidateFilePath(string filePath)
+    {
+        var result = new ValidationResult { IsValid = true };
+
+        if (string.IsNullOrWhiteSpace(filePath))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.ValidationError,
+                Message = "File path cannot be null or empty"
+            });
+            return result;
+        }
+
+        if (!File.Exists(filePath))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.FileNotFound,
+                Message = $"File not found: {filePath}"
+            });
+            return result;
+        }
+
+        var fileInfo = new FileInfo(filePath);
+        if (fileInfo.Length == 0)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.ValidationError,
+                Message = "File is empty"
+            });
+            return result;
+        }
+
+        // Check file size (max 50MB)
+        const long maxFileSize = 50 * 1024 * 1024;
+        if (fileInfo.Length > maxFileSize)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.ValidationError,
+                Message = $"File size ({fileInfo.Length / 1024 / 1024}MB) exceeds maximum allowed (50MB)"
+            });
+            return result;
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Validates JSON content structure
+    /// </summary>
+    private ValidationResult ValidateJsonContent(string jsonContent)
+    {
+        var result = new ValidationResult { IsValid = true };
+
+        if (string.IsNullOrWhiteSpace(jsonContent))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidJson,
+                Message = "JSON content is empty"
+            });
+            return result;
+        }
+
+        // Check if it's valid JSON
+        try
+        {
+            using var doc = JsonDocument.Parse(jsonContent);
+            
+            // Check if it's an array or object
+            if (doc.RootElement.ValueKind != JsonValueKind.Array && 
+                doc.RootElement.ValueKind != JsonValueKind.Object)
+            {
+                result.IsValid = false;
+                result.Errors.Add(new ImportError
+                {
+                    ErrorType = ImportErrorType.InvalidJson,
+                    Message = "JSON must be an array or object"
+                });
+            }
+        }
+        catch (JsonException ex)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidJson,
+                Message = $"Invalid JSON format: {ex.Message}"
+            });
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Validates a single product data
+    /// </summary>
+    private ValidationResult ValidateProduct(ColesProduct product, int index)
+    {
+        var result = new ValidationResult { IsValid = true };
+
+        // Validate product name
+        if (string.IsNullOrWhiteSpace(product.ProductName))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Product name is required",
+                FieldName = "ProductName",
+                LineNumber = index
+            });
+        }
+        else if (product.ProductName.Length > 500)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Product name exceeds maximum length of 500 characters",
+                FieldName = "ProductName",
+                ProductName = product.ProductName,
+                LineNumber = index
+            });
+        }
+
+        // Validate price
+        if (string.IsNullOrWhiteSpace(product.Price))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Price is required",
+                FieldName = "Price",
+                ProductName = product.ProductName,
+                LineNumber = index
+            });
+        }
+        else
+        {
+            var priceValidation = ValidatePriceFormat(product.Price, "Price", index, product.ProductName);
+            if (!priceValidation.IsValid)
+            {
+                result.IsValid = false;
+                result.Errors.AddRange(priceValidation.Errors);
+            }
+        }
+
+        // Validate original price if provided
+        if (!string.IsNullOrWhiteSpace(product.OriginalPrice))
+        {
+            var origPriceValidation = ValidatePriceFormat(product.OriginalPrice, "OriginalPrice", index, product.ProductName);
+            if (!origPriceValidation.IsValid)
+            {
+                result.IsValid = false;
+                result.Errors.AddRange(origPriceValidation.Errors);
+            }
+        }
+
+        // Validate category if provided
+        if (!string.IsNullOrWhiteSpace(product.Category) && product.Category.Length > 200)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Category exceeds maximum length of 200 characters",
+                FieldName = "Category",
+                ProductName = product.ProductName,
+                LineNumber = index
+            });
+        }
+
+        // Validate brand if provided
+        if (!string.IsNullOrWhiteSpace(product.Brand) && product.Brand.Length > 200)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Brand exceeds maximum length of 200 characters",
+                FieldName = "Brand",
+                ProductName = product.ProductName,
+                LineNumber = index
+            });
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Validates price format
+    /// </summary>
+    private ValidationResult ValidatePriceFormat(string priceString, string fieldName, int index, string? productName)
+    {
+        var result = new ValidationResult { IsValid = true };
+
+        if (string.IsNullOrWhiteSpace(priceString))
+        {
+            return result; // Empty is valid (will be treated as 0)
+        }
+
+        // Remove $ and whitespace
+        var cleanPrice = priceString.Replace("$", "").Trim();
+        
+        // Check for valid decimal format
+        if (!decimal.TryParse(cleanPrice, out var price))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = $"Invalid price format: '{priceString}'. Expected format: $X.XX",
+                FieldName = fieldName,
+                ProductName = productName,
+                LineNumber = index,
+                RawData = priceString
+            });
+            return result;
+        }
+
+        // Check for negative prices
+        if (price < 0)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Price cannot be negative",
+                FieldName = fieldName,
+                ProductName = productName,
+                LineNumber = index,
+                RawData = priceString
+            });
+        }
+
+        // Check for unreasonably high prices (over $10,000)
+        if (price > 10000)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.InvalidData,
+                Message = "Price exceeds maximum allowed value ($10,000)",
+                FieldName = fieldName,
+                ProductName = productName,
+                LineNumber = index,
+                RawData = priceString
+            });
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Validates store ID
+    /// </summary>
+    private ValidationResult ValidateStoreId(string storeId)
+    {
+        var result = new ValidationResult { IsValid = true };
+
+        if (string.IsNullOrWhiteSpace(storeId))
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.ValidationError,
+                Message = "Store ID is required"
+            });
+            return result;
+        }
+
+        var store = _placeRepository.GetById(storeId);
+        if (store == null)
+        {
+            result.IsValid = false;
+            result.Errors.Add(new ImportError
+            {
+                ErrorType = ImportErrorType.ValidationError,
+                Message = $"Store with ID '{storeId}' not found in database"
+            });
+        }
+
+        return result;
     }
 
     /// <summary>
     /// Preview import from JSON file without saving to database
     /// Returns ColesProduct list that can be converted to preview items by the ViewModel
     /// </summary>
-    public async Task<List<ColesProduct>> PreviewImportAsync(string filePath, CancellationToken cancellationToken = default)
+    public async Task<(List<ColesProduct> Products, List<ImportError> Errors)> PreviewImportAsync(string filePath, CancellationToken cancellationToken = default)
     {
         return await Task.Run(() =>
         {
+            var errors = new List<ImportError>();
+            
             try
             {
-                var jsonContent = File.ReadAllText(filePath);
-                var colesData = JsonSerializer.Deserialize<List<ColesProduct>>(jsonContent, new JsonSerializerOptions
+                // Validate file path
+                var pathValidation = ValidateFilePath(filePath);
+                if (!pathValidation.IsValid)
                 {
-                    PropertyNameCaseInsensitive = true
-                });
+                    errors.AddRange(pathValidation.Errors);
+                    LogWarning($"File validation failed for {filePath}: {string.Join(", ", pathValidation.Errors.Select(e => e.Message))}");
+                    return (new List<ColesProduct>(), errors);
+                }
 
-                return colesData ?? new List<ColesProduct>();
+                string jsonContent;
+                try
+                {
+                    jsonContent = File.ReadAllText(filePath);
+                }
+                catch (IOException ex)
+                {
+                    errors.Add(new ImportError
+                    {
+                        ErrorType = ImportErrorType.FileNotFound,
+                        Message = $"Failed to read file: {ex.Message}"
+                    });
+                    LogError($"Failed to read file {filePath}", ex);
+                    return (new List<ColesProduct>(), errors);
+                }
+
+                // Validate JSON content
+                var jsonValidation = ValidateJsonContent(jsonContent);
+                if (!jsonValidation.IsValid)
+                {
+                    errors.AddRange(jsonValidation.Errors);
+                    LogWarning($"JSON validation failed for {filePath}");
+                    return (new List<ColesProduct>(), errors);
+                }
+
+                // Deserialize
+                List<ColesProduct>? colesData;
+                try
+                {
+                    colesData = JsonSerializer.Deserialize<List<ColesProduct>>(jsonContent, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                }
+                catch (JsonException ex)
+                {
+                    errors.Add(new ImportError
+                    {
+                        ErrorType = ImportErrorType.InvalidJson,
+                        Message = $"Failed to parse JSON: {ex.Message}"
+                    });
+                    LogError($"JSON deserialization failed for {filePath}", ex);
+                    return (new List<ColesProduct>(), errors);
+                }
+
+                if (colesData == null)
+                {
+                    errors.Add(new ImportError
+                    {
+                        ErrorType = ImportErrorType.InvalidJson,
+                        Message = "JSON deserialized to null"
+                    });
+                    return (new List<ColesProduct>(), errors);
+                }
+
+                // Validate each product
+                var validProducts = new List<ColesProduct>();
+                for (int i = 0; i < colesData.Count; i++)
+                {
+                    var productValidation = ValidateProduct(colesData[i], i);
+                    if (productValidation.IsValid)
+                    {
+                        validProducts.Add(colesData[i]);
+                    }
+                    else
+                    {
+                        errors.AddRange(productValidation.Errors);
+                    }
+                }
+
+                LogInfo($"Preview import completed for {filePath}: {validProducts.Count} valid products, {errors.Count} errors");
+                return (validProducts, errors);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Return empty list on error - let the caller handle errors
-                return new List<ColesProduct>();
+                LogError($"Unexpected error during preview import of {filePath}", ex);
+                errors.Add(new ImportError
+                {
+                    ErrorType = ImportErrorType.UnknownError,
+                    Message = $"Unexpected error: {ex.Message}"
+                });
+                return (new List<ColesProduct>(), errors);
             }
         }, cancellationToken);
     }
@@ -60,31 +488,88 @@ public class JsonImportService
         Dictionary<string, string>? existingItemMappings = null, IProgress<ImportProgress>? progress = null)
     {
         var result = new ImportResult();
+        var detailedErrors = new List<ImportError>();
         existingItemMappings ??= new Dictionary<string, string>();
         
-        // Get the store
-        var store = _placeRepository.GetById(storeId);
-        if (store == null)
+        // Validate store
+        var storeValidation = ValidateStoreId(storeId);
+        if (!storeValidation.IsValid)
         {
+            detailedErrors.AddRange(storeValidation.Errors);
             result.Success = false;
-            result.ErrorMessage = "Store not found";
+            result.ErrorMessage = "Store validation failed";
+            result.Errors = detailedErrors.Select(e => e.Message).ToList();
+            LogError($"Import failed: Store validation failed for {storeId}");
             return result;
         }
 
+        // Validate products list
+        if (products == null || products.Count == 0)
+        {
+            result.Success = false;
+            result.ErrorMessage = "No products to import";
+            LogWarning("Import failed: Empty product list");
+            return result;
+        }
+
+        // Validate catalogue date
+        if (catalogueDate > DateTime.Now.AddYears(1))
+        {
+            result.Success = false;
+            result.ErrorMessage = "Catalogue date is too far in the future";
+            LogWarning($"Import failed: Invalid catalogue date {catalogueDate}");
+            return result;
+        }
+
+        if (catalogueDate < DateTime.Now.AddYears(-5))
+        {
+            result.Success = false;
+            result.ErrorMessage = "Catalogue date is too old (more than 5 years)";
+            LogWarning($"Import failed: Catalogue date too old {catalogueDate}");
+            return result;
+        }
+
+        var store = _placeRepository.GetById(storeId);
         int totalItems = products.Count;
         int processedCount = 0;
+        int skippedCount = 0;
+
+        LogInfo($"Starting import of {totalItems} products for store {store.Name}");
 
         foreach (var product in products)
         {
             try
             {
+                // Validate product before processing
+                var productValidation = ValidateProduct(product, processedCount);
+                if (!productValidation.IsValid)
+                {
+                    detailedErrors.AddRange(productValidation.Errors);
+                    skippedCount++;
+                    processedCount++;
+                    continue;
+                }
+
                 string itemId;
                 bool addPriceRecordOnly = existingItemMappings.TryGetValue(product.GetProductId(), out var existingId) 
                     && !string.IsNullOrEmpty(existingId);
 
                 if (addPriceRecordOnly)
                 {
-                    // Add price record to existing item
+                    // Verify the existing item still exists
+                    var existingItem = _itemRepository.GetById(existingId);
+                    if (existingItem == null)
+                    {
+                        detailedErrors.Add(new ImportError
+                        {
+                            ErrorType = ImportErrorType.DatabaseError,
+                            Message = $"Referenced item no longer exists: {existingId}",
+                            ProductName = product.ProductName
+                        });
+                        skippedCount++;
+                        processedCount++;
+                        continue;
+                    }
                     itemId = existingId;
                 }
                 else
@@ -98,7 +583,14 @@ public class JsonImportService
                     }
                     else
                     {
-                        result.Errors.Add($"Failed to create item for {product.ProductName}");
+                        detailedErrors.Add(new ImportError
+                        {
+                            ErrorType = ImportErrorType.DatabaseError,
+                            Message = "Failed to create item in database",
+                            ProductName = product.ProductName
+                        });
+                        skippedCount++;
+                        processedCount++;
                         continue;
                     }
                 }
@@ -110,7 +602,13 @@ public class JsonImportService
             }
             catch (Exception ex)
             {
-                result.Errors.Add($"Error processing {product.ProductName}: {ex.Message}");
+                detailedErrors.Add(new ImportError
+                {
+                    ErrorType = ImportErrorType.UnknownError,
+                    Message = $"Error processing product: {ex.Message}",
+                    ProductName = product.ProductName
+                });
+                LogError($"Error importing product {product.ProductName}", ex);
             }
 
             processedCount++;
@@ -122,8 +620,21 @@ public class JsonImportService
             });
         }
 
-        result.Success = result.Errors.Count == 0;
-        result.Message = $"Successfully imported {result.ItemsProcessed} new items and {result.PriceRecordsCreated} price records";
+        result.Success = detailedErrors.Count == 0 || result.ItemsProcessed > 0;
+        result.Errors = detailedErrors.Select(e => $"[{e.ErrorType}] {e.Message}" + 
+            (e.ProductName != null ? $" (Product: {e.ProductName})" : "")).ToList();
+        
+        if (result.Success)
+        {
+            result.Message = $"Imported {result.ItemsProcessed} new items and {result.PriceRecordsCreated} price records" +
+                (detailedErrors.Count > 0 ? $" with {detailedErrors.Count} warnings" : "");
+            LogInfo($"Import completed: {result.ItemsProcessed} items, {result.PriceRecordsCreated} price records, {detailedErrors.Count} errors");
+        }
+        else
+        {
+            result.ErrorMessage = "Import failed - see errors for details";
+            LogError($"Import failed with {detailedErrors.Count} errors");
+        }
         
         return result;
     }
@@ -133,32 +644,64 @@ public class JsonImportService
     /// </summary>
     public ImportResult ImportFromFile(string filePath, DateTime? validDate = null)
     {
-        try
+        LogInfo($"Starting import from file: {filePath}");
+        
+        // Validate file path
+        var pathValidation = ValidateFilePath(filePath);
+        if (!pathValidation.IsValid)
         {
-            var jsonContent = File.ReadAllText(filePath);
-            var fileName = Path.GetFileName(filePath);
-
-            // Try to detect the format (Coles or Woolworths)
-            if (jsonContent.Contains("\"ProductID\"") || jsonContent.Contains("\"productID\"") ||
-                jsonContent.Contains("\"productName\"") || jsonContent.Contains("\"ProductName\""))
-            {
-                return ImportColesJsonContent(jsonContent, fileName, validDate);
-            }
-            else
-            {
-                return new ImportResult
-                {
-                    Success = false,
-                    ErrorMessage = "Unsupported JSON format. Expected Coles or Woolworths format."
-                };
-            }
-        }
-        catch (Exception ex)
-        {
+            LogError($"File validation failed for {filePath}");
             return new ImportResult
             {
                 Success = false,
-                ErrorMessage = $"Error reading file: {ex.Message}"
+                ErrorMessage = pathValidation.Errors.First().Message,
+                Errors = pathValidation.Errors.Select(e => e.Message).ToList()
+            };
+        }
+
+        string jsonContent;
+        try
+        {
+            jsonContent = File.ReadAllText(filePath);
+        }
+        catch (IOException ex)
+        {
+            LogError($"Failed to read file {filePath}", ex);
+            return new ImportResult
+            {
+                Success = false,
+                ErrorMessage = $"Failed to read file: {ex.Message}"
+            };
+        }
+
+        // Validate JSON content
+        var jsonValidation = ValidateJsonContent(jsonContent);
+        if (!jsonValidation.IsValid)
+        {
+            LogError($"JSON validation failed for {filePath}");
+            return new ImportResult
+            {
+                Success = false,
+                ErrorMessage = jsonValidation.Errors.First().Message,
+                Errors = jsonValidation.Errors.Select(e => e.Message).ToList()
+            };
+        }
+
+        var fileName = Path.GetFileName(filePath);
+
+        // Try to detect the format (Coles or Woolworths)
+        if (jsonContent.Contains("\"ProductID\"") || jsonContent.Contains("\"productID\"") ||
+            jsonContent.Contains("\"productName\"") || jsonContent.Contains("\"ProductName\""))
+        {
+            return ImportColesJsonContent(jsonContent, fileName, validDate);
+        }
+        else
+        {
+            LogWarning($"Unsupported JSON format in file {filePath}");
+            return new ImportResult
+            {
+                Success = false,
+                ErrorMessage = "Unsupported JSON format. Expected Coles or Woolworths format with ProductID or productName fields."
             };
         }
     }
@@ -465,19 +1008,64 @@ public class JsonImportService
     /// <summary>
     /// Preview import from Drakes markdown file without saving
     /// </summary>
-    public async Task<List<ColesProduct>> PreviewDrakesMarkdownAsync(string filePath, CancellationToken cancellationToken = default)
+    public async Task<(List<ColesProduct> Products, List<ImportError> Errors)> PreviewDrakesMarkdownAsync(string filePath, CancellationToken cancellationToken = default)
     {
         return await Task.Run(() =>
         {
+            var errors = new List<ImportError>();
+            
             try
             {
-                var parser = new DrakesMarkdownParser();
+                // Validate file path
+                var pathValidation = ValidateFilePath(filePath);
+                if (!pathValidation.IsValid)
+                {
+                    errors.AddRange(pathValidation.Errors);
+                    LogWarning($"File validation failed for markdown {filePath}");
+                    return (new List<ColesProduct>(), errors);
+                }
+
+                var parser = new DrakesMarkdownParser(LogInfo, msg => LogError(msg), LogWarning);
                 var result = parser.ParseFile(filePath);
-                return result.Products;
+                
+                if (!result.Success)
+                {
+                    errors.Add(new ImportError
+                    {
+                        ErrorType = ImportErrorType.ParsingError,
+                        Message = result.ErrorMessage ?? "Failed to parse markdown file"
+                    });
+                    LogWarning($"Markdown parsing failed for {filePath}: {result.ErrorMessage}");
+                    return (new List<ColesProduct>(), errors);
+                }
+
+                // Validate each parsed product
+                var validProducts = new List<ColesProduct>();
+                for (int i = 0; i < result.Products.Count; i++)
+                {
+                    var productValidation = ValidateProduct(result.Products[i], i);
+                    if (productValidation.IsValid)
+                    {
+                        validProducts.Add(result.Products[i]);
+                    }
+                    else
+                    {
+                        errors.AddRange(productValidation.Errors);
+                    }
+                }
+
+                LogInfo($"Markdown preview completed for {filePath}: {validProducts.Count} valid products, {errors.Count} errors");
+                return (validProducts, errors);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new List<ColesProduct>();
+                LogError($"Unexpected error during markdown preview of {filePath}", ex);
+                errors.Add(new ImportError
+                {
+                    ErrorType = ImportErrorType.UnknownError,
+                    Message = $"Unexpected error: {ex.Message}"
+                });
+                return (new List<ColesProduct>(), errors);
             }
         }, cancellationToken);
     }
@@ -488,11 +1076,49 @@ public class JsonImportService
 /// </summary>
 public class DrakesMarkdownParser
 {
+    private readonly Action<string>? _logInfo;
+    private readonly Action<string>? _logError;
+    private readonly Action<string>? _logWarning;
+
+    public DrakesMarkdownParser(Action<string>? logInfo = null, Action<string>? logError = null, Action<string>? logWarning = null)
+    {
+        _logInfo = logInfo;
+        _logError = logError;
+        _logWarning = logWarning;
+    }
+
+    private void LogInfo(string message) => _logInfo?.Invoke(message);
+    private void LogError(string message) => _logError?.Invoke(message);
+    private void LogWarning(string message) => _logWarning?.Invoke(message);
+
     public ParseResult ParseFile(string filePath)
     {
         try
         {
+            LogInfo($"Parsing markdown file: {filePath}");
+            
+            if (!File.Exists(filePath))
+            {
+                LogError($"Markdown file not found: {filePath}");
+                return new ParseResult
+                {
+                    Success = false,
+                    ErrorMessage = $"File not found: {filePath}"
+                };
+            }
+
             var content = File.ReadAllText(filePath);
+            
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                LogWarning($"Markdown file is empty: {filePath}");
+                return new ParseResult
+                {
+                    Success = false,
+                    ErrorMessage = "File is empty"
+                };
+            }
+
             var products = new List<ColesProduct>();
             var categories = new HashSet<string>();
 

@@ -205,13 +205,16 @@ public class ImportDataViewModel : ViewModelBase
         PreviewItems.Clear();
         IsImporting = true;
         _cancellationTokenSource = new CancellationTokenSource();
+        var allErrors = new List<ImportError>();
 
         try
         {
             foreach (var filePath in _selectedFilePaths)
             {
-                // Use JsonImportService for preview - get raw products
-                var products = await _jsonImportService.PreviewImportAsync(filePath, _cancellationTokenSource.Token);
+                // Use JsonImportService for preview - get raw products and errors
+                var (products, errors) = await _jsonImportService.PreviewImportAsync(filePath, _cancellationTokenSource.Token);
+                
+                allErrors.AddRange(errors);
                 
                 foreach (var product in products)
                 {
@@ -219,6 +222,20 @@ public class ImportDataViewModel : ViewModelBase
                     var previewItem = CreatePreviewItem(product);
                     PreviewItems.Add(previewItem);
                 }
+            }
+
+            // Show validation warnings if any
+            if (allErrors.Count > 0)
+            {
+                var warningMessage = $"Import preview completed with {allErrors.Count} warnings:\n\n" +
+                    string.Join("\n", allErrors.Take(5).Select(e => $"• {e.Message}"));
+                
+                if (allErrors.Count > 5)
+                {
+                    warningMessage += $"\n\n... and {allErrors.Count - 5} more warnings";
+                }
+                
+                _dialogService.ShowWarning(warningMessage);
             }
         }
         catch (OperationCanceledException)

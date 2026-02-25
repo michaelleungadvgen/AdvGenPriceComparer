@@ -67,13 +67,14 @@ public class JsonImportServiceTests : IDisposable
         try
         {
             // Act
-            var result = await _importService.PreviewImportAsync(jsonPath);
+            var (products, errors) = await _importService.PreviewImportAsync(jsonPath);
 
             // Assert
-            Assert.Single(result);
-            Assert.Equal("Test Product", result[0].ProductName);
-            Assert.Equal("TestBrand", result[0].Brand);
-            Assert.Equal("$5.00", result[0].Price);
+            Assert.Single(products);
+            Assert.Empty(errors);
+            Assert.Equal("Test Product", products[0].ProductName);
+            Assert.Equal("TestBrand", products[0].Brand);
+            Assert.Equal("$5.00", products[0].Price);
         }
         finally
         {
@@ -91,10 +92,12 @@ public class JsonImportServiceTests : IDisposable
         try
         {
             // Act
-            var result = await _importService.PreviewImportAsync(jsonPath);
+            var (products, errors) = await _importService.PreviewImportAsync(jsonPath);
 
             // Assert
-            Assert.Empty(result);
+            Assert.Empty(products);
+            Assert.NotEmpty(errors);
+            Assert.Equal(ImportErrorType.InvalidJson, errors[0].ErrorType);
         }
         finally
         {
@@ -103,13 +106,15 @@ public class JsonImportServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task PreviewImportAsync_NonExistentFile_ReturnsEmptyList()
+    public async Task PreviewImportAsync_NonExistentFile_ReturnsEmptyListWithError()
     {
         // Act
-        var result = await _importService.PreviewImportAsync("/nonexistent/path/file.json");
+        var (products, errors) = await _importService.PreviewImportAsync("/nonexistent/path/file.json");
 
         // Assert
-        Assert.Empty(result);
+        Assert.Empty(products);
+        Assert.NotEmpty(errors);
+        Assert.Equal(ImportErrorType.FileNotFound, errors[0].ErrorType);
     }
 
     [Fact]
@@ -122,10 +127,11 @@ public class JsonImportServiceTests : IDisposable
         try
         {
             // Act
-            var result = await _importService.PreviewImportAsync(jsonPath);
+            var (products, errors) = await _importService.PreviewImportAsync(jsonPath);
 
             // Assert
-            Assert.Empty(result);
+            Assert.Empty(products);
+            Assert.Empty(errors); // Empty JSON array is valid, just no products
         }
         finally
         {
@@ -150,12 +156,13 @@ public class JsonImportServiceTests : IDisposable
         try
         {
             // Act
-            var result = await _importService.PreviewImportAsync(jsonPath);
+            var (parsedProducts, validationErrors) = await _importService.PreviewImportAsync(jsonPath);
 
             // Assert
-            Assert.Equal(100, result.Count);
-            Assert.Equal("Product 1", result[0].ProductName);
-            Assert.Equal("Product 100", result[99].ProductName);
+            Assert.Equal(100, parsedProducts.Count);
+            Assert.Empty(validationErrors);
+            Assert.Equal("Product 1", parsedProducts[0].ProductName);
+            Assert.Equal("Product 100", parsedProducts[99].ProductName);
         }
         finally
         {
@@ -226,7 +233,7 @@ public class JsonImportServiceTests : IDisposable
 
         // Assert
         Assert.False(result.Success);
-        Assert.Contains("Error reading file", result.ErrorMessage);
+        Assert.Contains("File not found", result.ErrorMessage);
     }
 
     [Fact]
