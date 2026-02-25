@@ -91,7 +91,7 @@
 | Price comparison view (side-by-side store comparison) | 🟢 DONE | Agent-021 | Implemented ComparePricesWindow with store comparison |
 | Historical price charts for individual items | 🟡 DOING | Agent-022 | Implementing price history visualization with LiveCharts |
 | Barcode scanner integration | 🔴 TODO | - | |
-| Search across all entities | 🔴 TODO | - | |
+| Search across all entities | 🟢 DONE | Agent-023 | Implemented Global Search with UI - searches across Items, Places, and PriceRecords with relevance scoring |
 
 ---
 
@@ -167,6 +167,7 @@
 | 2026-02-25 | Generate code coverage reports - Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage) | Agent-019 |
 | 2026-02-26 | Update README.md for WPF - Updated architecture docs, project structure, roadmap; fixed ComparePricesWindow.cs missing using statement | Agent-021 |
 | 2026-02-26 | Add Price Comparison View - Created ComparePricesWindow with side-by-side store comparison, added to IDialogService, MainWindowViewModel, and Quick Actions | Agent-021 |
+| 2026-02-26 | Search across all entities - Implemented Global Search (IGlobalSearchService, GlobalSearchService, GlobalSearchWindow, GlobalSearchViewModel) with relevance scoring, recent searches, and categorized results | Agent-023 |
 
 ---
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
 using Xunit;
@@ -425,6 +426,8 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowInfo(string message, string title = "Information") { }
         public void ShowSuccess(string message, string title = "Success") { }
         public void ShowWarning(string message, string title = "Warning") { }
+        public void ShowComparePricesDialog(string? category = null) { }
+        public SearchResult? ShowGlobalSearchDialog() => null;
     }
 
     #endregion

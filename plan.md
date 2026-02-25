@@ -1144,6 +1144,47 @@ public class MockDataGenerator
 - `AdvGenPriceComparer.WPF/MainWindow.xaml` - Added Compare Prices button
 - `AdvGenPriceComparer.WPF/Views/ComparePricesWindow.xaml.cs` - Added missing using statement
 
+### 9.2 Global Search (Search Across All Entities)
+**Implemented by:** Agent-023 (2026-02-26)
+
+**Changes Made:**
+- Created `IGlobalSearchService` interface for searching across all entity types
+- Implemented `GlobalSearchService` with relevance-based scoring algorithm
+- Created `SearchResult` model with support for Items, Places, and PriceRecords
+- Created `GlobalSearchViewModel` with search history, auto-search, and result grouping
+- Created `GlobalSearchWindow.xaml` with modern UI for search input and results
+- Added `ShowGlobalSearchDialog` method to `IDialogService` interface
+- Implemented `ShowGlobalSearchDialog` in `SimpleDialogService`
+- Added `GlobalSearchCommand` to `MainWindowViewModel`
+- Added "🔍 Global Search" button to Quick Actions in MainWindow sidebar
+- Added new converters: `NullToVisibilityConverter`, `ZeroToVisibilityConverter`, `CountToVisibilityConverter`, `InverseBooleanToVisibilityConverter`
+- Registered `IGlobalSearchService` in DI container in `App.xaml.cs`
+
+**Features:**
+- **Multi-entity search**: Searches across Items (products), Places (stores), and PriceRecords simultaneously
+- **Relevance scoring**: Results ranked by relevance (exact match = 1.0, partial match = 0.1-0.9)
+- **Field-specific matching**: Shows which field matched (Name, Brand, Barcode, Category, etc.)
+- **Auto-search**: Automatically searches when 3+ characters are typed (with debounce)
+- **Search history**: Saves last 50 searches, displayed as quick-access chips
+- **Grouped results**: Results organized by entity type (Products, Stores, Prices)
+- **Price search**: Can search by exact price value (e.g., "5.99")
+- **Barcode search**: Supports searching by barcode numbers
+
+**Files Modified/Created:**
+- `AdvGenPriceComparer.WPF/Services/IGlobalSearchService.cs` - Created new interface
+- `AdvGenPriceComparer.WPF/Services/GlobalSearchService.cs` - Created search implementation
+- `AdvGenPriceComparer.WPF/Models/SearchResult.cs` - Created search result model
+- `AdvGenPriceComparer.WPF/ViewModels/GlobalSearchViewModel.cs` - Created ViewModel
+- `AdvGenPriceComparer.WPF/Views/GlobalSearchWindow.xaml` - Created search UI
+- `AdvGenPriceComparer.WPF/Views/GlobalSearchWindow.xaml.cs` - Created code-behind
+- `AdvGenPriceComparer.WPF/Services/IDialogService.cs` - Added ShowGlobalSearchDialog method
+- `AdvGenPriceComparer.WPF/Services/SimpleDialogService.cs` - Implemented ShowGlobalSearchDialog
+- `AdvGenPriceComparer.WPF/ViewModels/MainWindowViewModel.cs` - Added GlobalSearchCommand
+- `AdvGenPriceComparer.WPF/MainWindow.xaml` - Added Global Search button
+- `AdvGenPriceComparer.WPF/Converters/NullToVisibilityConverter.cs` - Created new converters
+- `AdvGenPriceComparer.WPF/App.xaml` - Registered new converters
+- `AdvGenPriceComparer.WPF/App.xaml.cs` - Registered IGlobalSearchService in DI
+
 ### 8.11 Import Enhancements (Completed)
 
 #### Support for JSON Files Without ProductID

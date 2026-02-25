@@ -1,4 +1,5 @@
 using System.Windows;
+using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -38,5 +39,22 @@ public class SimpleDialogService : IDialogService
         var viewModel = new ViewModels.PriceComparisonViewModel(dataService, category);
         var window = new ComparePricesWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
+    }
+
+    public SearchResult? ShowGlobalSearchDialog()
+    {
+        var searchService = ((App)Application.Current).Services.GetRequiredService<IGlobalSearchService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var viewModel = new ViewModels.GlobalSearchViewModel(searchService, this, logger);
+        var window = new GlobalSearchWindow(viewModel) { Owner = Application.Current.MainWindow };
+        
+        var result = window.ShowDialog();
+        
+        if (result == true)
+        {
+            return window.SelectedResult;
+        }
+        
+        return null;
     }
 }

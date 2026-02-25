@@ -31,6 +31,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         AddItemCommand = new RelayCommand(AddItem);
         AddPlaceCommand = new RelayCommand(AddPlace);
         ComparePricesCommand = new RelayCommand(ComparePrices);
+        GlobalSearchCommand = new RelayCommand(ShowGlobalSearch);
 
         RefreshDashboard();
     }
@@ -56,6 +57,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand AddItemCommand { get; }
     public ICommand AddPlaceCommand { get; }
     public ICommand ComparePricesCommand { get; }
+    public ICommand GlobalSearchCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -206,6 +208,17 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ComparePrices()
     {
         _dialogService.ShowComparePricesDialog();
+    }
+
+    private void ShowGlobalSearch()
+    {
+        var result = _dialogService.ShowGlobalSearchDialog();
+        
+        // If a result was selected, refresh dashboard
+        if (result != null)
+        {
+            RefreshDashboard();
+        }
     }
 
     public void Dispose()

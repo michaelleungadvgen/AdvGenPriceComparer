@@ -1,3 +1,5 @@
+using AdvGenPriceComparer.WPF.Models;
+
 namespace AdvGenPriceComparer.WPF.Services;
 
 public interface IDialogService
@@ -8,4 +10,5 @@ public interface IDialogService
     void ShowError(string message, string title = "Error");
     bool ShowConfirmation(string message, string title = "Confirmation");
     void ShowComparePricesDialog(string category = null);
+    SearchResult? ShowGlobalSearchDialog();
 }

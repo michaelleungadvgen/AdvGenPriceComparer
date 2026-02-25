@@ -187,6 +187,10 @@
 
                     <!-- Quick Actions -->
                     <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
+                    <ui:Button Content="🔍 Global Search" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding GlobalSearchCommand}"
+                           Appearance="Transparent"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
                     <ui:Button Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding AddItemCommand}"
                            Appearance="Transparent"

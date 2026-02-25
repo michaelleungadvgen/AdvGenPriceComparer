@@ -127,6 +127,12 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new ExportService(itemRepo, placeRepo, priceRepo, logger);
             });
+            services.AddSingleton<IGlobalSearchService>(provider =>
+            {
+                var dataService = provider.GetRequiredService<IGroceryDataService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new GlobalSearchService(dataService, logger);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();

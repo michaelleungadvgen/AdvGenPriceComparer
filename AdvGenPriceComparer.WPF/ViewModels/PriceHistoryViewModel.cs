@@ -9,6 +9,10 @@ using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
@@ -23,12 +27,20 @@ public class PriceHistoryViewModel : ViewModelBase
     private ObservableCollection<Place> _places;
     private PriceRecordViewModel? _selectedPriceRecord;
     private Item? _selectedItem;
+    private Item? _selectedChartItem;
     private Place? _selectedPlace;
+    private Place? _selectedComparisonStore;
     private DateTime? _fromDate;
     private DateTime? _toDate;
     private bool _showOnlySales;
+    private bool _showChartSection = false;
     private string _searchText = string.Empty;
     private List<PriceRecordViewModel> _allPriceRecords = new();
+    
+    // Chart properties
+    private ISeries[] _priceHistorySeries = Array.Empty<ISeries>();
+    private Axis[] _chartXAxes = Array.Empty<Axis>();
+    private Axis[] _chartYAxes = Array.Empty<Axis>();
 
     public PriceHistoryViewModel(
         IPriceRecordRepository priceRecordRepository,
@@ -49,6 +61,8 @@ public class PriceHistoryViewModel : ViewModelBase
         DeletePriceRecordCommand = new RelayCommand<PriceRecordViewModel>(DeletePriceRecord);
         RefreshCommand = new RelayCommand(LoadPriceRecords);
         ClearFiltersCommand = new RelayCommand(ClearFilters);
+        ToggleChartViewCommand = new RelayCommand(ToggleChartView);
+        ViewItemChartCommand = new RelayCommand<Item>(ViewItemChart);
 
         LoadData();
     }
@@ -85,6 +99,24 @@ public class PriceHistoryViewModel : ViewModelBase
             if (SetProperty(ref _selectedItem, value))
             {
                 FilterPriceRecords();
+                // Auto-show chart when item is selected
+                if (value != null)
+                {
+                    SelectedChartItem = value;
+                    UpdateChart();
+                }
+            }
+        }
+    }
+
+    public Item? SelectedChartItem
+    {
+        get => _selectedChartItem;
+        set
+        {
+            if (SetProperty(ref _selectedChartItem, value))
+            {
+                UpdateChart();
             }
         }
     }
@@ -97,6 +129,18 @@ public class PriceHistoryViewModel : ViewModelBase
             if (SetProperty(ref _selectedPlace, value))
             {
                 FilterPriceRecords();
+            }
+        }
+    }
+
+    public Place? SelectedComparisonStore
+    {
+        get => _selectedComparisonStore;
+        set
+        {
+            if (SetProperty(ref _selectedComparisonStore, value))
+            {
+                UpdateChart();
             }
         }
     }
@@ -137,6 +181,12 @@ public class PriceHistoryViewModel : ViewModelBase
         }
     }
 
+    public bool ShowChartSection
+    {
+        get => _showChartSection;
+        set => SetProperty(ref _showChartSection, value);
+    }
+
     public string SearchText
     {
         get => _searchText;
@@ -149,6 +199,41 @@ public class PriceHistoryViewModel : ViewModelBase
         }
     }
 
+    // Chart Properties
+    public ISeries[] PriceHistorySeries
+    {
+        get => _priceHistorySeries;
+        set => SetProperty(ref _priceHistorySeries, value);
+    }
+
+    public Axis[] ChartXAxes
+    {
+        get => _chartXAxes;
+        set => SetProperty(ref _chartXAxes, value);
+    }
+
+    public Axis[] ChartYAxes
+    {
+        get => _chartYAxes;
+        set => SetProperty(ref _chartYAxes, value);
+    }
+
+    // Chart Statistics
+    public string ChartTitle => SelectedChartItem != null 
+        ? $"Price History: {SelectedChartItem.Name}" 
+        : "Price History";
+    
+    public string ChartSubtitle => SelectedChartItem != null 
+        ? $"Track price changes over time for {SelectedChartItem.Brand} {SelectedChartItem.Name}" 
+        : "Select an item to view price history";
+
+    public string CurrentPriceText => GetCurrentPrice()?.ToString("$0.00") ?? "N/A";
+    public string LowestPriceText => GetLowestPrice()?.ToString("$0.00") ?? "N/A";
+    public string HighestPriceText => GetHighestPrice()?.ToString("$0.00") ?? "N/A";
+    public string AveragePriceText => GetAveragePrice()?.ToString("$0.00") ?? "N/A";
+
+    public ObservableCollection<Place> AvailableStores => _places;
+
     public string RecordCountText => $"{PriceRecords.Count} price records";
 
     public ICommand AddPriceRecordCommand { get; }
@@ -156,6 +241,8 @@ public class PriceHistoryViewModel : ViewModelBase
     public ICommand DeletePriceRecordCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand ClearFiltersCommand { get; }
+    public ICommand ToggleChartViewCommand { get; }
+    public ICommand ViewItemChartCommand { get; }
 
     private void LoadData()
     {
@@ -272,7 +359,166 @@ public class PriceHistoryViewModel : ViewModelBase
         ToDate = null;
         ShowOnlySales = false;
         SearchText = string.Empty;
+        ShowChartSection = false;
         FilterPriceRecords();
+    }
+
+    private void ToggleChartView()
+    {
+        ShowChartSection = !ShowChartSection;
+        if (ShowChartSection && SelectedChartItem != null)
+        {
+            UpdateChart();
+        }
+    }
+
+    private void ViewItemChart(Item? item)
+    {
+        if (item == null) return;
+        
+        SelectedChartItem = item;
+        ShowChartSection = true;
+        UpdateChart();
+    }
+
+    private void UpdateChart()
+    {
+        if (SelectedChartItem == null) return;
+
+        try
+        {
+            // Get price history for the selected item
+            var history = _priceRecordRepository.GetPriceHistory(SelectedChartItem.Id, FromDate, ToDate)
+                .OrderBy(r => r.DateRecorded)
+                .ToList();
+
+            if (!history.Any())
+            {
+                PriceHistorySeries = Array.Empty<ISeries>();
+                return;
+            }
+
+            // Group by store
+            var stores = history.Select(r => r.PlaceId).Distinct().ToList();
+            var series = new List<ISeries>();
+            var colors = new[] { 
+                new SKColor(37, 99, 235),   // Blue
+                new SKColor(220, 38, 38),   // Red
+                new SKColor(22, 163, 74),   // Green
+                new SKColor(234, 179, 8),   // Yellow
+                new SKColor(147, 51, 234),  // Purple
+                new SKColor(236, 72, 153)   // Pink
+            };
+
+            int colorIndex = 0;
+            foreach (var storeId in stores)
+            {
+                var store = _placeRepository.GetById(storeId);
+                var storeHistory = history.Where(r => r.PlaceId == storeId).ToList();
+                
+                var lineSeries = new LineSeries<decimal>
+                {
+                    Name = store?.Name ?? $"Store {storeId[..8]}",
+                    Values = storeHistory.Select(r => r.Price).ToArray(),
+                    Stroke = new SolidColorPaint(colors[colorIndex % colors.Length]) { StrokeThickness = 3 },
+                    Fill = null,
+                    GeometrySize = 8,
+                    GeometryStroke = new SolidColorPaint(colors[colorIndex % colors.Length]) { StrokeThickness = 2 },
+                    LineSmoothness = 0.5
+                };
+                
+                series.Add(lineSeries);
+                colorIndex++;
+            }
+
+            // Add comparison store if selected
+            if (SelectedComparisonStore != null && 
+                !stores.Contains(SelectedComparisonStore.Id) && 
+                SelectedComparisonStore.Id != SelectedChartItem.Id)
+            {
+                var comparisonHistory = _priceRecordRepository.GetPriceHistory(SelectedChartItem.Id, FromDate, ToDate)
+                    .Where(r => r.PlaceId == SelectedComparisonStore.Id)
+                    .OrderBy(r => r.DateRecorded)
+                    .ToList();
+
+                if (comparisonHistory.Any())
+                {
+                    var comparisonSeries = new LineSeries<decimal>
+                    {
+                        Name = $"{SelectedComparisonStore.Name} (Compare)",
+                        Values = comparisonHistory.Select(r => r.Price).ToArray(),
+                        Stroke = new SolidColorPaint(new SKColor(100, 100, 100)) { StrokeThickness = 2 },
+                        Fill = null,
+                        GeometrySize = 6,
+                        LineSmoothness = 0.5
+                    };
+                    series.Add(comparisonSeries);
+                }
+            }
+
+            PriceHistorySeries = series.ToArray();
+
+            // Get all unique dates for X-axis
+            var allDates = history.Select(r => r.DateRecorded).Distinct().OrderBy(d => d).ToList();
+            
+            ChartXAxes = new[]
+            {
+                new Axis
+                {
+                    Name = "Date",
+                    Labels = allDates.Select(d => d.ToString("dd/MM")).ToArray(),
+                    LabelsRotation = 45,
+                    TextSize = 12
+                }
+            };
+
+            ChartYAxes = new[]
+            {
+                new Axis
+                {
+                    Name = "Price ($)",
+                    TextSize = 12,
+                    Labeler = value => $"${value:F2}"
+                }
+            };
+
+            // Update statistics
+            OnPropertyChanged(nameof(ChartTitle));
+            OnPropertyChanged(nameof(ChartSubtitle));
+            OnPropertyChanged(nameof(CurrentPriceText));
+            OnPropertyChanged(nameof(LowestPriceText));
+            OnPropertyChanged(nameof(HighestPriceText));
+            OnPropertyChanged(nameof(AveragePriceText));
+        }
+        catch (Exception ex)
+        {
+            _dialogService.ShowError($"Failed to update chart: {ex.Message}");
+        }
+    }
+
+    private decimal? GetCurrentPrice()
+    {
+        if (SelectedChartItem == null) return null;
+        var latest = _priceRecordRepository.GetLatestPrice(SelectedChartItem.Id, null);
+        return latest?.Price;
+    }
+
+    private decimal? GetLowestPrice()
+    {
+        if (SelectedChartItem == null) return null;
+        return _priceRecordRepository.GetLowestPrice(SelectedChartItem.Id);
+    }
+
+    private decimal? GetHighestPrice()
+    {
+        if (SelectedChartItem == null) return null;
+        return _priceRecordRepository.GetHighestPrice(SelectedChartItem.Id);
+    }
+
+    private decimal? GetAveragePrice()
+    {
+        if (SelectedChartItem == null) return null;
+        return _priceRecordRepository.GetAveragePrice(SelectedChartItem.Id);
     }
 
     private void AddPriceRecord()
