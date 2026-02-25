@@ -1100,7 +1100,7 @@ public class MockDataGenerator
 - [x] Implement ViewModel tests
 - [x] Create integration tests - 7 comprehensive xUnit integration tests covering ImportThenExport, ExportAndReimport, ImportMultipleFormats, DateFiltering, StoreFiltering, Compression, and DuplicateData handling
 - [x] Set up CI/CD pipeline for automated testing - Agent-018: Updated GitHub Actions for WPF build with .NET 9
-- [ ] Generate code coverage reports
+- [x] Generate code coverage reports - Agent-019: Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage)
 - [ ] Document testing strategy
 
 ### 8.9 Import Enhancements (Completed)

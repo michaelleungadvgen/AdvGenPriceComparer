@@ -52,7 +52,7 @@
 | Create integration tests | 🟢 DONE | Agent-014 | Created 7 comprehensive xUnit integration tests for Import/Export workflows |
 | Test JSON import with older format (coles_24072025.json) | 🟢 DONE | Agent-017 | Created 3 xUnit tests for older JSON format compatibility - all tests passing |
 | Set up CI/CD pipeline | 🟢 DONE | Agent-018 | Updated GitHub Actions for WPF build, .NET 9, and test execution |
-| Generate code coverage reports | 🔴 TODO | - | Code coverage reporting |
+| Generate code coverage reports | 🟢 DONE | Agent-019 | Added coverlet.runsettings, generates cobertura and JSON coverage data (27.67% line coverage) |
 
 ---
 
@@ -106,6 +106,11 @@
 - **Completed:** 2026-02-25
 - **Notes:** Updated workflow to build WPF project (not WinUI), added .NET 9 support, added test execution with 217 tests passing
 
+### Agent-019
+- **Completed Task:** Generate code coverage reports - Added code coverage to CI/CD
+- **Completed:** 2026-02-25
+- **Notes:** Added coverlet.runsettings, generates cobertura and JSON coverage data in CI, reports 27.67% line coverage
+
 ---
 
 ## Completed Tasks Log
@@ -132,6 +137,7 @@
 | 2026-02-25 | Add import progress UI updates - Implemented percentage-based progress bar with current item display in Step 3 import dialog | Agent-016 |
 | 2026-02-25 | Test JSON import with older format (coles_24072025.json) - Created 3 xUnit tests for older JSON format compatibility | Agent-017 |
 | 2026-02-25 | Set up CI/CD pipeline - Updated GitHub Actions for WPF build, .NET 9, test execution (217 tests passing) | Agent-018 |
+| 2026-02-25 | Generate code coverage reports - Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage) | Agent-019 |
 
 ---
 

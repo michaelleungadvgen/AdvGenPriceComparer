@@ -61,8 +61,13 @@ jobs:
     - name: Build solution
       run: dotnet build AdvGenPriceComparer.sln --no-restore
 
-    - name: Run Tests
-      run: dotnet test AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj --no-build --verbosity normal --collect:"XPlat Code Coverage"
+    - name: Run Tests with Coverage
+      run: dotnet test AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings "AdvGenPriceComparer.Tests/coverlet.runsettings"
+
+    - name: Generate Coverage Report
+      run: |
+        dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.2.0 || true
+        reportgenerator -reports:AdvGenPriceComparer.Tests/TestResults/**/*.xml -targetdir:coverage-report -reporttypes:Html
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v4
@@ -71,10 +76,15 @@ jobs:
         name: Test-Results
         path: |
           **/TestResults/**/*.trx
-          **/coverage.cobertura.xml
 
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v4
       with:
-        name: Coverage-Report
-        path: **/coverage.cobertura.xml
+        name: Coverage-Report-HTML
+        path: coverage-report/**
+
+    - name: Upload Coverage Data
+      uses: actions/upload-artifact@v4
+      with:
+        name: Coverage-Data
+        path: AdvGenPriceComparer.Tests/TestResults/**/*.xml
