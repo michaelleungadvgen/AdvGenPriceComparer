@@ -74,24 +74,35 @@ public partial class App : Application
 
             // Core Services
             services.AddSingleton<ILoggerService, FileLoggerService>();
-            services.AddSingleton<IGroceryDataService>(provider =>
-                new GroceryDataService(dbPath));
             services.AddSingleton<IDialogService, SimpleDialogService>();
             services.AddSingleton<INotificationService, SimpleNotificationService>();
             services.AddSingleton<ServerConfigService>(provider =>
                 new ServerConfigService(serverConfigPath));
             services.AddSingleton<NetworkManager>();
 
-            // Data Services
+            // Database Service - SINGLE instance shared across all services
+            services.AddSingleton<DatabaseService>(provider =>
+                new DatabaseService(dbPath));
+
+            // Data Services - all use the shared DatabaseService
+            services.AddSingleton<IGroceryDataService>(provider =>
+            {
+                var dbService = provider.GetRequiredService<DatabaseService>();
+                return new GroceryDataService(dbService);
+            });
             services.AddTransient<DemoDataService>();
             services.AddTransient<JsonImportService>(provider =>
             {
-                var dbService = new DatabaseService(dbPath);
-                return new JsonImportService(dbService);
+                var dbService = provider.GetRequiredService<DatabaseService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new JsonImportService(dbService, 
+                    msg => logger.LogInfo(msg),
+                    (msg, ex) => logger.LogError(msg, ex),
+                    msg => logger.LogWarning(msg));
             });
             services.AddTransient<ExportService>(provider =>
             {
-                var dbService = new DatabaseService(dbPath);
+                var dbService = provider.GetRequiredService<DatabaseService>();
                 var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
                 var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
                 var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);

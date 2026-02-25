@@ -24,6 +24,18 @@ public class GroceryDataService : IGroceryDataService
         InitializeDefaultData();
     }
 
+    public GroceryDataService(DatabaseService databaseService)
+    {
+        _database = databaseService;
+        Items = new ItemRepository(_database);
+        Places = new PlaceRepository(_database);
+        PriceRecords = new PriceRecordRepository(_database);
+        Alerts = new AlertRepository(_database);
+
+        // Initialize with default supermarket chains if database is empty
+        InitializeDefaultData();
+    }
+
     public IItemRepository Items { get; }
     public IPlaceRepository Places { get; }
     public IPriceRecordRepository PriceRecords { get; }
