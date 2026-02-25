@@ -80,6 +80,15 @@ public partial class App : Application
                 new ServerConfigService(serverConfigPath));
             services.AddSingleton<NetworkManager>();
 
+            // Settings Service - Load settings on startup
+            services.AddSingleton<ISettingsService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var settingsService = new SettingsService(logger);
+                settingsService.LoadSettingsAsync().Wait();
+                return settingsService;
+            });
+
             // Database Service - SINGLE instance shared across all services
             services.AddSingleton<DatabaseService>(provider =>
                 new DatabaseService(dbPath));

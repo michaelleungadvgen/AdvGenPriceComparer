@@ -104,6 +104,7 @@ Links a grocery `Item` to a supermarket `Place` with timestamp and price data - 
 - **PlaceRepository**: CRUD operations for supermarket locations with geospatial support
 - **PriceRecordRepository**: Price tracking with historical analysis
 - **GroceryDataService**: High-level service combining all repositories
+- **SettingsService**: Application settings management with JSON persistence (ISettingsService)
 
 ## Known Issues
 

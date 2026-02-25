@@ -2647,8 +2647,8 @@ private void ConfigureServices(IServiceCollection services)
 - [ ] Create `DatabaseProviderFactory`
 - [ ] Implement `LiteDbProvider`
 - [ ] Implement `AdvGenNoSqlProvider` (client-side)
-- [ ] Create `ISettingsService` interface
-- [ ] Implement `SettingsService`
+- [x] Create `ISettingsService` interface (Agent-026)
+- [x] Implement `SettingsService` with JSON persistence (Agent-026)
 - [ ] Create `SettingsWindow.xaml` UI
 - [ ] Create `SettingsViewModel`
 - [ ] Update `App.xaml.cs` for provider selection
