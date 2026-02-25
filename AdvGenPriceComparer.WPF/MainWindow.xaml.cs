@@ -222,17 +222,11 @@ public partial class MainWindow : FluentWindow
             logger.LogInfo("Getting services from DI container");
             var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
             var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var jsonImportService = ((App)Application.Current).Services.GetRequiredService<JsonImportService>();
             logger.LogInfo("Services retrieved successfully");
 
-            // Get database path
-            var appDataPath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                "AdvGenPriceComparer");
-            var dbPath = Path.Combine(appDataPath, "GroceryPrices.db");
-            logger.LogInfo($"Database path: {dbPath}");
-
             logger.LogInfo("Creating ImportDataViewModel");
-            var viewModel = new ImportDataViewModel(dataService, dialogService, dbPath);
+            var viewModel = new ImportDataViewModel(dataService, dialogService, jsonImportService);
             logger.LogInfo("ImportDataViewModel created");
 
             logger.LogInfo("Creating ImportDataWindow");
