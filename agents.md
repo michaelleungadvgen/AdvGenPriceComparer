@@ -150,3 +150,24 @@ Services are registered in `AdvGenPriceComparer.WPF/App.xaml.cs` in the `Configu
   var priceRepo = new PriceRecordRepository(dbService);
   ```
 - Repository methods: `Add()`, `GetAll()`, `GetById()`, `Update()`, `Delete()`
+
+### JSON Serialization
+When using `System.Text.Json` for configuration files:
+- For SERIALIZING (writing): Use `PropertyNamingPolicy = JsonNamingPolicy.CamelCase`
+- For DESERIALIZING (reading): Use `PropertyNameCaseInsensitive = true`
+- Example from ServerConfigService:
+  ```csharp
+  // Writing
+  var writeOptions = new JsonSerializerOptions
+  {
+      PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+  };
+  var json = JsonSerializer.Serialize(servers, writeOptions);
+  
+  // Reading
+  var readOptions = new JsonSerializerOptions
+  {
+      PropertyNameCaseInsensitive = true
+  };
+  var servers = JsonSerializer.Deserialize<List<ServerInfo>>(json, readOptions);
+  ```
