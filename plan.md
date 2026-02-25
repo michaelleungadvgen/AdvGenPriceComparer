@@ -1093,7 +1093,7 @@ public class MockDataGenerator
 - [x] Set up xUnit test project
 - [x] Install testing dependencies (xUnit, Moq, FluentAssertions)
 - [x] Create test data samples
-- [x] Implement JsonImportService tests (all scenarios)
+- [x] Implement JsonImportService tests (all scenarios) - Agent-012: 24 comprehensive xUnit tests created covering PreviewImportAsync, ImportFromFile, ImportColesProducts, price parsing, progress tracking, and error handling
 - [x] Implement ServerConfigService tests
 - [x] Implement ExportService tests
 - [x] Implement Repository layer tests
