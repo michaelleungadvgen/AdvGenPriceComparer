@@ -48,6 +48,10 @@
 | Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
 | Add import progress UI updates | 🔴 TODO | - | Progress bar implementation |
 | Create comprehensive JsonImportService unit tests | 🟢 DONE | Agent-012 | 24 comprehensive xUnit tests created and passing - covers PreviewImportAsync, ImportFromFile, ImportColesProducts, progress reporting, price parsing, and error handling |
+| Implement ViewModel tests | 🟢 DONE | Agent-013 | 44 comprehensive xUnit tests created for MainWindowViewModel, ItemViewModel, ImportDataViewModel |
+| Create integration tests | 🔴 TODO | - | Import/Export integration tests |
+| Set up CI/CD pipeline | 🔴 TODO | - | Azure DevOps/GitHub Actions |
+| Generate code coverage reports | 🔴 TODO | - | Code coverage reporting |
 
 ---
 
@@ -116,6 +120,7 @@
 | 2026-02-25 | Implement ServerConfigService tests - 30 tests created, fixed JSON deserialization bug | Agent-010 |
 | 2026-02-25 | Implement Repository layer tests - 98 xUnit tests for ItemRepository, PlaceRepository, PriceRecordRepository | Agent-011 |
 | 2026-02-25 | Create comprehensive JsonImportService unit tests - 24 xUnit tests for JSON parsing, import results, progress tracking, error handling | Agent-012 |
+| 2026-02-25 | Implement ViewModel tests - 44 comprehensive xUnit tests for MainWindowViewModel, ItemViewModel, ImportDataViewModel | Agent-013 |
 
 ---
 

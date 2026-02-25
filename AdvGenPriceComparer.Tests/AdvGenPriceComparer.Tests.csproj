@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj" />
     <ProjectReference Include="..\AdvGenPriceComparer.Data.LiteDB\AdvGenPriceComparer.Data.LiteDB.csproj" />
+    <ProjectReference Include="..\AdvGenPriceComparer.WPF\AdvGenPriceComparer.WPF.csproj" />
   </ItemGroup>
 
   <ItemGroup>

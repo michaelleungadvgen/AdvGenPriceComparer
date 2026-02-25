@@ -1097,7 +1097,7 @@ public class MockDataGenerator
 - [x] Implement ServerConfigService tests
 - [x] Implement ExportService tests
 - [x] Implement Repository layer tests
-- [ ] Implement ViewModel tests
+- [x] Implement ViewModel tests
 - [ ] Create integration tests
 - [ ] Set up CI/CD pipeline for automated testing
 - [ ] Generate code coverage reports
