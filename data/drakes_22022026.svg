@@ -1,0 +1,129 @@
+<svg width="800" height="2000" viewBox="0 0 800 2000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="2000" fill="#F7F3E9" />
+
+<!-- 主標題區域 -->
+<rect x="30" y="30" width="740" height="120" rx="20" fill="#C8102E" />
+<path d="M70 70 L730 70 L710 110 L90 110 L70 70Z" fill="#FFD100" />
+<text x="400" y="95" font-family="Arial Black, sans-serif" font-size="42" font-weight="900" fill="#C8102E" text-anchor="middle">本週超市優惠速報</text>
+<text x="400" y="135" font-family="Arial, sans-serif" font-size="28" fill="white" text-anchor="middle">Drakes  &  ALDI  精選</text>
+<text x="400" y="175" font-family="Arial, sans-serif" font-size="24" fill="#FFD100" text-anchor="middle">2月18日 - 2月24日</text>
+
+<!-- 街坊引言 -->
+<text x="40" y="220" font-family="Arial, sans-serif" font-size="22" fill="#333333">各位街坊，本週兩大超市優惠超級抵！快啲睇下有咩筍貨！</text>
+
+<!-- Drakes 半價專區標題 -->
+<rect x="30" y="250" width="350" height="50" rx="25" fill="#0047AB" />
+<text x="205" y="285" font-family="Arial Black, sans-serif" font-size="28" fill="white" text-anchor="middle">🦞 DRAKES 半價專區</text>
+
+<!-- 海鮮類卡片 -->
+<rect x="30" y="310" width="350" height="220" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="50" y="345" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">🦐 海鮮類</text>
+<line x1="50" y1="355" x2="360" y2="355" stroke="#C8102E" stroke-width="2" />
+<text x="50" y="385" font-family="Arial, sans-serif" font-size="18" fill="#333333">I & J 去尾生蝦 500g</text>
+<text x="50" y="415" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$12 <tspan font-size="16" fill="#666666">(原價$24，慳$12！)</tspan></text>
+<text x="50" y="455" font-family="Arial, sans-serif" font-size="18" fill="#333333">Coffin Bay 生蠔</text>
+<text x="50" y="485" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$1.50/隻</text>
+<text x="50" y="525" font-family="Arial, sans-serif" font-size="18" fill="#333333">藍青口 1kg</text>
+<text x="50" y="555" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$6.90</text>
+
+<!-- 肉類超值卡片 -->
+<rect x="30" y="540" width="350" height="270" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="50" y="575" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">🥩 肉類超值</text>
+<line x1="50" y1="585" x2="360" y2="585" stroke="#C8102E" stroke-width="2" />
+<text x="50" y="615" font-family="Arial, sans-serif" font-size="18" fill="#333333">無骨豬腿肉</text>
+<text x="50" y="645" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$9.50/kg <tspan font-size="16" fill="#666666">(慳$9.50！)</tspan></text>
+<text x="50" y="685" font-family="Arial, sans-serif" font-size="18" fill="#333333">牛臀扒（大盤裝）</text>
+<text x="50" y="715" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$22.90/kg <tspan font-size="16" fill="#666666">(慳$6.90)</tspan></text>
+<text x="50" y="755" font-family="Arial, sans-serif" font-size="18" fill="#333333">羊前腿扒（大盤裝）</text>
+<text x="50" y="785" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$6.90/kg <tspan font-size="16" fill="#666666">(慳$3.30)</tspan></text>
+<text x="50" y="825" font-family="Arial, sans-serif" font-size="18" fill="#333333">雞/火雞免治肉 500g</text>
+<text x="50" y="855" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$5.00 <tspan font-size="16" fill="#666666">(慳$5.50！)</tspan></text>
+
+<!-- 日用品必搶卡片 -->
+<rect x="30" y="820" width="350" height="270" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="50" y="855" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">🧴 日用品必搶</text>
+<line x1="50" y1="865" x2="360" y2="865" stroke="#C8102E" stroke-width="2" />
+<text x="50" y="895" font-family="Arial, sans-serif" font-size="18" fill="#333333">Cold Power 洗衣液1L/洗衣粉2kg</text>
+<text x="50" y="925" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$9 <tspan font-size="16" fill="#666666">(原價$21，慳$12！)</tspan></text>
+<text x="50" y="965" font-family="Arial, sans-serif" font-size="18" fill="#333333">Finish 洗碗機丸 46粒</text>
+<text x="50" y="995" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$24.50 <tspan font-size="16" fill="#666666">(半價！)</tspan></text>
+<text x="50" y="1035" font-family="Arial, sans-serif" font-size="18" fill="#333333">Vanish NapiSan 去漬粉 2kg</text>
+<text x="50" y="1065" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$19 <tspan font-size="16" fill="#666666">(半價！)</tspan></text>
+
+<!-- 零食飲品卡片 -->
+<rect x="30" y="1100" width="350" height="260" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="50" y="1135" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">🍫 零食/飲品</text>
+<line x1="50" y1="1145" x2="360" y2="1145" stroke="#C8102E" stroke-width="2" />
+<text x="50" y="1175" font-family="Arial, sans-serif" font-size="18" fill="#333333">Lindt 朱古力 80g-100g</text>
+<text x="50" y="1205" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$3.50 <tspan font-size="16" fill="#666666">(半價！)</tspan></text>
+<text x="50" y="1245" font-family="Arial, sans-serif" font-size="18" fill="#333333">Cadbury 分享裝 120g-180g</text>
+<text x="50" y="1275" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$3.50 <tspan font-size="16" fill="#666666">(慳$3.75)</tspan></text>
+<text x="50" y="1315" font-family="Arial, sans-serif" font-size="18" fill="#333333">Pepsi/Solo/Schweppes 1.25L</text>
+<text x="50" y="1345" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$1.65 <tspan font-size="16" fill="#666666">(慳$2！)</tspan></text>
+
+<!-- ALDI Special Buys 標題 -->
+<rect x="420" y="250" width="350" height="50" rx="25" fill="#005A9C" />
+<text x="595" y="285" font-family="Arial Black, sans-serif" font-size="28" fill="white" text-anchor="middle">🛒 ALDI Special Buys</text>
+
+<!-- ALDI 廚房用品 2/18 -->
+<rect x="420" y="310" width="350" height="170" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="440" y="345" font-family="Arial Black, sans-serif" font-size="22" fill="#005A9C">2月18日 (三) 廚房用品</text>
+<line x1="440" y1="355" x2="750" y2="355" stroke="#005A9C" stroke-width="2" />
+<text x="440" y="385" font-family="Arial, sans-serif" font-size="18" fill="#333333">DE'LONGHI Stilosa 意式咖啡機</text>
+<text x="440" y="415" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$99.99</text>
+<text x="440" y="455" font-family="Arial, sans-serif" font-size="18" fill="#333333">BRAUN PureEase 食物處理器</text>
+<text x="440" y="485" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$89.99</text>
+
+<!-- ALDI 廚房用品第二行 (因空間分兩行) -->
+<text x="440" y="525" font-family="Arial, sans-serif" font-size="18" fill="#333333">AMBIANO 真空封口機</text>
+<text x="440" y="555" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$49.99</text>
+<text x="590" y="525" font-family="Arial, sans-serif" font-size="18" fill="#333333">AMBIANO 電熱水壺 1.7L</text>
+<text x="590" y="555" font-family="Arial Black, sans-serif" font-size="22" fill="#C8102E">$24.99</text>
+
+<!-- ALDI 英國美食週 2/21 -->
+<rect x="420" y="490" width="350" height="190" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="440" y="525" font-family="Arial Black, sans-serif" font-size="22" fill="#005A9C">2月21日 (六) 英國美食週</text>
+<line x1="440" y1="535" x2="750" y2="535" stroke="#005A9C" stroke-width="2" />
+<text x="440" y="565" font-family="Arial, sans-serif" font-size="18" fill="#333333">Yorkshire Tea 100包</text><text x="600" y="565" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$5.79</text>
+<text x="440" y="595" font-family="Arial, sans-serif" font-size="18" fill="#333333">McVitie's Jaffa Cakes</text><text x="600" y="595" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$1.99</text>
+<text x="440" y="625" font-family="Arial, sans-serif" font-size="18" fill="#333333">McVitie's 朱古力消化餅</text><text x="600" y="625" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$2.75</text>
+<text x="440" y="655" font-family="Arial, sans-serif" font-size="18" fill="#333333">Jammie Dodgers 覆盆子餅</text><text x="600" y="655" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$2.25</text>
+<text x="440" y="685" font-family="Arial, sans-serif" font-size="18" fill="#333333">Pot Noodle 杯麵</text><text x="600" y="685" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$3.49</text>
+
+<!-- ALDI 遊戲娛樂 2/21 -->
+<rect x="420" y="690" width="350" height="150" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="440" y="725" font-family="Arial Black, sans-serif" font-size="22" fill="#005A9C">2月21日 (六) 遊戲娛樂</text>
+<line x1="440" y1="735" x2="750" y2="735" stroke="#005A9C" stroke-width="2" />
+<text x="440" y="765" font-family="Arial, sans-serif" font-size="18" fill="#333333">Pokémon 迷你鐵盒</text><text x="620" y="765" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$16.99</text>
+<text x="440" y="795" font-family="Arial, sans-serif" font-size="18" fill="#333333">Pokémon 公仔 8吋</text><text x="620" y="795" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$12.99</text>
+<text x="440" y="825" font-family="Arial, sans-serif" font-size="18" fill="#333333">Mario 賽車軌道 2.4m</text><text x="620" y="825" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$49.99</text>
+
+<!-- ALDI 嬰兒用品 2/25 -->
+<rect x="420" y="850" width="350" height="160" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="440" y="885" font-family="Arial Black, sans-serif" font-size="22" fill="#005A9C">2月25日 (三) 嬰兒用品</text>
+<line x1="440" y1="895" x2="750" y2="895" stroke="#005A9C" stroke-width="2" />
+<text x="440" y="925" font-family="Arial, sans-serif" font-size="18" fill="#333333">MAMIA 學步褲 60片</text><text x="640" y="925" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$16.49</text>
+<text x="440" y="955" font-family="Arial, sans-serif" font-size="18" fill="#333333">Fisher Price 嬰兒護理套裝</text><text x="640" y="955" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$9.99</text>
+<text x="440" y="985" font-family="Arial, sans-serif" font-size="18" fill="#333333">嬰兒睡袋/睡衣</text><text x="640" y="985" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$24.99</text>
+
+<!-- ALDI 寵物用品 2/25 -->
+<rect x="420" y="1020" width="350" height="170" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="440" y="1055" font-family="Arial Black, sans-serif" font-size="22" fill="#005A9C">2月25日 (三) 寵物用品</text>
+<line x1="440" y1="1065" x2="750" y2="1065" stroke="#005A9C" stroke-width="2" />
+<text x="440" y="1095" font-family="Arial, sans-serif" font-size="18" fill="#333333">寵物樓梯</text><text x="620" y="1095" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$39.99</text>
+<text x="440" y="1125" font-family="Arial, sans-serif" font-size="18" fill="#333333">記憶棉寵物墊</text><text x="620" y="1125" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$19.99</text>
+<text x="440" y="1155" font-family="Arial, sans-serif" font-size="18" fill="#333333">記憶棉寵物床（中）</text><text x="620" y="1155" font-family="Arial Black, sans-serif" font-size="18" fill="#C8102E">$49.99</text>
+
+<!-- 底部金句 + Hashtags -->
+<rect x="30" y="1800" width="740" height="130" rx="20" fill="#FFD100" />
+<text x="400" y="1850" font-family="Arial Black, sans-serif" font-size="40" fill="#C8102E" text-anchor="middle">精明消費，慳得就慳！</text>
+<text x="400" y="1905" font-family="Arial, sans-serif" font-size="26" fill="#333333" text-anchor="middle">記得share俾朋友仔！ 🤝</text>
+
+<text x="30" y="1950" font-family="Arial, sans-serif" font-size="18" fill="#666666" >#布里斯本 #澳洲華人 #超市優惠 #Drakes #ALDI #半價 #精明消費 #每週優惠</text>
+<text x="30" y="1980" font-family="Arial, sans-serif" font-size="18" fill="#666666" >#Brisbane #悉尼 #墨爾本 #澳洲生活</text>
+
+<!-- 小插圖裝飾 -->
+<circle cx="700" cy="1840" r="25" fill="#C8102E" />
+<circle cx="750" cy="1840" r="25" fill="#0047AB" />
+<text x="725" y="1855" font-family="Arial Black, sans-serif" font-size="30" fill="white" text-anchor="middle" alignment-baseline="middle">$</text>
+</svg>

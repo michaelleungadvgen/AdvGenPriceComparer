@@ -1,0 +1,79 @@
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="500" height="600">
+            <!-- Background -->
+            <rect width="100%" height="100%" fill="#FFFFFF"/>
+            
+            <!-- Header with gradient -->
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#4267B2"/>
+                    <stop offset="100%" stop-color="#3A5AA2"/>
+                </linearGradient>
+            </defs>
+            <rect width="100%" height="60" fill="url(#gradient)"/>
+            
+            <!-- Facebook Logo -->
+            <g transform="translate(20, 15)">
+                <circle cx="15" cy="15" r="15" fill="#FFF"/>
+                <path d="M22.5 7.5H17.5V5c0-1.5 0.7-2.5 2.5-2.5h2.5V0H17.5C14.2 0 12.5 2.2 12.5 5v2.5H10V12h2.5V22.5H17.5V12H21L22.5 7.5z" fill="#4267B2"/>
+            </g>
+            
+            <!-- Title -->
+            <text x="250" y="40" text-anchor="middle" fill="#FFF" font-weight="bold" font-size="18">AI 智能優惠分析</text>
+            
+            <!-- Content -->
+            <text x="250" y="90" text-anchor="middle" fill="#333" font-weight="bold" font-size="20">🤖 澳洲頂級零售商最佳優惠 🛒</text>
+            
+            <!-- AI Tracking Info -->
+            <text x="250" y="120" text-anchor="middle" fill="#666" font-size="14">透過 AI 智能價格追蹤，發現 JB Hi-Fi、The Good Guys 和 Harvey Norman 的最佳優惠</text>
+            
+            <!-- Product List -->
+            <g font-size="14" fill="#333">
+                <!-- Product 1 -->
+                <circle cx="40" cy="160" r="5" fill="#4267B2"/>
+                <text x="55" y="164" font-weight="bold">Samsung Galaxy Watch7 44mm (綠色)</text>
+                <text x="55" y="182" fill="#E51A1A">$278 - 促銷中</text>
+                
+                <!-- Product 2 -->
+                <circle cx="40" cy="200" r="5" fill="#4267B2"/>
+                <text x="55" y="204" font-weight="bold">Samsung Galaxy S25 256GB (藍色)</text>
+                <text x="55" y="222" fill="#E51A1A">$987 - 促銷中</text>
+                
+                <!-- Product 3 -->
+                <circle cx="40" cy="240" r="5" fill="#4267B2"/>
+                <text x="55" y="244" font-weight="bold">DeLonghi Vertuo Pop Nespresso 咖啡機</text>
+                <text x="55" y="262" fill="#E51A1A">$98 - 促銷中</text>
+                
+                <!-- Product 4 -->
+                <circle cx="40" cy="280" r="5" fill="#4267B2"/>
+                <text x="55" y="284" font-weight="bold">Belkin BoostUp Charge 10K 充電寶</text>
+                <text x="55" y="302" fill="#E51A1A">$59.95 - 套餐購買</text>
+                
+                <!-- Product 5 -->
+                <circle cx="40" cy="320" r="5" fill="#4267B2"/>
+                <text x="55" y="324" font-weight="bold">Ultrahuman Ring Air (金色)</text>
+                <text x="55" y="342" fill="#E51A1A">$599 - 僅限網上</text>
+            </g>
+            
+            <!-- Retailer Logos -->
+            <g transform="translate(150, 370)">
+                <rect x="0" y="0" width="60" height="30" fill="#FF0000" rx="4"/>
+                <text x="30" y="18" text-anchor="middle" fill="#FFF" font-size="12" font-weight="bold">JB</text>
+                <rect x="70" y="0" width="60" height="30" fill="#0066CC" rx="4"/>
+                <text x="100" y="18" text-anchor="middle" fill="#FFF" font-size="12" font-weight="bold">TGG</text>
+                <rect x="140" y="0" width="60" height="30" fill="#006600" rx="4"/>
+                <text x="170" y="18" text-anchor="middle" fill="#FFF" font-size="12" font-weight="bold">HN</text>
+            </g>
+            
+            <!-- Call to Action -->
+            <rect x="150" y="420" width="200" height="40" fill="#4267B2" rx="20"/>
+            <text x="250" y="445" text-anchor="middle" fill="#FFF" font-weight="bold">查看所有優惠</text>
+            
+            <!-- Footer -->
+            <text x="250" y="500" text-anchor="middle" fill="#666" font-size="12">每週更新 | AI 驅動價格追蹤</text>
+            <text x="250" y="520" text-anchor="middle" fill="#999" font-size="10">© 2025 MichaelLeung.info. 保留所有權利。</text>
+            
+            <!-- Decorative Elements -->
+            <circle cx="450" cy="50" r="8" fill="#FF9F43" opacity="0.7"/>
+            <circle cx="400" cy="550" r="12" fill="#4267B2" opacity="0.5"/>
+            <circle cx="50" cy="500" r="10" fill="#E51A1A" opacity="0.4"/>
+        </svg>

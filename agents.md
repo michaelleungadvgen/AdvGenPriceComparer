@@ -112,6 +112,7 @@ dotnet run
 | JsonImportService | AdvGenPriceComparer.Data.LiteDB/Services/ |
 | ServerConfigService | AdvGenPriceComparer.Core/Services/ |
 | ExportService | AdvGenPriceComparer.WPF/Services/ |
+| SettingsService | AdvGenPriceComparer.WPF/Services/ |
 
 ### WPF Converters
 XAML value converters are located in `AdvGenPriceComparer.WPF/Converters/`:
@@ -135,6 +136,11 @@ Services are registered in `AdvGenPriceComparer.WPF/App.xaml.cs` in the `Configu
 4. Update plan.md with progress
 
 ### Testing
+- **AdvGenPriceComparer.Tests**: xUnit test project with 217+ tests
+  - Build: `dotnet build AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj`
+  - Run: `dotnet test AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj`
+  - Coverage: Uses coverlet with runsettings file
+  
 - **TestExportWorkflow**: CLI test project for export workflow testing
   - Location: `TestExportWorkflow/`
   - Build: `dotnet build TestExportWorkflow/TestExportWorkflow.csproj`

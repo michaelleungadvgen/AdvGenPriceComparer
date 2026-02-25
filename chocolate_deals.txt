@@ -1,0 +1,152 @@
+=== PREMIUM CHOCOLATE (Top 20) ===
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Cadbury Dairy Milk Advent Calendar</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$9.00</span>
+                            <span class="savings">Save $4.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Ferrero Collection or Rocher Gift Box</div>
+                        <div class="price-info">
+                            <span class="current-price">$9.50</span>
+                            <span class="original-price">$19.00</span>
+                            <span class="savings">Save $9.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Lindt Lindor Assorted Gift Box</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.00</span>
+                            <span class="original-price">$20.00</span>
+                            <span class="savings">Save $10.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Lindt Lindor Gift Box</div>
+                        <div class="price-info">
+                            <span class="current-price">$14.00</span>
+                            <span class="original-price">$28.00</span>
+                            <span class="savings">Save $14.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Medium Bars 30-55g</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.20</span>
+                            <span class="original-price">$3.00</span>
+                            <span class="savings">Save $1.80</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Advent Calendar 90g</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$9.00</span>
+                            <span class="savings">Save $4.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Woolworths Chocolate Sponge Pudding 500g</div>
+                        <div class="price-info">
+                            <span class="current-price">$8.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Favourites 264-265g</div>
+                        <div class="price-info">
+                            <span class="current-price">$7.00</span>
+                            <span class="original-price">$14.00</span>
+                            <span class="savings">Save $7.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Lindt Lindor Advent Calendar 109g</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Roses Tin 485g</div>
+                        <div class="price-info">
+                            <span class="current-price">$15.00</span>
+                            <span class="original-price">$30.00</span>
+                            <span class="savings">Save $15.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury 3D Christmas Advent Calendar 312g</div>
+                        <div class="price-info">
+                            <span class="current-price">$15.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Lindt Teddy Advent Calendar 170g</div>
+                        <div class="price-info">
+                            <span class="current-price">$20.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Woolworths Chocolate Chunk or Salted Caramel White Chocolate Cookie Pk 5#</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Ice Cream Bars or Sticks 300-360ml Pk 4-6</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                            <span class="original-price">$12.00</span>
+                            <span class="savings">Save $6.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Choc Tops or Oreo Cookie Tops Ice Cream Cones 400ml Pk 4</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.25</span>
+                            <span class="original-price">$12.50</span>
+                            <span class="savings">Save $6.25</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Chocolate Coated Fruit or Nut Varieties 270-340g</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.50</span>
+                            <span class="original-price">$13.00</span>
+                            <span class="savings">Save $6.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+

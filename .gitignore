@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /.claude/settings.local.json
+woolworths_catalogue_parser.py
+woolworths_catalogue_scraper.py

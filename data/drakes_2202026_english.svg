@@ -1,0 +1,127 @@
+<svg width="800" height="2050" viewBox="0 0 800 2050" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="2050" fill="#F2F5F8" />
+
+<!-- Header area with dual-brand colours -->
+<rect x="20" y="20" width="760" height="130" rx="20" fill="#002D62" />
+<rect x="20" y="80" width="760" height="40" fill="#FFCD00" />
+<text x="400" y="65" font-family="Arial Black, sans-serif" font-size="38" font-weight="900" fill="white" text-anchor="middle">Weekly Supermarket Deals</text>
+<text x="400" y="110" font-family="Arial Black, sans-serif" font-size="28" fill="#002D62" text-anchor="middle">Drakes  &  ALDI  Specials</text>
+<text x="400" y="150" font-family="Arial, sans-serif" font-size="22" fill="#333333" text-anchor="middle">18 Feb - 24 Feb 2026</text>
+
+<!-- Intro tagline -->
+<text x="40" y="200" font-family="Arial, sans-serif" font-size="22" fill="#444444">Check out this week's best deals from Drakes and ALDI!</text>
+
+<!-- Drakes Half Price section -->
+<rect x="20" y="220" width="370" height="50" rx="25" fill="#002D62" />
+<text x="205" y="255" font-family="Arial Black, sans-serif" font-size="28" fill="white" text-anchor="middle">🛒 DRAKES HALF PRICE</text>
+
+<!-- Seafood card -->
+<rect x="20" y="280" width="370" height="200" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="40" y="315" font-family="Arial Black, sans-serif" font-size="22" fill="#002D62">🐟 Seafood</text>
+<line x1="40" y1="325" x2="380" y2="325" stroke="#002D62" stroke-width="2" />
+<text x="40" y="355" font-family="Arial, sans-serif" font-size="16" fill="#333333">I & J Raw Prawns Tail Off 500g</text>
+<text x="40" y="380" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$12 <tspan font-size="14" fill="#666666">(was $24, save $12!)</tspan></text>
+<text x="40" y="415" font-family="Arial, sans-serif" font-size="16" fill="#333333">Coffin Bay Oysters</text>
+<text x="40" y="440" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$1.50 each</text>
+<text x="40" y="475" font-family="Arial, sans-serif" font-size="16" fill="#333333">Kinkawooka Blue Mussels 1kg</text>
+<text x="40" y="500" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$6.90</text>
+
+<!-- Meat specials card -->
+<rect x="20" y="490" width="370" height="280" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="40" y="525" font-family="Arial Black, sans-serif" font-size="22" fill="#002D62">🥩 Meat Specials</text>
+<line x1="40" y1="535" x2="380" y2="535" stroke="#002D62" stroke-width="2" />
+<text x="40" y="565" font-family="Arial, sans-serif" font-size="16" fill="#333333">Boneless Pork Leg Roast</text>
+<text x="40" y="590" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$9.50/kg <tspan font-size="14" fill="#666666">(save $9.50!)</tspan></text>
+<text x="40" y="625" font-family="Arial, sans-serif" font-size="16" fill="#333333">Grain Fed Beef Rump Steak (Bulk Tray)</text>
+<text x="40" y="650" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$22.90/kg <tspan font-size="14" fill="#666666">(save $6.90)</tspan></text>
+<text x="40" y="685" font-family="Arial, sans-serif" font-size="16" fill="#333333">Lamb Forequarter Chops (Bulk Tray)</text>
+<text x="40" y="710" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$6.90/kg <tspan font-size="14" fill="#666666">(save $3.30)</tspan></text>
+<text x="40" y="745" font-family="Arial, sans-serif" font-size="16" fill="#333333">Chicken/Turkey Mince 500g</text>
+<text x="40" y="770" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$5.00 <tspan font-size="14" fill="#666666">(save $5.50!)</tspan></text>
+
+<!-- Household must-haves card -->
+<rect x="20" y="780" width="370" height="260" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="40" y="815" font-family="Arial Black, sans-serif" font-size="22" fill="#002D62">🧴 Household Must-Haves</text>
+<line x1="40" y1="825" x2="380" y2="825" stroke="#002D62" stroke-width="2" />
+<text x="40" y="855" font-family="Arial, sans-serif" font-size="16" fill="#333333">Cold Power Laundry Liq 1L / Pwd 2kg</text>
+<text x="40" y="880" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$9 <tspan font-size="14" fill="#666666">(was $21, save $12!)</tspan></text>
+<text x="40" y="915" font-family="Arial, sans-serif" font-size="16" fill="#333333">Finish Dishwasher Tablets 46 Pack</text>
+<text x="40" y="940" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$24.50 <tspan font-size="14" fill="#666666">(HALF PRICE!)</tspan></text>
+<text x="40" y="975" font-family="Arial, sans-serif" font-size="16" fill="#333333">Vanish NapiSan Stain Remover 2kg</text>
+<text x="40" y="1000" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$19 <tspan font-size="14" fill="#666666">(HALF PRICE!)</tspan></text>
+
+<!-- Snacks & drinks card -->
+<rect x="20" y="1050" width="370" height="240" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="40" y="1085" font-family="Arial Black, sans-serif" font-size="22" fill="#002D62">🥤 Snacks & Drinks</text>
+<line x1="40" y1="1095" x2="380" y2="1095" stroke="#002D62" stroke-width="2" />
+<text x="40" y="1125" font-family="Arial, sans-serif" font-size="16" fill="#333333">Lindt Chocolate 80g-100g</text>
+<text x="40" y="1150" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$3.50 <tspan font-size="14" fill="#666666">(HALF PRICE!)</tspan></text>
+<text x="40" y="1185" font-family="Arial, sans-serif" font-size="16" fill="#333333">Cadbury Share Packs 120g-180g</text>
+<text x="40" y="1210" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$3.50 <tspan font-size="14" fill="#666666">(save $3.75)</tspan></text>
+<text x="40" y="1245" font-family="Arial, sans-serif" font-size="16" fill="#333333">Pepsi/Solo/Schweppes 1.25L</text>
+<text x="40" y="1270" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$1.65 <tspan font-size="14" fill="#666666">(save $2!)</tspan></text>
+
+<!-- ========== ALDI side (right column) ========== -->
+<rect x="410" y="220" width="370" height="50" rx="25" fill="#005A9C" />
+<text x="595" y="255" font-family="Arial Black, sans-serif" font-size="28" fill="white" text-anchor="middle">🛍️ ALDI SPECIAL BUYS</text>
+
+<!-- Wed 18 Feb Kitchen -->
+<rect x="410" y="280" width="370" height="200" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="430" y="315" font-family="Arial Black, sans-serif" font-size="20" fill="#005A9C">Wed 18 Feb - Kitchen</text>
+<line x1="430" y1="325" x2="770" y2="325" stroke="#005A9C" stroke-width="2" />
+<text x="430" y="355" font-family="Arial, sans-serif" font-size="16" fill="#333333">DE'LONGHI Stilosa Espresso Machine</text>
+<text x="430" y="380" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$99.99</text>
+<text x="430" y="415" font-family="Arial, sans-serif" font-size="16" fill="#333333">BRAUN PureEase Food Processor</text>
+<text x="430" y="440" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$89.99</text>
+<text x="430" y="475" font-family="Arial, sans-serif" font-size="16" fill="#333333">AMBIANO Vacuum Food Sealer</text>
+<text x="430" y="500" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$49.99</text>
+<text x="580" y="475" font-family="Arial, sans-serif" font-size="16" fill="#333333">AMBIANO Kettle 1.7L</text>
+<text x="580" y="500" font-family="Arial Black, sans-serif" font-size="20" fill="#C8102E">$24.99</text>
+
+<!-- Sat 21 Feb British Favourites -->
+<rect x="410" y="490" width="370" height="190" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="430" y="525" font-family="Arial Black, sans-serif" font-size="20" fill="#005A9C">Sat 21 Feb - British Favourites</text>
+<line x1="430" y1="535" x2="770" y2="535" stroke="#005A9C" stroke-width="2" />
+<text x="430" y="565" font-family="Arial, sans-serif" font-size="16" fill="#333333">Yorkshire Tea 100 Pack</text><text x="640" y="565" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$5.79</text>
+<text x="430" y="595" font-family="Arial, sans-serif" font-size="16" fill="#333333">McVitie's Jaffa Cakes</text><text x="640" y="595" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$1.99</text>
+<text x="430" y="625" font-family="Arial, sans-serif" font-size="16" fill="#333333">McVitie's Chocolate Digestives</text><text x="640" y="625" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$2.75</text>
+<text x="430" y="655" font-family="Arial, sans-serif" font-size="16" fill="#333333">Jammie Dodgers</text><text x="640" y="655" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$2.25</text>
+<text x="430" y="685" font-family="Arial, sans-serif" font-size="16" fill="#333333">Pot Noodle</text><text x="640" y="685" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$3.49</text>
+
+<!-- Sat 21 Feb Gaming & Entertainment -->
+<rect x="410" y="690" width="370" height="150" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="430" y="725" font-family="Arial Black, sans-serif" font-size="20" fill="#005A9C">Sat 21 Feb - Gaming & Entertainment</text>
+<line x1="430" y1="735" x2="770" y2="735" stroke="#005A9C" stroke-width="2" />
+<text x="430" y="765" font-family="Arial, sans-serif" font-size="16" fill="#333333">Mini Pokemon Tins</text><text x="650" y="765" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$16.99</text>
+<text x="430" y="795" font-family="Arial, sans-serif" font-size="16" fill="#333333">Pokemon Cuddle Plush 8"</text><text x="650" y="795" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$12.99</text>
+<text x="430" y="825" font-family="Arial, sans-serif" font-size="16" fill="#333333">Carrera Mario Slot Track 2.4m</text><text x="650" y="825" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$49.99</text>
+
+<!-- Wed 25 Feb Baby Essentials -->
+<rect x="410" y="850" width="370" height="150" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="430" y="885" font-family="Arial Black, sans-serif" font-size="20" fill="#005A9C">Wed 25 Feb - Baby Essentials</text>
+<line x1="430" y1="895" x2="770" y2="895" stroke="#005A9C" stroke-width="2" />
+<text x="430" y="925" font-family="Arial, sans-serif" font-size="16" fill="#333333">MAMIA Nappy Pants 60 Pack</text><text x="670" y="925" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$16.49</text>
+<text x="430" y="955" font-family="Arial, sans-serif" font-size="16" fill="#333333">Fisher Price Baby Grooming Kit</text><text x="670" y="955" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$9.99</text>
+<text x="430" y="985" font-family="Arial, sans-serif" font-size="16" fill="#333333">Infant Sleeping Bag/Suit</text><text x="670" y="985" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$24.99</text>
+
+<!-- Wed 25 Feb Pet Supplies -->
+<rect x="410" y="1010" width="370" height="150" rx="15" fill="white" stroke="#CCCCCC" stroke-width="2" />
+<text x="430" y="1045" font-family="Arial Black, sans-serif" font-size="20" fill="#005A9C">Wed 25 Feb - Pet Supplies</text>
+<line x1="430" y1="1055" x2="770" y2="1055" stroke="#005A9C" stroke-width="2" />
+<text x="430" y="1085" font-family="Arial, sans-serif" font-size="16" fill="#333333">Pet Stairs</text><text x="650" y="1085" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$39.99</text>
+<text x="430" y="1115" font-family="Arial, sans-serif" font-size="16" fill="#333333">Memory Foam Pet Mat</text><text x="650" y="1115" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$19.99</text>
+<text x="430" y="1145" font-family="Arial, sans-serif" font-size="16" fill="#333333">Memory Foam Pet Bed (Medium)</text><text x="650" y="1145" font-family="Arial Black, sans-serif" font-size="16" fill="#C8102E">$49.99</text>
+
+<!-- Bottom Callout + Link + Hashtags -->
+<rect x="20" y="1860" width="760" height="120" rx="20" fill="#FFCD00" />
+<text x="400" y="1910" font-family="Arial Black, sans-serif" font-size="40" fill="#002D62" text-anchor="middle">Shop smart, save big! 🤝</text>
+<text x="400" y="1955" font-family="Arial, sans-serif" font-size="22" fill="#333333" text-anchor="middle">Share with your friends!</text>
+
+<!-- Full deals link (example) -->
+<text x="400" y="2005" font-family="Arial, sans-serif" font-size="18" fill="#005A9C" text-anchor="middle" text-decoration="underline">Full deals list: https://www.michaelleung.info/prices/gooddeals.html</text>
+
+<!-- Hashtags row -->
+<text x="20" y="2035" font-family="Arial, sans-serif" font-size="16" fill="#666666" >#Brisbane #Melbourne #Sydney #GroceryDeals #Drakes #ALDI #HalfPrice</text>
+<text x="20" y="2065" font-family="Arial, sans-serif" font-size="16" fill="#666666" >#WeeklySpecials #AustraliaDeals #SaveMoney #SmartShopping</text>
+
+</svg>

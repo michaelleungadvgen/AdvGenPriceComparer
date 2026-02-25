@@ -94,6 +94,7 @@
 | Settings Service implementation | 🟢 DONE | Agent-026 | Created ISettingsService interface, SettingsService with JSON persistence, registered in DI container, and added 26 comprehensive unit tests |
 | Price drop notifications | 🟢 DONE | Agent-025 | Price drop notification service fully implemented |
 | Search across all entities | 🟢 DONE | Agent-023 | Implemented Global Search with UI - searches across Items, Places, and PriceRecords with relevance scoring |
+| Favourite items list | 🟢 DONE | Agent-027 | Implemented IFavoritesService, FavoritesViewModel, FavoritesWindow UI, 15 unit tests all passing |
 
 ---
 
@@ -173,6 +174,7 @@
 | 2026-02-26 | Add Price Comparison View - Created ComparePricesWindow with side-by-side store comparison, added to IDialogService, MainWindowViewModel, and Quick Actions | Agent-021 |
 | 2026-02-26 | Search across all entities - Implemented Global Search (IGlobalSearchService, GlobalSearchService, GlobalSearchWindow, GlobalSearchViewModel) with relevance scoring, recent searches, and categorized results | Agent-023 |
 | 2026-02-26 | Price drop notifications - Implemented IPriceDropNotificationService, PriceDropNotificationService, PriceDropNotificationViewModel, PriceDropNotificationsWindow with monitoring, alert creation, and notification UI | Agent-025 |
+| 2026-02-26 | Favourite items list - Implemented IFavoritesService, FavoritesService, FavoritesViewModel, FavoritesWindow, added IsFavorite to Item model, registered in DI, added to MainWindow, 15 comprehensive unit tests | Agent-027 |
 
 ---
 

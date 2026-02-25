@@ -1,0 +1,357 @@
+<ui:FluentWindow x:Class="AdvGenPriceComparer.WPF.Views.ScanBarcodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="Barcode Scanner" 
+        Height="650" 
+        Width="900"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                Background="{DynamicResource SystemAccentColorBrush}" 
+                Padding="20,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="📷 Barcode Scanner" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                    <TextBlock Text="Scan and generate barcodes for grocery items" 
+                               Foreground="White" 
+                               Opacity="0.9" 
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+                
+                <ui:SymbolIcon Grid.Column="1" 
+                               Symbol="BarcodeScanner24" 
+                               FontSize="48" 
+                               Foreground="White" 
+                               Opacity="0.8"/>
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <TabControl Grid.Row="1" 
+                    Margin="20" 
+                    Style="{StaticResource TabControlStyle}">
+            
+            <!-- Scan Tab -->
+            <TabItem Header="🔍 Scan Barcode">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left: Image Selection -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Select Image with Barcode" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Choose an image file containing a barcode to scan. Supported formats: EAN-13, UPC-A, QR Code, Code 128, and more."
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                   Margin="0,0,0,15"/>
+
+                        <Button Content="📁 Select Image File" 
+                                Command="{Binding ScanFromFileCommand}"
+                                Padding="20,10"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource AccentButtonStyle}"/>
+
+                        <TextBlock Text="{Binding ScanStatusMessage}"
+                                   Margin="0,10,0,0"
+                                   FontStyle="Italic"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+                        <!-- Preview Area -->
+                        <Border Margin="0,20,0,0"
+                                BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                Height="300">
+                            <Grid>
+                                <TextBlock Text="No image selected"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           Visibility="{Binding ScannedImage, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                
+                                <Image Source="{Binding ScannedImage}"
+                                       Stretch="Uniform"
+                                       Margin="10"
+                                       Visibility="{Binding ScannedImage, Converter={StaticResource NullToVisibilityConverter}}"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Right: Scan Results -->
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Scan Results" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,10"/>
+
+                        <!-- Barcode Text -->
+                        <GroupBox Header="Barcode Text" Margin="0,0,0,15">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBox Grid.Row="0"
+                                         Text="{Binding ScannedBarcodeText, Mode=OneWay}"
+                                         IsReadOnly="True"
+                                         FontSize="18"
+                                         FontFamily="Consolas"
+                                         Padding="10"
+                                         TextWrapping="Wrap"/>
+                                
+                                <StackPanel Grid.Row="1" 
+                                            Orientation="Horizontal" 
+                                            Margin="0,10,0,0">
+                                    <Button Content="📋 Copy" 
+                                            Command="{Binding CopyBarcodeCommand}"
+                                            Padding="15,5"
+                                            Margin="0,0,10,0"/>
+                                    <Button Content="🗑️ Clear" 
+                                            Command="{Binding ClearScanCommand}"
+                                            Padding="15,5"
+                                            Style="{StaticResource DefaultButtonStyle}"/>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- Format Info -->
+                        <GroupBox Header="Format Information" Margin="0,0,0,15">
+                            <StackPanel Margin="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                                               Text="Format: " 
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" 
+                                               Text="{Binding BarcodeFormat}"
+                                               FontFamily="Consolas"/>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Supported Formats Info -->
+                        <Expander Header="Supported Barcode Formats" Margin="0,10,0,0">
+                            <ScrollViewer MaxHeight="150">
+                                <ItemsControl ItemsSource="{Binding SupportedFormats}"
+                                              Margin="10">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="0,5" 
+                                                    Padding="8" 
+                                                    Background="{DynamicResource ControlFillColorSecondaryBrush}"
+                                                    CornerRadius="4">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}" 
+                                                               FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding Description}" 
+                                                               FontSize="11"
+                                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Expander>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Generate Tab -->
+            <TabItem Header="⚙️ Generate Barcode">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left: Input Settings -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Generate Barcode" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,10"/>
+
+                        <!-- Text Input -->
+                        <GroupBox Header="Barcode Content" Margin="0,0,0,15">
+                            <StackPanel Margin="10">
+                                <TextBox Text="{Binding GenerateText, UpdateSourceTrigger=PropertyChanged}"
+                                         Padding="10"
+                                         FontFamily="Consolas"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="False"
+                                         Height="Auto"
+                                         MinHeight="40"/>
+                                
+                                <TextBlock Text="{Binding ValidationMessage}"
+                                           Margin="0,5,0,0"
+                                           Foreground="{Binding IsValid, Converter={StaticResource BooleanToBrushConverter}}"
+                                           FontSize="11"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Format Selection -->
+                        <GroupBox Header="Barcode Format" Margin="0,0,0,15">
+                            <StackPanel Margin="10">
+                                <ComboBox ItemsSource="{Binding SupportedFormats}"
+                                          SelectedValue="{Binding SelectedFormat}"
+                                          SelectedValuePath="Format"
+                                          DisplayMemberPath="Name"
+                                          Padding="8"/>
+                                
+                                <TextBlock Text="{Binding SelectedFormat, Converter={StaticResource BarcodeFormatDescriptionConverter}}"
+                                           Margin="0,5,0,0"
+                                           FontSize="11"
+                                           TextWrapping="Wrap"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Size Settings -->
+                        <GroupBox Header="Size Settings" Margin="0,0,0,15">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" 
+                                           Text="Width:" 
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,10,0"/>
+                                <Slider Grid.Row="0" Grid.Column="1" 
+                                        Minimum="100" 
+                                        Maximum="800" 
+                                        Value="{Binding BarcodeWidth}"
+                                        TickFrequency="50"
+                                        TickPlacement="BottomRight"/>
+                                <TextBlock Grid.Row="0" Grid.Column="2" 
+                                           Text="{Binding BarcodeWidth}" 
+                                           Width="50"
+                                           TextAlignment="Right"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" 
+                                           Text="Height:" 
+                                           VerticalAlignment="Center"
+                                           Margin="0,10,10,0"/>
+                                <Slider Grid.Row="1" Grid.Column="1" 
+                                        Minimum="100" 
+                                        Maximum="800" 
+                                        Value="{Binding BarcodeHeight}"
+                                        TickFrequency="50"
+                                        TickPlacement="BottomRight"
+                                        Margin="0,10,0,0"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" 
+                                           Text="{Binding BarcodeHeight}" 
+                                           Width="50"
+                                           TextAlignment="Right"
+                                           Margin="0,10,0,0"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- Action Buttons -->
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Content="⚙️ Generate" 
+                                    Command="{Binding GenerateBarcodeCommand}"
+                                    Padding="20,10"
+                                    Margin="0,0,10,0"
+                                    Style="{StaticResource AccentButtonStyle}"/>
+                            <Button Content="🗑️ Clear" 
+                                    Command="{Binding ClearGenerateCommand}"
+                                    Padding="20,10"
+                                    Style="{StaticResource DefaultButtonStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Right: Preview -->
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Generated Barcode" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,10"/>
+
+                        <Border BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Background="White"
+                                Height="400"
+                                Padding="20">
+                            <Grid>
+                                <TextBlock Text="Click 'Generate' to create barcode"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Center"
+                                           Visibility="{Binding GeneratedBarcode, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                
+                                <Image Source="{Binding GeneratedBarcode}"
+                                       Stretch="Uniform"
+                                       Visibility="{Binding GeneratedBarcode, Converter={StaticResource NullToVisibilityConverter}}"/>
+                            </Grid>
+                        </Border>
+
+                        <Button Content="💾 Save Barcode" 
+                                Command="{Binding SaveBarcodeCommand}"
+                                Padding="20,10"
+                                Margin="0,15,0,0"
+                                HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" 
+                Background="{DynamicResource ControlFillColorSecondaryBrush}" 
+                Padding="20,15">
+            <TextBlock Text="Tip: For best results, use clear images with good lighting and minimal glare on the barcode."
+                       FontSize="11" 
+                       Opacity="0.7" 
+                       TextWrapping="Wrap"/>
+        </Border>
+    </Grid>
+</ui:FluentWindow>

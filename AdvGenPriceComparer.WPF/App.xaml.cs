@@ -154,6 +154,12 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new PriceDropNotificationService(groceryData, notificationService, logger);
             });
+            services.AddSingleton<IFavoritesService>(provider =>
+            {
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new FavoritesService(itemRepo, logger);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();

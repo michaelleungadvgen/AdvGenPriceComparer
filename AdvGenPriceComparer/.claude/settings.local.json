@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(dotnet workload install:*)",
+      "Bash(dotnet:*)",
+      "Read(C:\\Users\\advgen10\\source\\repos\\AdvGenPriceComparer\\AdvGenPriceComparer.Core\\Interfaces/**)",
+      "Read(C:\\Users\\advgen10\\source\\repos\\AdvGenPriceComparer\\AdvGenPriceComparer.Core\\Interfaces/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

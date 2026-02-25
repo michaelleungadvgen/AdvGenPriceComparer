@@ -31,6 +31,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         AddItemCommand = new RelayCommand(AddItem);
         AddPlaceCommand = new RelayCommand(AddPlace);
         ComparePricesCommand = new RelayCommand(ComparePrices);
+        FavoritesCommand = new RelayCommand(ShowFavorites);
         GlobalSearchCommand = new RelayCommand(ShowGlobalSearch);
         ScanBarcodeCommand = new RelayCommand(ScanBarcode);
         PriceDropNotificationsCommand = new RelayCommand(ShowPriceDropNotifications);
@@ -59,6 +60,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand AddItemCommand { get; }
     public ICommand AddPlaceCommand { get; }
     public ICommand ComparePricesCommand { get; }
+    public ICommand FavoritesCommand { get; }
     public ICommand GlobalSearchCommand { get; }
     public ICommand ScanBarcodeCommand { get; }
     public ICommand PriceDropNotificationsCommand { get; }
@@ -233,6 +235,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowPriceDropNotifications()
     {
         _dialogService.ShowPriceDropNotificationsDialog();
+    }
+
+    private void ShowFavorites()
+    {
+        _dialogService.ShowFavoritesDialog();
     }
 
     public void Dispose()

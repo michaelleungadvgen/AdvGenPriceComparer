@@ -2610,3 +2610,120 @@ Here are the three ALDI catalogues converted into a structured Markdown format:
 
 ---
 *Store: 2745, Glenmore Park*
+
+# ALDI Special Buys
+
+## Available from Wed 11th February
+
+### Nuts & Seeds
+
+- **Mixed Nuts Dry Roasted 1kg** - FORRESTERS - $22.99 ($22.99/kg)
+- **Almonds Dry Roasted 1kg** - FORRESTERS - $16.99 ($16.99/kg)
+- **Dry Roasted Cashews 1kg** - FORRESTERS - $19.99 ($19.99/kg)
+- **Pistachios Roasted & Salted 1kg** - FORRESTERS - $19.99 ($19.99/kg)
+- **Natural Walnuts 1kg** - FORRESTERS - $17.99 ($17.99/kg)
+- **Cashews Natural 1.2kg** - OH SO NATURAL - $19.99 ($16.66/kg)
+
+### Food & Pantry
+
+- **Medjool Dates 1kg** - THE PERFECT DATE - $15.99 ($15.99/kg)
+- **Basmati Rice 5kg** - HEAVEN'S HARVEST - $14.99 ($0.30/100g)
+- **Capers 700g** - SANDHURST - $6.99 ($9.99/kg)
+
+### Meat
+
+- **Fresh Whole Duck 2.1kg** - LUV-A-DUCK - $17.99 ($9.00/kg)
+- **Pork Chipolatas 1kg** - SUNPORK - $9.99 ($9.99/kg)
+- **RSPCA Chicken Bites with Honey Sauce 500g** - MOIRA MAC'S - $9.99 ($9.99/kg)
+
+### Household
+
+- **Platinum Plus Dishwasher Tablets 70 Pack** - FAIRY - $29.99
+- **Ultimate Laundry Liquid 2L** - OMO - $17.99
+- **Paper Towel Double Length 4 Pack** - VIVA - $9.49 ($1.98/100 sheets)
+- **Bleach Tablets 40 Pack** - WHITE KING - $3.99 ($0.10 each)
+
+### Personal Care
+
+- **Max Fresh Toothpaste 3 x 200g** - COLGATE - $16.49 ($2.75/100g)
+- **Body Spray Value Pack 2 x 106g** - LYNX - $7.99 ($3.77/100g)
+
+### Tools & DIY
+
+- **Mitre Saw** - SCHEPPACH - $149.00
+- **Mitre Saw Stand** - SCHEPPACH - $89.99
+
+---
+
+## Available from Sat 7th February
+
+### Automotive
+
+- **IGO CAM445 Dash Cam** - UNIDEN - $89.99
+- **Multifunctional Car Vacuum Cleaner** - AMBIANO - $49.99
+
+### Caravan & Camping
+
+- **24" HD Smart TV with Battery & 12V DC Charger** - BAUHN - $189.00
+- **Flexible Solar Panel 200W** - BRANDED - $159.00
+- **Caravan Cover 14-16ft** - ADVENTURIDGE - $99.99
+- **Assorted High Back Reclining Chair Mix** - ADVENTURIDGE - $69.99
+
+### Outdoor Clothing
+
+- **Adult's Waterproof Jacket** - CRANE PERFORMANCE - $34.99
+- **Adult Hiking Shoes** - CRANE - $34.99
+- **Adult's Convertible Hiking Pants** - CRANE - $24.99
+
+---
+
+## Available from Saturday 14th February
+
+### Health & Wellness
+
+- **Fisiocrem 250g** - FISIOCREM - $29.99 ($12.00/100g)
+- **Pain Away 70g** - PAIN AWAY - $9.49 ($13.56/100g)
+- **Back Stretcher** - ONSET - $9.99
+- **Support Bandages** - ONSET - $5.99
+- **Kinesiology Sports Tape** - ONSET - $4.99
+- **Premium Support Bandages** - ONSET - $9.99
+- **Back Stabiliser** - ONSET - $19.99
+- **TENS EMS Replacement Pads** - WELLNESS PLUS - $11.99
+- **Adult Insoles** - CRANE - $13.99
+- **Acupressure Mat & Pillow or Massage Roller** - CRANE - $18.99
+- **Posture Trainer** - ONSET - $14.99
+- **Wellness Assortment** - CRANE - $5.99
+- **Fitness Strap Resistance Tube or Band Set** - CRANE - $9.99
+- **Massage Assortment** - WELLNESS PLUS - $49.99
+
+### Gardening
+
+- **Premium Potting Mix 22L** - GARDENLIFE - $4.99
+- **Sugar Cane Mulch** - GARDENLIFE - $12.99
+- **In Ground Compost Bin** - GARDENLIFE - $14.99
+- **Garden Soil 25L** - GARDENLIFE - $4.99
+- **Garden Protective Cover 1m** - GARDENLINE - $29.99
+- **Vegetable Garden Bed** - GARDENLINE - $24.99
+- **Premium Line Trimmer** - GARDENLINE - $12.99
+- **Lawn Saver Stones 3 Pack** - GARDENLIFE - $12.99
+- **Garden Shade Sail or Fixing Kit** - BELAVI - $29.99
+- **Stone Look Pot** - BELAVI - $24.99
+- **Mini Pruning Shears 2 Piece Set** - GARDENLINE - $5.99
+- **Garden Hose 20m** - GARDENLINE - $19.99
+- **8 Pattern Spray Nozzle** - GARDENLINE - $7.99
+- **Touchscreen Gardening Gloves** - GARDENLINE - $8.99
+- **Garden Hand Tools** - GARDENLINE - $6.99
+- **Assorted Garden Ties or Labels** - GARDENLINE - $3.99
+- **Organic Packet Seeds** - GARDENLINE - $1.99
+- **Framed Coir Door Mat** - GARDENLINE - $12.99
+- **Controlled Release Fertiliser 1kg** - RP ROCKY POINT - $9.99
+
+### Power Tools & Equipment
+
+- **20V 2 in 1 Pole Pruner Hedger Skin** - FERREX - $99.99
+- **20V Cordless Blower Skin** - FERREX - $49.99
+- **20V 4.0Ah Battery** - XFINITY PLUS - $49.99
+- **2 x 20V Mower Kit** - FERREX - $249.00
+- **20V 2.0Ah Battery or 20V Fast Charger** - XFINITY PLUS - $24.99
+
+---

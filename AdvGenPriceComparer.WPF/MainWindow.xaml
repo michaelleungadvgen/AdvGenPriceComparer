@@ -207,6 +207,10 @@
                            Command="{Binding ComparePricesCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    <ui:Button Content="⭐ Favorites" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding FavoritesCommand}"
+                           Appearance="Transparent"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
                     <ui:Button Content="📷 Scan Barcode" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ScanBarcodeCommand}"
                            Appearance="Transparent"

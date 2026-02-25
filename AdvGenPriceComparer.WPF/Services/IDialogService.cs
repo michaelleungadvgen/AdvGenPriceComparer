@@ -13,4 +13,5 @@ public interface IDialogService
     SearchResult? ShowGlobalSearchDialog();
     void ShowBarcodeScannerDialog();
     void ShowPriceDropNotificationsDialog();
+    void ShowFavoritesDialog();
 }

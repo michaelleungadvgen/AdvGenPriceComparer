@@ -1,0 +1,202 @@
+=== BEVERAGES (Top 20) ===
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Zooper Dooper Water Ice</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.60</span>
+                            <span class="original-price">$7.20</span>
+                            <span class="savings">Save $3.60</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Cadbury Dairy Milk Advent Calendar</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$9.00</span>
+                            <span class="savings">Save $4.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Gatorade Sports Drink or G Active Water</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.10</span>
+                            <span class="original-price">$4.20</span>
+                            <span class="savings">Save $2.10</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Mars Chocolate Bar</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.25</span>
+                            <span class="original-price">$2.50</span>
+                            <span class="savings">Save $1.25</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Mars Chocolate Fun Size</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.50</span>
+                            <span class="original-price">$7.00</span>
+                            <span class="savings">Save $3.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Schweppes Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.50</span>
+                            <span class="original-price">$3.00</span>
+                            <span class="savings">Save $1.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.00</span>
+                            <span class="original-price">$4.00</span>
+                            <span class="savings">Save $2.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Red Bull Energy Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.25</span>
+                            <span class="original-price">$12.50</span>
+                            <span class="savings">Save $6.25</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink or Mt Franklin Lightly Sparkling Water</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.00</span>
+                            <span class="original-price">$20.00</span>
+                            <span class="savings">Save $10.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Nescafé Coffee Sachets</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.00</span>
+                            <span class="original-price">$8.00</span>
+                            <span class="savings">Save $4.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Muscle Nation Protein Water Powder</div>
+                        <div class="price-info">
+                            <span class="current-price">$17.50</span>
+                            <span class="original-price">$35.00</span>
+                            <span class="savings">Save $17.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Garnier Micellar Cleansing Water</div>
+                        <div class="price-info">
+                            <span class="current-price">$12.50</span>
+                            <span class="original-price">$25.00</span>
+                            <span class="savings">Save $12.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coles Finest Tiramisu or Berry Pavlova Flavour Block Chocolate</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Lindt Lindor Block Chocolate</div>
+                        <div class="price-info">
+                            <span class="current-price">$5.95</span>
+                            <span class="original-price">$8.50</span>
+                            <span class="savings">Save $2.55</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Nestlé Bakers Choice Baking Chocolate Bits</div>
+                        <div class="price-info">
+                            <span class="current-price">$5.50</span>
+                            <span class="original-price">$7.00</span>
+                            <span class="savings">Save $1.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coca-Cola Zero Sugar Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$30.00</span>
+                            <span class="original-price">$50.00</span>
+                            <span class="savings">Save $20.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Twinings Tea Bags</div>
+                        <div class="price-info">
+                            <span class="current-price">$8.00</span>
+                            <span class="original-price">$13.50</span>
+                            <span class="savings">Save $5.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Monster Energy Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$9.60</span>
+                            <span class="original-price">$16.00</span>
+                            <span class="savings">Save $6.40</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Pepsi Max or Solo Zero Sugar Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$22.50</span>
+                            <span class="original-price">$37.50</span>
+                            <span class="savings">Save $15.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Arnott’s Milk Arrowroot or Marie Biscuits</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.75</span>
+                            <span class="original-price">$2.50</span>
+                            <span class="savings">Save $0.75</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+
+
+Total beverage deals found: 66

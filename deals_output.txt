@@ -1,0 +1,358 @@
+=== PREMIUM CHOCOLATE (Top 20) ===
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Cadbury Dairy Milk Advent Calendar</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$9.00</span>
+                            <span class="savings">Save $4.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Ferrero Collection or Rocher Gift Box</div>
+                        <div class="price-info">
+                            <span class="current-price">$9.50</span>
+                            <span class="original-price">$19.00</span>
+                            <span class="savings">Save $9.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Lindt Lindor Assorted Gift Box</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.00</span>
+                            <span class="original-price">$20.00</span>
+                            <span class="savings">Save $10.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Lindt Lindor Gift Box</div>
+                        <div class="price-info">
+                            <span class="current-price">$14.00</span>
+                            <span class="original-price">$28.00</span>
+                            <span class="savings">Save $14.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Medium Bars 30-55g</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.20</span>
+                            <span class="original-price">$3.00</span>
+                            <span class="savings">Save $1.80</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Advent Calendar 90g</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$9.00</span>
+                            <span class="savings">Save $4.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Woolworths Chocolate Sponge Pudding 500g</div>
+                        <div class="price-info">
+                            <span class="current-price">$8.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Favourites 264-265g</div>
+                        <div class="price-info">
+                            <span class="current-price">$7.00</span>
+                            <span class="original-price">$14.00</span>
+                            <span class="savings">Save $7.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Lindt Lindor Advent Calendar 109g</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Roses Tin 485g</div>
+                        <div class="price-info">
+                            <span class="current-price">$15.00</span>
+                            <span class="original-price">$30.00</span>
+                            <span class="savings">Save $15.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury 3D Christmas Advent Calendar 312g</div>
+                        <div class="price-info">
+                            <span class="current-price">$15.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Lindt Teddy Advent Calendar 170g</div>
+                        <div class="price-info">
+                            <span class="current-price">$20.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Woolworths Chocolate Chunk or Salted Caramel White Chocolate Cookie Pk 5#</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Ice Cream Bars or Sticks 300-360ml Pk 4-6</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.00</span>
+                            <span class="original-price">$12.00</span>
+                            <span class="savings">Save $6.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Choc Tops or Oreo Cookie Tops Ice Cream Cones 400ml Pk 4</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.25</span>
+                            <span class="original-price">$12.50</span>
+                            <span class="savings">Save $6.25</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge woolworths">WOOLWORTHS</div>
+                        <div class="product-name">Cadbury Chocolate Coated Fruit or Nut Varieties 270-340g</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.50</span>
+                            <span class="original-price">$13.00</span>
+                            <span class="savings">Save $6.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+
+
+=== SOFT DRINKS & BEVERAGES (Top 20) ===
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coles Australian No Added Hormones Beef Rump Steak</div>
+                        <div class="price-info">
+                            <span class="current-price">$23.00</span>
+                            <span class="original-price">$29.00</span>
+                            <span class="savings">Save $6.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coles No Added Hormones Beef Porterhouse Steak with Thyme and Pepper Butter</div>
+                        <div class="price-info">
+                            <span class="current-price">$19.00</span>
+                            <span class="original-price">$20.00</span>
+                            <span class="savings">Save $1.00</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coles Australian No Added Hormones Beef Chuck Casserole Steak</div>
+                        <div class="price-info">
+                            <span class="current-price">$13.00</span>
+                            <span class="original-price">$16.00</span>
+                            <span class="savings">Save $3.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Zooper Dooper Water Ice</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.60</span>
+                            <span class="original-price">$7.20</span>
+                            <span class="savings">Save $3.60</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">NEW Coles Finest Decadent Belgian Chocolate Ice Cream Tub 480mL</div>
+                        <div class="price-info">
+                            <span class="current-price">$7.50</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Cadbury Dairy Milk Advent Calendar</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$9.00</span>
+                            <span class="savings">Save $4.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Muscle Nation Protein Water Powder</div>
+                        <div class="price-info">
+                            <span class="current-price">$17.50</span>
+                            <span class="original-price">$35.00</span>
+                            <span class="savings">Save $17.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Garnier Micellar Cleansing Water</div>
+                        <div class="price-info">
+                            <span class="current-price">$12.50</span>
+                            <span class="original-price">$25.00</span>
+                            <span class="savings">Save $12.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Gatorade Sports Drink or G Active Water</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.10</span>
+                            <span class="original-price">$4.20</span>
+                            <span class="savings">Save $2.10</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Schweppes Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$1.50</span>
+                            <span class="original-price">$3.00</span>
+                            <span class="savings">Save $1.50</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.00</span>
+                            <span class="original-price">$4.00</span>
+                            <span class="savings">Save $2.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Red Bull Energy Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$6.25</span>
+                            <span class="original-price">$12.50</span>
+                            <span class="savings">Save $6.25</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink or Mt Franklin Lightly Sparkling Water</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.00</span>
+                            <span class="original-price">$20.00</span>
+                            <span class="savings">Save $10.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Coca-Cola Zero Sugar Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$30.00</span>
+                            <span class="original-price">$50.00</span>
+                            <span class="savings">Save $20.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Monster Energy Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$9.60</span>
+                            <span class="original-price">$16.00</span>
+                            <span class="savings">Save $6.40</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Pepsi Max or Solo Zero Sugar Soft Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$22.50</span>
+                            <span class="original-price">$37.50</span>
+                            <span class="savings">Save $15.00</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Golden Circle Fruit Drink</div>
+                        <div class="price-info">
+                            <span class="current-price">$3.50</span>
+                            <span class="original-price">$5.10</span>
+                            <span class="savings">Save $1.60</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">V Energy Drink 4x500mL</div>
+                        <div class="price-info">
+                            <span class="current-price">$10.50</span>
+                            <span class="original-price">$16.75</span>
+                            <span class="savings">Save $6.25</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">Raw C Coconut Water 1 Litre</div>
+                        <div class="price-info">
+                            <span class="current-price">$2.75</span>
+                            <span class="original-price">$5.50</span>
+                            <span class="savings">Save $2.75</span>
+                        </div>
+                        <div class="deal-badge half-price">HALF PRICE</div>
+                    </div>
+                    <div class="deal-card">
+                        <div class="store-badge coles">COLES</div>
+                        <div class="product-name">The Juice Brothers Juice 1 Litre</div>
+                        <div class="price-info">
+                            <span class="current-price">$4.50</span>
+                            <span class="original-price">$5.00</span>
+                            <span class="savings">Save $0.50</span>
+                        </div>
+                        <div class="deal-badge best-deal">GOOD VALUE</div>
+                    </div>
+
+
+Total Coles deals: 347
+Total Woolworths deals: 344
+Total chocolate deals found: 16
+Total beverage deals found: 69

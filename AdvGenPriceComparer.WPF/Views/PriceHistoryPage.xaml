@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -182,8 +183,101 @@
             </Grid>
         </Border>
 
+        <!-- Price History Chart Section -->
+        <Border Grid.Row="2" 
+                Background="#f9f9f9" 
+                BorderBrush="#e8e8e8" 
+                BorderThickness="0,0,0,1" 
+                Padding="24,16"
+                Visibility="{Binding ShowChartSection, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Chart Header -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="{Binding ChartTitle}" FontSize="18" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding ChartSubtitle}" FontSize="12" Foreground="#666" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="Compare Stores:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="13"/>
+                        <ComboBox Width="150"
+                                  ItemsSource="{Binding AvailableStores}"
+                                  SelectedItem="{Binding SelectedComparisonStore}"
+                                  DisplayMemberPath="Name"
+                                  Margin="0,0,8,0"/>
+                        <Button Content="📊 View Chart"
+                                Command="{Binding ToggleChartViewCommand}"
+                                Padding="12,6"
+                                Background="Transparent"
+                                BorderBrush="#ddd"
+                                BorderThickness="1"
+                                Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+                
+                <!-- Price Statistics -->
+                <Grid Grid.Row="1" Margin="0,12,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Border Grid.Column="0" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="4" Padding="16,12" Margin="0,0,8,0">
+                        <StackPanel>
+                            <TextBlock Text="Current Price" FontSize="12" Foreground="#666"/>
+                            <TextBlock Text="{Binding CurrentPriceText}" FontSize="20" FontWeight="Bold" Foreground="#111"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Grid.Column="1" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="4" Padding="16,12" Margin="4,0">
+                        <StackPanel>
+                            <TextBlock Text="Lowest Price" FontSize="12" Foreground="#666"/>
+                            <TextBlock Text="{Binding LowestPriceText}" FontSize="20" FontWeight="Bold" Foreground="#16a34a"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Grid.Column="2" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="4" Padding="16,12" Margin="4,0">
+                        <StackPanel>
+                            <TextBlock Text="Highest Price" FontSize="12" Foreground="#666"/>
+                            <TextBlock Text="{Binding HighestPriceText}" FontSize="20" FontWeight="Bold" Foreground="#dc2626"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Grid.Column="3" Background="White" BorderBrush="#e8e8e8" BorderThickness="1" CornerRadius="4" Padding="16,12" Margin="8,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Average Price" FontSize="12" Foreground="#666"/>
+                            <TextBlock Text="{Binding AveragePriceText}" FontSize="20" FontWeight="Bold" Foreground="#2563eb"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                
+                <!-- Chart -->
+                <Border Grid.Row="2" 
+                        Background="White" 
+                        BorderBrush="#e8e8e8" 
+                        BorderThickness="1" 
+                        CornerRadius="4"
+                        Padding="16">
+                    <Border x:Name="ChartContainer" Height="350"/>
+                </Border>
+            </Grid>
+        </Border>
+
         <!-- Price Records List -->
-        <DataGrid Grid.Row="2"
+        <DataGrid Grid.Row="3"
                   ItemsSource="{Binding PriceRecords}"
                   SelectedItem="{Binding SelectedPriceRecord}"
                   AutoGenerateColumns="False"

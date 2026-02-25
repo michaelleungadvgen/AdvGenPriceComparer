@@ -75,4 +75,13 @@ public class SimpleDialogService : IDialogService
         var window = new PriceDropNotificationsWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowFavoritesDialog()
+    {
+        var favoritesService = ((App)Application.Current).Services.GetRequiredService<IFavoritesService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var viewModel = new ViewModels.FavoritesViewModel(favoritesService, this, logger);
+        var window = new FavoritesWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

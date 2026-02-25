@@ -1,18 +1,9 @@
 #!/usr/bin/env python3
 """
-Supermarket Catalog PDF Text Extractor (MIT License Compatible)
+Supermarket Catalog PDF Text Extractor
 
 This program extracts text from supermarket catalog PDFs and converts them to plain text.
 It can handle both local PDF files and PDFs from URLs.
-
-Uses MIT-compatible libraries:
-- PyPDF2 (BSD-3-Clause) for basic PDF text extraction
-- pdfplumber (MIT) for advanced layout-aware extraction with OCR fallback
-- Pillow (MIT-CMU) for image processing
-- pytesseract (Apache 2.0) for OCR capabilities
-- requests (Apache 2.0) for downloading PDFs from URLs
-
-Note: PyMuPDF was removed for license compatibility (was AGPL).
 """
 
 import requests
@@ -24,7 +15,7 @@ import argparse
 from pathlib import Path
 import tempfile
 import os
-# import fitz  # PyMuPDF - Removed for MIT license compatibility
+import fitz  # PyMuPDF
 from PIL import Image
 import pytesseract
 import re
@@ -85,66 +76,15 @@ class PDFCatalogExtractor:
         return text
     
     def extract_with_pdfplumber(self, pdf_file):
-        """Extract text using pdfplumber (better for tables and layout) with OCR fallback"""
+        """Extract text using pdfplumber (better for tables and layout)"""
         text = ""
         try:
             with pdfplumber.open(pdf_file) as pdf:
                 for page_num, page in enumerate(pdf.pages):
                     text += f"\n--- Page {page_num + 1} ---\n"
                     page_text = page.extract_text()
-                    
-                    if page_text and len(page_text.strip()) > 50:
+                    if page_text:
                         text += page_text
-                        print(f"Page {page_num + 1}: Using direct text extraction ({len(page_text)} chars)")
-                    else:
-                        # Try OCR if text extraction yields poor results
-                        if self.ocr_available:
-                            try:
-                                print(f"Page {page_num + 1}: Attempting OCR (insufficient text found)")
-                                # Convert page to image for OCR
-                                page_image = page.to_image(resolution=300)  # High resolution for better OCR
-                                pil_image = page_image.original
-                                
-                                # Enhance image for better OCR
-                                pil_image = pil_image.convert('L')  # Convert to grayscale
-                                
-                                from PIL import ImageEnhance, ImageFilter
-                                
-                                # Increase contrast
-                                enhancer = ImageEnhance.Contrast(pil_image)
-                                pil_image = enhancer.enhance(1.5)
-                                
-                                # Increase sharpness
-                                enhancer = ImageEnhance.Sharpness(pil_image)
-                                pil_image = enhancer.enhance(1.2)
-                                
-                                # OCR with multiple configurations
-                                ocr_configs = [
-                                    '--psm 6',   # Uniform block of text
-                                    '--psm 11',  # Sparse text, find as much text as possible
-                                    '--psm 12',  # Sparse text with OSD
-                                ]
-                                
-                                best_ocr_text = ""
-                                for config in ocr_configs:
-                                    try:
-                                        ocr_text = pytesseract.image_to_string(pil_image, config=config)
-                                        if len(ocr_text.strip()) > len(best_ocr_text.strip()):
-                                            best_ocr_text = ocr_text
-                                    except Exception:
-                                        continue
-                                
-                                if best_ocr_text.strip():
-                                    print(f"Page {page_num + 1}: OCR successful ({len(best_ocr_text)} chars)")
-                                    text += f"\n[OCR EXTRACTED TEXT]\n{best_ocr_text}\n[END OCR]\n"
-                                else:
-                                    text += page_text if page_text else "[No text found on this page]\n"
-                                    
-                            except Exception as ocr_error:
-                                print(f"Page {page_num + 1}: OCR failed - {ocr_error}")
-                                text += page_text if page_text else f"[OCR extraction failed: {str(ocr_error)}]\n"
-                        else:
-                            text += page_text if page_text else "[OCR not available]\n"
                     
                     # Extract tables if present
                     tables = page.extract_tables()
@@ -176,34 +116,157 @@ class PDFCatalogExtractor:
         with open(file_path, 'rb') as file:
             return self.extract_from_file_object(file)
     
-    def extract_with_enhanced_pypdf2(self, pdf_file):
-        """Extract text using PyPDF2 with additional processing and OCR fallback"""
+    def extract_with_pymupdf(self, pdf_file):
+        """Extract text using PyMuPDF with enhanced methods"""
         text = ""
         try:
-            pdf_reader = PyPDF2.PdfReader(pdf_file)
-            for page_num in range(len(pdf_reader.pages)):
-                page = pdf_reader.pages[page_num]
+            # Reset file pointer
+            pdf_file.seek(0)
+            pdf_bytes = pdf_file.read()
+            
+            # Open PDF with PyMuPDF
+            pdf_document = fitz.open(stream=pdf_bytes, filetype="pdf")
+            
+            for page_num in range(len(pdf_document)):
+                page = pdf_document.load_page(page_num)
                 text += f"\n--- Page {page_num + 1} ---\n"
-                page_text = page.extract_text()
                 
-                if page_text and len(page_text.strip()) > 50:
+                # Try multiple extraction methods
+                methods_tried = []
+                
+                # Method 1: Direct text extraction
+                page_text = page.get_text()
+                if page_text.strip():
+                    print(f"Page {page_num + 1}: Using direct text extraction ({len(page_text)} chars)")
                     text += page_text
-                    print(f"Page {page_num + 1}: Using PyPDF2 text extraction ({len(page_text)} chars)")
-                else:
-                    # For pages with insufficient text, note that OCR would be handled by pdfplumber
-                    text += page_text if page_text else "[Limited text found - may require OCR]\n"
-                    print(f"Page {page_num + 1}: PyPDF2 found limited text ({len(page_text) if page_text else 0} chars)")
+                    methods_tried.append("direct")
                 
+                # Method 2: Extract text with layout info
+                if not page_text.strip() or len(page_text.strip()) < 50:
+                    layout_text = page.get_text("dict")
+                    extracted_text = self._extract_from_text_dict(layout_text)
+                    if extracted_text.strip():
+                        print(f"Page {page_num + 1}: Using layout-based extraction ({len(extracted_text)} chars)")
+                        text += extracted_text
+                        methods_tried.append("layout")
+                
+                # Method 3: Extract from blocks
+                if not any(methods_tried):
+                    blocks = page.get_text("blocks")
+                    block_text = ""
+                    for block in blocks:
+                        if len(block) > 4:  # Text block
+                            block_text += block[4] + "\n"
+                    if block_text.strip():
+                        print(f"Page {page_num + 1}: Using block-based extraction ({len(block_text)} chars)")
+                        text += block_text
+                        methods_tried.append("blocks")
+                
+                # Method 4: Try OCR if available and needed (fallback or if insufficient text)
+                extracted_text_length = 0
+                if 'extracted_text' in locals() and extracted_text:
+                    extracted_text_length += len(extracted_text.strip())
+                if 'block_text' in locals() and block_text:
+                    extracted_text_length += len(block_text.strip())
+                extracted_text_length += len(page_text.strip())
+                
+                if not any(methods_tried) or extracted_text_length < 100:
+                    if self.ocr_available:
+                        try:
+                            print(f"Page {page_num + 1}: Attempting OCR (insufficient or no text found)")
+                            
+                            # Convert page to image with high resolution for better OCR
+                            mat = fitz.Matrix(3.0, 3.0)  # 3x zoom for better OCR quality
+                            pix = page.get_pixmap(matrix=mat)
+                            img_data = pix.tobytes("png")
+                            
+                            # Convert to PIL Image
+                            image = Image.open(io.BytesIO(img_data))
+                            
+                            # Enhance image for better OCR
+                            # Convert to grayscale
+                            image = image.convert('L')
+                            
+                            # Apply image enhancement techniques
+                            from PIL import ImageEnhance, ImageFilter
+                            
+                            # Increase contrast
+                            enhancer = ImageEnhance.Contrast(image)
+                            image = enhancer.enhance(1.5)
+                            
+                            # Increase sharpness
+                            enhancer = ImageEnhance.Sharpness(image)
+                            image = enhancer.enhance(1.2)
+                            
+                            # Apply slight blur to reduce noise
+                            image = image.filter(ImageFilter.MedianFilter(size=3))
+                            
+                            # OCR configuration optimized for catalog layouts
+                            ocr_configs = [
+                                '--psm 6',   # Uniform block of text
+                                '--psm 11',  # Sparse text, find as much text as possible
+                                '--psm 12',  # Sparse text with OSD
+                                '--psm 8',   # Single word
+                                '--psm 13'   # Raw line, treat image as single text line
+                            ]
+                            
+                            best_ocr_text = ""
+                            best_config = ""
+                            
+                            for config in ocr_configs:
+                                try:
+                                    ocr_text = pytesseract.image_to_string(image, config=config)
+                                    if len(ocr_text.strip()) > len(best_ocr_text.strip()):
+                                        best_ocr_text = ocr_text
+                                        best_config = config
+                                except Exception as config_error:
+                                    continue  # Try next config
+                            
+                            if best_ocr_text.strip():
+                                print(f"Page {page_num + 1}: OCR successful with config '{best_config}' ({len(best_ocr_text)} chars)")
+                                text += f"\n[OCR EXTRACTED TEXT]\n{best_ocr_text}\n[END OCR]\n"
+                                methods_tried.append("ocr")
+                            else:
+                                print(f"Page {page_num + 1}: OCR produced no readable text")
+                                text += "[OCR attempted but no readable text found]\n"
+                                
+                        except Exception as ocr_error:
+                            print(f"Page {page_num + 1}: OCR failed - {ocr_error}")
+                            text += f"[OCR extraction failed: {str(ocr_error)}]\n"
+                    else:
+                        print(f"Page {page_num + 1}: OCR not available - skipping")
+                        text += "[OCR not available - see setup instructions above]\n"
+                
+                if not methods_tried:
+                    print(f"Page {page_num + 1}: No text extracted (possible image-only page)")
+            
+            pdf_document.close()
+            
         except Exception as e:
-            print(f"Error with enhanced PyPDF2 extraction: {e}")
+            print(f"Error with PyMuPDF extraction: {e}")
+            
+        return text
+    
+    def _extract_from_text_dict(self, text_dict):
+        """Extract text from PyMuPDF text dictionary format"""
+        text = ""
+        try:
+            for block in text_dict.get("blocks", []):
+                if "lines" in block:
+                    for line in block["lines"]:
+                        for span in line.get("spans", []):
+                            text += span.get("text", "") + " "
+                        text += "\n"
+        except Exception as e:
+            print(f"Error extracting from text dict: {e}")
         return text
     
     def extract_from_file_object(self, pdf_file):
-        """Extract text from file object using multiple MIT-compatible methods"""
+        """Extract text from file object using multiple methods"""
         # Reset file pointer
         pdf_file.seek(0)
         
-        print("Extracting text using pdfplumber (with OCR fallback)...")
+        print("Extracting text using pdfplumber...")
         text_plumber = self.extract_with_pdfplumber(pdf_file)
         
         # Reset file pointer for second extraction
@@ -212,17 +275,17 @@ class PDFCatalogExtractor:
         print("Extracting text using PyPDF2...")
         text_pypdf2 = self.extract_with_pypdf2(pdf_file)
         
-        # Reset file pointer for enhanced PyPDF2 extraction
+        # Reset file pointer for PyMuPDF extraction
         pdf_file.seek(0)
         
-        print("Extracting text using enhanced PyPDF2...")
-        text_enhanced_pypdf2 = self.extract_with_enhanced_pypdf2(pdf_file)
+        print("Extracting text using PyMuPDF...")
+        text_pymupdf = self.extract_with_pymupdf(pdf_file)
         
         # Choose the best result based on content length and quality
         results = [
             ("pdfplumber", text_plumber),
             ("PyPDF2", text_pypdf2),
-            ("Enhanced PyPDF2", text_enhanced_pypdf2)
+            ("PyMuPDF", text_pymupdf)
         ]
         
         # Filter out results with very little content
@@ -234,9 +297,9 @@ class PDFCatalogExtractor:
             print(f"Using {best_method} results (best extraction: {len(best_text)} chars)")
             self.text_content = best_text
         else:
-            # If all methods produced minimal content, use pdfplumber result (which includes OCR fallback)
-            print("All methods produced minimal content, using pdfplumber results (includes OCR)")
-            self.text_content = text_plumber
+            # If all methods failed, use PyMuPDF result anyway
+            print("All methods produced minimal content, using PyMuPDF results")
+            self.text_content = text_pymupdf
         
         return self.text_content
     

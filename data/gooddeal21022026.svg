@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     viewBox="0 0 400 950" width="400" height="950">
+
+  <rect width="400" height="950" rx="20" fill="#f5f7fa" />
+
+  <!-- header gradient -->
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e2b4f" />
+      <stop offset="100%" stop-color="#2a3f6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- header -->
+  <rect x="0" y="0" width="400" height="100" fill="url(#headerGrad)" rx="20" ry="20" />
+  <text x="30" y="48" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="white">本週電器優惠精選</text>
+  <text x="30" y="80" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#d1d9f0">JB Hi-Fi · The Good Guys · Harvey Norman</text>
+
+  <!-- tagline -->
+  <text x="30" y="125" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#333" font-weight="500">AI智能分析，為你搜羅三大零售商最抵優惠！</text>
+
+  <!-- main deal list -->
+  <g font-family="Arial, Helvetica, sans-serif">
+    <!-- 1 -->
+    <rect x="30" y="140" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="165" font-size="14" font-weight="bold" fill="#1e2b4f">Lenovo Legion 5 RTX 5070 遊戲筆電</text>
+    <text x="45" y="185" font-size="12" fill="#555">JB Hi-Fi | </text>
+    <text x="105" y="185" font-size="12" fill="#b12704" font-weight="bold">$2,199</text>
+    <text x="155" y="185" font-size="12" fill="#777" text-decoration="line-through">$3,299</text>
+    <text x="205" y="185" font-size="12" fill="#555"> 節省 $1,100！</text>
+
+    <!-- 2 -->
+    <rect x="30" y="210" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="235" font-size="14" font-weight="bold" fill="#1e2b4f">Linsar 85吋 UHD Tizen 智能電視</text>
+    <text x="45" y="255" font-size="12" fill="#555">The Good Guys | </text>
+    <text x="145" y="255" font-size="12" fill="#b12704" font-weight="bold">$988</text>
+    <text x="185" y="255" font-size="12" fill="#555"> 限時特價！</text>
+
+    <!-- 3 -->
+    <rect x="30" y="280" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="305" font-size="14" font-weight="bold" fill="#1e2b4f">Garmin Epix Pro Gen 2 Sapphire</text>
+    <text x="45" y="325" font-size="12" fill="#555">JB Hi-Fi | </text>
+    <text x="105" y="325" font-size="12" fill="#b12704" font-weight="bold">$899</text>
+    <text x="140" y="325" font-size="12" fill="#777" text-decoration="line-through">$1,699</text>
+    <text x="190" y="325" font-size="12" fill="#555"> 47% 折扣！</text>
+
+    <!-- 4 -->
+    <rect x="30" y="350" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="375" font-size="14" font-weight="bold" fill="#1e2b4f">Ninja Double Stack XXL 7.6L 氣炸鍋</text>
+    <text x="45" y="395" font-size="12" fill="#555">The Good Guys | </text>
+    <text x="145" y="395" font-size="12" fill="#b12704" font-weight="bold">$199</text>
+    <text x="180" y="395" font-size="12" fill="#777" text-decoration="line-through">$399</text>
+    <text x="215" y="395" font-size="12" fill="#555"> 半價！</text>
+
+    <!-- 5 -->
+    <rect x="30" y="420" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="445" font-size="14" font-weight="bold" fill="#1e2b4f">HP 15.6吋 AI Intel Core Ultra 7</text>
+    <text x="45" y="465" font-size="12" fill="#555">The Good Guys | </text>
+    <text x="145" y="465" font-size="12" fill="#b12704" font-weight="bold">$1,359</text>
+    <text x="195" y="465" font-size="12" fill="#777" text-decoration="line-through">$1,899</text>
+    <text x="245" y="465" font-size="12" fill="#555"> 節省 $540！</text>
+
+    <!-- 6 -->
+    <rect x="30" y="490" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="515" font-size="14" font-weight="bold" fill="#1e2b4f">Google Pixel 9a 128GB 手機</text>
+    <text x="45" y="535" font-size="12" fill="#555">Harvey Norman | </text>
+    <text x="150" y="535" font-size="12" fill="#b12704" font-weight="bold">$648</text>
+    <text x="185" y="535" font-size="12" fill="#777" text-decoration="line-through">$849</text>
+    <text x="220" y="535" font-size="12" fill="#555"> 節省 $201！</text>
+
+    <!-- 7 -->
+    <rect x="30" y="560" width="340" height="60" rx="10" fill="white" filter="url(#shadow)" />
+    <text x="45" y="585" font-size="14" font-weight="bold" fill="#1e2b4f">Dyson V8 手持式吸塵器</text>
+    <text x="45" y="605" font-size="12" fill="#555">JB Hi-Fi | </text>
+    <text x="105" y="605" font-size="12" fill="#b12704" font-weight="bold">$799</text>
+    <text x="140" y="605" font-size="12" fill="#777" text-decoration="line-through">$999</text>
+    <text x="175" y="605" font-size="12" fill="#555"> 節省 $200！</text>
+
+    <!-- 8 - Featured -->
+    <rect x="30" y="630" width="340" height="60" rx="10" fill="#fef1e0" filter="url(#shadow)" />
+    <text x="45" y="655" font-size="14" font-weight="bold" fill="#b12704">77吋 LG C5 OLED 4K 智能電視</text>
+    <text x="45" y="675" font-size="12" fill="#555">JB Hi-Fi | </text>
+    <text x="105" y="675" font-size="12" fill="#b12704" font-weight="bold">$5,995</text>
+    <text x="155" y="675" font-size="12" fill="#777" text-decoration="line-through">$7,995</text>
+    <text x="205" y="675" font-size="12" fill="#555"> 節省 $2,000！</text>
+  </g>
+
+  <!-- time-sensitive banner -->
+  <rect x="30" y="720" width="340" height="35" rx="17" fill="#e03a3a" />
+  <text x="50" y="743" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="white">部分優惠於2月25日結束，把握機會！</text>
+
+  <!-- footer with link -->
+  <text x="30" y="790" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#1e2b4f">完整優惠詳情：</text>
+  <text x="30" y="815" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#0066c0" text-decoration="underline">https://www.michaelleung.info/prices/gooddeals.html</text>
+
+  <!-- hashtags -->
+  <text x="30" y="855" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#666">每週更新，幫你精明購物！</text>
+  <text x="30" y="880" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#888">#澳洲優惠 #JBHiFi #TheGoodGuys #HarveyNorman</text>
+  <text x="30" y="900" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#888">#電器優惠 #精明消費 #布里斯本 #悉尼 #墨爾本</text>
+  <text x="30" y="920" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#888">#澳洲華人 #氣炸鍋 #Dyson #遊戲筆電</text>
+</svg>

@@ -1,0 +1,57 @@
+[
+  {
+    "productID": "WOL001",
+    "productName": "Australian Beef T-Bone Steak Bulk Pack",
+    "category": "General",
+    "brand": "Australian",
+    "description": "",
+    "price": "$28.00",
+    "originalPrice": "$28.00",
+    "savings": "$0.00",
+    "specialType": "REGULAR"
+  },
+  {
+    "productID": "WOL002",
+    "productName": "Doritos Corn Chips Share Pack 150-170g",
+    "category": "Snacks",
+    "brand": "Doritos",
+    "description": "150-170g",
+    "price": "$2.50",
+    "originalPrice": "$5.00",
+    "savings": "$2.50",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "WOL003",
+    "productName": "Arnott's Tim Tam Chocolate Biscuits 165-200g – Excludes Arnott's Tim Tam Deluxe 175g",
+    "category": "Confectionery",
+    "brand": "Arnott's",
+    "description": "165-200g",
+    "price": "$3.00",
+    "originalPrice": "$6.00",
+    "savings": "$3.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "WOL004",
+    "productName": "Coca-Cola, Sprite or Fanta Soft Drink Varieties 10 x 375ml",
+    "category": "Beverages",
+    "brand": "Coca-Cola,",
+    "description": "375ml",
+    "price": "$10.00",
+    "originalPrice": "$20.00",
+    "savings": "$10.00",
+    "specialType": "HALF PRICE"
+  },
+  {
+    "productID": "WOL005",
+    "productName": "Toblerone 340-360g",
+    "category": "General",
+    "brand": "Toblerone",
+    "description": "340-360g",
+    "price": "$8.00",
+    "originalPrice": "$20.00",
+    "savings": "$12.00",
+    "specialType": "BETTER THAN HALF PRICE"
+  }
+]

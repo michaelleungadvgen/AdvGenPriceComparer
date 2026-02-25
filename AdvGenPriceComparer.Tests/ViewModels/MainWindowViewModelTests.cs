@@ -358,6 +358,9 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowWarning(string message, string title = "Warning") { }
         public void ShowComparePricesDialog(string? category = null) { }
         public SearchResult? ShowGlobalSearchDialog() => null;
+        public void ShowBarcodeScannerDialog() { }
+        public void ShowPriceDropNotificationsDialog() { }
+        public void ShowFavoritesDialog() { }
     }
 
     #endregion

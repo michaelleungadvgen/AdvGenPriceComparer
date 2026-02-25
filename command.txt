@@ -1,0 +1,5 @@
+
+py .\generate_price_comparison_html.py
+ py .\product_price_comparator.py      
+ py .\woolworths_catalogue_parser.py   
+ python woolworths_catalogue_scraper.py --max-pages 36

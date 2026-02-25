@@ -1,0 +1,190 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.FavoritesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="Favorite Items" 
+        Height="600" 
+        Width="900"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource ApplicationBackgroundBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                Background="{DynamicResource SystemAccentColorBrush}" 
+                Padding="20,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="⭐ Favorite Items" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                    <TextBlock Text="Quick access to your most important items"
+                               Foreground="White" 
+                               Opacity="0.9" 
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <ui:Button Icon="{ui:SymbolIcon Refresh24}" 
+                               ToolTip="Refresh"
+                               Command="{Binding RefreshCommand}"
+                               Margin="0,0,10,0"
+                               Background="Transparent"
+                               Foreground="White"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Search Bar -->
+        <Grid Grid.Row="1" Margin="20,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBox Grid.Column="0"
+                        PlaceholderText="Search favorites..."
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                        Icon="{ui:SymbolIcon Search24}"
+                        FontSize="14"/>
+
+            <ui:Button Grid.Column="1"
+                       Content="Clear"
+                       Command="{Binding ClearSearchCommand}"
+                       Margin="10,0,0,0"
+                       Visibility="{Binding SearchText, Converter={StaticResource NullToVisibilityConverter}}"/>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="2" Margin="20,0">
+            
+            <!-- Loading State -->
+            <ui:ProgressRing IsIndeterminate="True"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <!-- Empty State -->
+            <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Visibility="{Binding HasFavorites, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <ui:SymbolIcon Symbol="Star24" 
+                               FontSize="64" 
+                               Opacity="0.3"/>
+                <TextBlock Text="{Binding EmptyMessage}"
+                           TextAlignment="Center"
+                           Margin="0,20,0,0"
+                           FontSize="14"
+                           Opacity="0.6"/>
+            </StackPanel>
+
+            <!-- Favorites List -->
+            <DataGrid ItemsSource="{Binding FavoriteItems}"
+                      SelectedItem="{Binding SelectedItem}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      BorderThickness="1"
+                      BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+                      Visibility="{Binding HasFavorites, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <DataGrid.Columns>
+                    <!-- Favorite Icon -->
+                    <DataGridTemplateColumn Width="40">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ui:SymbolIcon Symbol="Star24" 
+                                               Foreground="Gold"
+                                               HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Product Name -->
+                    <DataGridTextColumn Header="Product" 
+                                        Binding="{Binding DisplayName}" 
+                                        Width="*"/>
+
+                    <!-- Brand -->
+                    <DataGridTextColumn Header="Brand" 
+                                        Binding="{Binding Brand}" 
+                                        Width="120"/>
+
+                    <!-- Category -->
+                    <DataGridTextColumn Header="Category" 
+                                        Binding="{Binding Category}" 
+                                        Width="120"/>
+
+                    <!-- Package Size -->
+                    <DataGridTextColumn Header="Size" 
+                                        Binding="{Binding PackageSize}" 
+                                        Width="80"/>
+
+                    <!-- Actions -->
+                    <DataGridTemplateColumn Header="Actions" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ui:Button Icon="{ui:SymbolIcon StarOff24}"
+                                           ToolTip="Remove from favorites"
+                                           Command="{Binding DataContext.ToggleFavoriteCommand, 
+                                                     RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                           CommandParameter="{Binding}"
+                                           Background="Transparent"
+                                           BorderThickness="0"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="45"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Grid.Row="3" 
+                Background="{DynamicResource SystemAltMediumColor}" 
+                Padding="20,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="{Binding TotalFavorites, StringFormat='{}{0} favorite item(s)'}"
+                           VerticalAlignment="Center"
+                           Opacity="0.7"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <ui:Button Content="Remove Selected"
+                               Command="{Binding RemoveFromFavoritesCommand}"
+                               Icon="{ui:SymbolIcon Delete24}"
+                               Appearance="Danger"
+                               IsEnabled="{Binding CanRemoveFromFavorites}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,11 +1,10 @@
-Product,Retailer,Sale Price,Discount,Category,URL
-Garmin Epix Pro (Gen 2) Sapphire,JB Hi-Fi,$849,$850 OFF,Wearables,https://www.jbhifi.com.au/products/garmin-epix-pro-gen-2-sapphire-edition-47mm-carbon-grey-dlc-titanium-with-black-band
-Hisense 85" U6QAU PRO 4K Mini LED,The Good Guys,$1936,$1059 OFF,TVs,https://www.thegoodguys.com.au/hisense-85-inches-u6qau-pro-4k-uled-mini-led-tv-2025-85u6qau-pro
-Dyson V8 Handstick Vacuum,JB Hi-Fi,$377,$422 OFF,Appliances,https://www.jbhifi.com.au/products/dyson-v8-handstick-vacuum
-Samsung Galaxy A26 5G (128GB),Harvey Norman,$418,$80 OFF,Phones,https://www.harveynorman.com.au/samsung-galaxy-a26-5g-128gb-black.html
-HP 15.6" AI Laptop (Ultra 7/16GB/512GB),The Good Guys,$1359,$540 OFF,Laptops,https://www.thegoodguys.com.au/hp-156-inches-ai-core-ultra-7-16gb-512gb-laptop-bq4e0pa
-MacBook Air 15-inch (M4 Chip/256GB),JB Hi-Fi,$1799,$158 OFF,Laptops,https://www.jbhifi.com.au/products/apple-macbook-air-15-inch-with-m4-chip-256gb-16gb-midnight
-Dyson V15 Detect Absolute,The Good Guys,$888,$561 OFF,Appliances,https://www.thegoodguys.com.au/dyson-v15-detect-absolute-cordless-vacuum-447955-01
-Hisense 65" Q6QAU 4K QLED TV,JB Hi-Fi,$895,Red Hot Deal,TVs,https://www.jbhifi.com.au/products/hisense-65-q6qau-4k-qled-smart-tv-2025
-Lenovo LOQ 17.3" (RTX 5070),JB Hi-Fi,$2399,$600 OFF,Gaming,https://www.jbhifi.com.au/products/lenovo-loq-171rx10-17-3-gaming-laptop-intel-core-i7-geforce-rtx-5070
-HP OmniBook 5 14" OLED (Snapdragon X),Harvey Norman,$1198,Hot Deal,Laptops,https://www.harveynorman.com.au/hp-omnibook-5-14-inch-oled-snapdragon-x-x1-26-100-16gb-512gb-ssd-next-gen-ai-copilot-pc-laptop.html
+Product,Retailer,Sale Price,Original Price,Saving,Ends,URL
+"Lenovo Legion 5 15.3"" RTX 5070 Gaming Laptop",JB Hi-Fi,"$2,199","$3,299","$1,100 Off",Ongoing,https://www.jbhifi.com.au/products/lenovo-legion-5-15-3-wuxga-165hz-gaming-laptop-intel-core-i7geforce-rtx-5070
+"Linsar 85"" UHD Tizen Smart TV (2025)",The Good Guys,$988,$1499,Doorbuster,Feb 25,https://www.thegoodguys.com.au/linsar-85-inches-uhd-tizen-smart-tv-2025-ls85uhdzen25s
+Garmin Epix Pro (Gen 2) Sapphire 42mm,JB Hi-Fi,$899,"$1,699","$800 Off",Ongoing,https://www.jbhifi.com.au/products/garmin-epix-pro-gen-2-sapphire-edition-42mm-carbon-grey-dlc-titanium-with-black-band
+Ninja Double Stack XXL 7.6L Air Fryer,The Good Guys,$199,$399,$200 Off,Feb 25,https://www.thegoodguys.com.au/ninja-double-stack-xxl-76-litre-2-drawer-air-fryer-sl300anz
+"HP 15.6"" AI Intel Core Ultra 7 Laptop",The Good Guys,"$1,359","$1,899",$540 Off,Feb 25,https://www.thegoodguys.com.au/hp-156-inches-ai-core-ultra-7-16gb-512gb-laptop-bq4e0pa
+"77"" LG C5 OLED 4K Smart TV (2025)",JB Hi-Fi,"$5,995","$7,995","$2,000 Off",Ongoing,https://www.jbhifi.com.au/products/lg-77-oled-evo-c5-ai-4k-uhd-smart-tv-2025
+"Samsung Galaxy Tab S10 Ultra 14.6"" Wi-Fi 256GB",JB Hi-Fi,"$2,099","$2,499",$400 Off,Ongoing,https://www.jbhifi.com.au/products/samsung-galaxy-tab-s10-ultra-14-6-wi-fi-256gb-grey
+Dyson V8 Handstick Vacuum,JB Hi-Fi,$799,$999,$200 Off,Ongoing,https://www.jbhifi.com.au/products/dyson-v8-handstick-vacuum
+Google Pixel 9a 128GB,Harvey Norman,$648,$849,$201 Off,Ongoing,https://www.harveynorman.com.au/google-pixel-9a-128gb-obsidian.html

@@ -40,6 +40,8 @@ public class Item
     
     public bool IsActive { get; set; } = true;
     
+    public bool IsFavorite { get; set; } = false;
+    
     public DateTime DateAdded { get; set; } = DateTime.UtcNow;
     
     public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
