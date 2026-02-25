@@ -84,7 +84,24 @@
 
 ---
 
+## Pending Features (High Priority from PROJECT_STATUS.md)
+
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Price comparison view (side-by-side store comparison) | 🟡 DOING | Agent-021 | Implementing ComparePricesWindow |
+| Historical price charts for individual items | 🔴 TODO | - | |
+| Barcode scanner integration | 🔴 TODO | - | |
+| Search across all entities | 🔴 TODO | - | |
+
+---
+
 ## Active Agent Assignments
+
+### Agent-021 (Current Session)
+- **Current Task:** Add Price Comparison View - Create ComparePricesWindow with side-by-side store comparison
+- **Started:** 2026-02-26
+- **Estimated Completion:** 2-3 hours
+- **Status:** 🟡 DOING
 
 ### Agent-008
 - **Current Task:** Test duplicate detection strategies - Create xUnit test project
@@ -120,6 +137,7 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Document testing strategy | 🟢 DONE | Agent-020 | Created comprehensive TESTING.md with 217+ test documentation |
+| Update README.md for WPF | 🟢 DONE | Agent-021 | Updated README to reflect WPF architecture, fixed ComparePricesWindow missing using statement |
 
 ---
 
@@ -148,6 +166,7 @@
 | 2026-02-25 | Test JSON import with older format (coles_24072025.json) - Created 3 xUnit tests for older JSON format compatibility | Agent-017 |
 | 2026-02-25 | Set up CI/CD pipeline - Updated GitHub Actions for WPF build, .NET 9, test execution (217 tests passing) | Agent-018 |
 | 2026-02-25 | Generate code coverage reports - Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage) | Agent-019 |
+| 2026-02-26 | Update README.md for WPF - Updated architecture docs, project structure, roadmap; fixed ComparePricesWindow.cs missing using statement | Agent-021 |
 
 ---
 

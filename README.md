@@ -27,8 +27,9 @@ Fight misleading "sale" prices and illusory discounts by building a transparent,
 ### 📊 Price Intelligence
 - **Historical Tracking**: Track price changes over time to identify genuine vs. fake discounts
 - **Multi-Store Comparison**: Compare prices across Coles, Woolworths, IGA, Aldi, and other chains
-- **Price Alerts**: Get notified when prices drop (planned)
+- **Price Alerts**: Get notified when prices drop
 - **Discount Analysis**: Identify illusory discounts by comparing current "sale" prices with historical data
+- **Import/Export**: JSON import from Coles/Woolworths/Drakes, export with filters and compression
 
 ### 🏪 Comprehensive Coverage
 - Coles
@@ -41,26 +42,42 @@ Fight misleading "sale" prices and illusory discounts by building a transparent,
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    WinUI 3 Desktop App                      │
-│                  (User Interface Layer)                      │
-└─────────────────────┬───────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│           WPF Desktop App (WPF-UI Fluent Design)                │
+│                     (UI Layer - .NET 9)                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────────┐   │
+│  │   Views      │  │  ViewModels  │  │   Converters        │   │
+│  │  • ItemsPage │  │  • MainWindow│  │  • BoolToVisibility │   │
+│  │  • StoresPage│  │  • ItemVM    │  │  • InverseBool      │   │
+│  │  • Dashboard │  │  • ImportVM  │  │                     │   │
+│  └──────────────┘  └──────────────┘  └─────────────────────┘   │
+└─────────────────────┬───────────────────────────────────────────┘
                       │
-┌─────────────────────┴───────────────────────────────────────┐
-│                  AdvGenPriceComparer.Core                    │
-│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────┐   │
-│  │   Models     │  │  Services    │  │  NetworkManager │   │
-│  │  • Item      │  │  • Grocery   │  │  • P2P Server   │   │
-│  │  • Place     │  │  • Database  │  │  • P2P Client   │   │
-│  │  • PriceRec  │  │  • ServerCfg │  │  • Discovery    │   │
-│  └──────────────┘  └──────────────┘  └─────────────────┘   │
-└─────────────────────┬───────────────────────────────────────┘
+┌─────────────────────┴───────────────────────────────────────────┐
+│              AdvGenPriceComparer.Data.LiteDB                     │
+│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────────┐   │
+│  │ Repositories │  │   Services   │  │     Entities        │   │
+│  │  • Items     │  │  • JsonImport│  │  • ItemEntity       │   │
+│  │  • Places    │  │  • Database  │  │  • PlaceEntity      │   │
+│  │  • Prices    │  │  • Export    │  │  • PriceRecordEntity│   │
+│  └──────────────┘  └──────────────┘  └─────────────────────┘   │
+└─────────────────────┬───────────────────────────────────────────┘
                       │
-┌─────────────────────┴───────────────────────────────────────┐
-│              LiteDB Embedded Database                        │
-│    • Items Collection  • Places Collection                   │
-│    • PriceRecords Collection (Historical Data)               │
-└──────────────────────────────────────────────────────────────┘
+┌─────────────────────┴───────────────────────────────────────────┐
+│                   AdvGenPriceComparer.Core                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────────┐   │
+│  │   Models     │  │  Interfaces  │  │  NetworkManager     │   │
+│  │  • Item      │  │  • IGrocery  │  │  • P2P Server       │   │
+│  │  • Place     │  │  • IRepos    │  │  • P2P Client       │   │
+│  │  • PriceRec  │  │  • Services  │  │  • Discovery        │   │
+│  └──────────────┘  └──────────────┘  └─────────────────────┘   │
+└─────────────────────┬───────────────────────────────────────────┘
+                      │
+┌─────────────────────┴───────────────────────────────────────────┐
+│                LiteDB Embedded Database                          │
+│    • Items Collection  • Places Collection  • PriceRecords      │
+│    • Categories        • Alerts                                  │
+└─────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────┐
 │                  Python AI Processing                         │
@@ -116,7 +133,7 @@ This hybrid approach lets individuals use lightweight P2P sharing while communit
 ### Prerequisites
 
 **For C# Application:**
-- Windows 10/11 (Build 19041 or higher)
+- Windows 10/11
 - .NET 9.0 SDK
 - Visual Studio 2022 (recommended)
 
@@ -244,13 +261,13 @@ python pdf_catalog_extractor.py --input coles_catalogue.pdf --output coles_price
 3. **Structured Output**: Generate JSON with product names, prices, brands, and categories
 4. **Import to Database**: Load extracted data into LiteDB for tracking
 
-### ML.Net Integration (Planned)
+### 🤖 ML.NET Integration (Planned)
 
-Future ML.Net capabilities:
+Future ML.NET capabilities for Phase 9-11:
+- **Auto-Categorization**: ML-powered product categorization during import
 - **Price Prediction**: Forecast future price trends based on historical data
 - **Anomaly Detection**: Identify suspicious price changes or fake discounts
-- **Product Clustering**: Group similar products for better comparison
-- **Sale Pattern Recognition**: Learn typical discount patterns by chain and season
+- **Smart Buying Recommendations**: "Buy Now" vs "Wait" based on price forecasting
 
 ## 💾 Database Structure
 
@@ -303,17 +320,31 @@ Database location: `%AppData%\AdvGenPriceComparer\GroceryPrices.db`
 
 ```
 AdvGenPriceComparer/
-├── AdvGenPriceComparer/              # WinUI 3 Desktop Application
-├── AdvGenPriceComparer.Core/         # Core library (Models, Services, NetworkManager)
-├── AdvGenPriceComparer.Data.LiteDB/  # LiteDB repositories and data access
-├── AdvGenPriceComparer.Tests/        # Unit tests
-├── TestConsole/                      # Console test application
-├── NetworkTest/                      # P2P network testing
-├── pdf_catalog_extractor.py          # LLM-powered PDF extraction
-├── coles_catalogue_scraper.py        # Coles-specific scraper
-├── woolworths_catalogue_parser.py    # Woolworths-specific parser
-├── requirements.txt                  # Python dependencies
-└── servers.json                      # P2P server configuration (in %AppData%)
+├── AdvGenPriceComparer.WPF/              # WPF Application (.NET 9, WPF-UI)
+│   ├── Views/                            # XAML Views (Items, Stores, Dashboard)
+│   ├── ViewModels/                       # MVVM ViewModels
+│   ├── Services/                         # WPF-specific services
+│   └── Converters/                       # XAML value converters
+├── AdvGenPriceComparer.Core/             # Core Models & Interfaces
+│   ├── Models/                           # Item, Place, PriceRecord
+│   ├── Interfaces/                       # Repository interfaces
+│   └── Helpers/                          # NetworkManager
+├── AdvGenPriceComparer.Data.LiteDB/      # Data Access Layer
+│   ├── Repositories/                     # LiteDB implementations
+│   ├── Services/                         # JsonImportService, ExportService
+│   └── Entities/                         # LiteDB entity classes
+├── AdvGenPriceComparer.Tests/            # xUnit Test Suite (217+ tests)
+│   ├── Services/                         # JsonImport, ServerConfig tests
+│   ├── Repositories/                     # Repository layer tests
+│   ├── ViewModels/                       # ViewModel tests
+│   └── Integration/                      # End-to-end tests
+├── TestConsole/                          # Console test application
+├── NetworkTest/                          # P2P network testing
+├── pdf_catalog_extractor.py              # LLM-powered PDF extraction
+├── coles_catalogue_scraper.py            # Coles-specific scraper
+├── woolworths_catalogue_parser.py        # Woolworths-specific parser
+├── requirements.txt                      # Python dependencies
+└── servers.json                          # Server configuration
 ```
 
 ## 🔧 Development
@@ -364,15 +395,23 @@ Contributions are welcome! This is a community-driven project to combat deceptiv
 
 ## 📋 Roadmap
 
-- [x] Basic WinUI 3 application
-- [x] LiteDB integration
+### Completed ✅
+- [x] ~~WinUI 3~~ **Migrated to WPF** with Fluent Design (WPF-UI)
+- [x] LiteDB integration with repository pattern
+- [x] **JSON Import/Export** (Coles, Woolworths, Drakes formats)
+- [x] **217+ xUnit tests** with CI/CD pipeline
 - [x] P2P networking with server discovery
 - [x] LLM-powered catalogue extraction
 - [x] Sister project: AdvGenNoSqlServer for large-scale deployments
-- [ ] ML.Net price prediction
+
+### In Progress 🚧
+- [ ] ML.NET Auto-Categorization (Phase 9)
+- [ ] ML.NET Price Prediction & Forecasting (Phase 11)
+- [ ] Settings Service with database provider selection (Phase 10)
+
+### Planned 📅
 - [ ] AdvGenNoSqlServer integration and migration tools
 - [ ] Mobile app (Android/iOS)
-- [ ] Price alerts and notifications
 - [ ] Barcode scanning
 - [ ] Shopping list integration
 - [ ] Browser extension for online shopping

@@ -1103,7 +1103,23 @@ public class MockDataGenerator
 - [x] Generate code coverage reports - Agent-019: Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage)
 - [x] Document testing strategy - Agent-020: Created comprehensive TESTING.md in AdvGenPriceComparer.Tests/
 
-### 8.9 Import Enhancements (Completed)
+### 8.10 Documentation Updates (Completed)
+
+#### README.md Update for WPF Architecture
+**Implemented by:** Agent-021 (2026-02-26)
+
+**Changes Made:**
+- Updated architecture diagram to show WPF (WPF-UI Fluent) instead of WinUI 3
+- Updated project structure section with accurate folder structure
+- Updated roadmap to show completed WPF migration and current phases
+- Updated Key Features section to reflect implemented import/export functionality
+- Fixed build error in ComparePricesWindow.xaml.cs (added missing using statement)
+
+**Files Modified:**
+- `README.md` - Updated architecture, features, roadmap, project structure
+- `AdvGenPriceComparer.WPF/Views/ComparePricesWindow.xaml.cs` - Added missing using statement
+
+### 8.11 Import Enhancements (Completed)
 
 #### Support for JSON Files Without ProductID
 **Implemented by:** Agent-009 (2026-02-25)
