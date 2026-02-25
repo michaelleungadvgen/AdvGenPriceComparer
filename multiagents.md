@@ -43,6 +43,7 @@
 | Add support for JSON files without productID | 🟢 DONE | Agent-009 | JsonImportService now generates stable IDs for products without ProductID field |
 | Add error handling and validation | 🔴 TODO | - | Enhance existing |
 | Test duplicate detection strategies | 🟢 DONE | Agent-008 | Creating xUnit test project for duplicate detection |
+| Implement Repository layer tests | 🟢 DONE | Agent-011 | Created 98 comprehensive xUnit tests for ItemRepository, PlaceRepository, PriceRecordRepository |
 | Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
 | Implement ServerConfigService tests | 🟢 DONE | Agent-010 | Created 30 comprehensive xUnit tests for ServerConfigService, also fixed JSON deserialization bug |
 | Add import progress UI updates | 🔴 TODO | - | Progress bar implementation |
@@ -112,6 +113,7 @@
 | 2026-02-25 | Test full export workflow - 10 tests passed | Agent-007 |
 | 2026-02-25 | Add support for JSON files without productID - GetProductId() method added | Agent-009 |
 | 2026-02-25 | Implement ServerConfigService tests - 30 tests created, fixed JSON deserialization bug | Agent-010 |
+| 2026-02-25 | Implement Repository layer tests - 98 xUnit tests for ItemRepository, PlaceRepository, PriceRecordRepository | Agent-011 |
 
 ---
 

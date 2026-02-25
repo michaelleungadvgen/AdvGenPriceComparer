@@ -12,6 +12,173 @@ Migration of AdvGenPriceComparer from WinUI 3 to WPF with enhanced features for:
 - Importing markdown catalogues (drakes.md format)
 - Generating JSON exports for price sharing
 - Implementing a server component for P2P price data sharing
+- **ML.NET Auto-Categorization** - Automatically categorize products using machine learning
+- **ML.NET Price Prediction** - Forecast future prices and identify optimal buying times
+- **Ollama Chat Interface** - Natural language price queries with local LLM
+
+---
+
+## 🤖 ML.NET Features Overview
+
+### Auto-Categorization (Phase 9)
+**Status:** Planned
+**Purpose:** Automatically categorize grocery items using machine learning
+
+### Key Capabilities:
+1. **Auto-Categorization During Import**
+   - Automatically assigns categories to products without category information
+   - Works with JSON imports (Coles, Woolworths) and markdown imports (Drakes)
+   - Confidence threshold: 70% (configurable)
+
+2. **Smart Suggestions During Manual Entry**
+   - Provides top 3 category suggestions as user types product name
+   - Real-time prediction updates based on product name, brand, and description
+   - One-click category selection from suggestions
+
+3. **Model Training & Management**
+   - Train model from existing categorized items in database
+   - Import training data from CSV files
+   - Incremental retraining with new user-categorized items
+   - Model accuracy tracking and versioning
+
+4. **Supported Categories:**
+   - Meat & Seafood, Dairy & Eggs, Fruits & Vegetables, Bakery
+   - Pantry Staples, Snacks & Confectionery, Beverages, Frozen Foods
+   - Household Products, Personal Care, Baby Products, Pet Care, Health & Wellness
+
+5. **Performance:**
+   - Single prediction: <10ms
+   - Batch prediction (100 items): <500ms
+   - Expected accuracy: 85-95% with sufficient training data
+   - Minimum 100 items per category for training
+
+### Implementation Details:
+See **[Phase 9: ML.NET Auto-Categorization](#-phase-9-mlnet-auto-categorization)** for complete implementation guide including:
+- ML.NET project setup and dependencies
+- Training and prediction service architecture
+- Integration with import workflows
+- UI components for model management
+- Continuous improvement and feedback loops
+
+---
+
+### Price Prediction & Forecasting (Phase 11)
+**Status:** Planned
+**Purpose:** Predict future grocery prices and identify optimal buying times
+
+#### Key Capabilities:
+1. **Future Price Forecasting**
+   - Predict prices up to 30 days in advance
+   - 95% confidence intervals for predictions
+   - Time series analysis using Singular Spectrum Analysis (SSA)
+   - Expected accuracy: 5-15% MAPE
+
+2. **Price Trend Analysis**
+   - Identify rising, falling, or stable price trends
+   - Calculate trend strength and direction
+   - Track moving averages (7-day and 30-day)
+   - Seasonal pattern detection
+
+3. **Anomaly Detection**
+   - Detect unusual price spikes and drops
+   - Identify illusory discounts (fake sales)
+   - Compare "sale" prices with historical averages
+   - Flag suspicious pricing behavior
+
+4. **Smart Buying Recommendations**
+   - **Buy Now**: Price at or near historical low
+   - **Wait**: Price expected to drop soon
+   - **Avoid**: Price unusually high
+   - **Normal**: No significant trend
+
+5. **Optimal Buying Date**
+   - Calculate best date to purchase within forecast window
+   - Predict lowest price point
+   - Set price alerts for optimal timing
+
+#### Use Cases:
+- Combat illusory discounts by comparing "sale" prices with predicted normal prices
+- Plan shopping around predicted price drops
+- Save money by buying at optimal times
+- Verify discount claims against historical data
+- Budget planning with price forecasts
+
+#### Technical Details:
+- **Algorithm**: SSA (Singular Spectrum Analysis) for time series forecasting
+- **Data Requirements**: Minimum 30 days history, recommended 90+ days
+- **Performance**: <2 seconds for 30-day forecast
+- **Anomaly Detection**: Spike detection with 95% confidence
+- **UI**: Interactive charts with LiveCharts, price trend visualization
+
+### Implementation Details:
+See **[Phase 11: ML.NET Price Prediction & Forecasting](#-phase-11-mlnet-price-prediction--forecasting)** for complete implementation guide including:
+- Time series forecasting with ML.NET
+- Price anomaly detection algorithms
+- Illusory discount identification
+- Interactive price forecast UI
+- Buying recommendation engine
+
+---
+
+### Ollama Chat Interface (Phase 12)
+**Status:** Planned
+**Purpose:** Natural language interface for querying prices using local LLM
+
+#### Key Capabilities:
+1. **Natural Language Queries**
+   - Ask questions in plain English: "What's the price of milk?"
+   - No need to learn complex UI or query syntax
+   - Conversational interface with context awareness
+   - Supports follow-up questions
+
+2. **Intelligent Query Routing**
+   - LLM extracts intent from user questions
+   - Routes queries to LiteDB or AdvGenNoSqlServer
+   - Optimizes database queries based on intent
+   - Handles complex multi-condition queries
+
+3. **Supported Query Types**
+   - Price queries: "How much is bread at Coles?"
+   - Comparisons: "Compare milk prices between stores"
+   - Deals: "What's on sale this week?"
+   - History: "Show milk price trends"
+   - Budget: "What can I buy for $50?"
+   - Categories: "Show me all dairy products"
+
+4. **Privacy-First Design**
+   - All LLM processing runs locally via Ollama
+   - No data sent to external APIs
+   - Open-source models (Mistral, Llama 2, Phi)
+   - Full user control over data
+
+5. **Smart Features**
+   - Context-aware conversations
+   - Product recommendations
+   - Budget planning assistance
+   - Multi-store comparisons
+   - Historical insights
+
+#### Example Queries:
+- "What's the cheapest bread?"
+- "Find the best deals at Woolworths"
+- "Show me milk price history over the last month"
+- "Compare egg prices between Coles and Woolworths"
+- "What groceries can I get for $50?"
+
+#### Technical Details:
+- **LLM**: Ollama with Mistral 7B (recommended)
+- **Response Time**: 2-4 seconds per query
+- **RAM Usage**: ~4GB for Mistral model
+- **Privacy**: 100% local processing
+- **UI**: Modern chat interface with message history
+
+### Implementation Details:
+See **[Phase 12: Ollama Chat Interface for Natural Language Price Queries](#-phase-12-ollama-chat-interface-for-natural-language-price-queries)** for complete implementation guide including:
+- Ollama setup and model selection
+- Intent extraction from natural language
+- Query routing to databases
+- Response generation
+- Chat UI implementation
 
 ---
 
@@ -929,7 +1096,7 @@ public class MockDataGenerator
 - [x] Implement JsonImportService tests (all scenarios)
 - [x] Implement ServerConfigService tests
 - [x] Implement ExportService tests
-- [ ] Implement Repository layer tests
+- [x] Implement Repository layer tests
 - [ ] Implement ViewModel tests
 - [ ] Create integration tests
 - [ ] Set up CI/CD pipeline for automated testing
@@ -2426,6 +2593,2056 @@ AdvGenPriceComparer.WPF/
 └── Views/
     └── SettingsWindow.xaml
 ```
+
+---
+
+## 📊 Phase 11: ML.NET Price Prediction & Forecasting
+
+### 11.1 Overview
+Use ML.NET to predict future grocery prices, identify price trends, detect anomalies, and provide intelligent buying recommendations based on historical price data.
+
+**Key Objectives:**
+- Predict future prices for products based on historical data
+- Identify seasonal price patterns and trends
+- Detect price anomalies (unusual spikes or drops)
+- Forecast optimal buying times
+- Alert users to predicted price drops
+- Combat illusory discounts by comparing with predicted "normal" prices
+
+### 11.2 ML.NET Setup for Time Series Analysis
+
+**Location:** Extend `AdvGenPriceComparer.ML` project
+
+**Additional Dependencies:**
+```xml
+<PackageReference Include="Microsoft.ML" Version="3.0.1" />
+<PackageReference Include="Microsoft.ML.TimeSeries" Version="3.0.1" />
+<PackageReference Include="Microsoft.ML.FastTree" Version="3.0.1" />
+```
+
+**Project Structure Enhancement:**
+```
+AdvGenPriceComparer.ML/
+├── Models/
+│   ├── PriceHistoryData.cs (input for time series)
+│   ├── PriceForecast.cs (output prediction)
+│   ├── PriceAnomaly.cs (anomaly detection result)
+│   └── BuyingRecommendation.cs
+├── Services/
+│   ├── PricePredictionService.cs
+│   ├── PriceAnomalyDetectionService.cs
+│   ├── PriceForecastingService.cs
+│   └── BuyingRecommendationService.cs
+└── MLModels/
+    ├── price_forecast_model.zip
+    └── anomaly_detection_model.zip
+```
+
+### 11.3 Data Models
+
+**PriceHistoryData.cs (Input):**
+```csharp
+public class PriceHistoryData
+{
+    [LoadColumn(0)]
+    public string ItemId { get; set; }
+
+    [LoadColumn(1)]
+    public string ItemName { get; set; }
+
+    [LoadColumn(2)]
+    public DateTime Date { get; set; }
+
+    [LoadColumn(3)]
+    public float Price { get; set; }
+
+    [LoadColumn(4)]
+    public bool IsOnSale { get; set; }
+
+    [LoadColumn(5)]
+    public string Store { get; set; }
+
+    [LoadColumn(6)]
+    public string Category { get; set; }
+
+    [LoadColumn(7)]
+    public int DayOfWeek { get; set; }
+
+    [LoadColumn(8)]
+    public int WeekOfYear { get; set; }
+
+    [LoadColumn(9)]
+    public int Month { get; set; }
+
+    // Derived features
+    public float MovingAverage7Days { get; set; }
+    public float MovingAverage30Days { get; set; }
+    public float PriceChange { get; set; }
+}
+```
+
+**PriceForecast.cs (Output):**
+```csharp
+public class PriceForecast
+{
+    public string ItemId { get; set; }
+    public string ItemName { get; set; }
+    public DateTime ForecastDate { get; set; }
+
+    [ColumnName("Score")]
+    public float PredictedPrice { get; set; }
+
+    public float ConfidenceInterval { get; set; }
+    public float LowerBound { get; set; }
+    public float UpperBound { get; set; }
+
+    // Trend analysis
+    public PriceTrend Trend { get; set; } // Rising, Falling, Stable
+    public float TrendStrength { get; set; } // 0-1
+
+    // Buying recommendation
+    public BuyingRecommendation Recommendation { get; set; }
+}
+
+public enum PriceTrend
+{
+    Rising,
+    Falling,
+    Stable
+}
+
+public enum BuyingRecommendation
+{
+    BuyNow,      // Price is at or near historical low
+    Wait,        // Price expected to drop soon
+    NormalTime,  // No significant trend
+    AvoidHighPrice // Currently unusually high
+}
+```
+
+**PriceAnomaly.cs:**
+```csharp
+public class PriceAnomaly
+{
+    public string ItemId { get; set; }
+    public string ItemName { get; set; }
+    public DateTime Date { get; set; }
+    public float ActualPrice { get; set; }
+    public float ExpectedPrice { get; set; }
+    public float Deviation { get; set; }
+
+    [ColumnName("PredictedLabel")]
+    public bool IsAnomaly { get; set; }
+
+    [ColumnName("Score")]
+    public float AnomalyScore { get; set; }
+
+    public AnomalyType Type { get; set; } // PriceSpike, PriceDrop, Seasonal
+    public string Description { get; set; }
+}
+
+public enum AnomalyType
+{
+    PriceSpike,    // Unusual price increase
+    PriceDrop,     // Unusual price decrease
+    Seasonal,      // Expected seasonal variation
+    IllusoryDiscount // "Sale" price is actually normal or high
+}
+```
+
+### 11.4 Price Forecasting Service
+
+**PriceForecastingService.cs:**
+```csharp
+public class PriceForecastingService
+{
+    private readonly MLContext _mlContext;
+    private readonly ITransformer _model;
+    private readonly ILoggerService _logger;
+    private readonly IPriceRecordRepository _priceRecords;
+
+    public PriceForecastingService(
+        string modelPath,
+        IPriceRecordRepository priceRecords,
+        ILoggerService logger)
+    {
+        _mlContext = new MLContext();
+        _priceRecords = priceRecords;
+        _logger = logger;
+
+        if (File.Exists(modelPath))
+        {
+            using var stream = File.OpenRead(modelPath);
+            _model = _mlContext.Model.Load(stream, out var _);
+            _logger.LogInfo($"Price forecast model loaded from {modelPath}");
+        }
+    }
+
+    /// <summary>
+    /// Train forecasting model using historical price data
+    /// </summary>
+    public async Task<TrainingResult> TrainModelAsync(
+        string itemId,
+        int forecastHorizon = 30,
+        string outputModelPath = null)
+    {
+        _logger.LogInfo($"Training price forecast model for item {itemId}");
+
+        // 1. Get historical price data (at least 90 days recommended)
+        var priceHistory = await GetPriceHistoryAsync(itemId);
+
+        if (priceHistory.Count < 30)
+        {
+            return new TrainingResult
+            {
+                Success = false,
+                Message = $"Insufficient data. Need at least 30 days, found {priceHistory.Count}"
+            };
+        }
+
+        // 2. Prepare data with feature engineering
+        var trainingData = PrepareTrainingData(priceHistory);
+        var dataView = _mlContext.Data.LoadFromEnumerable(trainingData);
+
+        // 3. Build time series pipeline
+        var pipeline = _mlContext.Forecasting.ForecastBySsa(
+            outputColumnName: "Score",
+            inputColumnName: nameof(PriceHistoryData.Price),
+            windowSize: 7,
+            seriesLength: priceHistory.Count,
+            trainSize: priceHistory.Count,
+            horizon: forecastHorizon,
+            confidenceLevel: 0.95f,
+            confidenceLowerBoundColumn: "LowerBound",
+            confidenceUpperBoundColumn: "UpperBound"
+        );
+
+        // 4. Train model
+        var model = pipeline.Fit(dataView);
+
+        // 5. Save model
+        if (!string.IsNullOrEmpty(outputModelPath))
+        {
+            _mlContext.Model.Save(model, dataView.Schema, outputModelPath);
+        }
+
+        _logger.LogInfo($"Price forecast model trained successfully");
+
+        return new TrainingResult
+        {
+            Success = true,
+            Message = $"Model trained with {priceHistory.Count} data points",
+            TrainingItemCount = priceHistory.Count
+        };
+    }
+
+    /// <summary>
+    /// Forecast future prices for an item
+    /// </summary>
+    public async Task<List<PriceForecast>> ForecastPricesAsync(
+        string itemId,
+        int daysAhead = 30)
+    {
+        var priceHistory = await GetPriceHistoryAsync(itemId);
+
+        if (priceHistory.Count < 30)
+        {
+            _logger.LogWarning($"Insufficient data for forecasting item {itemId}");
+            return new List<PriceForecast>();
+        }
+
+        var trainingData = PrepareTrainingData(priceHistory);
+        var dataView = _mlContext.Data.LoadFromEnumerable(trainingData);
+
+        // Build and train SSA model
+        var pipeline = _mlContext.Forecasting.ForecastBySsa(
+            outputColumnName: "Score",
+            inputColumnName: nameof(PriceHistoryData.Price),
+            windowSize: 7,
+            seriesLength: priceHistory.Count,
+            trainSize: priceHistory.Count,
+            horizon: daysAhead,
+            confidenceLevel: 0.95f,
+            confidenceLowerBoundColumn: "LowerBound",
+            confidenceUpperBoundColumn: "UpperBound"
+        );
+
+        var model = pipeline.Fit(dataView);
+
+        // Create forecast engine
+        var forecastEngine = model.CreateTimeSeriesEngine<PriceHistoryData, PriceForecast>(_mlContext);
+
+        // Generate forecasts
+        var forecasts = new List<PriceForecast>();
+        var currentDate = priceHistory.Max(p => p.Date);
+
+        for (int i = 1; i <= daysAhead; i++)
+        {
+            var forecast = forecastEngine.Predict();
+
+            forecasts.Add(new PriceForecast
+            {
+                ItemId = itemId,
+                ItemName = priceHistory.First().ItemName,
+                ForecastDate = currentDate.AddDays(i),
+                PredictedPrice = forecast.PredictedPrice,
+                LowerBound = forecast.LowerBound,
+                UpperBound = forecast.UpperBound,
+                ConfidenceInterval = forecast.UpperBound - forecast.LowerBound,
+                Trend = DetermineTrend(forecasts, forecast.PredictedPrice),
+                Recommendation = GenerateRecommendation(priceHistory, forecast)
+            });
+        }
+
+        return forecasts;
+    }
+
+    /// <summary>
+    /// Forecast prices for multiple items (batch)
+    /// </summary>
+    public async Task<Dictionary<string, List<PriceForecast>>> ForecastMultipleItemsAsync(
+        List<string> itemIds,
+        int daysAhead = 30)
+    {
+        var results = new Dictionary<string, List<PriceForecast>>();
+
+        foreach (var itemId in itemIds)
+        {
+            var forecasts = await ForecastPricesAsync(itemId, daysAhead);
+            if (forecasts.Any())
+            {
+                results[itemId] = forecasts;
+            }
+        }
+
+        return results;
+    }
+
+    /// <summary>
+    /// Get optimal buying date within forecast window
+    /// </summary>
+    public async Task<(DateTime Date, float Price)> GetOptimalBuyingDateAsync(
+        string itemId,
+        int daysAhead = 30)
+    {
+        var forecasts = await ForecastPricesAsync(itemId, daysAhead);
+
+        if (!forecasts.Any())
+        {
+            return (DateTime.Now, 0);
+        }
+
+        // Find date with lowest predicted price
+        var optimalForecast = forecasts.OrderBy(f => f.PredictedPrice).First();
+
+        return (optimalForecast.ForecastDate, optimalForecast.PredictedPrice);
+    }
+
+    private async Task<List<PriceHistoryData>> GetPriceHistoryAsync(string itemId)
+    {
+        var records = await _priceRecords.GetPriceHistoryAsync(itemId, DateTime.Now.AddMonths(-6));
+
+        return records.Select(r => new PriceHistoryData
+        {
+            ItemId = r.ItemId,
+            ItemName = r.Item?.Name ?? "",
+            Date = r.DateRecorded,
+            Price = (float)r.Price,
+            IsOnSale = r.IsOnSale,
+            Store = r.Place?.Name ?? "",
+            Category = r.Item?.Category ?? "",
+            DayOfWeek = (int)r.DateRecorded.DayOfWeek,
+            WeekOfYear = GetWeekOfYear(r.DateRecorded),
+            Month = r.DateRecorded.Month
+        }).ToList();
+    }
+
+    private List<PriceHistoryData> PrepareTrainingData(List<PriceHistoryData> history)
+    {
+        // Calculate moving averages
+        for (int i = 0; i < history.Count; i++)
+        {
+            // 7-day moving average
+            if (i >= 6)
+            {
+                history[i].MovingAverage7Days = history
+                    .Skip(i - 6)
+                    .Take(7)
+                    .Average(p => p.Price);
+            }
+
+            // 30-day moving average
+            if (i >= 29)
+            {
+                history[i].MovingAverage30Days = history
+                    .Skip(i - 29)
+                    .Take(30)
+                    .Average(p => p.Price);
+            }
+
+            // Price change
+            if (i > 0)
+            {
+                history[i].PriceChange = history[i].Price - history[i - 1].Price;
+            }
+        }
+
+        return history;
+    }
+
+    private PriceTrend DetermineTrend(List<PriceForecast> recentForecasts, float currentPrice)
+    {
+        if (recentForecasts.Count < 3)
+            return PriceTrend.Stable;
+
+        var last3 = recentForecasts.TakeLast(3).Select(f => f.PredictedPrice).ToList();
+        last3.Add(currentPrice);
+
+        var isRising = last3[1] > last3[0] && last3[2] > last3[1] && last3[3] > last3[2];
+        var isFalling = last3[1] < last3[0] && last3[2] < last3[1] && last3[3] < last3[2];
+
+        if (isRising) return PriceTrend.Rising;
+        if (isFalling) return PriceTrend.Falling;
+        return PriceTrend.Stable;
+    }
+
+    private BuyingRecommendation GenerateRecommendation(
+        List<PriceHistoryData> history,
+        PriceForecast forecast)
+    {
+        var avgPrice = history.Average(h => h.Price);
+        var minPrice = history.Min(h => h.Price);
+        var maxPrice = history.Max(h => h.Price);
+
+        var predicted = forecast.PredictedPrice;
+
+        // Buy now if price is near historical minimum
+        if (predicted <= minPrice * 1.1f)
+            return BuyingRecommendation.BuyNow;
+
+        // Wait if price is falling
+        if (forecast.Trend == PriceTrend.Falling)
+            return BuyingRecommendation.Wait;
+
+        // Avoid if price is unusually high
+        if (predicted >= maxPrice * 0.9f)
+            return BuyingRecommendation.AvoidHighPrice;
+
+        return BuyingRecommendation.NormalTime;
+    }
+
+    private int GetWeekOfYear(DateTime date)
+    {
+        var culture = System.Globalization.CultureInfo.CurrentCulture;
+        return culture.Calendar.GetWeekOfYear(
+            date,
+            System.Globalization.CalendarWeekRule.FirstDay,
+            DayOfWeek.Monday);
+    }
+}
+```
+
+### 11.5 Price Anomaly Detection Service
+
+**PriceAnomalyDetectionService.cs:**
+```csharp
+public class PriceAnomalyDetectionService
+{
+    private readonly MLContext _mlContext;
+    private readonly ITransformer _model;
+    private readonly ILoggerService _logger;
+
+    public PriceAnomalyDetectionService(string modelPath, ILoggerService logger)
+    {
+        _mlContext = new MLContext();
+        _logger = logger;
+
+        if (File.Exists(modelPath))
+        {
+            using var stream = File.OpenRead(modelPath);
+            _model = _mlContext.Model.Load(stream, out var _);
+        }
+    }
+
+    /// <summary>
+    /// Train anomaly detection model
+    /// </summary>
+    public TrainingResult TrainAnomalyDetectionModel(
+        List<PriceHistoryData> priceHistory,
+        string outputModelPath)
+    {
+        _logger.LogInfo("Training price anomaly detection model");
+
+        var dataView = _mlContext.Data.LoadFromEnumerable(priceHistory);
+
+        // Use Spike Detection for sudden price changes
+        var pipeline = _mlContext.Transforms.DetectSpikeBySsa(
+            outputColumnName: nameof(PriceAnomaly.IsAnomaly),
+            inputColumnName: nameof(PriceHistoryData.Price),
+            confidence: 95,
+            pvalueHistoryLength: priceHistory.Count / 4,
+            trainingWindowSize: priceHistory.Count / 2,
+            seasonalityWindowSize: 7 // Weekly seasonality
+        );
+
+        var model = pipeline.Fit(dataView);
+
+        // Save model
+        _mlContext.Model.Save(model, dataView.Schema, outputModelPath);
+
+        _logger.LogInfo("Anomaly detection model trained");
+
+        return new TrainingResult
+        {
+            Success = true,
+            Message = "Anomaly detection model trained successfully"
+        };
+    }
+
+    /// <summary>
+    /// Detect price anomalies in recent data
+    /// </summary>
+    public List<PriceAnomaly> DetectAnomalies(
+        string itemId,
+        List<PriceHistoryData> priceHistory)
+    {
+        if (_model == null || priceHistory.Count < 14)
+        {
+            return new List<PriceAnomaly>();
+        }
+
+        var dataView = _mlContext.Data.LoadFromEnumerable(priceHistory);
+        var predictions = _model.Transform(dataView);
+
+        var anomalies = _mlContext.Data.CreateEnumerable<PriceAnomaly>(
+            predictions,
+            reuseRowObject: false).ToList();
+
+        // Classify anomaly types
+        for (int i = 0; i < anomalies.Count; i++)
+        {
+            if (anomalies[i].IsAnomaly)
+            {
+                var history = priceHistory[i];
+                var avgPrice = priceHistory.Average(p => p.Price);
+
+                if (history.Price > avgPrice * 1.2f)
+                {
+                    anomalies[i].Type = AnomalyType.PriceSpike;
+                    anomalies[i].Description = $"Price spike detected: ${history.Price:F2} vs average ${avgPrice:F2}";
+                }
+                else if (history.Price < avgPrice * 0.8f)
+                {
+                    anomalies[i].Type = AnomalyType.PriceDrop;
+                    anomalies[i].Description = $"Price drop detected: ${history.Price:F2} vs average ${avgPrice:F2}";
+                }
+
+                // Check for illusory discounts
+                if (history.IsOnSale && history.Price >= avgPrice * 0.95f)
+                {
+                    anomalies[i].Type = AnomalyType.IllusoryDiscount;
+                    anomalies[i].Description = $"Illusory discount: \"Sale\" price ${history.Price:F2} is near average ${avgPrice:F2}";
+                }
+
+                anomalies[i].ItemId = itemId;
+                anomalies[i].Date = history.Date;
+                anomalies[i].ActualPrice = history.Price;
+                anomalies[i].ExpectedPrice = avgPrice;
+                anomalies[i].Deviation = Math.Abs(history.Price - avgPrice);
+            }
+        }
+
+        return anomalies.Where(a => a.IsAnomaly).ToList();
+    }
+
+    /// <summary>
+    /// Detect illusory discounts across all items
+    /// </summary>
+    public async Task<List<PriceAnomaly>> DetectIllusoryDiscountsAsync(
+        IPriceRecordRepository priceRecords)
+    {
+        var illusoryDiscounts = new List<PriceAnomaly>();
+
+        // Get all items currently on sale
+        var saleItems = await priceRecords.GetItemsOnSaleAsync();
+
+        foreach (var saleRecord in saleItems)
+        {
+            var history = await priceRecords.GetPriceHistoryAsync(
+                saleRecord.ItemId,
+                DateTime.Now.AddMonths(-3));
+
+            if (history.Count < 10) continue;
+
+            var avgNonSalePrice = history
+                .Where(h => !h.IsOnSale)
+                .Average(h => (float)h.Price);
+
+            var currentSalePrice = (float)saleRecord.Price;
+
+            // Flag as illusory if "sale" price is >= 95% of average non-sale price
+            if (currentSalePrice >= avgNonSalePrice * 0.95f)
+            {
+                illusoryDiscounts.Add(new PriceAnomaly
+                {
+                    ItemId = saleRecord.ItemId,
+                    ItemName = saleRecord.Item?.Name ?? "",
+                    Date = saleRecord.DateRecorded,
+                    ActualPrice = currentSalePrice,
+                    ExpectedPrice = avgNonSalePrice,
+                    Deviation = currentSalePrice - avgNonSalePrice,
+                    IsAnomaly = true,
+                    Type = AnomalyType.IllusoryDiscount,
+                    Description = $"Illusory discount: Sale price ${currentSalePrice:F2} is {(currentSalePrice / avgNonSalePrice * 100):F1}% of average price ${avgNonSalePrice:F2}"
+                });
+            }
+        }
+
+        return illusoryDiscounts;
+    }
+}
+```
+
+### 11.6 UI Integration - Price Forecast View
+
+**PriceForecastWindow.xaml:**
+```xml
+<Window x:Class="AdvGenPriceComparer.WPF.Views.PriceForecastWindow"
+        Title="Price Forecast & Analysis" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{DynamicResource SystemAccentColorBrush}" Padding="20,15">
+            <StackPanel>
+                <TextBlock Text="Price Forecast & Analysis" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="AI-powered price predictions to help you buy at the best time"
+                           Foreground="White" Opacity="0.9" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+
+                <!-- Item Selection -->
+                <GroupBox Header="Select Item" Margin="0,0,0,20">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox x:Name="ItemComboBox"
+                                  ItemsSource="{Binding Items}"
+                                  DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedItem}"/>
+
+                        <Button Grid.Column="1" Content="Generate Forecast" Padding="15,5" Margin="10,0,0,0"
+                                Command="{Binding GenerateForecastCommand}"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Current Price & Recommendation -->
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="LightBlue" Padding="15" Margin="0,0,5,0">
+                        <StackPanel>
+                            <TextBlock Text="Current Price" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding CurrentPrice, StringFormat='${0:F2}'}" FontSize="32" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding LastUpdated, StringFormat='Updated: {0:d}'}" FontSize="10" Opacity="0.7"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="LightGreen" Padding="15" Margin="5,0">
+                        <StackPanel>
+                            <TextBlock Text="Predicted Price (7 days)" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding PredictedPrice7Days, StringFormat='${0:F2}'}" FontSize="32" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding PriceTrend}" FontSize="12" Opacity="0.8"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="2" Background="LightYellow" Padding="15" Margin="5,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Recommendation" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding BuyingRecommendation}" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding RecommendationReason}" FontSize="11" TextWrapping="Wrap" Opacity="0.8"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- Price Chart -->
+                <GroupBox Header="Price Forecast Chart (30 Days)" Margin="0,0,0,20">
+                    <lvc:CartesianChart Series="{Binding ChartSeries}"
+                                        XAxes="{Binding XAxes}"
+                                        YAxes="{Binding YAxes}"
+                                        Height="300" Margin="10"/>
+                </GroupBox>
+
+                <!-- Anomaly Detection Results -->
+                <GroupBox Header="Price Anomalies Detected" Visibility="{Binding HasAnomalies, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <DataGrid ItemsSource="{Binding Anomalies}" AutoGenerateColumns="False" Margin="10">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat='d'}" Width="100"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding ActualPrice, StringFormat='${0:F2}'}" Width="80"/>
+                            <DataGridTextColumn Header="Expected" Binding="{Binding ExpectedPrice, StringFormat='${0:F2}'}" Width="80"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="120"/>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+
+                <!-- Optimal Buying Date -->
+                <Border Background="#E3F2FD" Padding="20" Margin="0,20,0,0" Visibility="{Binding HasOptimalDate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <TextBlock Text="💡 Optimal Buying Date" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <TextBlock FontSize="14">
+                            <Run Text="Based on price forecasting, the best time to buy "/>
+                            <Run Text="{Binding SelectedItem.Name}" FontWeight="Bold"/>
+                            <Run Text=" is on "/>
+                            <Run Text="{Binding OptimalBuyingDate, StringFormat='dddd, MMMM d'}" FontWeight="Bold" Foreground="Green"/>
+                            <Run Text=" at an estimated price of "/>
+                            <Run Text="{Binding OptimalBuyingPrice, StringFormat='${0:F2}'}" FontWeight="Bold" Foreground="Green"/>
+                        </TextBlock>
+
+                        <Button Content="Set Price Alert" Margin="0,15,0,0" Padding="15,8"
+                                Command="{Binding SetPriceAlertCommand}"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" Background="{DynamicResource SystemAltMediumColor}" Padding="15">
+            <TextBlock Text="Price predictions are estimates based on historical data and ML algorithms. Actual prices may vary."
+                       FontSize="11" Opacity="0.7" TextAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>
+```
+
+### 11.7 ViewModel for Price Forecasting
+
+**PriceForecastViewModel.cs:**
+```csharp
+public class PriceForecastViewModel : ViewModelBase
+{
+    private readonly PriceForecastingService _forecastingService;
+    private readonly PriceAnomalyDetectionService _anomalyService;
+    private readonly IGroceryDataService _groceryData;
+    private readonly ILoggerService _logger;
+
+    public ObservableCollection<Item> Items { get; set; }
+    public Item SelectedItem { get; set; }
+    public List<PriceForecast> Forecasts { get; set; }
+    public List<PriceAnomaly> Anomalies { get; set; }
+
+    public decimal CurrentPrice { get; set; }
+    public DateTime LastUpdated { get; set; }
+    public decimal PredictedPrice7Days { get; set; }
+    public string PriceTrend { get; set; }
+    public string BuyingRecommendation { get; set; }
+    public string RecommendationReason { get; set; }
+    public DateTime OptimalBuyingDate { get; set; }
+    public decimal OptimalBuyingPrice { get; set; }
+
+    public bool HasAnomalies => Anomalies?.Any() ?? false;
+    public bool HasOptimalDate => OptimalBuyingDate > DateTime.Now;
+
+    // Chart data for LiveCharts
+    public ISeries[] ChartSeries { get; set; }
+    public Axis[] XAxes { get; set; }
+    public Axis[] YAxes { get; set; }
+
+    public ICommand GenerateForecastCommand { get; }
+    public ICommand SetPriceAlertCommand { get; }
+
+    public PriceForecastViewModel(
+        PriceForecastingService forecastingService,
+        PriceAnomalyDetectionService anomalyService,
+        IGroceryDataService groceryData,
+        ILoggerService logger)
+    {
+        _forecastingService = forecastingService;
+        _anomalyService = anomalyService;
+        _groceryData = groceryData;
+        _logger = logger;
+
+        GenerateForecastCommand = new RelayCommand(async () => await GenerateForecastAsync());
+        SetPriceAlertCommand = new RelayCommand(SetPriceAlert);
+
+        LoadItems();
+    }
+
+    private async void LoadItems()
+    {
+        var items = await _groceryData.Items.GetAllAsync();
+        Items = new ObservableCollection<Item>(items);
+    }
+
+    private async Task GenerateForecastAsync()
+    {
+        if (SelectedItem == null) return;
+
+        _logger.LogInfo($"Generating forecast for {SelectedItem.Name}");
+
+        // Get current price
+        var latestPrice = await _groceryData.PriceRecords.GetLatestPriceAsync(SelectedItem.Id);
+        CurrentPrice = latestPrice?.Price ?? 0;
+        LastUpdated = latestPrice?.DateRecorded ?? DateTime.Now;
+
+        // Generate forecast
+        Forecasts = await _forecastingService.ForecastPricesAsync(SelectedItem.Id, 30);
+
+        if (Forecasts.Any())
+        {
+            var forecast7Days = Forecasts.FirstOrDefault(f => f.ForecastDate == DateTime.Now.AddDays(7));
+            if (forecast7Days != null)
+            {
+                PredictedPrice7Days = (decimal)forecast7Days.PredictedPrice;
+                PriceTrend = GetTrendDescription(forecast7Days.Trend);
+                BuyingRecommendation = GetRecommendationText(forecast7Days.Recommendation);
+                RecommendationReason = GetRecommendationReason(forecast7Days);
+            }
+
+            // Get optimal buying date
+            var (date, price) = await _forecastingService.GetOptimalBuyingDateAsync(SelectedItem.Id);
+            OptimalBuyingDate = date;
+            OptimalBuyingPrice = (decimal)price;
+
+            // Update chart
+            UpdateChart();
+        }
+
+        // Detect anomalies
+        var priceHistory = await _groceryData.PriceRecords.GetPriceHistoryAsync(
+            SelectedItem.Id,
+            DateTime.Now.AddMonths(-3));
+
+        var historyData = priceHistory.Select(p => new PriceHistoryData
+        {
+            Date = p.DateRecorded,
+            Price = (float)p.Price,
+            IsOnSale = p.IsOnSale
+        }).ToList();
+
+        Anomalies = _anomalyService.DetectAnomalies(SelectedItem.Id, historyData);
+
+        OnPropertyChanged(nameof(HasAnomalies));
+        OnPropertyChanged(nameof(HasOptimalDate));
+    }
+
+    private void UpdateChart()
+    {
+        // Historical prices
+        var historicalSeries = new LineSeries<decimal>
+        {
+            Name = "Historical Price",
+            Values = Forecasts.Take(7).Select(f => (decimal)f.PredictedPrice).ToArray()
+        };
+
+        // Forecasted prices
+        var forecastSeries = new LineSeries<decimal>
+        {
+            Name = "Forecast",
+            Values = Forecasts.Select(f => (decimal)f.PredictedPrice).ToArray(),
+            Stroke = new SolidColorPaint(SKColors.Orange),
+            GeometryStroke = new SolidColorPaint(SKColors.Orange),
+            LineSmoothness = 0.5
+        };
+
+        ChartSeries = new ISeries[] { historicalSeries, forecastSeries };
+
+        XAxes = new[]
+        {
+            new Axis
+            {
+                Name = "Date",
+                Labels = Forecasts.Select(f => f.ForecastDate.ToString("MMM dd")).ToArray()
+            }
+        };
+
+        YAxes = new[]
+        {
+            new Axis
+            {
+                Name = "Price ($)",
+                MinLimit = (double)Forecasts.Min(f => f.LowerBound) * 0.95
+            }
+        };
+    }
+
+    private string GetTrendDescription(PriceTrend trend)
+    {
+        return trend switch
+        {
+            PriceTrend.Rising => "📈 Price Rising",
+            PriceTrend.Falling => "📉 Price Falling",
+            _ => "➡️ Price Stable"
+        };
+    }
+
+    private string GetRecommendationText(BuyingRecommendation recommendation)
+    {
+        return recommendation switch
+        {
+            BuyingRecommendation.BuyNow => "✅ BUY NOW",
+            BuyingRecommendation.Wait => "⏳ WAIT",
+            BuyingRecommendation.AvoidHighPrice => "❌ AVOID",
+            _ => "ℹ️ NORMAL"
+        };
+    }
+
+    private string GetRecommendationReason(PriceForecast forecast)
+    {
+        return forecast.Recommendation switch
+        {
+            BuyingRecommendation.BuyNow => "Price is at or near historical low",
+            BuyingRecommendation.Wait => "Price expected to drop in coming days",
+            BuyingRecommendation.AvoidHighPrice => "Price is unusually high right now",
+            _ => "No significant price movement expected"
+        };
+    }
+
+    private void SetPriceAlert()
+    {
+        // Implementation for setting price alert
+        _logger.LogInfo($"Price alert set for {SelectedItem.Name} at ${OptimalBuyingPrice:F2}");
+    }
+}
+```
+
+### 11.8 Implementation Checklist
+
+- [ ] Extend `AdvGenPriceComparer.ML` project with forecasting services
+- [ ] Install `Microsoft.ML.TimeSeries` NuGet package
+- [ ] Define `PriceHistoryData`, `PriceForecast`, `PriceAnomaly` models
+- [ ] Implement `PriceForecastingService`
+  - [ ] Train SSA (Singular Spectrum Analysis) model
+  - [ ] Generate price forecasts
+  - [ ] Determine price trends
+  - [ ] Calculate optimal buying dates
+- [ ] Implement `PriceAnomalyDetectionService`
+  - [ ] Train spike detection model
+  - [ ] Detect price anomalies
+  - [ ] Identify illusory discounts
+- [ ] Create `PriceForecastWindow.xaml` UI
+- [ ] Create `PriceForecastViewModel`
+- [ ] Integrate LiveCharts for price visualization
+- [ ] Add menu item to open Price Forecast window
+- [ ] Test forecasting with real historical data
+- [ ] Implement price alert system
+- [ ] Document forecasting accuracy and limitations
+
+### 11.9 Configuration in App.xaml.cs
+
+```csharp
+// ML Services - Forecasting
+var forecastModelPath = Path.Combine(appDataPath, "MLModels", "price_forecast_model.zip");
+var anomalyModelPath = Path.Combine(appDataPath, "MLModels", "anomaly_detection_model.zip");
+
+services.AddSingleton<PriceForecastingService>(provider =>
+    new PriceForecastingService(
+        forecastModelPath,
+        provider.GetRequiredService<IPriceRecordRepository>(),
+        provider.GetRequiredService<ILoggerService>()));
+
+services.AddSingleton<PriceAnomalyDetectionService>(provider =>
+    new PriceAnomalyDetectionService(
+        anomalyModelPath,
+        provider.GetRequiredService<ILoggerService>()));
+
+services.AddTransient<PriceForecastViewModel>();
+```
+
+### 11.10 Expected Performance
+
+**Forecasting Requirements:**
+- Minimum 30 days of price history per item
+- Recommended 90+ days for accurate predictions
+- Training time: 5-30 seconds depending on data size
+- Forecast generation: <2 seconds for 30-day forecast
+
+**Accuracy Metrics:**
+- Expected MAPE (Mean Absolute Percentage Error): 5-15%
+- Confidence interval: 95%
+- Trend detection accuracy: 75-85%
+- Anomaly detection precision: 80-90%
+
+### 11.11 Business Value
+
+**For Consumers:**
+- Save money by buying at optimal times
+- Identify fake "sale" prices (illusory discounts)
+- Plan shopping based on price trends
+- Receive alerts for genuine price drops
+
+**For Fighting Illusory Discounts:**
+- Detect when "sale" prices are actually normal or high
+- Track historical pricing patterns
+- Identify suspicious pricing behavior
+- Build evidence of misleading discount practices
+
+### 11.12 Use Cases
+
+1. **Smart Shopping Assistant**
+   - "Should I buy this now or wait?"
+   - "When will the price drop?"
+   - "Is this sale genuine?"
+
+2. **Budget Planning**
+   - "What will my grocery bill be next month?"
+   - "When should I stock up on staples?"
+
+3. **Discount Verification**
+   - "Is this 50% off claim real?"
+   - "Has this price actually changed?"
+
+4. **Price Tracking**
+   - "Show me price history and trends"
+   - "Alert me when price drops below $X"
+
+---
+
+## 📅 Updated Development Timeline
+
+### MVP (Phases 1-3)
+- **Phase 1 (Fix Startup):** 4-5 hours
+- **Phase 2 (Import):** 3-4 hours
+- **Phase 3 (Export):** 2-3 hours
+- **Total MVP:** 10-14 hours
+
+### Extended Features
+- **Phase 4 (Server):** 5-7 days
+- **Phase 5 (Analysis):** 3-4 days
+- **Phase 6 (Enhanced Features):** 5-6 days
+- **Phase 7 (Testing & Deployment):** 3-4 days
+- **Phase 8 (Unit Testing):** 3-5 days
+- **Phase 9 (ML.NET Auto-Categorization):** 2-3 days
+- **Phase 10 (Database Provider Selection):** 2-3 days
+- **Phase 11 (ML.NET Price Prediction):** 3-4 days
+- **Total Full Implementation:** 35-45 days
+
+---
+
+## 💬 Phase 12: Ollama Chat Interface for Natural Language Price Queries
+
+### 12.1 Overview
+Integrate Ollama (open-source LLM) to provide a natural language chat interface for querying grocery prices. Users can ask questions in plain English, and the LLM will route queries to LiteDB or AdvGenNoSqlServer to fetch and present price information.
+
+**Key Objectives:**
+- Natural language price queries ("What's the price of milk?", "Find cheapest bread")
+- Intelligent query routing to appropriate database (LiteDB or AdvGenNoSqlServer)
+- Context-aware conversations
+- Product recommendations based on budget
+- Price comparisons across stores
+- Historical price insights
+
+### 12.2 Ollama Setup
+
+**Ollama Installation:**
+```bash
+# Windows installation
+winget install Ollama.Ollama
+
+# Or download from: https://ollama.com/download
+
+# Pull recommended model
+ollama pull mistral  # 7B parameter model, good balance of speed/accuracy
+# Alternative models:
+# ollama pull llama2  # Meta's Llama 2
+# ollama pull codellama  # Better for structured queries
+# ollama pull phi  # Smaller, faster model
+```
+
+**Project Dependencies:**
+```xml
+<PackageReference Include="OllamaSharp" Version="2.0.0" />
+<PackageReference Include="System.Text.Json" Version="8.0.0" />
+```
+
+### 12.3 Project Structure
+
+```
+AdvGenPriceComparer.Chat/
+├── AdvGenPriceComparer.Chat.csproj
+├── Models/
+│   ├── ChatMessage.cs
+│   ├── QueryIntent.cs
+│   ├── DatabaseQuery.cs
+│   └── ChatResponse.cs
+├── Services/
+│   ├── IOllamaService.cs
+│   ├── OllamaService.cs
+│   ├── QueryRouterService.cs
+│   ├── IntentRecognitionService.cs
+│   └── ResponseFormatterService.cs
+└── Prompts/
+    └── SystemPrompts.cs
+```
+
+### 12.4 Data Models
+
+**ChatMessage.cs:**
+```csharp
+public class ChatMessage
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public DateTime Timestamp { get; set; } = DateTime.Now;
+    public MessageRole Role { get; set; }
+    public string Content { get; set; }
+    public List<Item> AttachedItems { get; set; } = new();
+    public List<PriceRecord> AttachedPrices { get; set; } = new();
+}
+
+public enum MessageRole
+{
+    User,
+    Assistant,
+    System
+}
+```
+
+**QueryIntent.cs:**
+```csharp
+public class QueryIntent
+{
+    public QueryType Type { get; set; }
+    public string ProductName { get; set; }
+    public string Category { get; set; }
+    public string Store { get; set; }
+    public decimal? MaxPrice { get; set; }
+    public decimal? MinPrice { get; set; }
+    public bool OnSaleOnly { get; set; }
+    public DateTime? DateFrom { get; set; }
+    public DateTime? DateTo { get; set; }
+    public ComparisonType? Comparison { get; set; }
+    public int? Limit { get; set; } = 10;
+}
+
+public enum QueryType
+{
+    PriceQuery,           // "What's the price of milk?"
+    PriceComparison,      // "Compare milk prices between Coles and Woolworths"
+    CheapestItem,         // "Find the cheapest bread"
+    ItemsInCategory,      // "Show me all dairy products"
+    ItemsOnSale,          // "What's on sale this week?"
+    PriceHistory,         // "Show me milk price history"
+    BestDeal,             // "What are the best deals?"
+    StoreInventory,       // "What products are available at Coles?"
+    Budget Query,          // "What can I buy for $50?"
+    Unknown
+}
+
+public enum ComparisonType
+{
+    Cheaper,
+    MoreExpensive,
+    SimilarPrice
+}
+```
+
+**DatabaseQuery.cs:**
+```csharp
+public class DatabaseQuery
+{
+    public DatabaseTarget Target { get; set; }  // LiteDB or AdvGenNoSqlServer
+    public string Query { get; set; }
+    public Dictionary<string, object> Parameters { get; set; } = new();
+    public QueryIntent Intent { get; set; }
+}
+
+public enum DatabaseTarget
+{
+    LiteDB,
+    AdvGenNoSqlServer,
+    Both  // Query both and merge results
+}
+```
+
+### 12.5 Ollama Service
+
+**OllamaService.cs:**
+```csharp
+public class OllamaService : IOllamaService
+{
+    private readonly OllamaApiClient _ollama;
+    private readonly ILoggerService _logger;
+    private readonly List<ChatMessage> _conversationHistory = new();
+    private const string MODEL = "mistral";
+
+    public OllamaService(ILoggerService logger)
+    {
+        _logger = logger;
+        _ollama = new OllamaApiClient("http://localhost:11434");
+    }
+
+    /// <summary>
+    /// Send a chat message and get response
+    /// </summary>
+    public async Task<string> ChatAsync(string userMessage, string systemPrompt = null)
+    {
+        try
+        {
+            // Add user message to history
+            _conversationHistory.Add(new ChatMessage
+            {
+                Role = MessageRole.User,
+                Content = userMessage
+            });
+
+            // Build chat request
+            var messages = new List<Message>();
+
+            // Add system prompt if provided
+            if (!string.IsNullOrEmpty(systemPrompt))
+            {
+                messages.Add(new Message
+                {
+                    Role = "system",
+                    Content = systemPrompt
+                });
+            }
+
+            // Add conversation history (last 10 messages for context)
+            var recentHistory = _conversationHistory.TakeLast(10);
+            foreach (var msg in recentHistory)
+            {
+                messages.Add(new Message
+                {
+                    Role = msg.Role == MessageRole.User ? "user" : "assistant",
+                    Content = msg.Content
+                });
+            }
+
+            // Send to Ollama
+            var chatRequest = new ChatRequest
+            {
+                Model = MODEL,
+                Messages = messages,
+                Stream = false
+            };
+
+            var response = await _ollama.SendChatAsync(chatRequest);
+
+            // Add assistant response to history
+            var assistantMessage = response.Message.Content;
+            _conversationHistory.Add(new ChatMessage
+            {
+                Role = MessageRole.Assistant,
+                Content = assistantMessage
+            });
+
+            _logger.LogInfo($"Chat response received: {assistantMessage.Substring(0, Math.Min(50, assistantMessage.Length))}...");
+
+            return assistantMessage;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ollama chat error", ex);
+            return "I'm sorry, I encountered an error processing your request. Please try again.";
+        }
+    }
+
+    /// <summary>
+    /// Extract structured intent from natural language query
+    /// </summary>
+    public async Task<QueryIntent> ExtractIntentAsync(string userQuery)
+    {
+        var systemPrompt = SystemPrompts.IntentExtractionPrompt;
+
+        var prompt = $@"Extract intent from this grocery price query:
+User Query: ""{userQuery}""
+
+Respond ONLY with valid JSON matching this schema:
+{{
+    ""queryType"": ""PriceQuery|PriceComparison|CheapestItem|ItemsInCategory|ItemsOnSale|PriceHistory|BestDeal|StoreInventory|BudgetQuery"",
+    ""productName"": ""product name or null"",
+    ""category"": ""category or null"",
+    ""store"": ""store name or null"",
+    ""maxPrice"": number or null,
+    ""minPrice"": number or null,
+    ""onSaleOnly"": boolean,
+    ""dateFrom"": ""ISO date or null"",
+    ""dateTo"": ""ISO date or null"",
+    ""comparison"": ""Cheaper|MoreExpensive|SimilarPrice or null"",
+    ""limit"": number (default 10)
+}}";
+
+        var response = await ChatAsync(prompt, systemPrompt);
+
+        try
+        {
+            // Extract JSON from response (handle if LLM adds extra text)
+            var jsonStart = response.IndexOf("{");
+            var jsonEnd = response.LastIndexOf("}") + 1;
+            var json = response.Substring(jsonStart, jsonEnd - jsonStart);
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var intent = JsonSerializer.Deserialize<QueryIntent>(json, options);
+            return intent ?? new QueryIntent { Type = QueryType.Unknown };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Intent extraction failed", ex);
+            return new QueryIntent { Type = QueryType.Unknown };
+        }
+    }
+
+    /// <summary>
+    /// Generate natural language response from query results
+    /// </summary>
+    public async Task<string> GenerateResponseAsync(
+        QueryIntent intent,
+        List<Item> items,
+        List<PriceRecord> priceRecords)
+    {
+        var dataContext = FormatDataContext(items, priceRecords);
+
+        var prompt = $@"Generate a helpful, conversational response for this grocery price query.
+
+Query Intent: {intent.Type}
+Product: {intent.ProductName ?? "N/A"}
+Store: {intent.Store ?? "N/A"}
+
+Data Retrieved:
+{dataContext}
+
+Generate a natural, friendly response that:
+1. Directly answers the user's question
+2. Highlights the most relevant information
+3. Includes specific prices and product names
+4. Suggests alternatives if appropriate
+5. Keeps response concise (2-3 sentences)";
+
+        return await ChatAsync(prompt, SystemPrompts.ResponseGenerationPrompt);
+    }
+
+    public void ClearHistory()
+    {
+        _conversationHistory.Clear();
+    }
+
+    private string FormatDataContext(List<Item> items, List<PriceRecord> priceRecords)
+    {
+        var sb = new StringBuilder();
+
+        if (items?.Any() == true)
+        {
+            sb.AppendLine("Items Found:");
+            foreach (var item in items.Take(10))
+            {
+                var priceRecord = priceRecords?.FirstOrDefault(p => p.ItemId == item.Id);
+                var price = priceRecord?.Price ?? item.Price;
+                var store = priceRecord?.Place?.Name ?? item.StoreName ?? "Unknown";
+
+                sb.AppendLine($"- {item.Name} ({item.Brand ?? "Generic"}) - ${price:F2} at {store}");
+            }
+        }
+
+        if (priceRecords?.Any() == true && items?.Count == 1)
+        {
+            sb.AppendLine("\nPrice History:");
+            foreach (var record in priceRecords.OrderByDescending(p => p.DateRecorded).Take(5))
+            {
+                sb.AppendLine($"- ${record.Price:F2} on {record.DateRecorded:d} at {record.Place?.Name}");
+            }
+        }
+
+        return sb.ToString();
+    }
+}
+```
+
+### 12.6 Query Router Service
+
+**QueryRouterService.cs:**
+```csharp
+public class QueryRouterService
+{
+    private readonly IDatabaseProvider _databaseProvider;
+    private readonly IGroceryDataService _groceryData;
+    private readonly ILoggerService _logger;
+
+    public QueryRouterService(
+        IDatabaseProvider databaseProvider,
+        IGroceryDataService groceryData,
+        ILoggerService logger)
+    {
+        _databaseProvider = databaseProvider;
+        _groceryData = groceryData;
+        _logger = logger;
+    }
+
+    /// <summary>
+    /// Route query to appropriate database and execute
+    /// </summary>
+    public async Task<(List<Item> Items, List<PriceRecord> Prices)> ExecuteQueryAsync(QueryIntent intent)
+    {
+        _logger.LogInfo($"Executing query: {intent.Type}");
+
+        return intent.Type switch
+        {
+            QueryType.PriceQuery => await HandlePriceQuery(intent),
+            QueryType.PriceComparison => await HandlePriceComparison(intent),
+            QueryType.CheapestItem => await HandleCheapestItem(intent),
+            QueryType.ItemsInCategory => await HandleItemsInCategory(intent),
+            QueryType.ItemsOnSale => await HandleItemsOnSale(intent),
+            QueryType.PriceHistory => await HandlePriceHistory(intent),
+            QueryType.BestDeal => await HandleBestDeal(intent),
+            QueryType.StoreInventory => await HandleStoreInventory(intent),
+            QueryType.BudgetQuery => await HandleBudgetQuery(intent),
+            _ => (new List<Item>(), new List<PriceRecord>())
+        };
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandlePriceQuery(QueryIntent intent)
+    {
+        // Find item by name
+        var items = await _groceryData.Items.SearchByNameAsync(intent.ProductName);
+
+        // Filter by store if specified
+        if (!string.IsNullOrEmpty(intent.Store))
+        {
+            items = items.Where(i =>
+                i.StoreName?.Contains(intent.Store, StringComparison.OrdinalIgnoreCase) == true).ToList();
+        }
+
+        // Get latest prices
+        var priceRecords = new List<PriceRecord>();
+        foreach (var item in items.Take(intent.Limit ?? 10))
+        {
+            var price = await _groceryData.PriceRecords.GetLatestPriceAsync(item.Id);
+            if (price != null)
+            {
+                priceRecords.Add(price);
+            }
+        }
+
+        return (items, priceRecords);
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandlePriceComparison(QueryIntent intent)
+    {
+        // Find product
+        var items = await _groceryData.Items.SearchByNameAsync(intent.ProductName);
+
+        // Get prices from different stores
+        var priceRecords = new List<PriceRecord>();
+        foreach (var item in items)
+        {
+            var prices = await _groceryData.PriceRecords.GetPricesByItemAsync(item.Id);
+            priceRecords.AddRange(prices.OrderByDescending(p => p.DateRecorded).Take(3));
+        }
+
+        return (items, priceRecords);
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandleCheapestItem(QueryIntent intent)
+    {
+        List<Item> items;
+
+        if (!string.IsNullOrEmpty(intent.ProductName))
+        {
+            items = await _groceryData.Items.SearchByNameAsync(intent.ProductName);
+        }
+        else if (!string.IsNullOrEmpty(intent.Category))
+        {
+            items = await _groceryData.Items.GetByCategoryAsync(intent.Category);
+        }
+        else
+        {
+            items = (await _groceryData.Items.GetAllAsync()).ToList();
+        }
+
+        // Sort by price
+        items = items.OrderBy(i => i.Price).Take(intent.Limit ?? 10).ToList();
+
+        // Get price records
+        var priceRecords = new List<PriceRecord>();
+        foreach (var item in items)
+        {
+            var price = await _groceryData.PriceRecords.GetLatestPriceAsync(item.Id);
+            if (price != null)
+            {
+                priceRecords.Add(price);
+            }
+        }
+
+        return (items, priceRecords);
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandleItemsInCategory(QueryIntent intent)
+    {
+        var items = await _groceryData.Items.GetByCategoryAsync(intent.Category);
+        items = items.Take(intent.Limit ?? 20).ToList();
+
+        var priceRecords = new List<PriceRecord>();
+        foreach (var item in items)
+        {
+            var price = await _groceryData.PriceRecords.GetLatestPriceAsync(item.Id);
+            if (price != null)
+            {
+                priceRecords.Add(price);
+            }
+        }
+
+        return (items, priceRecords);
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandleItemsOnSale(QueryIntent intent)
+    {
+        var priceRecords = await _groceryData.PriceRecords.GetItemsOnSaleAsync();
+
+        // Filter by store if specified
+        if (!string.IsNullOrEmpty(intent.Store))
+        {
+            priceRecords = priceRecords.Where(p =>
+                p.Place?.Name?.Contains(intent.Store, StringComparison.OrdinalIgnoreCase) == true).ToList();
+        }
+
+        priceRecords = priceRecords.Take(intent.Limit ?? 20).ToList();
+
+        var items = new List<Item>();
+        foreach (var record in priceRecords)
+        {
+            var item = await _groceryData.Items.GetByIdAsync(record.ItemId);
+            if (item != null)
+            {
+                items.Add(item);
+            }
+        }
+
+        return (items, priceRecords);
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandlePriceHistory(QueryIntent intent)
+    {
+        var items = await _groceryData.Items.SearchByNameAsync(intent.ProductName);
+        var item = items.FirstOrDefault();
+
+        if (item == null)
+        {
+            return (new List<Item>(), new List<PriceRecord>());
+        }
+
+        var fromDate = intent.DateFrom ?? DateTime.Now.AddMonths(-3);
+        var priceRecords = await _groceryData.PriceRecords.GetPriceHistoryAsync(item.Id, fromDate);
+
+        return (new List<Item> { item }, priceRecords.ToList());
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandleBestDeal(QueryIntent intent)
+    {
+        var priceRecords = await _groceryData.PriceRecords.GetItemsOnSaleAsync();
+
+        // Calculate best deals (highest discount percentage)
+        var bestDeals = priceRecords
+            .Where(p => p.IsOnSale && p.OriginalPrice.HasValue && p.OriginalPrice > p.Price)
+            .Select(p => new
+            {
+                Record = p,
+                DiscountPercent = ((p.OriginalPrice.Value - p.Price) / p.OriginalPrice.Value) * 100
+            })
+            .OrderByDescending(x => x.DiscountPercent)
+            .Take(intent.Limit ?? 10)
+            .Select(x => x.Record)
+            .ToList();
+
+        var items = new List<Item>();
+        foreach (var record in bestDeals)
+        {
+            var item = await _groceryData.Items.GetByIdAsync(record.ItemId);
+            if (item != null)
+            {
+                items.Add(item);
+            }
+        }
+
+        return (items, bestDeals);
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandleStoreInventory(QueryIntent intent)
+    {
+        var place = (await _groceryData.Places.GetAllAsync())
+            .FirstOrDefault(p => p.Name?.Contains(intent.Store, StringComparison.OrdinalIgnoreCase) == true);
+
+        if (place == null)
+        {
+            return (new List<Item>(), new List<PriceRecord>());
+        }
+
+        var priceRecords = await _groceryData.PriceRecords.GetPricesByStoreAsync(place.Id);
+        priceRecords = priceRecords.Take(intent.Limit ?? 50).ToList();
+
+        var items = new List<Item>();
+        foreach (var record in priceRecords)
+        {
+            var item = await _groceryData.Items.GetByIdAsync(record.ItemId);
+            if (item != null)
+            {
+                items.Add(item);
+            }
+        }
+
+        return (items, priceRecords.ToList());
+    }
+
+    private async Task<(List<Item>, List<PriceRecord>)> HandleBudgetQuery(QueryIntent intent)
+    {
+        var allItems = (await _groceryData.Items.GetAllAsync()).ToList();
+
+        // Filter by max price
+        if (intent.MaxPrice.HasValue)
+        {
+            allItems = allItems.Where(i => i.Price <= intent.MaxPrice.Value).ToList();
+        }
+
+        // Sort by price to maximize items within budget
+        allItems = allItems.OrderBy(i => i.Price).Take(intent.Limit ?? 20).ToList();
+
+        var priceRecords = new List<PriceRecord>();
+        foreach (var item in allItems)
+        {
+            var price = await _groceryData.PriceRecords.GetLatestPriceAsync(item.Id);
+            if (price != null)
+            {
+                priceRecords.Add(price);
+            }
+        }
+
+        return (allItems, priceRecords);
+    }
+}
+```
+
+### 12.7 System Prompts
+
+**SystemPrompts.cs:**
+```csharp
+public static class SystemPrompts
+{
+    public const string IntentExtractionPrompt = @"You are an intent extraction specialist for a grocery price comparison application.
+Your task is to analyze user queries about grocery prices and extract structured intent information.
+Be precise and extract all relevant filters (product name, store, price range, dates, etc.).
+Always respond with valid JSON only, no additional text.";
+
+    public const string ResponseGenerationPrompt = @"You are a helpful grocery shopping assistant.
+Your responses should be:
+- Friendly and conversational
+- Focused on helping users save money
+- Specific with prices and product names
+- Concise (2-3 sentences typically)
+- Actionable (suggest next steps when appropriate)
+
+When presenting prices:
+- Always include the store name
+- Mention if items are on sale
+- Highlight the best deals
+- Compare prices when multiple options exist";
+
+    public const string GeneralChatPrompt = @"You are a knowledgeable grocery shopping assistant integrated with a price comparison database.
+You help users find the best grocery prices, compare products across stores, and make smart shopping decisions.
+
+Available capabilities:
+- Query current prices
+- Compare prices across stores
+- Find items on sale
+- View price history
+- Identify best deals
+- Budget planning
+
+Be helpful, friendly, and always reference specific data from the database when available.";
+}
+```
+
+### 12.8 Chat UI - PriceChatWindow.xaml
+
+**PriceChatWindow.xaml:**
+```csharp
+<Window x:Class="AdvGenPriceComparer.WPF.Views.PriceChatWindow"
+        Title="Price Chat Assistant" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{DynamicResource SystemAccentColorBrush}" Padding="20,15">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="💬 " FontSize="24"/>
+                <StackPanel>
+                    <TextBlock Text="Price Chat Assistant" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Ask me about grocery prices in natural language" FontSize="11" Foreground="White" Opacity="0.9"/>
+                </StackPanel>
+                <Button Content="Clear Chat" Margin="Auto,0,0,0" Padding="10,5"
+                        Command="{Binding ClearChatCommand}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Chat Messages -->
+        <ScrollViewer Grid.Row="1" x:Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding ChatMessages}" Margin="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,5" Padding="15,10" CornerRadius="10"
+                                Background="{Binding IsUserMessage, Converter={StaticResource MessageBackgroundConverter}}"
+                                HorizontalAlignment="{Binding IsUserMessage, Converter={StaticResource MessageAlignmentConverter}}">
+                            <StackPanel MaxWidth="500">
+                                <TextBlock Text="{Binding Role}" FontWeight="Bold" FontSize="11" Opacity="0.7"/>
+                                <TextBlock Text="{Binding Content}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                <TextBlock Text="{Binding Timestamp, StringFormat='HH:mm'}" FontSize="10" Opacity="0.5" Margin="0,5,0,0"/>
+
+                                <!-- Show attached items if any -->
+                                <ItemsControl ItemsSource="{Binding AttachedItems}" Margin="0,10,0,0"
+                                              Visibility="{Binding HasAttachedItems, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#F5F5F5" Padding="10" Margin="0,2" CornerRadius="5">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+                                                    <TextBlock>
+                                                        <Run Text="$"/><Run Text="{Binding Price, StringFormat=F2}"/>
+                                                        <Run Text=" at "/>
+                                                        <Run Text="{Binding StoreName}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Input Area -->
+        <Border Grid.Row="2" Background="#F8F8F8" Padding="20,15" BorderBrush="#DDD" BorderThickness="0,1,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="MessageTextBox"
+                         Grid.Column="0"
+                         Text="{Binding UserMessage, UpdateSourceTrigger=PropertyChanged}"
+                         AcceptsReturn="False"
+                         VerticalContentAlignment="Center"
+                         Padding="10"
+                         FontSize="14"
+                         BorderThickness="1"
+                         BorderBrush="#CCC"
+                         KeyDown="MessageTextBox_KeyDown"/>
+
+                <Button Grid.Column="1" Content="Send" Padding="20,10" Margin="10,0,0,0"
+                        Command="{Binding SendMessageCommand}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Background="{DynamicResource SystemAccentColorBrush}"
+                        Foreground="White"/>
+            </Grid>
+
+            <!-- Suggested Queries -->
+            <StackPanel Margin="0,10,0,0" Visibility="{Binding ShowSuggestions, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Text="Try asking:" FontSize="11" Opacity="0.7" Margin="0,0,0,5"/>
+                <WrapPanel>
+                    <Button Content="What's the price of milk?" Margin="0,0,5,5" Padding="8,4" FontSize="11"
+                            Command="{Binding UseSuggestionCommand}" CommandParameter="What's the price of milk?"/>
+                    <Button Content="Find cheapest bread" Margin="0,0,5,5" Padding="8,4" FontSize="11"
+                            Command="{Binding UseSuggestionCommand}" CommandParameter="Find cheapest bread"/>
+                    <Button Content="What's on sale at Coles?" Margin="0,0,5,5" Padding="8,4" FontSize="11"
+                            Command="{Binding UseSuggestionCommand}" CommandParameter="What's on sale at Coles?"/>
+                    <Button Content="Show milk price history" Margin="0,0,5,5" Padding="8,4" FontSize="11"
+                            Command="{Binding UseSuggestionCommand}" CommandParameter="Show milk price history"/>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Loading Indicator -->
+        <Border Grid.RowSpan="3" Background="#80000000"
+                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="🤔 Thinking..." FontSize="18" Foreground="White" FontWeight="Bold"/>
+                <ProgressBar IsIndeterminate="True" Width="200" Height="4" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+```
+
+### 12.9 Chat ViewModel
+
+**PriceChatViewModel.cs:**
+```csharp
+public class PriceChatViewModel : ViewModelBase
+{
+    private readonly IOllamaService _ollamaService;
+    private readonly QueryRouterService _queryRouter;
+    private readonly ILoggerService _logger;
+
+    public ObservableCollection<ChatMessage> ChatMessages { get; set; } = new();
+    public string UserMessage { get; set; }
+    public bool IsBusy { get; set; }
+    public bool IsNotBusy => !IsBusy;
+    public bool ShowSuggestions => !ChatMessages.Any();
+
+    public ICommand SendMessageCommand { get; }
+    public ICommand ClearChatCommand { get; }
+    public ICommand UseSuggestionCommand { get; }
+
+    public PriceChatViewModel(
+        IOllamaService ollamaService,
+        QueryRouterService queryRouter,
+        ILoggerService logger)
+    {
+        _ollamaService = ollamaService;
+        _queryRouter = queryRouter;
+        _logger = logger;
+
+        SendMessageCommand = new RelayCommand(async () => await SendMessageAsync(), () => !string.IsNullOrWhiteSpace(UserMessage) && !IsBusy);
+        ClearChatCommand = new RelayCommand(ClearChat);
+        UseSuggestionCommand = new RelayCommand<string>(async (suggestion) => await UseSuggestionAsync(suggestion));
+
+        // Welcome message
+        AddSystemMessage("Hello! I'm your grocery price assistant. Ask me about prices, compare stores, or find the best deals!");
+    }
+
+    private async Task SendMessageAsync()
+    {
+        if (string.IsNullOrWhiteSpace(UserMessage)) return;
+
+        var userMsg = UserMessage;
+        UserMessage = string.Empty;
+        OnPropertyChanged(nameof(UserMessage));
+
+        // Add user message
+        AddUserMessage(userMsg);
+
+        IsBusy = true;
+        OnPropertyChanged(nameof(IsBusy));
+        OnPropertyChanged(nameof(IsNotBusy));
+
+        try
+        {
+            // Extract intent
+            var intent = await _ollamaService.ExtractIntentAsync(userMsg);
+            _logger.LogInfo($"Extracted intent: {intent.Type}");
+
+            // Execute database query
+            var (items, prices) = await _queryRouter.ExecuteQueryAsync(intent);
+
+            // Generate response
+            var response = await _ollamaService.GenerateResponseAsync(intent, items, prices);
+
+            // Add assistant message with attached data
+            var assistantMsg = new ChatMessage
+            {
+                Role = MessageRole.Assistant,
+                Content = response,
+                AttachedItems = items,
+                AttachedPrices = prices
+            };
+
+            ChatMessages.Add(assistantMsg);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Chat error", ex);
+            AddSystemMessage("Sorry, I encountered an error processing your request. Please try again.");
+        }
+        finally
+        {
+            IsBusy = false;
+            OnPropertyChanged(nameof(IsBusy));
+            OnPropertyChanged(nameof(IsNotBusy));
+        }
+    }
+
+    private async Task UseSuggestionAsync(string suggestion)
+    {
+        UserMessage = suggestion;
+        OnPropertyChanged(nameof(UserMessage));
+        await SendMessageAsync();
+    }
+
+    private void ClearChat()
+    {
+        ChatMessages.Clear();
+        _ollamaService.ClearHistory();
+        AddSystemMessage("Chat cleared. How can I help you?");
+        OnPropertyChanged(nameof(ShowSuggestions));
+    }
+
+    private void AddUserMessage(string content)
+    {
+        ChatMessages.Add(new ChatMessage
+        {
+            Role = MessageRole.User,
+            Content = content
+        });
+    }
+
+    private void AddSystemMessage(string content)
+    {
+        ChatMessages.Add(new ChatMessage
+        {
+            Role = MessageRole.System,
+            Content = content
+        });
+    }
+}
+```
+
+### 12.10 Implementation Checklist
+
+- [ ] Install Ollama on development machine
+- [ ] Pull recommended model (Mistral 7B)
+- [ ] Create `AdvGenPriceComparer.Chat` project
+- [ ] Install `OllamaSharp` NuGet package
+- [ ] Define chat models (`ChatMessage`, `QueryIntent`, `DatabaseQuery`)
+- [ ] Implement `OllamaService` for LLM communication
+- [ ] Implement `QueryRouterService` for database queries
+- [ ] Create system prompts for intent extraction and response generation
+- [ ] Build `PriceChatWindow.xaml` UI
+- [ ] Implement `PriceChatViewModel`
+- [ ] Add menu item to open Chat Assistant
+- [ ] Test with various natural language queries
+- [ ] Optimize prompts for better intent recognition
+- [ ] Document supported query types
+
+### 12.11 Configuration in App.xaml.cs
+
+```csharp
+// Chat Services
+services.AddSingleton<IOllamaService, OllamaService>();
+services.AddSingleton<QueryRouterService>();
+services.AddTransient<PriceChatViewModel>();
+```
+
+### 12.12 Example Queries
+
+**Price Queries:**
+- "What's the price of milk at Coles?"
+- "How much does bread cost?"
+- "Show me milk prices"
+
+**Comparisons:**
+- "Compare milk prices between Coles and Woolworths"
+- "Which store has cheaper bread?"
+- "Price difference for eggs between stores"
+
+**Finding Deals:**
+- "What's the cheapest bread?"
+- "Find the best deals this week"
+- "Show me all items on sale"
+- "What's on sale at Woolworths?"
+
+**Category Queries:**
+- "Show me all dairy products"
+- "What vegetables are available?"
+- "List all beverages under $5"
+
+**Price History:**
+- "Show milk price history"
+- "How has the price of bread changed?"
+- "Price trends for eggs over the last month"
+
+**Budget Planning:**
+- "What can I buy for $50?"
+- "Show me items under $10"
+- "Budget-friendly groceries"
+
+### 12.13 Ollama Model Recommendations
+
+**Mistral 7B (Recommended):**
+- Best balance of speed and accuracy
+- Good at structured output (JSON)
+- ~4GB RAM usage
+- Response time: 1-3 seconds
+
+**Llama 2 7B:**
+- Slightly slower than Mistral
+- Very good accuracy
+- ~4GB RAM usage
+
+**Phi 2:**
+- Faster responses
+- Smaller model (2.7B parameters)
+- Good for simple queries
+- ~2GB RAM usage
+
+**CodeLlama:**
+- Excellent for structured queries
+- Good JSON generation
+- ~4GB RAM usage
+
+### 12.14 Performance Considerations
+
+**Expected Performance:**
+- Intent extraction: 1-2 seconds
+- Database query: <500ms
+- Response generation: 1-2 seconds
+- Total response time: 2-4 seconds
+
+**Optimization Tips:**
+- Cache frequently asked queries
+- Use smaller models for simple queries
+- Implement query result caching
+- Batch database queries when possible
+
+### 12.15 Privacy & Security
+
+**Data Privacy:**
+- All LLM processing happens locally (Ollama runs on localhost)
+- No data sent to external APIs
+- Chat history stored locally
+- User control over data retention
+
+**Security:**
+- Input sanitization for database queries
+- Parameterized queries to prevent injection
+- Rate limiting for API calls
+- Error handling to prevent information leakage
+
+---
+
+## 📅 Updated Development Timeline
+
+### MVP (Phases 1-3)
+- **Phase 1 (Fix Startup):** 4-5 hours
+- **Phase 2 (Import):** 3-4 hours
+- **Phase 3 (Export):** 2-3 hours
+- **Total MVP:** 10-14 hours
+
+### Extended Features
+- **Phase 4 (Server):** 5-7 days
+- **Phase 5 (Analysis):** 3-4 days
+- **Phase 6 (Enhanced Features):** 5-6 days
+- **Phase 7 (Testing & Deployment):** 3-4 days
+- **Phase 8 (Unit Testing):** 3-5 days
+- **Phase 9 (ML.NET Auto-Categorization):** 2-3 days
+- **Phase 10 (Database Provider Selection):** 2-3 days
+- **Phase 11 (ML.NET Price Prediction):** 3-4 days
+- **Phase 12 (Ollama Chat Interface):** 2-3 days
+- **Total Full Implementation:** 40-50 days
 
 ---
 
