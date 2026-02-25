@@ -96,4 +96,10 @@ public partial class ImportDataWindow : Window
         _logger.LogInfo($"Window IsVisible: {IsVisible}, IsLoaded: {IsLoaded}");
         _logger.LogInfo($"Window Left: {Left}, Top: {Top}");
     }
+
+    private void SameAsRecordDate_Click(object sender, RoutedEventArgs e)
+    {
+        // Set the expiry date to match the catalogue date
+        ViewModel.ExpiryDate = ViewModel.CatalogueDate;
+    }
 }

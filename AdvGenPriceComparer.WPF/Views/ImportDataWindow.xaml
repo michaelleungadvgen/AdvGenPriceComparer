@@ -107,6 +107,38 @@
                             BorderBrush="#ddd"
                             BorderThickness="1"/>
 
+                <!-- Expiry Date Selection (Optional) -->
+                <TextBlock Text="Discount Expiry Date" Style="{StaticResource LabelStyle}" Margin="0,20,0,5"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker x:Name="ExpiryDatePicker"
+                                Grid.Column="0"
+                                SelectedDate="{Binding ExpiryDate, UpdateSourceTrigger=PropertyChanged}"
+                                FontSize="13"
+                                Padding="8"
+                                BorderBrush="#ddd"
+                                BorderThickness="1"/>
+                    <Button Grid.Column="1"
+                            Content="Same as Record"
+                            Width="110"
+                            Height="36"
+                            Margin="10,0,0,0"
+                            Click="SameAsRecordDate_Click"
+                            Background="#f5f5f5"
+                            Foreground="#333"
+                            BorderBrush="#ddd"
+                            BorderThickness="1"
+                            Cursor="Hand"
+                            FontSize="12"/>
+                </Grid>
+                <TextBlock Text="Optional: Set when the discount expires. Defaults to 7 days after catalogue date."
+                           FontSize="11"
+                           Foreground="#666"
+                           Margin="0,5,0,0"/>
+
                 <!-- File Preview -->
                 <TextBlock Text="Selected Files" Style="{StaticResource LabelStyle}" Margin="0,20,0,5"/>
                 <Border BorderBrush="#ddd" BorderThickness="1" Background="#f9f9f9" Padding="12" CornerRadius="4">

@@ -485,7 +485,7 @@ public class JsonImportService
     /// Import Coles products with specified store and date
     /// </summary>
     public ImportResult ImportColesProducts(List<ColesProduct> products, string storeId, DateTime catalogueDate, 
-        Dictionary<string, string>? existingItemMappings = null, IProgress<ImportProgress>? progress = null)
+        Dictionary<string, string>? existingItemMappings = null, IProgress<ImportProgress>? progress = null, DateTime? expiryDate = null)
     {
         var result = new ImportResult();
         var detailedErrors = new List<ImportError>();
@@ -596,7 +596,7 @@ public class JsonImportService
                 }
 
                 // Create price record
-                var priceRecord = CreatePriceRecord(product, itemId, storeId, catalogueDate);
+                var priceRecord = CreatePriceRecord(product, itemId, storeId, catalogueDate, expiryDate);
                 _priceRecordRepository.Add(priceRecord);
                 result.PriceRecordsCreated++;
             }
@@ -940,7 +940,7 @@ public class JsonImportService
         return store;
     }
 
-    private PriceRecord CreatePriceRecord(ColesProduct product, string itemId, string placeId, DateTime recordDate)
+    private PriceRecord CreatePriceRecord(ColesProduct product, string itemId, string placeId, DateTime recordDate, DateTime? expiryDate = null)
     {
         var price = ParsePrice(product.Price);
         var originalPrice = ParsePrice(product.OriginalPrice);
@@ -962,7 +962,7 @@ public class JsonImportService
             SaleDescription = saleDescription,
             DateRecorded = recordDate,
             ValidFrom = recordDate,
-            ValidTo = recordDate.AddDays(7), // Assume weekly specials
+            ValidTo = expiryDate ?? recordDate.AddDays(7), // Use provided expiry date or default to 7 days
             Source = "Catalogue",
             CatalogueDate = recordDate
         };

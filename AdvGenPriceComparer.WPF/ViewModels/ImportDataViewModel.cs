@@ -35,6 +35,7 @@ public class ImportDataViewModel : ViewModelBase
     private string[] _selectedFilePaths = Array.Empty<string>();
     private Place? _selectedStore;
     private DateTime _catalogueDate = DateTime.Today;
+    private DateTime? _expiryDate = null; // Optional expiry date for discounts
     private string _importStatus = "Ready to import...";
     private bool _isImporting = false;
     private bool _importCompleted = false;
@@ -103,7 +104,24 @@ public class ImportDataViewModel : ViewModelBase
     public DateTime CatalogueDate
     {
         get => _catalogueDate;
-        set => SetProperty(ref _catalogueDate, value);
+        set 
+        {
+            if (SetProperty(ref _catalogueDate, value))
+            {
+                // When catalogue date changes and expiry date is not set or was same as old catalogue date,
+                // update expiry date to match new catalogue date
+                if (_expiryDate == null || _expiryDate == value)
+                {
+                    ExpiryDate = value;
+                }
+            }
+        }
+    }
+
+    public DateTime? ExpiryDate
+    {
+        get => _expiryDate;
+        set => SetProperty(ref _expiryDate, value);
     }
 
     public string ImportStatus
@@ -375,7 +393,7 @@ public class ImportDataViewModel : ViewModelBase
 
             // Use JsonImportService to import the products
             var result = await Task.Run(() => 
-                _jsonImportService.ImportColesProducts(products, SelectedStore!.Id!, CatalogueDate, existingItemMappings, progress));
+                _jsonImportService.ImportColesProducts(products, SelectedStore!.Id!, CatalogueDate, existingItemMappings, progress, ExpiryDate));
 
             statusBuilder.AppendLine();
             statusBuilder.AppendLine("═══════════════════════════════");
