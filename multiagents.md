@@ -55,6 +55,8 @@
 | Generate code coverage reports | 🟢 DONE | Agent-019 | Added coverlet.runsettings, generates cobertura and JSON coverage data (27.67% line coverage) |
 | Deal expiration reminders | 🟢 DONE | Agent-028 | Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item |
 | Weekly specials digest | 🟢 DONE | Agent-029 | Implemented IWeeklySpecialsService, WeeklySpecialsDigestViewModel, WeeklySpecialsDigestWindow with export to Markdown/Text, copy to clipboard, category/store filters |
+| Shopping list integration | 🔴 TODO | - | Create shopping list feature for users to save items |
+| Deal expiration reminders | 🟢 DONE | Agent-028 | Implemented IDealExpirationService with DealExpirationRemindersWindow |
 
 ---
 
@@ -82,6 +84,98 @@
 | Implement authentication | 🔴 TODO | - | API key based |
 | Add rate limiting | 🔴 TODO | - | Future feature |
 | Create upload/download UI in WPF app | 🔴 TODO | - | Future feature |
+| Test price sharing workflow | 🔴 TODO | - | End-to-end testing for P2P sharing |
+
+---
+
+## Phase 5: Price Analysis (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Track historical prices in database | 🔴 TODO | - | Historical price tracking |
+| Detect genuine vs. illusory discounts | 🔴 TODO | - | AI-powered discount verification |
+| Calculate average prices over time | 🔴 TODO | - | Price trend analysis |
+| Add "best price" highlighting | 🔴 TODO | - | Visual indicators for best deals |
+| Generate reports (best deals, trends) | 🔴 TODO | - | Automated report generation |
+
+---
+
+## Phase 6: Enhanced Features (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Product Management (CRUD operations) | 🔴 TODO | - | Full product CRUD |
+| Store Management (CRUD, location mapping) | 🔴 TODO | - | Store management with locations |
+| Shopping list integration | 🔴 TODO | - | User shopping lists |
+
+---
+
+## Phase 7: Testing & Deployment (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| UI automation tests | 🔴 TODO | - | Automated UI testing |
+| Create installer (WiX Toolset or ClickOnce) | 🔴 TODO | - | Windows installer |
+| Configure auto-update mechanism | 🔴 TODO | - | Auto-update functionality |
+| User documentation | 🔴 TODO | - | Complete user docs |
+
+---
+
+## Phase 9: ML.NET Auto-Categorization (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Create AdvGenPriceComparer.ML project | 🔴 TODO | - | ML.NET project setup |
+| Implement ModelTrainingService | 🔴 TODO | - | Model training pipeline |
+| Implement CategoryPredictionService | 🔴 TODO | - | Auto-categorization service |
+| Integrate prediction into JsonImportService | 🔴 TODO | - | Auto-categorize on import |
+| Add auto-suggestion to AddItemWindow UI | 🔴 TODO | - | Category suggestions |
+| Create MLModelManagementWindow | 🔴 TODO | - | Model management UI |
+| Test prediction accuracy | 🔴 TODO | - | Validate ML accuracy |
+
+---
+
+## Phase 10: Database Provider Abstraction (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Create IDatabaseProvider interface | 🔴 TODO | - | Database abstraction layer |
+| Create DatabaseProviderFactory | 🔴 TODO | - | Provider factory pattern |
+| Implement LiteDbProvider | 🔴 TODO | - | LiteDB provider |
+| Implement AdvGenNoSqlProvider | 🔴 TODO | - | NoSQL server provider |
+| Create SettingsWindow.xaml UI | 🔴 TODO | - | Database settings UI |
+| Handle provider switching | 🔴 TODO | - | Runtime provider switch |
+
+---
+
+## Phase 11: ML.NET Price Prediction (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Install Microsoft.ML.TimeSeries | 🔴 TODO | - | Time series forecasting |
+| Implement PriceForecastingService | 🔴 TODO | - | SSA forecasting model |
+| Implement PriceAnomalyDetectionService | 🔴 TODO | - | Anomaly detection |
+| Create PriceForecastWindow.xaml UI | 🔴 TODO | - | Forecast visualization |
+| Integrate LiveCharts for price visualization | 🔴 TODO | - | Chart integration |
+| Test forecasting with real historical data | 🔴 TODO | - | Validate predictions |
+
+---
+
+## Phase 12: Ollama Chat Interface (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Install Ollama and Mistral 7B model | 🔴 TODO | - | Local LLM setup |
+| Create AdvGenPriceComparer.Chat project | 🔴 TODO | - | Chat project |
+| Implement OllamaService | 🔴 TODO | - | LLM communication |
+| Implement QueryRouterService | 🔴 TODO | - | Query routing to databases |
+| Build PriceChatWindow.xaml UI | 🔴 TODO | - | Chat interface |
+| Test with natural language queries | 🔴 TODO | - | Query testing |
+
+---
+
+## Phase 13: Static Data Import/Export (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Create StaticDataExporter service | 🔴 TODO | - | Export to static formats |
+| Create StaticDataImporter service | 🔴 TODO | - | Import from static peers |
+| Add scheduled export job | 🔴 TODO | - | Automated exports |
+| Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
+| Add "Export Data" button in settings | 🔴 TODO | - | Export UI |
+| Add "Import from URL" dialog | 🔴 TODO | - | Import UI |
 
 ---
 
