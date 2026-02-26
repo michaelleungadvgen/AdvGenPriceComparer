@@ -35,6 +35,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         GlobalSearchCommand = new RelayCommand(ShowGlobalSearch);
         ScanBarcodeCommand = new RelayCommand(ScanBarcode);
         PriceDropNotificationsCommand = new RelayCommand(ShowPriceDropNotifications);
+        DealExpirationRemindersCommand = new RelayCommand(ShowDealExpirationReminders);
 
         RefreshDashboard();
     }
@@ -64,6 +65,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand GlobalSearchCommand { get; }
     public ICommand ScanBarcodeCommand { get; }
     public ICommand PriceDropNotificationsCommand { get; }
+    public ICommand DealExpirationRemindersCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -235,6 +237,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowPriceDropNotifications()
     {
         _dialogService.ShowPriceDropNotificationsDialog();
+    }
+
+    private void ShowDealExpirationReminders()
+    {
+        _dialogService.ShowDealExpirationRemindersDialog();
     }
 
     private void ShowFavorites()

@@ -160,6 +160,14 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new FavoritesService(itemRepo, logger);
             });
+            services.AddSingleton<IDealExpirationService>(provider =>
+            {
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var appDataPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    "AdvGenPriceComparer");
+                return new DealExpirationService(groceryData, appDataPath);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
@@ -181,10 +189,20 @@ public partial class App : Application
                 var groceryData = provider.GetRequiredService<IGroceryDataService>();
                 return new PriceDropNotificationViewModel(notificationService, groceryData);
             });
+            services.AddTransient<DealExpirationReminderViewModel>(provider =>
+            {
+                var dealExpirationService = provider.GetRequiredService<IDealExpirationService>();
+                return new DealExpirationReminderViewModel(dealExpirationService);
+            });
 
             // Views
             services.AddTransient<ItemsPage>();
             services.AddTransient<PriceHistoryPage>();
+            services.AddTransient<DealExpirationRemindersWindow>(provider =>
+            {
+                var viewModel = provider.GetRequiredService<DealExpirationReminderViewModel>();
+                return new DealExpirationRemindersWindow(viewModel);
+            });
 
             // Main Window
             services.AddTransient<MainWindow>();

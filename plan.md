@@ -474,7 +474,7 @@ public class ExportService
 - [ ] Store Management (CRUD, location mapping)
 - [ ] Shopping list integration
 - [x] Price drop alerts - IMPLEMENTED: IPriceDropNotificationService with monitoring, alert creation, and notification UI
-- [ ] Deal expiration reminders
+- [x] Deal expiration reminders - IMPLEMENTED: IDealExpirationService with tracking, DealExpirationRemindersWindow UI, dismiss functionality
 - [ ] Weekly specials digest
 
 ### Phase 7: Testing & Deployment (3-4 days)

@@ -53,6 +53,7 @@
 | Test JSON import with older format (coles_24072025.json) | 🟢 DONE | Agent-017 | Created 3 xUnit tests for older JSON format compatibility - all tests passing |
 | Set up CI/CD pipeline | 🟢 DONE | Agent-018 | Updated GitHub Actions for WPF build, .NET 9, and test execution |
 | Generate code coverage reports | 🟢 DONE | Agent-019 | Added coverlet.runsettings, generates cobertura and JSON coverage data (27.67% line coverage) |
+| Deal expiration reminders | 🟢 DONE | Agent-028 | Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item |
 
 ---
 
@@ -70,8 +71,7 @@
 
 ---
 
-## Phase 4: Server Integration (Future)
-
+## Phase 4: Server Integration 
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Create ASP.NET Core Web API project | 🔴 TODO | - | Future feature |
@@ -175,6 +175,7 @@
 | 2026-02-26 | Search across all entities - Implemented Global Search (IGlobalSearchService, GlobalSearchService, GlobalSearchWindow, GlobalSearchViewModel) with relevance scoring, recent searches, and categorized results | Agent-023 |
 | 2026-02-26 | Price drop notifications - Implemented IPriceDropNotificationService, PriceDropNotificationService, PriceDropNotificationViewModel, PriceDropNotificationsWindow with monitoring, alert creation, and notification UI | Agent-025 |
 | 2026-02-26 | Favourite items list - Implemented IFavoritesService, FavoritesService, FavoritesViewModel, FavoritesWindow, added IsFavorite to Item model, registered in DI, added to MainWindow, 15 comprehensive unit tests | Agent-027 |
+| 2026-02-26 | Deal expiration reminders - Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item | Agent-028 |
 
 ---
 

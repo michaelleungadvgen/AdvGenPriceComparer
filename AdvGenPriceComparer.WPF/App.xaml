@@ -21,6 +21,8 @@
             <converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
             <converters:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
             <converters:BarcodeFormatDescriptionConverter x:Key="BarcodeFormatDescriptionConverter"/>
+            <converters:StringNotEmptyToVisibilityConverter x:Key="StringNotEmptyToVisibilityConverter"/>
+            <converters:StringToSolidColorBrushConverter x:Key="StringToSolidColorBrushConverter"/>
 
             <!-- Light Blue Theme Color -->
             <Color x:Key="PrimaryColor">#87CEEB</Color>

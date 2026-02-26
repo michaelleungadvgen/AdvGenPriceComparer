@@ -431,6 +431,7 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowBarcodeScannerDialog() { }
         public void ShowPriceDropNotificationsDialog() { }
         public void ShowFavoritesDialog() { }
+        public void ShowDealExpirationRemindersDialog() { }
     }
 
     #endregion

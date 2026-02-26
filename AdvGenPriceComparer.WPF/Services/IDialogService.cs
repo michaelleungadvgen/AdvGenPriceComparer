@@ -14,4 +14,5 @@ public interface IDialogService
     void ShowBarcodeScannerDialog();
     void ShowPriceDropNotificationsDialog();
     void ShowFavoritesDialog();
+    void ShowDealExpirationRemindersDialog();
 }

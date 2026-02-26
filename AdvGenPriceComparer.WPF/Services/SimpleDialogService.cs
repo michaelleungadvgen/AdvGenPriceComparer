@@ -84,4 +84,12 @@ public class SimpleDialogService : IDialogService
         var window = new FavoritesWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowDealExpirationRemindersDialog()
+    {
+        var dealExpirationService = ((App)Application.Current).Services.GetRequiredService<IDealExpirationService>();
+        var viewModel = new ViewModels.DealExpirationReminderViewModel(dealExpirationService);
+        var window = new DealExpirationRemindersWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }
