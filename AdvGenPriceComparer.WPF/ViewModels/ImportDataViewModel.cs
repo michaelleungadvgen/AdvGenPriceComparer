@@ -28,7 +28,6 @@ public class ImportDataViewModel : ViewModelBase
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
     private readonly JsonImportService _jsonImportService;
-    private readonly string _dbPath;
     private CancellationTokenSource? _cancellationTokenSource;
 
     private int _currentStep = 1;
@@ -44,27 +43,14 @@ public class ImportDataViewModel : ViewModelBase
     private int _totalItems = 0;
     private int _processedItems = 0;
 
-    public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, string dbPath)
-    {
-        _dataService = dataService;
-        _dialogService = dialogService;
-        _dbPath = dbPath;
-        _jsonImportService = new JsonImportService(new DatabaseService(dbPath));
-
-        Stores = new ObservableCollection<Place>();
-        SelectedFiles = new ObservableCollection<string>();
-        PreviewItems = new ObservableCollection<ImportPreviewItem>();
-    }
-
     /// <summary>
-    /// Constructor with JsonImportService injection (preferred)
+    /// Constructor with JsonImportService injection
     /// </summary>
     public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, JsonImportService jsonImportService)
     {
         _dataService = dataService;
         _dialogService = dialogService;
         _jsonImportService = jsonImportService;
-        _dbPath = string.Empty;
 
         Stores = new ObservableCollection<Place>();
         SelectedFiles = new ObservableCollection<string>();

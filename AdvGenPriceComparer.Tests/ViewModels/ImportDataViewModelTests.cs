@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -30,7 +31,10 @@ public class ImportDataViewModelTests : IDisposable
         _dataService = new TestGroceryDataService();
         _dialogService = new TestDialogService();
         _dbService = new DatabaseService(_testDbPath);
-        _jsonImportService = new JsonImportService(_dbService);
+        var itemRepo = new ItemRepository(_dbService);
+        var placeRepo = new PlaceRepository(_dbService);
+        var priceRepo = new PriceRecordRepository(_dbService);
+        _jsonImportService = new JsonImportService(itemRepo, placeRepo, priceRepo);
     }
 
     public void Dispose()

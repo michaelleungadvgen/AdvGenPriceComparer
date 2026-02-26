@@ -1,3 +1,5 @@
+using AdvGenPriceComparer.Core.Models;
+
 namespace AdvGenPriceComparer.WPF.Services;
 
 /// <summary>
@@ -119,15 +121,6 @@ public interface ISettingsService
     /// Event fired when settings are loaded or saved
     /// </summary>
     event EventHandler<SettingsChangedEventArgs>? SettingsChanged;
-}
-
-/// <summary>
-/// Database provider types
-/// </summary>
-public enum DatabaseProviderType
-{
-    LiteDB,
-    AdvGenNoSQLServer
 }
 
 /// <summary>

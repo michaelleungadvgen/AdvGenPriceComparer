@@ -30,14 +30,14 @@ public class ImportExportIntegrationTests : IDisposable
         Directory.CreateDirectory(_testOutputDir);
         
         _dbService = new DatabaseService(_testDbPath);
-        _importService = new JsonImportService(_dbService);
         
-        // Create repositories for ExportService
+        // Create repositories for services
         var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(_dbService);
         var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(_dbService);
         var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(_dbService);
         var logger = new TestLoggerService();
         
+        _importService = new JsonImportService(itemRepo, placeRepo, priceRepo);
         _exportService = new ExportService(itemRepo, placeRepo, priceRepo, logger);
     }
 
@@ -137,7 +137,10 @@ public class ImportExportIntegrationTests : IDisposable
             
             try
             {
-                var reimportService = new JsonImportService(reimportDbService);
+                var reimportItemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(reimportDbService);
+                var reimportPlaceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(reimportDbService);
+                var reimportPriceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(reimportDbService);
+                var reimportService = new JsonImportService(reimportItemRepo, reimportPlaceRepo, reimportPriceRepo);
                 
                 // Read exported file and convert to importable format
                 var exportedContent = await File.ReadAllTextAsync(exportPath);

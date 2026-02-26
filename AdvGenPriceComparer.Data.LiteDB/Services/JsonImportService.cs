@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.RegularExpressions;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Entities;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
@@ -46,27 +47,27 @@ public class ValidationResult
 }
 
 /// <summary>
-/// Service for importing grocery data from JSON files into LiteDB
+/// Service for importing grocery data from JSON files
 /// </summary>
 public class JsonImportService
 {
-    private readonly DatabaseService _dbService;
-    private readonly ItemRepository _itemRepository;
-    private readonly PlaceRepository _placeRepository;
-    private readonly PriceRecordRepository _priceRecordRepository;
+    private readonly IItemRepository _itemRepository;
+    private readonly IPlaceRepository _placeRepository;
+    private readonly IPriceRecordRepository _priceRecordRepository;
     private readonly Action<string>? _logInfo;
     private readonly Action<string, Exception>? _logError;
     private readonly Action<string>? _logWarning;
 
-    public JsonImportService(DatabaseService dbService, 
+    public JsonImportService(IItemRepository itemRepository, 
+        IPlaceRepository placeRepository, 
+        IPriceRecordRepository priceRecordRepository,
         Action<string>? logInfo = null, 
         Action<string, Exception>? logError = null,
         Action<string>? logWarning = null)
     {
-        _dbService = dbService;
-        _itemRepository = new ItemRepository(dbService);
-        _placeRepository = new PlaceRepository(dbService);
-        _priceRecordRepository = new PriceRecordRepository(dbService);
+        _itemRepository = itemRepository;
+        _placeRepository = placeRepository;
+        _priceRecordRepository = priceRecordRepository;
         _logInfo = logInfo;
         _logError = logError;
         _logWarning = logWarning;

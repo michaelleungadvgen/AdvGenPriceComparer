@@ -28,10 +28,10 @@ public class JsonImportServiceTests : IDisposable
     {
         _testDbPath = Path.Combine(Path.GetTempPath(), $"test_jsonimport_{Guid.NewGuid():N}.db");
         _dbService = new DatabaseService(_testDbPath);
-        _importService = new JsonImportService(_dbService);
         _itemRepository = new ItemRepository(_dbService);
         _placeRepository = new PlaceRepository(_dbService);
         _priceRecordRepository = new PriceRecordRepository(_dbService);
+        _importService = new JsonImportService(_itemRepository, _placeRepository, _priceRecordRepository);
     }
 
     public void Dispose()

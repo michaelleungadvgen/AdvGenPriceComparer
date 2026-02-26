@@ -25,9 +25,10 @@ public class DuplicateDetectionTests : IDisposable
         // Create a unique test database path for each test run
         _testDbPath = Path.Combine(Path.GetTempPath(), $"test_duplicate_{Guid.NewGuid():N}.db");
         _dbService = new DatabaseService(_testDbPath);
-        _importService = new JsonImportService(_dbService);
         _itemRepository = new ItemRepository(_dbService);
         _placeRepository = new PlaceRepository(_dbService);
+        var priceRecordRepository = new PriceRecordRepository(_dbService);
+        _importService = new JsonImportService(_itemRepository, _placeRepository, priceRecordRepository);
     }
 
     public void Dispose()

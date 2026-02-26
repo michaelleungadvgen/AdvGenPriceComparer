@@ -89,47 +89,46 @@ public partial class App : Application
                 return settingsService;
             });
 
-            // Database Service - SINGLE instance shared across all services
-            services.AddSingleton<DatabaseService>(provider =>
-                new DatabaseService(dbPath));
+            // Database Provider Factory
+            services.AddSingleton<DatabaseProviderFactory>();
 
-            // Data Services - all use the shared DatabaseService
+            // IDatabaseProvider - Created asynchronously using the factory
+            services.AddSingleton<IDatabaseProvider>(provider =>
+            {
+                var factory = provider.GetRequiredService<DatabaseProviderFactory>();
+                return factory.CreateProviderAsync().GetAwaiter().GetResult();
+            });
+
+            // Data Services - all use the shared IDatabaseProvider
             services.AddSingleton<IGroceryDataService>(provider =>
             {
-                var dbService = provider.GetRequiredService<DatabaseService>();
-                return new GroceryDataService(dbService);
+                var dbProvider = provider.GetRequiredService<IDatabaseProvider>();
+                return new ProviderGroceryDataService(dbProvider);
             });
             
-            // Register Repositories
-            services.AddSingleton<IPriceRecordRepository>(provider =>
-            {
-                var dbService = provider.GetRequiredService<DatabaseService>();
-                return new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
-            });
-            services.AddSingleton<IItemRepository>(provider =>
-            {
-                var dbService = provider.GetRequiredService<DatabaseService>();
-                return new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
-            });
-            services.AddSingleton<IPlaceRepository>(provider =>
-            {
-                var dbService = provider.GetRequiredService<DatabaseService>();
-                return new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
-            });
+            // Register Repositories from the provider
+            services.AddSingleton<IPriceRecordRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().PriceRecords);
+            services.AddSingleton<IItemRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Items);
+            services.AddSingleton<IPlaceRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Places);
+            services.AddSingleton<IAlertRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Alerts);
             
             services.AddTransient<DemoDataService>();
             services.AddTransient<JsonImportService>(provider =>
             {
-                var dbService = provider.GetRequiredService<DatabaseService>();
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
                 var logger = provider.GetRequiredService<ILoggerService>();
-                return new JsonImportService(dbService, 
+                
+                // Note: JsonImportService might need refactoring if it depends on DatabaseService directly
+                // For now we'll assume it uses repositories or we'll refactor it next
+                return new JsonImportService(itemRepo, placeRepo, priceRepo,
                     msg => logger.LogInfo(msg),
                     (msg, ex) => logger.LogError(msg, ex),
                     msg => logger.LogWarning(msg));
             });
             services.AddTransient<ExportService>(provider =>
             {
-                var dbService = provider.GetRequiredService<DatabaseService>();
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();

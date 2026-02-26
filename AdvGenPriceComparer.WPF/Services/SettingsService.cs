@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text.Json;
+using AdvGenPriceComparer.Core.Models;
 
 namespace AdvGenPriceComparer.WPF.Services;
 
