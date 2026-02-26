@@ -405,6 +405,7 @@ public class ItemViewModelTests : IDisposable
         public void ShowPriceDropNotificationsDialog() { }
         public void ShowFavoritesDialog() { }
         public void ShowDealExpirationRemindersDialog() { }
+        public void ShowWeeklySpecialsDigestDialog() { }
     }
 
     #endregion

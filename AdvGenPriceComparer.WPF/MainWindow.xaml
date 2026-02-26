@@ -223,6 +223,10 @@
                            Command="{Binding DealExpirationRemindersCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    <ui:Button Content="📰 Weekly Specials" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding WeeklySpecialsDigestCommand}"
+                           Appearance="Transparent"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
 
                     <!-- Import/Export -->
                     <TextBlock Text="Import/Export" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>

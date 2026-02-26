@@ -92,4 +92,13 @@ public class SimpleDialogService : IDialogService
         var window = new DealExpirationRemindersWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowWeeklySpecialsDigestDialog()
+    {
+        var weeklySpecialsService = ((App)Application.Current).Services.GetRequiredService<IWeeklySpecialsService>();
+        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var viewModel = new ViewModels.WeeklySpecialsDigestViewModel(weeklySpecialsService, dialogService);
+        var window = new WeeklySpecialsDigestWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

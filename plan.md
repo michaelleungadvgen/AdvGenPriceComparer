@@ -475,7 +475,7 @@ public class ExportService
 - [ ] Shopping list integration
 - [x] Price drop alerts - IMPLEMENTED: IPriceDropNotificationService with monitoring, alert creation, and notification UI
 - [x] Deal expiration reminders - IMPLEMENTED: IDealExpirationService with tracking, DealExpirationRemindersWindow UI, dismiss functionality
-- [ ] Weekly specials digest
+- [x] Weekly specials digest - IMPLEMENTED: IWeeklySpecialsService with report generation, export to Markdown/Text, WeeklySpecialsDigestWindow UI
 
 ### Phase 7: Testing & Deployment (3-4 days)
 - [ ] Unit tests for import/export services

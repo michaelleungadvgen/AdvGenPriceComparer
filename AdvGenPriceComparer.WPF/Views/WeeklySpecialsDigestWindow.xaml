@@ -1,0 +1,250 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.WeeklySpecialsDigestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Weekly Specials Digest"
+        Height="700"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+    
+    <Window.Resources>
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+        
+        <Style x:Key="SummaryStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#666"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+        
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+            <Setter Property="Background" Value="#757575"/>
+        </Style>
+        
+        <DataTemplate x:Key="DealItemTemplate">
+            <Border Background="White" 
+                    CornerRadius="8" 
+                    Padding="15" 
+                    Margin="0,5"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Savings Badge -->
+                    <Border Grid.Column="0" 
+                            Background="{Binding UrgencyColor, Converter={StaticResource StringToSolidColorBrushConverter}}" 
+                            CornerRadius="4" 
+                            Padding="10,5"
+                            Margin="0,0,15,0"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="{Binding SavingsPercentage, StringFormat='{}{0:F0}%'}" 
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Foreground="White"/>
+                    </Border>
+                    
+                    <!-- Deal Info -->
+                    <StackPanel Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ItemName}" 
+                                       FontSize="15" 
+                                       FontWeight="SemiBold"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding HalfPriceBadge}" 
+                                       FontSize="12" 
+                                       FontWeight="Bold"
+                                       Foreground="#F44336"
+                                       Margin="10,0,0,0"
+                                       Visibility="{Binding HalfPriceBadge, Converter={StaticResource StringNotEmptyToVisibilityConverter}}"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Brand}" 
+                                   FontSize="12" 
+                                   Foreground="#666"
+                                   Margin="0,2,0,0"
+                                   Visibility="{Binding Brand, Converter={StaticResource StringNotEmptyToVisibilityConverter}}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBlock Text="{Binding StoreName}" 
+                                       FontSize="12" 
+                                       Foreground="#2196F3"/>
+                            <TextBlock Text=" • " 
+                                       FontSize="12" 
+                                       Foreground="#999"/>
+                            <TextBlock Text="{Binding Category}" 
+                                       FontSize="12" 
+                                       Foreground="#666"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding ValidityDisplay}" 
+                                   FontSize="11" 
+                                   Foreground="#999"
+                                   Margin="0,3,0,0"/>
+                    </StackPanel>
+                    
+                    <!-- Price Info -->
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Right" Margin="15,0,0,0">
+                        <TextBlock Text="{Binding PriceDisplay}" 
+                                   FontSize="20" 
+                                   FontWeight="Bold"
+                                   Foreground="#2196F3"/>
+                        <TextBlock Text="{Binding OriginalPriceDisplay}" 
+                                   FontSize="12" 
+                                   Foreground="#999"
+                                   TextDecorations="Strikethrough"
+                                   HorizontalAlignment="Right"
+                                   Visibility="{Binding OriginalPriceDisplay, Converter={StaticResource StringNotEmptyToVisibilityConverter}}"/>
+                        <TextBlock Text="{Binding SavingsDisplay}" 
+                                   FontSize="11" 
+                                   Foreground="#4CAF50"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,3,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <TextBlock Grid.Row="0" 
+                   Text="{Binding ReportTitle}" 
+                   Style="{StaticResource HeaderStyle}"/>
+        
+        <!-- Summary -->
+        <TextBlock Grid.Row="1" 
+                   Text="{Binding SummaryText}" 
+                   Style="{StaticResource SummaryStyle}"/>
+        
+        <!-- Filters -->
+        <Grid Grid.Row="2" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" 
+                       Text="Category:" 
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+            
+            <ComboBox Grid.Column="1" 
+                      ItemsSource="{Binding Categories}" 
+                      SelectedItem="{Binding SelectedCategory}"
+                      VerticalAlignment="Center"/>
+            
+            <TextBlock Grid.Column="3" 
+                       Text="Store:" 
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+            
+            <ComboBox Grid.Column="4" 
+                      ItemsSource="{Binding Stores}" 
+                      SelectedItem="{Binding SelectedStore}"
+                      VerticalAlignment="Center"/>
+        </Grid>
+        
+        <!-- Loading Indicator -->
+        <ProgressBar Grid.Row="3" 
+                     Height="4"
+                     IsIndeterminate="True"
+                     Margin="0,0,0,10"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        
+        <!-- Deals List -->
+        <Border Grid.Row="4" 
+                Background="White" 
+                CornerRadius="8"
+                BorderBrush="#E0E0E0"
+                BorderThickness="1">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                              HorizontalScrollBarVisibility="Disabled"
+                              Padding="10">
+                    <ItemsControl ItemsSource="{Binding AllDeals}" 
+                                  ItemTemplate="{StaticResource DealItemTemplate}"
+                                  VirtualizingPanel.IsVirtualizing="True">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+                
+                <!-- Empty State -->
+                <TextBlock Text="No specials found for this week." 
+                           FontSize="16"
+                           Foreground="#666"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Visibility="{Binding AllDeals.Count, Converter={StaticResource ZeroToVisibilityConverter}}"/>
+            </Grid>
+        </Border>
+        
+        <!-- Buttons -->
+        <StackPanel Grid.Row="5" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,15,0,0">
+            <Button Content="🔄 Refresh" 
+                    Command="{Binding GenerateDigestCommand}"
+                    Style="{StaticResource SecondaryButtonStyle}"/>
+            <Button Content="📋 Copy" 
+                    Command="{Binding CopyToClipboardCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+            <Button Content="📝 Export Markdown" 
+                    Command="{Binding ExportMarkdownCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+            <Button Content="📄 Export Text" 
+                    Command="{Binding ExportTextCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>

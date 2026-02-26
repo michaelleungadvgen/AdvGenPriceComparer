@@ -36,6 +36,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         ScanBarcodeCommand = new RelayCommand(ScanBarcode);
         PriceDropNotificationsCommand = new RelayCommand(ShowPriceDropNotifications);
         DealExpirationRemindersCommand = new RelayCommand(ShowDealExpirationReminders);
+        WeeklySpecialsDigestCommand = new RelayCommand(ShowWeeklySpecialsDigest);
 
         RefreshDashboard();
     }
@@ -66,6 +67,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand ScanBarcodeCommand { get; }
     public ICommand PriceDropNotificationsCommand { get; }
     public ICommand DealExpirationRemindersCommand { get; }
+    public ICommand WeeklySpecialsDigestCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -242,6 +244,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowDealExpirationReminders()
     {
         _dialogService.ShowDealExpirationRemindersDialog();
+    }
+
+    private void ShowWeeklySpecialsDigest()
+    {
+        _dialogService.ShowWeeklySpecialsDigestDialog();
     }
 
     private void ShowFavorites()

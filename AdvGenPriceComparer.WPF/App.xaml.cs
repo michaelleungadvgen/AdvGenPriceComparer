@@ -168,6 +168,12 @@ public partial class App : Application
                     "AdvGenPriceComparer");
                 return new DealExpirationService(groceryData, appDataPath);
             });
+            services.AddSingleton<IWeeklySpecialsService>(provider =>
+            {
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new WeeklySpecialsService(groceryData, logger);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
@@ -194,6 +200,12 @@ public partial class App : Application
                 var dealExpirationService = provider.GetRequiredService<IDealExpirationService>();
                 return new DealExpirationReminderViewModel(dealExpirationService);
             });
+            services.AddTransient<WeeklySpecialsDigestViewModel>(provider =>
+            {
+                var weeklySpecialsService = provider.GetRequiredService<IWeeklySpecialsService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                return new WeeklySpecialsDigestViewModel(weeklySpecialsService, dialogService);
+            });
 
             // Views
             services.AddTransient<ItemsPage>();
@@ -202,6 +214,11 @@ public partial class App : Application
             {
                 var viewModel = provider.GetRequiredService<DealExpirationReminderViewModel>();
                 return new DealExpirationRemindersWindow(viewModel);
+            });
+            services.AddTransient<WeeklySpecialsDigestWindow>(provider =>
+            {
+                var viewModel = provider.GetRequiredService<WeeklySpecialsDigestViewModel>();
+                return new WeeklySpecialsDigestWindow(viewModel);
             });
 
             // Main Window

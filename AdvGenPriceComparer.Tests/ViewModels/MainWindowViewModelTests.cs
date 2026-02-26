@@ -362,6 +362,7 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowPriceDropNotificationsDialog() { }
         public void ShowFavoritesDialog() { }
         public void ShowDealExpirationRemindersDialog() { }
+        public void ShowWeeklySpecialsDigestDialog() { }
     }
 
     #endregion
