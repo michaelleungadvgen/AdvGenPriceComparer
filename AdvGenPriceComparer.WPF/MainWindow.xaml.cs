@@ -156,8 +156,21 @@ public partial class MainWindow : FluentWindow
 
     private void ReportsNav_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Navigate to Reports view
-        MessageBox.Show("Reports view - Coming soon!", "Navigation", MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            var reportsViewModel = ((App)Application.Current).Services.GetRequiredService<ReportsViewModel>();
+            var page = new ReportsPage(reportsViewModel);
+
+            DashboardContent.Visibility = Visibility.Collapsed;
+            ContentFrame.Visibility = Visibility.Visible;
+            ContentFrame.Navigate(page);
+            UpdateNavigation("Reports");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error navigating to Reports: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void UpdateNavigation(string activePage)

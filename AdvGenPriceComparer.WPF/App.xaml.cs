@@ -205,10 +205,22 @@ public partial class App : Application
                 var dialogService = provider.GetRequiredService<IDialogService>();
                 return new WeeklySpecialsDigestViewModel(weeklySpecialsService, dialogService);
             });
+            services.AddTransient<ReportsViewModel>(provider =>
+            {
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                return new ReportsViewModel(priceRepo, itemRepo, placeRepo);
+            });
 
             // Views
             services.AddTransient<ItemsPage>();
             services.AddTransient<PriceHistoryPage>();
+            services.AddTransient<ReportsPage>(provider =>
+            {
+                var viewModel = provider.GetRequiredService<ReportsViewModel>();
+                return new ReportsPage(viewModel);
+            });
             services.AddTransient<DealExpirationRemindersWindow>(provider =>
             {
                 var viewModel = provider.GetRequiredService<DealExpirationReminderViewModel>();

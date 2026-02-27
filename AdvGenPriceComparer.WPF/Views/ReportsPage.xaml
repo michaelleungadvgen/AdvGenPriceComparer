@@ -1,0 +1,123 @@
+<Page x:Class="AdvGenPriceComparer.WPF.Views.ReportsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Reports">
+
+    <Page.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StatValueStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#2196F3"/>
+        </Style>
+
+        <Style x:Key="StatLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#666"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#F5F5F5" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <TextBlock Grid.Row="0" Text="📊 Price Reports &amp; Analytics" 
+                       FontSize="24" FontWeight="Bold" Margin="10,0,0,20"/>
+
+            <!-- Statistics Cards -->
+            <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,20">
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalItems}" Style="{StaticResource StatValueStyle}"/>
+                        <TextBlock Text="Total Items Tracked" Style="{StaticResource StatLabelStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalStores}" Style="{StaticResource StatValueStyle}"/>
+                        <TextBlock Text="Stores Monitored" Style="{StaticResource StatLabelStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding ActiveDeals}" Style="{StaticResource StatValueStyle}"/>
+                        <TextBlock Text="Active Deals" Style="{StaticResource StatLabelStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding AverageSavings}" Style="{StaticResource StatValueStyle}"/>
+                        <TextBlock Text="Avg. Savings" Style="{StaticResource StatLabelStyle}"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- Best Deals Section -->
+            <Border Grid.Row="2" Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="🔥 Best Deals This Week" 
+                               FontWeight="SemiBold" FontSize="18" Margin="0,0,0,10"/>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" MaxHeight="400">
+                        <ItemsControl ItemsSource="{Binding BestDeals}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource CardStyle}" Margin="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="{Binding ItemName}" FontWeight="SemiBold" FontSize="14"/>
+                                                <TextBlock Text="{Binding StoreName}" FontSize="12" Foreground="#666" Margin="0,2,0,0"/>
+                                                <TextBlock Text="{Binding Category}" FontSize="11" Foreground="#999" Margin="0,1,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding PriceDisplay}" FontWeight="Bold" FontSize="16" Foreground="#2196F3"/>
+                                                <TextBlock Text="{Binding SavingsDisplay}" FontSize="12" Foreground="#4CAF50"/>
+                                                <TextBlock Text="{Binding DiscountPercentDisplay}" FontSize="11" Foreground="#F44336" FontWeight="SemiBold"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>
