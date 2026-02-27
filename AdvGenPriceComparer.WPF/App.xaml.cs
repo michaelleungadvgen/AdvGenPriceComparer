@@ -80,12 +80,30 @@ public partial class App : Application
                 new ServerConfigService(serverConfigPath));
             services.AddSingleton<NetworkManager>();
 
-            // Settings Service - Load settings on startup
+            // Settings Service - Create service, load settings in background
             services.AddSingleton<ISettingsService>(provider =>
             {
                 var logger = provider.GetRequiredService<ILoggerService>();
+                logger.LogInfo("Creating SettingsService");
                 var settingsService = new SettingsService(logger);
-                settingsService.LoadSettingsAsync().Wait();
+
+                // Load settings in background - don't block startup!
+                _ = Task.Run(async () =>
+                {
+                    logger.LogInfo("Loading settings in background...");
+                    try
+                    {
+                        await settingsService.LoadSettingsAsync();
+                        logger.LogInfo("Settings loaded successfully in background");
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError("Failed to load settings in background", ex);
+                        // Settings service will use defaults
+                    }
+                });
+
+                logger.LogInfo("SettingsService created (settings loading in background)");
                 return settingsService;
             });
 

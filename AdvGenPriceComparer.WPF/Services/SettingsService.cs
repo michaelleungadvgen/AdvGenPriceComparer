@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 using AdvGenPriceComparer.Core.Models;
 
 namespace AdvGenPriceComparer.WPF.Services;
@@ -255,7 +256,7 @@ public class SettingsService : ISettingsService
     }
 
     /// <summary>
-    /// Load settings from JSON file
+    /// Load settings from JSON file with retry logic and timeout
     /// </summary>
     public async Task LoadSettingsAsync()
     {
@@ -268,7 +269,9 @@ public class SettingsService : ISettingsService
                 return;
             }
 
-            var json = await File.ReadAllTextAsync(_settingsPath);
+            // Read file with timeout and file sharing to avoid locks
+            var json = await ReadFileWithRetryAsync(_settingsPath, maxRetries: 3, timeoutSeconds: 5);
+
             var settingsData = JsonSerializer.Deserialize<SettingsData>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -290,7 +293,101 @@ public class SettingsService : ISettingsService
     }
 
     /// <summary>
-    /// Save settings to JSON file
+    /// Read file with aggressive timeout protection (will NOT hang)
+    /// </summary>
+    private async Task<string> ReadFileWithRetryAsync(string path, int maxRetries = 3, int timeoutSeconds = 5)
+    {
+        var retryDelays = new[] { 100, 250, 500 }; // Exponential backoff delays in ms
+
+        for (int attempt = 0; attempt < maxRetries; attempt++)
+        {
+            try
+            {
+                _logger.LogInfo($"Attempting to read file (attempt {attempt + 1}/{maxRetries}): {path}");
+
+                // Use Task.WhenAny for aggressive timeout protection
+                var readTask = Task.Run(() =>
+                {
+                    // Synchronous read in background task with file sharing
+                    using var fileStream = new FileStream(
+                        path,
+                        FileMode.Open,
+                        FileAccess.Read,
+                        FileShare.ReadWrite, // Allow IDE to keep file open
+                        bufferSize: 4096,
+                        useAsync: false); // Use sync for reliability
+
+                    using var reader = new StreamReader(fileStream);
+                    return reader.ReadToEnd();
+                });
+
+                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(timeoutSeconds));
+                var completedTask = await Task.WhenAny(readTask, timeoutTask);
+
+                if (completedTask == readTask)
+                {
+                    // Read completed successfully
+                    var content = await readTask;
+
+                    if (attempt > 0)
+                    {
+                        _logger.LogInfo($"File read succeeded on attempt {attempt + 1}");
+                    }
+                    else
+                    {
+                        _logger.LogInfo("File read succeeded");
+                    }
+
+                    return content;
+                }
+                else
+                {
+                    // Timeout occurred
+                    _logger.LogWarning($"File read timeout after {timeoutSeconds}s (attempt {attempt + 1}/{maxRetries})");
+
+                    if (attempt < maxRetries - 1)
+                    {
+                        await Task.Delay(retryDelays[attempt]);
+                    }
+                    else
+                    {
+                        throw new TimeoutException($"Failed to read file '{path}' after {maxRetries} attempts (timeout: {timeoutSeconds}s each)");
+                    }
+                }
+            }
+            catch (IOException ex) when (ex.Message.Contains("being used by another process"))
+            {
+                _logger.LogWarning($"File is locked by another process (attempt {attempt + 1}/{maxRetries}): {ex.Message}");
+
+                if (attempt < maxRetries - 1)
+                {
+                    await Task.Delay(retryDelays[attempt]);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (Exception ex) when (!(ex is TimeoutException))
+            {
+                _logger.LogError($"Unexpected error reading file (attempt {attempt + 1}/{maxRetries})", ex);
+
+                if (attempt < maxRetries - 1)
+                {
+                    await Task.Delay(retryDelays[attempt]);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        throw new InvalidOperationException("Failed to read file after all retry attempts");
+    }
+
+    /// <summary>
+    /// Save settings to JSON file with retry logic and timeout
     /// </summary>
     public async Task SaveSettingsAsync()
     {
@@ -310,7 +407,9 @@ public class SettingsService : ISettingsService
             };
 
             var json = JsonSerializer.Serialize(settingsData, options);
-            await File.WriteAllTextAsync(_settingsPath, json);
+
+            // Write file with retry logic and file sharing
+            await WriteFileWithRetryAsync(_settingsPath, json, maxRetries: 3, timeoutSeconds: 5);
 
             _logger.LogInfo("Settings saved successfully");
             SettingsChanged?.Invoke(this, new SettingsChangedEventArgs { Saved = true });
@@ -320,6 +419,101 @@ public class SettingsService : ISettingsService
             _logger.LogError("Failed to save settings", ex);
             throw;
         }
+    }
+
+    /// <summary>
+    /// Write file with aggressive timeout protection (will NOT hang)
+    /// </summary>
+    private async Task WriteFileWithRetryAsync(string path, string content, int maxRetries = 3, int timeoutSeconds = 5)
+    {
+        var retryDelays = new[] { 100, 250, 500 }; // Exponential backoff delays in ms
+
+        for (int attempt = 0; attempt < maxRetries; attempt++)
+        {
+            try
+            {
+                _logger.LogInfo($"Attempting to write file (attempt {attempt + 1}/{maxRetries}): {path}");
+
+                // Use Task.WhenAny for aggressive timeout protection
+                var writeTask = Task.Run(() =>
+                {
+                    // Synchronous write in background task with file sharing
+                    using var fileStream = new FileStream(
+                        path,
+                        FileMode.Create,
+                        FileAccess.Write,
+                        FileShare.Read, // Allow reading while writing
+                        bufferSize: 4096,
+                        useAsync: false); // Use sync for reliability
+
+                    using var writer = new StreamWriter(fileStream);
+                    writer.Write(content);
+                    writer.Flush();
+                });
+
+                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(timeoutSeconds));
+                var completedTask = await Task.WhenAny(writeTask, timeoutTask);
+
+                if (completedTask == writeTask)
+                {
+                    // Write completed successfully
+                    await writeTask; // Await to get any exceptions
+
+                    if (attempt > 0)
+                    {
+                        _logger.LogInfo($"File write succeeded on attempt {attempt + 1}");
+                    }
+                    else
+                    {
+                        _logger.LogInfo("File write succeeded");
+                    }
+
+                    return;
+                }
+                else
+                {
+                    // Timeout occurred
+                    _logger.LogWarning($"File write timeout after {timeoutSeconds}s (attempt {attempt + 1}/{maxRetries})");
+
+                    if (attempt < maxRetries - 1)
+                    {
+                        await Task.Delay(retryDelays[attempt]);
+                    }
+                    else
+                    {
+                        throw new TimeoutException($"Failed to write file '{path}' after {maxRetries} attempts (timeout: {timeoutSeconds}s each)");
+                    }
+                }
+            }
+            catch (IOException ex) when (ex.Message.Contains("being used by another process"))
+            {
+                _logger.LogWarning($"File is locked by another process during write (attempt {attempt + 1}/{maxRetries}): {ex.Message}");
+
+                if (attempt < maxRetries - 1)
+                {
+                    await Task.Delay(retryDelays[attempt]);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (Exception ex) when (!(ex is TimeoutException))
+            {
+                _logger.LogError($"Unexpected error writing file (attempt {attempt + 1}/{maxRetries})", ex);
+
+                if (attempt < maxRetries - 1)
+                {
+                    await Task.Delay(retryDelays[attempt]);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        throw new InvalidOperationException("Failed to write file after all retry attempts");
     }
 
     /// <summary>
