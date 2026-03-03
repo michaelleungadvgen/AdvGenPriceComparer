@@ -363,6 +363,8 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowFavoritesDialog() { }
         public void ShowDealExpirationRemindersDialog() { }
         public void ShowWeeklySpecialsDigestDialog() { }
+        public bool ShowQuestion(string message, string title = "Question") => true;
+        public void ShowShoppingListsDialog() { }
     }
 
     #endregion
