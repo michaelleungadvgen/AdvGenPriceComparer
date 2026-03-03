@@ -1,7 +1,6 @@
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AdvGenPriceComparer.WPF.Services;
 
@@ -40,8 +39,12 @@ public class DatabaseProviderFactory
 
         _logger.LogInfo($"Creating database provider: {settings.ProviderType}");
 
-        // For now, always use LiteDB provider (AdvGenNoSQLServer provider removed due to API incompatibility)
-        provider = new LiteDbProvider();
+        // Create the appropriate provider based on settings
+        provider = settings.ProviderType switch
+        {
+            DatabaseProviderType.AdvGenNoSQLServer => new AdvGenNoSqlProvider(_logger),
+            _ => new LiteDbProvider()
+        };
 
         bool connected = await provider.ConnectAsync(settings);
         if (!connected)

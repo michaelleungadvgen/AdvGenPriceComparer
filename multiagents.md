@@ -138,7 +138,7 @@
 | Create IDatabaseProvider interface | 🟢 DONE | Pre-existing | Database abstraction layer - already implemented in Core project |
 | Create DatabaseProviderFactory | 🔴 TODO | - | Provider factory pattern |
 | Implement LiteDbProvider | 🟢 DONE | Pre-existing | LiteDB provider - already implemented in Data.LiteDB project |
-| Implement AdvGenNoSqlProvider | 🔴 TODO | - | NoSQL server provider |
+| Implement AdvGenNoSqlProvider | 🟢 DONE | Agent-036 | Implemented complete HTTP client provider with retry logic and all 4 repositories |
 | Create SettingsWindow.xaml UI | 🟢 DONE | Agent-033 | Database settings UI |
 | Handle provider switching | 🔴 TODO | - | Runtime provider switch |
 
@@ -373,6 +373,7 @@
 | 2026-02-26 | Weekly specials digest - Implemented IWeeklySpecialsService, WeeklySpecialsDigestViewModel, WeeklySpecialsDigestWindow with export to Markdown/Text, copy to clipboard, category/store filters | Agent-029 |
 | 2026-03-04 | Verified IDatabaseProvider and LiteDbProvider implementation - Confirmed all Phase 10 database provider infrastructure exists and is integrated; fixed test files for ShowSettingsDialog() | Agent-034 |
 | 2026-03-04 | Create installer (WiX Toolset) - Created WiX v4 SDK-style installer project, outputs AdvGenPriceComparer.msi (~25MB), includes Start Menu/Desktop shortcuts, per-machine install, major upgrade support | Agent-035 |
+| 2026-03-04 | Implement AdvGenNoSqlProvider - Complete HTTP client provider with retry logic, health checks, and 4 HTTP-based repository implementations (Items, Places, PriceRecords, Alerts) | Agent-036 |
 
 ---
 
