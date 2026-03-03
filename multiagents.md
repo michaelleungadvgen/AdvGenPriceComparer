@@ -115,7 +115,7 @@
 | UI automation tests | 🔴 TODO | - | Automated UI testing |
 | Create installer (WiX Toolset or ClickOnce) | 🔴 TODO | - | Windows installer |
 | Configure auto-update mechanism | 🔴 TODO | - | Auto-update functionality |
-| User documentation | 🔴 TODO | - | Complete user docs |
+| User documentation | 🟢 DONE | Agent-032 | Complete user docs |
 
 ---
 
@@ -195,6 +195,34 @@
 ---
 
 ## Active Agent Assignments
+
+## Active Agent Assignments
+
+### Agent-032 (Completed)
+- **Task:** User Documentation - Create comprehensive user documentation
+- **Started:** 2026-02-26
+- **Completed:** 2026-02-26
+- **Changes Made:**
+  - Created `USER_GUIDE.md` with comprehensive documentation
+  - Covers all major features: Dashboard, Items, Stores, Price History, Shopping Lists
+  - Includes Import/Export guide with format examples
+  - Documents Special Features: Global Search, Barcode Scanning, Alerts, Weekly Specials
+  - Added Tips & Tricks section for productivity
+  - Included Troubleshooting guide with common issues
+  - Added Keyboard Shortcuts reference
+  - Created Glossary of terms
+- **Sections:**
+  - Introduction and Getting Started
+  - Dashboard Overview with Statistics and Charts
+  - Managing Items and Stores (CRUD operations)
+  - Price History tracking and analysis
+  - Shopping Lists with progress tracking
+  - Reports & Analytics
+  - Import & Export with format specifications
+  - Special Features (Search, Barcode, Alerts, etc.)
+  - Tips & Tricks for saving time and money
+  - Troubleshooting common issues
+  - Data Privacy information
 
 ### Agent-031 (Completed)
 - **Task:** Shopping List Integration - Create shopping list feature for users to save items
@@ -315,6 +343,7 @@
 | 2026-02-26 | Search across all entities - Implemented Global Search (IGlobalSearchService, GlobalSearchService, GlobalSearchWindow, GlobalSearchViewModel) with relevance scoring, recent searches, and categorized results | Agent-023 |
 | 2026-02-26 | Price drop notifications - Implemented IPriceDropNotificationService, PriceDropNotificationService, PriceDropNotificationViewModel, PriceDropNotificationsWindow with monitoring, alert creation, and notification UI | Agent-025 |
 | 2026-02-26 | Favourite items list - Implemented IFavoritesService, FavoritesService, FavoritesViewModel, FavoritesWindow, added IsFavorite to Item model, registered in DI, added to MainWindow, 15 comprehensive unit tests | Agent-027 |
+| 2026-02-26 | User Documentation - Created comprehensive USER_GUIDE.md covering all features, import/export formats, troubleshooting, tips & tricks, keyboard shortcuts | Agent-032 |
 | 2026-02-26 | Shopping List Integration - Implemented ShoppingList/ShoppingListItem models, IShoppingListRepository/Service interfaces, ShoppingListRepository/Service, ShoppingListViewModel, ShoppingListWindow with full CRUD, export to Markdown, progress tracking | Agent-031 |
 | 2026-02-26 | Deal expiration reminders - Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item | Agent-028 |
 | 2026-02-26 | Weekly specials digest - Implemented IWeeklySpecialsService, WeeklySpecialsDigestViewModel, WeeklySpecialsDigestWindow with export to Markdown/Text, copy to clipboard, category/store filters | Agent-029 |
