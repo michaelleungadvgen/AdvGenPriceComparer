@@ -135,11 +135,11 @@
 ## Phase 10: Database Provider Abstraction (TODO)
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Create IDatabaseProvider interface | 🔴 TODO | - | Database abstraction layer |
+| Create IDatabaseProvider interface | 🟢 DONE | Pre-existing | Database abstraction layer - already implemented in Core project |
 | Create DatabaseProviderFactory | 🔴 TODO | - | Provider factory pattern |
-| Implement LiteDbProvider | 🔴 TODO | - | LiteDB provider |
+| Implement LiteDbProvider | 🟢 DONE | Pre-existing | LiteDB provider - already implemented in Data.LiteDB project |
 | Implement AdvGenNoSqlProvider | 🔴 TODO | - | NoSQL server provider |
-| Create SettingsWindow.xaml UI | 🔴 TODO | - | Database settings UI |
+| Create SettingsWindow.xaml UI | 🟢 DONE | Agent-033 | Database settings UI |
 | Handle provider switching | 🔴 TODO | - | Runtime provider switch |
 
 ---
@@ -196,7 +196,28 @@
 
 ## Active Agent Assignments
 
-## Active Agent Assignments
+### Agent-034 (In Progress)
+- **Task:** Create ProviderGroceryDataService that uses IDatabaseProvider
+- **Started:** 2026-03-04
+- **Task Details:**
+  - Create `ProviderGroceryDataService` class in AdvGenPriceComparer.Data.LiteDB/Services/
+  - Implements `IGroceryDataService` using `IDatabaseProvider` for data access
+  - Provides proper abstraction between WPF app and database provider
+  - Update DI registration in App.xaml.cs to use new service
+  - Test the integration builds and runs correctly
+
+### Agent-033 (Completed)
+- **Task:** Create SettingsWindow.xaml UI - Application settings window for database configuration and user preferences
+- **Completed:** 2026-02-26
+- **Summary:**
+  - Created `SettingsWindow.xaml` with 5 setting categories (General, Database, Import/Export, Notifications, About)
+  - Created `SettingsViewModel.cs` with full data binding and settings management
+  - Created `StringToVisibilityConverter.cs` for category-based view switching
+  - Updated `IDialogService.cs` with `ShowSettingsDialog()` method
+  - Updated `SimpleDialogService.cs` with settings dialog implementation
+  - Updated `MainWindow.xaml` with Settings button in sidebar
+  - Updated `MainWindowViewModel.cs` with `SettingsCommand`
+  - Updated `App.xaml` to register `StringToVisibilityConverter`
 
 ### Agent-032 (Completed)
 - **Task:** User Documentation - Create comprehensive user documentation

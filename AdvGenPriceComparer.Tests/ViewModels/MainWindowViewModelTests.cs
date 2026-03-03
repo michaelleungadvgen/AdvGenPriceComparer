@@ -364,6 +364,7 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowDealExpirationRemindersDialog() { }
         public void ShowWeeklySpecialsDigestDialog() { }
         public void ShowShoppingListsDialog() { }
+        public void ShowSettingsDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 
