@@ -1,0 +1,366 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.ShoppingListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="🛒 Shopping Lists" 
+        Height="700" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="#f5f5f5">
+
+    <Window.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDBDBD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#666"/>
+            <Setter Property="BorderBrush" Value="#ddd"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f5f5f5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="IconButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#666"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#2196F3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="ShoppingListItemTemplate">
+            <Border Style="{StaticResource CardStyle}" Margin="4,2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Checkbox -->
+                    <CheckBox Grid.Column="0" 
+                              IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                              Command="{Binding DataContext.ToggleItemCheckedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                              CommandParameter="{Binding}"
+                              VerticalAlignment="Center"
+                              Margin="0,0,12,0"/>
+
+                    <!-- Item Info -->
+                    <StackPanel Grid.Column="1" Opacity="{Binding IsChecked, Converter={StaticResource BooleanToOpacityConverter}}">
+                        <TextBlock Text="{Binding DisplayName}" 
+                                   FontWeight="SemiBold" 
+                                   FontSize="14"
+                                   TextDecorations="{Binding IsChecked, Converter={StaticResource BooleanToStrikethroughConverter}}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                            <TextBlock Text="{Binding QuantityDisplay}" 
+                                       FontSize="12" 
+                                       Foreground="#666"
+                                       Margin="0,0,8,0"
+                                       Visibility="{Binding QuantityDisplay, Converter={StaticResource NullToVisibilityConverter}}"/>
+                            <TextBlock Text="{Binding PriceDisplay}" 
+                                       FontSize="12" 
+                                       Foreground="#2196F3"
+                                       FontWeight="SemiBold"
+                                       Visibility="{Binding PriceDisplay, Converter={StaticResource NullToVisibilityConverter}}"/>
+                            <TextBlock Text="{Binding PriorityDisplay}" 
+                                       FontSize="11" 
+                                       Margin="8,0,0,0"
+                                       Visibility="{Binding Priority, Converter={StaticResource ZeroToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Actions -->
+                    <StackPanel Grid.Column="3" Orientation="Horizontal">
+                        <Button Content="🗑️" 
+                                Style="{StaticResource IconButtonStyle}"
+                                Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}"
+                                ToolTip="Delete item"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel: Shopping Lists -->
+        <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <TextBlock Grid.Row="0" Text="🛒 Shopping Lists" FontSize="20" FontWeight="Bold" Margin="0,0,0,16"/>
+
+                <!-- Search -->
+                <Grid Grid.Row="1" Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" 
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="10,8"
+                             FontSize="13"
+                             BorderBrush="#ddd"/>
+                    <CheckBox Grid.Column="1" 
+                              Content="⭐ Favorites"
+                              IsChecked="{Binding ShowFavoritesOnly}"
+                              Margin="12,0,0,0"
+                              VerticalAlignment="Center"/>
+                </Grid>
+
+                <!-- Create New List -->
+                <Grid Grid.Row="2" Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" 
+                             Text="{Binding NewListName, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="10,8"
+                             FontSize="13"
+                             BorderBrush="#ddd"/>
+                    <Button Grid.Column="1" 
+                            Content="➕ Create"
+                            Command="{Binding CreateListCommand}"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Margin="8,0,0,0"/>
+                </Grid>
+
+                <!-- Lists -->
+                <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding ShoppingLists}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardStyle}" 
+                                        Margin="4,2"
+                                        Background="{Binding Id, Converter={StaticResource SelectedItemBackgroundConverter}, ConverterParameter={Binding DataContext.SelectedList.Id, RelativeSource={RelativeSource AncestorType=Window}}}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0" 
+                                                    MouseLeftButtonDown="ListItem_MouseLeftButtonDown"
+                                                    Tag="{Binding}">
+                                            <TextBlock Text="{Binding Name}" 
+                                                       FontWeight="SemiBold" 
+                                                       FontSize="14"/>
+                                            <TextBlock Text="{Binding Description}" 
+                                                       FontSize="11" 
+                                                       Foreground="#666"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       MaxWidth="200"
+                                                       Visibility="{Binding Description, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                                <TextBlock Text="{Binding ListProgressText}" 
+                                                           FontSize="11" 
+                                                           Foreground="#666"/>
+                                                <TextBlock Text="⭐" 
+                                                           FontSize="11" 
+                                                           Margin="8,0,0,0"
+                                                           Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <Button Content="📋" 
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    Command="{Binding DataContext.DuplicateListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip="Duplicate list"/>
+                                            <Button Content="{Binding IsFavorite, Converter={StaticResource BooleanToFavoriteConverter}}" 
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    Command="{Binding DataContext.ToggleFavoriteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip="Toggle favorite"/>
+                                            <Button Content="🗑️" 
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    Command="{Binding DataContext.DeleteListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip="Delete list"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- Right Panel: List Items -->
+        <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="0,16,16,16">
+            <Grid>
+                <Grid Visibility="{Binding HasSelectedList, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- List Header -->
+                <Grid Grid.Row="0" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="{Binding SelectedList.Name}" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding SelectedList.Description}" 
+                                   FontSize="13" 
+                                   Foreground="#666"
+                                   Visibility="{Binding SelectedList.Description, Converter={StaticResource NullToVisibilityConverter}}"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="1" 
+                            Content="📥 Export"
+                            Command="{Binding ExportToMarkdownCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}"/>
+                </Grid>
+
+                <!-- Progress -->
+                <Grid Grid.Row="1" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ProgressBar Grid.Column="0" 
+                                 Value="{Binding ListProgressPercent}" 
+                                 Maximum="100"
+                                 Height="8"
+                                 Background="#e0e0e0"
+                                 Foreground="#4CAF50"/>
+                    <TextBlock Grid.Column="1" 
+                               Text="{Binding ListProgressText}" 
+                               FontSize="13"
+                               Foreground="#666"
+                               Margin="12,0,0,0"/>
+                </Grid>
+
+                <!-- Add Item -->
+                <Grid Grid.Row="2" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" 
+                             Text="{Binding NewItemName, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="12,10"
+                             FontSize="14"
+                             BorderBrush="#ddd"
+                             KeyDown="NewItemName_KeyDown"/>
+                    <Button Grid.Column="1" 
+                            Content="➕ Add"
+                            Command="{Binding AddItemCommand}"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Margin="8,0,0,0"/>
+                </Grid>
+
+                <!-- Items List -->
+                <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding SelectedListItems}" 
+                                  ItemTemplate="{StaticResource ShoppingListItemTemplate}"/>
+                </ScrollViewer>
+
+                <!-- Footer Actions -->
+                <StackPanel Grid.Row="4" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right"
+                            Margin="0,16,0,0">
+                    <Button Content="Clear Completed" 
+                            Command="{Binding ClearCheckedItemsCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Clear All" 
+                            Command="{Binding ClearAllItemsCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Foreground="#F44336"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Empty State -->
+            <Grid Visibility="{Binding HasSelectedList, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="🛒" FontSize="64" HorizontalAlignment="Center" Opacity="0.3"/>
+                    <TextBlock Text="Select a shopping list or create a new one" 
+                               FontSize="16" 
+                               Foreground="#999"
+                               HorizontalAlignment="Center"
+                               Margin="0,16,0,0"/>
+                </StackPanel>
+            </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

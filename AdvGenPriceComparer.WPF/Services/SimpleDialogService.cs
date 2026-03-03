@@ -33,6 +33,12 @@ public class SimpleDialogService : IDialogService
         return result == MessageBoxResult.Yes;
     }
 
+    public bool ShowQuestion(string message, string title = "Question")
+    {
+        var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
+        return result == MessageBoxResult.Yes;
+    }
+
     public void ShowComparePricesDialog(string category = null)
     {
         var dataService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
@@ -99,6 +105,15 @@ public class SimpleDialogService : IDialogService
         var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
         var viewModel = new ViewModels.WeeklySpecialsDigestViewModel(weeklySpecialsService, dialogService);
         var window = new WeeklySpecialsDigestWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowShoppingListsDialog()
+    {
+        var shoppingListService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IShoppingListService>();
+        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var viewModel = new ViewModels.ShoppingListViewModel(shoppingListService, dialogService);
+        var window = new ShoppingListWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
 }

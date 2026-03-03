@@ -5,6 +5,7 @@ using AdvGenPriceComparer.Core.Helpers;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Views;
@@ -191,6 +192,26 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new WeeklySpecialsService(groceryData, logger);
             });
+            services.AddSingleton<IShoppingListRepository>(provider =>
+            {
+                var dbProvider = provider.GetRequiredService<IDatabaseProvider>();
+                // Cast to LiteDbProvider to access the underlying database
+                if (dbProvider is AdvGenPriceComparer.Data.LiteDB.Services.LiteDbProvider liteDbProvider)
+                {
+                    var database = liteDbProvider.GetDatabase();
+                    if (database != null)
+                    {
+                        return new AdvGenPriceComparer.Data.LiteDB.Repositories.ShoppingListRepository(database);
+                    }
+                }
+                throw new InvalidOperationException("Unable to create ShoppingListRepository - database not available");
+            });
+            services.AddSingleton<IShoppingListService>(provider =>
+            {
+                var repo = provider.GetRequiredService<IShoppingListRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new ShoppingListService(repo, logger);
+            });
 
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
@@ -230,6 +251,12 @@ public partial class App : Application
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 return new ReportsViewModel(priceRepo, itemRepo, placeRepo);
             });
+            services.AddTransient<ShoppingListViewModel>(provider =>
+            {
+                var service = provider.GetRequiredService<IShoppingListService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                return new ShoppingListViewModel(service, dialogService);
+            });
 
             // Views
             services.AddTransient<ItemsPage>();
@@ -248,6 +275,11 @@ public partial class App : Application
             {
                 var viewModel = provider.GetRequiredService<WeeklySpecialsDigestViewModel>();
                 return new WeeklySpecialsDigestWindow(viewModel);
+            });
+            services.AddTransient<ShoppingListWindow>(provider =>
+            {
+                var viewModel = provider.GetRequiredService<ShoppingListViewModel>();
+                return new ShoppingListWindow(viewModel);
             });
 
             // Main Window

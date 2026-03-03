@@ -55,7 +55,7 @@
 | Generate code coverage reports | 🟢 DONE | Agent-019 | Added coverlet.runsettings, generates cobertura and JSON coverage data (27.67% line coverage) |
 | Deal expiration reminders | 🟢 DONE | Agent-028 | Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item |
 | Weekly specials digest | 🟢 DONE | Agent-029 | Implemented IWeeklySpecialsService, WeeklySpecialsDigestViewModel, WeeklySpecialsDigestWindow with export to Markdown/Text, copy to clipboard, category/store filters |
-| Shopping list integration | 🔴 TODO | - | Create shopping list feature for users to save items |
+| Shopping list integration | 🟢 DONE | Agent-031 | Create shopping list feature for users to save items |
 | Deal expiration reminders | 🟢 DONE | Agent-028 | Implemented IDealExpirationService with DealExpirationRemindersWindow |
 
 ---
@@ -96,6 +96,7 @@
 | Calculate average prices over time | 🔴 TODO | - | Price trend analysis |
 | Add "best price" highlighting | 🔴 TODO | - | Visual indicators for best deals |
 | Generate reports (best deals, trends) | 🔴 TODO | - | Automated report generation |
+| Create ReportsPage.xaml | 🟡 DOING | Agent-030 | Create Reports page for displaying price trends and best deals |
 
 ---
 
@@ -195,6 +196,50 @@
 
 ## Active Agent Assignments
 
+### Agent-031 (Completed)
+- **Task:** Shopping List Integration - Create shopping list feature for users to save items
+- **Started:** 2026-02-26
+- **Completed:** 2026-02-26
+- **Changes Made:**
+  - Created `ShoppingList.cs` and `ShoppingListItem.cs` models in Core
+  - Created `IShoppingListRepository.cs` interface in Core
+  - Created `IShoppingListService.cs` interface in Core
+  - Created `ShoppingListRepository.cs` in Data.LiteDB
+  - Created `ShoppingListService.cs` in WPF
+  - Created `ShoppingListViewModel.cs` in WPF
+  - Created `ShoppingListWindow.xaml` and `.xaml.cs` in WPF
+  - Added new converters: `BooleanToOpacityConverter`, `BooleanToStrikethroughConverter`, `BooleanToFavoriteConverter`, `SelectedItemBackgroundConverter`
+  - Updated `App.xaml.cs` to register ShoppingList services in DI
+  - Updated `MainWindow.xaml` to add Shopping Lists button
+  - Updated `MainWindowViewModel.cs` to add ShoppingListsCommand
+  - Updated `IDialogService.cs` and `SimpleDialogService.cs` to add ShowShoppingListsDialog and ShowQuestion
+  - Updated `DatabaseService.cs` to expose Database property
+  - Updated `LiteDbProvider.cs` to add GetDatabase() method
+- **Features:**
+  - Create, rename, delete shopping lists
+  - Add, edit, remove items from lists
+  - Check/uncheck items with visual feedback (strikethrough, opacity)
+  - Favorite lists functionality
+  - Progress tracking with progress bar
+  - Export to Markdown format
+  - Duplicate lists
+  - Clear completed/all items
+
+### Agent-030 (Completed)
+- **Task:** Create ReportsPage.xaml - Reports page for displaying price trends and best deals
+- **Started:** 2026-02-26
+- **Completed:** 2026-02-26
+- **Changes Made:**
+  - Created `ReportsPage.xaml` - Modern UI with statistics cards and best deals list
+  - Created `ReportsPage.xaml.cs` - Code-behind for navigation handling
+  - Created `ReportsViewModel.cs` - ViewModel with statistics calculation and best deals logic
+  - Updated `MainWindow.xaml.cs` - Changed ReportsNav_Click to navigate to ReportsPage
+  - Updated `App.xaml.cs` - Registered ReportsViewModel and ReportsPage in DI container
+- **Features:**
+  - Statistics cards (Total Items, Stores Monitored, Active Deals, Avg. Savings)
+  - Best Deals This Week section showing current deals with discounts
+  - Data loaded from repositories (items, places, price records)
+
 ### Agent-021 (Completed)
 - **Completed Task:** Add Price Comparison View - Create ComparePricesWindow with side-by-side store comparison
 - **Completed:** 2026-02-26
@@ -270,6 +315,7 @@
 | 2026-02-26 | Search across all entities - Implemented Global Search (IGlobalSearchService, GlobalSearchService, GlobalSearchWindow, GlobalSearchViewModel) with relevance scoring, recent searches, and categorized results | Agent-023 |
 | 2026-02-26 | Price drop notifications - Implemented IPriceDropNotificationService, PriceDropNotificationService, PriceDropNotificationViewModel, PriceDropNotificationsWindow with monitoring, alert creation, and notification UI | Agent-025 |
 | 2026-02-26 | Favourite items list - Implemented IFavoritesService, FavoritesService, FavoritesViewModel, FavoritesWindow, added IsFavorite to Item model, registered in DI, added to MainWindow, 15 comprehensive unit tests | Agent-027 |
+| 2026-02-26 | Shopping List Integration - Implemented ShoppingList/ShoppingListItem models, IShoppingListRepository/Service interfaces, ShoppingListRepository/Service, ShoppingListViewModel, ShoppingListWindow with full CRUD, export to Markdown, progress tracking | Agent-031 |
 | 2026-02-26 | Deal expiration reminders - Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item | Agent-028 |
 | 2026-02-26 | Weekly specials digest - Implemented IWeeklySpecialsService, WeeklySpecialsDigestViewModel, WeeklySpecialsDigestWindow with export to Markdown/Text, copy to clipboard, category/store filters | Agent-029 |
 

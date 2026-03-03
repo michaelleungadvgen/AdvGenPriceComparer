@@ -23,6 +23,10 @@
             <converters:BarcodeFormatDescriptionConverter x:Key="BarcodeFormatDescriptionConverter"/>
             <converters:StringNotEmptyToVisibilityConverter x:Key="StringNotEmptyToVisibilityConverter"/>
             <converters:StringToSolidColorBrushConverter x:Key="StringToSolidColorBrushConverter"/>
+            <converters:BooleanToOpacityConverter x:Key="BooleanToOpacityConverter"/>
+            <converters:BooleanToStrikethroughConverter x:Key="BooleanToStrikethroughConverter"/>
+            <converters:BooleanToFavoriteConverter x:Key="BooleanToFavoriteConverter"/>
+            <converters:SelectedItemBackgroundConverter x:Key="SelectedItemBackgroundConverter"/>
 
             <!-- Light Blue Theme Color -->
             <Color x:Key="PrimaryColor">#87CEEB</Color>

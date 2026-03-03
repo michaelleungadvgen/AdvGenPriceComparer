@@ -9,6 +9,7 @@ public interface IDialogService
     void ShowWarning(string message, string title = "Warning");
     void ShowError(string message, string title = "Error");
     bool ShowConfirmation(string message, string title = "Confirmation");
+    bool ShowQuestion(string message, string title = "Question");
     void ShowComparePricesDialog(string category = null);
     SearchResult? ShowGlobalSearchDialog();
     void ShowBarcodeScannerDialog();
@@ -16,4 +17,5 @@ public interface IDialogService
     void ShowFavoritesDialog();
     void ShowDealExpirationRemindersDialog();
     void ShowWeeklySpecialsDigestDialog();
+    void ShowShoppingListsDialog();
 }

@@ -1,6 +1,7 @@
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using LiteDB;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Services;
 
@@ -50,6 +51,14 @@ public class LiteDbProvider : IDatabaseProvider
         _database?.Dispose();
         _database = null;
         return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Gets the underlying LiteDatabase instance for repository creation
+    /// </summary>
+    public ILiteDatabase? GetDatabase()
+    {
+        return _database?.Database;
     }
 
     public void Dispose()

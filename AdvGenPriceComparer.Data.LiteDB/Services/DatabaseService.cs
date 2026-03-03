@@ -63,6 +63,11 @@ public class DatabaseService : IDisposable
     public ILiteCollection<PlaceEntity> Places => _database.GetCollection<PlaceEntity>("places");
     public ILiteCollection<PriceRecordEntity> PriceRecords => _database.GetCollection<PriceRecordEntity>("price_records");
     public ILiteCollection<AlertEntity> Alerts => _database.GetCollection<AlertEntity>("alerts");
+    
+    /// <summary>
+    /// Gets the underlying LiteDatabase instance for advanced operations
+    /// </summary>
+    public ILiteDatabase Database => _database;
 
     private void CreateIndexes()
     {
