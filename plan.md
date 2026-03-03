@@ -1890,6 +1890,40 @@ public class CategoryFeedbackService
 
 ---
 
+## 🧹 Phase 14: Clean Architecture Refactoring
+
+### 14.1 Overview
+Refactor the codebase to strictly adhere to Clean Architecture principles, ensuring separation of concerns, improving testability, and decoupling business rules from infrastructure and UI.
+
+**Key Objectives:**
+- Establish a dedicated Application layer for business orchestration.
+- Purify the Core (Domain) layer by removing infrastructure dependencies.
+- Implement CQRS (Command Query Responsibility Segregation) for cleaner data access.
+- Correct Dependency Injection to rely strictly on interfaces.
+
+### 14.2 Step 1: Establish the Application Layer
+- [ ] Create `AdvGenPriceComparer.Application` project.
+- [ ] Move `JsonImportService` and `JsonExportService` from `Data.LiteDB` to `Application`.
+- [ ] Create abstract interfaces for import/export use cases (e.g., `IImportUseCase`, `IExportUseCase`).
+- [ ] Ensure the `Application` project references `Core` but *not* `Data.LiteDB` or `WPF`.
+
+### 14.3 Step 2: Purify the Core (Domain) Layer
+- [ ] Remove `System.Net.Sockets` and infrastructure-specific JSON serialization from `Core`.
+- [ ] Move `NetworkManager.cs` to a new or existing infrastructure layer (e.g., `AdvGenPriceComparer.Infrastructure.Network`).
+- [ ] Define `IP2PNetworkService` interface in `Core` to be implemented by the infrastructure layer.
+- [ ] Refactor Domain models (`Item`, `Place`, `PriceRecord`) to ensure they are true POCOs without database/serialization attributes.
+
+### 14.4 Step 3: Implement CQRS (Optional but Recommended)
+- [ ] Install MediatR in the `Application` layer.
+- [ ] Refactor `IGroceryDataService` into distinct Commands (e.g., `CreateItemCommand`, `ImportPricesCommand`) and Queries (e.g., `GetBestDealsQuery`, `GetPriceHistoryQuery`).
+- [ ] Implement handlers for each Command and Query.
+
+### 14.5 Step 4: Fix Dependency Injection
+- [ ] Update `App.xaml.cs` to inject interfaces (e.g., `IImportUseCase`) instead of concrete classes (e.g., `JsonImportService`) into ViewModels like `ImportDataViewModel`.
+- [ ] Ensure `Data.LiteDB` and `Infrastructure.Network` are only referenced in the composition root (`App.xaml.cs` or a dedicated DI setup project).
+
+---
+
 ## 📅 Updated Development Timeline
 
 ### MVP (Phases 1-3)
@@ -6075,7 +6109,9 @@ await importer.ImportFromStaticPeer("http://localhost:8080/data");
 - **Phase 10 (Database Provider Selection):** 2-3 days
 - **Phase 11 (ML.NET Price Prediction):** 3-4 days
 - **Phase 12 (Ollama Chat Interface):** 2-3 days
-- **Total Full Implementation:** 40-50 days
+- **Phase 13 (Static Data Import/Export):** 2-3 days
+- **Phase 14 (Clean Architecture Refactoring):** 4-6 days
+- **Total Full Implementation:** 44-56 days
 
 ---
 
