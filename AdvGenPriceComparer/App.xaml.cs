@@ -14,6 +14,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI;
 public partial class App : Application
 {
     public static IServiceProvider Services { get; private set; }
+    public static MainWindow MainWindow { get; private set; }
 
     public App()
     {
@@ -38,6 +39,7 @@ public partial class App : Application
         try
         {
             var window = Services.GetRequiredService<MainWindow>();
+            MainWindow = window;
             window.Activate();
         }
         catch (Exception ex)
