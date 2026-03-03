@@ -9,6 +9,8 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.Foundation;
+using Windows.ApplicationModel.DataTransfer;
+using WinRT.Interop;
 
 namespace AdvGenPriceComparer.Desktop.WinUI.Views;
 
@@ -340,16 +342,35 @@ public sealed partial class ReportView : Page
         await dialog.ShowAsync();
     }
 
-    private async void ShareReport_Click(object sender, RoutedEventArgs e)
+    private void ShareReport_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement report sharing
-        var dialog = new ContentDialog
+        try
         {
-            Title = "Share Report",
-            Content = "Report sharing functionality will be implemented soon.",
-            CloseButtonText = "OK",
-            XamlRoot = this.XamlRoot
-        };
-        await dialog.ShowAsync();
+            var window = App.Services.GetRequiredService<MainWindow>();
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+            var dataTransferManager = DataTransferManagerInterop.GetForWindow(hwnd);
+
+            // Create event handler
+            TypedEventHandler<DataTransferManager, DataRequestedEventArgs> dataRequestedHandler = null;
+            dataRequestedHandler = (manager, args) =>
+            {
+                // Remove handler after it's called so we don't leak or add duplicates
+                dataTransferManager.DataRequested -= dataRequestedHandler;
+
+                DataRequest request = args.Request;
+                request.Data.Properties.Title = "Grocery Price Report";
+                request.Data.Properties.Description = "Price trends and store comparison from AdvGenPriceComparer";
+
+                request.Data.SetText($"Grocery Price Report\nTotal Products Tracked: {_viewModel.TotalProducts}\nBest Store: {_viewModel.BestStore ?? "N/A"}\nAverage Price Change: {_viewModel.AvgPriceChange:+0.0;-0.0;0.0}%");
+            };
+
+            dataTransferManager.DataRequested += dataRequestedHandler;
+            DataTransferManagerInterop.ShowShareUIForWindow(hwnd);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error showing share UI: {ex.Message}");
+        }
     }
 }
