@@ -56,7 +56,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
                 {
                     // Load price history for each item
                     var priceHistory = _groceryDataService.GetPriceHistory(item.Id);
-                    var itemViewModel = new ItemWithPricesViewModel(item, priceHistory);
+                    var itemViewModel = new ItemWithPricesViewModel(item, _groceryDataService, priceHistory);
                     _items.Add(itemViewModel);
                 }
                 
@@ -142,7 +142,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
                     if (createdItem != null)
                     {
                         var priceHistory = _groceryDataService.GetPriceHistory(itemId);
-                        var itemViewModel = new ItemWithPricesViewModel(createdItem, priceHistory);
+                        var itemViewModel = new ItemWithPricesViewModel(createdItem, _groceryDataService, priceHistory);
                         _items.Add(itemViewModel);
                     }
                 }
@@ -201,7 +201,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
                 {
                     
                     // Add to our collection
-                    var newItemViewModel = new ItemWithPricesViewModel(item);
+                    var newItemViewModel = new ItemWithPricesViewModel(item, _groceryDataService);
                     _items.Add(newItemViewModel);
                     ApplyFilter();
                     
@@ -256,7 +256,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
                             
                             // Create new view model with updated data
                             var priceHistory = _groceryDataService.GetPriceHistory(itemViewModel.Id);
-                            var newItemViewModel = new ItemWithPricesViewModel(updatedItemFromDb, priceHistory);
+                            var newItemViewModel = new ItemWithPricesViewModel(updatedItemFromDb, _groceryDataService, priceHistory);
                             
                             // Add updated item to collections
                             _items.Add(newItemViewModel);

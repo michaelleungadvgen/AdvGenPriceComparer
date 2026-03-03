@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Core.Interfaces;
 using Microsoft.UI.Xaml.Media;
 
 namespace AdvGenPriceComparer.Desktop.WinUI.ViewModels;
@@ -10,14 +11,16 @@ namespace AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 public class ItemWithPricesViewModel : BaseViewModel
 {
     private readonly Item _item;
+    private readonly IGroceryDataService _groceryDataService;
     private string _currentPriceDisplay = "No price data";
     private string _priceTrendIcon = "📊";
     private string _priceTrendText = "";
     private SolidColorBrush _priceTrendColor = new(Microsoft.UI.Colors.Gray);
 
-    public ItemWithPricesViewModel(Item item, IEnumerable<PriceRecord> priceRecords = null)
+    public ItemWithPricesViewModel(Item item, IGroceryDataService groceryDataService = null, IEnumerable<PriceRecord> priceRecords = null)
     {
         _item = item;
+        _groceryDataService = groceryDataService;
         PriceHistory = new ObservableCollection<PriceRecordViewModel>();
         
         if (priceRecords != null)
@@ -81,7 +84,7 @@ public class ItemWithPricesViewModel : BaseViewModel
 
         foreach (var record in orderedRecords)
         {
-            PriceHistory.Add(new PriceRecordViewModel(record));
+            PriceHistory.Add(new PriceRecordViewModel(record, _groceryDataService));
         }
 
         UpdatePriceTrend();
@@ -91,7 +94,7 @@ public class ItemWithPricesViewModel : BaseViewModel
 
     public void AddPriceRecord(PriceRecord record)
     {
-        var viewModel = new PriceRecordViewModel(record);
+        var viewModel = new PriceRecordViewModel(record, _groceryDataService);
         PriceHistory.Insert(0, viewModel); // Add to beginning (most recent)
         
         // Keep only most recent 20 records
@@ -161,10 +164,12 @@ public class ItemWithPricesViewModel : BaseViewModel
 public class PriceRecordViewModel : BaseViewModel
 {
     private readonly PriceRecord _record;
+    private readonly IGroceryDataService _groceryDataService;
 
-    public PriceRecordViewModel(PriceRecord record)
+    public PriceRecordViewModel(PriceRecord record, IGroceryDataService groceryDataService = null)
     {
         _record = record;
+        _groceryDataService = groceryDataService;
         
         // Determine status based on age
         var daysSinceRecorded = (DateTime.Now - record.DateRecorded).Days;
@@ -194,14 +199,43 @@ public class PriceRecordViewModel : BaseViewModel
     public string Id => _record.Id ?? "";
     public decimal Price => _record.Price;
     public DateTime RecordedDate => _record.DateRecorded;
-    public string StoreName => "Store"; // TODO: Load place name from service
+    public string StoreName
+    {
+        get
+        {
+            if (_groceryDataService != null && !string.IsNullOrEmpty(_record.PlaceId))
+            {
+                var place = _groceryDataService.GetPlaceById(_record.PlaceId);
+                if (place != null)
+                {
+                    return place.Name;
+                }
+            }
+            return "Store";
+        }
+    }
     public string StoreLocation => FormatStoreLocation();
     public string StatusText { get; }
     public SolidColorBrush StatusColor { get; }
 
     private string FormatStoreLocation()
     {
-        // TODO: Load place information from service using PlaceId
+        if (_groceryDataService != null && !string.IsNullOrEmpty(_record.PlaceId))
+        {
+            var place = _groceryDataService.GetPlaceById(_record.PlaceId);
+            if (place != null)
+            {
+                var locationParts = new List<string>();
+                if (!string.IsNullOrEmpty(place.Suburb)) locationParts.Add(place.Suburb);
+                if (!string.IsNullOrEmpty(place.State)) locationParts.Add(place.State);
+
+                if (locationParts.Any())
+                {
+                    return string.Join(", ", locationParts);
+                }
+                return place.Address ?? "Location";
+            }
+        }
         return "Location";
     }
 
