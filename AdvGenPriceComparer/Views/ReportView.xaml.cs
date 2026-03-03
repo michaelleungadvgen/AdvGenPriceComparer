@@ -9,6 +9,9 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.Foundation;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace AdvGenPriceComparer.Desktop.WinUI.Views;
 
@@ -329,15 +332,151 @@ public sealed partial class ReportView : Page
 
     private async void ExportToPdf_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement PDF export
-        var dialog = new ContentDialog
+        try
         {
-            Title = "Export to PDF",
-            Content = "PDF export functionality will be implemented soon.",
-            CloseButtonText = "OK",
-            XamlRoot = this.XamlRoot
-        };
-        await dialog.ShowAsync();
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker
+            {
+                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary
+            };
+
+            savePicker.FileTypeChoices.Add("PDF Document", new List<string>() { ".pdf" });
+            savePicker.SuggestedFileName = "PriceComparisonReport";
+
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(savePicker, hwnd);
+
+            Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                using (var stream = await file.OpenStreamForWriteAsync())
+                {
+                    // Create PDF document
+                    Document document = new Document(PageSize.A4, 36, 36, 54, 36);
+                    PdfWriter writer = PdfWriter.GetInstance(document, stream);
+                    document.Open();
+
+                    // Fonts
+                    var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
+                    var headerFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
+                    var normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+                    var boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
+
+                    // Title
+                    document.Add(new Paragraph("Grocery Price Comparison Report", titleFont) { Alignment = Element.ALIGN_CENTER, SpacingAfter = 20 });
+                    document.Add(new Paragraph($"Date: {DateTime.Now:d}", normalFont) { SpacingAfter = 10 });
+                    document.Add(new Paragraph($"Time Period: {_viewModel.SelectedTimePeriod}", normalFont) { SpacingAfter = 20 });
+
+                    // Summary Section
+                    document.Add(new Paragraph("Summary", headerFont) { SpacingAfter = 10 });
+                    var summaryTable = new PdfPTable(2) { WidthPercentage = 100 };
+                    summaryTable.SetWidths(new float[] { 1f, 1f });
+
+                    summaryTable.AddCell(new PdfPCell(new Phrase("Total Products:", boldFont)) { Border = 0 });
+                    summaryTable.AddCell(new PdfPCell(new Phrase(_viewModel.TotalProducts.ToString(), normalFont)) { Border = 0 });
+
+                    summaryTable.AddCell(new PdfPCell(new Phrase("Avg Price Change:", boldFont)) { Border = 0 });
+                    summaryTable.AddCell(new PdfPCell(new Phrase($"{_viewModel.AvgPriceChange:+0.0;-0.0;0.0}%", normalFont)) { Border = 0 });
+
+                    summaryTable.AddCell(new PdfPCell(new Phrase("Best Store:", boldFont)) { Border = 0 });
+                    summaryTable.AddCell(new PdfPCell(new Phrase(_viewModel.BestStore ?? "N/A", normalFont)) { Border = 0 });
+
+                    summaryTable.AddCell(new PdfPCell(new Phrase("Price Updates:", boldFont)) { Border = 0 });
+                    summaryTable.AddCell(new PdfPCell(new Phrase(_viewModel.PriceUpdates.ToString(), normalFont)) { Border = 0 });
+
+                    document.Add(summaryTable);
+                    document.Add(new Paragraph(" ") { SpacingAfter = 10 }); // Spacing
+
+                    // Store Comparison Section
+                    if (_viewModel.StoreComparisonData != null && _viewModel.StoreComparisonData.Any())
+                    {
+                        document.Add(new Paragraph("Store Comparison", headerFont) { SpacingAfter = 10 });
+                        var storeTable = new PdfPTable(3) { WidthPercentage = 100 };
+                        storeTable.SetWidths(new float[] { 2f, 1f, 1f });
+
+                        // Headers
+                        storeTable.AddCell(new PdfPCell(new Phrase("Store", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        storeTable.AddCell(new PdfPCell(new Phrase("Avg Price", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        storeTable.AddCell(new PdfPCell(new Phrase("Products", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+
+                        foreach (var store in _viewModel.StoreComparisonData)
+                        {
+                            storeTable.AddCell(new Phrase(store.StoreName, normalFont));
+                            storeTable.AddCell(new Phrase($"${store.AvgPrice:F2}", normalFont));
+                            storeTable.AddCell(new Phrase(store.ProductCount.ToString(), normalFont));
+                        }
+                        document.Add(storeTable);
+                        document.Add(new Paragraph(" ") { SpacingAfter = 10 });
+                    }
+
+                    // Category Breakdown Section
+                    if (_viewModel.CategoryBreakdownData != null && _viewModel.CategoryBreakdownData.Any())
+                    {
+                        document.Add(new Paragraph("Category Breakdown", headerFont) { SpacingAfter = 10 });
+                        var categoryTable = new PdfPTable(3) { WidthPercentage = 100 };
+                        categoryTable.SetWidths(new float[] { 2f, 1f, 1f });
+
+                        // Headers
+                        categoryTable.AddCell(new PdfPCell(new Phrase("Category", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        categoryTable.AddCell(new PdfPCell(new Phrase("Total Spent", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        categoryTable.AddCell(new PdfPCell(new Phrase("Products", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+
+                        foreach (var category in _viewModel.CategoryBreakdownData)
+                        {
+                            categoryTable.AddCell(new Phrase(category.Category, normalFont));
+                            categoryTable.AddCell(new Phrase($"${category.TotalSpent:F2}", normalFont));
+                            categoryTable.AddCell(new Phrase(category.ProductCount.ToString(), normalFont));
+                        }
+                        document.Add(categoryTable);
+                        document.Add(new Paragraph(" ") { SpacingAfter = 10 });
+                    }
+
+                    // Top Products Section
+                    if (_viewModel.TopProductsData != null && _viewModel.TopProductsData.Any())
+                    {
+                        document.Add(new Paragraph("Top Products", headerFont) { SpacingAfter = 10 });
+                        var productTable = new PdfPTable(4) { WidthPercentage = 100 };
+                        productTable.SetWidths(new float[] { 2f, 1f, 1f, 1f });
+
+                        // Headers
+                        productTable.AddCell(new PdfPCell(new Phrase("Product", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        productTable.AddCell(new PdfPCell(new Phrase("Avg Price", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        productTable.AddCell(new PdfPCell(new Phrase("Min Price", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                        productTable.AddCell(new PdfPCell(new Phrase("Max Price", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+
+                        foreach (var product in _viewModel.TopProductsData)
+                        {
+                            productTable.AddCell(new Phrase(product.ProductName, normalFont));
+                            productTable.AddCell(new Phrase($"${product.AvgPrice:F2}", normalFont));
+                            productTable.AddCell(new Phrase($"${product.MinPrice:F2}", normalFont));
+                            productTable.AddCell(new Phrase($"${product.MaxPrice:F2}", normalFont));
+                        }
+                        document.Add(productTable);
+                    }
+
+                    document.Close();
+                }
+
+                var successDialog = new ContentDialog
+                {
+                    Title = "Export Successful",
+                    Content = $"Report exported to {file.Name}.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                await successDialog.ShowAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            var errorDialog = new ContentDialog
+            {
+                Title = "Export Error",
+                Content = $"An error occurred while exporting to PDF: {ex.Message}",
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+            await errorDialog.ShowAsync();
+        }
     }
 
     private async void ShareReport_Click(object sender, RoutedEventArgs e)
