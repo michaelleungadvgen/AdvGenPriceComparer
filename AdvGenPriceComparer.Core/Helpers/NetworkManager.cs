@@ -277,12 +277,41 @@ public class NetworkManager : IDisposable
         }
     }
 
+    private bool IsValidPriceMessage(PriceShareMessage msg)
+    {
+        if (msg == null) return false;
+
+        // Basic sanity checks to prevent injection and database bloat
+        if (string.IsNullOrWhiteSpace(msg.ItemName) || msg.ItemName.Length > 200) return false;
+        if (string.IsNullOrWhiteSpace(msg.StoreName) || msg.StoreName.Length > 200) return false;
+        if (string.IsNullOrWhiteSpace(msg.StoreChain) || msg.StoreChain.Length > 200) return false;
+
+        // Ensure strings are somewhat reasonable
+        if (msg.ItemBrand != null && msg.ItemBrand.Length > 200) return false;
+        if (msg.ItemCategory != null && msg.ItemCategory.Length > 200) return false;
+        if (msg.ItemBarcode != null && msg.ItemBarcode.Length > 100) return false;
+        if (msg.StoreSuburb != null && msg.StoreSuburb.Length > 200) return false;
+        if (msg.StoreState != null && msg.StoreState.Length > 100) return false;
+
+        // Prevent unreasonable prices (negative or excessively high)
+        if (msg.Price < 0 || msg.Price > 100000m) return false;
+        if (msg.OriginalPrice.HasValue && (msg.OriginalPrice.Value < 0 || msg.OriginalPrice.Value > 100000m)) return false;
+
+        return true;
+    }
+
     private async Task HandlePriceShare(string data, NetworkPeer sender)
     {
         try
         {
             var priceMessage = System.Text.Json.JsonSerializer.Deserialize<PriceShareMessage>(data);
             if (priceMessage == null) return;
+
+            if (!IsValidPriceMessage(priceMessage))
+            {
+                System.Diagnostics.Debug.WriteLine($"Invalid price message received from {sender.Host}");
+                return;
+            }
 
             // Store the received price in our local database
             await StorePriceFromNetwork(priceMessage);
