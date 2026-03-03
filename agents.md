@@ -99,12 +99,18 @@ dotnet build
 
 # Run the application
 dotnet run
+
+# Build the installer (WiX v4)
+cd AdvGenPriceComparer.Installer
+dotnet build -c Release -p:Platform=x64
+# Output: bin/x64/Release/AdvGenPriceComparer.msi
 ```
 
 ### Project Structure
 - **AdvGenPriceComparer.Core**: Core models and interfaces
 - **AdvGenPriceComparer.Data.LiteDB**: LiteDB data access layer
 - **AdvGenPriceComparer.WPF**: WPF desktop application
+- **AdvGenPriceComparer.Installer**: WiX v4 installer project (outputs MSI)
 
 ### Key Services Location
 | Service | Location |

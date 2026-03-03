@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
+  <!-- Package Information -->
+  <Package Name="AdvGen Price Comparer"
+           Manufacturer="AdvGen"
+           Version="1.0.0.0"
+           UpgradeCode="f47e3b2a-5c84-4b5e-9a3f-7d2e8c9b1a56"
+           Scope="perMachine">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <!-- Media for installation -->
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Features -->
+    <Feature Id="MainFeature" Title="AdvGen Price Comparer" Level="1">
+      <ComponentGroupRef Id="ApplicationFiles" />
+      <ComponentGroupRef Id="Shortcuts" />
+    </Feature>
+
+    <!-- UI Configuration -->
+    <ui:WixUI Id="WixUI_InstallDir" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <!-- Properties -->
+    <Property Id="INSTALLDESKTOPSHORTCUT" Value="1" />
+
+    <!-- Installation Directory -->
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="AdvGen Price Comparer">
+        <Directory Id="DatabaseFolder" Name="Data" />
+      </Directory>
+    </StandardDirectory>
+
+    <!-- Start Menu Folder -->
+    <StandardDirectory Id="StartMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="AdvGen Price Comparer" />
+    </StandardDirectory>
+
+    <!-- Desktop Folder -->
+    <StandardDirectory Id="DesktopFolder" />
+
+  </Package>
+
+  <!-- Component Groups -->
+  <Fragment>
+    <ComponentGroup Id="ApplicationFiles" Directory="INSTALLFOLDER">
+      <!-- Main Application Files - harvested during build -->
+      <Files Include="$(var.AdvGenPriceComparer.WPF.TargetDir)\**">
+        <Exclude Files="$(var.AdvGenPriceComparer.WPF.TargetDir)\*.pdb" />
+        <Exclude Files="$(var.AdvGenPriceComparer.WPF.TargetDir)\*.xml" />
+      </Files>
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="Shortcuts" Directory="ApplicationProgramsFolder">
+      <!-- Start Menu Shortcut -->
+      <Component Id="StartMenuShortcut" Guid="a1b2c3d4-e5f6-7890-abcd-ef1234567890">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="AdvGen Price Comparer"
+                  Description="Grocery price comparison and tracking application"
+                  Target="[INSTALLFOLDER]AdvGenPriceComparer.WPF.exe"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\AdvGen\PriceComparer"
+                       Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+
+      <!-- Desktop Shortcut -->
+      <Component Id="DesktopShortcut" Guid="b2c3d4e5-f6a7-8901-bcde-f12345678901" Directory="DesktopFolder">
+        <Shortcut Id="ApplicationDesktopShortcut"
+                  Name="AdvGen Price Comparer"
+                  Description="Grocery price comparison and tracking application"
+                  Target="[INSTALLFOLDER]AdvGenPriceComparer.WPF.exe"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RegistryValue Root="HKCU" Key="Software\AdvGen\PriceComparer"
+                       Name="desktopshortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

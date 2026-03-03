@@ -1,0 +1,19 @@
+<Project Sdk="WixToolset.Sdk/6.0.2">
+
+  <PropertyGroup>
+    <OutputName>AdvGenPriceComparer</OutputName>
+    <OutputType>Package</OutputType>
+    <Platforms>x64</Platforms>
+    <Configurations>Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Util.wixext" Version="6.0.2" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdvGenPriceComparer.WPF\AdvGenPriceComparer.WPF.csproj" />
+  </ItemGroup>
+
+</Project>

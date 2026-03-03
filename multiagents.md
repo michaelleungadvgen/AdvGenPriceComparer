@@ -113,7 +113,7 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | UI automation tests | 🔴 TODO | - | Automated UI testing |
-| Create installer (WiX Toolset or ClickOnce) | 🔴 TODO | - | Windows installer |
+| Create installer (WiX Toolset or ClickOnce) | 🟢 DONE | Agent-035 | WiX v4 installer project created with MSI output (~25MB). Supports Start Menu & Desktop shortcuts, per-machine install, major upgrades.
 | Configure auto-update mechanism | 🔴 TODO | - | Auto-update functionality |
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
 
@@ -372,6 +372,7 @@
 | 2026-02-26 | Deal expiration reminders - Implemented IDealExpirationService, DealExpirationReminderViewModel, DealExpirationRemindersWindow with dismiss functionality, registered in DI, added menu item | Agent-028 |
 | 2026-02-26 | Weekly specials digest - Implemented IWeeklySpecialsService, WeeklySpecialsDigestViewModel, WeeklySpecialsDigestWindow with export to Markdown/Text, copy to clipboard, category/store filters | Agent-029 |
 | 2026-03-04 | Verified IDatabaseProvider and LiteDbProvider implementation - Confirmed all Phase 10 database provider infrastructure exists and is integrated; fixed test files for ShowSettingsDialog() | Agent-034 |
+| 2026-03-04 | Create installer (WiX Toolset) - Created WiX v4 SDK-style installer project, outputs AdvGenPriceComparer.msi (~25MB), includes Start Menu/Desktop shortcuts, per-machine install, major upgrade support | Agent-035 |
 
 ---
 

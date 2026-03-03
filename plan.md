@@ -481,7 +481,7 @@ public class ExportService
 - [ ] Unit tests for import/export services
 - [ ] Integration tests for database operations
 - [ ] UI automation tests
-- [ ] Create installer (WiX Toolset or ClickOnce)
+- [x] Create installer (WiX Toolset or ClickOnce) - WiX v4 SDK-style project, outputs MSI (~25MB)
 - [ ] Configure auto-update mechanism
 - [ ] User documentation
 
