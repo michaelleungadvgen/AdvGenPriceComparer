@@ -27,9 +27,16 @@ Fight misleading "sale" prices and illusory discounts by building a transparent,
 ### 📊 Price Intelligence
 - **Historical Tracking**: Track price changes over time to identify genuine vs. fake discounts
 - **Multi-Store Comparison**: Compare prices across Coles, Woolworths, IGA, Aldi, and other chains
-- **Price Alerts**: Get notified when prices drop
+- **Price Alerts & Notifications**: Get notified when prices drop or deals are about to expire
 - **Discount Analysis**: Identify illusory discounts by comparing current "sale" prices with historical data
+- **Reports & Analytics**: Weekly specials digest and best deals tracking
 - **Import/Export**: JSON import from Coles/Woolworths/Drakes, export with filters and compression
+
+### 🛒 User Experience & Organization
+- **Shopping Lists**: Create, manage, and track progress of your shopping lists
+- **Global Search**: Search across all items, stores, and price records instantly
+- **Favorites**: Pin your frequently purchased items for quick access
+- **Settings & Customization**: Configure your experience and preferences
 
 ### 🏪 Comprehensive Coverage
 - Coles
@@ -127,6 +134,11 @@ Desktop App (LiteDB) ──P2P──> Regional Hub (AdvGenNoSqlServer) ──P2P
 ```
 
 This hybrid approach lets individuals use lightweight P2P sharing while community leaders can run powerful regional hubs with AdvGenNoSqlServer for aggregated price intelligence.
+
+## 📚 Documentation
+
+For a comprehensive guide on how to use all features of AdvGenPriceComparer, please refer to our **[User Guide](USER_GUIDE.md)**.
+It covers everything from navigating the dashboard and managing your shopping lists to importing/exporting data and troubleshooting common issues.
 
 ## 🚀 Getting Started
 
@@ -403,17 +415,21 @@ Contributions are welcome! This is a community-driven project to combat deceptiv
 - [x] P2P networking with server discovery
 - [x] LLM-powered catalogue extraction
 - [x] Sister project: AdvGenNoSqlServer for large-scale deployments
+- [x] Settings Service with JSON persistence
+- [x] Global Search functionality
+- [x] Price drop notifications and Deal expiration reminders
+- [x] Favorite items list
+- [x] Shopping list integration
+- [x] Reports and analytics (Best deals, weekly digest)
 
 ### In Progress 🚧
 - [ ] ML.NET Auto-Categorization (Phase 9)
 - [ ] ML.NET Price Prediction & Forecasting (Phase 11)
-- [ ] Settings Service with database provider selection (Phase 10)
 
 ### Planned 📅
 - [ ] AdvGenNoSqlServer integration and migration tools
 - [ ] Mobile app (Android/iOS)
 - [ ] Barcode scanning
-- [ ] Shopping list integration
 - [ ] Browser extension for online shopping
 - [ ] Public P2P node infrastructure with regional hubs
 
