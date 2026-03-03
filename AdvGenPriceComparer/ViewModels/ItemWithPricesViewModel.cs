@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Core.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Media;
 
 namespace AdvGenPriceComparer.Desktop.WinUI.ViewModels;
@@ -189,21 +191,37 @@ public class PriceRecordViewModel : BaseViewModel
             StatusText = "Old";
             StatusColor = new SolidColorBrush(Microsoft.UI.Colors.Gray);
         }
+
+        try
+        {
+            var groceryDataService = App.Services?.GetService<IGroceryDataService>();
+            if (groceryDataService != null)
+            {
+                var place = groceryDataService.GetPlaceById(_record.PlaceId);
+                StoreName = place?.Name ?? "Unknown Store";
+                StoreLocation = place?.Suburb ?? place?.Address ?? "Unknown Location";
+            }
+            else
+            {
+                StoreName = "Unknown Store";
+                StoreLocation = "Unknown Location";
+            }
+        }
+        catch (Exception)
+        {
+            // Fallback in case App.Services is not initialized (e.g., during tests)
+            StoreName = "Unknown Store";
+            StoreLocation = "Unknown Location";
+        }
     }
 
     public string Id => _record.Id ?? "";
     public decimal Price => _record.Price;
     public DateTime RecordedDate => _record.DateRecorded;
-    public string StoreName => "Store"; // TODO: Load place name from service
-    public string StoreLocation => FormatStoreLocation();
+    public string StoreName { get; }
+    public string StoreLocation { get; }
     public string StatusText { get; }
     public SolidColorBrush StatusColor { get; }
-
-    private string FormatStoreLocation()
-    {
-        // TODO: Load place information from service using PlaceId
-        return "Location";
-    }
 
     public PriceRecord GetPriceRecord() => _record;
 }
