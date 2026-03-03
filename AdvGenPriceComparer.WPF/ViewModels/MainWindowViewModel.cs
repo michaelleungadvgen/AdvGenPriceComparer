@@ -38,6 +38,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         DealExpirationRemindersCommand = new RelayCommand(ShowDealExpirationReminders);
         WeeklySpecialsDigestCommand = new RelayCommand(ShowWeeklySpecialsDigest);
         ShoppingListsCommand = new RelayCommand(ShowShoppingLists);
+        SettingsCommand = new RelayCommand(ShowSettings);
 
         RefreshDashboard();
     }
@@ -70,6 +71,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand DealExpirationRemindersCommand { get; }
     public ICommand WeeklySpecialsDigestCommand { get; }
     public ICommand ShoppingListsCommand { get; }
+    public ICommand SettingsCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -256,6 +258,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowShoppingLists()
     {
         _dialogService.ShowShoppingListsDialog();
+    }
+
+    private void ShowSettings()
+    {
+        _dialogService.ShowSettingsDialog();
     }
 
     private void ShowFavorites()

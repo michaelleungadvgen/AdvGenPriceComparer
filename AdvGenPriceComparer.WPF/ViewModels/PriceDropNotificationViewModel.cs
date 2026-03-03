@@ -101,6 +101,9 @@ public class PriceDropNotificationViewModel : ViewModelBase
     public ICommand CreateAlertCommand { get; }
     public ICommand ToggleMonitoringCommand { get; }
     public ICommand ClearAllCommand { get; }
+    public ICommand CloseCommand { get; }
+
+    public event EventHandler? RequestClose;
 
     public PriceDropNotificationViewModel(
         IPriceDropNotificationService notificationService,
@@ -115,6 +118,7 @@ public class PriceDropNotificationViewModel : ViewModelBase
         CreateAlertCommand = new RelayCommand(async () => await CreateAlertAsync(), CanCreateAlert);
         ToggleMonitoringCommand = new RelayCommand(ToggleMonitoring);
         ClearAllCommand = new RelayCommand(async () => await ClearAllAsync());
+        CloseCommand = new RelayCommand(CloseWindow);
 
         // Subscribe to price drop events
         _notificationService.PriceDropDetected += OnPriceDropDetected;
@@ -216,6 +220,11 @@ public class PriceDropNotificationViewModel : ViewModelBase
             await _notificationService.DismissNotificationAsync(notification.Id);
         }
         LoadNotifications();
+    }
+
+    private void CloseWindow()
+    {
+        RequestClose?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnPriceDropDetected(object? sender, PriceDropEventArgs e)

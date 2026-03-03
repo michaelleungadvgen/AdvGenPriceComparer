@@ -18,4 +18,5 @@ public interface IDialogService
     void ShowDealExpirationRemindersDialog();
     void ShowWeeklySpecialsDigestDialog();
     void ShowShoppingListsDialog();
+    void ShowSettingsDialog();
 }

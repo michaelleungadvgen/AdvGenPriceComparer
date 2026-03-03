@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
@@ -96,6 +97,8 @@
                     <Separator/>
                     <Button Content="✓ Mark All Read" Command="{Binding MarkAsReadCommand}" Padding="10,5"/>
                     <Button Content="🗑 Clear All" Command="{Binding ClearAllCommand}" Padding="10,5"/>
+                    <Separator/>
+                    <Button Content="✕ Close" Command="{Binding CloseCommand}" Padding="10,5" ToolTip="Close window (Esc)"/>
                 </ToolBar>
             </ToolBarTray>
 
@@ -134,14 +137,30 @@
             </DataGrid>
 
             <!-- Empty State -->
-            <TextBlock Grid.Row="1" 
+            <TextBlock Grid.Row="1"
                        Text="No price drop notifications yet.&#x0a;Create an alert to get notified when prices drop!"
-                       HorizontalAlignment="Center" 
+                       HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontSize="16"
                        Opacity="0.5"
                        TextAlignment="Center"
                        Visibility="{Binding Notifications.Count, Converter={StaticResource ZeroToVisibilityConverter}}"/>
         </Grid>
+
+        <!-- Bottom Action Bar -->
+        <Border Grid.Row="3" Background="#F5F5F5" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="20,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Press ESC to close"
+                           VerticalAlignment="Center"
+                           Margin="0,0,15,0"
+                           Opacity="0.6"
+                           FontSize="12"/>
+                <Button Content="Close"
+                        Command="{Binding CloseCommand}"
+                        Padding="30,8"
+                        FontWeight="SemiBold"
+                        IsDefault="True"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </ui:FluentWindow>

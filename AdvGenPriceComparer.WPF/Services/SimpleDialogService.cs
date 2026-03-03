@@ -116,4 +116,14 @@ public class SimpleDialogService : IDialogService
         var window = new ShoppingListWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowSettingsDialog()
+    {
+        var settingsService = ((App)Application.Current).Services.GetRequiredService<ISettingsService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService);
+        var window = new SettingsWindow { DataContext = viewModel, Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }
