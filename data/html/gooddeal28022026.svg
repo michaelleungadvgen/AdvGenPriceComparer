@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 720">
+  <rect width="400" height="720" fill="#0B1E33" rx="20" ry="20"/>
+
+  <!-- header decoration -->
+  <circle cx="340" cy="30" r="80" fill="#1E3A5F" opacity="0.3"/>
+  <circle cx="360" cy="50" r="40" fill="#FEC260" opacity="0.15"/>
+
+  <!-- title -->
+  <text x="25" y="45" font-family="Arial Black, Helvetica, sans-serif" font-size="22" fill="#FEC260">🛒 澳洲本週最佳優惠</text>
+  <text x="25" y="72" font-family="Verdana, sans-serif" font-size="14" fill="#FFFFFF">2026年2月 · AI智能分析幫你慳錢！💰</text>
+
+  <!-- divider -->
+  <line x1="25" y1="90" x2="375" y2="90" stroke="#FEC260" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- category: 電視優惠 -->
+  <text x="25" y="120" font-family="Arial, sans-serif" font-size="16" fill="#FEC260" font-weight="bold">📺 電視優惠</text>
+
+  <!-- 1️⃣ LG -->
+  <text x="25" y="145" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">1️⃣ <tspan font-weight="bold">LG 100吋 QNED86A Mini-LED 4K</tspan></text>
+  <text x="210" y="145" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$4,484</text>
+  <text x="290" y="145" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-decoration="line-through">$8,995</text>
+  <text x="340" y="145" font-family="Arial, sans-serif" font-size="11" fill="#FEC260">-50%</text>
+  <text x="25" y="162" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">Harvey Norman · 慳$4,511！</text>
+
+  <!-- 2️⃣ TCL -->
+  <text x="25" y="185" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">2️⃣ <tspan font-weight="bold">TCL 98吋 P7K 4K QLED Google TV</tspan></text>
+  <text x="270" y="185" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$3,886</text>
+  <text x="340" y="185" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">@ JB Hi-Fi</text>
+
+  <!-- 3️⃣ Toshiba -->
+  <text x="25" y="210" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">3️⃣ <tspan font-weight="bold">Toshiba 75吋 Z670RP 4K 144Hz 遊戲電視</tspan></text>
+  <text x="280" y="210" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$1,221</text>
+  <text x="340" y="210" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">Harvey Norman</text>
+
+  <!-- 4️⃣ Hisense -->
+  <text x="25" y="235" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">4️⃣ <tspan font-weight="bold">Hisense 65吋 U8QAU Mini-LED</tspan></text>
+  <text x="215" y="235" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$1,894</text>
+  <text x="290" y="235" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-decoration="line-through">$2,294</text>
+  <text x="340" y="235" font-family="Arial, sans-serif" font-size="11" fill="#FEC260">-17%</text>
+  <text x="25" y="252" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">The Good Guys · 慳$400</text>
+
+  <!-- line spacer -->
+  <line x1="25" y1="265" x2="375" y2="265" stroke="#2A4059" stroke-width="1"/>
+
+  <!-- 吸塵器 -->
+  <text x="25" y="290" font-family="Arial, sans-serif" font-size="16" fill="#FEC260" font-weight="bold">🧹 吸塵器優惠</text>
+
+  <!-- 5️⃣ Dyson Gen5detect -->
+  <text x="25" y="315" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">5️⃣ <tspan font-weight="bold">Dyson Gen5detect Absolute</tspan></text>
+  <text x="210" y="315" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$928</text>
+  <text x="290" y="315" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-decoration="line-through">$1,488</text>
+  <text x="340" y="315" font-family="Arial, sans-serif" font-size="11" fill="#FEC260">-38%</text>
+  <text x="25" y="332" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">Harvey Norman · 慳$560</text>
+
+  <!-- 6️⃣ Dyson V8 -->
+  <text x="25" y="357" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">6️⃣ <tspan font-weight="bold">Dyson V8 Cyclone 手持式</tspan></text>
+  <text x="220" y="357" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$487</text>
+  <text x="290" y="357" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-decoration="line-through">$649</text>
+  <text x="340" y="357" font-family="Arial, sans-serif" font-size="11" fill="#FEC260">-25%</text>
+  <text x="25" y="374" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">JB Hi-Fi · 慳$162</text>
+
+  <!-- line -->
+  <line x1="25" y1="385" x2="375" y2="385" stroke="#2A4059" stroke-width="1"/>
+
+  <!-- 遊戲筆電 -->
+  <text x="25" y="410" font-family="Arial, sans-serif" font-size="16" fill="#FEC260" font-weight="bold">💻 遊戲筆電</text>
+  <text x="25" y="435" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">7️⃣ <tspan font-weight="bold">Lenovo Legion 5i 15吋 · RTX 5070 + Core i9</tspan></text>
+  <text x="280" y="435" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$3,599</text>
+  <text x="340" y="435" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">JB Hi-Fi</text>
+
+  <!-- 音響 -->
+  <text x="25" y="470" font-family="Arial, sans-serif" font-size="16" fill="#FEC260" font-weight="bold">🎧 音響</text>
+  <text x="25" y="495" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">8️⃣ <tspan font-weight="bold">Sony WH-1000XM5 降噪耳機</tspan></text>
+  <text x="225" y="495" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$449</text>
+  <text x="290" y="495" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-decoration="line-through">$549</text>
+  <text x="340" y="495" font-family="Arial, sans-serif" font-size="11" fill="#FEC260">-18%</text>
+  <text x="25" y="512" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">JB Hi-Fi · 慳$100</text>
+
+  <!-- 手機優惠 -->
+  <text x="25" y="545" font-family="Arial, sans-serif" font-size="16" fill="#FEC260" font-weight="bold">📱 手機優惠</text>
+
+  <!-- 9️⃣ Samsung S26+ -->
+  <text x="25" y="570" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">9️⃣ <tspan font-weight="bold">Samsung Galaxy S26+ 512GB</tspan></text>
+  <text x="235" y="570" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$1,849</text>
+  <text x="300" y="570" font-family="Arial, sans-serif" font-size="10" fill="#FEC260">預購優惠</text>
+  <text x="25" y="587" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">Harvey Norman · 512GB以256GB價格</text>
+
+  <!-- 🔟 Galaxy A36 -->
+  <text x="25" y="615" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">🔟 <tspan font-weight="bold">Samsung Galaxy A36 5G</tspan></text>
+  <text x="215" y="615" font-family="Arial, sans-serif" font-size="12" fill="#B2FF9E">$544</text>
+  <text x="290" y="615" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">The Good Guys</text>
+  <text x="25" y="632" font-family="Arial, sans-serif" font-size="10" fill="#AAAAAA">中階5G超值之選</text>
+
+  <!-- link and AI badge -->
+  <rect x="25" y="655" width="350" height="40" rx="8" fill="#1E3A5F" stroke="#FEC260" stroke-width="1"/>
+  <text x="35" y="678" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">🔗 michaelleung.info/gooddeals</text>
+  <text x="240" y="678" font-family="Arial Black, sans-serif" font-size="12" fill="#FEC260">🤖 AI追蹤價格</text>
+
+  <!-- bottom tagline -->
+  <text x="25" y="703" font-family="Verdana, sans-serif" font-size="10" fill="#8A9BB0">#澳洲優惠 #JBHiFi #HarveyNorman #TheGoodGuys</text>
+  <text x="25" y="718" font-family="Verdana, sans-serif" font-size="10" fill="#8A9BB0">#電視優惠 #Dyson #Samsung #Sony #Lenovo #慳錢攻略</text>
+</svg>

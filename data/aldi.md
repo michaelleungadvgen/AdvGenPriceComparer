@@ -2727,3 +2727,118 @@ Here are the three ALDI catalogues converted into a structured Markdown format:
 - **20V 2.0Ah Battery or 20V Fast Charger** - XFINITY PLUS - $24.99
 
 ---
+
+
+
+## Available from Wed 18th February
+
+### Kitchen
+
+- **PureEase Food Processor** - BRAUN - $89.99
+- **Stilosa Espresso Machine** - DE'LONGHI - $99.99
+- **Coffee Bean and Spice Grinder** - STIRLING - $49.99
+- **Vacuum Food Sealer** - AMBIANO - $49.99
+- **Vacuum Food Sealer Roll** - AMBIANO - $14.99
+- **Vacuum Food Sealer Bags** - AMBIANO - $14.99
+- **1.7L Textured Kettle** - AMBIANO - $24.99
+- **2 Slice Textured Toaster** - AMBIANO - $24.99
+- **50L Motion Sensor Automatic Bin** - EASY LIVING - $74.99
+- **Set of Essentials 4 Piece** - DREAMFARM - $29.99
+- **Frying Pan Storage Assortment** - EASY HOME - $8.99
+- **Assorted Bag Clips** - JOIE - $3.99
+- **Universal Knife Block Assortment** - CROFTON - $9.99
+- **Nylon Utensils Assorted** - CROFTON - $2.99
+- **Small Baking Pans Assortment** - CROFTON - $4.99
+- **Magnetic Kitchen Accessories** - LITTLE FINCH - $2.49
+- **Assorted Joie Ice Trays with Lids** - JOIE - $4.99
+- **Assorted Chopping Boards** - CROFTON - $9.99
+- **Assorted Storage and Organisation** - EASY HOME - $4.99
+- **Collapsible Bin Assortment** - CROFTON - $9.99
+- **Cabinet Light with Twilight Sensor** - CASALUX - $9.99
+- **Assorted Frypans 28cm** - BRANDED - $29.99
+- **Assorted Frypan 20cm** - BRANDED - $24.99
+- **Assorted Glass Cutting Boards 2 Pack** - CROFTON - $14.99
+- **Assorted Fridge Organisers** - CROFTON - $4.99
+
+### Limited Time Only Meat
+
+- **Chicken Pesto Mini Kyivs 400g** - INGHAM'S - $6.49 ($16.23/kg)
+- **Chilli Caramel Marinated Pork Shoulder** - KR CASTLEMAINE EST. 1911 - approx $9.44 ($19.27/kg)
+- **Marinara Mix with Tomato Sauce 260g** - THE FISHMONGER - $5.99 ($23.04/kg)
+- **Mustard & Dill Salmon 2 Pack 300g** - THE FISHMONGER - $13.99 ($46.63/kg)
+
+### Liquor
+
+- **Bourbon Cask Whisky 700ml** - GLEN MARNOCH - $55.99
+- **Vodka 700ml** - SMIRNOFF - $43.99
+- **Budvar Cans 4 Pack 500ml** - BUDEJOVICKY BUDVAR - $16.99
+- **Gentleman Jack & Cola 4 Pack 375ml** - GENTLEMAN JACK - $26.99
+
+---
+
+## Available from Sat 21st February
+
+### Food Themes (British Favourites)
+
+- **Sauce Original 390ml** - HP - $4.49 ($1.15/100ml)
+- **Worcestershire Sauce 290ml** - LEA & PERRINS - $3.79 ($1.31/100ml)
+- **Yorkshire Tea 100 Pack** - TAYLORS OF HARROGATE - $5.79 ($0.06 each)
+- **Walnut Whip 6 Pack 180g** - NESTLÉ - $9.99
+- **Dark Chocolate Digestives 266g** - MCVITIE'S - $2.75 ($1.03/100g)
+- **Milk Chocolate Digestives 266g** - MCVITIE'S - $2.75 ($1.03/100g)
+- **Jaffa Cakes 106g** - MCVITIE'S - $1.99
+- **Crisps Lamb & Mint 150g** - WALKERS - $3.29
+- **Raspberry Biscuit 140g** - JAMMIE DODGERS - $2.25
+- **Wotsits Giants Really Cheesy 165g** - WALKERS - $3.99
+- **Curry Flavoured Pot Noodle 90g** - POT NOODLE - $3.49 ($3.88/100g)
+- **Chicken & Mushroom Flavoured Pot Noodle 90g** - POT NOODLE - $3.49 ($3.88/100g)
+- **Beef & Tomato Flavoured Pot Noodle 90g** - POT NOODLE - $3.49 ($3.88/100g)
+- **Pickled Onions 450g** - AMBROSIA - $4.99 ($11.09/kg)
+- **Pickled Red Cabbages 440g** - AMBROSIA - $4.99 ($11.34/kg)
+- **Rice Pudding 400g** - AMBROSIA - $3.99 ($1.00/100g)
+- **Devon Custard 400g** - AMBROSIA - $3.99 ($1.00/100g)
+- **Sweet Mix 6 Pack 150g** - SWIZZELS - $5.99 ($3.99/100g)
+- **Traditional Bon Bons 120g** - $2.99 ($1.99/100g)
+
+### Furniture & Home
+
+- **Luxury Cloud Pillow** - KIRKTON HOUSE - $29.99
+- **Assorted Bath Sheet Luxe** - KIRKTON HOUSE - $19.99
+- **Bath Towel Assortment** - KIRKTON HOUSE - $12.99
+- **Hand Towel Assortment** - KIRKTON HOUSE - $4.99
+- **Bath Mat Terry 2025 Assortment** - KIRKTON HOUSE - $9.99
+- **Assorted Quilted Coverlet Set** - KIRKTON HOUSE - $69.99
+- **Assorted 400 Thread Count Sheet Set Queen Bed** - KIRKTON HOUSE - $49.99
+- **Assorted 400 Thread Count Sheet Set King Bed** - KIRKTON HOUSE - $59.99
+- **Assorted 400 Thread Count Pillowcase 2 Pack** - KIRKTON HOUSE - $14.99
+- **Machine Washable Rug Assortment** - KIRKTON HOUSE - $79.99
+- **Plush Throw Blanket Assortment** - KIRKTON HOUSE - $14.99
+- **Bath Rug Cotton Assortment** - KIRKTON HOUSE - $19.99
+- **Decorative Cushion Assortment** - KIRKTON HOUSE - $16.99
+- **Luxury Candle Assortment** - KIRKTON HOUSE - $10.99
+- **Assorted Square Side Table** - SOHL - $49.99
+
+### Gaming & Entertainment
+
+- **Mini Pokémon Tins** - LICENSED - $16.99
+- **Carerra Mario First Slot Track 2.4m** - $49.99
+- **Assorted Pokémon Cuddle Plush 8 Inch** - POKÉMON - $12.99
+- **Assorted Mario Plush** - BRANDED - $19.99
+- **Pokémon Licensed Books** - BRANDED - $2.99
+- **Pokémon Battle Figures 10 Pack** - LICENSED - $19.99
+- **Assorted Shaped Mugs** - LICENSED - $11.99
+- **Assorted Lunch Storage** - LICENSED - $16.99
+- **Children's Licensed PJ Set Assortment** - LICENSED - $14.99
+- **Assorted Children's Licensed Clothing** - LICENSED - $9.99
+- **Children's Licensed Comforter Assortment** - CAPRICE - $34.99
+
+### Security & Home
+
+- **Key Safe** - DELTA - $14.99
+- **Decoy Security Camera Light** - CASALUX - $16.99
+- **Heavy Duty Padlock Assortment** - DELTA - $7.99
+- **Assorted Personal Key Chain Alarm** - DELTA - $9.99
+- **Assorted Fire Safety Equipment** - DELTA - $16.99
+- **Low Odour Spray** - WD-40 - $7.99
+
+---

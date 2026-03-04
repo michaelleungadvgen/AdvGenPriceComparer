@@ -1,118 +1,5 @@
 
 
-## Available from Wed 18th February
-
-### Kitchen
-
-- **PureEase Food Processor** - BRAUN - $89.99
-- **Stilosa Espresso Machine** - DE'LONGHI - $99.99
-- **Coffee Bean and Spice Grinder** - STIRLING - $49.99
-- **Vacuum Food Sealer** - AMBIANO - $49.99
-- **Vacuum Food Sealer Roll** - AMBIANO - $14.99
-- **Vacuum Food Sealer Bags** - AMBIANO - $14.99
-- **1.7L Textured Kettle** - AMBIANO - $24.99
-- **2 Slice Textured Toaster** - AMBIANO - $24.99
-- **50L Motion Sensor Automatic Bin** - EASY LIVING - $74.99
-- **Set of Essentials 4 Piece** - DREAMFARM - $29.99
-- **Frying Pan Storage Assortment** - EASY HOME - $8.99
-- **Assorted Bag Clips** - JOIE - $3.99
-- **Universal Knife Block Assortment** - CROFTON - $9.99
-- **Nylon Utensils Assorted** - CROFTON - $2.99
-- **Small Baking Pans Assortment** - CROFTON - $4.99
-- **Magnetic Kitchen Accessories** - LITTLE FINCH - $2.49
-- **Assorted Joie Ice Trays with Lids** - JOIE - $4.99
-- **Assorted Chopping Boards** - CROFTON - $9.99
-- **Assorted Storage and Organisation** - EASY HOME - $4.99
-- **Collapsible Bin Assortment** - CROFTON - $9.99
-- **Cabinet Light with Twilight Sensor** - CASALUX - $9.99
-- **Assorted Frypans 28cm** - BRANDED - $29.99
-- **Assorted Frypan 20cm** - BRANDED - $24.99
-- **Assorted Glass Cutting Boards 2 Pack** - CROFTON - $14.99
-- **Assorted Fridge Organisers** - CROFTON - $4.99
-
-### Limited Time Only Meat
-
-- **Chicken Pesto Mini Kyivs 400g** - INGHAM'S - $6.49 ($16.23/kg)
-- **Chilli Caramel Marinated Pork Shoulder** - KR CASTLEMAINE EST. 1911 - approx $9.44 ($19.27/kg)
-- **Marinara Mix with Tomato Sauce 260g** - THE FISHMONGER - $5.99 ($23.04/kg)
-- **Mustard & Dill Salmon 2 Pack 300g** - THE FISHMONGER - $13.99 ($46.63/kg)
-
-### Liquor
-
-- **Bourbon Cask Whisky 700ml** - GLEN MARNOCH - $55.99
-- **Vodka 700ml** - SMIRNOFF - $43.99
-- **Budvar Cans 4 Pack 500ml** - BUDEJOVICKY BUDVAR - $16.99
-- **Gentleman Jack & Cola 4 Pack 375ml** - GENTLEMAN JACK - $26.99
-
----
-
-## Available from Sat 21st February
-
-### Food Themes (British Favourites)
-
-- **Sauce Original 390ml** - HP - $4.49 ($1.15/100ml)
-- **Worcestershire Sauce 290ml** - LEA & PERRINS - $3.79 ($1.31/100ml)
-- **Yorkshire Tea 100 Pack** - TAYLORS OF HARROGATE - $5.79 ($0.06 each)
-- **Walnut Whip 6 Pack 180g** - NESTLÉ - $9.99
-- **Dark Chocolate Digestives 266g** - MCVITIE'S - $2.75 ($1.03/100g)
-- **Milk Chocolate Digestives 266g** - MCVITIE'S - $2.75 ($1.03/100g)
-- **Jaffa Cakes 106g** - MCVITIE'S - $1.99
-- **Crisps Lamb & Mint 150g** - WALKERS - $3.29
-- **Raspberry Biscuit 140g** - JAMMIE DODGERS - $2.25
-- **Wotsits Giants Really Cheesy 165g** - WALKERS - $3.99
-- **Curry Flavoured Pot Noodle 90g** - POT NOODLE - $3.49 ($3.88/100g)
-- **Chicken & Mushroom Flavoured Pot Noodle 90g** - POT NOODLE - $3.49 ($3.88/100g)
-- **Beef & Tomato Flavoured Pot Noodle 90g** - POT NOODLE - $3.49 ($3.88/100g)
-- **Pickled Onions 450g** - AMBROSIA - $4.99 ($11.09/kg)
-- **Pickled Red Cabbages 440g** - AMBROSIA - $4.99 ($11.34/kg)
-- **Rice Pudding 400g** - AMBROSIA - $3.99 ($1.00/100g)
-- **Devon Custard 400g** - AMBROSIA - $3.99 ($1.00/100g)
-- **Sweet Mix 6 Pack 150g** - SWIZZELS - $5.99 ($3.99/100g)
-- **Traditional Bon Bons 120g** - $2.99 ($1.99/100g)
-
-### Furniture & Home
-
-- **Luxury Cloud Pillow** - KIRKTON HOUSE - $29.99
-- **Assorted Bath Sheet Luxe** - KIRKTON HOUSE - $19.99
-- **Bath Towel Assortment** - KIRKTON HOUSE - $12.99
-- **Hand Towel Assortment** - KIRKTON HOUSE - $4.99
-- **Bath Mat Terry 2025 Assortment** - KIRKTON HOUSE - $9.99
-- **Assorted Quilted Coverlet Set** - KIRKTON HOUSE - $69.99
-- **Assorted 400 Thread Count Sheet Set Queen Bed** - KIRKTON HOUSE - $49.99
-- **Assorted 400 Thread Count Sheet Set King Bed** - KIRKTON HOUSE - $59.99
-- **Assorted 400 Thread Count Pillowcase 2 Pack** - KIRKTON HOUSE - $14.99
-- **Machine Washable Rug Assortment** - KIRKTON HOUSE - $79.99
-- **Plush Throw Blanket Assortment** - KIRKTON HOUSE - $14.99
-- **Bath Rug Cotton Assortment** - KIRKTON HOUSE - $19.99
-- **Decorative Cushion Assortment** - KIRKTON HOUSE - $16.99
-- **Luxury Candle Assortment** - KIRKTON HOUSE - $10.99
-- **Assorted Square Side Table** - SOHL - $49.99
-
-### Gaming & Entertainment
-
-- **Mini Pokémon Tins** - LICENSED - $16.99
-- **Carerra Mario First Slot Track 2.4m** - $49.99
-- **Assorted Pokémon Cuddle Plush 8 Inch** - POKÉMON - $12.99
-- **Assorted Mario Plush** - BRANDED - $19.99
-- **Pokémon Licensed Books** - BRANDED - $2.99
-- **Pokémon Battle Figures 10 Pack** - LICENSED - $19.99
-- **Assorted Shaped Mugs** - LICENSED - $11.99
-- **Assorted Lunch Storage** - LICENSED - $16.99
-- **Children's Licensed PJ Set Assortment** - LICENSED - $14.99
-- **Assorted Children's Licensed Clothing** - LICENSED - $9.99
-- **Children's Licensed Comforter Assortment** - CAPRICE - $34.99
-
-### Security & Home
-
-- **Key Safe** - DELTA - $14.99
-- **Decoy Security Camera Light** - CASALUX - $16.99
-- **Heavy Duty Padlock Assortment** - DELTA - $7.99
-- **Assorted Personal Key Chain Alarm** - DELTA - $9.99
-- **Assorted Fire Safety Equipment** - DELTA - $16.99
-- **Low Odour Spray** - WD-40 - $7.99
-
----
-
 ## Available from Wed 25th February
 
 ### Baby Essentials
@@ -173,5 +60,116 @@
 - **Pinnacle Folding Convertible Booster Seat** - INFA SECURE - $99.99
 - **Rocking Chair** - SOHL - $179.00
 - **Orientation Night Light** - CASALUX - $14.99
+
+---
+
+## Available from Wed 4th March
+
+### Liquor
+
+- **Irish Whiskey 700ml** - JAMESON - $53.99
+- **Irish Stout 4 Pack 500ml** - MURPHY'S ESTD 1856 - $17.99
+- **Irish Ale 6 Pack 470ml** - KILKENNY - $24.99
+- **Draught 6 Pack 470ml** - GUINNESS - $24.99
+- **Dry & Lime Cans 4 Pack 330ml** - JAMESON - $18.99
+
+### Limited Time Only Meat
+
+- **Beef Scotch Fillet (approx. 1.25kg)** - JINDURRA STATION - $39.99 ($31.99/kg)
+- **Creamy Tomato Chicken Gnocchi Meal Kit 775g** - READY, SET…COOK! - $14.99 ($19.34/kg)
+- **Pork Schnitty Dippers 500g** - READY, SET…COOK! - $9.99 ($19.98/kg)
+
+### Personal Care
+
+- **Men's Active Body Wash 1L** - PALMOLIVE - $6.49 ($0.65/100ml)
+- **Gold Soap Bar 10 Pack 90g** - PALMOLIVE - $8.99 ($1.00/100g)
+- **Advanced Protection Antiperspirant 72 Hour 2 Pack 127g/130g** - REXONA - $10.49 ($4.03/100g)
+- **Clinical Protection Antiperspirant Deodorant 96 Hour 2 Pack 48g** - REXONA - $13.99 ($14.57/100g)
+
+### Tools & DIY
+
+- **Sugar Soap Wipes 50 Pack** - DECO STYLE - $4.49
+- **4L Primer / Sealer / Undercoat** - DECO CRAFT - $49.99
+- **Premium Brush Set 5 Pcs** - DECO CRAFT - $9.99
+- **Household Ladder** - WORKZONE - $59.99
+- **Rechargeable Work Light 20W** - WORKZONE - $29.99
+- **Premium Sanding Assortment 24pc** - DECO CRAFT - $9.99
+- **Cable Reel 5m** - WORKZONE - $12.99
+- **Tile & Grout or Glass Treatment Assortment** - ENDURO SHIELD - $24.99
+- **Assorted Plumbing Supplies** - WORKZONE - $9.99
+- **Assorted Drain Tools** - WORKZONE - $9.99
+- **Assorted Tools** - WORKZONE - $4.99
+- **Assorted Sensors** - WORKZONE - $19.99
+- **Door Seals Assortment** - WORKZONE - $4.99
+- **Painting Accessories** - DECO CRAFT - $4.99
+- **Kitchen Plumbing Accessories** - WORKZONE - $12.99
+- **Kitchen Mixer Tap Assortment** - EASY HOME - $89.99
+- **Assorted Pipe Wrench Set** - WORKZONE - $19.99
+- **Masking Tape** - DECO CRAFT - $5.99
+- **Assorted Hooks** - WORKZONE - $7.99
+- **Drill Brush and Sanding 14pc Set** - FERREX - $9.99
+- **Floating Shelves Assorted** - DELTA - $7.99
+
+---
+
+## Available from Sat 7th March
+
+### Appliances
+
+- **ECOVACS DEEBOT NEO 2.0 Robot Vacuum** - ECOVACS - $279.00
+- **Induction Cooker** - AMBIANO - $44.99
+- **Ice Cube Maker** - AMBIANO - $109.00
+- **Steam Mop** - EASY HOME - $109.00
+- **Dishwasher** - STIRLING - $299.00
+- **Chest Freezer 200L** - STIRLING - $169.00
+- **Bar Fridge 90L** - STIRLING - $169.00
+
+### Mattresses
+
+- **Single Mattress** - NOVITESSE - $149.00
+- **King Single Mattress** - NOVITESSE - $179.00
+- **Double Mattress** - NOVITESSE - $199.00
+- **Queen Mattress** - NOVITESSE - $239.00
+- **King Mattress** - NOVITESSE - $279.00
+
+### Cleaning Products
+
+- **Eucalyptus Spray 2 Pack 500ml** - BOSISTO'S - $7.99
+- **Dettol Disinfectant Cleaner 750ml** - DETTOL - $5.49
+- **Ajax Spray n' Wipe 500ml** - AJAX - $3.29
+- **Morning Fresh Dishwashing Liquid 900ml** - MORNING FRESH - $4.99
+- **White King Bleach 2.5L** - WHITE KING - $4.49
+- **Earth Choice Laundry Liquid 2L** - EARTH CHOICE - $6.99
+- **Sard Wonder Stain Remover 1kg** - SARD - $8.99
+- **Finish Dishwasher Rinse Aid 500ml** - FINISH - $6.49
+
+### Cleaning Accessories
+
+- **Microfibre Cleaning Cloths 10 Pack** - EASY HOME - $4.99
+- **Spin Mop and Bucket Set** - EASY HOME - $24.99
+- **Extendable Duster** - EASY HOME - $9.99
+- **Cleaning Caddy Set** - EASY HOME - $12.99
+- **Scrub Brush Set 3 Pack** - EASY HOME - $4.99
+
+### Smart Home & Security
+
+- **Smart Door Locks Assortment** - DELTA - $149.00
+- **Smart Bluetooth Handle Assortment** - DELTA - $89.99
+- **Door Handle Lock Assortment** - DELTA - $14.99
+
+### Workwear
+
+- **Men's Work Polo Assortment** - WORKWEAR - $7.99
+- **Hi Vis Hoodie Assorted** - WORKWEAR - $19.99
+- **Assorted Cargo Work Shorts** - WORKWEAR - $16.99
+- **Hi Vis Drill Shirt Assortment** - WORKWEAR - $24.99
+- **Assorted Work Socks 3 Pack** - WORKWEAR - $9.99
+- **Men's Work Pants Assortment** - WORKWEAR - $19.99
+- **Stretch Cargo Work Pants Assortment** - WORKWEAR - $29.99
+- **Men's Sherpa Hooded Jacket Assortment** - WORKWEAR - $29.99
+- **Sherpa Shacket Men's Assorted** - WORKWEAR - $24.99
+- **Assorted Men's Work Flannel Shirt** - WORKWEAR - $12.99
+- **Men's Steel Toe Cap Safety Work Boots Assortment** - BRANDED - $44.99
+- **Heavy Duty Belt Assortment** - WORKWEAR - $9.99
 
 ---

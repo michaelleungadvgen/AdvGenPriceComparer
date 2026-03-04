@@ -1,0 +1,66 @@
+<svg width="800" height="1100" viewBox="0 0 800 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="1100" fill="#F5F7FA" />
+
+<!-- Header -->
+<rect x="30" y="30" width="740" height="90" rx="12" fill="#2C3E50" />
+<text x="70" y="80" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white">🛒 本週超市優惠速報 | Brisbane Grocery Deals</text>
+<text x="70" y="115" font-family="Arial, sans-serif" font-size="20" fill="#ECF0F1">📅 2月25日 - 3月3日</text>
+
+<!-- ALDI Section -->
+<rect x="30" y="140" width="360" height="440" rx="16" fill="white" stroke="#BDC3C7" stroke-width="2" />
+<rect x="30" y="140" width="360" height="60" rx="16 16 0 0" fill="#FF6B6B" />
+<text x="70" y="180" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">🟠 ALDI 特賣</text>
+
+<!-- ALDI Content -->
+<text x="50" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#C44545">🍀 3月4日(週三) - 聖派翠克節特輯</text>
+<text x="50" y="260" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Jameson 愛爾蘭威士忌 700ml - $53.99</text>
+<text x="50" y="285" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Guinness 黑啤 6罐裝 - $24.99</text>
+<text x="50" y="310" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Kilkenny 愛爾蘭啤酒 6罐裝 - $24.99</text>
+<text x="50" y="335" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">牛肉肉眼扒 約1.25kg - $39.99 ($31.99/kg)</text>
+
+<text x="50" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#C44545">🏠 3月7日(週六) - 家居電器特賣</text>
+<text x="50" y="405" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">ECOVACS DEEBOT NEO 2.0 掃地機器人 - <tspan fill="#E67E22" font-weight="bold">$279</tspan> ⭐</text>
+<text x="50" y="430" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">洗碗機 - $299</text>
+<text x="50" y="455" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">200L 冷凍櫃 - $169</text>
+<text x="50" y="480" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">床褥 單人$149起 / 雙人$199起 / Queen$239</text>
+<text x="50" y="505" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">蒸氣拖把 - $109</text>
+<text x="50" y="535" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D">💡 小貼士: ALDI特賣限時限量，建議早到選購！</text>
+
+<!-- Drakes Section -->
+<rect x="410" y="140" width="360" height="440" rx="16" fill="white" stroke="#BDC3C7" stroke-width="2" />
+<rect x="410" y="140" width="360" height="60" rx="16 16 0 0" fill="#3498DB" />
+<text x="450" y="180" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">🔵 Drakes Supermarket</text>
+
+<!-- Drakes Content -->
+<text x="430" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2875A7">🥩 肉類精選</text>
+<text x="430" y="260" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">澳洲雞胸肉 - <tspan fill="#E67E22" font-weight="bold">$9.90/kg</tspan> (省$10!) 🔥</text>
+<text x="430" y="285" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">短切煙肉 - $14/kg (省$7)</text>
+<text x="430" y="310" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">烤牛肉 - $9.75/kg (省$9)</text>
+<text x="430" y="335" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">BBQ羊扒 - $19/kg (省$9)</text>
+
+<text x="430" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2875A7">🧈 乳製品</text>
+<text x="430" y="405" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Western Star 牛油 250g - <tspan fill="#E67E22" font-weight="bold">$2.58</tspan> (省$3!) 🔥</text>
+
+<text x="430" y="440" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2875A7">🍪 零食/雜貨 半價</text>
+<text x="430" y="465" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Arnott's Shapes - $2</text>
+<text x="430" y="490" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Arnott's Tim Tams - $4</text>
+<text x="430" y="515" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Darrell Lea 朱古力 - $3.50 (省$3.50)</text>
+<text x="430" y="540" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">Connoisseur 雪糕 4件裝 - $7 (省$4.10)</text>
+
+<text x="430" y="575" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2875A7">🥬 蔬果</text>
+<text x="430" y="600" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">牛油果 - $1.50/個</text>
+<text x="430" y="625" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">粟米 - $1/條</text>
+<text x="430" y="650" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">翠玉瓜 - $4.90/kg</text>
+
+<!-- Footer Info -->
+<rect x="30" y="600" width="740" height="120" rx="12" fill="#ECF0F1" />
+<text x="50" y="645" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">📍 各大超市分店有售</text>
+<text x="50" y="675" font-family="Arial, sans-serif" font-size="16" fill="#2C3E50">⏰ 優惠期至3月3日 (Drakes) / 3月7日起 (ALDI)</text>
+<text x="50" y="710" font-family="Arial, sans-serif" font-size="18" fill="#E67E22">#Brisbane優惠 #超市特價 #ALDI特賣 #Drakes #澳洲生活 #布里斯班 #省錢攻略</text>
+
+<!-- Bottom note -->
+<text x="30" y="770" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D">⚡ 價格僅供參考，以店內實際標示為準。優惠商品數量有限，售完即止。</text>
+
+<!-- Decorative lines -->
+<line x1="30" y1="590" x2="770" y2="590" stroke="#BDC3C7" stroke-width="1" stroke-dasharray="5 5" />
+</svg>

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" width="400" height="800">
+  <style>
+    .title-bg { fill: #2d3e50; }
+    .winner-badge { fill: #ffc845; }
+    .winner-text { fill: #1e2b36; font-weight: 800; }
+    .price-tag-blue { fill: #0066b3; }
+    .price-tag-red { fill: #e5171e; }
+    .card-bg { fill: #ffffff; }
+    .divider { stroke: #e0e0e0; stroke-width: 1; }
+    .text-dark { fill: #1e2b36; }
+    .text-muted { fill: #5a6872; }
+    .accent-green { fill: #2c7a4d; }
+    .highlight-yellow { fill: #ffd966; }
+    .featured-badge { fill: #b33b3b; }
+  </style>
+  <!-- main container background -->
+  <rect width="400" height="800" fill="#f4f6f9" rx="12" ry="12" />
+
+  <!-- header block -->
+  <rect x="0" y="0" width="400" height="70" class="title-bg" rx="12" ry="12" />
+  <text x="20" y="28" fill="white" font-size="18" font-family="Arial, sans-serif" font-weight="bold">🛒 本週超市價格大戰 | Coles vs Woolworths 🛒</text>
+  <text x="20" y="52" fill="#b0d4f0" font-size="14" font-family="Arial, sans-serif">📅 3月4日 - 10日 2026 &nbsp;&nbsp; 🏆 本週贏家：Coles - 35款商品更便宜！</text>
+
+  <!-- AI summary row -->
+  <rect x="20" y="80" width="360" height="75" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="35" y="108" fill="#1e2b36" font-size="14" font-family="Arial, sans-serif" font-weight="bold">📊 AI 分析數據</text>
+  <text x="35" y="130" fill="#5a6872" font-size="13" font-family="Arial, sans-serif">比較商品：77款 &nbsp; 可節省總額：$307+ &nbsp; Coles 最優：45% &nbsp; Woolworths 最優：40%</text>
+  <text x="35" y="148" fill="#b33b3b" font-size="13" font-family="Arial, sans-serif" font-weight="bold">🔥 精選半價優惠</text>
+
+  <!-- cards start -->
+  <!-- category: 食品雜貨 -->
+  <rect x="20" y="170" width="360" height="128" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="30" y="190" fill="#1e2b36" font-size="15" font-family="Arial, sans-serif" font-weight="bold">🥫 食品雜貨</text>
+  <!-- line -->
+  <line x1="30" y1="195" x2="350" y2="195" class="divider" />
+  <!-- row 1 -->
+  <text x="30" y="215" fill="#1e2b36" font-size="13" font-family="Arial, sans-serif">John West 吞拿魚 95g</text>
+  <rect x="210" y="203" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="216" fill="white" font-size="11" font-family="Arial, sans-serif">$1.45 ⭐</text>
+  <rect x="265" y="203" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="216" fill="white" font-size="11" font-family="Arial, sans-serif">$1.75</text>
+  <text x="315" y="216" fill="#2c7a4d" font-size="12" font-family="Arial, sans-serif" font-weight="bold">Woolworths</text>
+  <!-- row 2 -->
+  <text x="30" y="240" fill="#1e2b36" font-size="13" font-family="Arial, sans-serif">Arnott's Shapes 餅乾</text>
+  <rect x="210" y="228" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="241" fill="white" font-size="11">$2 ⭐</text>
+  <rect x="265" y="228" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="241" fill="white" font-size="11">$2.80</text>
+  <text x="315" y="241" fill="#2c7a4d" font-size="12" font-weight="bold">Woolworths</text>
+  <!-- row 3 -->
+  <text x="30" y="265" fill="#1e2b36" font-size="13">Nestlé 朱古力</text>
+  <rect x="210" y="253" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="266" fill="white" font-size="11">$3.75 ⭐</text>
+  <rect x="265" y="253" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="266" fill="white" font-size="11">$13.50</text>
+  <text x="315" y="266" fill="#2c7a4d" font-size="12" font-weight="bold">Woolworths</text>
+  <!-- row 4 -->
+  <text x="30" y="290" fill="#1e2b36" font-size="13">Cobs 爆谷</text>
+  <rect x="210" y="278" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="291" fill="white" font-size="11">$1.75</text>
+  <rect x="265" y="278" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="291" fill="white" font-size="11">$1.25 ⭐</text>
+  <text x="315" y="291" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+  <!-- row 5 / extra line? we squeeze 5 items: SunRice two lines -->
+  <text x="30" y="315" fill="#1e2b36" font-size="13">SunRice 白米 10kg</text>
+  <rect x="210" y="303" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="316" fill="white" font-size="11">$19</text>
+  <rect x="265" y="303" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="316" fill="white" font-size="11">$13.50 ⭐</text>
+  <text x="315" y="316" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+  <!-- row 6 -->
+  <text x="30" y="340" fill="#1e2b36" font-size="13">SunRice 印度香米 5kg</text>
+  <rect x="210" y="328" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="341" fill="white" font-size="11">$17.50</text>
+  <rect x="265" y="328" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="341" fill="white" font-size="11">$13.50 ⭐</text>
+  <text x="315" y="341" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+
+  <!-- category: 飲料 -->
+  <rect x="20" y="355" width="360" height="70" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="30" y="375" fill="#1e2b36" font-size="15" font-weight="bold">🥤 飲料</text>
+  <line x1="30" y1="380" x2="350" y2="380" class="divider" />
+  <text x="30" y="400" fill="#1e2b36" font-size="13">Coca-Cola 1.25L</text>
+  <rect x="210" y="388" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="401" fill="white" font-size="11">$6</text>
+  <rect x="265" y="388" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="401" fill="white" font-size="11">$2 ⭐</text>
+  <text x="315" y="401" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+  <text x="30" y="425" fill="#1e2b36" font-size="13">Lipton Ice Tea 1.5L</text>
+  <rect x="210" y="413" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="426" fill="white" font-size="11">$3.30</text>
+  <rect x="265" y="413" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="426" fill="white" font-size="11">$2.75 ⭐</text>
+  <text x="315" y="426" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+
+  <!-- category: 復活節特輯 -->
+  <rect x="20" y="440" width="360" height="70" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="30" y="460" fill="#1e2b36" font-size="15" font-weight="bold">🐰 復活節特輯</text>
+  <line x1="30" y1="465" x2="350" y2="465" class="divider" />
+  <text x="30" y="485" fill="#1e2b36" font-size="13">Cadbury 空心蛋 50g</text>
+  <rect x="210" y="473" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="486" fill="white" font-size="11">$2.50 ⭐</text>
+  <rect x="265" y="473" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="486" fill="white" font-size="11">$4</text>
+  <text x="315" y="486" fill="#2c7a4d" font-size="12" font-weight="bold">Woolworths</text>
+  <text x="30" y="510" fill="#1e2b36" font-size="13">Cadbury 復活節兔 100g</text>
+  <rect x="210" y="498" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="511" fill="white" font-size="11">$4.75</text>
+  <rect x="265" y="498" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="511" fill="white" font-size="11">$4 ⭐</text>
+  <text x="315" y="511" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+
+  <!-- category: 個人護理 -->
+  <rect x="20" y="525" width="360" height="70" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="30" y="545" fill="#1e2b36" font-size="15" font-weight="bold">🧴 個人護理</text>
+  <line x1="30" y1="550" x2="350" y2="550" class="divider" />
+  <text x="30" y="570" fill="#1e2b36" font-size="13">Dove 洗髮水/護髮素 850ml</text>
+  <rect x="210" y="558" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="571" fill="white" font-size="11">$9.75 ⭐</text>
+  <rect x="265" y="558" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="571" fill="white" font-size="11">$11.50</text>
+  <text x="315" y="571" fill="#2c7a4d" font-size="12" font-weight="bold">Woolworths</text>
+  <text x="30" y="595" fill="#1e2b36" font-size="13">Dove 沐浴露 1L</text>
+  <rect x="210" y="583" width="48" height="18" fill="#e5171e" rx="3" ry="3" />
+  <text x="214" y="596" fill="white" font-size="11">$9.50</text>
+  <rect x="265" y="583" width="40" height="18" fill="#0066b3" rx="3" ry="3" />
+  <text x="272" y="596" fill="white" font-size="11">$7.20 ⭐</text>
+  <text x="315" y="596" fill="#2c7a4d" font-size="12" font-weight="bold">Coles</text>
+
+  <!-- category: 寵物食品 highlighted big saving -->
+  <rect x="20" y="610" width="360" height="60" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="30" y="630" fill="#1e2b36" font-size="15" font-weight="bold">🐕 寵物食品</text>
+  <line x1="30" y1="635" x2="350" y2="635" class="divider" />
+  <text x="30" y="660" fill="#1e2b36" font-size="13">Nature's Gift 狗糧 6kg：</text>
+  <text x="30" y="678" fill="#b33b3b" font-size="13" font-weight="bold">Coles $7.50 vs Woolworths $19.50 (省 $12!)</text>
+
+  <!-- 購物小貼士 + link -->
+  <rect x="20" y="685" width="360" height="95" fill="white" rx="8" ry="8" filter="url(#shadow)" />
+  <text x="30" y="705" fill="#1e2b36" font-size="15" font-weight="bold">💡 購物小貼士</text>
+  <line x1="30" y1="710" x2="350" y2="710" class="divider" />
+  <text x="30" y="730" fill="#1e2b36" font-size="12">• 本週 Coles 在米類、飲料有明顯優勢</text>
+  <text x="30" y="750" fill="#1e2b36" font-size="12">• Woolworths 零食、朱古力較便宜</text>
+  <text x="30" y="770" fill="#1e2b36" font-size="12">• 復活節商品兩邊都有半價優惠</text>
+  <text x="30" y="795" fill="#0066b3" font-size="11" font-family="Arial, sans-serif" text-decoration="underline">📍 完整比較報告：michaelleung.info/prices</text>
+  <text x="30" y="815" fill="#5a6872" font-size="11">#超市優惠 #Coles #Woolworths #澳洲生活 #價格比較 #省錢攻略 #布里斯班</text>
+
+  <!-- filter for shadow -->
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.1" />
+    </filter>
+  </defs>
+</svg>
