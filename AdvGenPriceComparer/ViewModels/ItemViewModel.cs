@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Core.ViewModels;
 
 namespace AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 
@@ -368,28 +369,3 @@ public class ItemViewModel : BaseViewModel
     #endregion
 }
 
-public class DietaryFlagViewModel : BaseViewModel
-{
-    private bool _isSelected;
-
-    public required string Name { get; init; }
-
-    public bool IsSelected
-    {
-        get => _isSelected;
-        set => SetProperty(ref _isSelected, value);
-    }
-}
-
-public class AllergenViewModel : BaseViewModel
-{
-    private bool _isSelected;
-
-    public required string Name { get; init; }
-
-    public bool IsSelected
-    {
-        get => _isSelected;
-        set => SetProperty(ref _isSelected, value);
-    }
-}
