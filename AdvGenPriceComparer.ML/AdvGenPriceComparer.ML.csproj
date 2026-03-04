@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.ML.AutoML" Version="0.21.1" />
     <PackageReference Include="Microsoft.ML.FastTree" Version="3.0.1" />
     <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="Microsoft.ML.TimeSeries" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>

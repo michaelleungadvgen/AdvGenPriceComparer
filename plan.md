@@ -2733,7 +2733,7 @@ Use ML.NET to predict future grocery prices, identify price trends, detect anoma
 **Additional Dependencies:**
 ```xml
 <PackageReference Include="Microsoft.ML" Version="3.0.1" />
-<PackageReference Include="Microsoft.ML.TimeSeries" Version="3.0.1" />
+<PackageReference Include="Microsoft.ML.TimeSeries" Version="3.0.1" /> <!-- INSTALLED: Agent-043 -->
 <PackageReference Include="Microsoft.ML.FastTree" Version="3.0.1" />
 ```
 
