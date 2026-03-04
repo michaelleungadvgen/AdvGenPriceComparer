@@ -1,6 +1,11 @@
+using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using AdvGenPriceComparer.Core.Models;
 
 namespace AdvGenPriceComparer.WPF.Services;
@@ -564,7 +569,7 @@ public class SettingsService : ISettingsService
         _liteDbPath = data.LiteDbPath ?? _liteDbPath;
         _serverHost = data.ServerHost ?? _serverHost;
         _serverPort = data.ServerPort;
-        _apiKey = data.ApiKey ?? _apiKey;
+        _apiKey = DecryptString(data.ApiKey) ?? _apiKey;
         _databaseName = data.DatabaseName ?? _databaseName;
         _useSsl = data.UseSsl;
         _defaultExportPath = data.DefaultExportPath ?? _defaultExportPath;
@@ -589,7 +594,7 @@ public class SettingsService : ISettingsService
             LiteDbPath = _liteDbPath,
             ServerHost = _serverHost,
             ServerPort = _serverPort,
-            ApiKey = _apiKey,
+            ApiKey = EncryptString(_apiKey),
             DatabaseName = _databaseName,
             UseSsl = _useSsl,
             DefaultExportPath = _defaultExportPath,
@@ -605,6 +610,69 @@ public class SettingsService : ISettingsService
             ConnectionTimeout = _connectionTimeout,
             RetryCount = _retryCount
         };
+    }
+
+    private string EncryptString(string plainText)
+    {
+        if (string.IsNullOrEmpty(plainText))
+            return plainText;
+
+        try
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
+                byte[] encryptedBytes = ProtectedData.Protect(plainBytes, null, DataProtectionScope.CurrentUser);
+                return Convert.ToBase64String(encryptedBytes);
+            }
+        }
+        catch (PlatformNotSupportedException)
+        {
+            // Fallback for tests running on non-Windows platforms
+        }
+        catch (Exception ex)
+        {
+            _logger?.LogError("Failed to encrypt sensitive data", ex);
+        }
+
+        return plainText;
+    }
+
+    private string DecryptString(string encryptedText)
+    {
+        if (string.IsNullOrEmpty(encryptedText))
+            return encryptedText;
+
+        try
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
+                byte[] plainBytes = ProtectedData.Unprotect(encryptedBytes, null, DataProtectionScope.CurrentUser);
+                return Encoding.UTF8.GetString(plainBytes);
+            }
+        }
+        catch (PlatformNotSupportedException)
+        {
+            // Fallback for tests running on non-Windows platforms
+        }
+        catch (FormatException)
+        {
+            // It might not be encrypted yet (e.g., migrating from old clear-text settings)
+            return encryptedText;
+        }
+        catch (CryptographicException)
+        {
+            // Either bad data, wrong user, or not encrypted. Fall back to plain text.
+            return encryptedText;
+        }
+        catch (Exception ex)
+        {
+            _logger?.LogError("Failed to decrypt sensitive data", ex);
+            return encryptedText;
+        }
+
+        return encryptedText;
     }
 
     /// <summary>
