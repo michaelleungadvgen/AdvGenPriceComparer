@@ -159,4 +159,10 @@ public class SimpleDialogService : IDialogService
         var window = new PriceForecastWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowChatDialog()
+    {
+        var window = new Chat.PriceChatWindow { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

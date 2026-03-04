@@ -10,6 +10,8 @@ using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Views;
+using AdvGenPriceComparer.WPF.Chat.Services;
+using AdvGenPriceComparer.WPF.Chat.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdvGenPriceComparer.WPF;
@@ -20,6 +22,7 @@ namespace AdvGenPriceComparer.WPF;
 public partial class App : Application
 {
     public IServiceProvider Services { get; private set; }
+    public static IServiceProvider? ServiceProvider => (Current as App)?.Services;
 
     public App()
     {
@@ -305,6 +308,29 @@ public partial class App : Application
             {
                 var viewModel = provider.GetRequiredService<ShoppingListViewModel>();
                 return new ShoppingListWindow(viewModel);
+            });
+
+            // Chat Services
+            services.AddSingleton<IOllamaService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new OllamaService(logger);
+            });
+            services.AddSingleton<IQueryRouterService>(provider =>
+            {
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new QueryRouterService(groceryData, itemRepo, placeRepo, priceRepo, logger);
+            });
+            services.AddTransient<ChatViewModel>(provider =>
+            {
+                var ollamaService = provider.GetRequiredService<IOllamaService>();
+                var queryRouter = provider.GetRequiredService<IQueryRouterService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new ChatViewModel(ollamaService, queryRouter, logger);
             });
 
             // Main Window

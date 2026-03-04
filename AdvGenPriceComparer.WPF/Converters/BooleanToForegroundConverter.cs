@@ -5,10 +5,10 @@ using System.Windows.Media;
 
 namespace AdvGenPriceComparer.WPF.Converters
 {
-    public class BooleanToBrushConverter : IValueConverter
+    public class BooleanToForegroundConverter : IValueConverter
     {
-        public Brush TrueBrush { get; set; } = new SolidColorBrush(Color.FromRgb(200, 230, 201)); // Light green
-        public Brush FalseBrush { get; set; } = new SolidColorBrush(Color.FromRgb(255, 205, 210)); // Light red
+        public Brush TrueBrush { get; set; } = new SolidColorBrush(Color.FromRgb(27, 94, 32)); // Dark green
+        public Brush FalseBrush { get; set; } = new SolidColorBrush(Color.FromRgb(183, 28, 28)); // Dark red
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

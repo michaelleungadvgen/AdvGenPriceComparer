@@ -18,9 +18,10 @@
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
             <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
-            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+            <!-- CountToVisibilityConverter is defined in NullToVisibilityConverter.cs -->
             <converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
             <converters:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
+            <converters:BooleanToForegroundConverter x:Key="BooleanToForegroundConverter"/>
             <converters:BarcodeFormatDescriptionConverter x:Key="BarcodeFormatDescriptionConverter"/>
             <converters:StringNotEmptyToVisibilityConverter x:Key="StringNotEmptyToVisibilityConverter"/>
             <converters:StringToSolidColorBrushConverter x:Key="StringToSolidColorBrushConverter"/>
@@ -28,6 +29,7 @@
             <converters:BooleanToStrikethroughConverter x:Key="BooleanToStrikethroughConverter"/>
             <converters:BooleanToFavoriteConverter x:Key="BooleanToFavoriteConverter"/>
             <converters:SelectedItemBackgroundConverter x:Key="SelectedItemBackgroundConverter"/>
+            <converters:MessageRoleToVisibilityConverter x:Key="MessageRoleToVisibilityConverter"/>
 
             <!-- Light Blue Theme Color -->
             <Color x:Key="PrimaryColor">#87CEEB</Color>

@@ -1,22 +1,20 @@
 using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
+using AdvGenPriceComparer.WPF.Chat.Models;
 
 namespace AdvGenPriceComparer.WPF.Converters
 {
-    public class BooleanToBrushConverter : IValueConverter
+    public class MessageRoleToVisibilityConverter : IValueConverter
     {
-        public Brush TrueBrush { get; set; } = new SolidColorBrush(Color.FromRgb(200, 230, 201)); // Light green
-        public Brush FalseBrush { get; set; } = new SolidColorBrush(Color.FromRgb(255, 205, 210)); // Light red
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool isAvailable)
+            if (value is MessageRole role && parameter is string targetRole)
             {
-                return isAvailable ? TrueBrush : FalseBrush;
+                return role.ToString() == targetRole ? Visibility.Visible : Visibility.Collapsed;
             }
-            return FalseBrush;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
