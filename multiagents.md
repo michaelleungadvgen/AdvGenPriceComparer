@@ -152,7 +152,7 @@
 | Implement PriceForecastingService | 🟢 DONE | Agent-044 | SSA forecasting model implementation - full service with price forecasting, anomaly detection, and buying recommendations |
 | Implement PriceForecastingService | 🔴 TODO | - | SSA forecasting model |
 | Implement PriceAnomalyDetectionService | 🔴 TODO | - | Anomaly detection |
-| Create PriceForecastWindow.xaml UI | 🔴 TODO | - | Forecast visualization |
+| Create PriceForecastWindow.xaml UI | 🟢 DONE | Agent-045 | Created PriceForecastWindow with LiveCharts integration, PriceForecastViewModel, IDialogService integration, MainWindow menu button |
 | Integrate LiveCharts for price visualization | 🔴 TODO | - | Chart integration |
 | Test forecasting with real historical data | 🔴 TODO | - | Validate predictions |
 

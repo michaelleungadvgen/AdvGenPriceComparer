@@ -141,4 +141,22 @@ public class SimpleDialogService : IDialogService
         var window = new MLModelManagementWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowPriceForecastDialog()
+    {
+        var priceRecordRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPriceRecordRepository>();
+        var itemRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IItemRepository>();
+        var placeRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPlaceRepository>();
+        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.PriceForecastViewModel(
+            priceRecordRepository, 
+            itemRepository, 
+            placeRepository, 
+            dialogService, 
+            logger);
+        var window = new PriceForecastWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

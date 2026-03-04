@@ -3654,10 +3654,10 @@ public class PriceForecastViewModel : ViewModelBase
   - [x] Generate buying recommendations (BuyNow/Wait/AvoidHighPrice/NormalTime)
   - [x] Calculate comprehensive price statistics
   - [x] Support batch forecasting for multiple items
-- [ ] Create `PriceForecastWindow.xaml` UI
-- [ ] Create `PriceForecastViewModel`
-- [ ] Integrate LiveCharts for price visualization
-- [ ] Add menu item to open Price Forecast window
+- [x] Create `PriceForecastWindow.xaml` UI
+- [x] Create `PriceForecastViewModel`
+- [x] Integrate LiveCharts for price visualization
+- [x] Add menu item to open Price Forecast window
 - [ ] Test forecasting with real historical data
 - [ ] Implement price alert system
 - [ ] Document forecasting accuracy and limitations
