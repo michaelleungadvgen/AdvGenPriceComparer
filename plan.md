@@ -1811,7 +1811,7 @@ public class DataPreparationService
 - [x] Export training data from existing categorized items (DataPreparationService.ExportTrainingDataAsync)
 - [x] Generate sample training data (DataPreparationService.GenerateSampleTrainingDataAsync)
 - [ ] Train initial model with existing data
-- [ ] Integrate prediction into JsonImportService
+- [x] Integrate prediction into JsonImportService - DONE: CategoryPredictionService integrated with auto-categorization support, ImportOptions class with EnableAutoCategorization flag, ML services registered in DI container
 - [ ] Add auto-suggestion to AddItemWindow UI
 - [ ] Create MLModelManagementWindow for training/testing
 - [ ] Add configuration for confidence threshold

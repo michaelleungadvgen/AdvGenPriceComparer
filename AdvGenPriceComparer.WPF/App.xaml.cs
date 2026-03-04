@@ -6,6 +6,7 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Views;
@@ -131,17 +132,41 @@ public partial class App : Application
             services.AddSingleton<IPlaceRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Places);
             services.AddSingleton<IAlertRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Alerts);
             
+            // ML.NET Services
+            services.AddSingleton<ModelTrainingService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new ModelTrainingService(
+                    msg => logger.LogInfo(msg),
+                    (msg, ex) => logger.LogError(msg, ex),
+                    msg => logger.LogWarning(msg));
+            });
+            services.AddSingleton<CategoryPredictionService>(provider =>
+            {
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var modelPath = settingsService.MLModelPath;
+                
+                // Ensure directory exists
+                Directory.CreateDirectory(Path.GetDirectoryName(modelPath)!);
+                
+                return new CategoryPredictionService(modelPath,
+                    msg => logger.LogInfo(msg),
+                    (msg, ex) => logger.LogError(msg, ex),
+                    msg => logger.LogWarning(msg));
+            });
+            services.AddSingleton<DataPreparationService>();
+            
             services.AddTransient<DemoDataService>();
             services.AddTransient<JsonImportService>(provider =>
             {
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var categoryPredictionService = provider.GetRequiredService<CategoryPredictionService>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 
-                // Note: JsonImportService might need refactoring if it depends on DatabaseService directly
-                // For now we'll assume it uses repositories or we'll refactor it next
-                return new JsonImportService(itemRepo, placeRepo, priceRepo,
+                return new JsonImportService(itemRepo, placeRepo, priceRepo, categoryPredictionService,
                     msg => logger.LogInfo(msg),
                     (msg, ex) => logger.LogError(msg, ex),
                     msg => logger.LogWarning(msg));

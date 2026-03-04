@@ -4,6 +4,7 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Entities;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using AdvGenPriceComparer.ML.Services;
 
 namespace AdvGenPriceComparer.Data.LiteDB.Services;
 
@@ -54,6 +55,7 @@ public class JsonImportService
     private readonly IItemRepository _itemRepository;
     private readonly IPlaceRepository _placeRepository;
     private readonly IPriceRecordRepository _priceRecordRepository;
+    private readonly CategoryPredictionService? _categoryPredictionService;
     private readonly Action<string>? _logInfo;
     private readonly Action<string, Exception>? _logError;
     private readonly Action<string>? _logWarning;
@@ -68,6 +70,26 @@ public class JsonImportService
         _itemRepository = itemRepository;
         _placeRepository = placeRepository;
         _priceRecordRepository = priceRecordRepository;
+        _logInfo = logInfo;
+        _logError = logError;
+        _logWarning = logWarning;
+    }
+
+    /// <summary>
+    /// Constructor with CategoryPredictionService for auto-categorization support
+    /// </summary>
+    public JsonImportService(IItemRepository itemRepository, 
+        IPlaceRepository placeRepository, 
+        IPriceRecordRepository priceRecordRepository,
+        CategoryPredictionService? categoryPredictionService,
+        Action<string>? logInfo = null, 
+        Action<string, Exception>? logError = null,
+        Action<string>? logWarning = null)
+    {
+        _itemRepository = itemRepository;
+        _placeRepository = placeRepository;
+        _priceRecordRepository = priceRecordRepository;
+        _categoryPredictionService = categoryPredictionService;
         _logInfo = logInfo;
         _logError = logError;
         _logWarning = logWarning;
@@ -486,11 +508,16 @@ public class JsonImportService
     /// Import Coles products with specified store and date
     /// </summary>
     public ImportResult ImportColesProducts(List<ColesProduct> products, string storeId, DateTime catalogueDate, 
-        Dictionary<string, string>? existingItemMappings = null, IProgress<ImportProgress>? progress = null, DateTime? expiryDate = null)
+        Dictionary<string, string>? existingItemMappings = null, IProgress<ImportProgress>? progress = null, DateTime? expiryDate = null,
+        ImportOptions? options = null)
     {
         var result = new ImportResult();
         var detailedErrors = new List<ImportError>();
         existingItemMappings ??= new Dictionary<string, string>();
+        options ??= new ImportOptions(); // Use default options if not provided
+        
+        // Track prediction confidence scores for averaging
+        var predictionConfidences = new List<float>();
         
         // Validate store
         var storeValidation = ValidateStoreId(storeId);
@@ -575,12 +602,26 @@ public class JsonImportService
                 }
                 else
                 {
-                    // Create new item
-                    var item = CreateOrUpdateItem(product, store.Chain ?? "Unknown");
+                    // Create new item with auto-categorization if enabled
+                    var item = CreateOrUpdateItem(product, store.Chain ?? "Unknown", options, out bool wasAutoCategorized, out float predictionConfidence);
                     if (item != null)
                     {
                         itemId = item.Id!;
                         result.ItemsProcessed++;
+                        
+                        // Track categorization stats
+                        if (wasAutoCategorized)
+                        {
+                            result.CategoriesPredicted++;
+                            if (predictionConfidence > 0)
+                            {
+                                predictionConfidences.Add(predictionConfidence);
+                            }
+                        }
+                        else if (!string.IsNullOrEmpty(product.Category))
+                        {
+                            result.CategoriesAssigned++;
+                        }
                     }
                     else
                     {
@@ -625,11 +666,18 @@ public class JsonImportService
         result.Errors = detailedErrors.Select(e => $"[{e.ErrorType}] {e.Message}" + 
             (e.ProductName != null ? $" (Product: {e.ProductName})" : "")).ToList();
         
+        // Calculate average prediction confidence
+        if (predictionConfidences.Count > 0)
+        {
+            result.AveragePredictionConfidence = predictionConfidences.Average();
+        }
+        
         if (result.Success)
         {
             result.Message = $"Imported {result.ItemsProcessed} new items and {result.PriceRecordsCreated} price records" +
+                (result.CategoriesPredicted > 0 ? $" ({result.CategoriesPredicted} auto-categorized)" : "") +
                 (detailedErrors.Count > 0 ? $" with {detailedErrors.Count} warnings" : "");
-            LogInfo($"Import completed: {result.ItemsProcessed} items, {result.PriceRecordsCreated} price records, {detailedErrors.Count} errors");
+            LogInfo($"Import completed: {result.ItemsProcessed} items, {result.PriceRecordsCreated} price records, {result.CategoriesPredicted} auto-categorized, {detailedErrors.Count} errors");
         }
         else
         {
@@ -867,6 +915,14 @@ public class JsonImportService
 
     private Item CreateOrUpdateItem(ColesProduct product, string chain)
     {
+        return CreateOrUpdateItem(product, chain, new ImportOptions(), out _, out _);
+    }
+
+    private Item CreateOrUpdateItem(ColesProduct product, string chain, ImportOptions options, out bool wasAutoCategorized, out float predictionConfidence)
+    {
+        wasAutoCategorized = false;
+        predictionConfidence = 0f;
+        
         // Try to find existing item by exact name match and brand
         // Use exact matching to avoid false positives (e.g., "Coca-Cola 1.25L" vs "Coca-Cola 2L")
         var existingItems = _itemRepository.GetAll()
@@ -883,20 +939,57 @@ public class JsonImportService
             item.Name = product.ProductName;
             item.Description = product.Description;
             item.Brand = product.Brand;
-            item.Category = product.Category;
+            
+            // For existing items, only update category if it was empty and we can auto-categorize
+            if (string.IsNullOrEmpty(item.Category) && string.IsNullOrEmpty(product.Category) && 
+                options.EnableAutoCategorization && _categoryPredictionService?.IsModelLoaded == true)
+            {
+                var tempItem = new Item { Name = product.ProductName, Brand = product.Brand, Description = product.Description };
+                if (_categoryPredictionService.TryAutoCategorize(tempItem, options.AutoCategorizationThreshold, out var predictedCategory))
+                {
+                    item.Category = predictedCategory;
+                    wasAutoCategorized = true;
+                    predictionConfidence = _categoryPredictionService.PredictCategory(tempItem).Confidence;
+                    LogInfo($"Auto-categorized existing item '{product.ProductName}' as '{predictedCategory}' ({predictionConfidence:P0} confidence)");
+                }
+            }
+            else if (!string.IsNullOrEmpty(product.Category))
+            {
+                item.Category = product.Category;
+            }
+            
             item.LastUpdated = DateTime.UtcNow;
 
             _itemRepository.Update(item);
         }
         else
         {
+            // Determine category - use provided category or auto-categorize if enabled
+            string category = product.Category ?? string.Empty;
+            
+            if (string.IsNullOrEmpty(category) && options.EnableAutoCategorization && _categoryPredictionService?.IsModelLoaded == true)
+            {
+                var tempItem = new Item { Name = product.ProductName, Brand = product.Brand, Description = product.Description };
+                if (_categoryPredictionService.TryAutoCategorize(tempItem, options.AutoCategorizationThreshold, out var predictedCategory))
+                {
+                    category = predictedCategory;
+                    wasAutoCategorized = true;
+                    predictionConfidence = _categoryPredictionService.PredictCategory(tempItem).Confidence;
+                    LogInfo($"Auto-categorized new item '{product.ProductName}' as '{category}' ({predictionConfidence:P0} confidence)");
+                }
+                else
+                {
+                    LogWarning($"Could not auto-categorize '{product.ProductName}' - prediction confidence below threshold ({options.AutoCategorizationThreshold:P0})");
+                }
+            }
+            
             // Create new item
             item = new Item
             {
                 Name = product.ProductName,
                 Description = product.Description,
                 Brand = product.Brand,
-                Category = product.Category,
+                Category = category,
                 PackageSize = product.Description,
                 IsActive = true,
                 DateAdded = DateTime.UtcNow,
@@ -907,6 +1000,13 @@ public class JsonImportService
                     ["Store"] = chain
                 }
             };
+            
+            // Add auto-categorization metadata if applicable
+            if (wasAutoCategorized)
+            {
+                item.ExtraInformation["AutoCategorized"] = "true";
+                item.ExtraInformation["PredictionConfidence"] = predictionConfidence.ToString("P0");
+            }
 
             // Add unit price if available
             if (!string.IsNullOrEmpty(product.UnitPrice))
@@ -1458,6 +1558,21 @@ public class ImportResult
     public int ItemsSkipped { get; set; }
     public int ItemsFailed { get; set; }
     public List<string> Errors { get; set; } = new();
+
+    /// <summary>
+    /// Number of items that were auto-categorized using ML.NET
+    /// </summary>
+    public int CategoriesPredicted { get; set; }
+
+    /// <summary>
+    /// Number of items that already had categories assigned in the import data
+    /// </summary>
+    public int CategoriesAssigned { get; set; }
+
+    /// <summary>
+    /// Average confidence score for ML predictions (0.0 to 1.0)
+    /// </summary>
+    public float AveragePredictionConfidence { get; set; }
 }
 
 /// <summary>
@@ -1469,4 +1584,61 @@ public class ImportProgress
     public int ProcessedItems { get; set; }
     public string CurrentItem { get; set; } = string.Empty;
     public double PercentComplete => TotalItems > 0 ? (double)ProcessedItems / TotalItems * 100 : 0;
+}
+
+/// <summary>
+/// Options for controlling import behavior
+/// </summary>
+public class ImportOptions
+{
+    /// <summary>
+    /// Enable automatic categorization using ML.NET when product category is missing or empty
+    /// </summary>
+    public bool EnableAutoCategorization { get; set; } = true;
+
+    /// <summary>
+    /// Confidence threshold for auto-categorization (0.0 to 1.0, default 0.7 = 70%)
+    /// </summary>
+    public float AutoCategorizationThreshold { get; set; } = 0.7f;
+
+    /// <summary>
+    /// How to handle duplicate products
+    /// </summary>
+    public DuplicateHandling DuplicateHandling { get; set; } = DuplicateHandling.Skip;
+
+    /// <summary>
+    /// Optional store ID to associate with imported products
+    /// </summary>
+    public string? StoreId { get; set; }
+
+    /// <summary>
+    /// Optional catalogue valid date
+    /// </summary>
+    public DateTime? ValidDate { get; set; }
+
+    /// <summary>
+    /// Optional catalogue expiry date
+    /// </summary>
+    public DateTime? ExpiryDate { get; set; }
+}
+
+/// <summary>
+/// How to handle duplicate products during import
+/// </summary>
+public enum DuplicateHandling
+{
+    /// <summary>
+    /// Skip duplicate products
+    /// </summary>
+    Skip,
+
+    /// <summary>
+    /// Overwrite existing product data with new data
+    /// </summary>
+    Overwrite,
+
+    /// <summary>
+    /// Update only price information for duplicates
+    /// </summary>
+    UpdatePriceOnly
 }
