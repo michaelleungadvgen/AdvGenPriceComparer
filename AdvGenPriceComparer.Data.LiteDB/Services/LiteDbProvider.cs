@@ -54,6 +54,28 @@ public class LiteDbProvider : IDatabaseProvider
     }
 
     /// <summary>
+    /// Test the connection to the LiteDB database
+    /// </summary>
+    public Task<bool> TestConnectionAsync()
+    {
+        try
+        {
+            if (_database?.Database != null)
+            {
+                // Try to access a collection to verify connection
+                _database.Database.GetCollectionNames();
+                return Task.FromResult(true);
+            }
+            return Task.FromResult(false);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"LiteDbProvider test connection failed: {ex.Message}");
+            return Task.FromResult(false);
+        }
+    }
+
+    /// <summary>
     /// Gets the underlying LiteDatabase instance for repository creation
     /// </summary>
     public ILiteDatabase? GetDatabase()

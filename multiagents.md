@@ -136,7 +136,8 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Create IDatabaseProvider interface | 🟢 DONE | Pre-existing | Database abstraction layer - already implemented in Core project |
-| Create DatabaseProviderFactory | 🔴 TODO | - | Provider factory pattern |
+| Create DatabaseProviderFactory | 🟢 DONE | Pre-existing | Provider factory pattern already implemented |
+| Add TestConnectionAsync to IDatabaseProvider interface | 🟢 DONE | Agent-039 | Added TestConnectionAsync() to interface, implemented in LiteDbProvider and AdvGenNoSqlProvider |
 | Implement LiteDbProvider | 🟢 DONE | Pre-existing | LiteDB provider - already implemented in Data.LiteDB project |
 | Implement AdvGenNoSqlProvider | 🟢 DONE | Agent-036 | Implemented complete HTTP client provider with retry logic and all 4 repositories |
 | Create SettingsWindow.xaml UI | 🟢 DONE | Agent-033 | Database settings UI |
@@ -377,6 +378,7 @@
 | 2026-03-04 | Implement AdvGenNoSqlProvider - Complete HTTP client provider with retry logic, health checks, and 4 HTTP-based repository implementations (Items, Places, PriceRecords, Alerts) | Agent-036 |
 | 2026-03-05 | Handle provider switching - SettingsViewModel tracks provider changes, shows warning banner in Database settings UI, prompts for confirmation on save, automatically restarts application with error handling | Agent-037 |
 | 2026-03-05 | Add menu item to open Settings - Added Tools menu with Settings item to MainWindow menu bar, includes Ctrl+, shortcut, opens SettingsWindow via IDialogService | Agent-038 |
+| 2026-03-05 | Add TestConnectionAsync to IDatabaseProvider interface - Added TestConnectionAsync() method to IDatabaseProvider interface, implemented in LiteDbProvider (tests LiteDB connection) and AdvGenNoSqlProvider (tests HTTP health endpoints), build succeeds, 248 tests passing | Agent-039 |
 
 ---
 

@@ -2687,7 +2687,7 @@ private void ConfigureServices(IServiceCollection services)
 - [x] Create `SettingsViewModel` (Agent-033)
 - [x] Update `App.xaml.cs` for provider selection (already integrated)
 - [x] Add menu item to open Settings - IMPLEMENTED: Added Tools menu with Settings item to MainWindow menu bar, includes Ctrl+, shortcut, opens SettingsWindow via IDialogService
-- [ ] Implement connection testing for AdvGenNoSQLServer
+- [x] Implement connection testing for AdvGenNoSQLServer - IMPLEMENTED: Added TestConnectionAsync() to IDatabaseProvider interface, implemented in LiteDbProvider and AdvGenNoSqlProvider (Agent-039)
 - [x] Handle provider switching (with restart notification) - IMPLEMENTED: SettingsViewModel tracks original provider, shows warning banner when changed, prompts for confirmation on save, automatically restarts application
 - [ ] Document AdvGenNoSQLServer API protocol
 - [ ] Test database switching workflow

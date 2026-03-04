@@ -27,6 +27,12 @@ public interface IDatabaseProvider : IDisposable
     /// </summary>
     Task DisconnectAsync();
 
+    /// <summary>
+    /// Test the connection to the database without establishing a full connection
+    /// </summary>
+    /// <returns>True if connection is successful, false otherwise</returns>
+    Task<bool> TestConnectionAsync();
+
     // Repository accessors
     IItemRepository Items { get; }
     IPlaceRepository Places { get; }

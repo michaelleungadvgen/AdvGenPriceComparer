@@ -106,6 +106,11 @@ public class AdvGenNoSqlProvider : IDatabaseProvider
     /// <summary>
     /// Test connection to the server
     /// </summary>
+    Task<bool> IDatabaseProvider.TestConnectionAsync() => TestConnectionAsync();
+
+    /// <summary>
+    /// Test connection to the server (internal implementation)
+    /// </summary>
     public async Task<bool> TestConnectionAsync()
     {
         if (_httpClient == null)
