@@ -1812,7 +1812,7 @@ public class DataPreparationService
 - [x] Generate sample training data (DataPreparationService.GenerateSampleTrainingDataAsync)
 - [ ] Train initial model with existing data
 - [x] Integrate prediction into JsonImportService - DONE: CategoryPredictionService integrated with auto-categorization support, ImportOptions class with EnableAutoCategorization flag, ML services registered in DI container
-- [ ] Add auto-suggestion to AddItemWindow UI
+- [x] Add auto-suggestion to AddItemWindow UI - DONE: Added ML-based category suggestions with real-time predictions from CategoryPredictionService, confidence scores display, clickable suggestion buttons, integrated into AddItemViewModel and AddItemWindow.xaml
 - [x] Create MLModelManagementWindow for training/testing - DONE: Created MLModelManagementWindow.xaml with modern UI, MLModelManagementViewModel with training/testing logic, integrated into MainWindow sidebar
 - [ ] Add configuration for confidence threshold
 - [ ] Implement model versioning

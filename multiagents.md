@@ -126,7 +126,7 @@
 | Implement ModelTrainingService | 🔴 TODO | - | Model training pipeline |
 | Implement CategoryPredictionService | 🔴 TODO | - | Auto-categorization service |
 | Integrate prediction into JsonImportService | 🟢 DONE | Agent-041 | Integrated CategoryPredictionService into JsonImportService with auto-categorization support, ImportOptions with EnableAutoCategorization flag, tracking stats in ImportResult, registered ML services in DI container |
-| Add auto-suggestion to AddItemWindow UI | 🟡 DOING | Agent-047 | Category suggestions - Adding ML-based category suggestions to AddItemWindow UI |
+| Add auto-suggestion to AddItemWindow UI | 🟢 DONE | Agent-047 | Added ML-based category suggestions to AddItemWindow UI with real-time predictions, confidence scores, and clickable suggestions |
 | Create MLModelManagementWindow | 🟢 DONE | Agent-042 | ML Model Management window created with training/testing UI |
 | Test prediction accuracy | 🔴 TODO | - | Validate ML accuracy |
 
@@ -386,6 +386,7 @@
 | 2026-03-05 | Install Microsoft.ML.TimeSeries - Added ML.NET TimeSeries package (v3.0.1) to AdvGenPriceComparer.ML project for price prediction and forecasting capabilities, build succeeds with 0 errors | Agent-043 |
 | 2026-03-05 | Implement PriceForecastingService - Created full SSA forecasting service with price prediction, anomaly detection, illusory discount detection, buying recommendations, statistics calculation, and batch forecasting | Agent-044 |
 | 2026-03-05 | Ollama Chat Interface - Implemented IOllamaService, OllamaService, IQueryRouterService, QueryRouterService, ChatViewModel, PriceChatWindow with full natural language query support, integrated into MainWindow sidebar, 248 tests passing | Agent-046 |
+| 2026-03-05 | Add auto-suggestion to AddItemWindow UI - Added ML-based category suggestions with real-time predictions from CategoryPredictionService, confidence scores, clickable suggestions panel, integrated into AddItemViewModel | Agent-047 |
 
 ---
 
