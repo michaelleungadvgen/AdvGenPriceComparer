@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.ML.Models;
+using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 
@@ -13,6 +15,7 @@ public class AddItemViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly CategoryPredictionService? _categoryPredictionService;
 
     private string? _itemId;
     private string _name = string.Empty;
@@ -33,22 +36,41 @@ public class AddItemViewModel : ViewModelBase
     private bool _isOnSale;
     private Place? _selectedStore;
 
-    public AddItemViewModel(IGroceryDataService dataService, IDialogService dialogService)
+    // Category suggestions
+    private ObservableCollection<CategorySuggestion> _categorySuggestions = new();
+    private bool _showCategorySuggestions;
+
+    public AddItemViewModel(
+        IGroceryDataService dataService, 
+        IDialogService dialogService,
+        CategoryPredictionService? categoryPredictionService = null)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+        _categoryPredictionService = categoryPredictionService;
 
         AvailableStores = new ObservableCollection<Place>();
         PriceRecords = new ObservableCollection<PriceRecordDisplay>();
+        CategorySuggestions = new ObservableCollection<CategorySuggestion>();
 
         AddPriceRecordCommand = new RelayCommand(AddPriceRecord, CanAddPriceRecord);
+        ApplyCategorySuggestionCommand = new RelayCommand<CategorySuggestion>(ApplyCategorySuggestion);
+        ClearCategorySuggestionsCommand = new RelayCommand(() => ShowCategorySuggestions = false);
 
         LoadStores();
     }
 
     public ObservableCollection<Place> AvailableStores { get; }
     public ObservableCollection<PriceRecordDisplay> PriceRecords { get; }
+    public ObservableCollection<CategorySuggestion> CategorySuggestions
+    {
+        get => _categorySuggestions;
+        set => SetProperty(ref _categorySuggestions, value);
+    }
+
     public ICommand AddPriceRecordCommand { get; }
+    public ICommand ApplyCategorySuggestionCommand { get; }
+    public ICommand ClearCategorySuggestionsCommand { get; }
 
     public string? ItemId
     {
@@ -76,19 +98,41 @@ public class AddItemViewModel : ViewModelBase
     public string Name
     {
         get => _name;
-        set => SetProperty(ref _name, value);
+        set
+        {
+            if (SetProperty(ref _name, value))
+            {
+                UpdateCategorySuggestions();
+            }
+        }
     }
 
     public string Brand
     {
         get => _brand;
-        set => SetProperty(ref _brand, value);
+        set
+        {
+            if (SetProperty(ref _brand, value))
+            {
+                UpdateCategorySuggestions();
+            }
+        }
     }
 
     public string Category
     {
         get => _category;
-        set => SetProperty(ref _category, value);
+        set
+        {
+            if (SetProperty(ref _category, value))
+            {
+                // Hide suggestions when user manually selects a category
+                if (!string.IsNullOrEmpty(value))
+                {
+                    ShowCategorySuggestions = false;
+                }
+            }
+        }
     }
 
     public string SubCategory
@@ -145,6 +189,14 @@ public class AddItemViewModel : ViewModelBase
         set => SetProperty(ref _dietaryFlagsText, value);
     }
 
+    public bool ShowCategorySuggestions
+    {
+        get => _showCategorySuggestions;
+        set => SetProperty(ref _showCategorySuggestions, value);
+    }
+
+    public bool HasCategoryPredictionService => _categoryPredictionService?.IsModelLoaded ?? false;
+
     public string NewPrice
     {
         get => _newPrice;
@@ -195,6 +247,63 @@ public class AddItemViewModel : ViewModelBase
             {
                 CommandManager.InvalidateRequerySuggested();
             }
+        }
+    }
+
+    private void UpdateCategorySuggestions()
+    {
+        // Only show suggestions if we have a prediction service with a loaded model
+        if (_categoryPredictionService?.IsModelLoaded != true)
+            return;
+
+        // Don't show suggestions if the user has already manually set a category
+        if (!string.IsNullOrEmpty(Category) && !CategorySuggestions.Any(cs => cs.Category == Category))
+            return;
+
+        // Need at least the product name to make predictions
+        if (string.IsNullOrWhiteSpace(Name))
+        {
+            ShowCategorySuggestions = false;
+            return;
+        }
+
+        // Create product data for prediction
+        var productData = new ProductData
+        {
+            ProductName = Name,
+            Brand = Brand,
+            Description = Description,
+            Store = ""
+        };
+
+        // Get top 3 category suggestions
+        var suggestions = _categoryPredictionService.GetTopSuggestions(productData, topN: 3);
+
+        CategorySuggestions.Clear();
+        foreach (var (category, confidence) in suggestions)
+        {
+            // Only show suggestions with at least 10% confidence
+            if (confidence >= 0.1f)
+            {
+                CategorySuggestions.Add(new CategorySuggestion
+                {
+                    Category = category,
+                    Confidence = confidence,
+                    ConfidenceText = $"{confidence:P0}"
+                });
+            }
+        }
+
+        ShowCategorySuggestions = CategorySuggestions.Any();
+        OnPropertyChanged(nameof(HasCategoryPredictionService));
+    }
+
+    private void ApplyCategorySuggestion(CategorySuggestion? suggestion)
+    {
+        if (suggestion != null)
+        {
+            Category = suggestion.Category;
+            ShowCategorySuggestions = false;
         }
     }
 
@@ -415,6 +524,9 @@ public class AddItemViewModel : ViewModelBase
         DietaryFlagsText = item.DietaryFlags.Any() ? string.Join(", ", item.DietaryFlags) : string.Empty;
 
         LoadPriceRecords();
+        
+        // Don't show suggestions when loading an existing item
+        ShowCategorySuggestions = false;
     }
 }
 
@@ -426,4 +538,14 @@ public class PriceRecordDisplay
     public required DateTime DateRecorded { get; set; }
     public required bool IsOnSale { get; set; }
     public string? SavingsText { get; set; }
+}
+
+/// <summary>
+/// Represents a category suggestion with confidence level
+/// </summary>
+public class CategorySuggestion
+{
+    public string Category { get; set; } = string.Empty;
+    public float Confidence { get; set; }
+    public string ConfidenceText { get; set; } = string.Empty;
 }

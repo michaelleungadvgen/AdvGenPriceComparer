@@ -126,7 +126,7 @@
 | Implement ModelTrainingService | 🔴 TODO | - | Model training pipeline |
 | Implement CategoryPredictionService | 🔴 TODO | - | Auto-categorization service |
 | Integrate prediction into JsonImportService | 🟢 DONE | Agent-041 | Integrated CategoryPredictionService into JsonImportService with auto-categorization support, ImportOptions with EnableAutoCategorization flag, tracking stats in ImportResult, registered ML services in DI container |
-| Add auto-suggestion to AddItemWindow UI | 🔴 TODO | - | Category suggestions |
+| Add auto-suggestion to AddItemWindow UI | 🟡 DOING | Agent-047 | Category suggestions - Adding ML-based category suggestions to AddItemWindow UI |
 | Create MLModelManagementWindow | 🟢 DONE | Agent-042 | ML Model Management window created with training/testing UI |
 | Test prediction accuracy | 🔴 TODO | - | Validate ML accuracy |
 

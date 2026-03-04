@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}"
-        Height="850"
+        Height="900"
         Width="700"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
@@ -70,6 +70,104 @@
                     <ComboBoxItem Content="Vegetables"/>
                     <ComboBoxItem Content="Other"/>
                 </ComboBox>
+
+                <!-- Category Suggestions (ML-powered) -->
+                <Border Background="#f0f8ff" 
+                        BorderBrush="#4a90d9" 
+                        BorderThickness="1" 
+                        CornerRadius="4"
+                        Padding="12,10"
+                        Margin="0,8,0,0"
+                        Visibility="{Binding ShowCategorySuggestions, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="🤖 Suggested Categories" 
+                                       FontWeight="SemiBold" 
+                                       FontSize="12"
+                                       Foreground="#2c5aa0"/>
+                            <TextBlock Text=" (ML-powered)" 
+                                       FontSize="11" 
+                                       Foreground="#666"
+                                       FontStyle="Italic"/>
+                        </StackPanel>
+                        
+                        <ItemsControl ItemsSource="{Binding CategorySuggestions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.ApplyCategorySuggestionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}"
+                                            Margin="0,2,0,2"
+                                            Padding="10,6"
+                                            HorizontalAlignment="Stretch"
+                                            Background="White"
+                                            BorderBrush="#4a90d9"
+                                            BorderThickness="1"
+                                            Cursor="Hand">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    CornerRadius="3"
+                                                                    Padding="{TemplateBinding Padding}">
+                                                                <ContentPresenter HorizontalAlignment="Stretch"
+                                                                                VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#e6f2ff"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" 
+                                                       Text="{Binding Category}" 
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#2c5aa0"/>
+                                            <Border Grid.Column="1" 
+                                                    Background="#4a90d9" 
+                                                    CornerRadius="10"
+                                                    Padding="8,2"
+                                                    MinWidth="45"
+                                                    HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding ConfidenceText}" 
+                                                           FontSize="11"
+                                                           Foreground="White"
+                                                           FontWeight="SemiBold"
+                                                           TextAlignment="Center"/>
+                                            </Border>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        
+                        <TextBlock Text="Click a suggestion to apply it" 
+                                   FontSize="10" 
+                                   Foreground="#888"
+                                   FontStyle="Italic"
+                                   Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ML Model Status (shown when model not loaded) -->
+                <TextBlock Text="ML categorization unavailable - train a model in ML Model Management"
+                           FontSize="11"
+                           Foreground="#888"
+                           FontStyle="Italic"
+                           Margin="0,4,0,0"
+                           Visibility="{Binding HasCategoryPredictionService, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverted}"/>
 
                 <!-- Sub Category -->
                 <TextBlock Text="Sub Category" Style="{StaticResource LabelStyle}"/>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
+using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
@@ -17,16 +18,19 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly CategoryPredictionService? _categoryPredictionService;
     private int _totalItems;
     private int _trackedStores;
     private int _priceUpdates;
 
     public MainWindowViewModel(
         IGroceryDataService dataService,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        CategoryPredictionService? categoryPredictionService = null)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+        _categoryPredictionService = categoryPredictionService;
 
         AddItemCommand = new RelayCommand(AddItem);
         AddPlaceCommand = new RelayCommand(AddPlace);
@@ -204,7 +208,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     private void AddItem()
     {
-        var viewModel = new AddItemViewModel(_dataService, _dialogService);
+        var viewModel = new AddItemViewModel(_dataService, _dialogService, _categoryPredictionService);
         var window = new Views.AddItemWindow(viewModel);
 
         if (window.ShowDialog() == true)

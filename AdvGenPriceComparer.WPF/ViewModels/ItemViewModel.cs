@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 
@@ -14,6 +15,7 @@ public class ItemViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly CategoryPredictionService? _categoryPredictionService;
     private ObservableCollection<Item> _items;
     private ObservableCollection<string> _categories;
     private Item? _selectedItem;
@@ -21,10 +23,14 @@ public class ItemViewModel : ViewModelBase
     private string _selectedCategory = "All Categories";
     private List<Item> _allItems = new();
 
-    public ItemViewModel(IGroceryDataService dataService, IDialogService dialogService)
+    public ItemViewModel(
+        IGroceryDataService dataService, 
+        IDialogService dialogService,
+        CategoryPredictionService? categoryPredictionService = null)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+        _categoryPredictionService = categoryPredictionService;
         _items = new ObservableCollection<Item>();
         _categories = new ObservableCollection<string> { "All Categories" };
 
@@ -151,7 +157,7 @@ public class ItemViewModel : ViewModelBase
 
     private void AddItem()
     {
-        var viewModel = new AddItemViewModel(_dataService, _dialogService);
+        var viewModel = new AddItemViewModel(_dataService, _dialogService, _categoryPredictionService);
         var window = new Views.AddItemWindow(viewModel);
 
         if (window.ShowDialog() == true)
