@@ -51,6 +51,9 @@ public class SettingsViewModel : ViewModelBase
         "About"
     };
 
+    // Provider Switching State
+    private DatabaseProviderType _originalProviderType;
+
     public SettingsViewModel(
         ISettingsService settingsService,
         ILoggerService logger,
@@ -137,10 +140,25 @@ public class SettingsViewModel : ViewModelBase
             {
                 OnPropertyChanged(nameof(IsLiteDbSelected));
                 OnPropertyChanged(nameof(IsNoSqlSelected));
+                OnPropertyChanged(nameof(IsProviderChanged));
+                OnPropertyChanged(nameof(ProviderChangeMessage));
                 ((RelayCommand)SaveCommand).RaiseCanExecuteChanged();
             }
         }
     }
+
+    /// <summary>
+    /// Indicates whether the database provider has been changed from its original value.
+    /// When true, a restart is required for the change to take effect.
+    /// </summary>
+    public bool IsProviderChanged => _databaseProvider != _originalProviderType;
+
+    /// <summary>
+    /// Returns a message indicating the provider change and restart requirement.
+    /// </summary>
+    public string ProviderChangeMessage => IsProviderChanged 
+        ? $"Database provider changed from {_originalProviderType} to {_databaseProvider}. Application restart is required for this change to take effect."
+        : string.Empty;
 
     public List<DatabaseProviderType> AvailableDatabaseProviders => new() { DatabaseProviderType.LiteDB, DatabaseProviderType.AdvGenNoSQLServer };
 
@@ -307,6 +325,12 @@ public class SettingsViewModel : ViewModelBase
         {
             // Copy settings from service to local properties
             DatabaseProvider = _settingsService.DatabaseProviderType;
+            
+            // Store the original provider type to detect changes
+            _originalProviderType = _settingsService.DatabaseProviderType;
+            OnPropertyChanged(nameof(IsProviderChanged));
+            OnPropertyChanged(nameof(ProviderChangeMessage));
+            
             LiteDbPath = _settingsService.LiteDbPath ?? "";
             ServerHost = _settingsService.ServerHost ?? "";
             ServerPort = _settingsService.ServerPort;
@@ -354,6 +378,28 @@ public class SettingsViewModel : ViewModelBase
     {
         try
         {
+            // Check if provider type has changed
+            bool providerChanged = DatabaseProvider != _originalProviderType;
+            
+            if (providerChanged)
+            {
+                // Show restart confirmation dialog
+                var restartConfirmed = _dialogService.ShowConfirmation(
+                    $"You have changed the database provider from {_originalProviderType} to {DatabaseProvider}.\n\n" +
+                    "This change requires the application to restart to take effect.\n\n" +
+                    "All current data connections will be closed and re-initialized with the new provider.\n\n" +
+                    "Do you want to save and restart now?",
+                    "Database Provider Change - Restart Required");
+
+                if (!restartConfirmed)
+                {
+                    // User cancelled, revert provider change
+                    DatabaseProvider = _originalProviderType;
+                    _logger.LogInfo("User cancelled provider change - reverted to original provider");
+                    return;
+                }
+            }
+
             // Copy local properties to service
             _settingsService.DatabaseProviderType = DatabaseProvider;
             _settingsService.LiteDbPath = LiteDbPath;
@@ -380,12 +426,58 @@ public class SettingsViewModel : ViewModelBase
 
             await _settingsService.SaveSettingsAsync();
             _logger.LogInfo("Settings saved successfully");
-            _dialogService.ShowSuccess("Settings saved successfully!");
+
+            if (providerChanged)
+            {
+                _logger.LogInfo($"Database provider changed from {_originalProviderType} to {DatabaseProvider}. Initiating restart...");
+                _dialogService.ShowInfo("Settings saved. The application will now restart to apply the database provider change.");
+                
+                // Trigger application restart
+                RestartApplication();
+            }
+            else
+            {
+                _dialogService.ShowSuccess("Settings saved successfully!");
+            }
         }
         catch (Exception ex)
         {
             _logger.LogError("Failed to save settings", ex);
             _dialogService.ShowError($"Failed to save settings: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Restarts the application to apply database provider changes.
+    /// </summary>
+    private void RestartApplication()
+    {
+        try
+        {
+            // Get the executable path
+            var exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName 
+                ?? System.Reflection.Assembly.GetExecutingAssembly().Location;
+            
+            _logger.LogInfo($"Restarting application: {exePath}");
+            
+            // Start new instance
+            var startInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = exePath,
+                UseShellExecute = true
+            };
+            
+            System.Diagnostics.Process.Start(startInfo);
+            
+            // Shutdown current instance
+            System.Windows.Application.Current.Shutdown();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Failed to restart application", ex);
+            _dialogService.ShowError(
+                "Settings were saved but the application could not restart automatically.\n\n" +
+                "Please restart the application manually to apply the database provider change.");
         }
     }
 

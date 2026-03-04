@@ -2688,7 +2688,7 @@ private void ConfigureServices(IServiceCollection services)
 - [x] Update `App.xaml.cs` for provider selection (already integrated)
 - [ ] Add menu item to open Settings
 - [ ] Implement connection testing for AdvGenNoSQLServer
-- [ ] Handle provider switching (with restart notification)
+- [x] Handle provider switching (with restart notification) - IMPLEMENTED: SettingsViewModel tracks original provider, shows warning banner when changed, prompts for confirmation on save, automatically restarts application
 - [ ] Document AdvGenNoSQLServer API protocol
 - [ ] Test database switching workflow
 

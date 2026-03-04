@@ -140,7 +140,7 @@
 | Implement LiteDbProvider | 🟢 DONE | Pre-existing | LiteDB provider - already implemented in Data.LiteDB project |
 | Implement AdvGenNoSqlProvider | 🟢 DONE | Agent-036 | Implemented complete HTTP client provider with retry logic and all 4 repositories |
 | Create SettingsWindow.xaml UI | 🟢 DONE | Agent-033 | Database settings UI |
-| Handle provider switching | 🔴 TODO | - | Runtime provider switch |
+| Handle provider switching | 🟢 DONE | Agent-037 | Runtime provider switch with restart notification - SettingsViewModel now tracks provider changes, shows warning banner in UI, prompts for confirmation on save, and restarts application automatically
 
 ---
 
@@ -374,6 +374,7 @@
 | 2026-03-04 | Verified IDatabaseProvider and LiteDbProvider implementation - Confirmed all Phase 10 database provider infrastructure exists and is integrated; fixed test files for ShowSettingsDialog() | Agent-034 |
 | 2026-03-04 | Create installer (WiX Toolset) - Created WiX v4 SDK-style installer project, outputs AdvGenPriceComparer.msi (~25MB), includes Start Menu/Desktop shortcuts, per-machine install, major upgrade support | Agent-035 |
 | 2026-03-04 | Implement AdvGenNoSqlProvider - Complete HTTP client provider with retry logic, health checks, and 4 HTTP-based repository implementations (Items, Places, PriceRecords, Alerts) | Agent-036 |
+| 2026-03-05 | Handle provider switching - SettingsViewModel tracks provider changes, shows warning banner in Database settings UI, prompts for confirmation on save, automatically restarts application with error handling | Agent-037 |
 
 ---
 
