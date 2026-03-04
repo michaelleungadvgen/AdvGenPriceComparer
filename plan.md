@@ -1813,7 +1813,7 @@ public class DataPreparationService
 - [ ] Train initial model with existing data
 - [x] Integrate prediction into JsonImportService - DONE: CategoryPredictionService integrated with auto-categorization support, ImportOptions class with EnableAutoCategorization flag, ML services registered in DI container
 - [ ] Add auto-suggestion to AddItemWindow UI
-- [ ] Create MLModelManagementWindow for training/testing
+- [x] Create MLModelManagementWindow for training/testing - DONE: Created MLModelManagementWindow.xaml with modern UI, MLModelManagementViewModel with training/testing logic, integrated into MainWindow sidebar
 - [ ] Add configuration for confidence threshold
 - [ ] Implement model versioning
 - [ ] Test prediction accuracy

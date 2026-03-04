@@ -19,4 +19,5 @@ public interface IDialogService
     void ShowWeeklySpecialsDigestDialog();
     void ShowShoppingListsDialog();
     void ShowSettingsDialog();
+    void ShowMLModelManagementDialog();
 }

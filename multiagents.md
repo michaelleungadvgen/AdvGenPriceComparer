@@ -127,7 +127,7 @@
 | Implement CategoryPredictionService | 🔴 TODO | - | Auto-categorization service |
 | Integrate prediction into JsonImportService | 🟢 DONE | Agent-041 | Integrated CategoryPredictionService into JsonImportService with auto-categorization support, ImportOptions with EnableAutoCategorization flag, tracking stats in ImportResult, registered ML services in DI container |
 | Add auto-suggestion to AddItemWindow UI | 🔴 TODO | - | Category suggestions |
-| Create MLModelManagementWindow | 🔴 TODO | - | Model management UI |
+| Create MLModelManagementWindow | 🟢 DONE | Agent-042 | ML Model Management window created with training/testing UI |
 | Test prediction accuracy | 🔴 TODO | - | Validate ML accuracy |
 
 ---
@@ -381,6 +381,7 @@
 | 2026-03-05 | Add TestConnectionAsync to IDatabaseProvider interface - Added TestConnectionAsync() method to IDatabaseProvider interface, implemented in LiteDbProvider (tests LiteDB connection) and AdvGenNoSqlProvider (tests HTTP health endpoints), build succeeds, 248 tests passing | Agent-039 |
 | 2026-03-05 | Create AdvGenPriceComparer.ML project - ML.NET project for auto-categorization with Models (ProductData, CategoryPrediction, ProductCategories, TrainingResult), Services (ModelTrainingService, CategoryPredictionService, DataPreparationService), sample training data, ML.NET 3.0.1 dependencies, added to solution, build succeeds | Agent-040 |
 | 2026-03-05 | Integrate prediction into JsonImportService - Integrated CategoryPredictionService with auto-categorization support, added ImportOptions/ImportResult enhancements for ML categorization tracking, registered ML services in App.xaml.cs DI container, build succeeds | Agent-041 |
+| 2026-03-05 | Create MLModelManagementWindow - Created MLModelManagementWindow.xaml with modern UI for training/testing ML models, MLModelManagementViewModel with full training/prediction logic, integrated into MainWindow sidebar, 248 tests passing | Agent-042 |
 
 ---
 

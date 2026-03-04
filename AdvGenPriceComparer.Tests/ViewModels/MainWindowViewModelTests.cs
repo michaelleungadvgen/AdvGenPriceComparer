@@ -365,6 +365,7 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowWeeklySpecialsDigestDialog() { }
         public void ShowShoppingListsDialog() { }
         public void ShowSettingsDialog() { }
+        public void ShowMLModelManagementDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 

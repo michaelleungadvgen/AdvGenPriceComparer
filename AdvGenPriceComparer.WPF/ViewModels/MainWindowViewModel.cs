@@ -39,6 +39,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         WeeklySpecialsDigestCommand = new RelayCommand(ShowWeeklySpecialsDigest);
         ShoppingListsCommand = new RelayCommand(ShowShoppingLists);
         SettingsCommand = new RelayCommand(ShowSettings);
+        MLModelManagementCommand = new RelayCommand(ShowMLModelManagement);
 
         RefreshDashboard();
     }
@@ -72,6 +73,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand WeeklySpecialsDigestCommand { get; }
     public ICommand ShoppingListsCommand { get; }
     public ICommand SettingsCommand { get; }
+    public ICommand MLModelManagementCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -263,6 +265,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowSettings()
     {
         _dialogService.ShowSettingsDialog();
+    }
+
+    private void ShowMLModelManagement()
+    {
+        _dialogService.ShowMLModelManagementDialog();
     }
 
     private void ShowFavorites()
