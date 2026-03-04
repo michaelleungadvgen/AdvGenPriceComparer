@@ -1802,13 +1802,14 @@ public class DataPreparationService
 
 ### 9.11 Implementation Checklist
 
-- [ ] Create AdvGenPriceComparer.ML project
-- [ ] Install ML.NET NuGet packages
-- [ ] Define ProductData and CategoryPrediction models
-- [ ] Implement ModelTrainingService
-- [ ] Implement CategoryPredictionService
-- [ ] Create DataPreparationService
-- [ ] Export training data from existing categorized items
+- [x] Create AdvGenPriceComparer.ML project
+- [x] Install ML.NET NuGet packages (Microsoft.ML 3.0.1, Microsoft.ML.AutoML 0.21.1, Microsoft.ML.FastTree 3.0.1, CsvHelper 30.0.1)
+- [x] Define ProductData and CategoryPrediction models
+- [x] Implement ModelTrainingService
+- [x] Implement CategoryPredictionService
+- [x] Create DataPreparationService
+- [x] Export training data from existing categorized items (DataPreparationService.ExportTrainingDataAsync)
+- [x] Generate sample training data (DataPreparationService.GenerateSampleTrainingDataAsync)
 - [ ] Train initial model with existing data
 - [ ] Integrate prediction into JsonImportService
 - [ ] Add auto-suggestion to AddItemWindow UI

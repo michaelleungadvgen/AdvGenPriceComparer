@@ -122,7 +122,7 @@
 ## Phase 9: ML.NET Auto-Categorization (TODO)
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Create AdvGenPriceComparer.ML project | 🔴 TODO | - | ML.NET project setup |
+| Create AdvGenPriceComparer.ML project | 🟢 DONE | Agent-040 | ML.NET project created with Models, Services, Data folders; ML.NET 3.0.1 dependencies; ProductData, CategoryPrediction, ProductCategories models; ModelTrainingService, CategoryPredictionService, DataPreparationService services; sample training data; build succeeds
 | Implement ModelTrainingService | 🔴 TODO | - | Model training pipeline |
 | Implement CategoryPredictionService | 🔴 TODO | - | Auto-categorization service |
 | Integrate prediction into JsonImportService | 🔴 TODO | - | Auto-categorize on import |
@@ -379,6 +379,7 @@
 | 2026-03-05 | Handle provider switching - SettingsViewModel tracks provider changes, shows warning banner in Database settings UI, prompts for confirmation on save, automatically restarts application with error handling | Agent-037 |
 | 2026-03-05 | Add menu item to open Settings - Added Tools menu with Settings item to MainWindow menu bar, includes Ctrl+, shortcut, opens SettingsWindow via IDialogService | Agent-038 |
 | 2026-03-05 | Add TestConnectionAsync to IDatabaseProvider interface - Added TestConnectionAsync() method to IDatabaseProvider interface, implemented in LiteDbProvider (tests LiteDB connection) and AdvGenNoSqlProvider (tests HTTP health endpoints), build succeeds, 248 tests passing | Agent-039 |
+| 2026-03-05 | Create AdvGenPriceComparer.ML project - ML.NET project for auto-categorization with Models (ProductData, CategoryPrediction, ProductCategories, TrainingResult), Services (ModelTrainingService, CategoryPredictionService, DataPreparationService), sample training data, ML.NET 3.0.1 dependencies, added to solution, build succeeds | Agent-040 |
 
 ---
 
