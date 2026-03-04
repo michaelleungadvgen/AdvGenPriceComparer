@@ -122,6 +122,9 @@
                 <Separator/>
                 <MenuItem Header="Generate Demo Data" Click="GenerateDemoData_Click"/>
             </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Settings..." Click="Settings_Click" InputGestureText="Ctrl+,"/>
+            </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="About" Click="About_Click"/>
             </MenuItem>

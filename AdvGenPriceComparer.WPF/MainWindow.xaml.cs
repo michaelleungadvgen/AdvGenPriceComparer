@@ -378,6 +378,20 @@ public partial class MainWindow : FluentWindow
             MessageBoxImage.Information);
     }
 
+    private void Settings_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowSettingsDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening settings: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void TitleBar_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (e.ClickCount == 2)

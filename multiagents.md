@@ -191,6 +191,7 @@
 | Price drop notifications | 🟢 DONE | Agent-025 | Price drop notification service fully implemented |
 | Search across all entities | 🟢 DONE | Agent-023 | Implemented Global Search with UI - searches across Items, Places, and PriceRecords with relevance scoring |
 | Favourite items list | 🟢 DONE | Agent-027 | Implemented IFavoritesService, FavoritesViewModel, FavoritesWindow UI, 15 unit tests all passing |
+| Add menu item to open Settings | 🟢 DONE | Agent-038 | Added Tools menu with Settings item to MainWindow menu bar, opens SettingsWindow via IDialogService |
 
 ---
 
@@ -375,6 +376,7 @@
 | 2026-03-04 | Create installer (WiX Toolset) - Created WiX v4 SDK-style installer project, outputs AdvGenPriceComparer.msi (~25MB), includes Start Menu/Desktop shortcuts, per-machine install, major upgrade support | Agent-035 |
 | 2026-03-04 | Implement AdvGenNoSqlProvider - Complete HTTP client provider with retry logic, health checks, and 4 HTTP-based repository implementations (Items, Places, PriceRecords, Alerts) | Agent-036 |
 | 2026-03-05 | Handle provider switching - SettingsViewModel tracks provider changes, shows warning banner in Database settings UI, prompts for confirmation on save, automatically restarts application with error handling | Agent-037 |
+| 2026-03-05 | Add menu item to open Settings - Added Tools menu with Settings item to MainWindow menu bar, includes Ctrl+, shortcut, opens SettingsWindow via IDialogService | Agent-038 |
 
 ---
 
