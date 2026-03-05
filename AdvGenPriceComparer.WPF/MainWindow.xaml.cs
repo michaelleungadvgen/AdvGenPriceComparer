@@ -459,6 +459,20 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void IllusoryDiscountDetection_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowIllusoryDiscountDetectionDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening illusory discount detection: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void TitleBar_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (e.ClickCount == 2)

@@ -444,6 +444,7 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowChatDialog() { }
         public void ShowExportDataDialog() { }
         public void ShowImportFromUrlDialog() { }
+        public void ShowIllusoryDiscountDetectionDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 

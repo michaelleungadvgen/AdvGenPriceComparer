@@ -126,6 +126,8 @@
             </MenuItem>
             <MenuItem Header="_Tools">
                 <MenuItem Header="Settings..." Click="Settings_Click" InputGestureText="Ctrl+,"/>
+                <Separator/>
+                <MenuItem Header="Detect Illusory Discounts..." Click="IllusoryDiscountDetection_Click"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="Check for Updates" Click="CheckForUpdates_Click"/>
@@ -248,6 +250,10 @@
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
                     <ui:Button Content="📈 Price Forecast" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceForecastCommand}"
+                           Appearance="Transparent"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    <ui:Button Content="🎭 Detect Fake Sales" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding IllusoryDiscountDetectionCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
                     <ui:Button Content="💬 AI Chat Assistant" HorizontalAlignment="Stretch" Margin="0,0,0,6"

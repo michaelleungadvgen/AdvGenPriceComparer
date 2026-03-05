@@ -464,7 +464,7 @@ public class ExportService
 
 ### Phase 5: Price Comparison & Analysis (3-4 days)
 - [ ] Track historical prices in database
-- [ ] Detect genuine vs. illusory discounts
+- [x] Detect genuine vs. illusory discounts
 - [ ] Calculate average prices over time
 - [ ] Create PriceComparisonView.xaml
 - [ ] Implement side-by-side store comparison

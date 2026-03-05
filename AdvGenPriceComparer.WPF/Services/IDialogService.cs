@@ -24,4 +24,5 @@ public interface IDialogService
     void ShowChatDialog();
     void ShowExportDataDialog();
     void ShowImportFromUrlDialog();
+    void ShowIllusoryDiscountDetectionDialog();
 }

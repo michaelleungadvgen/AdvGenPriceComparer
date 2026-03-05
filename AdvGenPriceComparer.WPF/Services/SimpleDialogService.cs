@@ -185,4 +185,20 @@ public class SimpleDialogService : IDialogService
         var window = new ImportFromUrlWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowIllusoryDiscountDetectionDialog()
+    {
+        var forecastingService = ((App)Application.Current).Services.GetRequiredService<AdvGenPriceComparer.ML.Services.PriceForecastingService>();
+        var itemRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IItemRepository>();
+        var priceRecordRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPriceRecordRepository>();
+        var placeRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPlaceRepository>();
+        
+        var viewModel = new ViewModels.IllusoryDiscountDetectionViewModel(
+            forecastingService, 
+            itemRepository, 
+            priceRecordRepository, 
+            placeRepository);
+        var window = new IllusoryDiscountDetectionWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

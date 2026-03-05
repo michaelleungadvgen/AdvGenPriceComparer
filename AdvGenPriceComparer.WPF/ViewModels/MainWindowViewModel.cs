@@ -45,6 +45,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         SettingsCommand = new RelayCommand(ShowSettings);
         MLModelManagementCommand = new RelayCommand(ShowMLModelManagement);
         PriceForecastCommand = new RelayCommand(ShowPriceForecast);
+        IllusoryDiscountDetectionCommand = new RelayCommand(ShowIllusoryDiscountDetection);
         ChatCommand = new RelayCommand(ShowChat);
 
         RefreshDashboard();
@@ -81,6 +82,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand SettingsCommand { get; }
     public ICommand MLModelManagementCommand { get; }
     public ICommand PriceForecastCommand { get; }
+    public ICommand IllusoryDiscountDetectionCommand { get; }
     public ICommand ChatCommand { get; }
 
     public event Action? OnStoreAdded;
@@ -283,6 +285,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowPriceForecast()
     {
         _dialogService.ShowPriceForecastDialog();
+    }
+
+    private void ShowIllusoryDiscountDetection()
+    {
+        _dialogService.ShowIllusoryDiscountDetectionDialog();
     }
 
     private void ShowChat()

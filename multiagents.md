@@ -96,7 +96,8 @@
 | Calculate average prices over time | 🔴 TODO | - | Price trend analysis |
 | Add "best price" highlighting | 🔴 TODO | - | Visual indicators for best deals |
 | Generate reports (best deals, trends) | 🔴 TODO | - | Automated report generation |
-| Create ReportsPage.xaml | 🟡 DOING | Agent-030 | Create Reports page for displaying price trends and best deals |
+| Create ReportsPage.xaml | 🟢 DONE | Agent-030 | Create Reports page for displaying price trends and best deals |
+| Detect genuine vs. illusory discounts | 🟢 DONE | Agent-070 | Create IllusoryDiscountDetectionWindow UI with PriceForecastingService integration to identify fake sales |
 
 ---
 

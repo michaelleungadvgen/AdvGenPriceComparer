@@ -159,6 +159,23 @@ public partial class App : Application
                     msg => logger.LogWarning(msg));
             });
             services.AddSingleton<DataPreparationService>();
+            services.AddSingleton<AdvGenPriceComparer.ML.Services.PriceForecastingService>(provider =>
+            {
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var modelPath = Path.Combine(
+                    Path.GetDirectoryName(settingsService.MLModelPath) ?? 
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AdvGenPriceComparer", "MLModels"),
+                    "price_forecast_models");
+                
+                Directory.CreateDirectory(modelPath);
+                
+                return new AdvGenPriceComparer.ML.Services.PriceForecastingService(
+                    modelPath,
+                    msg => logger.LogInfo(msg),
+                    (msg, ex) => logger.LogError(msg, ex),
+                    msg => logger.LogWarning(msg));
+            });
             
             services.AddTransient<DemoDataService>();
             services.AddTransient<JsonImportService>(provider =>
