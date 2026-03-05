@@ -79,7 +79,10 @@ public partial class App : Application
             services.AddTransient<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>(provider =>
             {
                 var dbService = new AdvGenPriceComparer.Data.LiteDB.Services.DatabaseService(dbPath);
-                return new AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService(dbService);
+                var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
+                var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
+                var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
+                return new AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService(itemRepo, placeRepo, priceRepo);
             });
 
             // ViewModels

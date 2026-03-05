@@ -447,15 +447,18 @@ public class ExportService
 ### Phase 4: Server Integration (Future - 5-7 days)
 - [x] Create ASP.NET Core Web API project (AdvGenPriceComparer.Server)
 - [x] Implement database schema for shared prices
-- [ ] Create API endpoints:
-  - [ ] POST /api/prices/upload - Upload price data
-  - [ ] GET /api/prices/download - Download with filters
-  - [ ] GET /api/prices/search - Search products
-  - [ ] GET /api/prices/compare - Compare across stores
-  - [ ] GET /api/prices/latest - Get latest deals
+- [x] Create API endpoints:
+  - [x] POST /api/prices/upload - Upload price data
+  - [x] GET /api/prices/download - Download with filters
+  - [x] GET /api/prices/search - Search products
+  - [x] GET /api/prices/compare - Compare across stores
+  - [x] GET /api/prices/latest - Get latest deals
+  - [x] GET /api/prices/history/{itemId} - Price history
+  - [x] GET /api/items - Item CRUD operations
+  - [x] GET /api/places - Store/location management
 - [ ] Add SignalR for real-time updates
-- [ ] Implement authentication (API key based)
-- [ ] Add rate limiting
+- [x] Implement authentication (API key based)
+- [x] Add rate limiting
 - [ ] Create upload/download UI in WPF app
 - [ ] Test price sharing workflow
 

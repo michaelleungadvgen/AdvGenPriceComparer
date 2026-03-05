@@ -79,7 +79,7 @@
 |------|--------|-------------|-------|
 | Create ASP.NET Core Web API project | 🟡 DOING | Agent-061 | Creating ASP.NET Core Web API project with basic structure |
 | Implement database schema for shared prices | 🟢 DONE | Agent-062 | Created EF Core migrations for SQLite database schema with all tables (Items, Places, PriceRecords, ApiKeys, UploadSessions), indexes, and foreign keys |
-| Create API endpoints | 🔴 TODO | - | POST/GET endpoints |
+| Create API endpoints | 🟢 DONE | Agent-063 | Created PricesController, ItemsController, PlacesController with full CRUD operations, upload/download, search, compare endpoints |
 | Add SignalR for real-time updates | 🔴 TODO | - | Future feature |
 | Implement authentication | 🔴 TODO | - | API key based |
 | Add rate limiting | 🔴 TODO | - | Future feature |
@@ -400,6 +400,7 @@
 | 2026-03-05 | Integrate LiveCharts for price visualization - Added CartesianChart to PriceForecastWindow.xaml with bindings for ForecastSeries, ChartXAxes, ChartYAxes; displays historical prices, forecast, and confidence bounds | Agent-060 |
 | 2026-03-05 | Add ML Configuration UI to Settings - Added ML category to SettingsWindow with auto-categorization toggle and confidence threshold slider | Agent-057 |
 | 2026-03-05 | Implement database schema for shared prices - Created EF Core migrations for SQLite database with all tables, indexes, foreign keys; Fixed missing ApiKeyService, RateLimitService, and middleware implementations; Build succeeds with 0 errors | Agent-062 |
+| 2026-03-05 | Create API endpoints - Created PricesController (upload, download, search, compare, latest deals, price history), ItemsController (CRUD, batch operations, search by category/brand), PlacesController (CRUD, by chain/state, search); Full REST API for P2P price sharing | Agent-063 |
 
 ---
 
