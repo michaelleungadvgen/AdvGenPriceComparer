@@ -253,6 +253,13 @@ When using `System.Text.Json` for configuration files:
   - **RateLimitService**: In-memory sliding window rate limiting
   - **ApiKeyMiddleware**: Validates X-API-Key header for protected endpoints
   - **RateLimitMiddleware**: Enforces rate limits per API key or IP address
+- **API Documentation**: See `AdvGenPriceComparer.Server/API_PROTOCOL.md` for complete API specification including:
+  - REST endpoints for Items, Places, and Prices
+  - SignalR real-time update hub specification
+  - Authentication (X-API-Key header)
+  - Rate limiting details
+  - Data models (SharedItem, SharedPlace, SharedPriceRecord)
+  - C# client implementation examples
 - **Build**:
   ```powershell
   cd AdvGenPriceComparer.Server
