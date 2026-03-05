@@ -201,4 +201,19 @@ public class SimpleDialogService : IDialogService
         var window = new IllusoryDiscountDetectionWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowServerDataTransferDialog()
+    {
+        var settingsService = ((App)Application.Current).Services.GetRequiredService<ISettingsService>();
+        var groceryDataService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.ServerDataTransferViewModel(
+            settingsService, 
+            groceryDataService, 
+            this, 
+            logger);
+        var window = new ServerDataTransferWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

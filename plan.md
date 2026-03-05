@@ -459,7 +459,7 @@ public class ExportService
 - [x] Add SignalR for real-time updates - IMPLEMENTED: PriceUpdateHub with group subscriptions, notification service, WPF client service with auto-reconnect
 - [x] Implement authentication (API key based)
 - [x] Add rate limiting
-- [ ] Create upload/download UI in WPF app
+- [x] Create upload/download UI in WPF app - IMPLEMENTED: ServerDataTransferWindow with upload/download functionality, connection management, and progress tracking
 - [ ] Test price sharing workflow
 
 ### Phase 5: Price Comparison & Analysis (3-4 days)

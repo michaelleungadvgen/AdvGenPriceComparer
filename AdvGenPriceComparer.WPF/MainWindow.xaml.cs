@@ -473,6 +473,20 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void ServerDataTransfer_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowServerDataTransferDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening server data transfer dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void TitleBar_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (e.ClickCount == 2)

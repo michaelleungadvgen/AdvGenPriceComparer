@@ -83,7 +83,7 @@
 | Add SignalR for real-time updates | 🟢 DONE | Agent-064 | SignalR Hub created, notification service implemented, client service added to WPF |
 | Implement authentication | 🟢 DONE | Agent-061 | ApiKeyService with key generation/validation, ApiKeyMiddleware for request authentication, SHA256 hashing |
 | Add rate limiting | 🟢 DONE | Agent-061 | RateLimitService with sliding window algorithm, RateLimitMiddleware enforcing limits per API key/IP |
-| Create upload/download UI in WPF app | 🔴 TODO | - | Future feature |
+| Create upload/download UI in WPF app | 🟢 DONE | Agent-082 | Created ServerDataTransferWindow with upload/download functionality for server integration |
 | Test price sharing workflow | 🔴 TODO | - | End-to-end testing for P2P sharing |
 
 ---
@@ -106,7 +106,7 @@
 |------|--------|-------------|-------|
 | Product Management (CRUD operations) | 🔴 TODO | - | Full product CRUD |
 | Store Management (CRUD, location mapping) | 🔴 TODO | - | Store management with locations |
-| Shopping list integration | 🔴 TODO | - | User shopping lists |
+| Shopping list integration | 🟢 DONE | Agent-031 | Already implemented - ShoppingListService, ShoppingListWindow, ShoppingListRepository all exist |
 
 ---
 
@@ -409,6 +409,7 @@
 | 2026-03-05 | Implement authentication - ApiKeyService with key generation/validation, ApiKeyMiddleware for request authentication, SHA256 hashing, registered in DI, build succeeds | Agent-065 |
 | 2026-03-05 | Add rate limiting - RateLimitService with sliding window algorithm, RateLimitMiddleware enforcing limits per API key/IP, registered in DI, build succeeds | Agent-065 |
 | 2026-03-06 | Document AdvGenNoSQLServer API protocol - Created comprehensive API_PROTOCOL.md covering all REST endpoints, SignalR hub, authentication, rate limiting, data models, and C# client examples | Agent-081 |
+| 2026-03-06 | Create upload/download UI in WPF app - Created ServerDataTransferWindow.xaml, ServerDataTransferViewModel, added to IDialogService and MainWindow Data menu, build succeeds with 0 errors | Agent-082 |
 
 ---
 
