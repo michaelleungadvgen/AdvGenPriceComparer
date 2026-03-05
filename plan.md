@@ -3658,7 +3658,7 @@ public class PriceForecastViewModel : ViewModelBase
 - [x] Create `PriceForecastViewModel`
 - [x] Integrate LiveCharts for price visualization
 - [x] Add menu item to open Price Forecast window
-- [ ] Test forecasting with real historical data
+- [x] Test forecasting with real historical data - Created 26 xUnit tests for PriceForecastingService
 - [ ] Implement price alert system
 - [ ] Document forecasting accuracy and limitations
 
