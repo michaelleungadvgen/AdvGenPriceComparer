@@ -184,3 +184,19 @@ When using `System.Text.Json` for configuration files:
   };
   var servers = JsonSerializer.Deserialize<List<ServerInfo>>(json, readOptions);
   ```
+
+### Static Data Import/Export (P2P Sharing)
+- **StaticDataExporter**: Exports stores, products, prices to JSON for P2P sharing
+  - Location: `AdvGenPriceComparer.WPF/Services/StaticDataExporter.cs`
+  - Creates: stores.json, products.json, prices.json, manifest.json, discovery.json
+  - Supports ZIP compression and checksum validation
+  
+- **StaticDataImporter**: Imports data from static packages
+  - Location: `AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs`
+  - Import methods:
+    - `ImportFromDirectoryAsync()` - Import extracted package
+    - `ImportFromArchiveAsync()` - Import from ZIP file
+    - `ImportFromUrlAsync()` - Download and import from URL
+    - `PreviewPackageAsync()` - Preview contents before import
+  - Duplicate handling strategies: Skip, Update, CreateNew
+  - Validates checksums and maps external IDs to internal IDs
