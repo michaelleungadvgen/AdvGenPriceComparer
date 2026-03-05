@@ -167,6 +167,9 @@
 | Implement QueryRouterService | 🟢 DONE | Agent-046 | Query routing to repositories implemented |
 | Build PriceChatWindow.xaml UI | 🟢 DONE | Agent-046 | Modern chat UI with message bubbles |
 | Test with natural language queries | 🟢 DONE | Agent-046 | Build successful, 248 tests passing |
+| Optimize prompts for better intent recognition | 🔴 TODO | - | |
+| Document supported query types | 🔴 TODO | - | |
+| Implement SPQL (Standard Price Query Language) | 🔴 TODO | - | JSON Specification defined in plan.md |
 
 ---
 
@@ -179,6 +182,26 @@
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
 | Add "Export Data" button in settings | 🟢 DONE | Agent-051 | Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added Export Data Now button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel |
 | Add "Import from URL" dialog | 🔴 TODO | - | Import UI |
+| Update NetworkManager to generate JSON formats | 🔴 TODO | - | Implement Discovery, Shop, Goods, Records, Price JSON formats |
+| Add discovery file update on server start | 🔴 TODO | - | Enable peers to discover this node |
+| Add automatic export of price updates | 🔴 TODO | - | Keep static files in sync with database |
+| Add periodic refresh of records.json | 🔴 TODO | - | Maintain index of available historical price files |
+| Add fallback to static peers if full peers unavailable | 🔴 TODO | - | Ensure data availability |
+| Add data consistency verification | 🔴 TODO | - | Validate downloaded JSON against schemas and checksums |
+| Add static peer configuration UI | 🔴 TODO | - | Allow users to manage trusted static peers |
+| Add export/import progress indicators | 🔴 TODO | - | Improve user experience during large data transfers |
+| Add data validation reports | 🔴 TODO | - | Show users which imported items failed validation |
+| Add export file browser | 🔴 TODO | - | Manage generated static files |
+
+---
+
+## Phase 14: Clean Architecture Refactoring (TODO)
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Establish Application Layer | 🔴 TODO | - | Create AdvGenPriceComparer.Application project |
+| Purify Core Layer | 🔴 TODO | - | Remove infrastructure dependencies from Core |
+| Implement CQRS | 🔴 TODO | - | Install MediatR, refactor commands and queries |
+| Fix Dependency Injection | 🔴 TODO | - | Inject interfaces instead of concrete classes |
 
 ---
 
