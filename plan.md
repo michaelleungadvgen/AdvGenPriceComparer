@@ -482,7 +482,7 @@ public class ExportService
 - [ ] Integration tests for database operations
 - [ ] UI automation tests
 - [x] Create installer (WiX Toolset or ClickOnce) - WiX v4 SDK-style project, outputs MSI (~25MB)
-- [ ] Configure auto-update mechanism
+- [x] Configure auto-update mechanism - IMPLEMENTED: IUpdateService, UpdateService with remote JSON version check, UpdateNotificationWindow, auto-check on startup with 24-hour throttling
 - [ ] User documentation
 
 ---

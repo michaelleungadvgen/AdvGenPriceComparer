@@ -120,6 +120,7 @@ dotnet build -c Release -p:Platform=x64
 | ExportService | AdvGenPriceComparer.WPF/Services/ |
 | SettingsService | AdvGenPriceComparer.WPF/Services/ |
 | StaticDataExporter | AdvGenPriceComparer.WPF/Services/ |
+| UpdateService | AdvGenPriceComparer.WPF/Services/ |
 
 ### WPF Converters
 XAML value converters are located in `AdvGenPriceComparer.WPF/Converters/`:

@@ -114,7 +114,7 @@
 |------|--------|-------------|-------|
 | UI automation tests | 🔴 TODO | - | Automated UI testing |
 | Create installer (WiX Toolset or ClickOnce) | 🟢 DONE | Agent-035 | WiX v4 installer project created with MSI output (~25MB). Supports Start Menu & Desktop shortcuts, per-machine install, major upgrades.
-| Configure auto-update mechanism | 🔴 TODO | - | Auto-update functionality |
+| Configure auto-update mechanism | 🟢 DONE | Agent-056 | Implemented IUpdateService, UpdateService, UpdateNotificationWindow with remote JSON check, auto-check on startup, manual check via Help menu |
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
 
 ---
@@ -395,6 +395,7 @@
 | 2026-03-05 | Add "Import from URL" dialog - Created ImportFromUrlWindow.xaml with URL input, package preview, import options (checksum validation, duplicate strategies), progress tracking, and result display; Created ImportFromUrlViewModel with async import and preview functionality; Added menu item to Data menu; Updated IDialogService and SimpleDialogService; Registered in DI container | Agent-053 |
 | 2026-03-05 | Train initial model with existing data - Created TestMLModelTraining CLI tool, expanded sample_training_data.csv to 110 records across 12 categories, trained initial ML.NET category prediction model with 27.78% macro accuracy, model saved to MLModels/category_model.zip (68KB), added PredictCategoryFromText method to CategoryPredictionService, fixed Confidence property bug in CategoryPrediction | Agent-054 |
 | 2026-03-05 | Test forecasting with real historical data - Created 26 comprehensive xUnit tests for PriceForecastingService covering statistics calculation, anomaly detection, illusory discount detection, data conversion, edge cases, and model training | Agent-055 |
+| 2026-03-05 | Configure auto-update mechanism - Implemented IUpdateService interface, UpdateService with remote JSON version check, UpdateNotificationWindow UI, auto-check on startup, manual check via Help menu, integrated with existing ISettingsService.AutoCheckForUpdates setting | Agent-056 |
 
 ---
 

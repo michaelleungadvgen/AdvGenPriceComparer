@@ -47,6 +47,30 @@ public partial class MainWindow : FluentWindow
         trendChart.SetBinding(CartesianChart.SeriesProperty, nameof(ViewModel.PriceTrendSeries));
         trendChart.SetBinding(CartesianChart.XAxesProperty, nameof(ViewModel.XAxes));
         TrendChartContainer.Child = trendChart;
+
+        // Check for updates asynchronously (don't block UI)
+        _ = CheckForUpdatesAsync();
+    }
+
+    /// <summary>
+    /// Checks for application updates if auto-check is enabled
+    /// </summary>
+    private async Task CheckForUpdatesAsync()
+    {
+        try
+        {
+            // Wait a few seconds for the app to fully load
+            await Task.Delay(5000);
+
+            var updateService = ((App)Application.Current).Services.GetRequiredService<IUpdateService>();
+            await updateService.CheckForUpdateOnStartupAsync();
+        }
+        catch (Exception ex)
+        {
+            // Log but don't show error to user - update check is non-critical
+            var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+            logger.LogError("Error checking for updates", ex);
+        }
     }
 
     private void OnClosed(object? sender, EventArgs e)
@@ -395,6 +419,30 @@ public partial class MainWindow : FluentWindow
             "About AdvGen Price Comparer",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
+    }
+
+    private async void CheckForUpdates_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var updateService = ((App)Application.Current).Services.GetRequiredService<IUpdateService>();
+            var result = await updateService.CheckForUpdateAsync();
+
+            if (result.IsSuccessful && !result.IsUpdateAvailable)
+            {
+                MessageBox.Show(
+                    $"You are running the latest version ({result.CurrentVersion}).\n\nNo updates are available at this time.",
+                    "No Updates Available",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+            // If update is available, the notification window will be shown automatically
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error checking for updates: {ex.Message}",
+                "Update Check Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 
     private void Settings_Click(object sender, RoutedEventArgs e)

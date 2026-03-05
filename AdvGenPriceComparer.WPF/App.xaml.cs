@@ -277,6 +277,14 @@ public partial class App : Application
                 return new ShoppingListService(repo, logger);
             });
 
+            // Update Service
+            services.AddSingleton<IUpdateService>(provider =>
+            {
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new UpdateService(settingsService, logger);
+            });
+
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<ItemViewModel>();

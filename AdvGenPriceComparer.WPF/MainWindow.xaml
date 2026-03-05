@@ -128,6 +128,8 @@
                 <MenuItem Header="Settings..." Click="Settings_Click" InputGestureText="Ctrl+,"/>
             </MenuItem>
             <MenuItem Header="_Help">
+                <MenuItem Header="Check for Updates" Click="CheckForUpdates_Click"/>
+                <Separator/>
                 <MenuItem Header="About" Click="About_Click"/>
             </MenuItem>
         </Menu>
