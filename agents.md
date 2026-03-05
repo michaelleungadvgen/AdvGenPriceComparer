@@ -110,6 +110,7 @@ dotnet build -c Release -p:Platform=x64
 - **AdvGenPriceComparer.Core**: Core models and interfaces
 - **AdvGenPriceComparer.Data.LiteDB**: LiteDB data access layer
 - **AdvGenPriceComparer.WPF**: WPF desktop application
+- **AdvGenPriceComparer.Server**: ASP.NET Core Web API for P2P price sharing
 - **AdvGenPriceComparer.Installer**: WiX v4 installer project (outputs MSI)
 
 ### Key Services Location
@@ -236,3 +237,25 @@ When using `System.Text.Json` for configuration files:
     - `PreviewPackageAsync()` - Preview contents before import
   - Duplicate handling strategies: Skip, Update, CreateNew
   - Validates checksums and maps external IDs to internal IDs
+
+### Server Project (ASP.NET Core Web API)
+- **Location**: `AdvGenPriceComparer.Server/`
+- **Database**: SQLite with Entity Framework Core
+- **EF Core Migrations**: To create or update database schema:
+  ```powershell
+  cd AdvGenPriceComparer.Server
+  dotnet ef migrations add <MigrationName> --output-dir Data\Migrations
+  dotnet ef database update  # Apply migrations to database
+  ```
+- **Key Components**:
+  - **PriceDataContext**: EF Core DbContext with DbSets for Items, Places, PriceRecords, ApiKeys, UploadSessions
+  - **ApiKeyService**: API key generation, validation, and management
+  - **RateLimitService**: In-memory sliding window rate limiting
+  - **ApiKeyMiddleware**: Validates X-API-Key header for protected endpoints
+  - **RateLimitMiddleware**: Enforces rate limits per API key or IP address
+- **Build**:
+  ```powershell
+  cd AdvGenPriceComparer.Server
+  dotnet build
+  dotnet run  # Runs on https://localhost:5001 and http://localhost:5000
+  ```
