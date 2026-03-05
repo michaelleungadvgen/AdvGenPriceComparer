@@ -436,11 +436,13 @@ public partial class MainWindow : FluentWindow
         {
             this.WindowState = WindowState.Normal;
             MaximizeButton.Content = "□";
+            System.Windows.Automation.AutomationProperties.SetName(MaximizeButton, "Maximize");
         }
         else
         {
             this.WindowState = WindowState.Maximized;
             MaximizeButton.Content = "❐";
+            System.Windows.Automation.AutomationProperties.SetName(MaximizeButton, "Restore");
         }
     }
 
