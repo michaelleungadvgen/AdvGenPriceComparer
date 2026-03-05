@@ -190,6 +190,14 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new StaticDataExporter(itemRepo, placeRepo, priceRepo, logger);
             });
+            services.AddTransient<StaticDataImporter>(provider =>
+            {
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new StaticDataImporter(itemRepo, placeRepo, priceRepo, logger);
+            });
             services.AddSingleton<IGlobalSearchService>(provider =>
             {
                 var dataService = provider.GetRequiredService<IGroceryDataService>();

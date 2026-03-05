@@ -6011,15 +6011,15 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [ ] Add export history tracking
 
 **Import Functionality:**
-- [ ] Create `StaticDataImporter` service
-- [ ] Implement `ImportShops()` method with deduplication
-- [ ] Implement `ImportGoods()` method with deduplication
-- [ ] Implement `ImportPrices()` method with conflict resolution
+- [x] Create `StaticDataImporter` service - IMPLEMENTED: Full service with ImportFromDirectoryAsync, ImportFromArchiveAsync, ImportFromUrlAsync, PreviewPackageAsync
+- [x] Implement store import with deduplication - IMPLEMENTED: DuplicateStrategy (Skip/Update/CreateNew) support
+- [x] Implement product import with deduplication - IMPLEMENTED: Barcode and name+brand matching
+- [x] Implement price import with conflict resolution - IMPLEMENTED: Date-based duplicate detection
+- [x] Add validation on import - IMPLEMENTED: Checksum validation, manifest parsing
+- [x] Add error handling for malformed data - IMPLEMENTED: Try-catch per entity with error collection
+- [x] Add import progress tracking - IMPLEMENTED: IProgress<StaticImportProgress> support
 - [ ] Implement `SyncFromStaticPeer()` method
 - [ ] Add incremental sync (only new files)
-- [ ] Add validation on import
-- [ ] Add error handling for malformed data
-- [ ] Add import progress tracking
 - [ ] Add import history tracking
 
 **P2P Integration:**

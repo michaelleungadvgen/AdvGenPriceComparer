@@ -174,7 +174,7 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Create StaticDataExporter service | 🟢 DONE | Agent-048 | Created StaticDataExporter service with ExportStaticPackageAsync, generates stores.json, products.json, prices.json, manifest.json, discovery.json, and ZIP archive for P2P sharing |
-| Create StaticDataImporter service | 🔴 TODO | - | Import from static peers |
+| Create StaticDataImporter service | 🟢 DONE | Agent-049 | Import from static peers - Implemented in AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs with directory, archive, and URL import support
 | Add scheduled export job | 🔴 TODO | - | Automated exports |
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
 | Add "Export Data" button in settings | 🔴 TODO | - | Export UI |
@@ -388,6 +388,7 @@
 | 2026-03-05 | Ollama Chat Interface - Implemented IOllamaService, OllamaService, IQueryRouterService, QueryRouterService, ChatViewModel, PriceChatWindow with full natural language query support, integrated into MainWindow sidebar, 248 tests passing | Agent-046 |
 | 2026-03-05 | Add auto-suggestion to AddItemWindow UI - Added ML-based category suggestions with real-time predictions from CategoryPredictionService, confidence scores, clickable suggestions panel, integrated into AddItemViewModel | Agent-047 |
 | 2026-03-05 | Create StaticDataExporter service - Implemented StaticDataExporter with ExportStaticPackageAsync(), exports stores.json, products.json, prices.json, manifest.json with checksums, discovery.json for P2P, ZIP archive support, registered in DI | Agent-048 |
+| 2026-03-05 | Create StaticDataImporter service - Implemented StaticDataImporter with ImportFromDirectoryAsync(), ImportFromArchiveAsync(), ImportFromUrlAsync(), PreviewPackageAsync(), duplicate handling strategies, checksum validation, registered in DI | Agent-049 |
 
 ---
 
