@@ -2693,7 +2693,7 @@ private void ConfigureServices(IServiceCollection services)
 - [x] Add menu item to open Settings - IMPLEMENTED: Added Tools menu with Settings item to MainWindow menu bar, includes Ctrl+, shortcut, opens SettingsWindow via IDialogService
 - [x] Implement connection testing for AdvGenNoSQLServer - IMPLEMENTED: Added TestConnectionAsync() to IDatabaseProvider interface, implemented in LiteDbProvider and AdvGenNoSqlProvider (Agent-039)
 - [x] Handle provider switching (with restart notification) - IMPLEMENTED: SettingsViewModel tracks original provider, shows warning banner when changed, prompts for confirmation on save, automatically restarts application
-- [ ] Document AdvGenNoSQLServer API protocol
+- [x] Document AdvGenNoSQLServer API protocol - COMPLETED: Created comprehensive API_PROTOCOL.md in AdvGenPriceComparer.Server/ covering all REST endpoints, SignalR hub, authentication, rate limiting, data models, and C# client examples
 - [ ] Test database switching workflow
 
 ### 10.11 File Structure Updates

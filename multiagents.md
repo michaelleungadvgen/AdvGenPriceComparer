@@ -180,6 +180,7 @@
 | Create StaticDataImporter service | 🟢 DONE | Agent-049 | Import from static peers - Implemented in AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs with directory, archive, and URL import support
 | Add scheduled export job | 🟢 DONE | Agent-050 | Implemented ScheduledExportService with daily/weekly/monthly schedules, retention policy, and cleanup |
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
+| Document AdvGenNoSQLServer API protocol | 🟢 DONE | Agent-081 | Created comprehensive API_PROTOCOL.md in AdvGenPriceComparer.Server/ with all endpoints, models, and examples |
 | Add "Export Data" button in settings | 🟢 DONE | Agent-051 | Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added Export Data Now button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel |
 | Add "Import from URL" dialog | 🟢 DONE | Agent-053 | Import UI - Created ImportFromUrlWindow with preview and import functionality |
 
@@ -407,6 +408,7 @@
 | 2026-03-05 | Add SignalR for real-time updates - Created PriceUpdateHub with group-based subscriptions, SignalRNotificationService for server-side notifications, IPriceUpdateClientService and PriceUpdateClientService for WPF client, integrated notifications into PriceDataService, registered in DI container | Agent-064 |
 | 2026-03-05 | Implement authentication - ApiKeyService with key generation/validation, ApiKeyMiddleware for request authentication, SHA256 hashing, registered in DI, build succeeds | Agent-065 |
 | 2026-03-05 | Add rate limiting - RateLimitService with sliding window algorithm, RateLimitMiddleware enforcing limits per API key/IP, registered in DI, build succeeds | Agent-065 |
+| 2026-03-06 | Document AdvGenNoSQLServer API protocol - Created comprehensive API_PROTOCOL.md covering all REST endpoints, SignalR hub, authentication, rate limiting, data models, and C# client examples | Agent-081 |
 
 ---
 
