@@ -175,7 +175,7 @@
 |------|--------|-------------|-------|
 | Create StaticDataExporter service | 🟢 DONE | Agent-048 | Created StaticDataExporter service with ExportStaticPackageAsync, generates stores.json, products.json, prices.json, manifest.json, discovery.json, and ZIP archive for P2P sharing |
 | Create StaticDataImporter service | 🟢 DONE | Agent-049 | Import from static peers - Implemented in AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs with directory, archive, and URL import support
-| Add scheduled export job | 🔴 TODO | - | Automated exports |
+| Add scheduled export job | 🟡 DOING | Agent-050 | Implementing automated scheduled export service using StaticDataExporter |
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
 | Add "Export Data" button in settings | 🔴 TODO | - | Export UI |
 | Add "Import from URL" dialog | 🔴 TODO | - | Import UI |

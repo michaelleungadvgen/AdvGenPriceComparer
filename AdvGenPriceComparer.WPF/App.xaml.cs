@@ -198,6 +198,26 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new StaticDataImporter(itemRepo, placeRepo, priceRepo, logger);
             });
+            services.AddSingleton<ScheduledExportService>(provider =>
+            {
+                var exporter = provider.GetRequiredService<StaticDataExporter>();
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var service = new ScheduledExportService(exporter, settingsService, logger);
+                
+                // Start the service if enabled
+                if (service.IsEnabled)
+                {
+                    service.Start();
+                    logger.LogInfo("ScheduledExportService started (enabled in config)");
+                }
+                else
+                {
+                    logger.LogInfo("ScheduledExportService created but not started (disabled in config)");
+                }
+                
+                return service;
+            });
             services.AddSingleton<IGlobalSearchService>(provider =>
             {
                 var dataService = provider.GetRequiredService<IGroceryDataService>();
