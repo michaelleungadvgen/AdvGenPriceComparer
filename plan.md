@@ -6005,7 +6005,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [ ] Implement `ExportPrices()` method with date parameter
 - [ ] Implement `UpdateRecordsIndex()` method
 - [ ] Implement `ExportDiscovery()` method
-- [ ] Add scheduled export job (daily/hourly)
+- [x] Add scheduled export job - IMPLEMENTED: ScheduledExportService with daily/weekly/monthly schedules, retention policy, cleanup (daily/hourly)
 - [ ] Add validation before export
 - [ ] Add file size monitoring
 - [ ] Add export history tracking
