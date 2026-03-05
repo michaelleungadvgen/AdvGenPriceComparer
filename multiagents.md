@@ -77,12 +77,12 @@
 ## Phase 4: Server Integration 
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Create ASP.NET Core Web API project | 🟡 DOING | Agent-061 | Creating ASP.NET Core Web API project with basic structure |
+| Create ASP.NET Core Web API project | 🟢 DONE | Agent-061 | ASP.NET Core Web API project created with Controllers, Services, Middleware, SignalR Hub, EF Core migrations |
 | Implement database schema for shared prices | 🟢 DONE | Agent-062 | Created EF Core migrations for SQLite database schema with all tables (Items, Places, PriceRecords, ApiKeys, UploadSessions), indexes, and foreign keys |
 | Create API endpoints | 🟢 DONE | Agent-063 | Created PricesController, ItemsController, PlacesController with full CRUD operations, upload/download, search, compare endpoints |
 | Add SignalR for real-time updates | 🟢 DONE | Agent-064 | SignalR Hub created, notification service implemented, client service added to WPF |
-| Implement authentication | 🔴 TODO | - | API key based |
-| Add rate limiting | 🔴 TODO | - | Future feature |
+| Implement authentication | 🟢 DONE | Agent-061 | ApiKeyService with key generation/validation, ApiKeyMiddleware for request authentication, SHA256 hashing |
+| Add rate limiting | 🟢 DONE | Agent-061 | RateLimitService with sliding window algorithm, RateLimitMiddleware enforcing limits per API key/IP |
 | Create upload/download UI in WPF app | 🔴 TODO | - | Future feature |
 | Test price sharing workflow | 🔴 TODO | - | End-to-end testing for P2P sharing |
 
@@ -402,6 +402,8 @@
 | 2026-03-05 | Implement database schema for shared prices - Created EF Core migrations for SQLite database with all tables, indexes, foreign keys; Fixed missing ApiKeyService, RateLimitService, and middleware implementations; Build succeeds with 0 errors | Agent-062 |
 | 2026-03-05 | Create API endpoints - Created PricesController (upload, download, search, compare, latest deals, price history), ItemsController (CRUD, batch operations, search by category/brand), PlacesController (CRUD, by chain/state, search); Full REST API for P2P price sharing | Agent-063 |
 | 2026-03-05 | Add SignalR for real-time updates - Created PriceUpdateHub with group-based subscriptions, SignalRNotificationService for server-side notifications, IPriceUpdateClientService and PriceUpdateClientService for WPF client, integrated notifications into PriceDataService, registered in DI container | Agent-064 |
+| 2026-03-05 | Implement authentication - ApiKeyService with key generation/validation, ApiKeyMiddleware for request authentication, SHA256 hashing, registered in DI, build succeeds | Agent-065 |
+| 2026-03-05 | Add rate limiting - RateLimitService with sliding window algorithm, RateLimitMiddleware enforcing limits per API key/IP, registered in DI, build succeeds | Agent-065 |
 
 ---
 
