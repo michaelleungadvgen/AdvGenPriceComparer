@@ -131,6 +131,7 @@
 | Add auto-suggestion to AddItemWindow UI | 🟢 DONE | Agent-047 | Added ML-based category suggestions to AddItemWindow UI with real-time predictions, confidence scores, and clickable suggestions |
 | Create MLModelManagementWindow | 🟢 DONE | Agent-042 | ML Model Management window created with training/testing UI |
 | Test prediction accuracy | 🟢 DONE | Agent-052 | Created CategoryPredictionAccuracyTests with 12 comprehensive xUnit tests for ML.NET prediction accuracy validation
+| Document ML workflow | 🟢 DONE | Agent-080 | Created comprehensive ML_WORKFLOW.md in AdvGenPriceComparer.ML/ covering training, usage, troubleshooting, and best practices
 
 ---
 
@@ -399,6 +400,7 @@
 | 2026-03-05 | Test forecasting with real historical data - Created 26 comprehensive xUnit tests for PriceForecastingService covering statistics calculation, anomaly detection, illusory discount detection, data conversion, edge cases, and model training | Agent-055 |
 | 2026-03-05 | Configure auto-update mechanism - Implemented IUpdateService interface, UpdateService with remote JSON version check, UpdateNotificationWindow UI, auto-check on startup, manual check via Help menu, integrated with existing ISettingsService.AutoCheckForUpdates setting | Agent-056 |
 | 2026-03-05 | Integrate LiveCharts for price visualization - Added CartesianChart to PriceForecastWindow.xaml with bindings for ForecastSeries, ChartXAxes, ChartYAxes; displays historical prices, forecast, and confidence bounds | Agent-060 |
+| 2026-03-05 | Document ML workflow - Created comprehensive ML_WORKFLOW.md covering training methods, auto-categorization usage, troubleshooting guide, best practices, and technical specifications | Agent-080 |
 | 2026-03-05 | Add ML Configuration UI to Settings - Added ML category to SettingsWindow with auto-categorization toggle and confidence threshold slider | Agent-057 |
 | 2026-03-05 | Implement database schema for shared prices - Created EF Core migrations for SQLite database with all tables, indexes, foreign keys; Fixed missing ApiKeyService, RateLimitService, and middleware implementations; Build succeeds with 0 errors | Agent-062 |
 | 2026-03-05 | Create API endpoints - Created PricesController (upload, download, search, compare, latest deals, price history), ItemsController (CRUD, batch operations, search by category/brand), PlacesController (CRUD, by chain/state, search); Full REST API for P2P price sharing | Agent-063 |

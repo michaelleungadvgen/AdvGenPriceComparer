@@ -1820,7 +1820,7 @@ public class DataPreparationService
 - [x] Add configuration for confidence threshold - DONE (Agent-057): Added ML settings UI in SettingsWindow with slider (0.1-0.95) and auto-categorization toggle
 - [ ] Implement model versioning
 - [x] Test prediction accuracy - Agent-052: Created comprehensive xUnit tests for ML.NET accuracy validation with 12 test cases
-- [ ] Document ML workflow
+- [x] Document ML workflow - Agent-080: Created comprehensive ML_WORKFLOW.md in AdvGenPriceComparer.ML/ with training guide, usage instructions, troubleshooting, and best practices
 
 ### 9.12 Configuration
 
