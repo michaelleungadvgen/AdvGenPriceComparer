@@ -123,8 +123,9 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Create AdvGenPriceComparer.ML project | 🟢 DONE | Agent-040 | ML.NET project created with Models, Services, Data folders; ML.NET 3.0.1 dependencies; ProductData, CategoryPrediction, ProductCategories models; ModelTrainingService, CategoryPredictionService, DataPreparationService services; sample training data; build succeeds
-| Implement ModelTrainingService | 🔴 TODO | - | Model training pipeline |
-| Implement CategoryPredictionService | 🔴 TODO | - | Auto-categorization service |
+| Implement ModelTrainingService | 🟢 DONE | Agent-040 | Model training pipeline implemented |
+| Implement CategoryPredictionService | 🟢 DONE | Agent-040 | Auto-categorization service implemented |
+| Add ML Configuration UI to Settings | 🟢 DONE | Agent-057 | Added ML settings section to SettingsWindow.xaml with auto-categorization toggle and confidence threshold slider (0.1-0.95) |
 | Integrate prediction into JsonImportService | 🟢 DONE | Agent-041 | Integrated CategoryPredictionService into JsonImportService with auto-categorization support, ImportOptions with EnableAutoCategorization flag, tracking stats in ImportResult, registered ML services in DI container |
 | Add auto-suggestion to AddItemWindow UI | 🟢 DONE | Agent-047 | Added ML-based category suggestions to AddItemWindow UI with real-time predictions, confidence scores, and clickable suggestions |
 | Create MLModelManagementWindow | 🟢 DONE | Agent-042 | ML Model Management window created with training/testing UI |
@@ -396,6 +397,7 @@
 | 2026-03-05 | Train initial model with existing data - Created TestMLModelTraining CLI tool, expanded sample_training_data.csv to 110 records across 12 categories, trained initial ML.NET category prediction model with 27.78% macro accuracy, model saved to MLModels/category_model.zip (68KB), added PredictCategoryFromText method to CategoryPredictionService, fixed Confidence property bug in CategoryPrediction | Agent-054 |
 | 2026-03-05 | Test forecasting with real historical data - Created 26 comprehensive xUnit tests for PriceForecastingService covering statistics calculation, anomaly detection, illusory discount detection, data conversion, edge cases, and model training | Agent-055 |
 | 2026-03-05 | Configure auto-update mechanism - Implemented IUpdateService interface, UpdateService with remote JSON version check, UpdateNotificationWindow UI, auto-check on startup, manual check via Help menu, integrated with existing ISettingsService.AutoCheckForUpdates setting | Agent-056 |
+| 2026-03-05 | Add ML Configuration UI to Settings - Added ML category to SettingsWindow with auto-categorization toggle and confidence threshold slider | Agent-057 |
 
 ---
 

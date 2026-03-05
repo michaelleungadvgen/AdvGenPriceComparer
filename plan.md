@@ -1814,7 +1814,7 @@ public class DataPreparationService
 - [x] Integrate prediction into JsonImportService - DONE: CategoryPredictionService integrated with auto-categorization support, ImportOptions class with EnableAutoCategorization flag, ML services registered in DI container
 - [x] Add auto-suggestion to AddItemWindow UI - DONE: Added ML-based category suggestions with real-time predictions from CategoryPredictionService, confidence scores display, clickable suggestion buttons, integrated into AddItemViewModel and AddItemWindow.xaml
 - [x] Create MLModelManagementWindow for training/testing - DONE: Created MLModelManagementWindow.xaml with modern UI, MLModelManagementViewModel with training/testing logic, integrated into MainWindow sidebar
-- [ ] Add configuration for confidence threshold
+- [x] Add configuration for confidence threshold - DONE (Agent-057): Added ML settings UI in SettingsWindow with slider (0.1-0.95) and auto-categorization toggle
 - [ ] Implement model versioning
 - [x] Test prediction accuracy - Agent-052: Created comprehensive xUnit tests for ML.NET accuracy validation with 12 test cases
 - [ ] Document ML workflow

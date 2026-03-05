@@ -48,6 +48,7 @@ public class SettingsViewModel : ViewModelBase
         "Database",
         "Import/Export",
         "Notifications",
+        "ML",
         "About"
     };
 

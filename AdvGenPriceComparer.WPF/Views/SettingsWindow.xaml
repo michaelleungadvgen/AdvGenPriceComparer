@@ -375,6 +375,80 @@
                             </Border>
                         </StackPanel>
 
+                        <!-- ML Settings -->
+                        <StackPanel Visibility="{Binding SelectedCategory, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=ML}">
+                            <TextBlock Text="Machine Learning Settings" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,20"/>
+                            
+                            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                                <StackPanel>
+                                    <TextBlock Text="Auto-Categorization" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                    
+                                    <CheckBox Content="Enable auto-categorization during import" 
+                                              IsChecked="{Binding EnableAutoCategorization}"
+                                              Margin="0,0,0,15"/>
+                                    
+                                    <TextBlock Text="Confidence Threshold:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                    <TextBlock Text="Higher values require more certainty before auto-categorizing. Lower values will categorize more items but with less accuracy." 
+                                               Foreground="#666" 
+                                               FontSize="12"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,10"/>
+                                    
+                                    <Grid Margin="0,0,0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Slider Grid.Column="0" 
+                                                Minimum="0.1" 
+                                                Maximum="0.95" 
+                                                TickFrequency="0.05"
+                                                IsSnapToTickEnabled="True"
+                                                Value="{Binding AutoCategorizationThreshold}"
+                                                VerticalAlignment="Center"
+                                                IsEnabled="{Binding EnableAutoCategorization}"/>
+                                        <TextBlock Grid.Column="1" 
+                                                   Text="{Binding AutoCategorizationThreshold, StringFormat='{}{0:P0}'}" 
+                                                   FontWeight="SemiBold"
+                                                   Width="50"
+                                                   TextAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10,0,0,0"/>
+                                    </Grid>
+                                    
+                                    <TextBlock Text="Recommended: 70% for balanced accuracy" 
+                                               Foreground="#666" 
+                                               FontSize="11"
+                                               FontStyle="Italic"
+                                               Margin="0,10,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                                <StackPanel>
+                                    <TextBlock Text="About ML Auto-Categorization" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                    
+                                    <TextBlock TextWrapping="Wrap" Foreground="#666" FontSize="12" Margin="0,0,0,10">
+                                        The application uses machine learning to automatically categorize products based on their name, brand, and description.
+                                    </TextBlock>
+                                    
+                                    <TextBlock TextWrapping="Wrap" Foreground="#666" FontSize="12" Margin="0,0,0,10">
+                                        <Run FontWeight="SemiBold">How it works:</Run>
+                                        <LineBreak/>
+                                        • When you import products without a category, the system will predict the most likely category
+                                        <LineBreak/>
+                                        • Products are only auto-categorized if the confidence score exceeds the threshold above
+                                        <LineBreak/>
+                                        • Low confidence items will remain uncategorized for manual review
+                                    </TextBlock>
+                                    
+                                    <TextBlock TextWrapping="Wrap" Foreground="#666" FontSize="12">
+                                        <Run FontWeight="SemiBold">Tip:</Run> Use the ML Model Management window (Tools menu) to train and test the categorization model.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+
                         <!-- About Settings -->
                         <StackPanel Visibility="{Binding SelectedCategory, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=About}">
                             <TextBlock Text="About" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,20"/>
