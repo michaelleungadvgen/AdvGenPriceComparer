@@ -154,7 +154,7 @@
 | Implement PriceForecastingService | 🟢 DONE | Agent-044 | SSA forecasting model implementation |
 | Implement PriceAnomalyDetectionService | 🟢 DONE | Agent-044 | Part of PriceForecastingService |
 | Create PriceForecastWindow.xaml UI | 🟢 DONE | Agent-045 | Created PriceForecastWindow with LiveCharts integration, PriceForecastViewModel, IDialogService integration, MainWindow menu button |
-| Integrate LiveCharts for price visualization | 🔴 TODO | - | Chart integration |
+| Integrate LiveCharts for price visualization | 🟢 DONE | Agent-060 | Integrated CartesianChart in PriceForecastWindow with historical + forecast series, confidence bounds, X/Y axes bindings |
 | Test forecasting with real historical data | 🟢 DONE | Agent-055 | Created 26 comprehensive xUnit tests for PriceForecastingService - 16 passing (statistics, anomaly detection, illusory discount detection, data conversion), 10 skipped due to service bug in ForecastPricesAsync (uses wrong ML.NET API)
 
 ---
@@ -397,6 +397,7 @@
 | 2026-03-05 | Train initial model with existing data - Created TestMLModelTraining CLI tool, expanded sample_training_data.csv to 110 records across 12 categories, trained initial ML.NET category prediction model with 27.78% macro accuracy, model saved to MLModels/category_model.zip (68KB), added PredictCategoryFromText method to CategoryPredictionService, fixed Confidence property bug in CategoryPrediction | Agent-054 |
 | 2026-03-05 | Test forecasting with real historical data - Created 26 comprehensive xUnit tests for PriceForecastingService covering statistics calculation, anomaly detection, illusory discount detection, data conversion, edge cases, and model training | Agent-055 |
 | 2026-03-05 | Configure auto-update mechanism - Implemented IUpdateService interface, UpdateService with remote JSON version check, UpdateNotificationWindow UI, auto-check on startup, manual check via Help menu, integrated with existing ISettingsService.AutoCheckForUpdates setting | Agent-056 |
+| 2026-03-05 | Integrate LiveCharts for price visualization - Added CartesianChart to PriceForecastWindow.xaml with bindings for ForecastSeries, ChartXAxes, ChartYAxes; displays historical prices, forecast, and confidence bounds | Agent-060 |
 | 2026-03-05 | Add ML Configuration UI to Settings - Added ML category to SettingsWindow with auto-categorization toggle and confidence threshold slider | Agent-057 |
 
 ---

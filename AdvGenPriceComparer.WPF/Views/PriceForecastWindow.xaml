@@ -187,12 +187,12 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="300"/>
+                            <RowDefinition Height="350"/>
                         </Grid.RowDefinitions>
                         
                         <TextBlock Grid.Row="0" Text="Price Forecast Chart" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,12"/>
                         
-                        <!-- Chart Container - Chart will be created programmatically -->
+                        <!-- Chart Container - Chart created programmatically in code-behind -->
                         <Border Grid.Row="1" x:Name="ChartContainer" Background="White"/>
                     </Grid>
                 </Border>
