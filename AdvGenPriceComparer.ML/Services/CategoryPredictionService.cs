@@ -121,6 +121,22 @@ public class CategoryPredictionService
     }
 
     /// <summary>
+    /// Predicts the category from text fields (name, brand, description)
+    /// </summary>
+    public CategoryPrediction PredictCategoryFromText(string name, string brand, string description)
+    {
+        var productData = new ProductData
+        {
+            ProductName = name ?? "",
+            Brand = brand ?? "",
+            Description = description ?? "",
+            Store = ""
+        };
+
+        return PredictCategory(productData);
+    }
+
+    /// <summary>
     /// Predicts the category for product data
     /// </summary>
     public CategoryPrediction PredictCategory(ProductData productData)

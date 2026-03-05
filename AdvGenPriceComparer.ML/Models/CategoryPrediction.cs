@@ -22,7 +22,7 @@ public class CategoryPrediction
     /// <summary>
     /// Maximum confidence score for the prediction
     /// </summary>
-    public float Confidence => Score?.Max() ?? 0f;
+    public float Confidence => Score?.Length > 0 ? Score.Max() : 0f;
 
     /// <summary>
     /// Dictionary mapping category names to their confidence scores

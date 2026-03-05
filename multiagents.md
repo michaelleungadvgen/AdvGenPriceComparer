@@ -150,8 +150,8 @@
 |------|--------|-------------|-------|
 | Install Microsoft.ML.TimeSeries | 🟢 DONE | Agent-043 | Time series forecasting |
 | Implement PriceForecastingService | 🟢 DONE | Agent-044 | SSA forecasting model implementation - full service with price forecasting, anomaly detection, and buying recommendations |
-| Implement PriceForecastingService | 🔴 TODO | - | SSA forecasting model |
-| Implement PriceAnomalyDetectionService | 🔴 TODO | - | Anomaly detection |
+| Implement PriceForecastingService | 🟢 DONE | Agent-044 | SSA forecasting model implementation |
+| Implement PriceAnomalyDetectionService | 🟢 DONE | Agent-044 | Part of PriceForecastingService |
 | Create PriceForecastWindow.xaml UI | 🟢 DONE | Agent-045 | Created PriceForecastWindow with LiveCharts integration, PriceForecastViewModel, IDialogService integration, MainWindow menu button |
 | Integrate LiveCharts for price visualization | 🔴 TODO | - | Chart integration |
 | Test forecasting with real historical data | 🔴 TODO | - | Validate predictions |
@@ -188,7 +188,7 @@
 |------|--------|-------------|-------|
 | Price comparison view (side-by-side store comparison) | 🟢 DONE | Agent-021 | Implemented ComparePricesWindow with store comparison |
 | Historical price charts for individual items | 🟢 DONE | Agent-022 | Price history visualization with LiveCharts fully implemented in PriceHistoryViewModel/PriceHistoryPage |
-| Barcode scanner integration | 🟡 DOING | Agent-024 | Implementing barcode scanning for items using ZXing library |
+| Barcode scanner integration | 🟢 DONE | Agent-024 | Barcode scanning implemented using ZXing library |
 | Settings Service implementation | 🟢 DONE | Agent-026 | Created ISettingsService interface, SettingsService with JSON persistence, registered in DI container, and added 26 comprehensive unit tests |
 | Price drop notifications | 🟢 DONE | Agent-025 | Price drop notification service fully implemented |
 | Search across all entities | 🟢 DONE | Agent-023 | Implemented Global Search with UI - searches across Items, Places, and PriceRecords with relevance scoring |
@@ -393,6 +393,7 @@
 | 2026-03-05 | Add "Export Data" button in settings - Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added "Export Data Now" button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel, build succeeds with 0 errors | Agent-051 |
 | 2026-03-05 | Test prediction accuracy - Created CategoryPredictionAccuracyTests.cs with 12 comprehensive xUnit tests for ML.NET model training, prediction accuracy, confidence scores, batch prediction, performance testing; Fixed ModelTrainingService.BuildTrainingPipeline() to exclude Store field causing schema issues; Added AdvGenPriceComparer.ML reference to test project | Agent-052 |
 | 2026-03-05 | Add "Import from URL" dialog - Created ImportFromUrlWindow.xaml with URL input, package preview, import options (checksum validation, duplicate strategies), progress tracking, and result display; Created ImportFromUrlViewModel with async import and preview functionality; Added menu item to Data menu; Updated IDialogService and SimpleDialogService; Registered in DI container | Agent-053 |
+| 2026-03-05 | Train initial model with existing data - Created TestMLModelTraining CLI tool, expanded sample_training_data.csv to 110 records across 12 categories, trained initial ML.NET category prediction model with 27.78% macro accuracy, model saved to MLModels/category_model.zip (68KB), added PredictCategoryFromText method to CategoryPredictionService, fixed Confidence property bug in CategoryPrediction | Agent-054 |
 
 ---
 
