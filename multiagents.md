@@ -173,7 +173,7 @@
 ## Phase 13: Static Data Import/Export (TODO)
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Create StaticDataExporter service | 🔴 TODO | - | Export to static formats |
+| Create StaticDataExporter service | 🟢 DONE | Agent-048 | Created StaticDataExporter service with ExportStaticPackageAsync, generates stores.json, products.json, prices.json, manifest.json, discovery.json, and ZIP archive for P2P sharing |
 | Create StaticDataImporter service | 🔴 TODO | - | Import from static peers |
 | Add scheduled export job | 🔴 TODO | - | Automated exports |
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
@@ -387,6 +387,7 @@
 | 2026-03-05 | Implement PriceForecastingService - Created full SSA forecasting service with price prediction, anomaly detection, illusory discount detection, buying recommendations, statistics calculation, and batch forecasting | Agent-044 |
 | 2026-03-05 | Ollama Chat Interface - Implemented IOllamaService, OllamaService, IQueryRouterService, QueryRouterService, ChatViewModel, PriceChatWindow with full natural language query support, integrated into MainWindow sidebar, 248 tests passing | Agent-046 |
 | 2026-03-05 | Add auto-suggestion to AddItemWindow UI - Added ML-based category suggestions with real-time predictions from CategoryPredictionService, confidence scores, clickable suggestions panel, integrated into AddItemViewModel | Agent-047 |
+| 2026-03-05 | Create StaticDataExporter service - Implemented StaticDataExporter with ExportStaticPackageAsync(), exports stores.json, products.json, prices.json, manifest.json with checksums, discovery.json for P2P, ZIP archive support, registered in DI | Agent-048 |
 
 ---
 
