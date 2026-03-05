@@ -69,6 +69,7 @@ public class SettingsViewModel : ViewModelBase
         BrowseExportPathCommand = new RelayCommand(BrowseExportPath);
         BrowseImportPathCommand = new RelayCommand(BrowseImportPath);
         TestConnectionCommand = new RelayCommand(TestConnection);
+        ExportDataCommand = new RelayCommand(ShowExportDataDialog);
 
         LoadSettings();
     }
@@ -314,6 +315,7 @@ public class SettingsViewModel : ViewModelBase
     public ICommand BrowseExportPathCommand { get; }
     public ICommand BrowseImportPathCommand { get; }
     public ICommand TestConnectionCommand { get; }
+    public ICommand ExportDataCommand { get; }
 
     #endregion
 
@@ -556,6 +558,11 @@ public class SettingsViewModel : ViewModelBase
     private void TestConnection()
     {
         _dialogService.ShowInfo("Testing connection... This feature will be implemented when database provider switching is fully supported.");
+    }
+
+    private void ShowExportDataDialog()
+    {
+        _dialogService.ShowExportDataDialog();
     }
 
     #endregion

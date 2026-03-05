@@ -309,6 +309,15 @@
                                     
                                     <CheckBox Content="Compress export files (ZIP)" 
                                               IsChecked="{Binding CompressExports}"/>
+                                    
+                                    <Button Content="Export Data Now" 
+                                            Command="{Binding ExportDataCommand}"
+                                            Margin="0,15,0,0"
+                                            Padding="20,10"
+                                            Background="#0078D4"
+                                            Foreground="White"
+                                            BorderThickness="0"
+                                            HorizontalAlignment="Left"/>
                                 </StackPanel>
                             </Border>
 

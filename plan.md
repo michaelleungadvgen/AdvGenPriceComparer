@@ -6032,7 +6032,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [ ] Add data consistency verification
 
 **UI Features:**
-- [ ] Add "Export Data" button in settings
+- [x] Add "Export Data" button in settings
 - [ ] Add "Import from URL" dialog
 - [ ] Add static peer configuration UI
 - [ ] Add export/import progress indicators

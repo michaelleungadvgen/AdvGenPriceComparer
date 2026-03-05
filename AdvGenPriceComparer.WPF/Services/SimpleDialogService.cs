@@ -1,6 +1,7 @@
 using System.Windows;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Views;
+using AdvGenPriceComparer.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdvGenPriceComparer.WPF.Services;
@@ -163,6 +164,15 @@ public class SimpleDialogService : IDialogService
     public void ShowChatDialog()
     {
         var window = new Chat.PriceChatWindow { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowExportDataDialog()
+    {
+        var exportService = ((App)Application.Current).Services.GetRequiredService<ExportService>();
+        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var viewModel = new ExportDataViewModel(exportService, dialogService);
+        var window = new ExportDataWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
 }

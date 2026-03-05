@@ -177,7 +177,7 @@
 | Create StaticDataImporter service | 🟢 DONE | Agent-049 | Import from static peers - Implemented in AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs with directory, archive, and URL import support
 | Add scheduled export job | 🟢 DONE | Agent-050 | Implemented ScheduledExportService with daily/weekly/monthly schedules, retention policy, and cleanup |
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
-| Add "Export Data" button in settings | 🔴 TODO | - | Export UI |
+| Add "Export Data" button in settings | 🟢 DONE | Agent-051 | Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added Export Data Now button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel |
 | Add "Import from URL" dialog | 🔴 TODO | - | Import UI |
 
 ---
@@ -390,6 +390,7 @@
 | 2026-03-05 | Create StaticDataExporter service - Implemented StaticDataExporter with ExportStaticPackageAsync(), exports stores.json, products.json, prices.json, manifest.json with checksums, discovery.json for P2P, ZIP archive support, registered in DI | Agent-048 |
 | 2026-03-05 | Create StaticDataImporter service - Implemented StaticDataImporter with ImportFromDirectoryAsync(), ImportFromArchiveAsync(), ImportFromUrlAsync(), PreviewPackageAsync(), duplicate handling strategies, checksum validation, registered in DI | Agent-049 |
 | 2026-03-05 | Add scheduled export job - Implemented ScheduledExportService with daily/weekly/monthly schedules, configuration persistence, automatic cleanup, event notifications, integrated with StaticDataExporter, registered in DI, build succeeds, 248 tests passing | Agent-050 |
+| 2026-03-05 | Add "Export Data" button in settings - Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added "Export Data Now" button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel, build succeeds with 0 errors | Agent-051 |
 
 ---
 

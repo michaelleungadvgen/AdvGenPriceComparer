@@ -22,4 +22,5 @@ public interface IDialogService
     void ShowMLModelManagementDialog();
     void ShowPriceForecastDialog();
     void ShowChatDialog();
+    void ShowExportDataDialog();
 }
