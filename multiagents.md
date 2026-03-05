@@ -77,8 +77,8 @@
 ## Phase 4: Server Integration 
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Create ASP.NET Core Web API project | 🔴 TODO | - | Future feature |
-| Implement database schema for shared prices | 🔴 TODO | - | Future feature |
+| Create ASP.NET Core Web API project | 🟡 DOING | Agent-061 | Creating ASP.NET Core Web API project with basic structure |
+| Implement database schema for shared prices | 🟢 DONE | Agent-062 | Created EF Core migrations for SQLite database schema with all tables (Items, Places, PriceRecords, ApiKeys, UploadSessions), indexes, and foreign keys |
 | Create API endpoints | 🔴 TODO | - | POST/GET endpoints |
 | Add SignalR for real-time updates | 🔴 TODO | - | Future feature |
 | Implement authentication | 🔴 TODO | - | API key based |
@@ -399,6 +399,7 @@
 | 2026-03-05 | Configure auto-update mechanism - Implemented IUpdateService interface, UpdateService with remote JSON version check, UpdateNotificationWindow UI, auto-check on startup, manual check via Help menu, integrated with existing ISettingsService.AutoCheckForUpdates setting | Agent-056 |
 | 2026-03-05 | Integrate LiveCharts for price visualization - Added CartesianChart to PriceForecastWindow.xaml with bindings for ForecastSeries, ChartXAxes, ChartYAxes; displays historical prices, forecast, and confidence bounds | Agent-060 |
 | 2026-03-05 | Add ML Configuration UI to Settings - Added ML category to SettingsWindow with auto-categorization toggle and confidence threshold slider | Agent-057 |
+| 2026-03-05 | Implement database schema for shared prices - Created EF Core migrations for SQLite database with all tables, indexes, foreign keys; Fixed missing ApiKeyService, RateLimitService, and middleware implementations; Build succeeds with 0 errors | Agent-062 |
 
 ---
 

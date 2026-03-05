@@ -445,8 +445,8 @@ public class ExportService
 - [x] Add export progress tracking
 
 ### Phase 4: Server Integration (Future - 5-7 days)
-- [ ] Create ASP.NET Core Web API project (AdvGenPriceComparer.Server)
-- [ ] Implement database schema for shared prices
+- [x] Create ASP.NET Core Web API project (AdvGenPriceComparer.Server)
+- [x] Implement database schema for shared prices
 - [ ] Create API endpoints:
   - [ ] POST /api/prices/upload - Upload price data
   - [ ] GET /api/prices/download - Download with filters
