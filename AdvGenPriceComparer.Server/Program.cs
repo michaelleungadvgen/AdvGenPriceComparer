@@ -1,4 +1,5 @@
 using AdvGenPriceComparer.Server.Data;
+using AdvGenPriceComparer.Server.Hubs;
 using AdvGenPriceComparer.Server.Middleware;
 using AdvGenPriceComparer.Server.Services;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,25 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Add SignalR for real-time updates
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+    options.MaximumReceiveMessageSize = 1024 * 1024; // 1MB
+    options.StreamBufferCapacity = 50;
+});
+
+// Add CORS for SignalR WebSocket support
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("SignalRPolicy", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 // Add database context
 builder.Services.AddDbContext<PriceDataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") 
@@ -35,6 +55,9 @@ builder.Services.AddDbContext<PriceDataContext>(options =>
 // Add application services
 builder.Services.AddScoped<IPriceDataService, PriceDataService>();
 builder.Services.AddScoped<IApiKeyService, ApiKeyService>();
+
+// Add SignalR notification service
+builder.Services.AddSingleton<INotificationService, SignalRNotificationService>();
 
 // Add rate limiting
 builder.Services.AddMemoryCache();
@@ -51,6 +74,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Add CORS middleware before SignalR
+app.UseCors("SignalRPolicy");
+
 // Add API Key authentication middleware
 app.UseMiddleware<ApiKeyMiddleware>();
 
@@ -59,7 +85,11 @@ app.UseMiddleware<RateLimitMiddleware>();
 
 app.UseAuthorization();
 
+// Map controllers
 app.MapControllers();
+
+// Map SignalR hub
+app.MapHub<PriceUpdateHub>("/hubs/price-updates");
 
 // Ensure database is created
 using (var scope = app.Services.CreateScope())

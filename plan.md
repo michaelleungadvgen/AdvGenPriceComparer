@@ -456,7 +456,7 @@ public class ExportService
   - [x] GET /api/prices/history/{itemId} - Price history
   - [x] GET /api/items - Item CRUD operations
   - [x] GET /api/places - Store/location management
-- [ ] Add SignalR for real-time updates
+- [x] Add SignalR for real-time updates - IMPLEMENTED: PriceUpdateHub with group subscriptions, notification service, WPF client service with auto-reconnect
 - [x] Implement authentication (API key based)
 - [x] Add rate limiting
 - [ ] Create upload/download UI in WPF app

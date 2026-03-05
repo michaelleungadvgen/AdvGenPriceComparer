@@ -285,6 +285,13 @@ public partial class App : Application
                 return new UpdateService(settingsService, logger);
             });
 
+            // SignalR Client Service for real-time price updates
+            services.AddSingleton<IPriceUpdateClientService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new PriceUpdateClientService(logger);
+            });
+
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<ItemViewModel>();

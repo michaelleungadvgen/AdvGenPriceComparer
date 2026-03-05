@@ -1,4 +1,5 @@
 using AdvGenPriceComparer.Server.Data;
+using AdvGenPriceComparer.Server.Hubs;
 using AdvGenPriceComparer.Server.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,12 @@ namespace AdvGenPriceComparer.Server.Services;
 public class PriceDataService : IPriceDataService
 {
     private readonly PriceDataContext _context;
+    private readonly INotificationService _notificationService;
 
-    public PriceDataService(PriceDataContext context)
+    public PriceDataService(PriceDataContext context, INotificationService notificationService)
     {
         _context = context;
+        _notificationService = notificationService;
     }
 
     public async Task<IEnumerable<SharedItem>> GetItemsAsync(ItemFilter? filter = null, int page = 1, int pageSize = 100)
@@ -315,6 +318,36 @@ public class PriceDataService : IPriceDataService
 
             await _context.UploadSessions.AddAsync(session);
             await _context.SaveChangesAsync();
+
+            // Send real-time notification about new data
+            await _notificationService.NotifyDataUploadedAsync(
+                result.ItemsUploaded, 
+                result.PlacesUploaded, 
+                result.PricesUploaded);
+
+            // Send notifications for new deals (items with discounts)
+            foreach (var record in request.PriceRecords.Where(r => r.OriginalPrice.HasValue && r.OriginalPrice > r.Price))
+            {
+                var item = request.Items.FirstOrDefault(i => i.Id == record.ItemId);
+                var place = request.Places.FirstOrDefault(p => p.Id == record.PlaceId);
+
+                if (item != null && place != null)
+                {
+                    await _notificationService.NotifyNewDealAsync(new NewDealNotification
+                    {
+                        ItemId = record.ItemId,
+                        ItemName = item.Name,
+                        Brand = item.Brand,
+                        Category = item.Category,
+                        PlaceId = record.PlaceId,
+                        PlaceName = place.Name,
+                        Price = record.Price,
+                        OriginalPrice = record.OriginalPrice,
+                        Savings = record.OriginalPrice - record.Price,
+                        DealStartDate = DateTime.UtcNow
+                    });
+                }
+            }
         }
         catch (Exception ex)
         {
