@@ -307,14 +307,14 @@ public class ModelTrainingService
     private IEstimator<ITransformer> BuildTrainingPipeline()
     {
         // Build a text featurization pipeline for product categorization
+        // Note: Store field is excluded from the pipeline as it's often empty and can cause schema issues
         return _mlContext.Transforms.Conversion
             .MapValueToKey("Label", "Label")
             .Append(_mlContext.Transforms.Text.FeaturizeText("ProductNameFeatures", "ProductName"))
             .Append(_mlContext.Transforms.Text.FeaturizeText("BrandFeatures", "Brand"))
             .Append(_mlContext.Transforms.Text.FeaturizeText("DescriptionFeatures", "Description"))
-            .Append(_mlContext.Transforms.Text.FeaturizeText("StoreFeatures", "Store"))
             .Append(_mlContext.Transforms.Concatenate("Features",
-                "ProductNameFeatures", "BrandFeatures", "DescriptionFeatures", "StoreFeatures"))
+                "ProductNameFeatures", "BrandFeatures", "DescriptionFeatures"))
             .Append(_mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(
                 new SdcaMaximumEntropyMulticlassTrainer.Options
                 {

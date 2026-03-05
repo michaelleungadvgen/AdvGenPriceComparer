@@ -128,7 +128,7 @@
 | Integrate prediction into JsonImportService | 🟢 DONE | Agent-041 | Integrated CategoryPredictionService into JsonImportService with auto-categorization support, ImportOptions with EnableAutoCategorization flag, tracking stats in ImportResult, registered ML services in DI container |
 | Add auto-suggestion to AddItemWindow UI | 🟢 DONE | Agent-047 | Added ML-based category suggestions to AddItemWindow UI with real-time predictions, confidence scores, and clickable suggestions |
 | Create MLModelManagementWindow | 🟢 DONE | Agent-042 | ML Model Management window created with training/testing UI |
-| Test prediction accuracy | 🔴 TODO | - | Validate ML accuracy |
+| Test prediction accuracy | 🟢 DONE | Agent-052 | Created CategoryPredictionAccuracyTests with 12 comprehensive xUnit tests for ML.NET prediction accuracy validation
 
 ---
 
@@ -391,6 +391,7 @@
 | 2026-03-05 | Create StaticDataImporter service - Implemented StaticDataImporter with ImportFromDirectoryAsync(), ImportFromArchiveAsync(), ImportFromUrlAsync(), PreviewPackageAsync(), duplicate handling strategies, checksum validation, registered in DI | Agent-049 |
 | 2026-03-05 | Add scheduled export job - Implemented ScheduledExportService with daily/weekly/monthly schedules, configuration persistence, automatic cleanup, event notifications, integrated with StaticDataExporter, registered in DI, build succeeds, 248 tests passing | Agent-050 |
 | 2026-03-05 | Add "Export Data" button in settings - Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added "Export Data Now" button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel, build succeeds with 0 errors | Agent-051 |
+| 2026-03-05 | Test prediction accuracy - Created CategoryPredictionAccuracyTests.cs with 12 comprehensive xUnit tests for ML.NET model training, prediction accuracy, confidence scores, batch prediction, performance testing; Fixed ModelTrainingService.BuildTrainingPipeline() to exclude Store field causing schema issues; Added AdvGenPriceComparer.ML reference to test project | Agent-052 |
 
 ---
 

@@ -442,6 +442,7 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowMLModelManagementDialog() { }
         public void ShowPriceForecastDialog() { }
         public void ShowChatDialog() { }
+        public void ShowExportDataDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 

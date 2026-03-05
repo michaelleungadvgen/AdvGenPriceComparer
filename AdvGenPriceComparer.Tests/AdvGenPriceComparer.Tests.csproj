@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj" />
     <ProjectReference Include="..\AdvGenPriceComparer.Data.LiteDB\AdvGenPriceComparer.Data.LiteDB.csproj" />
+    <ProjectReference Include="..\AdvGenPriceComparer.ML\AdvGenPriceComparer.ML.csproj" />
     <ProjectReference Include="..\AdvGenPriceComparer.WPF\AdvGenPriceComparer.WPF.csproj" />
   </ItemGroup>
 
