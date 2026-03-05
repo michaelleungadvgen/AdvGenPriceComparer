@@ -26,4 +26,5 @@ public interface IDialogService
     void ShowImportFromUrlDialog();
     void ShowIllusoryDiscountDetectionDialog();
     void ShowServerDataTransferDialog();
+    void ShowBestPricesDialog();
 }

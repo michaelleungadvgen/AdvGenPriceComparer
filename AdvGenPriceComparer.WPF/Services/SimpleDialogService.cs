@@ -216,4 +216,14 @@ public class SimpleDialogService : IDialogService
         var window = new ServerDataTransferWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowBestPricesDialog()
+    {
+        var bestPriceService = ((App)Application.Current).Services.GetRequiredService<IBestPriceService>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.BestPricesViewModel(bestPriceService, logger);
+        var window = new BestPricesWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

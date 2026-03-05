@@ -47,6 +47,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         PriceForecastCommand = new RelayCommand(ShowPriceForecast);
         IllusoryDiscountDetectionCommand = new RelayCommand(ShowIllusoryDiscountDetection);
         ChatCommand = new RelayCommand(ShowChat);
+        BestPricesCommand = new RelayCommand(ShowBestPrices);
 
         RefreshDashboard();
     }
@@ -84,6 +85,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand PriceForecastCommand { get; }
     public ICommand IllusoryDiscountDetectionCommand { get; }
     public ICommand ChatCommand { get; }
+    public ICommand BestPricesCommand { get; }
 
     public event Action? OnStoreAdded;
 
@@ -300,6 +302,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowFavorites()
     {
         _dialogService.ShowFavoritesDialog();
+    }
+
+    private void ShowBestPrices()
+    {
+        _dialogService.ShowBestPricesDialog();
     }
 
     public void Dispose()

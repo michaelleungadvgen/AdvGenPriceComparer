@@ -273,6 +273,14 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new WeeklySpecialsService(groceryData, logger);
             });
+            services.AddSingleton<IBestPriceService>(provider =>
+            {
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new BestPriceService(itemRepo, placeRepo, priceRepo, logger);
+            });
             services.AddSingleton<IShoppingListRepository>(provider =>
             {
                 var dbProvider = provider.GetRequiredService<IDatabaseProvider>();

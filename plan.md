@@ -469,7 +469,7 @@ public class ExportService
 - [ ] Create PriceComparisonView.xaml
 - [ ] Implement side-by-side store comparison
 - [ ] Create price history charts (LiveCharts)
-- [ ] Add "best price" highlighting
+- [x] Add "best price" highlighting - DONE: IBestPriceService, BestPriceService, BestPricesWindow UI with tabs for Best Deals/Historical Lows/Best Savings
 - [ ] Generate reports (weekly specials, best deals, trends)
 
 ### Phase 6: Enhanced Features (5-6 days)

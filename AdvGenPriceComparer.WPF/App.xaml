@@ -30,6 +30,9 @@
             <converters:BooleanToFavoriteConverter x:Key="BooleanToFavoriteConverter"/>
             <converters:SelectedItemBackgroundConverter x:Key="SelectedItemBackgroundConverter"/>
             <converters:MessageRoleToVisibilityConverter x:Key="MessageRoleToVisibilityConverter"/>
+            <converters:HighlightLevelToTextConverter x:Key="HighlightLevelToTextConverter"/>
+            <converters:HighlightLevelToColorConverter x:Key="HighlightLevelToColorConverter"/>
+            <converters:HighlightLevelToBackgroundConverter x:Key="HighlightLevelToBackgroundConverter"/>
 
             <!-- Light Blue Theme Color -->
             <Color x:Key="PrimaryColor">#87CEEB</Color>
