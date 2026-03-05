@@ -175,4 +175,14 @@ public class SimpleDialogService : IDialogService
         var window = new ExportDataWindow(viewModel) { Owner = Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowImportFromUrlDialog()
+    {
+        var staticDataImporter = ((App)Application.Current).Services.GetRequiredService<StaticDataImporter>();
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var viewModel = new ImportFromUrlViewModel(staticDataImporter, logger, dialogService);
+        var window = new ImportFromUrlWindow(viewModel) { Owner = Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

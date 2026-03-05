@@ -443,6 +443,7 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowPriceForecastDialog() { }
         public void ShowChatDialog() { }
         public void ShowExportDataDialog() { }
+        public void ShowImportFromUrlDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 

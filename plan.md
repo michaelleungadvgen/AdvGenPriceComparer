@@ -6033,7 +6033,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 
 **UI Features:**
 - [x] Add "Export Data" button in settings
-- [ ] Add "Import from URL" dialog
+- [x] Add "Import from URL" dialog - IMPLEMENTED: ImportFromUrlWindow with URL input, package preview, duplicate handling options, progress tracking, and result display
 - [ ] Add static peer configuration UI
 - [ ] Add export/import progress indicators
 - [ ] Add data validation reports

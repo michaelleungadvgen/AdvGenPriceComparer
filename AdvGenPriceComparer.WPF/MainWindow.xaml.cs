@@ -307,6 +307,25 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void ImportFromUrl_Click(object sender, RoutedEventArgs e)
+    {
+        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        logger.LogInfo("ImportFromUrl_Click called");
+
+        try
+        {
+            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowImportFromUrlDialog();
+            logger.LogInfo("Import from URL dialog closed");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Error in ImportFromUrl_Click", ex);
+            MessageBox.Show($"Error opening import from URL dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void OldImportJsonData_Click_Backup(object sender, RoutedEventArgs e)
     {
         try

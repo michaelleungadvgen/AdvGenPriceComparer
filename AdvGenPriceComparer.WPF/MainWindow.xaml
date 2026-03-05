@@ -120,6 +120,8 @@
                 <MenuItem Header="Add Item" Command="{Binding AddItemCommand}"/>
                 <MenuItem Header="Add Store" Command="{Binding AddPlaceCommand}"/>
                 <Separator/>
+                <MenuItem Header="Import from URL..." Click="ImportFromUrl_Click"/>
+                <Separator/>
                 <MenuItem Header="Generate Demo Data" Click="GenerateDemoData_Click"/>
             </MenuItem>
             <MenuItem Header="_Tools">

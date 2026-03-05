@@ -178,7 +178,7 @@
 | Add scheduled export job | 🟢 DONE | Agent-050 | Implemented ScheduledExportService with daily/weekly/monthly schedules, retention policy, and cleanup |
 | Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
 | Add "Export Data" button in settings | 🟢 DONE | Agent-051 | Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added Export Data Now button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel |
-| Add "Import from URL" dialog | 🔴 TODO | - | Import UI |
+| Add "Import from URL" dialog | 🟢 DONE | Agent-053 | Import UI - Created ImportFromUrlWindow with preview and import functionality |
 
 ---
 
@@ -392,6 +392,7 @@
 | 2026-03-05 | Add scheduled export job - Implemented ScheduledExportService with daily/weekly/monthly schedules, configuration persistence, automatic cleanup, event notifications, integrated with StaticDataExporter, registered in DI, build succeeds, 248 tests passing | Agent-050 |
 | 2026-03-05 | Add "Export Data" button in settings - Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added "Export Data Now" button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel, build succeeds with 0 errors | Agent-051 |
 | 2026-03-05 | Test prediction accuracy - Created CategoryPredictionAccuracyTests.cs with 12 comprehensive xUnit tests for ML.NET model training, prediction accuracy, confidence scores, batch prediction, performance testing; Fixed ModelTrainingService.BuildTrainingPipeline() to exclude Store field causing schema issues; Added AdvGenPriceComparer.ML reference to test project | Agent-052 |
+| 2026-03-05 | Add "Import from URL" dialog - Created ImportFromUrlWindow.xaml with URL input, package preview, import options (checksum validation, duplicate strategies), progress tracking, and result display; Created ImportFromUrlViewModel with async import and preview functionality; Added menu item to Data menu; Updated IDialogService and SimpleDialogService; Registered in DI container | Agent-053 |
 
 ---
 

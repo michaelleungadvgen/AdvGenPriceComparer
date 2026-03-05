@@ -1,0 +1,263 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.ImportFromUrlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AdvGenPriceComparer.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Import from URL" 
+        Height="700" 
+        Width="700"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        MinWidth="600"
+        MinHeight="600">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{
+            DynamicResource SystemAccentColorBrush}" Padding="20,15">
+            <StackPanel>
+                <TextBlock Text="Import from URL" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Import price data from a web URL or shared package"
+                           Foreground="White" Opacity="0.9" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+
+                <!-- URL Input Section -->
+                <GroupBox Header="Package URL" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Enter the URL of the price data package:"
+                                   Margin="0,0,0,5"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}"
+                                     VerticalContentAlignment="Center"
+                                     Padding="8,5"
+                                     IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+                            <Button Grid.Column="1"
+                                    Content="Preview"
+                                    Command="{Binding PreviewCommand}"
+                                    Padding="15,5"
+                                    Margin="10,0,0,0"
+                                    IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+                        </Grid>
+                        <TextBlock Text="Example: https://example.com/pricedata.zip"
+                                   FontSize="11"
+                                   Opacity="0.6"
+                                   Margin="0,5,0,0"
+                                   FontStyle="Italic"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Progress Section -->
+                <Border Background="{
+                    DynamicResource SystemControlBackgroundBaseLowBrush}"
+                            Padding="15"
+                            Margin="0,0,0,15"
+                            Visibility="{Binding IsImporting, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
+                        <ProgressBar Value="{Binding ProgressPercentage}"
+                                     Maximum="100"
+                                     Height="20"/>
+                        <TextBlock Text="{Binding ProgressPercentage, StringFormat='{}{0}%%'}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Preview Section -->
+                <GroupBox Header="Package Preview" 
+                          Margin="0,0,0,15"
+                          Visibility="{Binding ShowPreview, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Package ID -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Package ID:"
+                                   FontWeight="SemiBold" Margin="0,0,0,2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Preview.PackageId}"
+                                   Margin="0,0,10,10" TextTrimming="CharacterEllipsis"/>
+
+                        <!-- Created Date -->
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Created:"
+                                   FontWeight="SemiBold" Margin="0,0,0,2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Preview.CreatedAt, StringFormat='yyyy-MM-dd HH:mm'}"
+                                   Margin="0,0,10,10"/>
+
+                        <!-- Exported By -->
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Exported By:"
+                                   FontWeight="SemiBold" Margin="0,0,0,2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Preview.ExportedBy}"
+                                   Margin="0,0,0,10"/>
+
+                        <!-- Stats Cards -->
+                        <Border Grid.Row="2" Grid.Column="0" Background="{
+                            DynamicResource SystemAccentColorLight1Brush}"
+                                    Padding="15" Margin="0,0,5,0" CornerRadius="4">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Preview.StoreCount}" 
+                                           FontSize="28" FontWeight="Bold" 
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"/>
+                                <TextBlock Text="Stores" 
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="2" Grid.Column="1" Background="{
+                            DynamicResource SystemAccentColorLight2Brush}"
+                                    Padding="15" Margin="5,0" CornerRadius="4">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Preview.ProductCount}" 
+                                           FontSize="28" FontWeight="Bold" 
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"/>
+                                <TextBlock Text="Products" 
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="2" Grid.Column="2" Background="{
+                            DynamicResource SystemAccentColorLight3Brush}"
+                                    Padding="15" Margin="5,0,0,0" CornerRadius="4">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Preview.PriceRecordCount}" 
+                                           FontSize="28" FontWeight="Bold" 
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"/>
+                                <TextBlock Text="Prices" 
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Description -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                   Text="Description:" FontWeight="SemiBold"
+                                   Margin="0,15,0,5"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
+                                   Text="{Binding Preview.Description}"
+                                   TextWrapping="Wrap"
+                                   Opacity="0.8"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Import Options -->
+                <GroupBox Header="Import Options" Margin="0,0,0,15">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Validate Checksums -->
+                        <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                  Content="Validate file checksums"
+                                  IsChecked="{Binding ValidateChecksums}"
+                                  Margin="0,0,0,10"
+                                  IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+
+                        <!-- Store Strategy -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Duplicate Stores:"
+                                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1"
+                                  ItemsSource="{Binding DuplicateStrategies}"
+                                  SelectedItem="{Binding DuplicateStoreStrategy}"
+                                  Margin="0,0,0,10"
+                                  IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+
+                        <!-- Product Strategy -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Duplicate Products:"
+                                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1"
+                                  ItemsSource="{Binding DuplicateStrategies}"
+                                  SelectedItem="{Binding DuplicateProductStrategy}"
+                                  Margin="0,0,0,10"
+                                  IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+
+                        <!-- Price Strategy -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Duplicate Prices:"
+                                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <ComboBox Grid.Row="3" Grid.Column="1"
+                                  ItemsSource="{Binding DuplicateStrategies}"
+                                  SelectedItem="{Binding DuplicatePriceStrategy}"
+                                  IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Result Section -->
+                <Border Background="{
+                    DynamicResource SystemControlBackgroundBaseLowBrush}"
+                            Padding="15"
+                            Margin="0,0,0,15"
+                            Visibility="{Binding ShowResult, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            CornerRadius="4">
+                    <TextBlock Text="{Binding ResultMessage}"
+                               TextWrapping="Wrap"/>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Buttons -->
+        <Border Grid.Row="2" Background="{
+            DynamicResource SystemAltMediumColor}" Padding="20,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Close"
+                        Padding="20,8"
+                        Margin="0,0,10,0"
+                        Command="{Binding CloseCommand}"
+                        IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+                <Button Content="Import"
+                        Padding="20,8"
+                        Background="{
+                    DynamicResource SystemAccentColorBrush}"
+                        Foreground="White"
+                        Command="{Binding ImportCommand}"
+                        IsEnabled="{Binding IsImporting, Converter={StaticResource InverseBooleanConverter}}"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

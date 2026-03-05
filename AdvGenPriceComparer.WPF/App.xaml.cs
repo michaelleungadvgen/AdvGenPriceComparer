@@ -321,6 +321,13 @@ public partial class App : Application
                 var dialogService = provider.GetRequiredService<IDialogService>();
                 return new ShoppingListViewModel(service, dialogService);
             });
+            services.AddTransient<ImportFromUrlViewModel>(provider =>
+            {
+                var staticDataImporter = provider.GetRequiredService<StaticDataImporter>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                return new ImportFromUrlViewModel(staticDataImporter, logger, dialogService);
+            });
 
             // Views
             services.AddTransient<ItemsPage>();
@@ -344,6 +351,11 @@ public partial class App : Application
             {
                 var viewModel = provider.GetRequiredService<ShoppingListViewModel>();
                 return new ShoppingListWindow(viewModel);
+            });
+            services.AddTransient<ImportFromUrlWindow>(provider =>
+            {
+                var viewModel = provider.GetRequiredService<ImportFromUrlViewModel>();
+                return new ImportFromUrlWindow(viewModel);
             });
 
             // Chat Services

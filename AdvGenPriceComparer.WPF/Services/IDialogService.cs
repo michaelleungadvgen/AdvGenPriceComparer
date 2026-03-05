@@ -23,4 +23,5 @@ public interface IDialogService
     void ShowPriceForecastDialog();
     void ShowChatDialog();
     void ShowExportDataDialog();
+    void ShowImportFromUrlDialog();
 }
