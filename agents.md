@@ -142,6 +142,41 @@ Services are registered in `AdvGenPriceComparer.WPF/App.xaml.cs` in the `Configu
 3. Update multiagents.md with status
 4. Update plan.md with progress
 
+### Adding New Dialog Windows
+To add a new dialog window to the application:
+
+1. **Create ViewModel** (`AdvGenPriceComparer.WPF/ViewModels/YourDialogViewModel.cs`):
+   - Inherit from `ViewModelBase` for INotifyPropertyChanged support
+   - Accept required services via constructor injection
+   - Implement `ICommand` properties for button actions
+   - Raise `RequestClose` event when dialog should close
+
+2. **Create View** (`AdvGenPriceComparer.WPF/Views/YourDialogWindow.xaml` and `.xaml.cs`):
+   - XAML: Use `<Window>` root element (not FluentWindow)
+   - Code-behind: Inherit from `Window`, accept ViewModel in constructor
+   - Set `DataContext = viewModel` and subscribe to `RequestClose` event
+   - Set `Owner = Application.Current.MainWindow` when showing dialog
+
+3. **Add to IDialogService** (`AdvGenPriceComparer.WPF/Services/IDialogService.cs`):
+   - Add method signature: `void ShowYourDialog();`
+
+4. **Implement in SimpleDialogService** (`AdvGenPriceComparer.WPF/Services/SimpleDialogService.cs`):
+   - Get services from DI: `((App)Application.Current).Services.GetRequiredService<YourService>()`
+   - Create ViewModel and Window instances
+   - Call `window.ShowDialog()`
+
+5. **Register in DI** (`AdvGenPriceComparer.WPF/App.xaml.cs`):
+   - Add ViewModel registration: `services.AddTransient<YourDialogViewModel>(provider => { ... })`
+   - Add Window registration: `services.AddTransient<YourDialogWindow>(provider => { ... })`
+
+6. **Add Menu Item** (`AdvGenPriceComparer.WPF/MainWindow.xaml` and `.xaml.cs`):
+   - Add MenuItem to appropriate menu (File, Data, Tools, Help)
+   - Create Click event handler in code-behind
+   - Call `_dialogService.ShowYourDialog()`
+
+7. **Update Tests** (if tests have mock IDialogService implementations):
+   - Add stub method to TestDialogService classes in test files
+
 ### Testing
 - **AdvGenPriceComparer.Tests**: xUnit test project with 217+ tests
   - Build: `dotnet build AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj`
