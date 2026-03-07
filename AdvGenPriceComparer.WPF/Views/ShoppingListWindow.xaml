@@ -130,7 +130,8 @@
                                 Style="{StaticResource IconButtonStyle}"
                                 Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                 CommandParameter="{Binding}"
-                                ToolTip="Delete item"/>
+                                ToolTip="Delete item"
+                                AutomationProperties.Name="Delete item"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -234,17 +235,20 @@
                                                     Style="{StaticResource IconButtonStyle}"
                                                     Command="{Binding DataContext.DuplicateListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                     CommandParameter="{Binding}"
-                                                    ToolTip="Duplicate list"/>
+                                                    ToolTip="Duplicate list"
+                                                    AutomationProperties.Name="Duplicate list"/>
                                             <Button Content="{Binding IsFavorite, Converter={StaticResource BooleanToFavoriteConverter}}" 
                                                     Style="{StaticResource IconButtonStyle}"
                                                     Command="{Binding DataContext.ToggleFavoriteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                     CommandParameter="{Binding}"
-                                                    ToolTip="Toggle favorite"/>
+                                                    ToolTip="Toggle favorite"
+                                                    AutomationProperties.Name="Toggle favorite"/>
                                             <Button Content="🗑️" 
                                                     Style="{StaticResource IconButtonStyle}"
                                                     Command="{Binding DataContext.DeleteListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                     CommandParameter="{Binding}"
-                                                    ToolTip="Delete list"/>
+                                                    ToolTip="Delete list"
+                                                    AutomationProperties.Name="Delete list"/>
                                         </StackPanel>
                                     </Grid>
                                 </Border>
