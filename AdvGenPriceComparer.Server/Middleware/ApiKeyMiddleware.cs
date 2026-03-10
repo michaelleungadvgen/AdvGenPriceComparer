@@ -9,11 +9,13 @@ public class ApiKeyMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<ApiKeyMiddleware> _logger;
+    private readonly IWebHostEnvironment _env;
 
-    public ApiKeyMiddleware(RequestDelegate next, ILogger<ApiKeyMiddleware> logger)
+    public ApiKeyMiddleware(RequestDelegate next, ILogger<ApiKeyMiddleware> logger, IWebHostEnvironment env)
     {
         _next = next;
         _logger = logger;
+        _env = env;
     }
 
     public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService)
@@ -27,9 +29,9 @@ public class ApiKeyMiddleware
         }
 
         // Allow anonymous access in development for certain endpoints
-        if (context.Request.Method == "GET" && path.StartsWith("/api/prices"))
+        if (_env.IsDevelopment() && context.Request.Method == "GET" && path.StartsWith("/api/prices"))
         {
-            // Public read access
+            // Public read access only in development
             await _next(context);
             return;
         }
