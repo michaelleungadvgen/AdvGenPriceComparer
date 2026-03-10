@@ -10,12 +10,14 @@ public class ApiKeyMiddleware
     private readonly RequestDelegate _next;
     private readonly ILogger<ApiKeyMiddleware> _logger;
     private readonly IWebHostEnvironment _env;
+    private readonly IConfiguration _configuration;
 
-    public ApiKeyMiddleware(RequestDelegate next, ILogger<ApiKeyMiddleware> logger, IWebHostEnvironment env)
+    public ApiKeyMiddleware(RequestDelegate next, ILogger<ApiKeyMiddleware> logger, IWebHostEnvironment env, IConfiguration configuration)
     {
         _next = next;
         _logger = logger;
         _env = env;
+        _configuration = configuration;
     }
 
     public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService)
@@ -23,6 +25,14 @@ public class ApiKeyMiddleware
         // Skip API key validation for Swagger and health endpoints
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
         if (path.Contains("/swagger") || path.Contains("/health") || path == "/")
+        {
+            await _next(context);
+            return;
+        }
+
+        // Check if API keys are required by configuration
+        bool requireApiKey = _configuration.GetValue<bool>("ApiSettings:RequireApiKey", true);
+        if (!requireApiKey)
         {
             await _next(context);
             return;
