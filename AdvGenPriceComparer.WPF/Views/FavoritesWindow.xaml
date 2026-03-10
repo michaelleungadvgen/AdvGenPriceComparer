@@ -45,6 +45,7 @@
                             VerticalAlignment="Center">
                     <ui:Button Icon="{ui:SymbolIcon Refresh24}" 
                                ToolTip="Refresh"
+                               AutomationProperties.Name="Refresh Favorites"
                                Command="{Binding RefreshCommand}"
                                Margin="0,0,10,0"
                                Background="Transparent"
@@ -144,6 +145,7 @@
                             <DataTemplate>
                                 <ui:Button Icon="{ui:SymbolIcon StarOff24}"
                                            ToolTip="Remove from favorites"
+                                           AutomationProperties.Name="Remove from favorites"
                                            Command="{Binding DataContext.ToggleFavoriteCommand, 
                                                      RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                            CommandParameter="{Binding}"
