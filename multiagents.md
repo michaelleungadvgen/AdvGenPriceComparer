@@ -180,7 +180,7 @@
 | Create StaticDataExporter service | 🟢 DONE | Agent-048 | Created StaticDataExporter service with ExportStaticPackageAsync, generates stores.json, products.json, prices.json, manifest.json, discovery.json, and ZIP archive for P2P sharing |
 | Create StaticDataImporter service | 🟢 DONE | Agent-049 | Import from static peers - Implemented in AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs with directory, archive, and URL import support
 | Add scheduled export job | 🟢 DONE | Agent-050 | Implemented ScheduledExportService with daily/weekly/monthly schedules, retention policy, and cleanup |
-| Add peer discovery from multiple sources | 🔴 TODO | - | Multi-source discovery |
+| Add peer discovery from multiple sources | 🟢 DONE | Agent-105 | Implemented PeerDiscoveryService with multi-source discovery for P2P static data sharing. Supports LocalFile, HttpUrl, Embedded, and NetworkShare sources. Includes health checking, caching, and statistics. |
 | Document AdvGenNoSQLServer API protocol | 🟢 DONE | Agent-081 | Created comprehensive API_PROTOCOL.md in AdvGenPriceComparer.Server/ with all endpoints, models, and examples |
 | Add "Export Data" button in settings | 🟢 DONE | Agent-051 | Added ShowExportDataDialog() to IDialogService/SimpleDialogService, added Export Data Now button in SettingsWindow Import/Export section, added ExportDataCommand in SettingsViewModel |
 | Add "Import from URL" dialog | 🟢 DONE | Agent-053 | Import UI - Created ImportFromUrlWindow with preview and import functionality |
@@ -415,6 +415,7 @@
 | 2026-03-12 | Test price sharing workflow - Created PriceSharingWorkflowTests.cs with comprehensive integration tests for P2P sharing: server health checks, API key authentication, upload/download, SignalR real-time, search/compare, pagination, rate limiting, and end-to-end workflows. Fixed build errors in JsonImportService (added PackageSize/Unit to ColesProduct). Build currently blocked by WPF namespace conflicts (Application.Current) | Agent-102 |
 | 2026-03-12 | Fix WPF namespace conflicts with Application - Fixed all `Application.Current` references to use fully qualified `System.Windows.Application.Current` in MainWindow.xaml.cs, ImportDataWindow.xaml.cs, StoreViewModel.cs, SimpleDialogService.cs, UpdateService.cs, and ImportDataViewModel.cs. Build now succeeds with 0 errors, 273 tests passing | Agent-103 |
 | 2026-03-12 | Track historical prices in database - Created IPriceHistoryTrackingService interface in Core, implemented PriceHistoryTrackingService in WPF with automatic price recording, price statistics (lowest/highest/average/median), price change detection, trend analysis (rising/falling/stable), volatility calculation, best buying opportunity analysis, and price history export. Registered in DI container. Build succeeds with 0 errors, 273 tests passing | Agent-104 |
+| 2026-03-12 | Add peer discovery from multiple sources - Implemented PeerDiscoveryService with support for LocalFile, HttpUrl, Embedded, and NetworkShare sources. Created DiscoveredPeer, DiscoverySource, DiscoveryResult, DiscoveryStatistics models in Core. Includes health checking, caching, statistics, and integration with DI container. Created DefaultDiscovery.json embedded resource with demo peers. Build succeeds with 0 errors | Agent-105 |
 
 ---
 

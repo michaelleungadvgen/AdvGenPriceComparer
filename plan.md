@@ -6030,7 +6030,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [ ] Add discovery file update on server start
 - [ ] Add automatic export of price updates
 - [ ] Add periodic refresh of records.json
-- [ ] Add peer discovery from multiple sources
+- [x] Add peer discovery from multiple sources - IMPLEMENTED: PeerDiscoveryService with support for LocalFile, HttpUrl, Embedded, and NetworkShare sources. Includes health checking, caching, statistics, and integration with DI container.
 - [ ] Add fallback to static peers if full peers unavailable
 - [ ] Add data consistency verification
 

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "demo-static-brisbane-01",
+    "type": "static_peer",
+    "address": "https://demo.advgen.example.com/data/brisbane",
+    "location": "Brisbane, QLD, Australia",
+    "lastUpdated": "2026-03-01T00:00:00Z",
+    "description": "Demo Brisbane grocery price data archive (example)",
+    "region": "QLD"
+  },
+  {
+    "id": "demo-static-sydney-01",
+    "type": "static_peer",
+    "address": "https://demo.advgen.example.com/data/sydney",
+    "location": "Sydney, NSW, Australia",
+    "lastUpdated": "2026-03-01T00:00:00Z",
+    "description": "Demo Sydney grocery price data archive (example)",
+    "region": "NSW"
+  },
+  {
+    "id": "demo-static-melbourne-01",
+    "type": "static_peer",
+    "address": "https://demo.advgen.example.com/data/melbourne",
+    "location": "Melbourne, VIC, Australia",
+    "lastUpdated": "2026-03-01T00:00:00Z",
+    "description": "Demo Melbourne grocery price data archive (example)",
+    "region": "VIC"
+  },
+  {
+    "id": "local-test-server",
+    "type": "static_peer",
+    "address": "http://localhost:8080/data",
+    "location": "Local Development",
+    "lastUpdated": "2026-03-01T00:00:00Z",
+    "description": "Local development testing server",
+    "region": "Local"
+  }
+]

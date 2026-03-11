@@ -85,6 +85,15 @@ public partial class App : System.Windows.Application
                 new ServerConfigService(serverConfigPath));
             services.AddSingleton<NetworkManager>();
 
+            // Peer Discovery Service for P2P static data sharing
+            services.AddSingleton<PeerDiscoveryService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var serverConfig = provider.GetRequiredService<ServerConfigService>();
+                var cachePath = Path.Combine(appDataPath, "peer_discovery_cache.json");
+                return new PeerDiscoveryService(logger, serverConfig, cachePath);
+            });
+
             // Settings Service - Create service, load settings in background
             services.AddSingleton<ISettingsService>(provider =>
             {
