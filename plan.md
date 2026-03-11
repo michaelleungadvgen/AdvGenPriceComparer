@@ -1906,10 +1906,12 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 - Correct Dependency Injection to rely strictly on interfaces.
 
 ### 14.2 Step 1: Establish the Application Layer
-- [ ] Create `AdvGenPriceComparer.Application` project.
-- [ ] Move `JsonImportService` and `JsonExportService` from `Data.LiteDB` to `Application`.
-- [ ] Create abstract interfaces for import/export use cases (e.g., `IImportUseCase`, `IExportUseCase`).
-- [ ] Ensure the `Application` project references `Core` but *not* `Data.LiteDB` or `WPF`.
+- [x] Create `AdvGenPriceComparer.Application` project.
+- [x] Define use case interfaces (`IImportUseCase`, `IExportUseCase`) with async methods.
+- [x] Create comprehensive DTOs for import/export operations (ImportRequestDto, ExportResultDto, etc.).
+- [x] Ensure the `Application` project references `Core` but *not* `Data.LiteDB` or `WPF`.
+- [ ] Move `JsonImportService` and `JsonExportService` from `Data.LiteDB` to `Application` (or create implementations).
+- [ ] Update DI registration to use Application layer interfaces.
 
 ### 14.3 Step 2: Purify the Core (Domain) Layer
 - [ ] Remove `System.Net.Sockets` and infrastructure-specific JSON serialization from `Core`.

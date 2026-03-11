@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>AdvGenPriceComparer.Application</RootNamespace>
+    <AssemblyName>AdvGenPriceComparer.Application</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Application layer only references Core (Clean Architecture dependency rule) -->
+    <ProjectReference Include="..\AdvGenPriceComparer.Core\AdvGenPriceComparer.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Common packages for application services -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
