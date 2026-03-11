@@ -145,6 +145,7 @@
 | Implement AdvGenNoSqlProvider | 🟢 DONE | Agent-036 | Implemented complete HTTP client provider with retry logic and all 4 repositories |
 | Create SettingsWindow.xaml UI | 🟢 DONE | Agent-033 | Database settings UI |
 | Handle provider switching | 🟢 DONE | Agent-037 | Runtime provider switch with restart notification - SettingsViewModel now tracks provider changes, shows warning banner in UI, prompts for confirmation on save, and restarts application automatically
+| Test database switching workflow | 🟢 DONE | Agent-201 | Created 17 comprehensive xUnit tests for SettingsViewModel database provider switching workflow - covers provider change detection, confirmation dialogs, save/revert behavior, property notifications
 
 ---
 
@@ -420,6 +421,7 @@
 | 2026-03-12 | Move JsonImportService and JsonExportService to Application layer - Moved both services from Data.LiteDB to Application layer for Clean Architecture. Created ICategoryPredictionService interface to decouple ML dependency. Updated CategoryPredictionService to implement interface. Updated all namespace references in WPF project and test files. Deleted old files from Data.LiteDB. Build succeeds with 0 errors, 279 tests passing | Agent-107 |
 | 2026-03-12 | Calculate average prices over time - VERIFIED: Already implemented - GetAveragePrice in PriceRecordRepository, GetPriceStatistics/GetPriceStatisticsForStore in PriceHistoryTrackingService calculate AveragePrice, MedianPrice, PriceChangePercent with configurable daysBack parameter, used by IllusoryDiscountDetectionViewModel. Tests passing. | Agent-110 |
 | 2026-03-12 | Generate reports (best deals, trends) - Implemented IReportGenerationService with 4 report types (Best Deals, Price Trends, Store Comparison, Category Analysis), export to Markdown/JSON/CSV, copy to clipboard, UI with date range and max items filter | Agent-150 |
+| 2026-03-12 | Test database switching workflow - Created 17 comprehensive xUnit tests for SettingsViewModel database provider switching: provider change detection (IsProviderChanged, ProviderChangeMessage), confirmation dialogs, save with/without provider change, cancel reverts provider, reset settings, CanSave validation for LiteDB/NoSQL, property change notifications | Agent-201 |
 
 ---
 

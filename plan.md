@@ -2696,7 +2696,7 @@ private void ConfigureServices(IServiceCollection services)
 - [x] Implement connection testing for AdvGenNoSQLServer - IMPLEMENTED: Added TestConnectionAsync() to IDatabaseProvider interface, implemented in LiteDbProvider and AdvGenNoSqlProvider (Agent-039)
 - [x] Handle provider switching (with restart notification) - IMPLEMENTED: SettingsViewModel tracks original provider, shows warning banner when changed, prompts for confirmation on save, automatically restarts application
 - [x] Document AdvGenNoSQLServer API protocol - COMPLETED: Created comprehensive API_PROTOCOL.md in AdvGenPriceComparer.Server/ covering all REST endpoints, SignalR hub, authentication, rate limiting, data models, and C# client examples
-- [ ] Test database switching workflow
+- [x] Test database switching workflow - DONE: Created 17 comprehensive xUnit tests for SettingsViewModel database provider switching workflow
 
 ### 10.11 File Structure Updates
 
