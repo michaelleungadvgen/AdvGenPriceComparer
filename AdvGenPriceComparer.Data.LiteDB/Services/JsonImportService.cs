@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.RegularExpressions;
+using AdvGenPriceComparer.Application.DTOs;
+using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Entities;
@@ -48,9 +50,10 @@ public class ValidationResult
 }
 
 /// <summary>
-/// Service for importing grocery data from JSON files
+/// Service for importing grocery data from JSON files.
+/// Implements IImportUseCase from the Application layer for Clean Architecture.
 /// </summary>
-public class JsonImportService
+public class JsonImportService : IImportUseCase
 {
     private readonly IItemRepository _itemRepository;
     private readonly IPlaceRepository _placeRepository;
@@ -1173,6 +1176,150 @@ public class JsonImportService
             }
         }, cancellationToken);
     }
+
+    #region IImportUseCase Implementation
+
+    /// <summary>
+    /// Import data from a JSON file (Application Layer interface)
+    /// </summary>
+    async Task<ImportResultDto> IImportUseCase.ImportFromJsonAsync(
+        string filePath, 
+        string storeId, 
+        ImportOptionsDto options,
+        IProgress<ImportProgressDto>? progress)
+    {
+        var startTime = DateTime.UtcNow;
+        var result = ImportColesJson(filePath, storeId);
+        
+        return new ImportResultDto
+        {
+            Success = result.Success,
+            TotalItems = result.ItemsProcessed + result.ItemsSkipped + result.ItemsFailed,
+            ImportedCount = result.ItemsProcessed,
+            SkippedCount = result.ItemsSkipped,
+            FailedCount = result.ItemsFailed,
+            AutoCategorizedCount = result.CategoriesPredicted,
+            Duration = DateTime.UtcNow - startTime,
+            Errors = result.Errors.Select(e => new ImportErrorDto 
+            { 
+                Message = e,
+                ErrorType = Application.DTOs.ImportErrorType.UnknownError 
+            }).ToList()
+        };
+    }
+
+    /// <summary>
+    /// Import data from a markdown file (Application Layer interface)
+    /// </summary>
+    async Task<ImportResultDto> IImportUseCase.ImportFromMarkdownAsync(
+        string filePath, 
+        string storeId, 
+        ImportOptionsDto options,
+        IProgress<ImportProgressDto>? progress)
+    {
+        var startTime = DateTime.UtcNow;
+        var result = ImportFromDrakesMarkdown(filePath, storeId);
+        
+        return new ImportResultDto
+        {
+            Success = result.Success,
+            TotalItems = result.ItemsProcessed + result.ItemsSkipped + result.ItemsFailed,
+            ImportedCount = result.ItemsProcessed,
+            SkippedCount = result.ItemsSkipped,
+            FailedCount = result.ItemsFailed,
+            Duration = DateTime.UtcNow - startTime,
+            Errors = result.Errors.Select(e => new ImportErrorDto 
+            { 
+                Message = e,
+                ErrorType = Application.DTOs.ImportErrorType.UnknownError 
+            }).ToList()
+        };
+    }
+
+    /// <summary>
+    /// Preview import without saving (Application Layer interface)
+    /// </summary>
+    async Task<IReadOnlyList<ImportPreviewItemDto>> IImportUseCase.PreviewImportAsync(string filePath)
+    {
+        var (products, errors) = await PreviewImportAsync(filePath);
+        
+        return products.Select(p => new ImportPreviewItemDto
+        {
+            ProductId = p.GetProductId(),
+            Name = p.ProductName,
+            Brand = p.Brand,
+            Category = p.Category,
+            Description = p.Description,
+            Price = ParsePrice(p.Price),
+            OriginalPrice = string.IsNullOrEmpty(p.OriginalPrice) ? null : ParsePrice(p.OriginalPrice),
+            Savings = string.IsNullOrEmpty(p.Savings) ? null : ParsePrice(p.Savings),
+            SpecialType = p.SpecialType,
+            PackageSize = p.PackageSize,
+            Unit = p.Unit,
+            IsDuplicate = false,
+            Action = "Import"
+        }).ToList();
+    }
+
+    /// <summary>
+    /// Bulk import multiple files (Application Layer interface)
+    /// </summary>
+    async Task<ImportResultDto> IImportUseCase.BulkImportAsync(
+        string[] filePaths, 
+        string storeId, 
+        ImportOptionsDto options,
+        IProgress<ImportProgressDto>? progress)
+    {
+        var startTime = DateTime.UtcNow;
+        int totalImported = 0;
+        int totalSkipped = 0;
+        int totalFailed = 0;
+        var allErrors = new List<ImportErrorDto>();
+
+        for (int i = 0; i < filePaths.Length; i++)
+        {
+            var filePath = filePaths[i];
+            progress?.Report(new ImportProgressDto
+            {
+                TotalItems = filePaths.Length,
+                ProcessedItems = i,
+                CurrentItemName = Path.GetFileName(filePath),
+                StatusMessage = $"Importing {i + 1} of {filePaths.Length}..."
+            });
+
+            ImportResult result;
+            if (filePath.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
+            {
+                result = ImportFromDrakesMarkdown(filePath, storeId);
+            }
+            else
+            {
+                result = ImportColesJson(filePath, storeId);
+            }
+
+            totalImported += result.ItemsProcessed;
+            totalSkipped += result.ItemsSkipped;
+            totalFailed += result.ItemsFailed;
+            allErrors.AddRange(result.Errors.Select(e => new ImportErrorDto 
+            { 
+                Message = e,
+                ErrorType = (Application.DTOs.ImportErrorType)ImportErrorType.UnknownError 
+            }));
+        }
+
+        return new ImportResultDto
+        {
+            Success = totalFailed == 0,
+            TotalItems = totalImported + totalSkipped + totalFailed,
+            ImportedCount = totalImported,
+            SkippedCount = totalSkipped,
+            FailedCount = totalFailed,
+            Duration = DateTime.UtcNow - startTime,
+            Errors = allErrors
+        };
+    }
+
+    #endregion
 }
 
 /// <summary>
@@ -1528,6 +1675,16 @@ public class ColesProduct
     /// Type of special offer (optional)
     /// </summary>
     public string? SpecialType { get; set; }
+    
+    /// <summary>
+    /// Package size (e.g., "2L", "500g") (optional)
+    /// </summary>
+    public string? PackageSize { get; set; }
+    
+    /// <summary>
+    /// Unit of measurement (e.g., "each", "kg", "L") (optional)
+    /// </summary>
+    public string? Unit { get; set; }
     
     /// <summary>
     /// Get or generate a product ID for this product
