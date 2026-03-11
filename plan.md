@@ -465,7 +465,7 @@ public class ExportService
 ### Phase 5: Price Comparison & Analysis (3-4 days)
 - [x] Track historical prices in database - DONE: Implemented IPriceHistoryTrackingService with price recording, statistics, and trend analysis
 - [x] Detect genuine vs. illusory discounts
-- [ ] Calculate average prices over time
+- [x] Calculate average prices over time - DONE: GetAveragePrice in PriceRecordRepository, GetPriceStatistics in PriceHistoryTrackingService calculates AveragePrice, MedianPrice, PriceChangePercent
 - [ ] Create PriceComparisonView.xaml
 - [ ] Implement side-by-side store comparison
 - [ ] Create price history charts (LiveCharts)
