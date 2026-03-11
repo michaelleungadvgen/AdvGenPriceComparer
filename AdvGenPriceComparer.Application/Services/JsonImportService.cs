@@ -1,14 +1,11 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using AdvGenPriceComparer.Application.DTOs;
 using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
-using AdvGenPriceComparer.Data.LiteDB.Entities;
-using AdvGenPriceComparer.Data.LiteDB.Repositories;
-using AdvGenPriceComparer.ML.Services;
 
-namespace AdvGenPriceComparer.Data.LiteDB.Services;
+namespace AdvGenPriceComparer.Application.Services;
 
 // Note: ImportPreviewItem is defined in WPF.Models, not here to avoid duplication
 // The service uses ColesProduct directly for data transfer
@@ -58,7 +55,7 @@ public class JsonImportService : IImportUseCase
     private readonly IItemRepository _itemRepository;
     private readonly IPlaceRepository _placeRepository;
     private readonly IPriceRecordRepository _priceRecordRepository;
-    private readonly CategoryPredictionService? _categoryPredictionService;
+    private readonly ICategoryPredictionService? _categoryPredictionService;
     private readonly Action<string>? _logInfo;
     private readonly Action<string, Exception>? _logError;
     private readonly Action<string>? _logWarning;
@@ -79,12 +76,12 @@ public class JsonImportService : IImportUseCase
     }
 
     /// <summary>
-    /// Constructor with CategoryPredictionService for auto-categorization support
+    /// Constructor with ICategoryPredictionService for auto-categorization support
     /// </summary>
     public JsonImportService(IItemRepository itemRepository, 
         IPlaceRepository placeRepository, 
         IPriceRecordRepository priceRecordRepository,
-        CategoryPredictionService? categoryPredictionService,
+        ICategoryPredictionService? categoryPredictionService,
         Action<string>? logInfo = null, 
         Action<string, Exception>? logError = null,
         Action<string>? logWarning = null)
@@ -1799,3 +1796,4 @@ public enum DuplicateHandling
     /// </summary>
     UpdatePriceOnly
 }
+

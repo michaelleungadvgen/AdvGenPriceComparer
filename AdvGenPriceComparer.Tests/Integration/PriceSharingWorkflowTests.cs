@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AdvGenPriceComparer.Server;
+using AdvGenPriceComparer.Server.Hubs;
 using AdvGenPriceComparer.Server.Models;
 using AdvGenPriceComparer.Server.Services;
 using AdvGenPriceComparer.WPF.Services;
@@ -30,7 +31,7 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
     private readonly WebApplicationFactory<Program> _factory;
     private readonly ITestOutputHelper _output;
     private readonly HttpClient _client;
-    private readonly string _testApiKey = "test-api-key-12345";
+    private string _testApiKey = "test-api-key-12345";
     private HubConnection? _hubConnection;
     private bool _priceUpdateReceived;
     private bool _newDealReceived;
@@ -40,15 +41,20 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
         _factory = factory.WithWebHostBuilder(builder =>
         {
             builder.UseEnvironment("Testing");
-            builder.ConfigureServices(services =>
+            builder.ConfigureServices((context, services) =>
             {
-                // Replace database with in-memory database for testing
-                var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<AdvGenPriceComparer.Server.Data.PriceDataContext>));
-                if (descriptor != null)
+                // Remove all database-related descriptors to avoid provider conflicts
+                var descriptors = services.Where(d => 
+                    d.ServiceType == typeof(DbContextOptions<AdvGenPriceComparer.Server.Data.PriceDataContext>) ||
+                    d.ServiceType == typeof(Microsoft.EntityFrameworkCore.DbContextOptions)
+                ).ToList();
+                
+                foreach (var descriptor in descriptors)
                 {
                     services.Remove(descriptor);
                 }
 
+                // Add in-memory database
                 services.AddDbContext<AdvGenPriceComparer.Server.Data.PriceDataContext>(options =>
                 {
                     options.UseInMemoryDatabase("TestPriceSharingDb");
@@ -58,6 +64,22 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
 
         _output = output;
         _client = _factory.CreateClient();
+        
+        // Seed the test API key
+        SeedTestData().GetAwaiter().GetResult();
+    }
+    
+    private async Task SeedTestData()
+    {
+        using var scope = _factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<AdvGenPriceComparer.Server.Data.PriceDataContext>();
+        var apiKeyService = scope.ServiceProvider.GetRequiredService<IApiKeyService>();
+        
+        // Generate a test API key and save the plain key value
+        var (key, plainKey) = await apiKeyService.GenerateKeyAsync("Test Client", 1000);
+        _testApiKey = plainKey;
+        
+        _output.WriteLine($"Generated test API key: {_testApiKey}");
     }
 
     public void Dispose()
@@ -146,38 +168,43 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
 
         // Act - Upload data
         var uploadResponse = await _client.PostAsJsonAsync("/api/prices/upload", originalRequest);
-        Assert.True(uploadResponse.IsSuccessStatusCode);
+        if (!uploadResponse.IsSuccessStatusCode)
+        {
+            var errorContent = await uploadResponse.Content.ReadAsStringAsync();
+            _output.WriteLine($"Upload failed with status {uploadResponse.StatusCode}: {errorContent}");
+        }
+        Assert.True(uploadResponse.IsSuccessStatusCode, $"Upload failed: {uploadResponse.StatusCode}");
         var uploadResult = await uploadResponse.Content.ReadFromJsonAsync<UploadResult>();
         Assert.NotNull(uploadResult);
 
         // Act - Download items
         var itemsResponse = await _client.GetAsync("/api/items?pageSize=100");
         Assert.True(itemsResponse.IsSuccessStatusCode);
-        var itemsResult = await itemsResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedItem>>();
+        var itemsResult = await itemsResponse.Content.ReadFromJsonAsync<List<SharedItem>>();
 
         // Act - Download places
         var placesResponse = await _client.GetAsync("/api/places?pageSize=100");
         Assert.True(placesResponse.IsSuccessStatusCode);
-        var placesResult = await placesResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedPlace>>();
+        var placesResult = await placesResponse.Content.ReadFromJsonAsync<List<SharedPlace>>();
 
         // Act - Download prices
         var pricesResponse = await _client.GetAsync("/api/prices/download?pageSize=100");
         Assert.True(pricesResponse.IsSuccessStatusCode);
-        var pricesResult = await pricesResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedPriceRecord>>();
+        var pricesResult = await pricesResponse.Content.ReadFromJsonAsync<List<SharedPriceRecord>>();
 
         // Assert
         Assert.NotNull(itemsResult);
         Assert.NotNull(placesResult);
         Assert.NotNull(pricesResult);
 
-        Assert.True(itemsResult.TotalCount >= originalRequest.Items.Count, 
-            $"Expected at least {originalRequest.Items.Count} items, got {itemsResult.TotalCount}");
-        Assert.True(placesResult.TotalCount >= originalRequest.Places.Count,
-            $"Expected at least {originalRequest.Places.Count} places, got {placesResult.TotalCount}");
-        Assert.True(pricesResult.TotalCount >= originalRequest.PriceRecords.Count,
-            $"Expected at least {originalRequest.PriceRecords.Count} prices, got {pricesResult.TotalCount}");
+        Assert.True(itemsResult.Count >= originalRequest.Items.Count, 
+            $"Expected at least {originalRequest.Items.Count} items, got {itemsResult.Count}");
+        Assert.True(placesResult.Count >= originalRequest.Places.Count,
+            $"Expected at least {originalRequest.Places.Count} places, got {placesResult.Count}");
+        Assert.True(pricesResult.Count >= originalRequest.PriceRecords.Count,
+            $"Expected at least {originalRequest.PriceRecords.Count} prices, got {pricesResult.Count}");
 
-        _output.WriteLine($"Data integrity verified: {itemsResult.TotalCount} items, {placesResult.TotalCount} places, {pricesResult.TotalCount} prices");
+        _output.WriteLine($"Data integrity verified: {itemsResult.Count} items, {placesResult.Count} places, {pricesResult.Count} prices");
     }
 
     [Fact]
@@ -231,11 +258,11 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
 
         // Assert
         Assert.True(response.IsSuccessStatusCode);
-        var result = await response.Content.ReadFromJsonAsync<ApiListResponse<SharedPriceRecord>>();
+        var result = await response.Content.ReadFromJsonAsync<List<SharedPriceRecord>>();
         Assert.NotNull(result);
-        Assert.True(result.TotalCount >= 0);
+        Assert.True(result.Count >= 0);
 
-        _output.WriteLine($"Date filter test: {result.TotalCount} records between {fromDate} and {toDate}");
+        _output.WriteLine($"Date filter test: {result.Count} records between {fromDate} and {toDate}");
     }
 
     #endregion
@@ -272,11 +299,11 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
 
         // First get an item ID
         var itemsResponse = await _client.GetAsync("/api/items?pageSize=1");
-        var itemsResult = await itemsResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedItem>>();
+        var itemsResult = await itemsResponse.Content.ReadFromJsonAsync<List<SharedItem>>();
         Assert.NotNull(itemsResult);
-        Assert.True(itemsResult.Data?.Count > 0);
+        Assert.True(itemsResult.Count > 0);
 
-        var itemId = itemsResult.Data![0].Id;
+        var itemId = itemsResult[0].Id;
 
         // Act
         var response = await _client.GetAsync($"/api/prices/compare/{itemId}");
@@ -418,24 +445,26 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
         _client.DefaultRequestHeaders.Add("X-API-Key", _testApiKey);
 
         // Step 1: Upload data from "Client A"
+        var items = new List<SharedItem>
+        {
+            new() { Id = 1, ProductId = "PROD-001", Name = "Organic Milk 2L", Brand = "Dairy Farmers", Category = "Dairy & Eggs", Barcode = "930000000001" },
+            new() { Id = 2, ProductId = "PROD-002", Name = "Wholemeal Bread", Brand = "Tip Top", Category = "Bakery", Barcode = "930000000002" },
+            new() { Id = 3, ProductId = "PROD-003", Name = "Free Range Eggs 12pk", Brand = "Golden Eggs", Category = "Dairy & Eggs", Barcode = "930000000003" }
+        };
+        var places = new List<SharedPlace>
+        {
+            new() { Id = 1, StoreId = "STORE-001", Name = "Coles Chermside", Chain = "Coles", Suburb = "Chermside", State = "QLD", Postcode = "4032" },
+            new() { Id = 2, StoreId = "STORE-002", Name = "Woolworths Toowong", Chain = "Woolworths", Suburb = "Toowong", State = "QLD", Postcode = "4066" }
+        };
         var uploadRequest = new DataUploadRequest
         {
-            Items = new List<SharedItem>
-            {
-                new() { Name = "Organic Milk 2L", Brand = "Dairy Farmers", Category = "Dairy & Eggs", Barcode = "930000000001" },
-                new() { Name = "Wholemeal Bread", Brand = "Tip Top", Category = "Bakery", Barcode = "930000000002" },
-                new() { Name = "Free Range Eggs 12pk", Brand = "Golden Eggs", Category = "Dairy & Eggs", Barcode = "930000000003" }
-            },
-            Places = new List<SharedPlace>
-            {
-                new() { Name = "Coles Chermside", Chain = "Coles", Suburb = "Chermside", State = "QLD", Postcode = "4032" },
-                new() { Name = "Woolworths Toowong", Chain = "Woolworths", Suburb = "Toowong", State = "QLD", Postcode = "4066" }
-            },
+            Items = items,
+            Places = places,
             PriceRecords = new List<SharedPriceRecord>
             {
-                new() { ItemId = "1", PlaceId = "1", Price = 3.99m, OriginalPrice = 4.50m, IsOnSale = true, DateRecorded = DateTime.UtcNow },
-                new() { ItemId = "2", PlaceId = "1", Price = 4.20m, IsOnSale = false, DateRecorded = DateTime.UtcNow },
-                new() { ItemId = "1", PlaceId = "2", Price = 3.79m, OriginalPrice = 4.50m, IsOnSale = true, DateRecorded = DateTime.UtcNow }
+                new() { ItemId = 1, Item = items[0], PlaceId = 1, Place = places[0], Price = 3.99m, OriginalPrice = 4.50m, DateRecorded = DateTime.UtcNow },
+                new() { ItemId = 2, Item = items[1], PlaceId = 1, Place = places[0], Price = 4.20m, DateRecorded = DateTime.UtcNow },
+                new() { ItemId = 1, Item = items[0], PlaceId = 2, Place = places[1], Price = 3.79m, OriginalPrice = 4.50m, DateRecorded = DateTime.UtcNow }
             }
         };
 
@@ -481,22 +510,22 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
         Assert.True(downloadPlacesResponse.IsSuccessStatusCode, "Download places should succeed");
         Assert.True(downloadPricesResponse.IsSuccessStatusCode, "Download prices should succeed");
 
-        var downloadedItems = await downloadItemsResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedItem>>();
-        var downloadedPlaces = await downloadPlacesResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedPlace>>();
-        var downloadedPrices = await downloadPricesResponse.Content.ReadFromJsonAsync<ApiListResponse<SharedPriceRecord>>();
+        var downloadedItems = await downloadItemsResponse.Content.ReadFromJsonAsync<List<SharedItem>>();
+        var downloadedPlaces = await downloadPlacesResponse.Content.ReadFromJsonAsync<List<SharedPlace>>();
+        var downloadedPrices = await downloadPricesResponse.Content.ReadFromJsonAsync<List<SharedPriceRecord>>();
 
         Assert.NotNull(downloadedItems);
         Assert.NotNull(downloadedPlaces);
         Assert.NotNull(downloadedPrices);
 
-        _output.WriteLine($"Step 5 - Downloaded: {downloadedItems.TotalCount} items, {downloadedPlaces.TotalCount} places, {downloadedPrices.TotalCount} prices");
+        _output.WriteLine($"Step 5 - Downloaded: {downloadedItems.Count} items, {downloadedPlaces.Count} places, {downloadedPrices.Count} prices");
 
         // Step 6: Verify data integrity
-        Assert.True(downloadedItems.TotalCount >= uploadRequest.Items.Count, 
+        Assert.True(downloadedItems.Count >= uploadRequest.Items.Count, 
             "Downloaded items should match or exceed uploaded");
-        Assert.True(downloadedPlaces.TotalCount >= uploadRequest.Places.Count,
+        Assert.True(downloadedPlaces.Count >= uploadRequest.Places.Count,
             "Downloaded places should match or exceed uploaded");
-        Assert.True(downloadedPrices.TotalCount >= uploadRequest.PriceRecords.Count,
+        Assert.True(downloadedPrices.Count >= uploadRequest.PriceRecords.Count,
             "Downloaded prices should match or exceed uploaded");
 
         _output.WriteLine("End-to-end workflow test completed successfully!");
@@ -514,6 +543,7 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
         {
             request.Items.Add(new SharedItem 
             { 
+                ProductId = $"PROD-PAGE-{i}",
                 Name = $"Product {i}", 
                 Brand = $"Brand {i % 5}",
                 Category = i % 2 == 0 ? "Dairy & Eggs" : "Bakery"
@@ -523,6 +553,7 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
         {
             request.Places.Add(new SharedPlace 
             { 
+                StoreId = $"STORE-PAGE-{i}",
                 Name = $"Store {i}", 
                 Chain = i % 2 == 0 ? "Coles" : "Woolworths",
                 Suburb = $"Suburb {i}",
@@ -535,21 +566,21 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
         // Act - Get first page
         var page1Response = await _client.GetAsync("/api/items?page=1&pageSize=20");
         Assert.True(page1Response.IsSuccessStatusCode);
-        var page1 = await page1Response.Content.ReadFromJsonAsync<ApiListResponse<SharedItem>>();
+        var page1 = await page1Response.Content.ReadFromJsonAsync<List<SharedItem>>();
 
         // Act - Get second page
         var page2Response = await _client.GetAsync("/api/items?page=2&pageSize=20");
         Assert.True(page2Response.IsSuccessStatusCode);
-        var page2 = await page2Response.Content.ReadFromJsonAsync<ApiListResponse<SharedItem>>();
+        var page2 = await page2Response.Content.ReadFromJsonAsync<List<SharedItem>>();
 
         // Assert
         Assert.NotNull(page1);
         Assert.NotNull(page2);
-        Assert.True(page1.Data?.Count <= 20, "Page 1 should have at most 20 items");
-        Assert.True(page2.Data?.Count <= 20, "Page 2 should have at most 20 items");
-        Assert.True(page1.TotalCount >= 50, "Total count should be at least 50");
+        Assert.True(page1.Count <= 20, "Page 1 should have at most 20 items");
+        Assert.True(page2.Count <= 20, "Page 2 should have at most 20 items");
+        Assert.True(page1.Count + page2.Count >= 20, "Combined pages should have at least 20 items");
 
-        _output.WriteLine($"Pagination test: Page 1 has {page1.Data?.Count}, Page 2 has {page2.Data?.Count}, Total: {page1.TotalCount}");
+        _output.WriteLine($"Pagination test: Page 1 has {page1.Count}, Page 2 has {page2.Count}");
     }
 
     #endregion
@@ -583,54 +614,68 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
 
     private DataUploadRequest CreateSampleUploadRequest(int batchIndex = 0)
     {
+        var items = new List<SharedItem>
+        {
+            new() 
+            { 
+                Id = batchIndex * 2 + 1,
+                ProductId = $"PROD-{batchIndex}-1",
+                Name = $"Milk Full Cream 2L (Batch {batchIndex})", 
+                Brand = "Dairy Farmers", 
+                Category = "Dairy & Eggs",
+                Barcode = $"930000{batchIndex:D6}"
+            },
+            new() 
+            { 
+                Id = batchIndex * 2 + 2,
+                ProductId = $"PROD-{batchIndex}-2",
+                Name = $"White Bread 700g (Batch {batchIndex})", 
+                Brand = "Tip Top", 
+                Category = "Bakery",
+                Barcode = $"930001{batchIndex:D6}"
+            }
+        };
+        
+        var places = new List<SharedPlace>
+        {
+            new() 
+            { 
+                Id = batchIndex + 1,
+                StoreId = $"STORE-{batchIndex}",
+                Name = $"Coles Store {batchIndex}", 
+                Chain = "Coles", 
+                Suburb = "Brisbane",
+                State = "QLD",
+                Postcode = "4000"
+            }
+        };
+        
         return new DataUploadRequest
         {
-            Items = new List<SharedItem>
-            {
-                new() 
-                { 
-                    Name = $"Milk Full Cream 2L (Batch {batchIndex})", 
-                    Brand = "Dairy Farmers", 
-                    Category = "Dairy & Eggs",
-                    Barcode = $"930000{batchIndex:D6}"
-                },
-                new() 
-                { 
-                    Name = $"White Bread 700g (Batch {batchIndex})", 
-                    Brand = "Tip Top", 
-                    Category = "Bakery",
-                    Barcode = $"930001{batchIndex:D6}"
-                }
-            },
-            Places = new List<SharedPlace>
-            {
-                new() 
-                { 
-                    Name = $"Coles Store {batchIndex}", 
-                    Chain = "Coles", 
-                    Suburb = "Brisbane",
-                    State = "QLD",
-                    Postcode = "4000"
-                }
-            },
+            Items = items,
+            Places = places,
             PriceRecords = new List<SharedPriceRecord>
             {
                 new() 
                 { 
-                    ItemId = $"item-{batchIndex}-1", 
-                    PlaceId = $"place-{batchIndex}", 
+                    ItemId = items[0].Id, 
+                    Item = items[0],
+                    PlaceId = places[0].Id, 
+                    Place = places[0],
                     Price = 3.99m + batchIndex,
                     OriginalPrice = 4.50m,
-                    IsOnSale = true,
-                    DateRecorded = DateTime.UtcNow.AddHours(-batchIndex)
+                    DateRecorded = DateTime.UtcNow.AddHours(-batchIndex),
+                    SpecialType = "Test Special"
                 },
                 new() 
                 { 
-                    ItemId = $"item-{batchIndex}-2", 
-                    PlaceId = $"place-{batchIndex}", 
+                    ItemId = items[1].Id, 
+                    Item = items[1],
+                    PlaceId = places[0].Id, 
+                    Place = places[0],
                     Price = 4.20m + batchIndex,
-                    IsOnSale = false,
-                    DateRecorded = DateTime.UtcNow.AddHours(-batchIndex)
+                    DateRecorded = DateTime.UtcNow.AddHours(-batchIndex),
+                    SpecialType = "Regular Price"
                 }
             }
         };

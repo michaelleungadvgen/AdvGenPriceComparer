@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using AdvGenPriceComparer.Application.DTOs;
+using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Core.Interfaces;
 
-namespace AdvGenPriceComparer.Data.LiteDB.Services;
+namespace AdvGenPriceComparer.Application.Services;
 
 /// <summary>
 /// Service for exporting data to JSON files according to the AdvGenPriceComparer JSON File Format standard.
+/// Implements IExportUseCase from the Application layer for Clean Architecture.
 /// See: https://github.com/michaelleungadvgen/AdvGenPriceComparer/wiki/Json-File-Format
 /// </summary>
-public class JsonExportService
+public class JsonExportService : IExportUseCase
 {
     private readonly IGroceryDataService _dataService;
     private readonly JsonSerializerOptions _jsonOptions;
@@ -258,6 +262,204 @@ public class JsonExportService
     }
 
     #endregion
+
+    #region IExportUseCase Implementation
+
+    /// <summary>
+    /// Export all data to JSON format (Application Layer interface)
+    /// </summary>
+    async Task<ExportResultDto> IExportUseCase.ExportToJsonAsync(
+        ExportOptionsDto options, 
+        string outputPath,
+        IProgress<ExportProgressDto>? progress)
+    {
+        var startTime = DateTime.UtcNow;
+        
+        try
+        {
+            progress?.Report(new ExportProgressDto 
+            { 
+                TotalItems = 3, 
+                ExportedItems = 0, 
+                CurrentEntity = "Stores",
+                StatusMessage = "Exporting stores..."
+            });
+
+            // Create output directory if needed
+            var outputDir = Path.GetDirectoryName(outputPath) ?? ".";
+            Directory.CreateDirectory(outputDir);
+
+            // Export based on options
+            if (options.IncludeStores)
+            {
+                var shopsPath = Path.Combine(outputDir, "Shop.json");
+                ExportShops(shopsPath);
+            }
+
+            progress?.Report(new ExportProgressDto 
+            { 
+                TotalItems = 3, 
+                ExportedItems = 1, 
+                CurrentEntity = "Items",
+                StatusMessage = "Exporting items..."
+            });
+
+            if (options.IncludeItems)
+            {
+                var goodsPath = Path.Combine(outputDir, "Goods.json");
+                ExportGoods(goodsPath);
+            }
+
+            progress?.Report(new ExportProgressDto 
+            { 
+                TotalItems = 3, 
+                ExportedItems = 2, 
+                CurrentEntity = "Prices",
+                StatusMessage = "Exporting prices..."
+            });
+
+            if (options.IncludePrices)
+            {
+                var pricesPath = Path.Combine(outputDir, $"price-{DateTime.UtcNow:yyyyMMdd_HHmmss}.json");
+                ExportPrices(pricesPath, options.FromDate, options.ToDate);
+            }
+
+            progress?.Report(new ExportProgressDto 
+            { 
+                TotalItems = 3, 
+                ExportedItems = 3, 
+                CurrentEntity = null,
+                StatusMessage = "Export complete"
+            });
+
+            var fileInfo = new FileInfo(outputPath);
+            
+            return new ExportResultDto
+            {
+                Success = true,
+                OutputPath = outputPath,
+                FileSize = fileInfo.Exists ? fileInfo.Length : 0,
+                Duration = DateTime.UtcNow - startTime,
+                StoreCount = options.IncludeStores ? _dataService.GetAllPlaces().Count() : 0,
+                ItemCount = options.IncludeItems ? _dataService.Items.GetAll().Count() : 0,
+                PriceRecordCount = options.IncludePrices ? _dataService.PriceRecords.GetAll().Count() : 0
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ExportResultDto
+            {
+                Success = false,
+                OutputPath = outputPath,
+                Duration = DateTime.UtcNow - startTime,
+                Errors = new List<string> { ex.Message }
+            };
+        }
+    }
+
+    /// <summary>
+    /// Export data to compressed JSON format (Application Layer interface)
+    /// </summary>
+    async Task<ExportResultDto> IExportUseCase.ExportToJsonGzAsync(
+        ExportOptionsDto options, 
+        string outputPath,
+        IProgress<ExportProgressDto>? progress)
+    {
+        var startTime = DateTime.UtcNow;
+        var tempPath = Path.GetTempFileName();
+        
+        try
+        {
+            // First export to temp file
+            var result = await ((IExportUseCase)this).ExportToJsonAsync(options, tempPath, progress);
+            
+            if (!result.Success)
+                return result;
+
+            // Compress to gzip
+            progress?.Report(new ExportProgressDto 
+            { 
+                TotalItems = result.TotalItems + 1, 
+                ExportedItems = result.TotalItems, 
+                CurrentEntity = "Compression",
+                StatusMessage = "Compressing..."
+            });
+
+            using (var inputStream = File.OpenRead(tempPath))
+            using (var outputStream = File.Create(outputPath))
+            using (var gzipStream = new GZipStream(outputStream, CompressionLevel.Optimal))
+            {
+                await inputStream.CopyToAsync(gzipStream);
+            }
+
+            var fileInfo = new FileInfo(outputPath);
+            
+            return new ExportResultDto
+            {
+                Success = true,
+                OutputPath = outputPath,
+                FileSize = fileInfo.Length,
+                Duration = DateTime.UtcNow - startTime,
+                StoreCount = result.StoreCount,
+                ItemCount = result.ItemCount,
+                PriceRecordCount = result.PriceRecordCount
+            };
+        }
+        finally
+        {
+            // Clean up temp file
+            if (File.Exists(tempPath))
+                File.Delete(tempPath);
+        }
+    }
+
+    /// <summary>
+    /// Incremental export - only items changed since last export (Application Layer interface)
+    /// </summary>
+    async Task<ExportResultDto> IExportUseCase.IncrementalExportAsync(
+        DateTime lastExportDate, 
+        string outputPath,
+        IProgress<ExportProgressDto>? progress)
+    {
+        var options = new ExportOptionsDto
+        {
+            FromDate = lastExportDate,
+            IncludeStores = true,
+            IncludeItems = true,
+            IncludePrices = true
+        };
+
+        return await ((IExportUseCase)this).ExportToJsonAsync(options, outputPath, progress);
+    }
+
+    /// <summary>
+    /// Export stores to Shop.json format (Application Layer interface)
+    /// </summary>
+    Task IExportUseCase.ExportShopsAsync(string filePath)
+    {
+        ExportShops(filePath);
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Export items to Goods.json format (Application Layer interface)
+    /// </summary>
+    Task IExportUseCase.ExportGoodsAsync(string filePath)
+    {
+        ExportGoods(filePath);
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Export price records to price-{timestamp}.json format (Application Layer interface)
+    /// </summary>
+    Task IExportUseCase.ExportPricesAsync(string filePath, DateTime? fromDate, DateTime? toDate)
+    {
+        ExportPrices(filePath, fromDate, toDate);
+        return Task.CompletedTask;
+    }
+
+    #endregion
 }
 
 #region DTOs (Data Transfer Objects)
@@ -384,3 +586,4 @@ public class ExportResult
 }
 
 #endregion
+

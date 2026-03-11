@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Services;
@@ -365,7 +366,7 @@ public partial class MainWindow : FluentWindow
             if (openFileDialog.ShowDialog() == true)
             {
                 var importService = ((App)System.Windows.Application.Current).Services
-                    .GetRequiredService<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>();
+                    .GetRequiredService<AdvGenPriceComparer.Application.Services.JsonImportService>();
 
                 // Import the file
                 var result = importService.ImportFromFile(openFileDialog.FileName);

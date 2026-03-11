@@ -1910,8 +1910,8 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 - [x] Define use case interfaces (`IImportUseCase`, `IExportUseCase`) with async methods.
 - [x] Create comprehensive DTOs for import/export operations (ImportRequestDto, ExportResultDto, etc.).
 - [x] Ensure the `Application` project references `Core` but *not* `Data.LiteDB` or `WPF`.
-- [ ] Move `JsonImportService` and `JsonExportService` from `Data.LiteDB` to `Application` (or create implementations).
-- [ ] Update DI registration to use Application layer interfaces.
+- [x] Move `JsonImportService` and `JsonExportService` from `Data.LiteDB` to `Application` (or create implementations).
+- [x] Update DI registration to use Application layer interfaces.
 
 ### 14.3 Step 2: Purify the Core (Domain) Layer
 - [ ] Remove `System.Net.Sockets` and infrastructure-specific JSON serialization from `Core`.

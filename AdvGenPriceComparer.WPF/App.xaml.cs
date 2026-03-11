@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using AdvGenPriceComparer.Application.Interfaces;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Helpers;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
-using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -170,6 +172,7 @@ public partial class App : System.Windows.Application
                     (msg, ex) => logger.LogError(msg, ex),
                     msg => logger.LogWarning(msg));
             });
+            services.AddSingleton<ICategoryPredictionService>(provider => provider.GetRequiredService<CategoryPredictionService>());
             services.AddSingleton<DataPreparationService>();
             services.AddSingleton<AdvGenPriceComparer.ML.Services.PriceForecastingService>(provider =>
             {
@@ -195,7 +198,7 @@ public partial class App : System.Windows.Application
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
-                var categoryPredictionService = provider.GetRequiredService<CategoryPredictionService>();
+                var categoryPredictionService = provider.GetRequiredService<ICategoryPredictionService>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 
                 return new JsonImportService(itemRepo, placeRepo, priceRepo, categoryPredictionService,

@@ -418,6 +418,7 @@
 | 2026-03-12 | Add peer discovery from multiple sources - Implemented PeerDiscoveryService with support for LocalFile, HttpUrl, Embedded, and NetworkShare sources. Created DiscoveredPeer, DiscoverySource, DiscoveryResult, DiscoveryStatistics models in Core. Includes health checking, caching, statistics, and integration with DI container. Created DefaultDiscovery.json embedded resource with demo peers. Build succeeds with 0 errors | Agent-105 |
 | 2026-03-12 | Create AdvGenPriceComparer.Application project - Created Application layer project with Clean Architecture structure. Defined IImportUseCase and IExportUseCase interfaces. Added comprehensive DTOs (ImportRequestDto, ExportRequestDto, P2PExportRequestDto, etc.). Project references only Core (no WPF/Data.LiteDB). Build succeeds with 0 errors | Agent-200 |
 | 2026-03-12 | Fix PriceSharingWorkflowTests compilation errors - Fixed namespace conflicts in WinUI project caused by AdvGenPriceComparer.Application namespace. Updated App.xaml.cs to use `Microsoft.UI.Xaml.Application` and AddItemControl.xaml.cs to use `Microsoft.UI.Xaml.Application.Current`. Tests now compile and run (6 passed, 10 failed due to SignalR environmental issues) | Agent-106 |
+| 2026-03-12 | Move JsonImportService and JsonExportService to Application layer - Moved both services from Data.LiteDB to Application layer for Clean Architecture. Created ICategoryPredictionService interface to decouple ML dependency. Updated CategoryPredictionService to implement interface. Updated all namespace references in WPF project and test files. Deleted old files from Data.LiteDB. Build succeeds with 0 errors, 279 tests passing | Agent-107 |
 
 ---
 
@@ -427,9 +428,9 @@
 |------|--------|-------------|-------|
 | Create AdvGenPriceComparer.Application project | 🟢 DONE | Agent-200 | Created Application layer project with IImportUseCase, IExportUseCase interfaces and complete DTOs. Build succeeds with 0 errors.
 | Create IImportUseCase and IExportUseCase interfaces | 🟢 DONE | Agent-200 | Interfaces defined with async methods, cancellation token support, comprehensive DTOs
-| Move JsonImportService to Application layer | 🔴 TODO | - | Part of Application layer setup |
-| Move JsonExportService to Application layer | 🔴 TODO | - | Part of Application layer setup |
-| Ensure Application project only references Core | 🔴 TODO | - | Clean architecture dependency rule |
+| Move JsonImportService to Application layer | 🟢 DONE | Agent-107 | Moved JsonImportService, ColesProduct DTO, and Import DTOs to Application layer. Updated all references. |
+| Move JsonExportService to Application layer | 🟢 DONE | Agent-107 | Moved JsonExportService and Export DTOs to Application layer. Updated all references. |
+| Ensure Application project only references Core | 🟢 DONE | Agent-107 | Verified Application project only references Core. Clean architecture dependency rule satisfied. |
 | **Fix WPF namespace conflicts with Application** | 🟢 DONE | Agent-103 | Fixed build errors: Use `System.Windows.Application` instead of `Application` in WPF files due to namespace conflict with AdvGenPriceComparer.Application |
 | **Fix Server Program accessibility for integration tests** | 🟢 DONE | Agent-106 | Fixed CS0122 error by adding `public partial class Program { }` to Program.cs |
 | **Fix PriceSharingWorkflowTests compilation errors** | 🟢 DONE | Agent-106 | Fixed namespace conflicts in WinUI project - App.xaml.cs and AddItemControl.xaml.cs now use fully qualified Microsoft.UI.Xaml.Application |
