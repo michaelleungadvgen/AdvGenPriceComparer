@@ -357,7 +357,7 @@ public class ImportDataViewModel : ViewModelBase
         if (_importCompleted)
         {
             // Close button clicked
-            if (Application.Current.Windows.OfType<ImportDataWindow>().FirstOrDefault() is { } window)
+            if (System.Windows.Application.Current.Windows.OfType<ImportDataWindow>().FirstOrDefault() is { } window)
             {
                 window.DialogResult = true;
                 window.Close();

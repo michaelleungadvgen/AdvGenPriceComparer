@@ -14,7 +14,7 @@ public partial class ImportDataWindow : Window
 
     public ImportDataWindow(ImportDataViewModel viewModel)
     {
-        _logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        _logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         _logger.LogInfo("ImportDataWindow constructor called");
 
         try

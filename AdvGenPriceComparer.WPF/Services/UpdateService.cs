@@ -158,7 +158,7 @@ public class UpdateService : IUpdateService
         {
             // This will be handled by the event handler in MainWindow
             // or we can show the window directly
-            Application.Current.Dispatcher.Invoke(() =>
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
                 ShowUpdateNotification(result);
             });
@@ -230,7 +230,7 @@ public class UpdateService : IUpdateService
         try
         {
             var window = new Views.UpdateNotificationWindow(result, this);
-            window.Owner = Application.Current.MainWindow;
+            window.Owner = System.Windows.Application.Current.MainWindow;
             window.ShowDialog();
         }
         catch (Exception ex)
