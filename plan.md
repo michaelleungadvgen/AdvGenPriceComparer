@@ -470,7 +470,7 @@ public class ExportService
 - [ ] Implement side-by-side store comparison
 - [ ] Create price history charts (LiveCharts)
 - [x] Add "best price" highlighting - DONE: IBestPriceService, BestPriceService, BestPricesWindow UI with tabs for Best Deals/Historical Lows/Best Savings
-- [ ] Generate reports (weekly specials, best deals, trends)
+- [x] Generate reports (weekly specials, best deals, trends) - DONE: IReportGenerationService with BestDeals, PriceTrends, StoreComparison, CategoryAnalysis reports, export to Markdown/JSON/CSV
 
 ### Phase 6: Enhanced Features (5-6 days)
 - [ ] Product Management (CRUD operations)

@@ -95,7 +95,7 @@
 | Detect genuine vs. illusory discounts | 🔴 TODO | - | AI-powered discount verification |
 | Calculate average prices over time | 🟢 DONE | Agent-110 | Price trend analysis - IMPLEMENTED: GetAveragePrice in PriceRecordRepository, GetPriceStatistics in PriceHistoryTrackingService calculates AveragePrice, used by IllusoryDiscountDetectionViewModel |
 | Add 'best price' highlighting | 🟢 DONE | Agent-100 | Created IBestPriceService, BestPriceService, BestPricesViewModel, BestPricesWindow with highlight levels (BestPrice, GreatDeal, GoodDeal), integrated into MainWindow sidebar menu |
-| Generate reports (best deals, trends) | 🔴 TODO | - | Automated report generation |
+| Generate reports (best deals, trends) | 🟢 DONE | Agent-150 | Implemented IReportGenerationService with BestDeals, PriceTrends, StoreComparison, CategoryAnalysis reports. Export to Markdown, JSON, CSV formats. UI integrated in ReportsPage with date range selection and max items filter. |
 | Create ReportsPage.xaml | 🟢 DONE | Agent-030 | Create Reports page for displaying price trends and best deals |
 | Detect genuine vs. illusory discounts | 🟢 DONE | Agent-070 | Create IllusoryDiscountDetectionWindow UI with PriceForecastingService integration to identify fake sales |
 
@@ -419,6 +419,7 @@
 | 2026-03-12 | Fix PriceSharingWorkflowTests compilation errors - Fixed namespace conflicts in WinUI project caused by AdvGenPriceComparer.Application namespace. Updated App.xaml.cs to use `Microsoft.UI.Xaml.Application` and AddItemControl.xaml.cs to use `Microsoft.UI.Xaml.Application.Current`. Tests now compile and run (6 passed, 10 failed due to SignalR environmental issues) | Agent-106 |
 | 2026-03-12 | Move JsonImportService and JsonExportService to Application layer - Moved both services from Data.LiteDB to Application layer for Clean Architecture. Created ICategoryPredictionService interface to decouple ML dependency. Updated CategoryPredictionService to implement interface. Updated all namespace references in WPF project and test files. Deleted old files from Data.LiteDB. Build succeeds with 0 errors, 279 tests passing | Agent-107 |
 | 2026-03-12 | Calculate average prices over time - VERIFIED: Already implemented - GetAveragePrice in PriceRecordRepository, GetPriceStatistics/GetPriceStatisticsForStore in PriceHistoryTrackingService calculate AveragePrice, MedianPrice, PriceChangePercent with configurable daysBack parameter, used by IllusoryDiscountDetectionViewModel. Tests passing. | Agent-110 |
+| 2026-03-12 | Generate reports (best deals, trends) - Implemented IReportGenerationService with 4 report types (Best Deals, Price Trends, Store Comparison, Category Analysis), export to Markdown/JSON/CSV, copy to clipboard, UI with date range and max items filter | Agent-150 |
 
 ---
 

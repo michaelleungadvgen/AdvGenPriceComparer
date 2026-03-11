@@ -296,6 +296,13 @@ public partial class App : System.Windows.Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new BestPriceService(itemRepo, placeRepo, priceRepo, logger);
             });
+            services.AddSingleton<IReportGenerationService>(provider =>
+            {
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                return new ReportGenerationService(priceRepo, itemRepo, placeRepo);
+            });
             services.AddSingleton<IShoppingListRepository>(provider =>
             {
                 var dbProvider = provider.GetRequiredService<IDatabaseProvider>();
@@ -368,7 +375,10 @@ public partial class App : System.Windows.Application
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
-                return new ReportsViewModel(priceRepo, itemRepo, placeRepo);
+                var reportService = provider.GetRequiredService<IReportGenerationService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new ReportsViewModel(priceRepo, itemRepo, placeRepo, reportService, dialogService, logger);
             });
             services.AddTransient<ShoppingListViewModel>(provider =>
             {
