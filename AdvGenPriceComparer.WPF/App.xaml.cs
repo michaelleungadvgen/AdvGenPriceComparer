@@ -135,6 +135,9 @@ public partial class App : System.Windows.Application
             services.AddSingleton<IPlaceRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Places);
             services.AddSingleton<IAlertRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Alerts);
             
+            // Price History Tracking Service
+            services.AddSingleton<IPriceHistoryTrackingService, PriceHistoryTrackingService>();
+            
             // ML.NET Services
             services.AddSingleton<ModelTrainingService>(provider =>
             {

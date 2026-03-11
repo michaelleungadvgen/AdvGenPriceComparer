@@ -91,7 +91,7 @@
 ## Phase 5: Price Analysis (TODO)
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Track historical prices in database | 🔴 TODO | - | Historical price tracking |
+| Track historical prices in database | 🟢 DONE | Agent-104 | Implemented IPriceHistoryTrackingService with automatic price recording, statistics, trend analysis, and buying recommendations |
 | Detect genuine vs. illusory discounts | 🔴 TODO | - | AI-powered discount verification |
 | Calculate average prices over time | 🔴 TODO | - | Price trend analysis |
 | Add "best price" highlighting | 🔴 TODO | - | Visual indicators for best deals |
@@ -414,6 +414,7 @@
 | 2026-03-06 | Add 'best price' highlighting - Created IBestPriceService, BestPriceService, BestPricesViewModel, BestPricesWindow.xaml, HighlightLevelConverters, integrated into MainWindow sidebar, 273 tests passing | Agent-100 |
 | 2026-03-12 | Test price sharing workflow - Created PriceSharingWorkflowTests.cs with comprehensive integration tests for P2P sharing: server health checks, API key authentication, upload/download, SignalR real-time, search/compare, pagination, rate limiting, and end-to-end workflows. Fixed build errors in JsonImportService (added PackageSize/Unit to ColesProduct). Build currently blocked by WPF namespace conflicts (Application.Current) | Agent-102 |
 | 2026-03-12 | Fix WPF namespace conflicts with Application - Fixed all `Application.Current` references to use fully qualified `System.Windows.Application.Current` in MainWindow.xaml.cs, ImportDataWindow.xaml.cs, StoreViewModel.cs, SimpleDialogService.cs, UpdateService.cs, and ImportDataViewModel.cs. Build now succeeds with 0 errors, 273 tests passing | Agent-103 |
+| 2026-03-12 | Track historical prices in database - Created IPriceHistoryTrackingService interface in Core, implemented PriceHistoryTrackingService in WPF with automatic price recording, price statistics (lowest/highest/average/median), price change detection, trend analysis (rising/falling/stable), volatility calculation, best buying opportunity analysis, and price history export. Registered in DI container. Build succeeds with 0 errors, 273 tests passing | Agent-104 |
 
 ---
 
