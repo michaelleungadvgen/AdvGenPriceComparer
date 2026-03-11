@@ -11,7 +11,7 @@ using System.IO;
 
 namespace AdvGenPriceComparer.Desktop.WinUI;
 
-public partial class App : Application
+public partial class App : Microsoft.UI.Xaml.Application
 {
     public static IServiceProvider Services { get; private set; }
 

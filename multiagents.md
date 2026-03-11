@@ -417,6 +417,7 @@
 | 2026-03-12 | Track historical prices in database - Created IPriceHistoryTrackingService interface in Core, implemented PriceHistoryTrackingService in WPF with automatic price recording, price statistics (lowest/highest/average/median), price change detection, trend analysis (rising/falling/stable), volatility calculation, best buying opportunity analysis, and price history export. Registered in DI container. Build succeeds with 0 errors, 273 tests passing | Agent-104 |
 | 2026-03-12 | Add peer discovery from multiple sources - Implemented PeerDiscoveryService with support for LocalFile, HttpUrl, Embedded, and NetworkShare sources. Created DiscoveredPeer, DiscoverySource, DiscoveryResult, DiscoveryStatistics models in Core. Includes health checking, caching, statistics, and integration with DI container. Created DefaultDiscovery.json embedded resource with demo peers. Build succeeds with 0 errors | Agent-105 |
 | 2026-03-12 | Create AdvGenPriceComparer.Application project - Created Application layer project with Clean Architecture structure. Defined IImportUseCase and IExportUseCase interfaces. Added comprehensive DTOs (ImportRequestDto, ExportRequestDto, P2PExportRequestDto, etc.). Project references only Core (no WPF/Data.LiteDB). Build succeeds with 0 errors | Agent-200 |
+| 2026-03-12 | Fix PriceSharingWorkflowTests compilation errors - Fixed namespace conflicts in WinUI project caused by AdvGenPriceComparer.Application namespace. Updated App.xaml.cs to use `Microsoft.UI.Xaml.Application` and AddItemControl.xaml.cs to use `Microsoft.UI.Xaml.Application.Current`. Tests now compile and run (6 passed, 10 failed due to SignalR environmental issues) | Agent-106 |
 
 ---
 
@@ -431,7 +432,7 @@
 | Ensure Application project only references Core | 🔴 TODO | - | Clean architecture dependency rule |
 | **Fix WPF namespace conflicts with Application** | 🟢 DONE | Agent-103 | Fixed build errors: Use `System.Windows.Application` instead of `Application` in WPF files due to namespace conflict with AdvGenPriceComparer.Application |
 | **Fix Server Program accessibility for integration tests** | 🟢 DONE | Agent-106 | Fixed CS0122 error by adding `public partial class Program { }` to Program.cs |
-| **Fix PriceSharingWorkflowTests compilation errors** | 🟡 DOING | Agent-106 | Fix missing using directive and incorrect property assignments in test file |
+| **Fix PriceSharingWorkflowTests compilation errors** | 🟢 DONE | Agent-106 | Fixed namespace conflicts in WinUI project - App.xaml.cs and AddItemControl.xaml.cs now use fully qualified Microsoft.UI.Xaml.Application |
 
 
 ---

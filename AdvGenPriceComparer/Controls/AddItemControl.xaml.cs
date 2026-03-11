@@ -67,12 +67,12 @@ public sealed partial class AddItemControl : UserControl
                 if (value.HasValue && !string.IsNullOrEmpty(unit))
                 {
                     PackageSizeHint.Text = $"Parsed as: {value} {unit}";
-                    PackageSizeHint.Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["SystemAccentColor"];
+                    PackageSizeHint.Foreground = (Microsoft.UI.Xaml.Media.Brush)Microsoft.UI.Xaml.Application.Current.Resources["SystemAccentColor"];
                 }
                 else
                 {
                     PackageSizeHint.Text = "Could not parse package size. Try formats like: 500g, 2L, 12 pack";
-                    PackageSizeHint.Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["SystemControlErrorTextForegroundBrush"];
+                    PackageSizeHint.Foreground = (Microsoft.UI.Xaml.Media.Brush)Microsoft.UI.Xaml.Application.Current.Resources["SystemControlErrorTextForegroundBrush"];
                 }
             }
             else
