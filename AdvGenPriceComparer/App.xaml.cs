@@ -76,13 +76,13 @@ public partial class App : Microsoft.UI.Xaml.Application
             services.AddSingleton<ServerConfigService>(provider => new ServerConfigService(serverConfigPath));
             services.AddSingleton<NetworkManager>();
             services.AddTransient<DemoDataService>();
-            services.AddTransient<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>(provider =>
+            services.AddTransient<AdvGenPriceComparer.Application.Services.JsonImportService>(provider =>
             {
                 var dbService = new AdvGenPriceComparer.Data.LiteDB.Services.DatabaseService(dbPath);
                 var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
                 var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
                 var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
-                return new AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService(itemRepo, placeRepo, priceRepo);
+                return new AdvGenPriceComparer.Application.Services.JsonImportService(itemRepo, placeRepo, priceRepo);
             });
 
             // ViewModels
