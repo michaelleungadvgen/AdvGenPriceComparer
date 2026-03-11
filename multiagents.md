@@ -113,7 +113,7 @@
 ## Phase 7: Testing & Deployment (TODO)
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| UI automation tests | 🔴 TODO | - | Automated UI testing |
+| UI automation tests | 🟢 DONE | Agent-Kimi | Created comprehensive UI automation test suite using FlaUI 4.0.0. Includes: ApplicationLauncher utility, Page Object pattern implementation (BasePage, MainWindowPage, ItemsPage, AddItemDialog, ImportDialog), and 30+ UI tests covering MainWindow, ItemsPage, and Import/Export functionality. Build succeeds with 0 errors.
 | Create installer (WiX Toolset or ClickOnce) | 🟢 DONE | Agent-035 | WiX v4 installer project created with MSI output (~25MB). Supports Start Menu & Desktop shortcuts, per-machine install, major upgrades.
 | Configure auto-update mechanism | 🟢 DONE | Agent-056 | Implemented IUpdateService, UpdateService, UpdateNotificationWindow with remote JSON check, auto-check on startup, manual check via Help menu |
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
@@ -422,6 +422,7 @@
 | 2026-03-12 | Calculate average prices over time - VERIFIED: Already implemented - GetAveragePrice in PriceRecordRepository, GetPriceStatistics/GetPriceStatisticsForStore in PriceHistoryTrackingService calculate AveragePrice, MedianPrice, PriceChangePercent with configurable daysBack parameter, used by IllusoryDiscountDetectionViewModel. Tests passing. | Agent-110 |
 | 2026-03-12 | Generate reports (best deals, trends) - Implemented IReportGenerationService with 4 report types (Best Deals, Price Trends, Store Comparison, Category Analysis), export to Markdown/JSON/CSV, copy to clipboard, UI with date range and max items filter | Agent-150 |
 | 2026-03-12 | Test database switching workflow - Created 17 comprehensive xUnit tests for SettingsViewModel database provider switching: provider change detection (IsProviderChanged, ProviderChangeMessage), confirmation dialogs, save with/without provider change, cancel reverts provider, reset settings, CanSave validation for LiteDB/NoSQL, property change notifications | Agent-201 |
+| 2026-03-12 | UI automation tests - Created comprehensive UI automation test suite using FlaUI 4.0.0: ApplicationLauncher utility, Page Object pattern (BasePage, MainWindowPage, ItemsPage, AddItemDialog, ImportDialog), 30+ UI tests covering MainWindow, ItemsPage, Import/Export functionality, build succeeds with 0 errors | Agent-Kimi |
 
 ---
 
