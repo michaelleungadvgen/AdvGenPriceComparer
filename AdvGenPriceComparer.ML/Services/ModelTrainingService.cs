@@ -12,6 +12,7 @@ namespace AdvGenPriceComparer.ML.Services;
 public class ModelTrainingService
 {
     private readonly MLContext _mlContext;
+    private readonly IModelVersionService? _versionService;
     private readonly Action<string>? _logInfo;
     private readonly Action<string, Exception>? _logError;
     private readonly Action<string>? _logWarning;
@@ -30,11 +31,13 @@ public class ModelTrainingService
     /// Creates a new instance of ModelTrainingService
     /// </summary>
     public ModelTrainingService(
+        IModelVersionService? versionService = null,
         Action<string>? logInfo = null,
         Action<string, Exception>? logError = null,
         Action<string>? logWarning = null)
     {
         _mlContext = new MLContext(seed: 0);
+        _versionService = versionService;
         _logInfo = logInfo;
         _logError = logError;
         _logWarning = logWarning;
@@ -95,6 +98,23 @@ public class ModelTrainingService
         result.TrainingItemCount = categorizedItems.Count;
         result.Duration = DateTime.Now - startTime;
 
+        // Register version if versioning service is available and training succeeded
+        if (result.Success && _versionService != null)
+        {
+            try
+            {
+                var versionInfo = await _versionService.RegisterNewVersionAsync(
+                    outputModelPath,
+                    result,
+                    "Trained from database");
+                _logInfo?.Invoke($"Registered model version {versionInfo.DisplayName}");
+            }
+            catch (Exception ex)
+            {
+                _logWarning?.Invoke($"Failed to register model version: {ex.Message}");
+            }
+        }
+
         return result;
     }
 
@@ -152,7 +172,7 @@ public class ModelTrainingService
 
         _logInfo?.Invoke($"Model trained - Macro Accuracy: {metrics.MacroAccuracy:P2}, Micro Accuracy: {metrics.MicroAccuracy:P2}");
 
-        return new TrainingResult
+        var result = new TrainingResult
         {
             Success = true,
             Message = "Model trained successfully from CSV",
@@ -162,6 +182,23 @@ public class ModelTrainingService
             ModelPath = outputModelPath,
             Duration = DateTime.Now - startTime
         };
+
+        // Register version if versioning service is available
+        if (_versionService != null)
+        {
+            try
+            {
+                var versionInfo = _versionService.RegisterNewVersionAsync(outputModelPath, result, "Trained from CSV")
+                    .GetAwaiter().GetResult();
+                _logInfo?.Invoke($"Registered model version {versionInfo.DisplayName}");
+            }
+            catch (Exception ex)
+            {
+                _logWarning?.Invoke($"Failed to register model version: {ex.Message}");
+            }
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -206,7 +243,7 @@ public class ModelTrainingService
 
         _logInfo?.Invoke($"Model retrained successfully with {newTrainingData.Count} new samples");
 
-        return new TrainingResult
+        var result = new TrainingResult
         {
             Success = true,
             Message = $"Model retrained with {newTrainingData.Count} new samples",
@@ -214,6 +251,25 @@ public class ModelTrainingService
             ModelPath = outputModelPath,
             Duration = DateTime.Now - startTime
         };
+
+        // Register version if versioning service is available
+        if (result.Success && _versionService != null)
+        {
+            try
+            {
+                var versionInfo = await _versionService.RegisterNewVersionAsync(
+                    outputModelPath,
+                    result,
+                    $"Retrained with {newTrainingData.Count} new samples");
+                _logInfo?.Invoke($"Registered model version {versionInfo.DisplayName}");
+            }
+            catch (Exception ex)
+            {
+                _logWarning?.Invoke($"Failed to register model version: {ex.Message}");
+            }
+        }
+
+        return result;
     }
 
     /// <summary>

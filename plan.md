@@ -1819,7 +1819,7 @@ public class DataPreparationService
 - [x] Add auto-suggestion to AddItemWindow UI - DONE: Added ML-based category suggestions with real-time predictions from CategoryPredictionService, confidence scores display, clickable suggestion buttons, integrated into AddItemViewModel and AddItemWindow.xaml
 - [x] Create MLModelManagementWindow for training/testing - DONE: Created MLModelManagementWindow.xaml with modern UI, MLModelManagementViewModel with training/testing logic, integrated into MainWindow sidebar
 - [x] Add configuration for confidence threshold - DONE (Agent-057): Added ML settings UI in SettingsWindow with slider (0.1-0.95) and auto-categorization toggle
-- [ ] Implement model versioning
+- [x] Implement model versioning - DONE: Created IModelVersionService, ModelVersionInfo, ModelVersionService with full versioning support including rollback, retention policy, integrity checking, export/import. Integrated with ModelTrainingService. 29 tests passing.
 - [x] Test prediction accuracy - Agent-052: Created comprehensive xUnit tests for ML.NET accuracy validation with 12 test cases
 - [x] Document ML workflow - Agent-080: Created comprehensive ML_WORKFLOW.md in AdvGenPriceComparer.ML/ with training guide, usage instructions, troubleshooting, and best practices
 

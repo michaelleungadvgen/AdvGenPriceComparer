@@ -8,6 +8,7 @@ using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.ML.Models;
 using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -150,10 +151,25 @@ public partial class App : System.Windows.Application
             services.AddSingleton<IPriceHistoryTrackingService, PriceHistoryTrackingService>();
             
             // ML.NET Services
+            services.AddSingleton<IModelVersionService>(provider =>
+            {
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var modelPath = settingsService.MLModelPath;
+                
+                return new ModelVersionService(
+                    modelPath,
+                    new ModelVersionRetentionSettings(),
+                    msg => logger.LogInfo(msg),
+                    (msg, ex) => logger.LogError(msg, ex),
+                    msg => logger.LogWarning(msg));
+            });
             services.AddSingleton<ModelTrainingService>(provider =>
             {
                 var logger = provider.GetRequiredService<ILoggerService>();
+                var versionService = provider.GetService<IModelVersionService>();
                 return new ModelTrainingService(
+                    versionService,
                     msg => logger.LogInfo(msg),
                     (msg, ex) => logger.LogError(msg, ex),
                     msg => logger.LogWarning(msg));
