@@ -1919,7 +1919,7 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 - [x] Move `NetworkManager.cs` to WPF/Services infrastructure layer. **DONE:** NetworkManager now lives in WPF project as the infrastructure implementation.
 - [x] Define `IP2PNetworkService` interface in `Core` to be implemented by the infrastructure layer. **DONE:** Created IP2PNetworkService.cs in Core/Interfaces with NetworkPeerInfo, PriceShareEventArgs, and async methods.
 - [x] **Fix WinUI project references** **DONE:** Fixed WinUI project to use IP2PNetworkService interface after NetworkManager moved to WPF. Made network manager optional in ViewModels.
-- [ ] Refactor Domain models (`Item`, `Place`, `PriceRecord`) to ensure they are true POCOs without database/serialization attributes.
+- [x] Refactor Domain models (`Item`, `Place`, `PriceRecord`) to ensure they are true POCOs without database/serialization attributes. **DONE:** Removed [JsonIgnore] attributes from Item.cs, removed System.Text.Json.Serialization using statement. Place and PriceRecord were already clean. All 351 tests passing.
 
 ### 14.4 Step 3: Implement CQRS (Optional but Recommended)
 - [x] Install MediatR in the `Application` layer. **DONE:** Installed MediatR 12.2.0 package.

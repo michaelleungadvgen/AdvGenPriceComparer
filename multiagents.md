@@ -433,6 +433,7 @@
 | 2026-03-12 | Fix remaining 2 SettingsServiceTests failures - Fixed `SaveSettingsAsync_FileIsIndented` test by using `Environment.NewLine` instead of hardcoded `\n`. Fixed `LoadSettingsAsync_RaisesSettingsChangedEvent` by adding SettingsChanged event invocation when creating default settings file. All 25 SettingsServiceTests now passing. | Agent-Kimi |
 | 2026-03-12 | Multi-store trip optimization - Created ITripOptimizerService interface, TripOptimizerService with 3 optimization strategies (Cost/Distance/Balanced), TripOptimizerViewModel, TripOptimizerWindow XAML UI, EnumDescriptionConverter, registered in DI, added Tools menu item. Build succeeds with 0 errors. | Agent-Kimi |
 | 2026-03-12 | Implement CQRS with MediatR - Installed MediatR 12.2.0 in Application layer, created Commands folder (CreateItemCommand, UpdateItemCommand, DeleteItemCommand, CreatePlaceCommand, RecordPriceCommand), Queries folder (11 query types), Handlers folder (9 handlers), ServiceRegistration extension. WPF builds with 0 errors. All IGroceryDataService operations now have CQRS equivalents. | Agent-Kimi-5 |
+| 2026-03-12 | Refactor Domain models to pure POCOs - Removed [JsonIgnore] attributes from Item.cs, removed System.Text.Json.Serialization using statement. Place and PriceRecord were already clean (no serialization attributes). Fixed ExportServiceTests.cs to use correct Item properties (DateAdded instead of CreatedAt, removed Price property). Build succeeds with 0 errors, 351 tests passing. | Agent-600 |
 
 ---
 
@@ -451,6 +452,7 @@
 | **Remove System.Net.Sockets from Core, create IP2PNetworkService interface** | 🟢 DONE | Agent-300 | Created IP2PNetworkService interface in Core with NetworkPeerInfo, PriceShareEventArgs. Moved NetworkManager to WPF/Services with full IP2PNetworkService implementation. Updated DI registration. Build succeeds with 0 errors, 296 tests passing. |
 | **Fix WinUI project NetworkManager references** | 🟢 DONE | Agent-Kimi-2 | Fixed NetworkManager references in WinUI project - removed Helpers using, made IP2PNetworkService optional parameter, commented out incompatible networking code. WPF builds with 0 errors. |
 | **Implement CQRS with MediatR** | 🟢 DONE | Agent-Kimi-5 | Installed MediatR 12.2.0, created 11 Command/Query classes and 9 Handler classes covering all IGroceryDataService operations |
+| **Refactor Domain models to pure POCOs** | 🟢 DONE | Agent-600 | Removed [JsonIgnore] attributes from Item.cs, removed System.Text.Json dependency from Core. All 351 tests passing.
 
 ---
 
