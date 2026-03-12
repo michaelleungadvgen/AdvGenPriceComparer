@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:AdvGenPriceComparer.WPF"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:converters="clr-namespace:AdvGenPriceComparer.WPF.Converters">
+             xmlns:converters="clr-namespace:AdvGenPriceComparer.WPF.Converters"
+             xmlns:services="clr-namespace:AdvGenPriceComparer.WPF.Services">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,6 +34,16 @@
             <converters:HighlightLevelToTextConverter x:Key="HighlightLevelToTextConverter"/>
             <converters:HighlightLevelToColorConverter x:Key="HighlightLevelToColorConverter"/>
             <converters:HighlightLevelToBackgroundConverter x:Key="HighlightLevelToBackgroundConverter"/>
+            <converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
+            <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+            <converters:DecimalToVisibilityConverter x:Key="DecimalToVisibilityConverter"/>
+            
+            <!-- Enum Collections -->
+            <ObjectDataProvider x:Key="OptimizationStrategyEnum" MethodName="GetValues" ObjectType="{x:Type services:OptimizationStrategy}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="services:OptimizationStrategy"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
 
             <!-- Light Blue Theme Color -->
             <Color x:Key="PrimaryColor">#87CEEB</Color>

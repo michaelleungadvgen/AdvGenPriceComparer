@@ -1,67 +1,145 @@
 
+## Available from Sat 14th March
 
-## Available from Wed 25th February
+### Easter Goodies
 
-### Baby Essentials
+- **Bunny Pink 75g** - KINDER - $6.29 ($8.39/100g)
+- **Bunny Blue 75g** - KINDER - $6.29 ($8.39/100g)
+- **Bunny 120g** - SWEET WILLIAM - $8.99 ($7.49/100g)
+- **Sharepack 155g** - SWEET WILLIAM - $8.99 ($5.80/100g)
+- **Humpty Dumpty Gift Box 132g** - CADBURY - $7.99 ($6.05/100g)
+- **Dairy Milk Hollow Bunny 150g** - CADBURY - $7.49 ($4.99/100g)
+- **Dairy Milk Gift Box 168g** - CADBURY - $9.99 ($5.95/100g)
+- **Crunchie Bunny 170g** - CADBURY - $7.49 ($4.41/100g)
+- **Oreo Gift Box 172g** - CADBURY - $9.99 ($5.88/100g)
+- **Rocklea Road Bunny 170g** - DARRELL LEA - $6.49 ($3.82/100g)
+- **Bilby 100g** - DARRELL LEA - $5.49 ($5.49/100g)
+- **Mini Mix Gift Box 143g** - FERRERO - $8.99 ($6.29/100g)
+- **Crispy Speckled Eggs Bucket 500g** - M&M'S - $11.99 ($2.40/100g)
+- **Violet Crumble Honeycomb Gift Box 175g** - VIOLET CRUMBLE - $8.99 ($5.14/100g)
+- **Gingerbread Easter Bunny 60g** - GREAT AUST. GINGERBREAD CO - $1.79 ($2.98/100g)
+- **Golden Gaytime Egg 150g** - CHOCOLATIER AUSTRALIA - $9.99 ($6.66/100g)
+- **Bubble O Bill Egg 160g** - CHOCOLATIER AUSTRALIA - $9.99 ($6.24/100g)
+- **Milkybar Cookie Chunks Loaded Eggs 200g** - NESTLE - $15.99 ($8.00/100g)
+- **Choc-O-Malt Loaded Eggs 200g** - NESTLE - $15.99 ($8.00/100g)
+- **Rocky Road Loaded Eggs 200g** - NESTLE - $15.99 ($8.00/100g)
+- **Strawberry Shortcake Duo Eggs 200g** - NESTLE - $13.49 ($8.99/100g)
+- **Caramel Fudge Duo Eggs 200g** - NESTLE - $13.49 ($8.99/100g)
+- **Hot Chocolate Easter Gift Pack 140g** - NOMAD CHOCOLATE - $9.99 ($7.14/100g)
+- **Hot Chocolate with Hot Cross Bun Spices Easter Gift Pack 140g** - NOMAD CHOCOLATE - $9.99 ($7.14/100g)
 
-- **Nappy Pants Toddler 60 Pack** - MAMIA - $16.49 ($0.27 each)
-- **Nappy Pants Walker 50 Pack** - MAMIA - $16.49 ($0.33 each)
-- **Nappy Pants Junior 44 Pack** - MAMIA - $16.49 ($0.37 each)
-- **Baby Wipes Coconut 6x80 Pack** - MAMIA - $10.99 ($2.29/100 each)
-- **VISAGE Breast Pump** - VISAGE - $59.99
-- **Baby Grooming Essentials Kit 8 Piece** - FISHER PRICE - $9.99
-- **Baby Books** - $4.99
-- **Tummy Time Pillow** - NUBY - $19.99
-- **Infant Sleeping Bag** - BABY SLEEPTIME - $24.99
-- **Infant Sleeping Suit** - BABY SLEEPTIME - $24.99
-- **Infant Sleeveless Sleeping Suit** - BABY SLEEPTIME - $24.99
-- **Nursery Organisers** - KIDS BY KIRKTON HOUSE - $14.99
-- **Baby Plush** - FINDON - $6.99
-- **Health Care Kit or Bath Thermometer** - NUBY - $16.99
-- **Snackles or Spin Container** - MELII - $4.99
+### Gardening
 
-### Baby Clothing
+- **Petrol Lawnmower 173cc** - FERREX - $299.00
+- **Petrol Chainsaw** - FERREX - $129.00
+- **Pressure Washer 2000W** - FERREX - $99.99
+- **Petrol Line Trimmer** - FERREX - $99.99
+- **Assorted Pruning Tools** - GARDENLINE - $29.99
+- **Nesting Flower Steps** - BELAVI - $39.99
+- **Hose Cleaning Attachments** - GARDENLINE - $24.99
+- **Adults Gumboots** - GARDENLINE - $19.99
+- **Hedge Shears or Loppers** - GARDENLINE - $18.99
+- **Lawn Border** - GARDENLINE - $19.99
+- **Outdoor Solar Lights** - CASALUX - $19.99
+- **Weeper Hose 15m** - GARDENLINE - $14.99
+- **Pop Out Reusable Seed Tray** - GARDENLINE - $14.99
+- **Bird Control Assortment** - GARDENLINE - $14.99
+- **Fertiliser Bucket 3kg** - RP ROCKY POINT - $12.99
+- **Seaweed Concentrate 2L** - GARDENLIFE - $9.99
+- **Rattan Look Pot or Hanging Planter 2 Pack** - BELAVI - $9.99
+- **Solar Crackle Stake Light** - CASALUX - $9.99
+- **Garden Spray Nozzle** - GARDENLINE - $7.99
+- **Leaf Grabbers** - GARDENLINE - $7.99
+- **Adult's Sherpa Lined Clogs** - GARDENLINE - $7.99
+- **Assorted Weed Mats and Tarps** - GARDENLINE - $5.99
+- **Pruning Shears** - GARDENLINE - $5.99
+- **Garden Hand Tools** - GARDENLINE - $4.99
+- **Hanging Basket with Liner** - BELAVI - $4.99
+- **Plastic Hose Accessories** - GARDENLINE - $6.99
+- **Adult's Gardening Gloves 2pk** - GARDENLINE - $6.99
 
-- **Infant Bibs 3 Pack** - BIG SOFTIES - $7.99
-- **Infant Fleece Lined Jacket** - LILY & DAN - $15.99
-- **Infant Bodysuit 3 Pack** - LILY & DAN - $9.99
-- **Infant Puffer Jacket** - LILY & DAN - $16.99
-- **Infant Puffer Vest** - LILY & DAN - $13.99
-- **Infant Socks 6 Pack** - LILY & DAN - $5.99
-- **Infant Sherpa Jacket** - LILY & DAN - $11.99
-- **Licensed Infant Sleepwear** - BRANDED - $13.99
-- **Licensed Infant Sleepwear Onesie** - BRANDED - $13.99
-- **Infant Tracksuit** - LILY & DAN - $12.99
-- **Infant Wondersuit** - BRANDED - $13.99
-- **Infant Singlet 5 Pack** - BIG SOFTIES - $9.99
-- **Infant Singletsuit 3 Pack** - BIG SOFTIES - $9.99
+### Easter Decorations & Activities
+
+- **Easter Squishes or Plushies** - FINDON - $9.99
+- **Easter Hunting Basket** - HIPPITY HOP - $5.99
+- **Easter Decorations** - HIPPITY HOP - $5.99
+- **Bluey Easter Figures** - LICENSED - $6.99
+- **Easter Drinkware and Tableware** - CROFTON - $6.99
+- **Easter Picture Board Books** - $4.99
+- **Easter Activity Books** - $3.99
+- **Easter Craft Accessories** - CREATIVE PLACE - $3.99
+- **Easter Plaster** - CREATIVE PLACE - $3.99
+- **Easter Craft Accessories** - HIPPITY HOP - $2.99
+- **Easter Activity Books** - HINKLER - $2.99
+- **Easter Hat or Bunny Ears Assorted** - HIPPITY HOP - $1.99
+- **Easter Paperware** - 25TH AVENUE - $1.49
+- **Tea Towel Easter 3 Pack** - PEPPERTREE - $7.99
+
+### Clothing
+
+- **Women's Easter PJ Set** - SERRA - $14.99
+- **Men's Easter PJ Set** - SERRA - $14.99
+- **Children's Easter PJ Set** - LILY & DAN - $11.99
+- **Infant's Easter PJ Set** - LILY & DAN - $11.99
+
+### Kitchen & Home
+
+- **Cast Iron Dutch Oven with Flower Lid** - CROFTON - $29.99
+- **Glue Gun or Glue Gun Refills** - CREATIVE PLACE - $4.99
+
+## Available from Wed 11th March
 
 ### Limited Time Only Meat
 
-- **Cold Smoked Salmon 100g** - THE FISHMONGER - $5.99 ($59.90/kg)
-- **Beef Brisket Smokey American** - READY, SET…COOK! - $17.99/kg
-- **Free Range RSPCA Approved Chicken Maryland Fillet** - BROAD OAK FARMS - $17.49 ($13.99/kg)
-- **Honey Mustard Pork Kiev 440g** - PC PETITE CUISINE - $8.99 ($20.43/kg)
+- **RSPCA Approved Chicken Stir Fry Strips 500g** - READY, SET…COOK! - $7.99 ($15.98/kg)
+- **Chicken Parmi Balls 480g** - PC PETITE CUISINE - $8.49 ($17.69/kg)
+- **Popcorn Pork 400g** - SUNPORK FRESH FOODS - $8.99 ($22.48/kg)
+
+### Automotive
+
+- **Jump Starter Powerbank** - RIDE+GO - $59.99
+- **Carpet Car Mats** - RIDE+GO - $11.99
+- **Waterproof Car Seat Cover** - RIDE+GO - $12.99
+- **Car Cleaning Wipes 50 Pack** - POWER FORCE - $4.99
+- **Mentos Car Air Freshener 42g** - MENTOS - $3.99 ($9.50/100g)
+- **Car Boot Anti-Slip Mats** - RIDE+GO - $9.99
+- **Car Organisers** - RIDE+GO - $7.99
+- **Ratchet Spanners** - WORKZONE - $17.99
+- **High Pressure Attachment** - GARDENLINE - $14.99
+
+### Clothing
+
+- **Women's Ponte Wide Leg Pants** - SERRA - $19.99
+- **Women's Long Sleeve Tee 2 Pack** - SERRA - $11.99
+- **Women's Soft Leggings 2 Pack** - SERRA - $12.99
+- **Women's Knit Jumper** - SERRA - $13.99
+- **Women's Seamless Bralette 2 Pack** - UP2FASHION WOMEN - $16.99
+- **Women's Sweat Top or Pants** - SERRA - $14.99
+- **Women's Relaxed Shirt** - SERRA - $14.99
+- **Women's Jackets** - SERRA - $29.99
+- **Women's Underwear** - SERRA - $7.99
+- **Women's Casual Comfort Shoes** - SERRA - $14.99
+
+### Kitchen
+
+- **Microwave Safe Containers 5 Piece Set** - CROFTON - $9.99
+- **Coloured Mini Pots and Pans** - CROFTON - $4.99
+- **Microwave Toastie Maker** - JOIE - $14.99
+- **Mixing Bowl Set** - CROFTON - $9.99
+- **Multifunction Food Chopper** - CROFTON - $12.99
+- **Microfibre Tea Towel 3 Pack** - PEPPERTREE - $5.99
+- **Kitchen Cleaning Brushes** - EASY HOME - $1.99
+- **Antibacterial Cutting Boards 3 Piece Set** - CROFTON - $12.99
+- **Colourful Silicone Utensils** - CROFTON - $1.69
+- **Coloured Frypan 30cm** - CROFTON - $12.99
+- **Coloured Frypan 24cm** - CROFTON - $9.99
+- **Baking Assortment** - JOIE - $7.99
+- **Kitchen Knives with Safety Blades** - CROFTON - $2.99
 
 ### Pet
 
-- **Pet Stairs** - PETPLAY - $39.99
-- **Memory Foam Pet Mat** - PETPLAY - $19.99
-- **Pet Blanket** - PETPLAY - $9.99
-- **Pet Bowl Mat** - PETPLAY - $7.99
-- **Soft Rope Pet Toy** - PETPLAY - $7.99
-- **2 in 1 Small Pet Bed** - PETPLAY - $14.99
-- **Memory Foam Bed Medium** - PETPLAY - $49.99
-- **Memory Foam Bed Extra Large** - PETPLAY - $89.99
-
-### Household Specials
-
-- **Magnesium Infused Bath Flakes 2kg** - AEQUI - $9.99 ($5.00/kg)
-- **Pinnacle Folding Convertible Booster Seat** - INFA SECURE - $99.99
-- **Rocking Chair** - SOHL - $179.00
-- **Orientation Night Light** - CASALUX - $14.99
-
----
+- **Foldable Pet Travel Mat** - PETPLAY - $14.99
+- **Luxury Pet Car Travel Seat** - PETPLAY - $34.99
 
 ## Available from Wed 4th March
 
@@ -110,66 +188,3 @@
 - **Drill Brush and Sanding 14pc Set** - FERREX - $9.99
 - **Floating Shelves Assorted** - DELTA - $7.99
 
----
-
-## Available from Sat 7th March
-
-### Appliances
-
-- **ECOVACS DEEBOT NEO 2.0 Robot Vacuum** - ECOVACS - $279.00
-- **Induction Cooker** - AMBIANO - $44.99
-- **Ice Cube Maker** - AMBIANO - $109.00
-- **Steam Mop** - EASY HOME - $109.00
-- **Dishwasher** - STIRLING - $299.00
-- **Chest Freezer 200L** - STIRLING - $169.00
-- **Bar Fridge 90L** - STIRLING - $169.00
-
-### Mattresses
-
-- **Single Mattress** - NOVITESSE - $149.00
-- **King Single Mattress** - NOVITESSE - $179.00
-- **Double Mattress** - NOVITESSE - $199.00
-- **Queen Mattress** - NOVITESSE - $239.00
-- **King Mattress** - NOVITESSE - $279.00
-
-### Cleaning Products
-
-- **Eucalyptus Spray 2 Pack 500ml** - BOSISTO'S - $7.99
-- **Dettol Disinfectant Cleaner 750ml** - DETTOL - $5.49
-- **Ajax Spray n' Wipe 500ml** - AJAX - $3.29
-- **Morning Fresh Dishwashing Liquid 900ml** - MORNING FRESH - $4.99
-- **White King Bleach 2.5L** - WHITE KING - $4.49
-- **Earth Choice Laundry Liquid 2L** - EARTH CHOICE - $6.99
-- **Sard Wonder Stain Remover 1kg** - SARD - $8.99
-- **Finish Dishwasher Rinse Aid 500ml** - FINISH - $6.49
-
-### Cleaning Accessories
-
-- **Microfibre Cleaning Cloths 10 Pack** - EASY HOME - $4.99
-- **Spin Mop and Bucket Set** - EASY HOME - $24.99
-- **Extendable Duster** - EASY HOME - $9.99
-- **Cleaning Caddy Set** - EASY HOME - $12.99
-- **Scrub Brush Set 3 Pack** - EASY HOME - $4.99
-
-### Smart Home & Security
-
-- **Smart Door Locks Assortment** - DELTA - $149.00
-- **Smart Bluetooth Handle Assortment** - DELTA - $89.99
-- **Door Handle Lock Assortment** - DELTA - $14.99
-
-### Workwear
-
-- **Men's Work Polo Assortment** - WORKWEAR - $7.99
-- **Hi Vis Hoodie Assorted** - WORKWEAR - $19.99
-- **Assorted Cargo Work Shorts** - WORKWEAR - $16.99
-- **Hi Vis Drill Shirt Assortment** - WORKWEAR - $24.99
-- **Assorted Work Socks 3 Pack** - WORKWEAR - $9.99
-- **Men's Work Pants Assortment** - WORKWEAR - $19.99
-- **Stretch Cargo Work Pants Assortment** - WORKWEAR - $29.99
-- **Men's Sherpa Hooded Jacket Assortment** - WORKWEAR - $29.99
-- **Sherpa Shacket Men's Assorted** - WORKWEAR - $24.99
-- **Assorted Men's Work Flannel Shirt** - WORKWEAR - $12.99
-- **Men's Steel Toe Cap Safety Work Boots Assortment** - BRANDED - $44.99
-- **Heavy Duty Belt Assortment** - WORKWEAR - $9.99
-
----

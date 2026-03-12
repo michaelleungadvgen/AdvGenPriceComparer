@@ -1,5 +1,5 @@
+using AdvGenPriceComparer.Application.Mediator;
 using AdvGenPriceComparer.Core.Models;
-using MediatR;
 
 namespace AdvGenPriceComparer.Application.Commands;
 

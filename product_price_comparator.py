@@ -123,11 +123,11 @@ def main():
     try:
         # Load data files
         print("Loading Woolworths data...")
-        with open('data/woolworths_04032026.json', 'r', encoding='utf-8') as f:
+        with open('data/woolworths_11032026.json', 'r', encoding='utf-8') as f:
             woolworths_data = json.load(f)
 
         print("Loading Coles data...")
-        with open('data/coles_04032026.json', 'r', encoding='utf-8') as f:
+        with open('data/coles_11032026.json', 'r', encoding='utf-8') as f:
             coles_data = json.load(f)
 
         print(f"Loaded {len(woolworths_data)} Woolworths products and {len(coles_data)} Coles products")

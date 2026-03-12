@@ -436,6 +436,7 @@
 | 2026-03-12 | Implement CQRS with MediatR - Installed MediatR 12.2.0 in Application layer, created Commands folder (CreateItemCommand, UpdateItemCommand, DeleteItemCommand, CreatePlaceCommand, RecordPriceCommand), Queries folder (11 query types), Handlers folder (9 handlers), ServiceRegistration extension. WPF builds with 0 errors. All IGroceryDataService operations now have CQRS equivalents. | Agent-Kimi-5 |
 | 2026-03-12 | Refactor Domain models to pure POCOs - Removed [JsonIgnore] attributes from Item.cs, removed System.Text.Json.Serialization using statement. Place and PriceRecord were already clean (no serialization attributes). Fixed ExportServiceTests.cs to use correct Item properties (DateAdded instead of CreatedAt, removed Price property). Build succeeds with 0 errors, 351 tests passing. | Agent-600 |
 | 2026-03-12 | **Dark mode theme** - Implemented IThemeService/ThemeService with Light/Dark/System theme options. Added ApplicationTheme enum to Core.Models. Updated ISettingsService/SettingsService to persist theme. Added theme properties to SettingsViewModel. Integrated theme loading on startup in App.xaml.cs. Settings UI already had theme ComboBox - now fully functional. Build succeeds with 0 errors, 351 tests passing. | Agent-Kimi |
+| 2026-03-13 | **Replace MediatR with custom implementation** - Created custom IRequest, IRequestHandler, IMediator interfaces in AdvGenPriceComparer.Application/Mediator/. Implemented Mediator class using reflection for handler resolution. Removed MediatR NuGet package. Updated all 5 Commands, 11 Queries, 9 Handlers to use new interfaces. Updated ServiceRegistration to auto-register handlers. Build succeeds with 0 errors, 351 tests passing. | Agent-Kimi-Current |
 
 ---
 
@@ -456,6 +457,7 @@
 | **Implement CQRS with MediatR** | 🟢 DONE | Agent-Kimi-5 | Installed MediatR 12.2.0, created 11 Command/Query classes and 9 Handler classes covering all IGroceryDataService operations |
 | **Refactor Domain models to pure POCOs** | 🟢 DONE | Agent-600 | Removed [JsonIgnore] attributes from Item.cs, removed System.Text.Json dependency from Core. All 351 tests passing.
 | **Ensure Data.LiteDB and Infrastructure.Network are only referenced in composition root** | 🟢 DONE | Agent-Verification | Verified: Core project has no infrastructure dependencies. Application project only references Core. WPF project (composition root) properly manages all Data.LiteDB and Network service registrations in App.xaml.cs. |
+| **Replace MediatR with custom mediatR implementation** | 🟢 DONE | Agent-Kimi-Current | Created custom IMediator, IRequest, IRequestHandler interfaces + Mediator class. Removed MediatR NuGet package. Updated all 5 Commands, 11 Queries, 9 Handlers, and ServiceRegistration. Build succeeds with 0 errors, 351 tests passing.
 
 ---
 

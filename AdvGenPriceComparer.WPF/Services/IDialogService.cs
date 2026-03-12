@@ -27,4 +27,6 @@ public interface IDialogService
     void ShowIllusoryDiscountDetectionDialog();
     void ShowServerDataTransferDialog();
     void ShowBestPricesDialog();
+    void ShowEditPlaceDialog(Core.Models.Place place);
+    void ShowTripOptimizerDialog();
 }

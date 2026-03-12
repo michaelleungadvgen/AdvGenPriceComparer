@@ -126,6 +126,8 @@
                 <MenuItem Header="Generate Demo Data" Click="GenerateDemoData_Click"/>
             </MenuItem>
             <MenuItem Header="_Tools">
+                <MenuItem Header="Trip Optimizer..." Click="TripOptimizer_Click"/>
+                <Separator/>
                 <MenuItem Header="Settings..." Click="Settings_Click" InputGestureText="Ctrl+,"/>
                 <Separator/>
                 <MenuItem Header="Detect Illusory Discounts..." Click="IllusoryDiscountDetection_Click"/>

@@ -1932,6 +1932,48 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 
 ---
 
+## Phase 15: Replace MediatR with Custom Implementation ✅ COMPLETE
+
+MediatR is no longer free. Replaced the NuGet package with our own lightweight mediatR implementation.
+
+### 15.1 Step 1: Build Custom mediatR Core ✅
+- [x] Create `IRequest<TResponse>` and `IRequest` marker interfaces in the `Application` layer.
+- [x] Create `IRequestHandler<TRequest, TResponse>` interface in the `Application` layer.
+- [x] Create `IMediator` interface with `Send<TResponse>(IRequest<TResponse> request, CancellationToken ct)` method.
+- [x] Implement `Mediator` class that resolves handlers from `IServiceProvider` at runtime.
+
+**Files Created:**
+- `AdvGenPriceComparer.Application/Mediator/IMediator.cs` - Contains all interface definitions
+- `AdvGenPriceComparer.Application/Mediator/Mediator.cs` - Implementation using reflection
+
+### 15.2 Step 2: Remove MediatR NuGet Package ✅
+- [x] Remove the `MediatR` NuGet package from `AdvGenPriceComparer.Application`.
+- [x] Update all `using MediatR;` statements across Commands, Queries, and Handlers to use `AdvGenPriceComparer.Application.Mediator`.
+
+**Changes:**
+- Updated `AdvGenPriceComparer.Application.csproj` - removed MediatR package reference
+- Updated all 25 files that referenced `using MediatR;`
+
+### 15.3 Step 3: Update All Commands, Queries, and Handlers ✅
+- [x] Update all 5 Command classes to implement the new `IRequest<TResponse>` interface.
+- [x] Update all 11 Query classes to implement the new `IRequest<TResponse>` interface.
+- [x] Update all 9 Handler classes to implement the new `IRequestHandler<TRequest, TResponse>` interface.
+
+**Files Updated:**
+- Commands: CreateItemCommand, UpdateItemCommand, DeleteItemCommand, CreatePlaceCommand, RecordPriceCommand
+- Queries: GetAllItemsQuery, GetItemByIdQuery, GetItemsByCategoryQuery, SearchItemsQuery, GetAllPlacesQuery, GetPlaceByIdQuery, GetPriceHistoryQuery, GetRecentPriceUpdatesQuery, FindBestDealsQuery, GetCategoryStatsQuery, GetDashboardStatsQuery, GetStoreComparisonStatsQuery
+- Handlers: ItemCommandHandlers, ItemQueryHandlers, PlaceCommandHandler, PlaceQueryHandlers, PriceCommandHandler, PriceQueryHandlers, AnalyticsQueryHandlers
+
+### 15.4 Step 4: Update Service Registration and Verify ✅
+- [x] Update `ServiceRegistration` extension to register `IMediator` → `Mediator` and auto-register all handlers without MediatR's DI extension.
+- [x] Verify build succeeds with 0 errors and all tests pass.
+
+**Results:**
+- Build: 0 errors, warnings only
+- Tests: 351 passed (same as before)
+
+---
+
 ## 📅 Updated Development Timeline
 
 ### MVP (Phases 1-3)

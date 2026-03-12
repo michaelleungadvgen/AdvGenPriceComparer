@@ -304,10 +304,16 @@ public class PriceDataService : IPriceDataService
             }
 
             // Process price records
+            // Match by Item.ProductId and Place.StoreId from the request
             foreach (var record in request.PriceRecords)
             {
-                if (itemIdMap.TryGetValue(record.ItemId.ToString(), out int itemId) &&
-                    placeIdMap.TryGetValue(record.PlaceId.ToString(), out int placeId))
+                // Find the matching item by checking the request's items list
+                var matchingItem = request.Items.FirstOrDefault(i => i.Id == record.ItemId || i.ProductId == record.ItemId.ToString());
+                var matchingPlace = request.Places.FirstOrDefault(p => p.Id == record.PlaceId || p.StoreId == record.PlaceId.ToString());
+                
+                if (matchingItem != null && matchingPlace != null &&
+                    itemIdMap.TryGetValue(matchingItem.ProductId, out int itemId) &&
+                    placeIdMap.TryGetValue(matchingPlace.StoreId, out int placeId))
                 {
                     record.ItemId = itemId;
                     record.PlaceId = placeId;

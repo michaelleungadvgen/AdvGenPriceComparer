@@ -84,7 +84,9 @@ public class PlaceViewModel : ViewModelBase
     private void EditPlace()
     {
         if (SelectedPlace == null) return;
-        _dialogService.ShowInfo($"Edit Store dialog will be implemented for: {SelectedPlace.Name}");
+        
+        _dialogService.ShowEditPlaceDialog(SelectedPlace);
+        LoadPlaces(); // Refresh the list after editing
     }
 
     private void DeletePlace()

@@ -1,14 +1,11 @@
-# Good Deals - February 2026
-
-| Product | Retailer | Sale Price | Save | Deal Context | Link |
-|---------|----------|------------|------|--------------|------|
-| LG 100" QNED86A Mini-LED 4K TV | Harvey Norman | $4,484 | ~$4,511 | Massive Clearance. 50%+ off a giant 100" Mini-LED screen. | [View](https://www.harveynorman.com.au/lg-100-inch-qned86a-evo-ai-mini-led-uhd-4k-smart-tv.html) |
-| TCL 98" P7K 4K QLED Google TV | JB Hi-Fi | $3,886 | N/A | The most affordable way to get a cinema-sized 98" screen. | [View](https://www.jbhifi.com.au/products/tcl-98-p7k-4k-uhd-qled-google-tv-2025) |
-| Dyson Gen5detect Absolute Vacuum | Harvey Norman | $928 | $560 | Heavily discounted flagship vacuum with laser detect. | [View](https://www.harveynorman.com.au/dyson-gen5detecttm-absolute-stick-vacuum.html) |
-| Dyson V8 Cyclone Stick Vacuum | JB Hi-Fi | $487 | $162 | Great value Dyson stick vacuum at entry-level price. | [View](https://www.jbhifi.com.au/products/dyson-v8-cyclone-stick-vacuum) |
-| Lenovo Legion 5i 15" Gaming Laptop | JB Hi-Fi | $3,599 | N/A | RTX 5070 Graphics, Core i9 processor. High-end gaming powerhouse. | [View](https://www.jbhifi.com.au/products/lenovo-legion-5i-15-1-wqxga-165hz-oled-gaming-laptop-intel-core-i9geforce-rtx-5070) |
-| Toshiba 75" Z670RP 4K Gaming TV | Harvey Norman | $1,221 | N/A | Incredibly low price for a 75" 144Hz gaming TV. | [View](https://www.harveynorman.com.au/toshiba-75-inch-z670rp-series-4k-gaming-tv.html) |
-| Hisense 65" U8QAU Mini-LED TV | The Good Guys | $1,894 | ~$400 | Premium Mini-LED tech for under $2k. Great brightness/contrast. | [View](https://www.thegoodguys.com.au/hisense-65-inches-u8qau-4k-uled-mini-led-smart-tv-2025-65u8qau) |
-| Sony WH-1000XM5 Headphones | JB Hi-Fi | $449 | $100 | The industry standard for noise cancellation at a solid sale price. | [View](https://www.jbhifi.com.au/products/sony-wh-1000xm5-premium-noise-cancelling-wireless-over-ear-headphones-black) |
-| Samsung Galaxy S26+ (512GB) | Harvey Norman | $1,849 | Upgrade | Pre-Order Deal: Get the 512GB model for the price of the 256GB. | [View](https://www.harveynorman.com.au/samsung-galaxy-s26plus-512gb-black.html) |
-| Samsung Galaxy A36 5G | The Good Guys | $544 | N/A | Strong value for a newly released mid-range 5G phone. | [View](https://www.thegoodguys.com.au/samsung-galaxy-a36-5g-128gb-awesome-black-11901336089) |
+Rank,Product,Retailer,Deal Price,Original/RRP,Saving,URL
+1,Samsung Galaxy S26 Ultra (512GB),JB Hi-Fi,"$2,199","$2,499",$300,https://www.jbhifi.com.au/products/samsung-galaxy-s26-ultra-5g-512gb-black
+2,LG 65-inch C5 4K OLED evo TV,Harvey Norman,"$2,671","$4,295","$1,624",https://www.harveynorman.com.au/lg-65-inch-c5-4k-oled-evo-smart-tv.html
+3,Apple MacBook Neo 13-inch (A18 Pro),Harvey Norman,$899,New Release,Value Leader,https://www.harveynorman.com.au/apple-macbook-neo-13-inch-a18-pro-8gb-256gb-silver.html
+4,Google Pixel 10 (128GB),The Good Guys,"$1,347","$1,347",N/A,https://www.thegoodguys.com.au/google-pixel-10-128gb-obsidian-100255883
+5,JBL Bar 1000MK2 Soundbar,Harvey Norman,"$1,112","$1,595",$483,https://www.harveynorman.com.au/jbl-bar-1000mk2-7-1-4-channel-dolby-atmos-soundbar-with-detachable-speakers-black.html
+6,HP OmniBook 5 AI 16-inch OLED,Harvey Norman,"$1,548","$2,298",$750,https://www.harveynorman.com.au/hp-omnibook-5-ai-16-inch-oled-snapdragon-x-plus-x1p-42-100-32gb-512gb-ssd-laptop.html
+7,Samsung 32-inch M7 4K Smart Monitor,Harvey Norman,$498,$699,$201,https://www.harveynorman.com.au/samsung-32-inch-m7-m70f-4k-vision-ai-smart-monitor.html
+8,JBL Reflect Flow Pro Plus Earbuds,The Good Guys,$77,$169,$92,https://www.thegoodguys.com.au/jbl-reflect-flow-pro-plus-earbuds-blue-6677939
+9,"Hisense 75"" U6QAU PRO Mini LED TV",The Good Guys,"$1,495","$1,695",$200,https://www.thegoodguys.com.au/hisense-75-inches-u6qau-pro-4k-uled-mini-led-tv-2025-75u6qau-pro
+10,Dyson Supersonic Hair Dryer (Origin),The Good Guys,$299,$499,$200,https://www.thegoodguys.com.au/dyson-supersonic-hair-dryer-origin-nickel-copper-110442-01

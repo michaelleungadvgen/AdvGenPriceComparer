@@ -47,10 +47,13 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Add database context
-builder.Services.AddDbContext<PriceDataContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") 
-        ?? "Data Source=AdvGenPriceComparer.db"));
+// Add database context (allow override in testing environment)
+if (!builder.Environment.IsEnvironment("Testing"))
+{
+    builder.Services.AddDbContext<PriceDataContext>(options =>
+        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") 
+            ?? "Data Source=AdvGenPriceComparer.db"));
+}
 
 // Add application services
 builder.Services.AddScoped<IPriceDataService, PriceDataService>();
@@ -91,11 +94,17 @@ app.MapControllers();
 // Map SignalR hub
 app.MapHub<PriceUpdateHub>("/hubs/price-updates");
 
-// Ensure database is created
-using (var scope = app.Services.CreateScope())
+// Ensure database is created (skip during integration tests)
+if (!app.Environment.IsEnvironment("Testing"))
 {
-    var context = scope.ServiceProvider.GetRequiredService<PriceDataContext>();
-    context.Database.EnsureCreated();
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<PriceDataContext>();
+        context.Database.EnsureCreated();
+    }
 }
 
 app.Run();
+
+// Make Program class accessible for integration tests
+public partial class Program { }

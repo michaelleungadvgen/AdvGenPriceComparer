@@ -474,6 +474,20 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void TripOptimizer_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowTripOptimizerDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening trip optimizer: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void ServerDataTransfer_Click(object sender, RoutedEventArgs e)
     {
         try

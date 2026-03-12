@@ -1,7 +1,7 @@
 using AdvGenPriceComparer.Application.Commands;
+using AdvGenPriceComparer.Application.Mediator;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace AdvGenPriceComparer.Application.Handlers;
