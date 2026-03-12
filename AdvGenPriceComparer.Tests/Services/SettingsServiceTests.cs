@@ -363,7 +363,7 @@ namespace AdvGenPriceComparer.Tests.Services
             var settingsPath = Path.Combine(_testDir, "AdvGenPriceComparer", "settings.json");
             var json = File.ReadAllText(settingsPath);
 
-            Assert.Contains("{\n", json); // Should have newlines
+            Assert.Contains($"{{{Environment.NewLine}", json); // Should have newlines (OS-specific)
             Assert.Contains("  \"", json); // Should have indentation
         }
 

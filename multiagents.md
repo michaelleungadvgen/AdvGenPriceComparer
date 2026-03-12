@@ -428,6 +428,7 @@
 | 2026-03-12 | Detect genuine vs. illusory discounts - VERIFIED: Already implemented by Agent-070. Feature includes IllusoryDiscountDetectionWindow.xaml, IllusoryDiscountDetectionViewModel with ML-powered detection, integration with PriceForecastingService, MainWindow sidebar button and Tools menu item, IDialogService integration. Build succeeds with 0 errors. Updated multiagents.md and plan.md status from TODO to DONE. | Agent-Verification |
 | 2026-03-12 | Remove System.Net.Sockets from Core, create IP2PNetworkService interface - Created IP2PNetworkService interface in Core with NetworkPeerInfo, PriceShareEventArgs, and async methods. Moved NetworkManager from Core/Helpers to WPF/Services with full interface implementation. Updated DI registration in App.xaml.cs to use IP2PNetworkService. Build succeeds with 0 errors, 296 tests passing. | Agent-300 |
 | 2026-03-12 | **Implement model versioning** - Created IModelVersionService interface, ModelVersionInfo/ModelVersionRetentionSettings/RollbackResult/ModelVersionSummary/CleanupResult/IntegrityCheckResult models, ModelVersionService with version tracking, rollback, cleanup with retention policy, integrity checking, export/import, events. Integrated with ModelTrainingService. 29 comprehensive xUnit tests all passing. | Agent-500 |
+| 2026-03-12 | Fix remaining 2 SettingsServiceTests failures - Fixed `SaveSettingsAsync_FileIsIndented` test by using `Environment.NewLine` instead of hardcoded `\n`. Fixed `LoadSettingsAsync_RaisesSettingsChangedEvent` by adding SettingsChanged event invocation when creating default settings file. All 25 SettingsServiceTests now passing. | Agent-Kimi |
 
 ---
 
@@ -460,6 +461,23 @@
   - `AdvGenPriceComparer.WPF/Services/SettingsService.cs` - Added GetAppDataPath() method, updated constructor and ResetToDefaults() to use it
 - **Results:** Fixed 53 out of 55 failing tests (2 remaining failures are unrelated line ending and event timing issues)
 - **Test Results:** SettingsServiceTests now: 23 Passed, 2 Failed (was 55 Failed)
+
+---
+
+### Agent-Kimi (DONE)
+- **Task:** Fix remaining 2 SettingsServiceTests failures
+- **Started:** 2026-03-12
+- **Completed:** 2026-03-12
+- **Issues:**
+  1. `SaveSettingsAsync_FileIsIndented` - Test expects `\n` but Windows uses `\r\n`
+  2. `LoadSettingsAsync_RaisesSettingsChangedEvent` - Event not raised when settings file doesn't exist
+- **Solution:**
+  1. Updated test to use `Environment.NewLine` instead of hardcoded `\n` for cross-platform compatibility
+  2. Added `SettingsChanged?.Invoke()` call in `LoadSettingsAsync` when creating default settings file
+- **Files Modified:**
+  - `AdvGenPriceComparer.Tests/Services/SettingsServiceTests.cs` - Line 366: Changed `"{\n"` to `$"{{{Environment.NewLine}}"`
+  - `AdvGenPriceComparer.WPF/Services/SettingsService.cs` - Line 291: Added SettingsChanged event invocation after creating default settings
+- **Results:** All 25 SettingsServiceTests now passing (was 23 Passed, 2 Failed)
 
 ---
 

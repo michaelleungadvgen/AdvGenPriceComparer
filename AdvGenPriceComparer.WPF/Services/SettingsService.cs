@@ -287,6 +287,7 @@ public class SettingsService : ISettingsService
             {
                 _logger.LogInfo("Settings file not found, using defaults");
                 await SaveSettingsAsync(); // Create default settings file
+                SettingsChanged?.Invoke(this, new SettingsChangedEventArgs { Loaded = true });
                 return;
             }
 
