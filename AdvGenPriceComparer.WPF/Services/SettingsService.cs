@@ -240,13 +240,29 @@ public class SettingsService : ISettingsService
 
     public event EventHandler<SettingsChangedEventArgs>? SettingsChanged;
 
+    /// <summary>
+    /// Gets the Application Data path, respecting APPDATA environment variable for testing
+    /// </summary>
+    private static string GetAppDataPath()
+    {
+        // Check for APPDATA environment variable first (used in tests)
+        var appDataEnv = Environment.GetEnvironmentVariable("APPDATA");
+        if (!string.IsNullOrEmpty(appDataEnv))
+        {
+            return appDataEnv;
+        }
+        
+        // Fall back to default ApplicationData folder
+        return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+    }
+
     public SettingsService(ILoggerService logger)
     {
         _logger = logger;
 
         // Set default paths
         var appDataPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            GetAppDataPath(),
             "AdvGenPriceComparer");
 
         _settingsPath = Path.Combine(appDataPath, "settings.json");
@@ -544,7 +560,7 @@ public class SettingsService : ISettingsService
 
         // Reset paths
         var appDataPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            GetAppDataPath(),
             "AdvGenPriceComparer");
 
         _liteDbPath = Path.Combine(appDataPath, "GroceryPrices.db");

@@ -446,6 +446,20 @@
 
 ---
 
+## Active Agent Assignments
+
+### Agent-FixSettingsTests (DOING)
+- **Task:** Fix SettingsServiceTests - 55 tests failing due to SettingsService not respecting APPDATA environment variable
+- **Started:** 2026-03-12
+- **Issue:** `Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)` doesn't respect APPDATA env var on .NET 5+
+- **Solution:** Modify SettingsService to check APPDATA environment variable first, fallback to GetFolderPath
+- **Files to modify:**
+  - `AdvGenPriceComparer.WPF/Services/SettingsService.cs` - Fix GetAppDataPath() method
+  - `AdvGenPriceComparer.Tests/Services/SettingsServiceTests.cs` - Update tests if needed
+- **Verification:** Run `dotnet test` and confirm all 55 SettingsServiceTests pass
+
+---
+
 ## Notes for Agents
 
 1. **Before starting a task:**
