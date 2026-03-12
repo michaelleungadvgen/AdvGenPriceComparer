@@ -107,21 +107,41 @@ dotnet build -c Release -p:Platform=x64
 ```
 
 ### Project Structure
-- **AdvGenPriceComparer.Core**: Core models and interfaces
-- **AdvGenPriceComparer.Data.LiteDB**: LiteDB data access layer
-- **AdvGenPriceComparer.WPF**: WPF desktop application
+- **AdvGenPriceComparer.Core**: Core models and interfaces (Clean Architecture - Domain layer)
+- **AdvGenPriceComparer.Application**: Application layer with use cases and DTOs (Clean Architecture)
+- **AdvGenPriceComparer.Data.LiteDB**: LiteDB data access layer (Infrastructure layer)
+- **AdvGenPriceComparer.ML**: ML.NET machine learning services (Infrastructure layer)
+- **AdvGenPriceComparer.WPF**: WPF desktop application (Presentation layer)
 - **AdvGenPriceComparer.Server**: ASP.NET Core Web API for P2P price sharing
 - **AdvGenPriceComparer.Installer**: WiX v4 installer project (outputs MSI)
 
 ### Key Services Location
 | Service | Location |
 |---------|----------|
-| JsonImportService | AdvGenPriceComparer.Data.LiteDB/Services/ |
+| JsonImportService | AdvGenPriceComparer.Application/Services/ |
+| JsonExportService | AdvGenPriceComparer.Application/Services/ |
 | ServerConfigService | AdvGenPriceComparer.Core/Services/ |
 | ExportService | AdvGenPriceComparer.WPF/Services/ |
 | SettingsService | AdvGenPriceComparer.WPF/Services/ |
 | StaticDataExporter | AdvGenPriceComparer.WPF/Services/ |
+| StaticDataImporter | AdvGenPriceComparer.WPF/Services/ |
+| PeerDiscoveryService | AdvGenPriceComparer.WPF/Services/ |
 | UpdateService | AdvGenPriceComparer.WPF/Services/ |
+| NetworkManager | AdvGenPriceComparer.WPF/Services/ |
+| IP2PNetworkService | AdvGenPriceComparer.Core/Interfaces/ |
+
+### Clean Architecture Principles
+The project follows Clean Architecture with these dependency rules:
+1. **Core (Domain)**: Contains entities, interfaces, and domain logic. No external dependencies.
+2. **Application**: Contains use cases, DTOs, and business logic. Depends only on Core.
+3. **Infrastructure** (Data.LiteDB, ML, WPF/Services): Contains implementations. Depends on Core and Application.
+4. **Presentation** (WPF): UI layer. Depends on all inner layers.
+
+**Key Interfaces in Core:**
+- `IP2PNetworkService`: P2P networking operations (implemented by NetworkManager in WPF)
+- `IDatabaseProvider`: Database abstraction for LiteDB and AdvGenNoSqlServer
+- `IGroceryDataService`: Main data service interface
+- `ISettingsService`: Application settings management
 
 ### WPF Converters
 XAML value converters are located in `AdvGenPriceComparer.WPF/Converters/`:
@@ -184,6 +204,24 @@ To add a new dialog window to the application:
   - Build: `dotnet build AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj`
   - Run: `dotnet test AdvGenPriceComparer.Tests/AdvGenPriceComparer.Tests.csproj`
   - Coverage: Uses coverlet with runsettings file
+  - **Note**: When adding ASP.NET Core integration tests, reference `Microsoft.AspNetCore.Mvc.Testing` and `Microsoft.AspNetCore.SignalR.Client`
+
+### Test Isolation Critical Note
+- **`Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)` does NOT respect the `APPDATA` environment variable on .NET 5+**. This causes test isolation failures when trying to redirect settings to a temp directory.
+- **Solution**: Use a helper method that checks the `APPDATA` environment variable first:
+  ```csharp
+  private static string GetAppDataPath()
+  {
+      var appDataEnv = Environment.GetEnvironmentVariable("APPDATA");
+      if (!string.IsNullOrEmpty(appDataEnv))
+          return appDataEnv;
+      return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+  }
+  ```
+- **Example**: See `SettingsService.cs` (lines 243-261) for the implementation that fixed 53 failing tests.
+
+### Known Issues
+- **WPF Namespace Conflicts**: The `AdvGenPriceComparer.Application` project namespace conflicts with `System.Windows.Application` in WPF. When working with WPF files, use fully qualified type names like `System.Windows.Application` instead of just `Application`.
   
 - **TestExportWorkflow**: CLI test project for export workflow testing
   - Location: `TestExportWorkflow/`
