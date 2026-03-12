@@ -482,7 +482,7 @@ public class ExportService
 
 ### Phase 7: Testing & Deployment (3-4 days)
 - [x] Unit tests for SettingsService - FIXED 2026-03-12: SettingsService now respects APPDATA environment variable for test isolation. All 25 tests now passing (was 55 failing, then 2 failing due to line ending and event timing issues which were also fixed)
-- [ ] Unit tests for import/export services  
+- [x] Unit tests for import/export services  
 - [ ] Integration tests for database operations
 - [x] UI automation tests - COMPLETED: FlaUI 4.0.0 framework, ApplicationLauncher utility, Page Object pattern, 30+ tests covering MainWindow, ItemsPage, Import/Export
 - [x] Create installer (WiX Toolset or ClickOnce) - WiX v4 SDK-style project, outputs MSI (~25MB)

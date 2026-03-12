@@ -10,6 +10,7 @@ public interface IItemRepository
     bool SoftDelete(string id);
     Item? GetById(string id);
     IEnumerable<Item> GetAll();
+    IEnumerable<Item> GetAllIncludingInactive();
     IEnumerable<Item> SearchByName(string name);
     IEnumerable<Item> GetByCategory(string category);
     IEnumerable<Item> GetByBrand(string brand);

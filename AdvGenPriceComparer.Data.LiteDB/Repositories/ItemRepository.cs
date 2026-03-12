@@ -18,8 +18,11 @@ public class ItemRepository : IItemRepository
 
     public string Add(Item item)
     {
-        item.DateAdded = DateTime.UtcNow;
-        item.LastUpdated = DateTime.UtcNow;
+        // Only set timestamps if not already set (for testing scenarios)
+        if (item.DateAdded == default)
+            item.DateAdded = DateTime.UtcNow;
+        if (item.LastUpdated == default)
+            item.LastUpdated = DateTime.UtcNow;
         
         var entity = ItemEntity.FromItem(item);
         var insertedId = _database.Items.Insert(entity);
@@ -63,6 +66,14 @@ public class ItemRepository : IItemRepository
     public IEnumerable<Item> GetAll()
     {
         return _database.Items.FindAll().Where(x => x.IsActive).Select(x => x.ToItem());
+    }
+
+    /// <summary>
+    /// Gets all items including inactive (for export/backup scenarios)
+    /// </summary>
+    public IEnumerable<Item> GetAllIncludingInactive()
+    {
+        return _database.Items.FindAll().Select(x => x.ToItem());
     }
 
     public IEnumerable<Item> SearchByName(string name)

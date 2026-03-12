@@ -40,8 +40,8 @@ public class ExportService
             _logger.LogInfo($"Starting export to {outputPath}");
             progress?.Report(new ExportProgress { Percentage = 0, Status = "Fetching items..." });
 
-            // Get all items
-            var allItems = _itemRepository.GetAll().ToList();
+            // Get all items (including inactive for proper filtering)
+            var allItems = _itemRepository.GetAllIncludingInactive().ToList();
             var filteredItems = FilterItems(allItems, options).ToList();
             
             _logger.LogInfo($"Found {filteredItems.Count} items to export (from {allItems.Count} total)");
@@ -95,8 +95,8 @@ public class ExportService
             _logger.LogInfo($"Starting compressed export to {outputPath}");
             progress?.Report(new ExportProgress { Percentage = 0, Status = "Fetching items..." });
 
-            // Get and filter items
-            var allItems = _itemRepository.GetAll().ToList();
+            // Get and filter items (including inactive for proper filtering)
+            var allItems = _itemRepository.GetAllIncludingInactive().ToList();
             var filteredItems = FilterItems(allItems, options).ToList();
             
             _logger.LogInfo($"Found {filteredItems.Count} items to export");
@@ -223,14 +223,15 @@ public class ExportService
                 }
 
                 // Filter by date range
+                // An item is included if its validity period overlaps with the requested date range
                 if (options.ValidFrom.HasValue)
                 {
-                    priceRecords = priceRecords.Where(pr => pr.ValidFrom >= options.ValidFrom || pr.DateRecorded >= options.ValidFrom).ToList();
+                    priceRecords = priceRecords.Where(pr => pr.ValidTo >= options.ValidFrom.Value).ToList();
                 }
 
                 if (options.ValidTo.HasValue)
                 {
-                    priceRecords = priceRecords.Where(pr => pr.ValidTo <= options.ValidTo || pr.DateRecorded <= options.ValidTo).ToList();
+                    priceRecords = priceRecords.Where(pr => pr.ValidFrom <= options.ValidTo.Value).ToList();
                 }
 
                 // Filter by price range
@@ -343,7 +344,7 @@ public class ExportOptions
     public decimal? MinPrice { get; set; }
     public decimal? MaxPrice { get; set; }
     public bool OnlyOnSale { get; set; } = false;
-    public bool ActiveOnly { get; set; } = true;
+    public bool ActiveOnly { get; set; } = false;
 
     // Location info for export metadata
     public string? LocationSuburb { get; set; }

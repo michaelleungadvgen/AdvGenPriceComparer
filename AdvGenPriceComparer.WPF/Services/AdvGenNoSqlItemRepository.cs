@@ -164,6 +164,28 @@ public class AdvGenNoSqlItemRepository : IItemRepository
         }
     }
 
+    public IEnumerable<Item> GetAllIncludingInactive()
+    {
+        try
+        {
+            var response = _provider.GetWithRetryAsync($"{ApiEndpoint}?includeInactive=true").GetAwaiter().GetResult();
+            
+            if (response?.IsSuccessStatusCode == true)
+            {
+                var json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var result = JsonSerializer.Deserialize<ApiListResponse<Item>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return result?.Data ?? Enumerable.Empty<Item>();
+            }
+            
+            return Enumerable.Empty<Item>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error getting all items including inactive: {ex.Message}", ex);
+            return Enumerable.Empty<Item>();
+        }
+    }
+
     public IEnumerable<Item> SearchByName(string name)
     {
         try
