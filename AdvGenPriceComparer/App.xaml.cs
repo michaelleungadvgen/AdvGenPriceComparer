@@ -1,4 +1,3 @@
-using AdvGenPriceComparer.Core.Helpers;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
@@ -74,7 +73,10 @@ public partial class App : Microsoft.UI.Xaml.Application
             services.AddSingleton<IDialogService, SimpleDialogService>();
             services.AddSingleton<INotificationService, SimpleNotificationService>();
             services.AddSingleton<ServerConfigService>(provider => new ServerConfigService(serverConfigPath));
-            services.AddSingleton<NetworkManager>();
+            // Note: IP2PNetworkService is implemented by NetworkManager in WPF project
+            // For WinUI, we would need a separate implementation or shared library
+            // For now, commenting out to fix build - will need proper implementation
+            // services.AddSingleton<IP2PNetworkService, NetworkManager>();
             services.AddTransient<DemoDataService>();
             services.AddTransient<AdvGenPriceComparer.Application.Services.JsonImportService>(provider =>
             {

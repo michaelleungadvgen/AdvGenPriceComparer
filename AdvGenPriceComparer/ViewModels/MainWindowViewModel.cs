@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AdvGenPriceComparer.Core.Interfaces;
-using AdvGenPriceComparer.Core.Helpers;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Desktop.WinUI.Services;
 
@@ -14,7 +13,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 public class MainWindowViewModel : BaseViewModel
 {
     private readonly IGroceryDataService _groceryDataService;
-    private readonly NetworkManager _networkManager;
+    private readonly IP2PNetworkService? _networkManager;
     private readonly IDialogService _dialogService;
     private readonly INotificationService _notificationService;
 
@@ -28,9 +27,9 @@ public class MainWindowViewModel : BaseViewModel
 
     public MainWindowViewModel(
         IGroceryDataService groceryDataService,
-        NetworkManager networkManager,
         IDialogService dialogService,
-        INotificationService notificationService)
+        INotificationService notificationService,
+        IP2PNetworkService? networkManager = null)
     {
         _groceryDataService = groceryDataService;
         _networkManager = networkManager;
@@ -49,10 +48,17 @@ public class MainWindowViewModel : BaseViewModel
         ConnectedPeers = new ObservableCollection<NetworkPeer>();
         RecentPriceUpdates = new ObservableCollection<PriceShareMessage>();
 
-        // Subscribe to network events
-        _networkManager.PeerConnected += OnPeerConnected;
-        _networkManager.PeerDisconnected += OnPeerDisconnected;
-        _networkManager.PriceReceived += OnPriceReceived;
+        // Subscribe to network events (if network manager is available)
+        // Note: IP2PNetworkService in Core uses different event args than WinUI expects
+        // This code is disabled until WinUI project is updated to use the correct types
+        /*
+        if (_networkManager != null)
+        {
+            _networkManager.PeerConnected += OnPeerConnected;
+            _networkManager.PeerDisconnected += OnPeerDisconnected;
+            _networkManager.PriceReceived += OnPriceReceived;
+        }
+        */
 
         // Load initial data
         _ = LoadDashboardDataAsync();
@@ -158,16 +164,24 @@ public class MainWindowViewModel : BaseViewModel
     {
         try
         {
-            // Start local server
-            var serverStarted = await _networkManager.StartServer(8081);
-            IsServerRunning = serverStarted;
-            NodeId = _networkManager.NodeId;
-
-            if (serverStarted)
+            // Note: IP2PNetworkService interface doesn't have StartServer/DiscoverAndConnectToServers
+            // These are implementation details in NetworkManager (WPF project)
+            // WinUI project needs its own implementation or a shared library
+            /*
+            if (_networkManager != null)
             {
-                // Connect to available servers
-                await _networkManager.DiscoverAndConnectToServers("NSW");
+                // Start local server
+                var serverStarted = await _networkManager.StartServer(8081);
+                IsServerRunning = serverStarted;
+                NodeId = _networkManager.NodeId;
+
+                if (serverStarted)
+                {
+                    // Connect to available servers
+                    await _networkManager.DiscoverAndConnectToServers("NSW");
+                }
             }
+            */
         }
         catch (Exception ex)
         {
@@ -333,7 +347,16 @@ public class MainWindowViewModel : BaseViewModel
 
     public void Dispose()
     {
-        _networkManager?.Dispose();
+        // Networking disabled in WinUI - NetworkManager is in WPF project
+        /*
+        if (_networkManager != null)
+        {
+            _networkManager.PeerConnected -= OnPeerConnected;
+            _networkManager.PeerDisconnected -= OnPeerDisconnected;
+            _networkManager.PriceReceived -= OnPriceReceived;
+            _networkManager.Dispose();
+        }
+        */
     }
 }
 
