@@ -41,6 +41,21 @@ public partial class App : System.Windows.Application
 
         try
         {
+            // Apply theme from settings
+            var settingsService = Services.GetRequiredService<ISettingsService>();
+            var themeService = Services.GetRequiredService<IThemeService>();
+            
+            // Wait for settings to be loaded (they load async in background)
+            // We'll apply the theme once settings are confirmed loaded
+            settingsService.SettingsChanged += (s, args) =>
+            {
+                if (args.Loaded)
+                {
+                    logger.LogInfo($"Applying theme from settings: {settingsService.ApplicationTheme}");
+                    themeService.ApplyTheme(settingsService.ApplicationTheme);
+                }
+            };
+
             logger.LogInfo("Creating MainWindow");
             var mainWindow = Services.GetRequiredService<MainWindow>();
             logger.LogInfo("MainWindow created successfully");
@@ -87,6 +102,7 @@ public partial class App : System.Windows.Application
             services.AddSingleton<ServerConfigService>(provider =>
                 new ServerConfigService(serverConfigPath));
             services.AddSingleton<IP2PNetworkService, NetworkManager>();
+            services.AddSingleton<IThemeService, ThemeService>();
 
             // Peer Discovery Service for P2P static data sharing
             services.AddSingleton<PeerDiscoveryService>(provider =>
@@ -340,6 +356,14 @@ public partial class App : System.Windows.Application
                 return new ShoppingListService(repo, logger);
             });
 
+            // Trip Optimizer Service
+            services.AddSingleton<ITripOptimizerService>(provider =>
+            {
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new TripOptimizerService(groceryData, logger);
+            });
+
             // Update Service
             services.AddSingleton<IUpdateService>(provider =>
             {
@@ -437,6 +461,16 @@ public partial class App : System.Windows.Application
             {
                 var viewModel = provider.GetRequiredService<ImportFromUrlViewModel>();
                 return new ImportFromUrlWindow(viewModel);
+            });
+            services.AddTransient<TripOptimizerWindow>(provider =>
+            {
+                var tripOptimizerService = provider.GetRequiredService<ITripOptimizerService>();
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var shoppingListService = provider.GetRequiredService<IShoppingListService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                var viewModel = new TripOptimizerViewModel(tripOptimizerService, groceryData, shoppingListService, logger, dialogService);
+                return new TripOptimizerWindow(viewModel);
             });
 
             // Chat Services

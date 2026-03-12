@@ -103,6 +103,11 @@ public interface ISettingsService
     int RetryCount { get; set; }
 
     /// <summary>
+    /// Application theme (Light, Dark, or System)
+    /// </summary>
+    ApplicationTheme ApplicationTheme { get; set; }
+
+    /// <summary>
     /// Load settings from disk
     /// </summary>
     Task LoadSettingsAsync();

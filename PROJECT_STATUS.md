@@ -154,7 +154,7 @@ AdvGenPriceComparer/
 ### Low Priority
 - [ ] P2P price data sharing (NetworkManager)
 - [ ] Cloud sync functionality
-- [ ] Dark mode theme
+- [x] Dark mode theme
 - [ ] Localization (multiple languages)
 - [ ] Mobile companion app API
 

@@ -47,6 +47,7 @@ public class SettingsService : ISettingsService
     private int _alertCheckIntervalHours = DefaultAlertCheckIntervalHours;
     private int _connectionTimeout = DefaultConnectionTimeout;
     private int _retryCount = DefaultRetryCount;
+    private ApplicationTheme _applicationTheme = ApplicationTheme.Light;
 
     public DatabaseProviderType DatabaseProviderType
     {
@@ -235,6 +236,16 @@ public class SettingsService : ISettingsService
         {
             _retryCount = Math.Max(0, value);
             _logger?.LogDebug($"Settings: RetryCount changed to {_retryCount}");
+        }
+    }
+
+    public ApplicationTheme ApplicationTheme
+    {
+        get => _applicationTheme;
+        set
+        {
+            _applicationTheme = value;
+            _logger?.LogInfo($"Settings: ApplicationTheme changed to {value}");
         }
     }
 
@@ -558,6 +569,7 @@ public class SettingsService : ISettingsService
         _alertCheckIntervalHours = DefaultAlertCheckIntervalHours;
         _connectionTimeout = DefaultConnectionTimeout;
         _retryCount = DefaultRetryCount;
+        _applicationTheme = ApplicationTheme.Light;
 
         // Reset paths
         var appDataPath = Path.Combine(
@@ -601,6 +613,7 @@ public class SettingsService : ISettingsService
         _alertCheckIntervalHours = data.AlertCheckIntervalHours;
         _connectionTimeout = data.ConnectionTimeout;
         _retryCount = data.RetryCount;
+        _applicationTheme = data.ApplicationTheme;
     }
 
     private SettingsData CreateSettingsData()
@@ -625,7 +638,8 @@ public class SettingsService : ISettingsService
             EnableExpirationAlerts = _enableExpirationAlerts,
             AlertCheckIntervalHours = _alertCheckIntervalHours,
             ConnectionTimeout = _connectionTimeout,
-            RetryCount = _retryCount
+            RetryCount = _retryCount,
+            ApplicationTheme = _applicationTheme
         };
     }
 
@@ -716,5 +730,6 @@ public class SettingsService : ISettingsService
         public int AlertCheckIntervalHours { get; set; } = 24;
         public int ConnectionTimeout { get; set; } = 30;
         public int RetryCount { get; set; } = 3;
+        public ApplicationTheme ApplicationTheme { get; set; } = ApplicationTheme.Light;
     }
 }

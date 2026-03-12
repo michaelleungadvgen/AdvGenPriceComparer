@@ -123,7 +123,8 @@ public class SimpleDialogService : IDialogService
         var settingsService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ISettingsService>();
         var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
-        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService);
+        var themeService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IThemeService>();
+        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService, themeService);
         var window = new SettingsWindow { DataContext = viewModel, Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
@@ -224,6 +225,45 @@ public class SimpleDialogService : IDialogService
         
         var viewModel = new ViewModels.BestPricesViewModel(bestPriceService, logger);
         var window = new BestPricesWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowEditPlaceDialog(Core.Models.Place place)
+    {
+        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        
+        var viewModel = new ViewModels.AddStoreViewModel(dataService, dialogService)
+        {
+            StoreId = place.Id,
+            StoreName = place.Name,
+            Chain = place.Chain ?? string.Empty,
+            Address = place.Address ?? string.Empty,
+            Suburb = place.Suburb ?? string.Empty,
+            State = place.State ?? "QLD",
+            Postcode = place.Postcode ?? string.Empty,
+            Phone = place.Phone ?? string.Empty
+        };
+        
+        var window = new AddStoreWindow(viewModel)
+        {
+            Owner = System.Windows.Application.Current.MainWindow,
+            Title = "Edit Store"
+        };
+        
+        window.ShowDialog();
+    }
+
+    public void ShowTripOptimizerDialog()
+    {
+        var tripOptimizerService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ITripOptimizerService>();
+        var groceryDataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var shoppingListService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IShoppingListService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        
+        var viewModel = new ViewModels.TripOptimizerViewModel(tripOptimizerService, groceryDataService, shoppingListService, logger, dialogService);
+        var window = new TripOptimizerWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 }
