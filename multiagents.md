@@ -200,6 +200,7 @@
 | Search across all entities | 🟢 DONE | Agent-023 | Implemented Global Search with UI - searches across Items, Places, and PriceRecords with relevance scoring |
 | Favourite items list | 🟢 DONE | Agent-027 | Implemented IFavoritesService, FavoritesViewModel, FavoritesWindow UI, 15 unit tests all passing |
 | Add menu item to open Settings | 🟢 DONE | Agent-038 | Added Tools menu with Settings item to MainWindow menu bar, opens SettingsWindow via IDialogService |
+| **Multi-store trip optimization** | 🟢 DONE | Agent-Kimi | Created ITripOptimizerService, TripOptimizerService, TripOptimizerViewModel, TripOptimizerWindow with full UI for planning efficient shopping routes across multiple stores. Supports 3 optimization strategies (Cost, Distance, Balanced), shows store stops with items, travel time, distance, and potential savings. |
 
 ---
 
@@ -429,6 +430,7 @@
 | 2026-03-12 | Remove System.Net.Sockets from Core, create IP2PNetworkService interface - Created IP2PNetworkService interface in Core with NetworkPeerInfo, PriceShareEventArgs, and async methods. Moved NetworkManager from Core/Helpers to WPF/Services with full interface implementation. Updated DI registration in App.xaml.cs to use IP2PNetworkService. Build succeeds with 0 errors, 296 tests passing. | Agent-300 |
 | 2026-03-12 | **Implement model versioning** - Created IModelVersionService interface, ModelVersionInfo/ModelVersionRetentionSettings/RollbackResult/ModelVersionSummary/CleanupResult/IntegrityCheckResult models, ModelVersionService with version tracking, rollback, cleanup with retention policy, integrity checking, export/import, events. Integrated with ModelTrainingService. 29 comprehensive xUnit tests all passing. | Agent-500 |
 | 2026-03-12 | Fix remaining 2 SettingsServiceTests failures - Fixed `SaveSettingsAsync_FileIsIndented` test by using `Environment.NewLine` instead of hardcoded `\n`. Fixed `LoadSettingsAsync_RaisesSettingsChangedEvent` by adding SettingsChanged event invocation when creating default settings file. All 25 SettingsServiceTests now passing. | Agent-Kimi |
+| 2026-03-12 | Multi-store trip optimization - Created ITripOptimizerService interface, TripOptimizerService with 3 optimization strategies (Cost/Distance/Balanced), TripOptimizerViewModel, TripOptimizerWindow XAML UI, EnumDescriptionConverter, registered in DI, added Tools menu item. Build succeeds with 0 errors. | Agent-Kimi |
 
 ---
 
@@ -479,6 +481,20 @@
   - `AdvGenPriceComparer.Tests/Services/SettingsServiceTests.cs` - Line 366: Changed `"{\n"` to `$"{{{Environment.NewLine}}"`
   - `AdvGenPriceComparer.WPF/Services/SettingsService.cs` - Line 291: Added SettingsChanged event invocation after creating default settings
 - **Results:** All 25 SettingsServiceTests now passing (was 23 Passed, 2 Failed)
+
+---
+
+### Agent-Kimi-3 (DONE)
+- **Task:** Fix TestDialogService compilation errors - Add missing ShowTripOptimizerDialog() method
+- **Started:** 2026-03-12
+- **Completed:** 2026-03-12
+- **Issue:** 4 test files had TestDialogService classes that didn't implement the new ShowTripOptimizerDialog() method from IDialogService interface
+- **Files Fixed:**
+  - SettingsViewModelTests.cs - Added ShowTripOptimizerDialog() method
+  - ItemViewModelTests.cs - Added ShowTripOptimizerDialog() method
+  - MainWindowViewModelTests.cs - Added ShowTripOptimizerDialog() method
+  - ImportDataViewModelTests.cs - Added ShowTripOptimizerDialog() method
+- **Result:** Build now succeeds with 0 errors (334 tests passing, 46 pre-existing failures)
 
 ---
 
