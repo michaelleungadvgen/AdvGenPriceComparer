@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows;
 using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Application.Services;
-using AdvGenPriceComparer.Core.Helpers;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
@@ -85,7 +85,7 @@ public partial class App : System.Windows.Application
             services.AddSingleton<INotificationService, SimpleNotificationService>();
             services.AddSingleton<ServerConfigService>(provider =>
                 new ServerConfigService(serverConfigPath));
-            services.AddSingleton<NetworkManager>();
+            services.AddSingleton<IP2PNetworkService, NetworkManager>();
 
             // Peer Discovery Service for P2P static data sharing
             services.AddSingleton<PeerDiscoveryService>(provider =>

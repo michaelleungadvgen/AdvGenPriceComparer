@@ -1,37 +1,87 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.Json;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 
-namespace AdvGenPriceComparer.Core.Helpers;
+namespace AdvGenPriceComparer.WPF.Services;
 
-public class NetworkManager : IDisposable
+/// <summary>
+/// Implementation of IP2PNetworkService using TCP sockets for P2P communication.
+/// This is infrastructure-layer code that handles the actual network transport.
+/// </summary>
+public class NetworkManager : IP2PNetworkService
 {
     private readonly ServerConfigService _serverConfig;
     private readonly IGroceryDataService _groceryData;
-    private readonly List<NetworkPeer> _connectedPeers = new();
+    private readonly List<NetworkPeerInfo> _connectedPeers = new();
     private readonly Dictionary<string, TcpClient> _connections = new();
     private TcpListener? _server;
     private bool _isServerRunning = false;
     private bool _disposed = false;
 
-    public event EventHandler<PriceShareMessage>? PriceReceived;
-    public event EventHandler<NetworkPeer>? PeerConnected;
-    public event EventHandler<NetworkPeer>? PeerDisconnected;
+    // IP2PNetworkService events
+    public event EventHandler<PriceShareEventArgs>? PriceReceived;
+    public event EventHandler<NetworkPeerInfo>? PeerConnected;
+    public event EventHandler<NetworkPeerInfo>? PeerDisconnected;
     public event EventHandler<string>? ErrorOccurred;
+
+    // Legacy events (for backward compatibility)
+    public event EventHandler<PriceShareMessage>? LegacyPriceReceived;
+    public event EventHandler<NetworkPeer>? LegacyPeerConnected;
+    public event EventHandler<NetworkPeer>? LegacyPeerDisconnected;
 
     public string NodeId { get; } = Environment.MachineName + "_" + Guid.NewGuid().ToString("N")[..8];
     public bool IsServerRunning => _isServerRunning;
-    public IReadOnlyList<NetworkPeer> ConnectedPeers => _connectedPeers.AsReadOnly();
+    public IReadOnlyList<NetworkPeerInfo> ConnectedPeers => _connectedPeers.AsReadOnly();
 
     public NetworkManager(IGroceryDataService groceryData, ServerConfigService? serverConfig = null)
     {
         _groceryData = groceryData;
         _serverConfig = serverConfig ?? new ServerConfigService();
     }
+
+    #region IP2PNetworkService Implementation
+
+    public Task<bool> StartServerAsync(int port = 8081)
+    {
+        return StartServer(port);
+    }
+
+    public Task<bool> ConnectToServerAsync(string host, int port)
+    {
+        return ConnectToServer(host, port);
+    }
+
+    public Task DisconnectFromServerAsync(string host, int port)
+    {
+        DisconnectFromServer(host, port);
+        return Task.CompletedTask;
+    }
+
+    public Task SharePriceAsync(string itemId, string placeId, decimal price,
+        bool isOnSale = false, decimal? originalPrice = null, string? saleDescription = null)
+    {
+        return SharePrice(itemId, placeId, price, isOnSale, originalPrice, saleDescription);
+    }
+
+    public Task RequestPriceSyncAsync(string? region = null)
+    {
+        return RequestPriceSync(region);
+    }
+
+    public Task SendHeartbeatAsync()
+    {
+        return SendHeartbeat();
+    }
+
+    public Task DiscoverAndConnectToServersAsync(string? region = null)
+    {
+        return DiscoverAndConnectToServers(region);
+    }
+
+    #endregion
 
     #region Server Functionality
 
@@ -46,10 +96,10 @@ public class NetworkManager : IDisposable
             _isServerRunning = true;
 
             System.Diagnostics.Debug.WriteLine($"P2P Price Server started on port {port}");
-            
+
             // Accept connections in background
             _ = Task.Run(AcceptConnectionsAsync);
-            
+
             return true;
         }
         catch (Exception ex)
@@ -83,7 +133,7 @@ public class NetworkManager : IDisposable
     private async Task HandleClientAsync(TcpClient client)
     {
         var clientEndpoint = client.Client.RemoteEndPoint?.ToString() ?? "unknown";
-        var peer = new NetworkPeer
+        var peerInfo = new NetworkPeerInfo
         {
             Id = $"peer_{Guid.NewGuid():N}",
             Host = clientEndpoint.Split(':')[0],
@@ -92,10 +142,21 @@ public class NetworkManager : IDisposable
             Version = "1.0"
         };
 
+        // Legacy peer for backward compatibility
+        var legacyPeer = new NetworkPeer
+        {
+            Id = peerInfo.Id,
+            Host = peerInfo.Host,
+            IsConnected = true,
+            LastSeen = DateTime.UtcNow,
+            Version = "1.0"
+        };
+
         try
         {
-            _connectedPeers.Add(peer);
-            PeerConnected?.Invoke(this, peer);
+            _connectedPeers.Add(peerInfo);
+            PeerConnected?.Invoke(this, peerInfo);
+            LegacyPeerConnected?.Invoke(this, legacyPeer);
 
             var stream = client.GetStream();
             var buffer = new byte[4096];
@@ -106,7 +167,7 @@ public class NetworkManager : IDisposable
                 if (bytesRead == 0) break;
 
                 var message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                await ProcessIncomingMessage(message, peer);
+                await ProcessIncomingMessage(message, peerInfo, legacyPeer);
             }
         }
         catch (Exception ex)
@@ -115,9 +176,11 @@ public class NetworkManager : IDisposable
         }
         finally
         {
-            peer.IsConnected = false;
-            _connectedPeers.Remove(peer);
-            PeerDisconnected?.Invoke(this, peer);
+            peerInfo.IsConnected = false;
+            legacyPeer.IsConnected = false;
+            _connectedPeers.Remove(peerInfo);
+            PeerDisconnected?.Invoke(this, peerInfo);
+            LegacyPeerDisconnected?.Invoke(this, legacyPeer);
             client.Close();
         }
     }
@@ -127,7 +190,7 @@ public class NetworkManager : IDisposable
         _isServerRunning = false;
         _server?.Stop();
         _server = null;
-        
+
         // Disconnect all clients
         foreach (var connection in _connections.Values)
         {
@@ -141,18 +204,6 @@ public class NetworkManager : IDisposable
 
     #region Client Functionality
 
-    public async Task<bool> ConnectToServer(string serverName)
-    {
-        var server = _serverConfig.GetServerByName(serverName);
-        if (server == null)
-        {
-            ErrorOccurred?.Invoke(this, $"Server '{serverName}' not found in configuration");
-            return false;
-        }
-
-        return await ConnectToServer(server.Host!, server.Port);
-    }
-
     public async Task<bool> ConnectToServer(string host, int port)
     {
         try
@@ -165,10 +216,10 @@ public class NetworkManager : IDisposable
 
             var client = new TcpClient();
             await client.ConnectAsync(host, port);
-            
+
             _connections[key] = client;
 
-            var peer = new NetworkPeer
+            var peerInfo = new NetworkPeerInfo
             {
                 Id = key,
                 Host = host,
@@ -177,11 +228,21 @@ public class NetworkManager : IDisposable
                 LastSeen = DateTime.UtcNow
             };
 
-            _connectedPeers.Add(peer);
-            PeerConnected?.Invoke(this, peer);
+            var legacyPeer = new NetworkPeer
+            {
+                Id = key,
+                Host = host,
+                Port = port,
+                IsConnected = true,
+                LastSeen = DateTime.UtcNow
+            };
+
+            _connectedPeers.Add(peerInfo);
+            PeerConnected?.Invoke(this, peerInfo);
+            LegacyPeerConnected?.Invoke(this, legacyPeer);
 
             // Handle incoming messages from this server
-            _ = Task.Run(() => ListenToServerAsync(client, peer));
+            _ = Task.Run(() => ListenToServerAsync(client, peerInfo, legacyPeer));
 
             System.Diagnostics.Debug.WriteLine($"Connected to price sharing server {host}:{port}");
             return true;
@@ -193,7 +254,7 @@ public class NetworkManager : IDisposable
         }
     }
 
-    private async Task ListenToServerAsync(TcpClient client, NetworkPeer peer)
+    private async Task ListenToServerAsync(TcpClient client, NetworkPeerInfo peerInfo, NetworkPeer legacyPeer)
     {
         try
         {
@@ -206,7 +267,7 @@ public class NetworkManager : IDisposable
                 if (bytesRead == 0) break;
 
                 var message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                await ProcessIncomingMessage(message, peer);
+                await ProcessIncomingMessage(message, peerInfo, legacyPeer);
             }
         }
         catch (Exception ex)
@@ -215,26 +276,28 @@ public class NetworkManager : IDisposable
         }
         finally
         {
-            peer.IsConnected = false;
-            _connectedPeers.Remove(peer);
-            PeerDisconnected?.Invoke(this, peer);
+            peerInfo.IsConnected = false;
+            legacyPeer.IsConnected = false;
+            _connectedPeers.Remove(peerInfo);
+            PeerDisconnected?.Invoke(this, peerInfo);
+            LegacyPeerDisconnected?.Invoke(this, legacyPeer);
         }
     }
 
-    public async Task DisconnectFromServer(string host, int port)
+    public void DisconnectFromServer(string host, int port)
     {
         var key = $"{host}:{port}";
         if (_connections.TryGetValue(key, out var client))
         {
             client.Close();
             _connections.Remove(key);
-            
-            var peer = _connectedPeers.FirstOrDefault(p => p.Id == key);
-            if (peer != null)
+
+            var peerInfo = _connectedPeers.FirstOrDefault(p => p.Id == key);
+            if (peerInfo != null)
             {
-                peer.IsConnected = false;
-                _connectedPeers.Remove(peer);
-                PeerDisconnected?.Invoke(this, peer);
+                peerInfo.IsConnected = false;
+                _connectedPeers.Remove(peerInfo);
+                PeerDisconnected?.Invoke(this, peerInfo);
             }
         }
     }
@@ -243,29 +306,30 @@ public class NetworkManager : IDisposable
 
     #region Message Processing
 
-    private async Task ProcessIncomingMessage(string messageJson, NetworkPeer sender)
+    private async Task ProcessIncomingMessage(string messageJson, NetworkPeerInfo peerInfo, NetworkPeer legacyPeer)
     {
         try
         {
             var networkMessage = System.Text.Json.JsonSerializer.Deserialize<NetworkMessage>(messageJson);
             if (networkMessage == null) return;
 
-            sender.LastSeen = DateTime.UtcNow;
+            peerInfo.LastSeen = DateTime.UtcNow;
+            legacyPeer.LastSeen = DateTime.UtcNow;
 
             switch (networkMessage.Type)
             {
                 case MessageType.PriceShare:
-                    await HandlePriceShare(networkMessage.Data!, sender);
+                    await HandlePriceShare(networkMessage.Data!, peerInfo);
                     break;
-                    
+
                 case MessageType.SyncRequest:
-                    await HandleSyncRequest(networkMessage.Data!, sender);
+                    await HandleSyncRequest(networkMessage.Data!, legacyPeer);
                     break;
-                    
+
                 case MessageType.Heartbeat:
                     // Just update last seen time (already done above)
                     break;
-                    
+
                 default:
                     System.Diagnostics.Debug.WriteLine($"Unknown message type: {networkMessage.Type}");
                     break;
@@ -277,7 +341,7 @@ public class NetworkManager : IDisposable
         }
     }
 
-    private async Task HandlePriceShare(string data, NetworkPeer sender)
+    private async Task HandlePriceShare(string data, NetworkPeerInfo peerInfo)
     {
         try
         {
@@ -286,10 +350,32 @@ public class NetworkManager : IDisposable
 
             // Store the received price in our local database
             await StorePriceFromNetwork(priceMessage);
-            
+
+            // Create event args for IP2PNetworkService event
+            var eventArgs = new PriceShareEventArgs
+            {
+                ItemName = priceMessage.ItemName,
+                ItemBrand = priceMessage.ItemBrand,
+                ItemCategory = priceMessage.ItemCategory,
+                ItemBarcode = priceMessage.ItemBarcode,
+                PackageSize = priceMessage.PackageSize,
+                StoreName = priceMessage.StoreName,
+                StoreChain = priceMessage.StoreChain,
+                StoreSuburb = priceMessage.StoreSuburb,
+                StoreState = priceMessage.StoreState,
+                Price = priceMessage.Price,
+                IsOnSale = priceMessage.IsOnSale,
+                OriginalPrice = priceMessage.OriginalPrice,
+                SaleDescription = priceMessage.SaleDescription,
+                ValidFrom = priceMessage.ValidFrom,
+                ValidTo = priceMessage.ValidTo,
+                Source = priceMessage.Source
+            };
+
             // Notify listeners
-            PriceReceived?.Invoke(this, priceMessage);
-            
+            PriceReceived?.Invoke(this, eventArgs);
+            LegacyPriceReceived?.Invoke(this, priceMessage);
+
             System.Diagnostics.Debug.WriteLine($"Received price: {priceMessage.ItemName} - ${priceMessage.Price} at {priceMessage.StoreName}");
         }
         catch (Exception ex)
@@ -307,7 +393,7 @@ public class NetworkManager : IDisposable
 
             // Get recent prices to share
             var recentPrices = GetRecentPricesForSync(syncRequest);
-            
+
             var response = new SyncResponseMessage
             {
                 Prices = recentPrices.ToArray(),
@@ -327,7 +413,7 @@ public class NetworkManager : IDisposable
 
     #region Price Sharing
 
-    public async Task SharePrice(string itemId, string placeId, decimal price, 
+    public async Task SharePrice(string itemId, string placeId, decimal price,
         bool isOnSale = false, decimal? originalPrice = null, string? saleDescription = null)
     {
         try
@@ -380,7 +466,7 @@ public class NetworkManager : IDisposable
         {
             // Find or create item
             var item = _groceryData.Items.GetAll()
-                .FirstOrDefault(i => i.Name == priceMessage.ItemName && 
+                .FirstOrDefault(i => i.Name == priceMessage.ItemName &&
                                    i.Brand == priceMessage.ItemBrand);
 
             if (item == null)
@@ -436,11 +522,11 @@ public class NetworkManager : IDisposable
     private List<PriceShareMessage> GetRecentPricesForSync(SyncRequestMessage request)
     {
         var prices = new List<PriceShareMessage>();
-        
+
         try
         {
             var recentRecords = _groceryData.PriceRecords.GetRecentPriceUpdates(100);
-            
+
             foreach (var record in recentRecords)
             {
                 if (record.DateRecorded < request.LastSyncTime) continue;
@@ -451,7 +537,7 @@ public class NetworkManager : IDisposable
                 if (item == null || place == null) continue;
 
                 // Filter by region if specified
-                if (!string.IsNullOrEmpty(request.Region) && 
+                if (!string.IsNullOrEmpty(request.Region) &&
                     !string.Equals(place.State, request.Region, StringComparison.OrdinalIgnoreCase))
                     continue;
 
@@ -489,10 +575,37 @@ public class NetworkManager : IDisposable
 
     private async Task BroadcastMessage<T>(MessageType type, T data)
     {
-        var tasks = _connectedPeers.Where(p => p.IsConnected)
-            .Select(peer => SendMessageToPeer(peer, type, data));
-        
+        var peers = _connectedPeers.Where(p => p.IsConnected).ToList();
+        var tasks = peers.Select(peer => SendMessageToPeer(peer, type, data));
+
         await Task.WhenAll(tasks);
+    }
+
+    private async Task SendMessageToPeer<T>(NetworkPeerInfo peer, MessageType type, T data)
+    {
+        try
+        {
+            var key = peer.Id;
+            if (!_connections.TryGetValue(key, out var client) || !client.Connected)
+                return;
+
+            var networkMessage = new NetworkMessage
+            {
+                Type = type,
+                SenderId = NodeId,
+                Data = System.Text.Json.JsonSerializer.Serialize(data)
+            };
+
+            var json = System.Text.Json.JsonSerializer.Serialize(networkMessage);
+            var bytes = Encoding.UTF8.GetBytes(json);
+
+            var stream = client.GetStream();
+            await stream.WriteAsync(bytes, 0, bytes.Length);
+        }
+        catch (Exception ex)
+        {
+            ErrorOccurred?.Invoke(this, $"Error sending message to peer: {ex.Message}");
+        }
     }
 
     private async Task SendMessageToPeer<T>(NetworkPeer peer, MessageType type, T data)
@@ -500,7 +613,7 @@ public class NetworkManager : IDisposable
         try
         {
             var key = peer.Id;
-            if (!_connections.TryGetValue(key!, out var client) || !client.Connected)
+            if (key == null || !_connections.TryGetValue(key, out var client) || !client.Connected)
                 return;
 
             var networkMessage = new NetworkMessage
@@ -528,7 +641,7 @@ public class NetworkManager : IDisposable
 
     public async Task DiscoverAndConnectToServers(string? region = null)
     {
-        var servers = string.IsNullOrEmpty(region) 
+        var servers = string.IsNullOrEmpty(region)
             ? _serverConfig.GetActiveServers()
             : _serverConfig.GetServersByRegion(region);
 

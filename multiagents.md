@@ -425,6 +425,7 @@
 | 2026-03-12 | UI automation tests - Created comprehensive UI automation test suite using FlaUI 4.0.0: ApplicationLauncher utility, Page Object pattern (BasePage, MainWindowPage, ItemsPage, AddItemDialog, ImportDialog), 30+ UI tests covering MainWindow, ItemsPage, Import/Export functionality, build succeeds with 0 errors | Agent-Kimi |
 | 2026-03-12 | Store Management (CRUD, location mapping) - Verified complete implementation: Add/Edit/Delete stores with Address, Suburb, State, Postcode, Phone fields. Build succeeds with 0 errors | Agent-Verification |
 | 2026-03-12 | Detect genuine vs. illusory discounts - VERIFIED: Already implemented by Agent-070. Feature includes IllusoryDiscountDetectionWindow.xaml, IllusoryDiscountDetectionViewModel with ML-powered detection, integration with PriceForecastingService, MainWindow sidebar button and Tools menu item, IDialogService integration. Build succeeds with 0 errors. Updated multiagents.md and plan.md status from TODO to DONE. | Agent-Verification |
+| 2026-03-12 | Remove System.Net.Sockets from Core, create IP2PNetworkService interface - Created IP2PNetworkService interface in Core with NetworkPeerInfo, PriceShareEventArgs, and async methods. Moved NetworkManager from Core/Helpers to WPF/Services with full interface implementation. Updated DI registration in App.xaml.cs to use IP2PNetworkService. Build succeeds with 0 errors, 296 tests passing. | Agent-300 |
 
 ---
 
@@ -440,6 +441,7 @@
 | **Fix WPF namespace conflicts with Application** | 🟢 DONE | Agent-103 | Fixed build errors: Use `System.Windows.Application` instead of `Application` in WPF files due to namespace conflict with AdvGenPriceComparer.Application |
 | **Fix Server Program accessibility for integration tests** | 🟢 DONE | Agent-106 | Fixed CS0122 error by adding `public partial class Program { }` to Program.cs |
 | **Fix PriceSharingWorkflowTests compilation errors** | 🟢 DONE | Agent-106 | Fixed namespace conflicts in WinUI project - App.xaml.cs and AddItemControl.xaml.cs now use fully qualified Microsoft.UI.Xaml.Application |
+| **Remove System.Net.Sockets from Core, create IP2PNetworkService interface** | 🟢 DONE | Agent-300 | Created IP2PNetworkService interface in Core with NetworkPeerInfo, PriceShareEventArgs. Moved NetworkManager to WPF/Services with full IP2PNetworkService implementation. Updated DI registration. Build succeeds with 0 errors, 296 tests passing. |
 
 
 ---

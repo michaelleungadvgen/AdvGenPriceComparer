@@ -1914,9 +1914,9 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 - [x] Update DI registration to use Application layer interfaces.
 
 ### 14.3 Step 2: Purify the Core (Domain) Layer
-- [ ] Remove `System.Net.Sockets` and infrastructure-specific JSON serialization from `Core`.
-- [ ] Move `NetworkManager.cs` to a new or existing infrastructure layer (e.g., `AdvGenPriceComparer.Infrastructure.Network`).
-- [ ] Define `IP2PNetworkService` interface in `Core` to be implemented by the infrastructure layer.
+- [x] Remove `System.Net.Sockets` and infrastructure-specific JSON serialization from `Core`. **DONE:** Deleted NetworkManager.cs from Core/Helpers. Core no longer has socket dependencies.
+- [x] Move `NetworkManager.cs` to WPF/Services infrastructure layer. **DONE:** NetworkManager now lives in WPF project as the infrastructure implementation.
+- [x] Define `IP2PNetworkService` interface in `Core` to be implemented by the infrastructure layer. **DONE:** Created IP2PNetworkService.cs in Core/Interfaces with NetworkPeerInfo, PriceShareEventArgs, and async methods.
 - [ ] Refactor Domain models (`Item`, `Place`, `PriceRecord`) to ensure they are true POCOs without database/serialization attributes.
 
 ### 14.4 Step 3: Implement CQRS (Optional but Recommended)
@@ -1925,7 +1925,7 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 - [ ] Implement handlers for each Command and Query.
 
 ### 14.5 Step 4: Fix Dependency Injection
-- [ ] Update `App.xaml.cs` to inject interfaces (e.g., `IImportUseCase`) instead of concrete classes (e.g., `JsonImportService`) into ViewModels like `ImportDataViewModel`.
+- [x] Update `App.xaml.cs` to inject interfaces (e.g., `IP2PNetworkService`) instead of concrete classes (e.g., `NetworkManager`). **DONE:** DI now registers `IP2PNetworkService, NetworkManager`.
 - [ ] Ensure `Data.LiteDB` and `Infrastructure.Network` are only referenced in the composition root (`App.xaml.cs` or a dedicated DI setup project).
 
 ---
