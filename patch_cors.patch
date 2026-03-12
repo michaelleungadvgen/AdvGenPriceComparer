@@ -1,0 +1,21 @@
+--- AdvGenPriceComparer.Server/Program.cs
++++ AdvGenPriceComparer.Server/Program.cs
+@@ -37,12 +37,18 @@
+ });
+
+ // Add CORS for SignalR WebSocket support
++// 🛡️ SECURITY FIX: Replaced overly permissive AllowAnyOrigin with restricted origins
++// to prevent Cross-Origin Resource Sharing (CORS) exploits from arbitrary malicious websites.
++var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? new[] { "http://localhost:5000", "https://localhost:5001" };
+ builder.Services.AddCors(options =>
+ {
+     options.AddPolicy("SignalRPolicy", policy =>
+     {
+-        policy.AllowAnyOrigin()
++        policy.WithOrigins(allowedOrigins)
+               .AllowAnyHeader()
+-              .AllowAnyMethod();
++              .AllowAnyMethod()
++              .AllowCredentials(); // SignalR requires credentials for some transports
+     });
+ });

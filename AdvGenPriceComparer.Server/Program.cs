@@ -37,13 +37,17 @@ builder.Services.AddSignalR(options =>
 });
 
 // Add CORS for SignalR WebSocket support
+// 🛡️ SECURITY FIX: Replaced overly permissive AllowAnyOrigin with restricted origins
+// to prevent Cross-Origin Resource Sharing (CORS) exploits from arbitrary malicious websites.
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? new[] { "http://localhost:5000", "https://localhost:5001" };
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("SignalRPolicy", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials(); // SignalR often requires credentials for specific transports
     });
 });
 
@@ -99,5 +103,3 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
-
-public partial class Program { }

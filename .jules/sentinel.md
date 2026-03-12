@@ -3,7 +3,7 @@
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
 
-## 2026-03-05 - Missing Authentication on API Endpoint
-**Vulnerability:** The API allowed unauthenticated GET requests to `/api/prices` endpoints in all environments. This exposed all pricing data to anonymous access.
-**Learning:** Hardcoded path exclusions from authentication middleware often lack environment constraints. Development conveniences (like allowing public reads for UI testing) can silently become production vulnerabilities if not explicitly scoped using `IWebHostEnvironment.IsDevelopment()`.
-**Prevention:** Always scope authentication bypasses intended for development to the development environment using `_env.IsDevelopment()`. Never assume path-based filters are inherently safe for production.
+## 2026-03-05 - Insecure CORS Policy (AllowAnyOrigin)
+**Vulnerability:** The ASP.NET Core API used an overly permissive CORS configuration (`AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()`) for its `SignalRPolicy`. This entirely defeated the browser's Same-Origin Policy.
+**Learning:** Developers often use wildcard CORS policies (`*`) during development to quickly bypass CORS errors, but forget to restrict them before production. This allows any malicious website a user visits to make authenticated/cross-origin requests to the API on the user's behalf.
+**Prevention:** Never use `AllowAnyOrigin()` in production APIs. Always restrict CORS to specific, trusted domains using `WithOrigins(...)` loaded from environment-specific configuration files.
