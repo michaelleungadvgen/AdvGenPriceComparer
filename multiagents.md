@@ -453,6 +453,7 @@
 | **Fix WinUI project NetworkManager references** | 🟢 DONE | Agent-Kimi-2 | Fixed NetworkManager references in WinUI project - removed Helpers using, made IP2PNetworkService optional parameter, commented out incompatible networking code. WPF builds with 0 errors. |
 | **Implement CQRS with MediatR** | 🟢 DONE | Agent-Kimi-5 | Installed MediatR 12.2.0, created 11 Command/Query classes and 9 Handler classes covering all IGroceryDataService operations |
 | **Refactor Domain models to pure POCOs** | 🟢 DONE | Agent-600 | Removed [JsonIgnore] attributes from Item.cs, removed System.Text.Json dependency from Core. All 351 tests passing.
+| **Ensure Data.LiteDB and Infrastructure.Network are only referenced in composition root** | 🟢 DONE | Agent-Verification | Verified: Core project has no infrastructure dependencies. Application project only references Core. WPF project (composition root) properly manages all Data.LiteDB and Network service registrations in App.xaml.cs. |
 
 ---
 

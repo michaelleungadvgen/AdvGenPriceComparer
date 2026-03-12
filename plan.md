@@ -1928,7 +1928,7 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 
 ### 14.5 Step 4: Fix Dependency Injection
 - [x] Update `App.xaml.cs` to inject interfaces (e.g., `IP2PNetworkService`) instead of concrete classes (e.g., `NetworkManager`). **DONE:** DI now registers `IP2PNetworkService, NetworkManager`.
-- [ ] Ensure `Data.LiteDB` and `Infrastructure.Network` are only referenced in the composition root (`App.xaml.cs` or a dedicated DI setup project).
+- [x] Ensure `Data.LiteDB` and `Infrastructure.Network` are only referenced in the composition root (`App.xaml.cs` or a dedicated DI setup project). **VERIFIED**: Core project has no infrastructure dependencies. Application project only references Core. WPF project (composition root) properly manages all Data.LiteDB and Network service registrations in App.xaml.cs.
 
 ---
 
