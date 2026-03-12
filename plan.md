@@ -464,11 +464,11 @@ public class ExportService
 
 ### Phase 5: Price Comparison & Analysis (3-4 days)
 - [x] Track historical prices in database - DONE: Implemented IPriceHistoryTrackingService with price recording, statistics, and trend analysis
-- [x] Detect genuine vs. illusory discounts
+- [x] Detect genuine vs. illusory discounts - DONE: IllusoryDiscountDetectionWindow.xaml with ML-powered detection via PriceForecastingService, detects fake sales vs genuine deals
 - [x] Calculate average prices over time - DONE: GetAveragePrice in PriceRecordRepository, GetPriceStatistics in PriceHistoryTrackingService calculates AveragePrice, MedianPrice, PriceChangePercent
-- [ ] Create PriceComparisonView.xaml
-- [ ] Implement side-by-side store comparison
-- [ ] Create price history charts (LiveCharts)
+- [x] Create PriceComparisonView.xaml - DONE: ComparePricesWindow.xaml exists with side-by-side store comparison
+- [x] Implement side-by-side store comparison - DONE: Agent-021 completed this
+- [x] Create price history charts (LiveCharts) - DONE: PriceHistoryPage.xaml with LiveCharts integration
 - [x] Add "best price" highlighting - DONE: IBestPriceService, BestPriceService, BestPricesWindow UI with tabs for Best Deals/Historical Lows/Best Savings
 - [x] Generate reports (weekly specials, best deals, trends) - DONE: IReportGenerationService with BestDeals, PriceTrends, StoreComparison, CategoryAnalysis reports, export to Markdown/JSON/CSV
 

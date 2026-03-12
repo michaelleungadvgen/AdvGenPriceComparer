@@ -92,7 +92,7 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Track historical prices in database | 🟢 DONE | Agent-104 | Implemented IPriceHistoryTrackingService with automatic price recording, statistics, trend analysis, and buying recommendations |
-| Detect genuine vs. illusory discounts | 🔴 TODO | - | AI-powered discount verification |
+| Detect genuine vs. illusory discounts | 🟢 DONE | Agent-070 | AI-powered discount verification - UI, ViewModel, and PriceForecastingService integration complete |
 | Calculate average prices over time | 🟢 DONE | Agent-110 | Price trend analysis - IMPLEMENTED: GetAveragePrice in PriceRecordRepository, GetPriceStatistics in PriceHistoryTrackingService calculates AveragePrice, used by IllusoryDiscountDetectionViewModel |
 | Add 'best price' highlighting | 🟢 DONE | Agent-100 | Created IBestPriceService, BestPriceService, BestPricesViewModel, BestPricesWindow with highlight levels (BestPrice, GreatDeal, GoodDeal), integrated into MainWindow sidebar menu |
 | Generate reports (best deals, trends) | 🟢 DONE | Agent-150 | Implemented IReportGenerationService with BestDeals, PriceTrends, StoreComparison, CategoryAnalysis reports. Export to Markdown, JSON, CSV formats. UI integrated in ReportsPage with date range selection and max items filter. |
@@ -104,8 +104,8 @@
 ## Phase 6: Enhanced Features (TODO)
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
-| Product Management (CRUD operations) | 🔴 TODO | - | Full product CRUD |
-| Store Management (CRUD, location mapping) | 🔴 TODO | - | Store management with locations |
+| Product Management (CRUD operations) | 🟢 DONE | - | Full product CRUD - Already implemented |
+| Store Management (CRUD, location mapping) | 🟡 DOING | Agent-Kimi | Implementing EditPlace in PlaceViewModel - Edit functionality incomplete |
 | Shopping list integration | 🟢 DONE | Agent-031 | Already implemented - ShoppingListService, ShoppingListWindow, ShoppingListRepository all exist |
 
 ---
@@ -423,6 +423,7 @@
 | 2026-03-12 | Generate reports (best deals, trends) - Implemented IReportGenerationService with 4 report types (Best Deals, Price Trends, Store Comparison, Category Analysis), export to Markdown/JSON/CSV, copy to clipboard, UI with date range and max items filter | Agent-150 |
 | 2026-03-12 | Test database switching workflow - Created 17 comprehensive xUnit tests for SettingsViewModel database provider switching: provider change detection (IsProviderChanged, ProviderChangeMessage), confirmation dialogs, save with/without provider change, cancel reverts provider, reset settings, CanSave validation for LiteDB/NoSQL, property change notifications | Agent-201 |
 | 2026-03-12 | UI automation tests - Created comprehensive UI automation test suite using FlaUI 4.0.0: ApplicationLauncher utility, Page Object pattern (BasePage, MainWindowPage, ItemsPage, AddItemDialog, ImportDialog), 30+ UI tests covering MainWindow, ItemsPage, Import/Export functionality, build succeeds with 0 errors | Agent-Kimi |
+| 2026-03-12 | Detect genuine vs. illusory discounts - VERIFIED: Already implemented by Agent-070. Feature includes IllusoryDiscountDetectionWindow.xaml, IllusoryDiscountDetectionViewModel with ML-powered detection, integration with PriceForecastingService, MainWindow sidebar button and Tools menu item, IDialogService integration. Build succeeds with 0 errors. Updated multiagents.md and plan.md status from TODO to DONE. | Agent-Verification |
 
 ---
 
