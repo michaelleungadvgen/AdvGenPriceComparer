@@ -276,6 +276,16 @@ When using `System.Text.Json` for configuration files:
   - Duplicate handling strategies: Skip, Update, CreateNew
   - Validates checksums and maps external IDs to internal IDs
 
+### Theme Service (Dark Mode)
+- **IThemeService/ThemeService**: Runtime theme switching (Light/Dark/System)
+  - Location: `AdvGenPriceComparer.WPF/Services/ThemeService.cs`
+  - Enum: `AdvGenPriceComparer.Core.Models.ApplicationTheme` (Light, Dark, System)
+  - Settings persistence via `ISettingsService.ApplicationTheme`
+  - Automatically detects Windows system theme preference from registry
+  - Applies theme immediately when changed in Settings UI
+  - Registered in DI container in `App.xaml.cs`
+  - Theme is applied on startup from saved settings
+
 ### Server Project (ASP.NET Core Web API)
 - **Location**: `AdvGenPriceComparer.Server/`
 - **Database**: SQLite with Entity Framework Core
