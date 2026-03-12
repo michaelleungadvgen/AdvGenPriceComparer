@@ -1,6 +1,6 @@
 # AdvGen Price Comparer - WPF Application Project Status
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 ---
 
@@ -139,22 +139,22 @@ AdvGenPriceComparer/
 ## Pending Features / To-Do
 
 ### High Priority
-- [ ] Price comparison view (side-by-side store comparison)
-- [ ] Historical price charts for individual items
-- [ ] Barcode scanner integration
-- [ ] Search across all entities
+- [x] Price comparison view (side-by-side store comparison) - Implemented with ComparePricesWindow
+- [x] Historical price charts for individual items - Implemented with PriceHistoryPage and LiveCharts
+- [x] Barcode scanner integration - Implemented using ZXing library
+- [x] Search across all entities - Implemented with GlobalSearchWindow and GlobalSearchService
 
 ### Medium Priority
-- [ ] Price drop notifications
+- [x] Price drop notifications - Implemented with PriceDropNotificationService and UI
 - [x] Favourite items list
-- [ ] Shopping list integration
-- [ ] Multi-store trip optimization
+- [x] Shopping list integration - Implemented with ShoppingListService and ShoppingListWindow
+- [x] Multi-store trip optimization - Implemented with TripOptimizerService and TripOptimizerWindow
 - [ ] Weekly specials import (Coles, Woolworths, ALDI, Drakes)
 
 ### Low Priority
-- [ ] P2P price data sharing (NetworkManager)
+- [x] P2P price data sharing (NetworkManager) - Implemented with IP2PNetworkService interface and NetworkManager
 - [ ] Cloud sync functionality
-- [x] Dark mode theme
+- [x] Dark mode theme - Implemented with IThemeService/ThemeService
 - [ ] Localization (multiple languages)
 - [ ] Mobile companion app API
 

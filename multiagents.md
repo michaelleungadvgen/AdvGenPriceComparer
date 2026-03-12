@@ -438,6 +438,7 @@
 | 2026-03-12 | **Dark mode theme** - Implemented IThemeService/ThemeService with Light/Dark/System theme options. Added ApplicationTheme enum to Core.Models. Updated ISettingsService/SettingsService to persist theme. Added theme properties to SettingsViewModel. Integrated theme loading on startup in App.xaml.cs. Settings UI already had theme ComboBox - now fully functional. Build succeeds with 0 errors, 351 tests passing. | Agent-Kimi |
 | 2026-03-13 | **Replace MediatR with custom implementation** - Created custom IRequest, IRequestHandler, IMediator interfaces in AdvGenPriceComparer.Application/Mediator/. Implemented Mediator class using reflection for handler resolution. Removed MediatR NuGet package. Updated all 5 Commands, 11 Queries, 9 Handlers to use new interfaces. Updated ServiceRegistration to auto-register handlers. Build succeeds with 0 errors, 351 tests passing. | Agent-Kimi-Current |
 | 2026-03-13 | **Fix failing ExportService unit tests** - Fixed 3 failing tests: (1) Date range filtering logic - changed to use proper overlap detection, (2) ItemRepository.Add() timestamp handling - preserve existing timestamps for test scenarios, (3) Added IItemRepository.GetAllIncludingInactive() method and updated ExportService to use it. All 20 ExportServiceTests now passing. Build succeeds with 0 errors, 354 tests passing. | Agent-Kimi-8 |
+| 2026-03-13 | **Update PROJECT_STATUS.md** - Synchronized pending features list with actual implementation status. Marked as DONE: Shopping list integration, Multi-store trip optimization, Price comparison view, Historical price charts, Barcode scanner integration, Search across all entities, Price drop notifications, P2P price data sharing, Dark mode theme. Build: 0 errors, 354 tests passing. | Agent-Kimi-Docs |
 
 ---
 
@@ -519,6 +520,8 @@
 - **Files Modified:**
   - `AdvGenPriceComparer.Tests/ViewModels/SettingsViewModelTests.cs` - Added TestThemeService class, updated CreateViewModel method
 - **Results:** Build succeeds with 0 errors, all 17 SettingsViewModelTests passing
+
+| Update PROJECT_STATUS.md - Mark Shopping list and Trip optimizer as DONE | 🟢 DONE | Agent-Kimi-Docs | Synced PROJECT_STATUS.md with actual implementation status - marked Shopping list integration, Trip optimizer, Price comparison view, Historical price charts, Barcode scanner, Global search, Price drop notifications, P2P sharing, Dark mode as DONE
 
 ---
 
