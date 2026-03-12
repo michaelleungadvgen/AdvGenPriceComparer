@@ -159,7 +159,7 @@ public class StoreViewModel : ViewModelBase
             var dialog = new Views.AddStoreWindow(
                 new AddStoreViewModel(_dataService, _dialogService))
             {
-                Owner = Application.Current.MainWindow
+                Owner = System.Windows.Application.Current.MainWindow
             };
 
             if (dialog.ShowDialog() == true)
@@ -194,7 +194,7 @@ public class StoreViewModel : ViewModelBase
 
             var dialog = new Views.AddStoreWindow(viewModel)
             {
-                Owner = Application.Current.MainWindow,
+                Owner = System.Windows.Application.Current.MainWindow,
                 Title = "Edit Store"
             };
 

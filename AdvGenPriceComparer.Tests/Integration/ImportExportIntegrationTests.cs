@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.WPF.Services;
 using Xunit;
@@ -547,3 +548,5 @@ public class ExportItem
 }
 
 #endregion
+
+

@@ -1,0 +1,9 @@
+using AdvGenPriceComparer.Core.Models;
+using MediatR;
+
+namespace AdvGenPriceComparer.Application.Queries;
+
+/// <summary>
+/// Query to get a single item by ID
+/// </summary>
+public record GetItemByIdQuery(string ItemId) : IRequest<Item?>;

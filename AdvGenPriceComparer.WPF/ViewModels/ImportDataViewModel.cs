@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Services;
@@ -16,7 +17,7 @@ using AdvGenPriceComparer.WPF.Views;
 
 // Use WPF Models ImportPreviewItem and Service ColesProduct
 using ImportPreviewItem = AdvGenPriceComparer.WPF.Models.ImportPreviewItem;
-using ColesProduct = AdvGenPriceComparer.Data.LiteDB.Services.ColesProduct;
+using ColesProduct = AdvGenPriceComparer.Application.Services.ColesProduct;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
@@ -357,7 +358,7 @@ public class ImportDataViewModel : ViewModelBase
         if (_importCompleted)
         {
             // Close button clicked
-            if (Application.Current.Windows.OfType<ImportDataWindow>().FirstOrDefault() is { } window)
+            if (System.Windows.Application.Current.Windows.OfType<ImportDataWindow>().FirstOrDefault() is { } window)
             {
                 window.DialogResult = true;
                 window.Close();

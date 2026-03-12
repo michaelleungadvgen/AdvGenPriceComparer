@@ -42,18 +42,18 @@ public class SimpleDialogService : IDialogService
 
     public void ShowComparePricesDialog(string category = null)
     {
-        var dataService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
         var viewModel = new ViewModels.PriceComparisonViewModel(dataService, category);
-        var window = new ComparePricesWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new ComparePricesWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public SearchResult? ShowGlobalSearchDialog()
     {
-        var searchService = ((App)Application.Current).Services.GetRequiredService<IGlobalSearchService>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var searchService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGlobalSearchService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var viewModel = new ViewModels.GlobalSearchViewModel(searchService, this, logger);
-        var window = new GlobalSearchWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new GlobalSearchWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         
         var result = window.ShowDialog();
         
@@ -67,89 +67,90 @@ public class SimpleDialogService : IDialogService
 
     public void ShowBarcodeScannerDialog()
     {
-        var barcodeService = ((App)Application.Current).Services.GetRequiredService<IBarcodeService>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var barcodeService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IBarcodeService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var viewModel = new ViewModels.ScanBarcodeViewModel(barcodeService, this, logger);
-        var window = new ScanBarcodeWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new ScanBarcodeWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowPriceDropNotificationsDialog()
     {
-        var notificationService = ((App)Application.Current).Services.GetRequiredService<IPriceDropNotificationService>();
-        var groceryData = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var notificationService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IPriceDropNotificationService>();
+        var groceryData = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
         var viewModel = new ViewModels.PriceDropNotificationViewModel(notificationService, groceryData);
-        var window = new PriceDropNotificationsWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new PriceDropNotificationsWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowFavoritesDialog()
     {
-        var favoritesService = ((App)Application.Current).Services.GetRequiredService<IFavoritesService>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var favoritesService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IFavoritesService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var viewModel = new ViewModels.FavoritesViewModel(favoritesService, this, logger);
-        var window = new FavoritesWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new FavoritesWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowDealExpirationRemindersDialog()
     {
-        var dealExpirationService = ((App)Application.Current).Services.GetRequiredService<IDealExpirationService>();
+        var dealExpirationService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDealExpirationService>();
         var viewModel = new ViewModels.DealExpirationReminderViewModel(dealExpirationService);
-        var window = new DealExpirationRemindersWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new DealExpirationRemindersWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowWeeklySpecialsDigestDialog()
     {
-        var weeklySpecialsService = ((App)Application.Current).Services.GetRequiredService<IWeeklySpecialsService>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var weeklySpecialsService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IWeeklySpecialsService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         var viewModel = new ViewModels.WeeklySpecialsDigestViewModel(weeklySpecialsService, dialogService);
-        var window = new WeeklySpecialsDigestWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new WeeklySpecialsDigestWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowShoppingListsDialog()
     {
-        var shoppingListService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IShoppingListService>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var shoppingListService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IShoppingListService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         var viewModel = new ViewModels.ShoppingListViewModel(shoppingListService, dialogService);
-        var window = new ShoppingListWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new ShoppingListWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowSettingsDialog()
     {
-        var settingsService = ((App)Application.Current).Services.GetRequiredService<ISettingsService>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
-        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService);
-        var window = new SettingsWindow { DataContext = viewModel, Owner = Application.Current.MainWindow };
+        var settingsService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ISettingsService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        var themeService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IThemeService>();
+        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService, themeService);
+        var window = new SettingsWindow { DataContext = viewModel, Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowMLModelManagementDialog()
     {
-        var dataService = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
-        var settingsService = ((App)Application.Current).Services.GetRequiredService<ISettingsService>();
+        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        var settingsService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ISettingsService>();
         
         // Use MLModelPath from settings service
         var modelPath = settingsService.MLModelPath;
         
         var viewModel = new ViewModels.MLModelManagementViewModel(dataService, dialogService, logger, modelPath);
-        var window = new MLModelManagementWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new MLModelManagementWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowPriceForecastDialog()
     {
-        var priceRecordRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPriceRecordRepository>();
-        var itemRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IItemRepository>();
-        var placeRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPlaceRepository>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var priceRecordRepository = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IPriceRecordRepository>();
+        var itemRepository = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IItemRepository>();
+        var placeRepository = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IPlaceRepository>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         
         var viewModel = new ViewModels.PriceForecastViewModel(
             priceRecordRepository, 
@@ -157,48 +158,112 @@ public class SimpleDialogService : IDialogService
             placeRepository, 
             dialogService, 
             logger);
-        var window = new PriceForecastWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new PriceForecastWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowChatDialog()
     {
-        var window = new Chat.PriceChatWindow { Owner = Application.Current.MainWindow };
+        var window = new Chat.PriceChatWindow { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowExportDataDialog()
     {
-        var exportService = ((App)Application.Current).Services.GetRequiredService<ExportService>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var exportService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ExportService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         var viewModel = new ExportDataViewModel(exportService, dialogService);
-        var window = new ExportDataWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new ExportDataWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowImportFromUrlDialog()
     {
-        var staticDataImporter = ((App)Application.Current).Services.GetRequiredService<StaticDataImporter>();
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
-        var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+        var staticDataImporter = ((App)System.Windows.Application.Current).Services.GetRequiredService<StaticDataImporter>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         var viewModel = new ImportFromUrlViewModel(staticDataImporter, logger, dialogService);
-        var window = new ImportFromUrlWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new ImportFromUrlWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 
     public void ShowIllusoryDiscountDetectionDialog()
     {
-        var forecastingService = ((App)Application.Current).Services.GetRequiredService<AdvGenPriceComparer.ML.Services.PriceForecastingService>();
-        var itemRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IItemRepository>();
-        var priceRecordRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPriceRecordRepository>();
-        var placeRepository = ((App)Application.Current).Services.GetRequiredService<Core.Interfaces.IPlaceRepository>();
+        var forecastingService = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenPriceComparer.ML.Services.PriceForecastingService>();
+        var itemRepository = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IItemRepository>();
+        var priceRecordRepository = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IPriceRecordRepository>();
+        var placeRepository = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IPlaceRepository>();
         
         var viewModel = new ViewModels.IllusoryDiscountDetectionViewModel(
             forecastingService, 
             itemRepository, 
             priceRecordRepository, 
             placeRepository);
-        var window = new IllusoryDiscountDetectionWindow(viewModel) { Owner = Application.Current.MainWindow };
+        var window = new IllusoryDiscountDetectionWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowServerDataTransferDialog()
+    {
+        var settingsService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ISettingsService>();
+        var groceryDataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.ServerDataTransferViewModel(
+            settingsService, 
+            groceryDataService, 
+            this, 
+            logger);
+        var window = new ServerDataTransferWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowBestPricesDialog()
+    {
+        var bestPriceService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IBestPriceService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.BestPricesViewModel(bestPriceService, logger);
+        var window = new BestPricesWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowEditPlaceDialog(Core.Models.Place place)
+    {
+        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        
+        var viewModel = new ViewModels.AddStoreViewModel(dataService, dialogService)
+        {
+            StoreId = place.Id,
+            StoreName = place.Name,
+            Chain = place.Chain ?? string.Empty,
+            Address = place.Address ?? string.Empty,
+            Suburb = place.Suburb ?? string.Empty,
+            State = place.State ?? "QLD",
+            Postcode = place.Postcode ?? string.Empty,
+            Phone = place.Phone ?? string.Empty
+        };
+        
+        var window = new AddStoreWindow(viewModel)
+        {
+            Owner = System.Windows.Application.Current.MainWindow,
+            Title = "Edit Store"
+        };
+        
+        window.ShowDialog();
+    }
+
+    public void ShowTripOptimizerDialog()
+    {
+        var tripOptimizerService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ITripOptimizerService>();
+        var groceryDataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var shoppingListService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IShoppingListService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        
+        var viewModel = new ViewModels.TripOptimizerViewModel(tripOptimizerService, groceryDataService, shoppingListService, logger, dialogService);
+        var window = new TripOptimizerWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 }

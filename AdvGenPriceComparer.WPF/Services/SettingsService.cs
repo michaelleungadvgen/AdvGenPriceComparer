@@ -47,6 +47,7 @@ public class SettingsService : ISettingsService
     private int _alertCheckIntervalHours = DefaultAlertCheckIntervalHours;
     private int _connectionTimeout = DefaultConnectionTimeout;
     private int _retryCount = DefaultRetryCount;
+    private ApplicationTheme _applicationTheme = ApplicationTheme.Light;
 
     public DatabaseProviderType DatabaseProviderType
     {
@@ -238,7 +239,33 @@ public class SettingsService : ISettingsService
         }
     }
 
+    public ApplicationTheme ApplicationTheme
+    {
+        get => _applicationTheme;
+        set
+        {
+            _applicationTheme = value;
+            _logger?.LogInfo($"Settings: ApplicationTheme changed to {value}");
+        }
+    }
+
     public event EventHandler<SettingsChangedEventArgs>? SettingsChanged;
+
+    /// <summary>
+    /// Gets the Application Data path, respecting APPDATA environment variable for testing
+    /// </summary>
+    private static string GetAppDataPath()
+    {
+        // Check for APPDATA environment variable first (used in tests)
+        var appDataEnv = Environment.GetEnvironmentVariable("APPDATA");
+        if (!string.IsNullOrEmpty(appDataEnv))
+        {
+            return appDataEnv;
+        }
+        
+        // Fall back to default ApplicationData folder
+        return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+    }
 
     public SettingsService(ILoggerService logger)
     {
@@ -246,7 +273,7 @@ public class SettingsService : ISettingsService
 
         // Set default paths
         var appDataPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            GetAppDataPath(),
             "AdvGenPriceComparer");
 
         _settingsPath = Path.Combine(appDataPath, "settings.json");
@@ -271,6 +298,7 @@ public class SettingsService : ISettingsService
             {
                 _logger.LogInfo("Settings file not found, using defaults");
                 await SaveSettingsAsync(); // Create default settings file
+                SettingsChanged?.Invoke(this, new SettingsChangedEventArgs { Loaded = true });
                 return;
             }
 
@@ -541,10 +569,11 @@ public class SettingsService : ISettingsService
         _alertCheckIntervalHours = DefaultAlertCheckIntervalHours;
         _connectionTimeout = DefaultConnectionTimeout;
         _retryCount = DefaultRetryCount;
+        _applicationTheme = ApplicationTheme.Light;
 
         // Reset paths
         var appDataPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            GetAppDataPath(),
             "AdvGenPriceComparer");
 
         _liteDbPath = Path.Combine(appDataPath, "GroceryPrices.db");
@@ -584,6 +613,7 @@ public class SettingsService : ISettingsService
         _alertCheckIntervalHours = data.AlertCheckIntervalHours;
         _connectionTimeout = data.ConnectionTimeout;
         _retryCount = data.RetryCount;
+        _applicationTheme = data.ApplicationTheme;
     }
 
     private SettingsData CreateSettingsData()
@@ -608,7 +638,8 @@ public class SettingsService : ISettingsService
             EnableExpirationAlerts = _enableExpirationAlerts,
             AlertCheckIntervalHours = _alertCheckIntervalHours,
             ConnectionTimeout = _connectionTimeout,
-            RetryCount = _retryCount
+            RetryCount = _retryCount,
+            ApplicationTheme = _applicationTheme
         };
     }
 
@@ -699,5 +730,6 @@ public class SettingsService : ISettingsService
         public int AlertCheckIntervalHours { get; set; } = 24;
         public int ConnectionTimeout { get; set; } = 30;
         public int RetryCount { get; set; } = 3;
+        public ApplicationTheme ApplicationTheme { get; set; } = ApplicationTheme.Light;
     }
 }

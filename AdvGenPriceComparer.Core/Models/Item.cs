@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -49,33 +48,54 @@ public class Item
     public Dictionary<string, string> ExtraInformation { get; set; } = new();
 
     // Computed Properties (not stored in database)
-    [JsonIgnore]
+    // Note: These are computed properties that can be serialized if needed.
+    // For JSON serialization control, use DTOs in the Application layer.
+    
+    /// <summary>
+    /// Gets the display name combining brand and name
+    /// </summary>
     public string DisplayName => !string.IsNullOrEmpty(Brand) ? $"{Brand} {Name}" : Name;
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets the full description combining display name and description
+    /// </summary>
     public string FullDescription => !string.IsNullOrEmpty(Description) ? 
         $"{DisplayName} - {Description}" : DisplayName;
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets the category path including subcategory if available
+    /// </summary>
     public string CategoryPath => !string.IsNullOrEmpty(SubCategory) ? 
         $"{Category} > {SubCategory}" : Category ?? "Uncategorized";
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets whether the item has a barcode
+    /// </summary>
     public bool HasBarcode => !string.IsNullOrEmpty(Barcode);
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets whether the item has nutritional information
+    /// </summary>
     public bool HasNutritionalInfo => NutritionalInfo.Count > 0;
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets whether the item has allergens listed
+    /// </summary>
     public bool HasAllergens => Allergens.Count > 0;
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets whether the item has dietary flags
+    /// </summary>
     public bool HasDietaryFlags => DietaryFlags.Count > 0;
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets whether the item was added recently (within 7 days)
+    /// </summary>
     public bool IsRecent => DateTime.UtcNow - DateAdded <= TimeSpan.FromDays(7);
     
-    [JsonIgnore]
+    /// <summary>
+    /// Gets whether the item was recently updated (within 1 day)
+    /// </summary>
     public bool WasRecentlyUpdated => DateTime.UtcNow - LastUpdated <= TimeSpan.FromDays(1);
 
     // Business Logic Methods
@@ -409,4 +429,3 @@ public class ValidationResult
         return string.Join(", ", Errors);
     }
 }
-

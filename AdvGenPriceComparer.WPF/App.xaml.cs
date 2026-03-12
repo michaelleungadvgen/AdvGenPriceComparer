@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using AdvGenPriceComparer.Core.Helpers;
+using AdvGenPriceComparer.Application.Interfaces;
+using AdvGenPriceComparer.Application.Services;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
-using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.ML.Models;
 using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -19,7 +22,7 @@ namespace AdvGenPriceComparer.WPF;
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public partial class App : Application
+public partial class App : System.Windows.Application
 {
     public IServiceProvider Services { get; private set; }
     public static IServiceProvider? ServiceProvider => (Current as App)?.Services;
@@ -38,6 +41,21 @@ public partial class App : Application
 
         try
         {
+            // Apply theme from settings
+            var settingsService = Services.GetRequiredService<ISettingsService>();
+            var themeService = Services.GetRequiredService<IThemeService>();
+            
+            // Wait for settings to be loaded (they load async in background)
+            // We'll apply the theme once settings are confirmed loaded
+            settingsService.SettingsChanged += (s, args) =>
+            {
+                if (args.Loaded)
+                {
+                    logger.LogInfo($"Applying theme from settings: {settingsService.ApplicationTheme}");
+                    themeService.ApplyTheme(settingsService.ApplicationTheme);
+                }
+            };
+
             logger.LogInfo("Creating MainWindow");
             var mainWindow = Services.GetRequiredService<MainWindow>();
             logger.LogInfo("MainWindow created successfully");
@@ -83,7 +101,17 @@ public partial class App : Application
             services.AddSingleton<INotificationService, SimpleNotificationService>();
             services.AddSingleton<ServerConfigService>(provider =>
                 new ServerConfigService(serverConfigPath));
-            services.AddSingleton<NetworkManager>();
+            services.AddSingleton<IP2PNetworkService, NetworkManager>();
+            services.AddSingleton<IThemeService, ThemeService>();
+
+            // Peer Discovery Service for P2P static data sharing
+            services.AddSingleton<PeerDiscoveryService>(provider =>
+            {
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var serverConfig = provider.GetRequiredService<ServerConfigService>();
+                var cachePath = Path.Combine(appDataPath, "peer_discovery_cache.json");
+                return new PeerDiscoveryService(logger, serverConfig, cachePath);
+            });
 
             // Settings Service - Create service, load settings in background
             services.AddSingleton<ISettingsService>(provider =>
@@ -135,11 +163,29 @@ public partial class App : Application
             services.AddSingleton<IPlaceRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Places);
             services.AddSingleton<IAlertRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Alerts);
             
+            // Price History Tracking Service
+            services.AddSingleton<IPriceHistoryTrackingService, PriceHistoryTrackingService>();
+            
             // ML.NET Services
+            services.AddSingleton<IModelVersionService>(provider =>
+            {
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var modelPath = settingsService.MLModelPath;
+                
+                return new ModelVersionService(
+                    modelPath,
+                    new ModelVersionRetentionSettings(),
+                    msg => logger.LogInfo(msg),
+                    (msg, ex) => logger.LogError(msg, ex),
+                    msg => logger.LogWarning(msg));
+            });
             services.AddSingleton<ModelTrainingService>(provider =>
             {
                 var logger = provider.GetRequiredService<ILoggerService>();
+                var versionService = provider.GetService<IModelVersionService>();
                 return new ModelTrainingService(
+                    versionService,
                     msg => logger.LogInfo(msg),
                     (msg, ex) => logger.LogError(msg, ex),
                     msg => logger.LogWarning(msg));
@@ -158,6 +204,7 @@ public partial class App : Application
                     (msg, ex) => logger.LogError(msg, ex),
                     msg => logger.LogWarning(msg));
             });
+            services.AddSingleton<ICategoryPredictionService>(provider => provider.GetRequiredService<CategoryPredictionService>());
             services.AddSingleton<DataPreparationService>();
             services.AddSingleton<AdvGenPriceComparer.ML.Services.PriceForecastingService>(provider =>
             {
@@ -183,7 +230,7 @@ public partial class App : Application
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
-                var categoryPredictionService = provider.GetRequiredService<CategoryPredictionService>();
+                var categoryPredictionService = provider.GetRequiredService<ICategoryPredictionService>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 
                 return new JsonImportService(itemRepo, placeRepo, priceRepo, categoryPredictionService,
@@ -273,6 +320,21 @@ public partial class App : Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new WeeklySpecialsService(groceryData, logger);
             });
+            services.AddSingleton<IBestPriceService>(provider =>
+            {
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new BestPriceService(itemRepo, placeRepo, priceRepo, logger);
+            });
+            services.AddSingleton<IReportGenerationService>(provider =>
+            {
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                return new ReportGenerationService(priceRepo, itemRepo, placeRepo);
+            });
             services.AddSingleton<IShoppingListRepository>(provider =>
             {
                 var dbProvider = provider.GetRequiredService<IDatabaseProvider>();
@@ -292,6 +354,14 @@ public partial class App : Application
                 var repo = provider.GetRequiredService<IShoppingListRepository>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new ShoppingListService(repo, logger);
+            });
+
+            // Trip Optimizer Service
+            services.AddSingleton<ITripOptimizerService>(provider =>
+            {
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new TripOptimizerService(groceryData, logger);
             });
 
             // Update Service
@@ -345,7 +415,10 @@ public partial class App : Application
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
-                return new ReportsViewModel(priceRepo, itemRepo, placeRepo);
+                var reportService = provider.GetRequiredService<IReportGenerationService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new ReportsViewModel(priceRepo, itemRepo, placeRepo, reportService, dialogService, logger);
             });
             services.AddTransient<ShoppingListViewModel>(provider =>
             {
@@ -388,6 +461,16 @@ public partial class App : Application
             {
                 var viewModel = provider.GetRequiredService<ImportFromUrlViewModel>();
                 return new ImportFromUrlWindow(viewModel);
+            });
+            services.AddTransient<TripOptimizerWindow>(provider =>
+            {
+                var tripOptimizerService = provider.GetRequiredService<ITripOptimizerService>();
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var shoppingListService = provider.GetRequiredService<IShoppingListService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                var viewModel = new TripOptimizerViewModel(tripOptimizerService, groceryData, shoppingListService, logger, dialogService);
+                return new TripOptimizerWindow(viewModel);
             });
 
             // Chat Services

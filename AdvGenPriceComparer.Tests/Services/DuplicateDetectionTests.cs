@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using Xunit;
@@ -510,3 +511,5 @@ public class DuplicateDetectionTests : IDisposable
 
     #endregion
 }
+
+

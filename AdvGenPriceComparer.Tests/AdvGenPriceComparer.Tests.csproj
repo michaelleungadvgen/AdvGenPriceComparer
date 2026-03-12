@@ -10,6 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FlaUI.Core" Version="4.0.0" />
+    <PackageReference Include="FlaUI.UIA3" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.6.6" />
@@ -28,6 +33,7 @@
     <ProjectReference Include="..\AdvGenPriceComparer.Data.LiteDB\AdvGenPriceComparer.Data.LiteDB.csproj" />
     <ProjectReference Include="..\AdvGenPriceComparer.ML\AdvGenPriceComparer.ML.csproj" />
     <ProjectReference Include="..\AdvGenPriceComparer.WPF\AdvGenPriceComparer.WPF.csproj" />
+    <ProjectReference Include="..\AdvGenPriceComparer.Server\AdvGenPriceComparer.Server.csproj" />
   </ItemGroup>
 
   <ItemGroup>

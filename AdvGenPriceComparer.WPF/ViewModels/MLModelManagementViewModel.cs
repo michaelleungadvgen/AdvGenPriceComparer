@@ -56,6 +56,7 @@ public class MLModelManagementViewModel : ViewModelBase
         _modelPath = modelPath;
 
         _trainingService = new ModelTrainingService(
+            null, // IModelVersionService - not used directly in this VM
             msg => _logger.LogInfo(msg),
             (msg, ex) => _logger.LogError(msg, ex),
             msg => _logger.LogWarning(msg));

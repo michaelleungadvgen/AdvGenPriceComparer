@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using Xunit;
 
@@ -575,3 +576,5 @@ namespace AdvGenPriceComparer.Tests.Repositories
         #endregion
     }
 }
+
+

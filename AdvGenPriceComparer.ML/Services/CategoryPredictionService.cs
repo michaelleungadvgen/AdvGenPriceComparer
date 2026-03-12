@@ -1,3 +1,4 @@
+using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.ML.Models;
 using Microsoft.ML;
@@ -5,9 +6,10 @@ using Microsoft.ML;
 namespace AdvGenPriceComparer.ML.Services;
 
 /// <summary>
-/// Service for predicting product categories using ML.NET
+/// Service for predicting product categories using ML.NET.
+/// Implements ICategoryPredictionService for Clean Architecture integration.
 /// </summary>
-public class CategoryPredictionService
+public class CategoryPredictionService : ICategoryPredictionService
 {
     private readonly MLContext _mlContext;
     private ITransformer? _model;
@@ -94,6 +96,24 @@ public class CategoryPredictionService
     {
         return LoadModel(_modelPath);
     }
+
+    #region ICategoryPredictionService Implementation
+
+    /// <summary>
+    /// Predicts category for an item and returns confidence score (Application layer interface)
+    /// </summary>
+    CategoryPredictionResult ICategoryPredictionService.PredictCategory(Item item)
+    {
+        var prediction = PredictCategory(item);
+        return new CategoryPredictionResult
+        {
+            PredictedCategory = prediction.PredictedCategory,
+            Confidence = prediction.Confidence,
+            CategoryScores = prediction.CategoryScores
+        };
+    }
+
+    #endregion
 
     /// <summary>
     /// Predicts the category for a single product

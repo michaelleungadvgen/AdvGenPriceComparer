@@ -1,4 +1,3 @@
-using AdvGenPriceComparer.Core.Helpers;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
@@ -11,7 +10,7 @@ using System.IO;
 
 namespace AdvGenPriceComparer.Desktop.WinUI;
 
-public partial class App : Application
+public partial class App : Microsoft.UI.Xaml.Application
 {
     public static IServiceProvider Services { get; private set; }
 
@@ -74,15 +73,18 @@ public partial class App : Application
             services.AddSingleton<IDialogService, SimpleDialogService>();
             services.AddSingleton<INotificationService, SimpleNotificationService>();
             services.AddSingleton<ServerConfigService>(provider => new ServerConfigService(serverConfigPath));
-            services.AddSingleton<NetworkManager>();
+            // Note: IP2PNetworkService is implemented by NetworkManager in WPF project
+            // For WinUI, we would need a separate implementation or shared library
+            // For now, commenting out to fix build - will need proper implementation
+            // services.AddSingleton<IP2PNetworkService, NetworkManager>();
             services.AddTransient<DemoDataService>();
-            services.AddTransient<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>(provider =>
+            services.AddTransient<AdvGenPriceComparer.Application.Services.JsonImportService>(provider =>
             {
                 var dbService = new AdvGenPriceComparer.Data.LiteDB.Services.DatabaseService(dbPath);
                 var itemRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.ItemRepository(dbService);
                 var placeRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PlaceRepository(dbService);
                 var priceRepo = new AdvGenPriceComparer.Data.LiteDB.Repositories.PriceRecordRepository(dbService);
-                return new AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService(itemRepo, placeRepo, priceRepo);
+                return new AdvGenPriceComparer.Application.Services.JsonImportService(itemRepo, placeRepo, priceRepo);
             });
 
             // ViewModels

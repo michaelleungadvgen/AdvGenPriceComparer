@@ -125,7 +125,7 @@ public sealed partial class MainWindow : Window
             if (file != null)
             {
                 var notificationService = App.Services.GetRequiredService<INotificationService>();
-                var importService = App.Services.GetRequiredService<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>();
+                var importService = App.Services.GetRequiredService<AdvGenPriceComparer.Application.Services.JsonImportService>();
 
                 // Show loading notification
                 await notificationService.ShowInfoAsync($"Importing data from {file.Name}...");

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.ViewModels;
 using AdvGenPriceComparer.WPF.Services;
@@ -62,13 +63,13 @@ public partial class MainWindow : FluentWindow
             // Wait a few seconds for the app to fully load
             await Task.Delay(5000);
 
-            var updateService = ((App)Application.Current).Services.GetRequiredService<IUpdateService>();
+            var updateService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IUpdateService>();
             await updateService.CheckForUpdateOnStartupAsync();
         }
         catch (Exception ex)
         {
             // Log but don't show error to user - update check is non-critical
-            var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+            var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
             logger.LogError("Error checking for updates", ex);
         }
     }
@@ -90,8 +91,8 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
             var viewModel = new ItemViewModel(dataService, dialogService);
             var page = new ItemsPage(viewModel);
 
@@ -112,8 +113,8 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
             var viewModel = new StoreViewModel(dataService, dialogService);
             var page = new StoresPage(viewModel);
 
@@ -134,8 +135,8 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
-            var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+            var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
 
             // Cast to GroceryDataService since CategoryViewModel needs it
             if (dataService is not GroceryDataService groceryDataService)
@@ -163,7 +164,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var priceHistoryViewModel = ((App)Application.Current).Services.GetRequiredService<PriceHistoryViewModel>();
+            var priceHistoryViewModel = ((App)System.Windows.Application.Current).Services.GetRequiredService<PriceHistoryViewModel>();
             var page = new PriceHistoryPage(priceHistoryViewModel);
 
             DashboardContent.Visibility = Visibility.Collapsed;
@@ -182,7 +183,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var reportsViewModel = ((App)Application.Current).Services.GetRequiredService<ReportsViewModel>();
+            var reportsViewModel = ((App)System.Windows.Application.Current).Services.GetRequiredService<ReportsViewModel>();
             var page = new ReportsPage(reportsViewModel);
 
             DashboardContent.Visibility = Visibility.Collapsed;
@@ -200,8 +201,8 @@ public partial class MainWindow : FluentWindow
     private void UpdateNavigation(string activePage)
     {
         // Get theme colors from resources
-        var accentLight = (System.Windows.Media.SolidColorBrush)Application.Current.FindResource("SystemAccentBrushLight3");
-        var accentDark = (System.Windows.Media.SolidColorBrush)Application.Current.FindResource("SystemAccentBrushDark3");
+        var accentLight = (System.Windows.Media.SolidColorBrush)System.Windows.Application.Current.FindResource("SystemAccentBrushLight3");
+        var accentDark = (System.Windows.Media.SolidColorBrush)System.Windows.Application.Current.FindResource("SystemAccentBrushDark3");
         var defaultColor = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#555"));
 
         // Reset all buttons
@@ -259,7 +260,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var demoDataService = ((App)Application.Current).Services.GetRequiredService<DemoDataService>();
+            var demoDataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<DemoDataService>();
             demoDataService.GenerateDemoData();
 
             MessageBox.Show("Demo data generated successfully! Check the Reports page to see charts with data.",
@@ -277,15 +278,15 @@ public partial class MainWindow : FluentWindow
 
     private void ImportJsonData_Click(object sender, RoutedEventArgs e)
     {
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         logger.LogInfo("ImportJsonData_Click called");
 
         try
         {
             logger.LogInfo("Getting services from DI container");
-            var dataService = ((App)Application.Current).Services.GetRequiredService<IGroceryDataService>();
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
-            var jsonImportService = ((App)Application.Current).Services.GetRequiredService<JsonImportService>();
+            var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            var jsonImportService = ((App)System.Windows.Application.Current).Services.GetRequiredService<JsonImportService>();
             logger.LogInfo("Services retrieved successfully");
 
             logger.LogInfo("Creating ImportDataViewModel");
@@ -319,7 +320,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var viewModel = ((App)Application.Current).Services.GetRequiredService<ExportDataViewModel>();
+            var viewModel = ((App)System.Windows.Application.Current).Services.GetRequiredService<ExportDataViewModel>();
             var window = new ExportDataWindow(viewModel) { Owner = this };
 
             window.ShowDialog();
@@ -333,12 +334,12 @@ public partial class MainWindow : FluentWindow
 
     private void ImportFromUrl_Click(object sender, RoutedEventArgs e)
     {
-        var logger = ((App)Application.Current).Services.GetRequiredService<ILoggerService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         logger.LogInfo("ImportFromUrl_Click called");
 
         try
         {
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
             dialogService.ShowImportFromUrlDialog();
             logger.LogInfo("Import from URL dialog closed");
         }
@@ -364,8 +365,8 @@ public partial class MainWindow : FluentWindow
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var importService = ((App)Application.Current).Services
-                    .GetRequiredService<AdvGenPriceComparer.Data.LiteDB.Services.JsonImportService>();
+                var importService = ((App)System.Windows.Application.Current).Services
+                    .GetRequiredService<AdvGenPriceComparer.Application.Services.JsonImportService>();
 
                 // Import the file
                 var result = importService.ImportFromFile(openFileDialog.FileName);
@@ -425,7 +426,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var updateService = ((App)Application.Current).Services.GetRequiredService<IUpdateService>();
+            var updateService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IUpdateService>();
             var result = await updateService.CheckForUpdateAsync();
 
             if (result.IsSuccessful && !result.IsUpdateAvailable)
@@ -449,7 +450,7 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
             dialogService.ShowSettingsDialog();
         }
         catch (Exception ex)
@@ -463,12 +464,26 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dialogService = ((App)Application.Current).Services.GetRequiredService<IDialogService>();
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
             dialogService.ShowIllusoryDiscountDetectionDialog();
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Error opening illusory discount detection: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void ServerDataTransfer_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowServerDataTransferDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening server data transfer dialog: {ex.Message}",
                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

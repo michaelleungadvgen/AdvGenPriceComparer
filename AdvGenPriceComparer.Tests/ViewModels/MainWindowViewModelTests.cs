@@ -371,6 +371,10 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowExportDataDialog() { }
         public void ShowImportFromUrlDialog() { }
         public void ShowIllusoryDiscountDetectionDialog() { }
+        public void ShowServerDataTransferDialog() { }
+        public void ShowBestPricesDialog() { }
+        public void ShowEditPlaceDialog(Core.Models.Place place) { }
+        public void ShowTripOptimizerDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 

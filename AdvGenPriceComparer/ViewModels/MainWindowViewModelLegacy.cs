@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using AdvGenPriceComparer.Core.Interfaces;
-using AdvGenPriceComparer.Core.Helpers;
+
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Desktop.WinUI.Services;
@@ -17,7 +17,9 @@ namespace AdvGenPriceComparer.Desktop.WinUI.ViewModels;
 public class MainWindowViewModelLegacy : BaseViewModel
 {
     private readonly IGroceryDataService _groceryDataService;
-    private readonly NetworkManager _networkManager;
+    // Note: NetworkManager is now in WPF project, not available in WinUI
+    // This legacy viewmodel no longer supports P2P networking
+    // private readonly IP2PNetworkService? _networkManager;
     private readonly ServerConfigService _serverConfig;
     private readonly Window _mainWindow;
 
@@ -48,7 +50,7 @@ public class MainWindowViewModelLegacy : BaseViewModel
         }
 
         _serverConfig = new ServerConfigService(serverConfigPath);
-        _networkManager = new NetworkManager(_groceryDataService, _serverConfig);
+        // NetworkManager is in WPF project - networking not available in WinUI legacy mode
 
         // Commands
         AddItemCommand = new RelayCommand(async () => await ShowAddItemDialogAsync());
@@ -214,6 +216,6 @@ public class MainWindowViewModelLegacy : BaseViewModel
 
     public void Dispose()
     {
-        _networkManager?.Dispose();
+        // Networking not available in WinUI legacy mode
     }
 }

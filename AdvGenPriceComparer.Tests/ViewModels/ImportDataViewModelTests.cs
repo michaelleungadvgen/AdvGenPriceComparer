@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using AdvGenPriceComparer.WPF.Models;
@@ -445,8 +446,14 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowExportDataDialog() { }
         public void ShowImportFromUrlDialog() { }
         public void ShowIllusoryDiscountDetectionDialog() { }
+        public void ShowServerDataTransferDialog() { }
+        public void ShowBestPricesDialog() { }
+        public void ShowEditPlaceDialog(Core.Models.Place place) { }
+        public void ShowTripOptimizerDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 
     #endregion
 }
+
+

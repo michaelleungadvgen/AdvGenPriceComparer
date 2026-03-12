@@ -3,6 +3,7 @@ using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ApplicationTheme = AdvGenPriceComparer.Core.Models.ApplicationTheme;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
@@ -11,6 +12,7 @@ public class SettingsViewModel : ViewModelBase
     private readonly ISettingsService _settingsService;
     private readonly ILoggerService _logger;
     private readonly IDialogService _dialogService;
+    private readonly IThemeService _themeService;
 
     // Database Settings
     private DatabaseProviderType _databaseProvider;
@@ -40,6 +42,9 @@ public class SettingsViewModel : ViewModelBase
     private int _connectionTimeout = 30;
     private int _retryCount = 3;
 
+    // Theme Settings
+    private ApplicationTheme _applicationTheme = ApplicationTheme.Light;
+
     // View State
     private string _selectedCategory = "General";
     private ObservableCollection<string> _categories = new()
@@ -58,11 +63,13 @@ public class SettingsViewModel : ViewModelBase
     public SettingsViewModel(
         ISettingsService settingsService,
         ILoggerService logger,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        IThemeService themeService)
     {
         _settingsService = settingsService;
         _logger = logger;
         _dialogService = dialogService;
+        _themeService = themeService;
 
         SaveCommand = new RelayCommand(SaveSettingsAsync, CanSave);
         ResetCommand = new RelayCommand(ResetSettings);
@@ -300,6 +307,27 @@ public class SettingsViewModel : ViewModelBase
         }
     }
 
+    public ApplicationTheme ApplicationTheme
+    {
+        get => _applicationTheme;
+        set
+        {
+            if (SetProperty(ref _applicationTheme, value))
+            {
+                ((RelayCommand)SaveCommand).RaiseCanExecuteChanged();
+                // Apply theme immediately for preview
+                _themeService?.ApplyTheme(value);
+            }
+        }
+    }
+
+    public List<ApplicationTheme> AvailableThemes => new()
+    {
+        ApplicationTheme.Light,
+        ApplicationTheme.Dark,
+        ApplicationTheme.System
+    };
+
     // About Information
     public string ApplicationVersion => "1.0.0";
     public string BuildDate => "February 2026";
@@ -355,6 +383,7 @@ public class SettingsViewModel : ViewModelBase
             
             ConnectionTimeout = _settingsService.ConnectionTimeout;
             RetryCount = _settingsService.RetryCount;
+            ApplicationTheme = _settingsService.ApplicationTheme;
 
             _logger.LogInfo("Settings loaded successfully");
         }
@@ -426,6 +455,7 @@ public class SettingsViewModel : ViewModelBase
             
             _settingsService.ConnectionTimeout = ConnectionTimeout;
             _settingsService.RetryCount = RetryCount;
+            _settingsService.ApplicationTheme = ApplicationTheme;
 
             await _settingsService.SaveSettingsAsync();
             _logger.LogInfo("Settings saved successfully");

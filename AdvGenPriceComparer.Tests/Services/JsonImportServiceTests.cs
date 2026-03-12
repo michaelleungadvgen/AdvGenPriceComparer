@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using AdvGenPriceComparer.Core.Models;
+using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using Xunit;
@@ -829,3 +830,5 @@ public class JsonImportServiceTests : IDisposable
 
     #endregion
 }
+
+
