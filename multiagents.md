@@ -105,7 +105,7 @@
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Product Management (CRUD operations) | 🟢 DONE | - | Full product CRUD - Already implemented |
-| Store Management (CRUD, location mapping) | 🟡 DOING | Agent-Kimi | Implementing EditPlace in PlaceViewModel - Edit functionality incomplete |
+| Store Management (CRUD, location mapping) | 🟢 DONE | Agent-Kimi | Store Management CRUD and location mapping fully implemented - Create/Read/Update/Delete all working with Address, Suburb, State, Postcode, Phone fields |
 | Shopping list integration | 🟢 DONE | Agent-031 | Already implemented - ShoppingListService, ShoppingListWindow, ShoppingListRepository all exist |
 
 ---
@@ -423,6 +423,7 @@
 | 2026-03-12 | Generate reports (best deals, trends) - Implemented IReportGenerationService with 4 report types (Best Deals, Price Trends, Store Comparison, Category Analysis), export to Markdown/JSON/CSV, copy to clipboard, UI with date range and max items filter | Agent-150 |
 | 2026-03-12 | Test database switching workflow - Created 17 comprehensive xUnit tests for SettingsViewModel database provider switching: provider change detection (IsProviderChanged, ProviderChangeMessage), confirmation dialogs, save with/without provider change, cancel reverts provider, reset settings, CanSave validation for LiteDB/NoSQL, property change notifications | Agent-201 |
 | 2026-03-12 | UI automation tests - Created comprehensive UI automation test suite using FlaUI 4.0.0: ApplicationLauncher utility, Page Object pattern (BasePage, MainWindowPage, ItemsPage, AddItemDialog, ImportDialog), 30+ UI tests covering MainWindow, ItemsPage, Import/Export functionality, build succeeds with 0 errors | Agent-Kimi |
+| 2026-03-12 | Store Management (CRUD, location mapping) - Verified complete implementation: Add/Edit/Delete stores with Address, Suburb, State, Postcode, Phone fields. Build succeeds with 0 errors | Agent-Verification |
 | 2026-03-12 | Detect genuine vs. illusory discounts - VERIFIED: Already implemented by Agent-070. Feature includes IllusoryDiscountDetectionWindow.xaml, IllusoryDiscountDetectionViewModel with ML-powered detection, integration with PriceForecastingService, MainWindow sidebar button and Tools menu item, IDialogService integration. Build succeeds with 0 errors. Updated multiagents.md and plan.md status from TODO to DONE. | Agent-Verification |
 
 ---
