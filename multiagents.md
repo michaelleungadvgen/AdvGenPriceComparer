@@ -507,6 +507,20 @@
 
 ---
 
+### Agent-Kimi-7 (DONE)
+- **Task:** Fix SettingsViewModelTests compilation error - Add missing IThemeService parameter
+- **Started:** 2026-03-13
+- **Completed:** 2026-03-13
+- **Issue:** SettingsViewModelTests.cs(61,20): error CS7036 - No argument for required parameter 'themeService' of 'SettingsViewModel.SettingsViewModel(ISettingsService, ILoggerService, IDialogService, IThemeService)'
+- **Solution:** 
+  1. Added `TestThemeService` class implementing `IThemeService` with `ApplyTheme` method and `ThemeChanged` event
+  2. Updated `CreateViewModel` helper method to accept optional `IThemeService` parameter with default `TestThemeService` instance
+- **Files Modified:**
+  - `AdvGenPriceComparer.Tests/ViewModels/SettingsViewModelTests.cs` - Added TestThemeService class, updated CreateViewModel method
+- **Results:** Build succeeds with 0 errors, all 17 SettingsViewModelTests passing
+
+---
+
 ## Notes for Agents
 
 1. **Before starting a task:**

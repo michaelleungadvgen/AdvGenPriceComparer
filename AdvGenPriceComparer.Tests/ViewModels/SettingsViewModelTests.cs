@@ -55,10 +55,10 @@ public class SettingsViewModelTests : IDisposable
         return new SettingsService(logger);
     }
 
-    private SettingsViewModel CreateViewModel(ISettingsService settingsService, IDialogService dialogService)
+    private SettingsViewModel CreateViewModel(ISettingsService settingsService, IDialogService dialogService, IThemeService? themeService = null)
     {
         var logger = new TestLoggerService();
-        return new SettingsViewModel(settingsService, logger, dialogService);
+        return new SettingsViewModel(settingsService, logger, dialogService, themeService ?? new TestThemeService());
     }
 
     #region Provider Change Detection Tests
@@ -402,6 +402,19 @@ public class SettingsViewModelTests : IDisposable
         public void LogError(string message, Exception? exception = null) { }
         public void LogCritical(string message, Exception? exception = null) { }
         public string GetLogFilePath() => string.Empty;
+    }
+
+    private class TestThemeService : IThemeService
+    {
+        public ApplicationTheme CurrentTheme { get; private set; } = ApplicationTheme.System;
+        public event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
+
+        public void ApplyTheme(ApplicationTheme theme)
+        {
+            var oldTheme = CurrentTheme;
+            CurrentTheme = theme;
+            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs { OldTheme = oldTheme, NewTheme = theme });
+        }
     }
 
     private class TestDialogService : IDialogService
