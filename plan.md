@@ -474,7 +474,7 @@ public class ExportService
 
 ### Phase 6: Enhanced Features (5-6 days)
 - [x] Product Management (CRUD operations)
-- [ ] Store Management (CRUD, location mapping)
+- [x] Store Management (CRUD, location mapping)
 - [ ] Shopping list integration
 - [x] Price drop alerts - IMPLEMENTED: IPriceDropNotificationService with monitoring, alert creation, and notification UI
 - [x] Deal expiration reminders - IMPLEMENTED: IDealExpirationService with tracking, DealExpirationRemindersWindow UI, dismiss functionality
