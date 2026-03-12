@@ -118,6 +118,7 @@
 | Configure auto-update mechanism | 🟢 DONE | Agent-056 | Implemented IUpdateService, UpdateService, UpdateNotificationWindow with remote JSON check, auto-check on startup, manual check via Help menu |
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
 | **Unit tests for import/export services** | 🟡 DOING | Agent-Kimi-4 | Creating comprehensive xUnit tests for JsonImportService and ExportService |
+| **Implement SyncFromStaticPeer() method** | 🟢 DONE | Agent-Kimi-6 | Implemented SyncFromStaticPeer() method in StaticDataImporter with incremental sync, timestamp checking, discovery.json fetching, and comprehensive sync result reporting |
 
 ---
 

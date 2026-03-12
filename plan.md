@@ -6025,7 +6025,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [x] Add validation on import - IMPLEMENTED: Checksum validation, manifest parsing
 - [x] Add error handling for malformed data - IMPLEMENTED: Try-catch per entity with error collection
 - [x] Add import progress tracking - IMPLEMENTED: IProgress<StaticImportProgress> support
-- [ ] Implement `SyncFromStaticPeer()` method
+- [x] Implement `SyncFromStaticPeer()` method - DONE: Implemented in StaticDataImporter with incremental sync support, timestamp checking, discovery.json fetching, manifest comparison, and comprehensive result reporting
 - [ ] Add incremental sync (only new files)
 - [ ] Add import history tracking
 

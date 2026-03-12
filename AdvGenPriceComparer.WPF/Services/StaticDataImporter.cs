@@ -365,6 +365,286 @@ public class StaticDataImporter
         }
     }
 
+    /// <summary>
+    /// Synchronize data from a static peer, importing only new or updated data since last sync.
+    /// Fetches discovery info, checks timestamps, and performs incremental import.
+    /// </summary>
+    /// <param name="peerBaseUrl">Base URL of the static peer (e.g., "https://example.com/data")</param>
+    /// <param name="options">Import options for handling duplicates</param>
+    /// <param name="lastSyncTimestamp">Timestamp of last successful sync (null for full sync)</param>
+    /// <param name="progress">Progress reporter</param>
+    /// <returns>Sync result with details of what was imported</returns>
+    public async Task<StaticSyncResult> SyncFromStaticPeerAsync(
+        string peerBaseUrl,
+        StaticImportOptions options,
+        DateTime? lastSyncTimestamp = null,
+        IProgress<StaticImportProgress>? progress = null)
+    {
+        var result = new StaticSyncResult
+        {
+            PeerUrl = peerBaseUrl,
+            SyncStartedAt = DateTime.UtcNow,
+            LastSyncTimestamp = lastSyncTimestamp
+        };
+
+        try
+        {
+            _logger.LogInfo($"Starting sync from static peer: {peerBaseUrl}");
+            progress?.Report(new StaticImportProgress { Percentage = 0, Status = "Connecting to peer..." });
+
+            using var httpClient = new System.Net.Http.HttpClient();
+            httpClient.Timeout = TimeSpan.FromMinutes(5);
+
+            // Fetch discovery.json to verify peer and get info
+            var discoveryUrl = $"{peerBaseUrl.TrimEnd('/')}/discovery.json";
+            StaticDiscoveryDto? discovery;
+            
+            try
+            {
+                var discoveryJson = await httpClient.GetStringAsync(discoveryUrl);
+                discovery = JsonSerializer.Deserialize<StaticDiscoveryDto>(discoveryJson, _jsonOptions);
+                
+                if (discovery == null)
+                {
+                    result.Success = false;
+                    result.ErrorMessage = "Failed to parse discovery.json from peer.";
+                    return result;
+                }
+                
+                result.PeerPackageId = discovery.PackageId;
+                result.PeerLocation = discovery.Location;
+                _logger.LogInfo($"Connected to peer: {discovery.ExportedBy} at {discovery.Location}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning($"Could not fetch discovery.json: {ex.Message}. Proceeding with direct manifest fetch.");
+                discovery = null;
+            }
+
+            progress?.Report(new StaticImportProgress { Percentage = 10, Status = "Checking peer manifest..." });
+
+            // Fetch manifest.json to check timestamp
+            var manifestUrl = $"{peerBaseUrl.TrimEnd('/')}/manifest.json";
+            StaticExportManifest? manifest;
+            
+            try
+            {
+                var manifestJson = await httpClient.GetStringAsync(manifestUrl);
+                manifest = JsonSerializer.Deserialize<StaticExportManifest>(manifestJson, _jsonOptions);
+                
+                if (manifest == null)
+                {
+                    result.Success = false;
+                    result.ErrorMessage = "Failed to parse manifest.json from peer.";
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.ErrorMessage = $"Failed to fetch manifest.json: {ex.Message}";
+                _logger.LogError(result.ErrorMessage, ex);
+                return result;
+            }
+
+            result.PeerPackageId = manifest.PackageId;
+            result.PeerCreatedAt = manifest.CreatedAt;
+
+            // Check if peer data is newer than last sync
+            if (lastSyncTimestamp.HasValue && manifest.CreatedAt <= lastSyncTimestamp.Value)
+            {
+                result.Success = true;
+                result.IsUpToDate = true;
+                result.Message = "Peer data is up to date. No sync needed.";
+                result.SyncCompletedAt = DateTime.UtcNow;
+                _logger.LogInfo($"Peer data ({manifest.CreatedAt:yyyy-MM-dd HH:mm:ss}) is not newer than last sync ({lastSyncTimestamp.Value:yyyy-MM-dd HH:mm:ss}). Skipping sync.");
+                progress?.Report(new StaticImportProgress { Percentage = 100, Status = "Already up to date!" });
+                return result;
+            }
+
+            _logger.LogInfo($"Peer data is newer than last sync. Starting import...");
+            progress?.Report(new StaticImportProgress { Percentage = 20, Status = "Downloading package..." });
+
+            // Download the full package as ZIP (for now - in future could download individual files)
+            var tempFile = Path.Combine(Path.GetTempPath(), $"advgen_sync_{Guid.NewGuid():N}.zip");
+            string? extractedDir = null;
+
+            try
+            {
+                // Try to download ZIP archive first
+                var zipUrl = $"{peerBaseUrl.TrimEnd('/')}/price-data-{manifest.CreatedAt:yyyyMMdd-HHmmss}.zip";
+                
+                try
+                {
+                    var response = await httpClient.GetAsync(zipUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await using var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write);
+                        await response.Content.CopyToAsync(fs);
+                        _logger.LogInfo($"Downloaded ZIP archive: {zipUrl}");
+                    }
+                    else
+                    {
+                        // Fall back to downloading individual files
+                        _logger.LogInfo("ZIP archive not found, downloading individual files...");
+                        extractedDir = Path.Combine(Path.GetTempPath(), $"advgen_sync_{Guid.NewGuid():N}");
+                        Directory.CreateDirectory(extractedDir);
+                        
+                        await DownloadPackageFilesAsync(httpClient, peerBaseUrl, extractedDir, manifest, progress, result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning($"Failed to download ZIP: {ex.Message}. Falling back to individual files.");
+                    extractedDir = Path.Combine(Path.GetTempPath(), $"advgen_sync_{Guid.NewGuid():N}");
+                    Directory.CreateDirectory(extractedDir);
+                    
+                    await DownloadPackageFilesAsync(httpClient, peerBaseUrl, extractedDir, manifest, progress, result);
+                }
+
+                progress?.Report(new StaticImportProgress { Percentage = 60, Status = "Importing downloaded data..." });
+
+                // Import from downloaded data
+                StaticImportResult importResult;
+                
+                if (File.Exists(tempFile))
+                {
+                    // Import from ZIP
+                    importResult = await ImportFromArchiveAsync(tempFile, options, 
+                        new Progress<StaticImportProgress>(p => 
+                        {
+                            var adjustedPercentage = 60 + (p.Percentage * 0.4);
+                            progress?.Report(new StaticImportProgress 
+                            { 
+                                Percentage = (int)adjustedPercentage, 
+                                Status = p.Status 
+                            });
+                        }));
+                }
+                else if (!string.IsNullOrEmpty(extractedDir) && Directory.Exists(extractedDir))
+                {
+                    // Import from directory
+                    importResult = await ImportFromDirectoryAsync(extractedDir, options,
+                        new Progress<StaticImportProgress>(p =>
+                        {
+                            var adjustedPercentage = 60 + (p.Percentage * 0.4);
+                            progress?.Report(new StaticImportProgress
+                            {
+                                Percentage = (int)adjustedPercentage,
+                                Status = p.Status
+                            });
+                        }));
+                }
+                else
+                {
+                    result.Success = false;
+                    result.ErrorMessage = "No data files were downloaded.";
+                    return result;
+                }
+
+                // Copy import results to sync result
+                result.Success = importResult.Success;
+                result.Message = importResult.Message;
+                result.ErrorMessage = importResult.ErrorMessage;
+                result.StoresImported = importResult.StoresImported;
+                result.StoresSkipped = importResult.StoresSkipped;
+                result.StoresUpdated = importResult.StoresUpdated;
+                result.ProductsImported = importResult.ProductsImported;
+                result.ProductsSkipped = importResult.ProductsSkipped;
+                result.ProductsUpdated = importResult.ProductsUpdated;
+                result.PricesImported = importResult.PricesImported;
+                result.PricesSkipped = importResult.PricesSkipped;
+                result.PricesUpdated = importResult.PricesUpdated;
+                result.Errors.AddRange(importResult.Errors);
+                result.NewSyncTimestamp = manifest.CreatedAt;
+            }
+            finally
+            {
+                // Cleanup temp files
+                try
+                {
+                    if (File.Exists(tempFile))
+                    {
+                        File.Delete(tempFile);
+                    }
+                    if (!string.IsNullOrEmpty(extractedDir) && Directory.Exists(extractedDir))
+                    {
+                        Directory.Delete(extractedDir, true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning($"Failed to cleanup temp files: {ex.Message}");
+                }
+            }
+
+            result.SyncCompletedAt = DateTime.UtcNow;
+            
+            if (result.Success)
+            {
+                var duration = result.SyncCompletedAt - result.SyncStartedAt;
+                _logger.LogInfo($"Sync completed in {duration.TotalSeconds:F1}s. {result.Message}");
+                progress?.Report(new StaticImportProgress { Percentage = 100, Status = "Sync complete!" });
+            }
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            result.Success = false;
+            result.ErrorMessage = $"Sync failed: {ex.Message}";
+            result.SyncCompletedAt = DateTime.UtcNow;
+            _logger.LogError(result.ErrorMessage, ex);
+            progress?.Report(new StaticImportProgress { Percentage = 0, Status = $"Error: {ex.Message}" });
+            return result;
+        }
+    }
+
+    /// <summary>
+    /// Download individual package files from a static peer
+    /// </summary>
+    private async Task DownloadPackageFilesAsync(
+        System.Net.Http.HttpClient httpClient,
+        string peerBaseUrl,
+        string outputDirectory,
+        StaticExportManifest manifest,
+        IProgress<StaticImportProgress>? progress,
+        StaticSyncResult result)
+    {
+        var filesToDownload = new[] { "stores.json", "products.json", "prices.json", "manifest.json" };
+        var totalFiles = filesToDownload.Length;
+        var downloadedFiles = 0;
+
+        foreach (var fileName in filesToDownload)
+        {
+            try
+            {
+                var fileUrl = $"{peerBaseUrl.TrimEnd('/')}/{fileName}";
+                var outputPath = Path.Combine(outputDirectory, fileName);
+
+                progress?.Report(new StaticImportProgress 
+                { 
+                    Percentage = 20 + (downloadedFiles * 40 / totalFiles), 
+                    Status = $"Downloading {fileName}..." 
+                });
+
+                var fileContent = await httpClient.GetStringAsync(fileUrl);
+                await File.WriteAllTextAsync(outputPath, fileContent);
+                
+                downloadedFiles++;
+                result.FilesDownloaded.Add(fileName);
+                _logger.LogDebug($"Downloaded {fileName} from peer");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning($"Failed to download {fileName}: {ex.Message}");
+                result.Errors.Add($"Failed to download {fileName}: {ex.Message}");
+            }
+        }
+
+        result.TotalFilesDownloaded = downloadedFiles;
+    }
+
     #endregion
 
     #region Private Import Methods
@@ -948,6 +1228,104 @@ internal enum ImportAction
     Imported,
     Skipped,
     Updated
+}
+
+#endregion
+
+#region Sync Result
+
+/// <summary>
+/// Result of a sync operation from a static peer
+/// </summary>
+public class StaticSyncResult
+{
+    /// <summary>
+    /// Whether the sync was successful
+    /// </summary>
+    public bool Success { get; set; }
+
+    /// <summary>
+    /// Human-readable status message
+    /// </summary>
+    public string? Message { get; set; }
+
+    /// <summary>
+    /// Error message if sync failed
+    /// </summary>
+    public string? ErrorMessage { get; set; }
+
+    /// <summary>
+    /// URL of the peer that was synced
+    /// </summary>
+    public string? PeerUrl { get; set; }
+
+    /// <summary>
+    /// Package ID from the peer
+    /// </summary>
+    public string? PeerPackageId { get; set; }
+
+    /// <summary>
+    /// Location of the peer
+    /// </summary>
+    public string? PeerLocation { get; set; }
+
+    /// <summary>
+    /// Timestamp when the peer's package was created
+    /// </summary>
+    public DateTime PeerCreatedAt { get; set; }
+
+    /// <summary>
+    /// Whether the peer data was up to date (no sync needed)
+    /// </summary>
+    public bool IsUpToDate { get; set; }
+
+    /// <summary>
+    /// When the sync started
+    /// </summary>
+    public DateTime SyncStartedAt { get; set; }
+
+    /// <summary>
+    /// When the sync completed
+    /// </summary>
+    public DateTime SyncCompletedAt { get; set; }
+
+    /// <summary>
+    /// The last sync timestamp that was provided (for incremental sync)
+    /// </summary>
+    public DateTime? LastSyncTimestamp { get; set; }
+
+    /// <summary>
+    /// The new sync timestamp to save for future incremental syncs
+    /// </summary>
+    public DateTime? NewSyncTimestamp { get; set; }
+
+    // Import counts
+    public int StoresImported { get; set; }
+    public int StoresSkipped { get; set; }
+    public int StoresUpdated { get; set; }
+
+    public int ProductsImported { get; set; }
+    public int ProductsSkipped { get; set; }
+    public int ProductsUpdated { get; set; }
+
+    public int PricesImported { get; set; }
+    public int PricesSkipped { get; set; }
+    public int PricesUpdated { get; set; }
+
+    /// <summary>
+    /// Number of files downloaded from peer
+    /// </summary>
+    public int TotalFilesDownloaded { get; set; }
+
+    /// <summary>
+    /// List of files that were downloaded
+    /// </summary>
+    public List<string> FilesDownloaded { get; set; } = new();
+
+    /// <summary>
+    /// List of errors encountered during sync
+    /// </summary>
+    public List<string> Errors { get; set; } = new();
 }
 
 #endregion
