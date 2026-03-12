@@ -7,3 +7,8 @@
 **Vulnerability:** The `ApiKeyMiddleware` in the ASP.NET Core server allowed unauthenticated access to `GET /api/prices` based on the method and path, but failed to actually verify the environment using `IWebHostEnvironment.IsDevelopment()`. This would expose the endpoints in production.
 **Learning:** Hardcoded path and method checks for "development" features are insufficient. Environment-specific security bypasses must explicitly evaluate the hosting environment (e.g., using `IsDevelopment()`) to prevent accidental production exposure.
 **Prevention:** Always inject and utilize `IWebHostEnvironment` (which is a Singleton and safe to inject into convention-based middleware constructors) to enforce environment constraints when defining security exceptions.
+
+## 2025-03-12 - Insecure Auto-Update Execution without Cryptographic Verification
+**Vulnerability:** The application's `UpdateService` fetched an installer `.msi` via HTTP/HTTPS and immediately executed it using `Process.Start` without validating its integrity against the provided JSON manifest's `FileHash` property. This could allow execution of maliciously injected files during transit or from a compromised update server. (Note: A previous finding about `ApiKeyMiddleware` was reverted as the "bypass" was actually an intentional feature for public API access).
+**Learning:** Even if update manifests are retrieved over HTTPS, relying solely on transport-layer security is insufficient defense against supply chain attacks or compromised endpoints.
+**Prevention:** Always verify downloaded executables using strong cryptographic hashes (e.g., SHA-256) matching a known-good signature or manifest *before* invoking the OS process executor.

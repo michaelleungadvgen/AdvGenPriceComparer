@@ -166,7 +166,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash = "")
     {
         try
         {
@@ -186,6 +186,26 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            if (!string.IsNullOrEmpty(expectedHash))
+            {
+                using var sha256 = System.Security.Cryptography.SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+
+                if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update signature verification failed. Expected: {expectedHash}, Actual: {actualHash}");
+                    File.Delete(tempPath);
+                    return false;
+                }
+            }
+            else
+            {
+                _logger.LogWarning("No update hash provided for verification. Aborting update for security.");
+                File.Delete(tempPath);
+                return false;
+            }
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
