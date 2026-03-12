@@ -1922,9 +1922,9 @@ Refactor the codebase to strictly adhere to Clean Architecture principles, ensur
 - [ ] Refactor Domain models (`Item`, `Place`, `PriceRecord`) to ensure they are true POCOs without database/serialization attributes.
 
 ### 14.4 Step 3: Implement CQRS (Optional but Recommended)
-- [ ] Install MediatR in the `Application` layer.
-- [ ] Refactor `IGroceryDataService` into distinct Commands (e.g., `CreateItemCommand`, `ImportPricesCommand`) and Queries (e.g., `GetBestDealsQuery`, `GetPriceHistoryQuery`).
-- [ ] Implement handlers for each Command and Query.
+- [x] Install MediatR in the `Application` layer. **DONE:** Installed MediatR 12.2.0 package.
+- [x] Refactor `IGroceryDataService` into distinct Commands (e.g., `CreateItemCommand`, `ImportPricesCommand`) and Queries (e.g., `GetBestDealsQuery`, `GetPriceHistoryQuery`). **DONE:** Created 5 Commands and 11 Queries covering all IGroceryDataService operations.
+- [x] Implement handlers for each Command and Query. **DONE:** Created 9 handlers (3 for items, 1 for places, 2 for prices, 3 for analytics).
 
 ### 14.5 Step 4: Fix Dependency Injection
 - [x] Update `App.xaml.cs` to inject interfaces (e.g., `IP2PNetworkService`) instead of concrete classes (e.g., `NetworkManager`). **DONE:** DI now registers `IP2PNetworkService, NetworkManager`.

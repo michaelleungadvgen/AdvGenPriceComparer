@@ -117,6 +117,7 @@
 | Create installer (WiX Toolset or ClickOnce) | 🟢 DONE | Agent-035 | WiX v4 installer project created with MSI output (~25MB). Supports Start Menu & Desktop shortcuts, per-machine install, major upgrades.
 | Configure auto-update mechanism | 🟢 DONE | Agent-056 | Implemented IUpdateService, UpdateService, UpdateNotificationWindow with remote JSON check, auto-check on startup, manual check via Help menu |
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
+| **Unit tests for import/export services** | 🟡 DOING | Agent-Kimi-4 | Creating comprehensive xUnit tests for JsonImportService and ExportService |
 
 ---
 
@@ -431,6 +432,7 @@
 | 2026-03-12 | **Implement model versioning** - Created IModelVersionService interface, ModelVersionInfo/ModelVersionRetentionSettings/RollbackResult/ModelVersionSummary/CleanupResult/IntegrityCheckResult models, ModelVersionService with version tracking, rollback, cleanup with retention policy, integrity checking, export/import, events. Integrated with ModelTrainingService. 29 comprehensive xUnit tests all passing. | Agent-500 |
 | 2026-03-12 | Fix remaining 2 SettingsServiceTests failures - Fixed `SaveSettingsAsync_FileIsIndented` test by using `Environment.NewLine` instead of hardcoded `\n`. Fixed `LoadSettingsAsync_RaisesSettingsChangedEvent` by adding SettingsChanged event invocation when creating default settings file. All 25 SettingsServiceTests now passing. | Agent-Kimi |
 | 2026-03-12 | Multi-store trip optimization - Created ITripOptimizerService interface, TripOptimizerService with 3 optimization strategies (Cost/Distance/Balanced), TripOptimizerViewModel, TripOptimizerWindow XAML UI, EnumDescriptionConverter, registered in DI, added Tools menu item. Build succeeds with 0 errors. | Agent-Kimi |
+| 2026-03-12 | Implement CQRS with MediatR - Installed MediatR 12.2.0 in Application layer, created Commands folder (CreateItemCommand, UpdateItemCommand, DeleteItemCommand, CreatePlaceCommand, RecordPriceCommand), Queries folder (11 query types), Handlers folder (9 handlers), ServiceRegistration extension. WPF builds with 0 errors. All IGroceryDataService operations now have CQRS equivalents. | Agent-Kimi-5 |
 
 ---
 
@@ -447,8 +449,8 @@
 | **Fix Server Program accessibility for integration tests** | 🟢 DONE | Agent-106 | Fixed CS0122 error by adding `public partial class Program { }` to Program.cs |
 | **Fix PriceSharingWorkflowTests compilation errors** | 🟢 DONE | Agent-106 | Fixed namespace conflicts in WinUI project - App.xaml.cs and AddItemControl.xaml.cs now use fully qualified Microsoft.UI.Xaml.Application |
 | **Remove System.Net.Sockets from Core, create IP2PNetworkService interface** | 🟢 DONE | Agent-300 | Created IP2PNetworkService interface in Core with NetworkPeerInfo, PriceShareEventArgs. Moved NetworkManager to WPF/Services with full IP2PNetworkService implementation. Updated DI registration. Build succeeds with 0 errors, 296 tests passing. |
-| **Fix WinUI project NetworkManager references** | 🟢 DONE | Agent-Kimi-2 | Fixed NetworkManager references in WinUI project - removed Helpers using, made IP2PNetworkService optional parameter, commented out incompatible networking code. WPF builds with 0 errors.
-
+| **Fix WinUI project NetworkManager references** | 🟢 DONE | Agent-Kimi-2 | Fixed NetworkManager references in WinUI project - removed Helpers using, made IP2PNetworkService optional parameter, commented out incompatible networking code. WPF builds with 0 errors. |
+| **Implement CQRS with MediatR** | 🟢 DONE | Agent-Kimi-5 | Installed MediatR 12.2.0, created 11 Command/Query classes and 9 Handler classes covering all IGroceryDataService operations |
 
 ---
 
