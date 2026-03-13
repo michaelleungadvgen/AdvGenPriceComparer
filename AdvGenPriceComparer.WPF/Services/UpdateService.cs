@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +167,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash)
     {
         try
         {
@@ -186,6 +187,21 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Verify file hash before execution
+            using (var sha256 = SHA256.Create())
+            using (var stream = File.OpenRead(tempPath))
+            {
+                var hashBytes = sha256.ComputeHash(stream);
+                var actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+
+                if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security Error: Downloaded update file hash ({actualHash}) does not match expected hash ({expectedHash}). Execution aborted to prevent potential supply chain attack.");
+                    try { File.Delete(tempPath); } catch { /* Ignore cleanup errors */ }
+                    return false;
+                }
+            }
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
