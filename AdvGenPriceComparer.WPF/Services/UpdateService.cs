@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +167,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash = "")
     {
         try
         {
@@ -187,6 +188,41 @@ public class UpdateService : IUpdateService
 
             _logger.LogInfo($"Download completed: {tempPath}");
 
+            // Cryptographically verify the downloaded file hash to prevent supply chain attacks
+            if (!string.IsNullOrWhiteSpace(expectedHash))
+            {
+                _logger.LogInfo("Verifying update file hash...");
+                string actualHash;
+                using (var stream = File.OpenRead(tempPath))
+                using (var sha256 = SHA256.Create())
+                {
+                    var hashBytes = sha256.ComputeHash(stream);
+                    actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                }
+
+                if (!actualHash.Equals(expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update file hash mismatch! Expected: {expectedHash}, Actual: {actualHash}. Aborting installation.");
+
+                    try
+                    {
+                        File.Delete(tempPath);
+                    }
+                    catch (Exception deleteEx)
+                    {
+                        _logger.LogError("Failed to delete potentially compromised update file.", deleteEx);
+                    }
+
+                    return false;
+                }
+
+                _logger.LogInfo("Update file hash verified successfully.");
+            }
+            else
+            {
+                _logger.LogInfo("No expected hash provided. Skipping cryptographic verification (NOT RECOMMENDED).");
+            }
+
             // Execute the installer
             Process.Start(new ProcessStartInfo
             {
@@ -199,7 +235,7 @@ public class UpdateService : IUpdateService
         }
         catch (Exception ex)
         {
-            _logger.LogError("Failed to download update", ex);
+            _logger.LogError("Failed to download or verify update", ex);
             return false;
         }
     }
