@@ -2,3 +2,8 @@
 **Vulnerability:** API keys were being written to local JSON files (`settings.json`) in plaintext by the `SettingsService`, making them accessible to any user or application with file system read access.
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+
+## 2025-03-01 - Unverified Auto-Update Execution
+**Vulnerability:** The application was downloading `.msi`/`.exe` updates via HTTP/HTTPS and executing them immediately using `Process.Start()` without verifying the file's integrity.
+**Learning:** Automatically executing downloaded files, even from trusted endpoints, introduces a severe supply chain vulnerability. A compromised update server or man-in-the-middle attack could result in remote code execution with the user's privileges.
+**Prevention:** Always cryptographically verify downloaded executables against a known-good checksum (e.g., SHA-256) provided via a secure side-channel or manifest before execution. Delete files that fail verification immediately.
