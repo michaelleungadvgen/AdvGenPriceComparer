@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +167,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash)
     {
         try
         {
@@ -186,6 +187,35 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Verify file hash to prevent execution of tampered/malicious files
+            if (!string.IsNullOrWhiteSpace(expectedHash))
+            {
+                _logger.LogInfo($"Verifying update signature against expected hash: {expectedHash}");
+
+                using (var sha256 = SHA256.Create())
+                using (var stream = File.OpenRead(tempPath))
+                {
+                    var hashBytes = sha256.ComputeHash(stream);
+                    var actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+
+                    if (!string.Equals(actualHash, expectedHash.ToLowerInvariant(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        _logger.LogError($"Security Error: Update hash mismatch! Expected: {expectedHash}, Actual: {actualHash}. File execution aborted.");
+
+                        // Delete the tampered file
+                        stream.Close(); // Ensure handle is released
+                        try { File.Delete(tempPath); } catch { }
+
+                        return false;
+                    }
+                    _logger.LogInfo("Update signature verified successfully.");
+                }
+            }
+            else
+            {
+                _logger.LogInfo("No expected hash provided. Proceeding without signature verification.");
+            }
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
