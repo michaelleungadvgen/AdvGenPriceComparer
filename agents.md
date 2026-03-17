@@ -223,6 +223,8 @@ To add a new dialog window to the application:
 ### Known Issues
 - **WPF Namespace Conflicts**: The `AdvGenPriceComparer.Application` project namespace conflicts with `System.Windows.Application` in WPF. When working with WPF files, use fully qualified type names like `System.Windows.Application` instead of just `Application`.
   
+- **Core.Interfaces CultureInfo Conflict**: The `AdvGenPriceComparer.Core.Interfaces` namespace contains a custom `CultureInfo` class that conflicts with `System.Globalization.CultureInfo`. When using CultureInfo in WPF services that import `AdvGenPriceComparer.Core.Interfaces`, use fully qualified names like `System.Globalization.CultureInfo.DefaultThreadCurrentCulture` instead of `CultureInfo.DefaultThreadCurrentCulture`.
+  
 - **TestExportWorkflow**: CLI test project for export workflow testing
   - Location: `TestExportWorkflow/`
   - Build: `dotnet build TestExportWorkflow/TestExportWorkflow.csproj`
