@@ -117,6 +117,7 @@
 | Create installer (WiX Toolset or ClickOnce) | 🟢 DONE | Agent-035 | WiX v4 installer project created with MSI output (~25MB). Supports Start Menu & Desktop shortcuts, per-machine install, major upgrades.
 | Configure auto-update mechanism | 🟢 DONE | Agent-056 | Implemented IUpdateService, UpdateService, UpdateNotificationWindow with remote JSON check, auto-check on startup, manual check via Help menu |
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
+| **Integration tests for database operations** | 🟢 DONE | Agent-Kimi-DB | Created comprehensive 19 xUnit integration tests for database operations: Multi-Repository Operations (3), Data Integrity (3), Database Backup/Recovery (2), Index/Query Performance (2), Concurrent Operations (1), Complex Queries (2), Edge Cases (4), Alert System (2) |
 | **Fix failing ExportService unit tests** | 🟢 DONE | Agent-Kimi-8 | Fixed 3 failing ExportService tests: date range filtering logic, ItemRepository timestamp handling, and added GetAllIncludingInactive() method |
 | **Implement SyncFromStaticPeer() method** | 🟢 DONE | Agent-Kimi-6 | Implemented SyncFromStaticPeer() method in StaticDataImporter with incremental sync, timestamp checking, discovery.json fetching, and comprehensive sync result reporting |
 | **Localization (multiple languages)** | 🟡 DOING | Agent-Kimi-9 | Implementing multi-language support with resource files (RESX), ILocalizationService, and language switching in settings |
