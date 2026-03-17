@@ -119,6 +119,8 @@
 | User documentation | 🟢 DONE | Agent-032 | Complete user docs |
 | **Fix failing ExportService unit tests** | 🟢 DONE | Agent-Kimi-8 | Fixed 3 failing ExportService tests: date range filtering logic, ItemRepository timestamp handling, and added GetAllIncludingInactive() method |
 | **Implement SyncFromStaticPeer() method** | 🟢 DONE | Agent-Kimi-6 | Implemented SyncFromStaticPeer() method in StaticDataImporter with incremental sync, timestamp checking, discovery.json fetching, and comprehensive sync result reporting |
+| **Localization (multiple languages)** | 🟡 DOING | Agent-Kimi-9 | Implementing multi-language support with resource files (RESX), ILocalizationService, and language switching in settings |
+| **Document forecasting accuracy and limitations** | 🟢 DONE | Agent-Kimi-Docs | Created comprehensive PRICE_FORECASTING.md documentation covering accuracy metrics (MAPE 5-15%), performance expectations, limitations, data requirements, best practices, and troubleshooting |
 
 ---
 
@@ -439,6 +441,7 @@
 | 2026-03-13 | **Replace MediatR with custom implementation** - Created custom IRequest, IRequestHandler, IMediator interfaces in AdvGenPriceComparer.Application/Mediator/. Implemented Mediator class using reflection for handler resolution. Removed MediatR NuGet package. Updated all 5 Commands, 11 Queries, 9 Handlers to use new interfaces. Updated ServiceRegistration to auto-register handlers. Build succeeds with 0 errors, 351 tests passing. | Agent-Kimi-Current |
 | 2026-03-13 | **Fix failing ExportService unit tests** - Fixed 3 failing tests: (1) Date range filtering logic - changed to use proper overlap detection, (2) ItemRepository.Add() timestamp handling - preserve existing timestamps for test scenarios, (3) Added IItemRepository.GetAllIncludingInactive() method and updated ExportService to use it. All 20 ExportServiceTests now passing. Build succeeds with 0 errors, 354 tests passing. | Agent-Kimi-8 |
 | 2026-03-13 | **Update PROJECT_STATUS.md** - Synchronized pending features list with actual implementation status. Marked as DONE: Shopping list integration, Multi-store trip optimization, Price comparison view, Historical price charts, Barcode scanner integration, Search across all entities, Price drop notifications, P2P price data sharing, Dark mode theme. Build: 0 errors, 354 tests passing. | Agent-Kimi-Docs |
+| 2026-03-18 | **Document forecasting accuracy and limitations** - Created comprehensive PRICE_FORECASTING.md in AdvGenPriceComparer.ML/ covering MAPE metrics (5-15%), confidence intervals (95%), trend detection accuracy (75-85%), anomaly detection performance, data requirements (30-90+ days), algorithm limitations, best practices, and troubleshooting guide. | Agent-Kimi-Docs |
 
 ---
 

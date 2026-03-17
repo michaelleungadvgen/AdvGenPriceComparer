@@ -3709,7 +3709,7 @@ public class PriceForecastViewModel : ViewModelBase
 - [x] Add menu item to open Price Forecast window
 - [x] Test forecasting with real historical data - Created 26 xUnit tests for PriceForecastingService
 - [ ] Implement price alert system
-- [ ] Document forecasting accuracy and limitations
+- [x] Document forecasting accuracy and limitations - DONE: Created PRICE_FORECASTING.md with comprehensive accuracy metrics, limitations, best practices, and troubleshooting guide
 
 ### 11.9 Configuration in App.xaml.cs
 
