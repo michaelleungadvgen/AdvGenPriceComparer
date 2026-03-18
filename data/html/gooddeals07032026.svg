@@ -1,0 +1,95 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean white background -->
+  <rect width="1080" height="1080" fill="#FFFFFF"/>
+  
+  <!-- Header with fire emoji -->
+  <rect x="0" y="0" width="1080" height="120" fill="#FF4500"/>
+  <text x="540" y="75" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="bold" text-anchor="middle">
+    🔥 本週最強電子產品優惠來了！ 🔥
+  </text>
+  <text x="540" y="115" fill="white" font-family="Arial" font-size="28" text-anchor="middle">
+    精選10大超值好價，錯過等一年！
+  </text>
+  
+  <!-- Main title -->
+  <text x="80" y="180" fill="#333" font-family="Arial" font-size="42" font-weight="bold">
+    🏆 本週十大精選優惠 🏆
+  </text>
+  
+  <!-- Deals list - Left column -->
+  <!-- 1. Samsung -->
+  <text x="80" y="260" fill="#000" font-family="Arial" font-size="24" font-weight="bold">1️⃣ Samsung Galaxy S26 Ultra 512GB</text>
+  <text x="100" y="295" fill="#333" font-family="Arial" font-size="22">💰 $2,199 <span fill="#999">(原價 $2,499)</span> <tspan fill="red" font-weight="bold">省 $300</tspan></text>
+  <text x="100" y="325" fill="#0066CC" font-family="Arial" font-size="20">🛒 JB Hi-Fi</text>
+  
+  <!-- 2. LG TV -->
+  <text x="80" y="380" fill="#000" font-family="Arial" font-size="24" font-weight="bold">2️⃣ LG 65吋 C5 4K OLED evo 電視</text>
+  <text x="100" y="415" fill="#333" font-family="Arial" font-size="22">💰 $2,671 <span fill="#999">(原價 $4,295)</span> <tspan fill="red" font-weight="bold">省 $1,624 🔥</tspan></text>
+  <text x="100" y="445" fill="#0066CC" font-family="Arial" font-size="20">🛒 Harvey Norman</text>
+  
+  <!-- 3. MacBook -->
+  <text x="80" y="500" fill="#000" font-family="Arial" font-size="24" font-weight="bold">3️⃣ Apple MacBook Neo 13吋 (A18 Pro)</text>
+  <text x="100" y="535" fill="#333" font-family="Arial" font-size="22">💰 $899 — <tspan fill="green" font-weight="bold">全新發售，超值首選！</tspan></text>
+  <text x="100" y="565" fill="#0066CC" font-family="Arial" font-size="20">🛒 Harvey Norman</text>
+  
+  <!-- 4. Google Pixel -->
+  <text x="80" y="620" fill="#000" font-family="Arial" font-size="24" font-weight="bold">4️⃣ Google Pixel 10 128GB</text>
+  <text x="100" y="655" fill="#333" font-family="Arial" font-size="22">💰 $1,347</text>
+  <text x="100" y="685" fill="#0066CC" font-family="Arial" font-size="20">🛒 The Good Guys</text>
+  
+  <!-- 5. JBL Soundbar -->
+  <text x="80" y="740" fill="#000" font-family="Arial" font-size="24" font-weight="bold">5️⃣ JBL Bar 1000MK2 7.1.4聲道 Soundbar</text>
+  <text x="100" y="775" fill="#333" font-family="Arial" font-size="22">💰 $1,112 <span fill="#999">(原價 $1,595)</span> <tspan fill="red" font-weight="bold">省 $483</tspan></text>
+  <text x="100" y="805" fill="#0066CC" font-family="Arial" font-size="20">🛒 Harvey Norman</text>
+  
+  <!-- Right column (starting at x=580) -->
+  <!-- 6. HP Laptop -->
+  <text x="580" y="260" fill="#000" font-family="Arial" font-size="24" font-weight="bold">6️⃣ HP OmniBook 5 AI 16吋 OLED</text>
+  <text x="600" y="295" fill="#333" font-family="Arial" font-size="22">💰 $1,548 <span fill="#999">(原價 $2,298)</span> <tspan fill="red" font-weight="bold">省 $750</tspan></text>
+  <text x="600" y="325" fill="#0066CC" font-family="Arial" font-size="20">🛒 Harvey Norman</text>
+  
+  <!-- 7. Samsung Monitor -->
+  <text x="580" y="380" fill="#000" font-family="Arial" font-size="24" font-weight="bold">7️⃣ Samsung 32吋 M7 4K 智慧螢幕</text>
+  <text x="600" y="415" fill="#333" font-family="Arial" font-size="22">💰 $498 <span fill="#999">(原價 $699)</span> <tspan fill="red" font-weight="bold">省 $201</tspan></text>
+  <text x="600" y="445" fill="#0066CC" font-family="Arial" font-size="20">🛒 Harvey Norman</text>
+  
+  <!-- 8. JBL Earbuds -->
+  <text x="580" y="500" fill="#000" font-family="Arial" font-size="24" font-weight="bold">8️⃣ JBL Reflect Flow Pro Plus 無線耳機</text>
+  <text x="600" y="535" fill="#333" font-family="Arial" font-size="22">💰 $77 <span fill="#999">(原價 $169)</span> <tspan fill="red" font-weight="bold">省 $92</tspan></text>
+  <text x="600" y="565" fill="#0066CC" font-family="Arial" font-size="20">🛒 The Good Guys</text>
+  <rect x="840" y="545" width="120" height="28" fill="#FFD700" rx="14"/>
+  <text x="900" y="565" fill="#000" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">⏰ 優惠至3月9日</text>
+  
+  <!-- 9. Hisense TV -->
+  <text x="580" y="620" fill="#000" font-family="Arial" font-size="24" font-weight="bold">9️⃣ Hisense 75吋 U6QAU PRO Mini LED</text>
+  <text x="600" y="655" fill="#333" font-family="Arial" font-size="22">💰 $1,495 <span fill="#999">(原價 $1,695)</span> <tspan fill="red" font-weight="bold">省 $200</tspan></text>
+  <text x="600" y="685" fill="#0066CC" font-family="Arial" font-size="20">🛒 The Good Guys</text>
+  <rect x="840" y="665" width="120" height="28" fill="#FFD700" rx="14"/>
+  <text x="900" y="685" fill="#000" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">⏰ 優惠至3月18日</text>
+  
+  <!-- 10. Dyson -->
+  <text x="580" y="740" fill="#000" font-family="Arial" font-size="24" font-weight="bold">🔟 Dyson Supersonic 風筒 Origin</text>
+  <text x="600" y="775" fill="#333" font-family="Arial" font-size="22">💰 $299 <span fill="#999">(原價 $499)</span> <tspan fill="red" font-weight="bold">省 $200</tspan></text>
+  <text x="600" y="805" fill="#0066CC" font-family="Arial" font-size="20">🛒 The Good Guys</text>
+  <rect x="840" y="785" width="120" height="28" fill="#FFD700" rx="14"/>
+  <text x="900" y="805" fill="#000" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">⏰ 優惠至3月9日</text>
+  
+  <!-- Footer -->
+  <rect x="0" y="900" width="1080" height="120" fill="#F5F5F5"/>
+  <text x="540" y="950" fill="#333" font-family="Arial" font-size="26" text-anchor="middle">
+    📌 詳細資訊及購買連結請到我們網頁查看 👇
+  </text>
+  <text x="540" y="990" fill="#0066CC" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">
+    🌐 連結在個人簡介
+  </text>
+  
+  <!-- CTA -->
+  <text x="540" y="1050" fill="#666" font-family="Arial" font-size="22" text-anchor="middle">
+    💬 Tag朋友一起慳錢！ ❤️ 按讚 + 追蹤
+  </text>
+  
+  <!-- Hashtags -->
+  <text x="540" y="1070" fill="#999" font-family="Arial" font-size="18" text-anchor="middle">
+    #澳洲優惠 #澳洲購物 #電子產品 #慳錢 #Samsung #Apple #LG #JBL #Dyson
+  </text>
+</svg>

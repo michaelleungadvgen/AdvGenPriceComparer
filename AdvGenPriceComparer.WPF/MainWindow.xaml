@@ -127,6 +127,7 @@
                 <MenuItem Header="Import from URL..." Click="ImportFromUrl_Click"/>
                 <MenuItem Header="Cloud Sync..." Click="CloudSync_Click"/>
                 <MenuItem Header="Server Data Transfer..." Click="ServerDataTransfer_Click"/>
+                <MenuItem Header="Static Peer Config..." Click="StaticPeerConfig_Click"/>
                 <Separator/>
                 <MenuItem Header="Generate Demo Data" Click="GenerateDemoData_Click"/>
             </MenuItem>

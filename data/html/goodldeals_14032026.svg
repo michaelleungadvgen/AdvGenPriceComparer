@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1480" width="840" height="1480">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141424" />
+      <stop offset="100%" stop-color="#1c1c30" />
+    </linearGradient>
+    <linearGradient id="fireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9a56" />
+      <stop offset="100%" stop-color="#ff4d4d" />
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="840" height="1480" fill="url(#bgGrad)" />
+
+  <!-- header -->
+  <text x="50" y="72" font-family="Arial Black, Helvetica, sans-serif" font-size="38" fill="url(#fireGrad)" font-weight="900">🔥 本週電子產品精選優惠！</text>
+  <text x="50" y="118" font-family="Arial Black, Helvetica, sans-serif" font-size="38" fill="url(#fireGrad)" font-weight="900">省到笑！ 🔥</text>
+  <text x="50" y="162" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#ffd966" font-weight="bold">3月11日至17日，2026</text>
+
+  <!-- week badge -->
+  <rect x="674" y="42" rx="22" ry="22" width="126" height="48" fill="#e6951e" />
+  <text x="687" y="75" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#141424" font-weight="bold">🏆 十大</text>
+
+  <!-- ===== ITEM 1 — LG 77吋 G5 ===== -->
+  <rect x="50" y="193" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="209" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">1</text>
+  <text x="88" y="211" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">LG 77吋  G5 4K Evo AI Gallery OLED</text>
+  <text x="790" y="211" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 JB Hi-Fi</text>
+  <text x="50" y="249" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $4,988</text>
+  <text x="252" y="249" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$7,995</text>
+  <text x="370" y="249" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#e8604c" font-weight="bold">省 $3,007 🔥</text>
+  <line x1="50" y1="270" x2="790" y2="270" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 2 — Samsung Galaxy S26 ===== -->
+  <rect x="50" y="283" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="299" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">2</text>
+  <text x="88" y="301" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">Samsung Galaxy S26（512GB 免費升級）</text>
+  <text x="790" y="301" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 Harvey Norman</text>
+  <text x="50" y="339" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $1,549</text>
+  <text x="252" y="339" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$1,849</text>
+  <text x="370" y="339" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $300</text>
+  <line x1="50" y1="360" x2="790" y2="360" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 3 — Dyson V15 ===== -->
+  <rect x="50" y="373" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="389" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">3</text>
+  <text x="88" y="391" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">Dyson V15 Detect Absolute 無線吸塵機</text>
+  <text x="790" y="391" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 The Good Guys</text>
+  <text x="50" y="429" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $887</text>
+  <text x="252" y="429" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$1,299</text>
+  <text x="370" y="429" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $412</text>
+  <line x1="50" y1="450" x2="790" y2="450" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 4 — LG 55吋 G5 ===== -->
+  <rect x="50" y="463" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="479" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">4</text>
+  <text x="88" y="481" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">LG 55吋  G5 4K Evo AI Gallery OLED</text>
+  <text x="790" y="481" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 JB Hi-Fi</text>
+  <text x="50" y="519" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $2,677</text>
+  <text x="252" y="519" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$4,295</text>
+  <text x="370" y="519" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#e8604c" font-weight="bold">省 $1,618 🔥</text>
+  <line x1="50" y1="540" x2="790" y2="540" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 5 — HP OmniBook 5 ===== -->
+  <rect x="50" y="553" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="569" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">5</text>
+  <text x="88" y="571" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">HP OmniBook 5 AI 16吋 OLED 筆記型電腦</text>
+  <text x="790" y="571" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 Harvey Norman</text>
+  <text x="50" y="609" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $1,548</text>
+  <text x="252" y="609" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$2,298</text>
+  <text x="370" y="609" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $750</text>
+  <line x1="50" y1="630" x2="790" y2="630" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 6 — Samsung 75吋 U8500F ===== -->
+  <rect x="50" y="643" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="659" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">6</text>
+  <text x="88" y="661" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">Samsung 75吋  U8500F Crystal 4K 電視</text>
+  <text x="790" y="661" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 The Good Guys</text>
+  <text x="50" y="699" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $1,284</text>
+  <text x="252" y="699" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$1,699</text>
+  <text x="370" y="699" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $415</text>
+  <line x1="50" y1="720" x2="790" y2="720" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 7 — Apple MacBook Neo ===== -->
+  <rect x="50" y="733" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="749" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">7</text>
+  <text x="88" y="751" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">Apple MacBook Neo 13吋（A18 Pro）</text>
+  <text x="790" y="751" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 The Good Guys</text>
+  <text x="50" y="789" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $899</text>
+  <text x="252" y="789" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$1,099</text>
+  <text x="370" y="789" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $200</text>
+  <line x1="50" y1="810" x2="790" y2="810" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 8 — Hisense 100吋 Q7QAU ===== -->
+  <rect x="50" y="823" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="839" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">8</text>
+  <text x="88" y="841" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">Hisense 100吋  Q7QAU 4K QLED 電視</text>
+  <text x="790" y="841" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 The Good Guys</text>
+  <text x="50" y="879" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $2,954</text>
+  <text x="252" y="879" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$3,999</text>
+  <text x="370" y="879" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#e8604c" font-weight="bold">省 $1,045 🔥</text>
+  <line x1="50" y1="900" x2="790" y2="900" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 9 — JBL Bar 1000MK2 ===== -->
+  <rect x="50" y="913" rx="5" ry="5" width="28" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="64" y="929" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">9</text>
+  <text x="88" y="931" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">JBL Bar 1000MK2 7.1.4 聲道 Soundbar</text>
+  <text x="790" y="931" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 Harvey Norman</text>
+  <text x="50" y="969" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $1,112</text>
+  <text x="252" y="969" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$1,595</text>
+  <text x="370" y="969" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $483</text>
+  <line x1="50" y1="990" x2="790" y2="990" stroke="#2e3e4e" stroke-width="1.5" stroke-dasharray="6 4" />
+
+  <!-- ===== ITEM 10 — LG CineBeam QUBE ===== -->
+  <rect x="50" y="1003" rx="5" ry="5" width="36" height="22" fill="#1c3040" stroke="#4ab8b0" stroke-width="1.5" />
+  <text x="68" y="1019" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5dd8d0" font-weight="bold" text-anchor="middle">10</text>
+  <text x="96" y="1021" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#5dd8d0" font-weight="bold">LG CineBeam QUBE 4K 投影機（HU710PB）</text>
+  <text x="790" y="1021" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5dd8d0" text-anchor="end">🛒 JB Hi-Fi</text>
+  <text x="50" y="1059" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#5b9cf6" font-weight="bold">💰 $1,245</text>
+  <text x="252" y="1059" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#687080" text-decoration="line-through">$1,674</text>
+  <text x="370" y="1059" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5dd8d0" font-weight="bold">省 $429</text>
+
+  <!-- footer card -->
+  <rect x="40" y="1090" rx="18" ry="18" width="760" height="100" fill="#202038" />
+  <text x="65" y="1135" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#f1c40f" font-weight="bold">📌 所有優惠連結詳見個人簡介 👆</text>
+  <text x="65" y="1173" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#c8d8e8" font-weight="bold">💬 Tag 朋友一起慳錢！  ❤️ 記得按讚 + 追蹤</text>
+
+  <!-- hashtag line -->
+  <text x="40" y="1218" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4a6a84">#澳洲優惠 #電子產品 #慳錢 #澳洲生活 #JBHiFi #HarveyNorman #TheGoodGuys</text>
+  <text x="40" y="1244" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4a6a84">#LG #Samsung #Dyson #Apple #HP #Hisense #JBL #Brisbane #Queensland</text>
+</svg>

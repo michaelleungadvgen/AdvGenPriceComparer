@@ -2973,3 +2973,51 @@ Here are the three ALDI catalogues converted into a structured Markdown format:
 
 ---
 
+
+## Available from Wed 4th March
+
+### Liquor
+
+- **Irish Whiskey 700ml** - JAMESON - $53.99
+- **Irish Stout 4 Pack 500ml** - MURPHY'S ESTD 1856 - $17.99
+- **Irish Ale 6 Pack 470ml** - KILKENNY - $24.99
+- **Draught 6 Pack 470ml** - GUINNESS - $24.99
+- **Dry & Lime Cans 4 Pack 330ml** - JAMESON - $18.99
+
+### Limited Time Only Meat
+
+- **Beef Scotch Fillet (approx. 1.25kg)** - JINDURRA STATION - $39.99 ($31.99/kg)
+- **Creamy Tomato Chicken Gnocchi Meal Kit 775g** - READY, SET…COOK! - $14.99 ($19.34/kg)
+- **Pork Schnitty Dippers 500g** - READY, SET…COOK! - $9.99 ($19.98/kg)
+
+### Personal Care
+
+- **Men's Active Body Wash 1L** - PALMOLIVE - $6.49 ($0.65/100ml)
+- **Gold Soap Bar 10 Pack 90g** - PALMOLIVE - $8.99 ($1.00/100g)
+- **Advanced Protection Antiperspirant 72 Hour 2 Pack 127g/130g** - REXONA - $10.49 ($4.03/100g)
+- **Clinical Protection Antiperspirant Deodorant 96 Hour 2 Pack 48g** - REXONA - $13.99 ($14.57/100g)
+
+### Tools & DIY
+
+- **Sugar Soap Wipes 50 Pack** - DECO STYLE - $4.49
+- **4L Primer / Sealer / Undercoat** - DECO CRAFT - $49.99
+- **Premium Brush Set 5 Pcs** - DECO CRAFT - $9.99
+- **Household Ladder** - WORKZONE - $59.99
+- **Rechargeable Work Light 20W** - WORKZONE - $29.99
+- **Premium Sanding Assortment 24pc** - DECO CRAFT - $9.99
+- **Cable Reel 5m** - WORKZONE - $12.99
+- **Tile & Grout or Glass Treatment Assortment** - ENDURO SHIELD - $24.99
+- **Assorted Plumbing Supplies** - WORKZONE - $9.99
+- **Assorted Drain Tools** - WORKZONE - $9.99
+- **Assorted Tools** - WORKZONE - $4.99
+- **Assorted Sensors** - WORKZONE - $19.99
+- **Door Seals Assortment** - WORKZONE - $4.99
+- **Painting Accessories** - DECO CRAFT - $4.99
+- **Kitchen Plumbing Accessories** - WORKZONE - $12.99
+- **Kitchen Mixer Tap Assortment** - EASY HOME - $89.99
+- **Assorted Pipe Wrench Set** - WORKZONE - $19.99
+- **Masking Tape** - DECO CRAFT - $5.99
+- **Assorted Hooks** - WORKZONE - $7.99
+- **Drill Brush and Sanding 14pc Set** - FERREX - $9.99
+- **Floating Shelves Assorted** - DELTA - $7.99
+

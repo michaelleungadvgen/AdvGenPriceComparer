@@ -538,6 +538,20 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void StaticPeerConfig_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowStaticPeerConfigDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening static peer configuration: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void TitleBar_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (e.ClickCount == 2)

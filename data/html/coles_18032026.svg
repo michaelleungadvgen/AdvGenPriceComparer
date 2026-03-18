@@ -1,0 +1,90 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1080" fill="#F5F0E8"/>
+<!-- 主標題區塊 -->
+<rect x="60" y="40" width="960" height="140" rx="20" fill="#2D5A4D"/>
+<text x="540" y="110" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="bold" fill="white" text-anchor="middle">🛒 每週超市價格比較</text>
+<text x="540" y="165" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#F4E3C6" text-anchor="middle">2026年3月18 - 24日</text>
+<!-- 統計摘要 -->
+<rect x="60" y="210" width="960" height="120" rx="20" fill="white" stroke="#D1C9B9" stroke-width="2"/>
+<text x="160" y="280" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="bold" fill="#2D5A4D" text-anchor="start">🏆 本週勝出：Woolworths</text>
+<text x="160" y="340" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#4A4A4A" text-anchor="start">總計70款商品 · Woolworths 33款價格更低</text>
+<circle cx="720" cy="285" r="42" fill="#2D5A4D" stroke="#C4A962" stroke-width="3"/>
+<text x="720" y="310" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="bold" fill="white" text-anchor="middle">33</text>
+<!-- 兩大超市精選筍價區標題 -->
+<text x="100" y="420" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#C44C3C" text-anchor="start">💰 本週精選筍價 (Woolworths 更平)</text>
+<text x="740" y="420" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#1E4C7A" text-anchor="start">💰 本週精選筍價 (Coles 更平)</text>
+<!-- Woolworths 區塊 (左) -->
+<rect x="60" y="450" width="460" height="360" rx="16" fill="white" stroke="#B7B09C" stroke-width="1.5"/>
+<text x="80" y="500" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🐷 Primo 火腿培根 750g</text>
+<text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#C44C3C">$8.40</text>
+<text x="280" y="540" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$14.50</text>
+<text x="380" y="540" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$6.10</text>
+<line x1="80" y1="560" x2="500" y2="560" stroke="#E5E0D3" stroke-width="1"/>
+
+<text x="80" y="600" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🦐 JC Seafood 大蝦 240g</text>
+<text x="80" y="640" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#C44C3C">$10.00</text>
+<text x="280" y="640" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$35.00</text>
+<text x="380" y="640" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$25.00</text>
+<line x1="80" y1="660" x2="500" y2="660" stroke="#E5E0D3" stroke-width="1"/>
+
+<text x="80" y="700" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🐶 Supercoat 狗糧 2.6-2.8kg</text>
+<text x="80" y="740" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#C44C3C">$9.00</text>
+<text x="280" y="740" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$27.00</text>
+<text x="380" y="740" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$18.00</text>
+<line x1="80" y1="760" x2="500" y2="760" stroke="#E5E0D3" stroke-width="1"/>
+
+<text x="80" y="800" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🐑 澳洲羊腿扒 540g</text>
+<text x="80" y="840" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#C44C3C">$15.00</text>
+<text x="280" y="840" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$26.00</text>
+<text x="380" y="840" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$11.00</text>
+<!-- 第五項 W 因空間略調整，往下放 -->
+<!-- Coles 區塊 (右) -->
+<rect x="560" y="450" width="460" height="360" rx="16" fill="white" stroke="#B7B09C" stroke-width="1.5"/>
+<text x="580" y="500" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🍫 Lindt Gold Bunny 200g</text>
+<text x="580" y="540" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1E4C7A">$9.00</text>
+<text x="780" y="540" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$14.00</text>
+<text x="880" y="540" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$5.00</text>
+<line x1="580" y1="560" x2="1000" y2="560" stroke="#E5E0D3" stroke-width="1"/>
+
+<text x="580" y="600" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">☕ Moccona 凍乾咖啡 400g</text>
+<text x="580" y="640" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1E4C7A">$16.50</text>
+<text x="780" y="640" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$26.00</text>
+<text x="880" y="640" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$9.50</text>
+<line x1="580" y1="660" x2="1000" y2="660" stroke="#E5E0D3" stroke-width="1"/>
+
+<text x="580" y="700" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">💧 Mount Franklin 氣泡水10x375ml</text>
+<text x="580" y="740" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1E4C7A">$6.00</text>
+<text x="780" y="740" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$12.60</text>
+<text x="880" y="740" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$6.60</text>
+<line x1="580" y1="760" x2="1000" y2="760" stroke="#E5E0D3" stroke-width="1"/>
+
+<text x="580" y="800" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🧴 Head & Shoulders 洗頭水850ml</text>
+<text x="580" y="840" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1E4C7A">$9.25</text>
+<text x="780" y="840" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$13.00</text>
+<text x="880" y="840" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$3.75</text>
+<!-- 第五項 C 再挪 -->
+<!-- Woolworths 第五項 粟米 -->
+<rect x="60" y="820" width="460" height="70" rx="12" fill="#F6EFDE" stroke="#C44C3C" stroke-width="2"/>
+<text x="80" y="865" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🌽 澳洲粟米</text>
+<text x="220" y="865" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#C44C3C">$1.00</text>
+<text x="320" y="865" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$4.00</text>
+<text x="410" y="865" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$3.00</text>
+
+<!-- Coles 第五項 雪糕 -->
+<rect x="560" y="820" width="460" height="70" rx="12" fill="#E1EEF9" stroke="#1E4C7A" stroke-width="2"/>
+<text x="580" y="865" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#2C2C2C">🍦 Ben & Jerry's 雪糕</text>
+<text x="780" y="865" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1E4C7A">$6.00</text>
+<text x="880" y="865" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#888" text-decoration="line-through">$9.50</text>
+<text x="980" y="865" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2D5A4D">省$3.50</text>
+
+<!-- 總節省與佔比 -->
+<rect x="60" y="920" width="960" height="90" rx="20" fill="#2D5A4D" opacity="0.9"/>
+<text x="200" y="970" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="white">📊 本週總節省金額 $573+</text>
+<text x="570" y="970" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="white">🔴 Coles 34%</text>
+<text x="730" y="970" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="white">🟢 Woolworths 47%</text>
+
+<!-- 底部標語＋連結 -->
+<text x="540" y="1030" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#4F4A3E" text-anchor="middle">每週幫你格價，慳錢買餸！</text>
+<text x="540" y="1070" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#8B7E66" text-anchor="middle" text-decoration="underline">👉 查看完整報告：bit.ly/每週比價</text>
+<text x="540" y="1110" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#8B7E66" text-anchor="middle">#Coles #Woolworths #澳洲超市 #格價 #慳錢 #澳洲生活 #Brisbane #雪梨 #墨爾本</text>
+</svg>

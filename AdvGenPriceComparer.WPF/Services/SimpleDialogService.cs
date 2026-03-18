@@ -302,4 +302,15 @@ public class SimpleDialogService : IDialogService
         var window = new CloudSyncStatusWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowStaticPeerConfigDialog()
+    {
+        var peerDiscoveryService = ((App)System.Windows.Application.Current).Services.GetRequiredService<PeerDiscoveryService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        
+        var viewModel = new ViewModels.StaticPeerConfigViewModel(peerDiscoveryService, logger, dialogService);
+        var window = new StaticPeerConfigWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1400" width="800" height="1400">
+  <style>
+    .title-big { font-family: 'Arial Black', 'Helvetica Bold', sans-serif; font-size: 42px; font-weight: 900; fill: #1E3A5F; }
+    .date-badge { font-family: 'Arial', sans-serif; font-size: 24px; fill: #FFFFFF; }
+    .store-header-drakes { font-family: 'Arial Black', sans-serif; font-size: 36px; fill: #1B5E20; }
+    .store-header-aldi { font-family: 'Arial Black', sans-serif; font-size: 36px; fill: #0D47A1; }
+    .section-title { font-family: 'Arial', sans-serif; font-size: 26px; font-weight: bold; fill: #333; }
+    .item-name { font-family: 'Arial', sans-serif; font-size: 18px; fill: #2C3E50; }
+    .item-price { font-family: 'Arial', sans-serif; font-size: 18px; font-weight: bold; fill: #B85C00; }
+    .note-text { font-family: 'Arial', sans-serif; font-size: 18px; fill: #4A5568; }
+    .tip-text { font-family: 'Arial', sans-serif; font-size: 20px; fill: #2C3E50; }
+    .half-price-badge { fill: #C62828; font-weight: bold; }
+    .line { stroke: #CCCCCC; stroke-width: 2; }
+  </style>
+  <!-- 背景 -->
+  <rect width="800" height="1400" fill="#FEF9E7" rx="20" ry="20" />
+  <!-- 裝飾條紋 -->
+  <rect x="0" y="0" width="800" height="20" fill="#FF6F61" />
+  <rect x="0" y="1380" width="800" height="20" fill="#FF6F61" />
+
+  <!-- 主標題 -->
+  <text x="40" y="70" class="title-big">🛒 布里斯班本週超值特賣！</text>
+  <text x="40" y="120" font-family="Arial" font-size="30" fill="#D32F2F">3月11日 – 21日</text>
+  <line x1="40" y1="140" x2="760" y2="140" class="line" />
+
+  <!-- Drakes 超市區域 -->
+  <text x="40" y="190" class="store-header-drakes">🔻 Drakes 超市特賣 (3月11日–17日)</text>
+
+  <!-- 半價精選 -->
+  <text x="40" y="240" class="section-title">🔴 半價精選</text>
+  <text x="60" y="280" class="item-name">• Powerade 600ml — <tspan class="item-price">$9.25</tspan></text>
+  <text x="60" y="320" class="item-name">• Nescafe 即溶咖啡 95g — <tspan class="item-price">$5.50</tspan></text>
+  <text x="60" y="360" class="item-name">• Ajax 消毒濕紙巾 110片 — <tspan class="item-price">$5.50</tspan></text>
+  <text x="60" y="400" class="item-name">• Pepsi / Schweppes 24罐裝 — <tspan class="item-price">$21.00</tspan></text>
+  <text x="60" y="440" class="item-name">• Kleenex 面巾紙 9包裝 — 半價優惠</text>
+
+  <!-- 肉類海鮮 -->
+  <text x="40" y="500" class="section-title">🥩 肉類 & 海鮮</text>
+  <text x="60" y="540" class="item-name">• 澳洲穀飼牛肋眼扒 — <tspan class="item-price">$24.00/kg</tspan> (慳 $6.00)</text>
+  <text x="60" y="580" class="item-name">• 澳洲豬肩無骨烤肉 — <tspan class="item-price">$8.90/kg</tspan> (慳 $2.10)</text>
+  <text x="60" y="620" class="item-name">• 大虎蝦 — <tspan class="item-price">$32.00/kg</tspan></text>
+  <text x="60" y="660" class="item-name">• 塔斯曼尼亞三文魚 — <tspan class="item-price">$36.00/kg</tspan></text>
+  <text x="60" y="700" class="item-name">• Ingham's 雞柳 440g — <tspan class="item-price">$14.77/kg</tspan> (慳 $3.00)</text>
+
+  <!-- 熟食蔬果冷凍等簡化排列，節省空間 -->
+  <text x="40" y="760" class="section-title">🧀 熟食部</text>
+  <text x="60" y="800" class="item-name">• 三重煙熏火腿 — <tspan class="item-price">$13.00/kg</tspan></text>
+  <text x="60" y="840" class="item-name">• 火雞胸肉 — <tspan class="item-price">$26.00/kg</tspan> (慳 $4.00)</text>
+  <text x="60" y="880" class="item-name">• Tasty/Mild 芝士 — <tspan class="item-price">$16.90/kg</tspan> (慳 $5.00)</text>
+
+  <text x="40" y="940" class="section-title">🥬 新鮮蔬果</text>
+  <text x="60" y="980" class="item-name">• 昆士蘭 Shepard 牛油果 — 約 <tspan class="item-price">$1.50/個</tspan></text>
+  <text x="60" y="1020" class="item-name">• 澳洲西瓜 — <tspan class="item-price">$1.90/kg</tspan></text>
+  <text x="60" y="1060" class="item-name">• Baby Cos 生菜 2個裝 — <tspan class="item-price">$2.00</tspan></text>
+
+  <!-- 分割線 -->
+  <line x1="40" y1="1110" x2="760" y2="1110" class="line" />
+
+  <!-- ALDI 區域 -->
+  <text x="40" y="1160" class="store-header-aldi">🔵 ALDI 限時特賣</text>
+
+  <text x="40" y="1210" class="section-title">週三 3月18日起 — 肉類限時優惠</text>
+  <text x="60" y="1250" class="item-name">• 楓糖牛油烤雞腿 1.5kg — <tspan class="item-price">$10.49</tspan></text>
+  <text x="60" y="1290" class="item-name">• 雞肉漢堡 440g — <tspan class="item-price">$9.79</tspan></text>
+  <text x="60" y="1330" class="item-name">• 紐約牛肉條 0.8kg — <tspan class="item-price">$23.99</tspan></text>
+
+  <!-- 廚房用品 -->
+  <text x="400" y="190" class="section-title">🍳 廚房用品 (3月18日起)</text>
+  <text x="420" y="230" class="item-name">• 不鏽鋼攪拌碗3件套 — <tspan class="item-price">$29.99</tspan></text>
+  <text x="420" y="270" class="item-name">• 廚師機 — <tspan class="item-price">$69.99</tspan></text>
+  <text x="420" y="310" class="item-name">• 25L 氣炸烤箱 — <tspan class="item-price">$109.00</tspan></text>
+  <text x="420" y="350" class="item-name">• 不鏽鋼鍋具套裝 — <tspan class="item-price">$49.99</tspan></text>
+  <text x="420" y="390" class="item-name">• 食物切碎機 / 攪拌機 — <tspan class="item-price">$18.99</tspan></text>
+
+  <text x="400" y="450" class="section-title">🛏️ 床房家品 (3月18日起)</text>
+  <text x="420" y="490" class="item-name">• 摺疊床 — <tspan class="item-price">$129.00</tspan></text>
+  <text x="420" y="530" class="item-name">• 5層工業風抽屜櫃 — <tspan class="item-price">$129.00</tspan></text>
+  <text x="420" y="570" class="item-name">• Queen 床笠套裝 — <tspan class="item-price">$39.99</tspan></text>
+  <text x="420" y="610" class="item-name">• Queen 被套組合 — <tspan class="item-price">$44.99</tspan></text>
+  <text x="420" y="650" class="item-name">• 記憶棉椅墊2件裝 — <tspan class="item-price">$29.99</tspan></text>
+
+  <text x="400" y="710" class="section-title">🏕️ 露營裝備 (3月21日起)</text>
+  <text x="420" y="750" class="item-name">• 4人即搭帳篷 — <tspan class="item-price">$99.00</tspan></text>
+  <text x="420" y="790" class="item-name">• 200W 太陽能板 — <tspan class="item-price">$199.00</tspan></text>
+  <text x="420" y="830" class="item-name">• 充氣女王床連泵 — <tspan class="item-price">$59.99</tspan></text>
+  <text x="420" y="870" class="item-name">• 睡袋 — <tspan class="item-price">$24.99</tspan></text>
+  <text x="420" y="910" class="item-name">• 可充電露營燈 — <tspan class="item-price">$26.99</tspan></text>
+  <text x="420" y="950" class="item-name">• LED 頭燈 — <tspan class="item-price">$9.99</tspan></text>
+  <text x="420" y="990" class="item-name">• 露營椅 — <tspan class="item-price">$27.99</tspan> / 鋼網桌 $59.99</text>
+
+  <!-- 小貼士部分 -->
+  <rect x="40" y="1160" width="720" height="180" fill="#FFF3E0" rx="15" ry="15" />
+  <text x="70" y="1210" class="section-title" fill="#B85C00">💡 小貼士：</text>
+  <text x="70" y="1255" class="tip-text">• Drakes 特賣有機會贏得 $1,000 禮品卡（購物滿 $40 即可參加）</text>
+  <text x="70" y="1295" class="tip-text">• ALDI 貨品數量有限，先到先得！</text>
+  <text x="70" y="1335" class="tip-text">• 所有優惠以超市公佈為準，詳情請查閱各超市官網</text>
+  <text x="70" y="1375" class="tip-text">📍 Drakes 分店遍佈 Brisbane 及 QLD（North Lakes、Parkinson、Rochedale 等）</text>
+</svg>

@@ -375,6 +375,10 @@ public class MainWindowViewModelTests : IDisposable
         public void ShowBestPricesDialog() { }
         public void ShowEditPlaceDialog(Core.Models.Place place) { }
         public void ShowTripOptimizerDialog() { }
+        public void ShowPriceAlertsDialog() { }
+        public void ShowWeeklySpecialsImportDialog() { }
+        public void ShowCloudSyncDialog() { }
+        public void ShowStaticPeerConfigDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
 

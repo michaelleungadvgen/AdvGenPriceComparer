@@ -144,10 +144,14 @@ namespace AdvGenPriceComparer.Tests.Automation
                 // Look for the WPF application executable
                 var possiblePaths = new[]
                 {
-                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "Debug", "net9.0-windows7.0", "AdvGenPriceComparer.WPF.exe"),
-                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "Release", "net9.0-windows7.0", "AdvGenPriceComparer.WPF.exe"),
-                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "x64", "Debug", "net9.0-windows7.0", "AdvGenPriceComparer.WPF.exe"),
-                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "x64", "Release", "net9.0-windows7.0", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "Debug", "net8.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "Release", "net8.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "x64", "Debug", "net8.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "x64", "Release", "net8.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "Debug", "net9.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "Release", "net9.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "x64", "Debug", "net9.0-windows", "AdvGenPriceComparer.WPF.exe"),
+                    Path.Combine(solutionDirectory, "AdvGenPriceComparer.WPF", "bin", "x64", "Release", "net9.0-windows", "AdvGenPriceComparer.WPF.exe"),
                 };
 
                 foreach (var path in possiblePaths)

@@ -105,7 +105,7 @@ public class PriceAlertService : IPriceAlertService
 
         try
         {
-            var objectId = ObjectId.Parse(alertId);
+            var objectId = new ObjectId(alertId);
             var result = _databaseService.PriceAlerts.Delete(objectId);
             
             if (result)
@@ -130,7 +130,7 @@ public class PriceAlertService : IPriceAlertService
 
         try
         {
-            var objectId = ObjectId.Parse(alertId);
+            var objectId = new ObjectId(alertId);
             var entity = _databaseService.PriceAlerts.FindById(objectId);
             
             if (entity == null)
@@ -157,7 +157,7 @@ public class PriceAlertService : IPriceAlertService
 
         try
         {
-            var objectId = ObjectId.Parse(itemId);
+            var objectId = new ObjectId(itemId);
             var entities = _databaseService.PriceAlerts
                 .Find(x => x.ItemId == objectId)
                 .ToList();
@@ -185,7 +185,7 @@ public class PriceAlertService : IPriceAlertService
 
         try
         {
-            var objectId = ObjectId.Parse(placeId);
+            var objectId = new ObjectId(placeId);
             var entities = _databaseService.PriceAlerts
                 .Find(x => x.PlaceId == objectId)
                 .ToList();
@@ -290,7 +290,7 @@ public class PriceAlertService : IPriceAlertService
 
         try
         {
-            var objectId = ObjectId.Parse(itemId);
+            var objectId = new ObjectId(itemId);
             
             // Get alerts for this item (and optionally for this specific place)
             var query = _databaseService.PriceAlerts
@@ -298,7 +298,7 @@ public class PriceAlertService : IPriceAlertService
 
             if (!string.IsNullOrEmpty(placeId))
             {
-                var placeObjectId = ObjectId.Parse(placeId);
+                var placeObjectId = new ObjectId(placeId);
                 query = query.Where(x => x.PlaceId == null || x.PlaceId == placeObjectId);
             }
 

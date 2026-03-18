@@ -1,3 +1,10 @@
-## 2025-03-07 - Screen Reader Attributes on Icon-Only WPF Buttons
-**Learning:** In the WPF views (like ShoppingListWindow.xaml), icon-only buttons rely primarily on `ToolTip` for context, but these lack ARIA-equivalent labels (`AutomationProperties.Name`) out of the box. This makes the UI less accessible to screen readers, especially since `ToolTip` alone is not always sufficient.
-**Action:** When working on WPF pages with icon-only or generic graphic buttons, proactively add `AutomationProperties.Name` alongside `ToolTip` to ensure robust screen reader support without changing the visual design.
+
+## 2024-05-23 - Screen Reader Accessibility in WPF
+**Learning:** The existing ToolTip attributes on icon-only buttons are insufficient for screen readers in WPF. Screen readers rely on the AutomationProperties.Name attached property to announce elements correctly.
+**Action:** Explicitly define AutomationProperties.Name on all icon-only buttons in WPF XAML files to ensure they are accessible to assistive technologies.
+
+
+## 2025-02-17 - WPF Icon-only Button Accessibility
+**Learning:** In WPF applications using `ui:Button` and `ui:SymbolIcon`, relying solely on the `ToolTip` attribute is insufficient for screen readers. Icon-only buttons lack proper text representation without explicitly defining an ARIA label.
+**Action:** Always define `AutomationProperties.Name` on icon-only buttons to ensure they are fully accessible to screen readers, just like using `aria-label` in web development.
+

@@ -6,7 +6,7 @@ namespace AdvGenPriceComparer.WPF.Services;
 /// <summary>
 /// Represents a special deal in the weekly digest
 /// </summary>
-public class WeeklySpecialItem
+public class WeeklySpecialDeal
 {
     public string ItemId { get; set; } = string.Empty;
     public string ItemName { get; set; } = string.Empty;
@@ -34,10 +34,10 @@ public class WeeklyDigestReport
     public DateTime WeekEnd { get; set; }
     public int TotalDeals { get; set; }
     public int HalfPriceDeals { get; set; }
-    public List<WeeklySpecialItem> AllDeals { get; set; } = new();
-    public Dictionary<string, List<WeeklySpecialItem>> ByCategory { get; set; } = new();
-    public Dictionary<string, List<WeeklySpecialItem>> ByStore { get; set; } = new();
-    public List<WeeklySpecialItem> BestDeals => AllDeals
+    public List<WeeklySpecialDeal> AllDeals { get; set; } = new();
+    public Dictionary<string, List<WeeklySpecialDeal>> ByCategory { get; set; } = new();
+    public Dictionary<string, List<WeeklySpecialDeal>> ByStore { get; set; } = new();
+    public List<WeeklySpecialDeal> BestDeals => AllDeals
         .Where(d => d.SavingsPercentage > 0)
         .OrderByDescending(d => d.SavingsPercentage)
         .Take(10)
@@ -62,12 +62,12 @@ public interface IWeeklySpecialsService
     /// <summary>
     /// Gets deals for a specific category
     /// </summary>
-    List<WeeklySpecialItem> GetDealsByCategory(string category);
+    List<WeeklySpecialDeal> GetDealsByCategory(string category);
 
     /// <summary>
     /// Gets deals for a specific store
     /// </summary>
-    List<WeeklySpecialItem> GetDealsByStore(string storeName);
+    List<WeeklySpecialDeal> GetDealsByStore(string storeName);
 
     /// <summary>
     /// Exports the digest to markdown format for sharing

@@ -46,7 +46,7 @@ public class WeeklySpecialsService : IWeeklySpecialsService
 
         var allItems = _dataService.GetAllItems().ToList();
         var allPlaces = _dataService.GetAllPlaces().ToList();
-        var allDeals = new List<WeeklySpecialItem>();
+        var allDeals = new List<WeeklySpecialDeal>();
 
         foreach (var item in allItems)
         {
@@ -61,7 +61,7 @@ public class WeeklySpecialsService : IWeeklySpecialsService
 
             var store = allPlaces.FirstOrDefault(p => p.Id == latestPrice.PlaceId);
 
-            var specialItem = new WeeklySpecialItem
+            var specialItem = new WeeklySpecialDeal
             {
                 ItemId = item.Id!,
                 ItemName = item.Name,
@@ -105,17 +105,17 @@ public class WeeklySpecialsService : IWeeklySpecialsService
     }
 
     /// <inheritdoc />
-    public List<WeeklySpecialItem> GetDealsByCategory(string category)
+    public List<WeeklySpecialDeal> GetDealsByCategory(string category)
     {
         var digest = GenerateWeeklyDigest();
-        return digest.ByCategory.TryGetValue(category, out var deals) ? deals : new List<WeeklySpecialItem>();
+        return digest.ByCategory.TryGetValue(category, out var deals) ? deals : new List<WeeklySpecialDeal>();
     }
 
     /// <inheritdoc />
-    public List<WeeklySpecialItem> GetDealsByStore(string storeName)
+    public List<WeeklySpecialDeal> GetDealsByStore(string storeName)
     {
         var digest = GenerateWeeklyDigest();
-        return digest.ByStore.TryGetValue(storeName, out var deals) ? deals : new List<WeeklySpecialItem>();
+        return digest.ByStore.TryGetValue(storeName, out var deals) ? deals : new List<WeeklySpecialDeal>();
     }
 
     /// <inheritdoc />

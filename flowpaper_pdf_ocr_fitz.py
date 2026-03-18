@@ -225,7 +225,7 @@ def main():
     """Main function to process the FlowPaper PDF"""
     
     # PDF URL
-    pdf_url = "https://78c4076d.flowpaper.com/Week9QLDlowres/docs/Week-9-QLD-lowres.pdf?refresh=1771476547709"
+    pdf_url = "https://78c4076d.flowpaper.com/Week11QLDLOWRES/docs/Week-11-QLD-LOWRES.pdf?refresh=1771476547709"
     
     # Output files
     output_text_file = "flowpaper_extracted_text.txt"

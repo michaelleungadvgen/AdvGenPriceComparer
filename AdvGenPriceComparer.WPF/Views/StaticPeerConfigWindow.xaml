@@ -1,0 +1,306 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.StaticPeerConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AdvGenPriceComparer.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Static Peer Configuration" 
+        Height="750" 
+        Width="950"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        MinWidth="800"
+        MinHeight="600">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <local:InverseBooleanConverter x:Key="InverseBooleanConverter" xmlns:local="clr-namespace:AdvGenPriceComparer.WPF.Converters" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{DynamicResource SystemAccentColorBrush}" Padding="20,15">
+            <StackPanel>
+                <TextBlock Text="Static Peer Configuration" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Manage P2P discovery sources and static peers for data sharing"
+                           Foreground="White" Opacity="0.9" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}" Padding="15,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding StatusMessage}" VerticalAlignment="Center"/>
+                <ProgressBar Grid.Column="1" Width="150" Height="16" 
+                             Value="{Binding DiscoveryProgress}" Maximum="100"
+                             Visibility="{Binding IsDiscovering, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <Grid Grid.Row="2" Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Column: Discovery Sources -->
+            <Grid Grid.Column="0" Margin="0,0,7,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Discovery Sources" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                <!-- Sources List -->
+                <Border Grid.Row="1" BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" BorderThickness="1" CornerRadius="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Sources DataGrid -->
+                        <DataGrid Grid.Row="0" 
+                                  ItemsSource="{Binding Sources}" 
+                                  SelectedItem="{Binding SelectedSource}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  GridLinesVisibility="Horizontal"
+                                  BorderThickness="0"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80"/>
+                                <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding IsEnabled}" Width="60"/>
+                                <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="60"/>
+                                <DataGridTextColumn Header="Path/URL" Binding="{Binding Path}" Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- Source Edit Panel -->
+                        <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}" 
+                                Padding="15" Margin="0,1,0,0"
+                                Visibility="{Binding IsEditingSource, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Source Details" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SourceName}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Type:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1" 
+                                          ItemsSource="{Binding SourceTypes}" 
+                                          SelectedItem="{Binding SourceType}"
+                                          Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Path/URL:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SourcePath}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Priority:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SourcePriority}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Refresh (min):" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SourceRefreshInterval}" Margin="0,0,0,5"/>
+
+                                <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                    <Button Content="Cancel" Padding="15,5" Margin="0,0,10,0" Command="{Binding CancelSourceEditCommand}"/>
+                                    <Button Content="Save" Padding="15,5" Background="{DynamicResource SystemAccentColorBrush}" Foreground="White" Command="{Binding SaveSourceCommand}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Sources Toolbar -->
+                <ToolBarTray Grid.Row="2" Margin="0,5,0,0" IsLocked="True">
+                    <ToolBar>
+                        <Button Content="Add" Padding="10,3" Command="{Binding AddSourceCommand}"/>
+                        <Button Content="Edit" Padding="10,3" Command="{Binding EditSourceCommand}" CommandParameter="{Binding SelectedSource}"/>
+                        <Button Content="Delete" Padding="10,3" Command="{Binding DeleteSourceCommand}" CommandParameter="{Binding SelectedSource}"/>
+                        <Separator/>
+                        <Button Content="Toggle" Padding="10,3" Command="{Binding ToggleSourceEnabledCommand}" CommandParameter="{Binding SelectedSource}"/>
+                    </ToolBar>
+                </ToolBarTray>
+            </Grid>
+
+            <!-- Right Column: Discovered Peers -->
+            <Grid Grid.Column="1" Margin="7,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Discovered Peers" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                <!-- Peers List -->
+                <Border Grid.Row="1" BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" BorderThickness="1" CornerRadius="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Peers DataGrid -->
+                        <DataGrid Grid.Row="0" 
+                                  ItemsSource="{Binding Peers}" 
+                                  SelectedItem="{Binding SelectedPeer}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  GridLinesVisibility="Horizontal"
+                                  BorderThickness="0"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="120">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80"/>
+                                <DataGridCheckBoxColumn Header="★" Binding="{Binding IsFavorite}" Width="30"/>
+                                <DataGridCheckBoxColumn Header="✓" Binding="{Binding IsEnabled}" Width="30"/>
+                                <DataGridTextColumn Header="Health" Binding="{Binding HealthStatus}" Width="70"/>
+                                <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- Peer Edit Panel -->
+                        <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}" 
+                                Padding="15" Margin="0,1,0,0"
+                                Visibility="{Binding IsEditingPeer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Peer Details" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="ID:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PeerId}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Type:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1" 
+                                          ItemsSource="{Binding PeerTypes}" 
+                                          SelectedItem="{Binding PeerType}"
+                                          Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Address:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PeerAddress}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Location:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding PeerLocation}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Region:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding PeerRegion}" Margin="0,0,0,5"/>
+
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="Description:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding PeerDescription}" Margin="0,0,0,5"/>
+
+                                <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,5">
+                                    <CheckBox Content="Enabled" IsChecked="{Binding PeerIsEnabled}" Margin="0,0,20,0"/>
+                                    <CheckBox Content="Favorite" IsChecked="{Binding PeerIsFavorite}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                    <Button Content="Cancel" Padding="15,5" Margin="0,0,10,0" Command="{Binding CancelPeerEditCommand}"/>
+                                    <Button Content="Save" Padding="15,5" Background="{DynamicResource SystemAccentColorBrush}" Foreground="White" Command="{Binding SavePeerCommand}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Peers Toolbar -->
+                <ToolBarTray Grid.Row="2" Margin="0,5,0,0" IsLocked="True">
+                    <ToolBar>
+                        <Button Content="Add" Padding="10,3" Command="{Binding AddPeerCommand}"/>
+                        <Button Content="Edit" Padding="10,3" Command="{Binding EditPeerCommand}" CommandParameter="{Binding SelectedPeer}"/>
+                        <Button Content="Delete" Padding="10,3" Command="{Binding DeletePeerCommand}" CommandParameter="{Binding SelectedPeer}"/>
+                        <Separator/>
+                        <Button Content="★" Padding="10,3" Command="{Binding TogglePeerFavoriteCommand}" CommandParameter="{Binding SelectedPeer}"/>
+                        <Button Content="Health" Padding="10,3" Command="{Binding CheckPeerHealthCommand}" CommandParameter="{Binding SelectedPeer}"/>
+                    </ToolBar>
+                </ToolBarTray>
+            </Grid>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Grid.Row="3" Background="{DynamicResource SystemAltMediumColor}" Padding="20,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Content="🔄 Discover Peers" Padding="15,8" Margin="0,0,10,0"
+                            Command="{Binding DiscoverPeersCommand}"
+                            IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}"/>
+                    <Button Content="💓 Check All Health" Padding="15,8" Margin="0,0,10,0"
+                            Command="{Binding CheckAllHealthCommand}"
+                            IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="Close" Padding="20,8" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

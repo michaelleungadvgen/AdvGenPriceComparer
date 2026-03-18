@@ -1,16 +1,17 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brisbane Grocery Deals - Weekly Specials</title>
-    <script type="text/javascript">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brisbane Grocery Deals - Weekly Specials</title>
+<script type="text/javascript">
 var infolinks_pid = 356217;
 var infolinks_wsid = 0;
 </script>
-<script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
-    <style>
+<script src="//resources.infolinks.com/js/infolinks_main.js" type="text/javascript"></script>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -294,935 +295,1049 @@ var infolinks_wsid = 0;
             .main-container { padding: 0 1rem; }
             .nav-container { flex-direction: column; gap: 1rem; }
         }
-    </style>
+    
+        .product-category {
+            font-size: 0.75rem;
+            color: #666;
+            font-style: italic;
+            margin: 2px 0 4px 0;
+        }
+        </style>
 </head>
 <body>
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="https://www.liveinbne.info/wp-content/uploads/2016/10/logo.png" alt="Live in BNE Logo">
+<header class="header">
+<div class="nav-container">
+<div class="logo">
+<img alt="Live in BNE Logo" src="https://www.liveinbne.info/wp-content/uploads/2016/10/logo.png"/>
                 Brisbane Grocery Deals
             </div>
-                      <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="https://buymeacoffee.com/advgen" target="_blank" class="support-link">
+<div style="display: flex; align-items: center; gap: 1rem;">
+<a class="support-link" href="https://buymeacoffee.com/advgen" target="_blank">
                     ☕ Support Us
                 </a>
-                <div class="date-badge">25 February - 3 March 2026</div>
-            </div>
-
-        </div>
-    </header>
-
-   <main class="main-container">
-        <div class="hero">
-            <h1>Weekly Grocery Specials</h1>
-            <p>Compare the best deals across Brisbane's top supermarkets</p>
-        </div>
-
-        <!-- Premium Chocolate -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('chocolate')">
-                <div class="category-title">
-                    <span class="category-icon">🍫</span>
+<div class="date-badge">11 - 21 March 2026</div>
+</div>
+</div>
+</header>
+<main class="main-container">
+<div class="hero">
+<h1>Weekly Grocery Specials</h1>
+<p>Compare the best deals across Brisbane's top supermarkets</p>
+</div>
+<!-- Premium Chocolate -->
+<div class="category-section">
+<div class="category-header" onclick="toggleCategory('chocolate')">
+<div class="category-title">
+<span class="category-icon">🍫</span>
                     Premium Chocolate
                 </div>
-                <span class="expand-icon" id="chocolate-icon">+</span>
-            </div>
-            <div class="category-content" id="chocolate-content">
-                <div class="deals-grid">
-                    <!-- Coles -->
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - CONFECTIONERY</div>
-                        <div class="product-name">Cadbury Dairy Milk Block Chocolate 160g-190g</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.00</span>
-                            <span class="original-price">$8.00</span>
-                        </div>
-                        <div class="savings">Save $4.00</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - CONFECTIONERY</div>
-                        <div class="product-name">Lindt Lindor Cornet 160g</div>
-                        <div class="price-info">
-                            <span class="current-price">$12.00</span>
-                            <span class="original-price">$24.00</span>
-                        </div>
-                        <div class="savings">Save $12.00</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - CONFECTIONERY</div>
-                        <div class="product-name">Nestlé Smarties or Allen's Freckles 160g</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.00</span>
-                            <span class="original-price">$6.00</span>
-                        </div>
-                        <div class="savings">Save $3.00</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - CONFECTIONERY</div>
-                        <div class="product-name">Cadbury Favourites 264g-265g</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.00</span>
-                            <span class="original-price">$14.00</span>
-                        </div>
-                        <div class="savings">Save $7.00</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <!-- Woolworths -->
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
-                        <div class="product-name">Mars Maltesers, M&M's or Pods 120-180g</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.50</span>
-                            <span class="original-price">$7.00</span>
-                        </div>
-                        <div class="savings">Save $3.50</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
-                        <div class="product-name">Nestlé Blocks 118-180g</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.75</span>
-                            <span class="original-price">$7.50</span>
-                        </div>
-                        <div class="savings">Save $3.75</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
-                        <div class="product-name">Cadbury Dairy Milk Easter Bunny 100g</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.75</span>
-                            <span class="original-price">$9.50</span>
-                        </div>
-                        <div class="savings">Save $4.75</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
-                        <div class="product-name">Cadbury Dairy Milk Hollow Egg 50g</div>
-                        <div class="price-info">
-                            <span class="current-price">$2.50</span>
-                            <span class="original-price">$5.00</span>
-                        </div>
-                        <div class="savings">Save $2.50</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <!-- Drakes -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - CONFECTIONERY</div>
-                        <div class="product-name">Darrell Lea Block Chocolate 160g-180g</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.50</span>
-                        </div>
-                        <div class="savings">Save $3.50</div>
-                        <div class="deal-badge best-deal">1/2 PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - CONFECTIONERY</div>
-                        <div class="product-name">Cadbury Easter Bunny Share Pack 180g-204g</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.90</span>
-                        </div>
-                        <div class="savings">Save $3.10</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
+<span class="expand-icon" id="chocolate-icon">+</span>
+</div>
+<div class="category-content" id="chocolate-content">
+<div class="deals-grid">
+<!-- Coles -->
+<div class="deal-card">
+<div class="store-badge coles">COLES - CONFECTIONERY</div>
+<div class="product-name">Cadbury Dairy Milk Block Chocolate 160g-190g</div><div class="product-category">Pantry</div>
+<div class="price-info">
+<span class="current-price">$4.00</span>
+<span class="original-price">$8.00</span>
+</div>
+<div class="savings">Save $4.00</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge coles">COLES - CONFECTIONERY</div>
+<div class="product-name">Lindt Lindor Cornet 160g</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$12.00</span>
+<span class="original-price">$24.00</span>
+</div>
+<div class="savings">Save $12.00</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge coles">COLES - CONFECTIONERY</div>
+<div class="product-name">Nestlé Smarties or Allen's Freckles 160g</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$3.00</span>
+<span class="original-price">$6.00</span>
+</div>
+<div class="savings">Save $3.00</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge coles">COLES - CONFECTIONERY</div>
+<div class="product-name">Cadbury Favourites 264g-265g</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$7.00</span>
+<span class="original-price">$14.00</span>
+</div>
+<div class="savings">Save $7.00</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<!-- Woolworths -->
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
+<div class="product-name">Mars Maltesers, M&amp;M's or Pods 120-180g</div><div class="product-category">General</div>
+<div class="price-info">
+<span class="current-price">$3.50</span>
+<span class="original-price">$7.00</span>
+</div>
+<div class="savings">Save $3.50</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
+<div class="product-name">Nestlé Blocks 118-180g</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$3.75</span>
+<span class="original-price">$7.50</span>
+</div>
+<div class="savings">Save $3.75</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
+<div class="product-name">Cadbury Dairy Milk Easter Bunny 100g</div><div class="product-category">General</div>
+<div class="price-info">
+<span class="current-price">$4.75</span>
+<span class="original-price">$9.50</span>
+</div>
+<div class="savings">Save $4.75</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - CONFECTIONERY</div>
+<div class="product-name">Cadbury Dairy Milk Hollow Egg 50g</div><div class="product-category">General</div>
+<div class="price-info">
+<span class="current-price">$2.50</span>
+<span class="original-price">$5.00</span>
+</div>
+<div class="savings">Save $2.50</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<!-- Drakes -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - CONFECTIONERY</div>
+<div class="product-name">Darrell Lea Block Chocolate 160g-180g</div>
+<div class="price-info">
+<span class="current-price">$3.50</span>
+</div>
+<div class="savings">Save $3.50</div>
+<div class="deal-badge best-deal">1/2 PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - CONFECTIONERY</div>
+<div class="product-name">Cadbury Easter Bunny Share Pack 180g-204g</div>
+<div class="price-info">
+<span class="current-price">$4.90</span>
+</div>
+<div class="savings">Save $3.10</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Soft Drinks & Beverages -->
+<div class="category-section">
+<div class="category-header" onclick="toggleCategory('beverages')">
+<div class="category-title">
+<span class="category-icon">🥤</span>
+                    Soft Drinks &amp; Beverages
                 </div>
-            </div>
-        </div>
-
-        <!-- Soft Drinks & Beverages -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('beverages')">
-                <div class="category-title">
-                    <span class="category-icon">🥤</span>
-                    Soft Drinks & Beverages
-                </div>
-                <span class="expand-icon" id="beverages-icon">+</span>
-            </div>
-            <div class="category-content" id="beverages-content">
-                <div class="deals-grid">
-                    <!-- Coles -->
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - DRINKS</div>
-                        <div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink 1.25L</div>
-                        <div class="price-info">
-                            <span class="current-price">$2.00</span>
-                            <span class="original-price">$4.00</span>
-                        </div>
-                        <div class="savings">Save $2.00</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - DRINKS</div>
-                        <div class="product-name">Red Bull Energy Drink 4x250mL</div>
-                        <div class="price-info">
-                            <span class="current-price">$6.50</span>
-                            <span class="original-price">$13.00</span>
-                        </div>
-                        <div class="savings">Save $6.50</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - DRINKS</div>
-                        <div class="product-name">Pepsi Max or Solo Zero Sugar 24x375mL</div>
-                        <div class="price-info">
-                            <span class="current-price">$23.70</span>
-                            <span class="original-price">$39.50</span>
-                        </div>
-                        <div class="savings">Save $15.80</div>
-                        <div class="deal-badge best-deal">MEGA DEAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge coles">COLES - DRINKS</div>
-                        <div class="product-name">Monster Energy Drink 500mL</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.10</span>
-                            <span class="original-price">$4.45</span>
-                        </div>
-                        <div class="savings">Save $1.35</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <!-- Woolworths -->
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
-                        <div class="product-name">Pepsi, Solo, Sunkist or Mountain Dew 1.25L</div>
-                        <div class="price-info">
-                            <span class="current-price">$1.75</span>
-                            <span class="original-price">$3.50</span>
-                        </div>
-                        <div class="savings">Save $1.75</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
-                        <div class="product-name">Schweppes Soft Drink 4x300mL</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.00</span>
-                            <span class="original-price">$8.00</span>
-                        </div>
-                        <div class="savings">Save $4.00</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
-                        <div class="product-name">Kirks Soft Drink 10x375mL</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.50</span>
-                            <span class="original-price">$15.00</span>
-                        </div>
-                        <div class="savings">Save $7.50</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
-                        <div class="product-name">Cottee's Cordial 1 Litre</div>
-                        <div class="price-info">
-                            <span class="current-price">$2.75</span>
-                            <span class="original-price">$5.50</span>
-                        </div>
-                        <div class="savings">Save $2.75</div>
-                        <div class="deal-badge best-deal">HALF PRICE</div>
-                    </div>
-                    <!-- Drakes -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - BEVERAGES</div>
-                        <div class="product-name">Coca Cola or Flavours 1.25lt</div>
-                        <div class="price-info">
-                            <span class="current-price">1/2 PRICE</span>
-                        </div>
-                        <div class="deal-badge half-price">HALF PRICE</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Drakes Supermarket Specials -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('drakes-special')">
-                <div class="category-title">
-                    <span class="category-icon">🛒</span>
-                    Drakes Supermarket - 25 Feb - 3 Mar 2026</div>
-                <span class="expand-icon" id="drakes-special-icon">+</span>
-            </div>
-            <div class="category-content" id="drakes-special-content">
-                <div class="deals-grid">
-                    <!-- Half Price Highlights -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
-                        <div class="product-name">Sunrice Plain Rice Pouch 250g</div>
-                        <div class="price-info">
-                            <span class="current-price">$1.00</span>
-                        </div>
-                        <div class="deal-badge half-price">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
-                        <div class="product-name">Gippsland Dairy Twist Yogurt 700g</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.00</span>
-                        </div>
-                        <div class="deal-badge half-price">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
-                        <div class="product-name">Finish Powerball Ultimate Plus Dishwasher Tablets 31-54 Pack</div>
-                        <div class="price-info">
-                            <span class="current-price">1/2 PRICE</span>
-                        </div>
-                        <div class="deal-badge half-price">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
-                        <div class="product-name">Hawaiian Tropic Silk Hydration SPF 50+ 175g/180ml</div>
-                        <div class="price-info">
-                            <span class="current-price">$10.20</span>
-                        </div>
-                        <div class="deal-badge half-price">HALF PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
-                        <div class="product-name">Coca Cola or Flavours 1.25lt</div>
-                        <div class="price-info">
-                            <span class="current-price">1/2 PRICE</span>
-                        </div>
-                        <div class="deal-badge half-price">HALF PRICE</div>
-                    </div>
-                    <!-- Meat & Deli -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - MEAT</div>
-                        <div class="product-name">Australian Grain Fed Beef Steak</div>
-                        <div class="price-info">
-                            <span class="current-price">$24.00/kg</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - MEAT</div>
-                        <div class="product-name">Australian Chicken Breast Fillets</div>
-                        <div class="price-info">
-                            <span class="current-price">$9.90/kg</span>
-                        </div>
-                        <div class="savings">Save $10/kg</div>
-                        <div class="deal-badge best-deal">GREAT VALUE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - MEAT</div>
-                        <div class="product-name">Australian Pork Leg Boneless Roast</div>
-                        <div class="price-info">
-                            <span class="current-price">$9.50/kg</span>
-                        </div>
-                        <div class="savings">Save $2.50/kg</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - MEAT</div>
-                        <div class="product-name">Australian Lamb BBQ Chops Min 1.2kg</div>
-                        <div class="price-info">
-                            <span class="current-price">$19.00/kg</span>
-                        </div>
-                        <div class="savings">Save $9/kg</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - DELI</div>
-                        <div class="product-name">Sun Valley Roast Beef</div>
-                        <div class="price-info">
-                            <span class="current-price">$9.75/kg</span>
-                        </div>
-                        <div class="savings">Save $9/kg</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - DELI</div>
-                        <div class="product-name">Short Cut Bacon</div>
-                        <div class="price-info">
-                            <span class="current-price">$14.00/kg</span>
-                        </div>
-                        <div class="savings">Save $7/kg</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - SEAFOOD</div>
-                        <div class="product-name">Tasmanian Atlantic Salmon Portions</div>
-                        <div class="price-info">
-                            <span class="current-price">$36.00/kg</span>
-                        </div>
-                        <div class="savings">Save $8/kg</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <!-- Produce -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PRODUCE</div>
-                        <div class="product-name">Queensland Shepard Avocados</div>
-                        <div class="price-info">
-                            <span class="current-price">$1.50 ea</span>
-                        </div>
-                        <div class="deal-badge best-deal">FRESH</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PRODUCE</div>
-                        <div class="product-name">Australian Sweet Corn Cob</div>
-                        <div class="price-info">
-                            <span class="current-price">$1.00 ea</span>
-                        </div>
-                        <div class="deal-badge best-deal">FRESH</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PRODUCE</div>
-                        <div class="product-name">Grape Co Cotton Candy Grape 400g</div>
-                        <div class="price-info">
-                            <span class="current-price">$6.90</span>
-                        </div>
-                        <div class="deal-badge best-deal">FRESH</div>
-                    </div>
-                    <!-- Dairy -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - DAIRY</div>
-                        <div class="product-name">Western Star Butter 250g</div>
-                        <div class="price-info">
-                            <span class="current-price">$2.58</span>
-                        </div>
-                        <div class="savings">Save $3</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - DAIRY</div>
-                        <div class="product-name">Farmers Union Greek Style Yogurt 1kg</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.90</span>
-                        </div>
-                        <div class="savings">Save $0.60</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - DAIRY</div>
-                        <div class="product-name">Breaka or Ice Break Flavoured Milk 750ml</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.45</span>
-                        </div>
-                        <div class="savings">Save $1.40</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <!-- Freezer -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - FROZEN</div>
-                        <div class="product-name">Dr. Oetker Ristorante Pizza 310g-390g</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.00</span>
-                        </div>
-                        <div class="savings">Save $2.50</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - FROZEN</div>
-                        <div class="product-name">Blue Wave Crumbed Whiting Fillets 800g</div>
-                        <div class="price-info">
-                            <span class="current-price">$10.00</span>
-                        </div>
-                        <div class="savings">Save $9</div>
-                        <div class="deal-badge best-deal">MEGA DEAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - FROZEN</div>
-                        <div class="product-name">Birds Eye Oven Bake Fish 425g</div>
-                        <div class="price-info">
-                            <span class="current-price">$6.00</span>
-                        </div>
-                        <div class="savings">Save $6</div>
-                        <div class="deal-badge half-price">1/2 PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - FROZEN</div>
-                        <div class="product-name">Connoisseur Ice Cream 4 Pack</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.00</span>
-                        </div>
-                        <div class="savings">Save $4.10</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <!-- Pantry -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PANTRY</div>
-                        <div class="product-name">Arnott's Tim Tams 165g-200g</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.00</span>
-                        </div>
-                        <div class="savings">Save $2</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PANTRY</div>
-                        <div class="product-name">Arnott's Shapes 130g-190g</div>
-                        <div class="price-info">
-                            <span class="current-price">$2.00</span>
-                        </div>
-                        <div class="savings">Save $2</div>
-                        <div class="deal-badge half-price">1/2 PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PANTRY</div>
-                        <div class="product-name">Nescafe Gold 90g-100g</div>
-                        <div class="price-info">
-                            <span class="current-price">$10.00</span>
-                        </div>
-                        <div class="savings">Save $4.50</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PANTRY</div>
-                        <div class="product-name">Vittoria Espresso Coffee 500g</div>
-                        <div class="price-info">
-                            <span class="current-price">$22.50</span>
-                        </div>
-                        <div class="savings">Save $10</div>
-                        <div class="deal-badge best-deal">MEGA DEAL</div>
-                    </div>
-                    <!-- Confectionery -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - SNACKS</div>
-                        <div class="product-name">Darrell Lea Block Chocolate 160g-180g</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.50</span>
-                        </div>
-                        <div class="savings">Save $3.50</div>
-                        <div class="deal-badge half-price">1/2 PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - SNACKS</div>
-                        <div class="product-name">Cadbury Easter Bunny Share Pack 180g-204g</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.90</span>
-                        </div>
-                        <div class="savings">Save $3.10</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <!-- Household -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - HOUSEHOLD</div>
-                        <div class="product-name">Glen 20 Disinfectant Spray 300g</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.70</span>
-                        </div>
-                        <div class="savings">Save $3</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - HOUSEHOLD</div>
-                        <div class="product-name">Dettol Multi Purpose Cleaner Spray 750ml</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.50</span>
-                        </div>
-                        <div class="savings">Save $7.50</div>
-                        <div class="deal-badge half-price">1/2 PRICE</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - HOUSEHOLD</div>
-                        <div class="product-name">Handee Ultra Paper Towel 4 Pack</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.90</span>
-                        </div>
-                        <div class="savings">Save $2.90</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <!-- Pet Food -->
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PET</div>
-                        <div class="product-name">Purina Felix Cat Food 12x85g</div>
-                        <div class="price-info">
-                            <span class="current-price">$9.10</span>
-                        </div>
-                        <div class="savings">Save $4.50</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PET</div>
-                        <div class="product-name">Good O Dog Food 1kg</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.00</span>
-                        </div>
-                        <div class="savings">Save $3</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge drakes">DRAKES - PET</div>
-                        <div class="product-name">Schmackos Dog Treats 450g-500g</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.60</span>
-                        </div>
-                        <div class="savings">Save $3.40</div>
-                        <div class="deal-badge best-deal">SPECIAL</div>
-                    </div>
-            </div>
-        </div>
-
-        <!-- ALDI Special Buys -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('aldi')">
-                <div class="category-title">
-                    <span class="category-icon">🏪</span>
-                    ALDI Special Buys - Wed 4 Mar & Sat 7 Mar 2026</div>
-                <span class="expand-icon" id="aldi-icon">+</span>
-            </div>
-            <div class="category-content" id="aldi-content">
-                <div class="deals-grid">
-                    <!-- Wed 4 Mar - Liquor -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - LIQUOR</div>
-                        <div class="product-name">Irish Whiskey 700ml - JAMESON</div>
-                        <div class="price-info">
-                            <span class="current-price">$53.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - LIQUOR</div>
-                        <div class="product-name">Irish Stout 4 Pack 500ml - MURPHY'S ESTD 1856</div>
-                        <div class="price-info">
-                            <span class="current-price">$17.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - LIQUOR</div>
-                        <div class="product-name">Irish Ale 6 Pack 470ml - KILKENNY</div>
-                        <div class="price-info">
-                            <span class="current-price">$24.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - LIQUOR</div>
-                        <div class="product-name">Draught 6 Pack 470ml - GUINNESS</div>
-                        <div class="price-info">
-                            <span class="current-price">$24.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <!-- Wed 4 Mar - Meat -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MEAT</div>
-                        <div class="product-name">Beef Scotch Fillet (approx. 1.25kg) - JINDURRA STATION</div>
-                        <div class="price-info">
-                            <span class="current-price">$39.99</span>
-                        </div>
-                        <div class="unit-price">$31.99 per kg</div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MEAT</div>
-                        <div class="product-name">Creamy Tomato Chicken Gnocchi Meal Kit 775g - READY, SET…COOK!</div>
-                        <div class="price-info">
-                            <span class="current-price">$14.99</span>
-                        </div>
-                        <div class="unit-price">$19.34 per kg</div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MEAT</div>
-                        <div class="product-name">Pork Schnitty Dippers 500g - READY, SET…COOK!</div>
-                        <div class="price-info">
-                            <span class="current-price">$9.99</span>
-                        </div>
-                        <div class="unit-price">$19.98 per kg</div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <!-- Wed 4 Mar - Personal Care -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - PERSONAL CARE</div>
-                        <div class="product-name">Men's Active Body Wash 1L - PALMOLIVE</div>
-                        <div class="price-info">
-                            <span class="current-price">$6.49</span>
-                        </div>
-                        <div class="unit-price">$0.65 per 100ml</div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - PERSONAL CARE</div>
-                        <div class="product-name">Gold Soap Bar 10 Pack 90g - PALMOLIVE</div>
-                        <div class="price-info">
-                            <span class="current-price">$8.99</span>
-                        </div>
-                        <div class="unit-price">$1.00 per 100g</div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - PERSONAL CARE</div>
-                        <div class="product-name">Advanced Protection Antiperspirant 72 Hour 2 Pack - REXONA</div>
-                        <div class="price-info">
-                            <span class="current-price">$10.49</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <!-- Wed 4 Mar - Tools & DIY -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - TOOLS & DIY</div>
-                        <div class="product-name">Sugar Soap Wipes 50 Pack - DECO STYLE</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.49</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - TOOLS & DIY</div>
-                        <div class="product-name">4L Primer / Sealer / Undercoat - DECO CRAFT</div>
-                        <div class="price-info">
-                            <span class="current-price">$49.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - TOOLS & DIY</div>
-                        <div class="product-name">Household Ladder - WORKZONE</div>
-                        <div class="price-info">
-                            <span class="current-price">$59.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - TOOLS & DIY</div>
-                        <div class="product-name">Rechargeable Work Light 20W - WORKZONE</div>
-                        <div class="price-info">
-                            <span class="current-price">$29.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - TOOLS & DIY</div>
-                        <div class="product-name">Kitchen Mixer Tap Assortment - EASY HOME</div>
-                        <div class="price-info">
-                            <span class="current-price">$89.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <!-- Wed 4 Mar - Smart Home -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - SMART HOME</div>
-                        <div class="product-name">Smart Door Locks Assortment - DELTA</div>
-                        <div class="price-info">
-                            <span class="current-price">$149.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - SMART HOME</div>
-                        <div class="product-name">Smart Bluetooth Handle Assortment - DELTA</div>
-                        <div class="price-info">
-                            <span class="current-price">$89.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <!-- Wed 4 Mar - Workwear -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - WORKWEAR</div>
-                        <div class="product-name">Hi Vis Hoodie Assorted - WORKWEAR</div>
-                        <div class="price-info">
-                            <span class="current-price">$19.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - WORKWEAR</div>
-                        <div class="product-name">Stretch Cargo Work Pants Assortment - WORKWEAR</div>
-                        <div class="price-info">
-                            <span class="current-price">$29.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - WORKWEAR</div>
-                        <div class="product-name">Men's Steel Toe Cap Safety Work Boots - BRANDED</div>
-                        <div class="price-info">
-                            <span class="current-price">$44.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Wed 4 Mar</div>
-                    </div>
-                    <!-- Sat 7 Mar - Appliances -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">ECOVACS DEEBOT NEO 2.0 Robot Vacuum - ECOVACS</div>
-                        <div class="price-info">
-                            <span class="current-price">$279.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">Induction Cooker - AMBIANO</div>
-                        <div class="price-info">
-                            <span class="current-price">$44.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">Ice Cube Maker - AMBIANO</div>
-                        <div class="price-info">
-                            <span class="current-price">$109.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">Steam Mop - EASY HOME</div>
-                        <div class="price-info">
-                            <span class="current-price">$109.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">Dishwasher - STIRLING</div>
-                        <div class="price-info">
-                            <span class="current-price">$299.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">Chest Freezer 200L - STIRLING</div>
-                        <div class="price-info">
-                            <span class="current-price">$169.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - APPLIANCES</div>
-                        <div class="product-name">Bar Fridge 90L - STIRLING</div>
-                        <div class="price-info">
-                            <span class="current-price">$169.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <!-- Sat 7 Mar - Mattresses -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MATTRESSES</div>
-                        <div class="product-name">Single Mattress - NOVITESSE</div>
-                        <div class="price-info">
-                            <span class="current-price">$149.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MATTRESSES</div>
-                        <div class="product-name">King Single Mattress - NOVITESSE</div>
-                        <div class="price-info">
-                            <span class="current-price">$179.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MATTRESSES</div>
-                        <div class="product-name">Double Mattress - NOVITESSE</div>
-                        <div class="price-info">
-                            <span class="current-price">$199.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MATTRESSES</div>
-                        <div class="product-name">Queen Mattress - NOVITESSE</div>
-                        <div class="price-info">
-                            <span class="current-price">$239.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - MATTRESSES</div>
-                        <div class="product-name">King Mattress - NOVITESSE</div>
-                        <div class="price-info">
-                            <span class="current-price">$279.00</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <!-- Sat 7 Mar - Cleaning -->
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - CLEANING</div>
-                        <div class="product-name">Eucalyptus Spray 2 Pack 500ml - BOSISTO'S</div>
-                        <div class="price-info">
-                            <span class="current-price">$7.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - CLEANING</div>
-                        <div class="product-name">Dettol Disinfectant Cleaner 750ml - DETTOL</div>
-                        <div class="price-info">
-                            <span class="current-price">$5.49</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - CLEANING</div>
-                        <div class="product-name">Ajax Spray n' Wipe 500ml - AJAX</div>
-                        <div class="price-info">
-                            <span class="current-price">$3.29</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - CLEANING</div>
-                        <div class="product-name">Spin Mop and Bucket Set - EASY HOME</div>
-                        <div class="price-info">
-                            <span class="current-price">$24.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="store-badge aldi">ALDI - CLEANING</div>
-                        <div class="product-name">Microfibre Cleaning Cloths 10 Pack - EASY HOME</div>
-                        <div class="price-info">
-                            <span class="current-price">$4.99</span>
-                        </div>
-                        <div class="deal-badge best-deal">SPECIAL BUY</div>
-                        <div class="availability">On Sale Sat 7 Mar</div>
-                    </div>
-            </div>
-        </div>
-
-    </main>
-
-    <script>
+<span class="expand-icon" id="beverages-icon">+</span>
+</div>
+<div class="category-content" id="beverages-content">
+<div class="deals-grid">
+<!-- Coles -->
+<div class="deal-card">
+<div class="store-badge coles">COLES - DRINKS</div>
+<div class="product-name">Coca-Cola, Fanta or Sprite Soft Drink 1.25L</div><div class="product-category">Drinks</div>
+<div class="price-info">
+<span class="current-price">$2.00</span>
+<span class="original-price">$4.00</span>
+</div>
+<div class="savings">Save $2.00</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge coles">COLES - DRINKS</div>
+<div class="product-name">Red Bull Energy Drink 4x250mL</div><div class="product-category">Drinks</div>
+<div class="price-info">
+<span class="current-price">$6.50</span>
+<span class="original-price">$13.00</span>
+</div>
+<div class="savings">Save $6.50</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge coles">COLES - DRINKS</div>
+<div class="product-name">Pepsi Max or Solo Zero Sugar 24x375mL</div><div class="product-category">Drinks</div>
+<div class="price-info">
+<span class="current-price">$23.70</span>
+<span class="original-price">$39.50</span>
+</div>
+<div class="savings">Save $15.80</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge coles">COLES - DRINKS</div>
+<div class="product-name">Monster Energy Drink 500mL</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$3.10</span>
+<span class="original-price">$4.45</span>
+</div>
+<div class="savings">Save $1.35</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<!-- Woolworths -->
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
+<div class="product-name">Pepsi, Solo, Sunkist or Mountain Dew 1.25L</div><div class="product-category">General</div>
+<div class="price-info">
+<span class="current-price">$1.75</span>
+<span class="original-price">$3.50</span>
+</div>
+<div class="savings">Save $1.75</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
+<div class="product-name">Schweppes Soft Drink 4x300mL</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$4.00</span>
+<span class="original-price">$8.00</span>
+</div>
+<div class="savings">Save $4.00</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
+<div class="product-name">Kirks Soft Drink 10x375mL</div><div class="product-category">General</div>
+<div class="price-info">
+<span class="current-price">$7.50</span>
+<span class="original-price">$15.00</span>
+</div>
+<div class="savings">Save $7.50</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge woolworths">WOOLWORTHS - DRINKS</div>
+<div class="product-name">Cottee's Cordial 1 Litre</div><div class="product-category"></div>
+<div class="price-info">
+<span class="current-price">$2.75</span>
+<span class="original-price">$5.50</span>
+</div>
+<div class="savings">Save $2.75</div>
+<div class="deal-badge best-deal">HALF PRICE</div>
+</div>
+<!-- Drakes -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - BEVERAGES</div>
+<div class="product-name">Coca Cola or Flavours 1.25lt</div>
+<div class="price-info">
+<span class="current-price">1/2 PRICE</span>
+</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drakes Supermarket Specials -->
+<div class="category-section">
+<div class="category-header" onclick="toggleCategory('drakes-special')">
+<div class="category-title">
+<span class="category-icon">🛒</span>
+                    Drakes Supermarket - 11 Mar - 17 Mar 2026</div>
+<span class="expand-icon" id="drakes-special-icon">+</span>
+</div>
+<div class="category-content" id="drakes-special-content">
+<div class="deals-grid">
+<!-- Half Price -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
+<div class="product-name">Powerade 600ml</div>
+<div class="price-info">
+<span class="current-price">$9.25</span>
+</div>
+<div class="unit-price">$3.75/litre</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
+<div class="product-name">Nescafe Classic Flavoured Instant Coffee 95g</div>
+<div class="price-info">
+<span class="current-price">$5.50</span>
+</div>
+<div class="unit-price">$5.79/100g</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
+<div class="product-name">Nescafe Espresso Concentrate 500ml</div>
+<div class="price-info">
+<span class="current-price">$5.50</span>
+</div>
+<div class="unit-price">$1.10/100ml</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
+<div class="product-name">Pepsi or Schweppes 24x375ml</div>
+<div class="price-info">
+<span class="current-price">$21.00</span>
+</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
+<div class="product-name">Ajax Disinfectant Multipurpose Wipes Citrus &amp; Pineapple 110pk</div>
+<div class="price-info">
+<span class="current-price">$5.50</span>
+</div>
+<div class="unit-price">$0.05 each</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - 1/2 PRICE</div>
+<div class="product-name">Handee Paper Towel Ultra Absorbent White 2 Ply 2 Pack</div>
+<div class="price-info">
+<span class="current-price">1/2 PRICE</span>
+</div>
+<div class="deal-badge half-price">HALF PRICE</div>
+</div>
+<!-- Deli -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DELI</div>
+<div class="product-name">Triple Smoked Ham</div>
+<div class="price-info">
+<span class="current-price">$13.00/kg</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DELI</div>
+<div class="product-name">Australian Cooked Pork Loin Roast</div>
+<div class="price-info">
+<span class="current-price">$21.90/kg</span>
+</div>
+<div class="savings">Save $2.10</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DELI</div>
+<div class="product-name">Turkey Breast Plain or Herb &amp; Mustard Marinated</div>
+<div class="price-info">
+<span class="current-price">$26.00/kg</span>
+</div>
+<div class="savings">Save $4.00</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DELI</div>
+<div class="product-name">Primo Short Cut Wood Smoked Rindless Bacon 175g</div>
+<div class="price-info">
+<span class="current-price">$3.35</span>
+</div>
+<div class="savings">Save $3.35</div>
+<div class="unit-price">$19.14/kg</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<!-- Meat & Seafood -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - MEAT</div>
+<div class="product-name">Australian Grain Fed Beef Rib Fillet Steak</div>
+<div class="price-info">
+<span class="current-price">$24.00/kg</span>
+</div>
+<div class="savings">Save $6.00</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - MEAT</div>
+<div class="product-name">Australian Lamb Rump Roast (min 1.2kg)</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $16.00</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - MEAT</div>
+<div class="product-name">Australian Pork Shoulder Boneless Roast</div>
+<div class="price-info">
+<span class="current-price">$8.90/kg</span>
+</div>
+<div class="savings">Save $2.10</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - SEAFOOD</div>
+<div class="product-name">Tasmanian Atlantic Salmon Portions</div>
+<div class="price-info">
+<span class="current-price">$36.00/kg</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - SEAFOOD</div>
+<div class="product-name">Extra Large Pacific Oysters</div>
+<div class="price-info">
+<span class="current-price">$2.00 ea</span>
+</div>
+<div class="savings">Save $2.00</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - SEAFOOD</div>
+<div class="product-name">Springbok Foods Boerewors 1kg</div>
+<div class="price-info">
+<span class="current-price">$23.50/kg</span>
+</div>
+<div class="savings">Save $6.00</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<!-- Produce -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PRODUCE</div>
+<div class="product-name">Queensland Shepard Avocados</div>
+<div class="price-info">
+<span class="current-price">$1.50 ea</span>
+</div>
+<div class="deal-badge best-deal">FRESH</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PRODUCE</div>
+<div class="product-name">Australian Seedless Watermelon</div>
+<div class="price-info">
+<span class="current-price">$1.90/kg</span>
+</div>
+<div class="deal-badge best-deal">FRESH</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PRODUCE</div>
+<div class="product-name">Australian Baby Cos Lettuce 2 Pack</div>
+<div class="price-info">
+<span class="current-price">$2.00/pk</span>
+</div>
+<div class="unit-price">$1.50 each</div>
+<div class="deal-badge best-deal">FRESH</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PRODUCE</div>
+<div class="product-name">Australian Whole Celery</div>
+<div class="price-info">
+<span class="current-price">$2.90 ea</span>
+</div>
+<div class="deal-badge best-deal">FRESH</div>
+</div>
+<!-- Dairy -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DAIRY</div>
+<div class="product-name">Cheer Cheese Slices 32 Pack 500g</div>
+<div class="price-info">
+<span class="current-price">$10.00</span>
+</div>
+<div class="savings">Save $1.00</div>
+<div class="unit-price">$20.00/kg</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DAIRY</div>
+<div class="product-name">Perfect Italiano Shredded Cheese 450g</div>
+<div class="price-info">
+<span class="current-price">$7.50</span>
+</div>
+<div class="savings">Save $2.00</div>
+<div class="unit-price">$16.47/kg</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DAIRY</div>
+<div class="product-name">Western Star Butter 500g</div>
+<div class="price-info">
+<span class="current-price">$7.90</span>
+</div>
+<div class="savings">Save $1.00</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DAIRY</div>
+<div class="product-name">Tassal Tasmanian Smokehouse Smoked Salmon 100g</div>
+<div class="price-info">
+<span class="current-price">$7.90</span>
+</div>
+<div class="savings">Save $3.10</div>
+<div class="unit-price">$79.00/kg</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - DAIRY</div>
+<div class="product-name">Dare or Dairy Farmers Classic Flavoured Milk 750ml</div>
+<div class="price-info">
+<span class="current-price">$4.30</span>
+</div>
+<div class="savings">Save $1.40</div>
+<div class="unit-price">$5.73/litre</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<!-- Freezer -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - FROZEN</div>
+<div class="product-name">Birds Eye Oven Bake Fish 425g</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $6.00</div>
+<div class="unit-price">$14.12/kg</div>
+<div class="deal-badge half-price">1/2 PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - FROZEN</div>
+<div class="product-name">Blue Wave Crispy Battered Fish Bites 1kg</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $16.00</div>
+<div class="unit-price">$16.00/kg</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - FROZEN</div>
+<div class="product-name">Peters Original Ice Cream 4lt</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $2.20</div>
+<div class="unit-price">$0.22/100ml</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - FROZEN</div>
+<div class="product-name">Thomas Cappo Seafoods Crumbed Whiting Fillets 1kg</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $7.05</div>
+<div class="unit-price">$13.90/kg</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - FROZEN</div>
+<div class="product-name">McCain Air Fryer Steak Cut Chips 750g</div>
+<div class="price-info">
+<span class="current-price">$4.00</span>
+</div>
+<div class="savings">Save $1.80</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<!-- Pantry -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PANTRY</div>
+<div class="product-name">Nestle Milo 460g</div>
+<div class="price-info">
+<span class="current-price">$7.50</span>
+</div>
+<div class="savings">Save $3.25</div>
+<div class="unit-price">$1.43/100g</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PANTRY</div>
+<div class="product-name">Tetley Extra Strong Tea Bags 100 Pack</div>
+<div class="price-info">
+<span class="current-price">$4.00</span>
+</div>
+<div class="savings">Save $3.25</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PANTRY</div>
+<div class="product-name">Mutti Passata 400g</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $1.60</div>
+<div class="unit-price">$0.80/100g</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PANTRY</div>
+<div class="product-name">MasterFoods Standard Tomato Sauce 475ml-500ml</div>
+<div class="price-info">
+<span class="current-price">$4.10</span>
+</div>
+<div class="savings">Save $2.10</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<!-- Easter -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - EASTER</div>
+<div class="product-name">Lindor Casket 93g</div>
+<div class="price-info">
+<span class="current-price">$11.00</span>
+</div>
+<div class="savings">Save $6.00</div>
+<div class="unit-price">$12.37/100g</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - EASTER</div>
+<div class="product-name">Cadbury Dairy Milk or Dream Egg Carton 170g</div>
+<div class="price-info">
+<span class="current-price">$7.50</span>
+</div>
+<div class="savings">Save $4.10</div>
+<div class="unit-price">$4.41/100g</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - EASTER</div>
+<div class="product-name">Red Tulip Mixed Caramel or Milk Chocolate Eggs Bag 916g</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $7.10</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<!-- Household -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - HOUSEHOLD</div>
+<div class="product-name">Earthwise 3 In 1 Powered Laundry Capsules 26 Pack, Laundry Liquid or Powder 2 litre/kg</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $10.00</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - HOUSEHOLD</div>
+<div class="product-name">Ajax Antiviral Spray 750ml</div>
+<div class="price-info">
+<span class="current-price">$3.50</span>
+</div>
+<div class="savings">Save $3.50</div>
+<div class="unit-price">$0.47/100ml</div>
+<div class="deal-badge half-price">1/2 PRICE</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - HOUSEHOLD</div>
+<div class="product-name">Radiant Powder 2kg</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $10.00</div>
+<div class="unit-price">$5.00/kg</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<!-- Pet -->
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PET</div>
+<div class="product-name">Purina One Cat Food 1.4kg-1.5kg</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $12.60</div>
+<div class="unit-price">$2.00/100g</div>
+<div class="deal-badge best-deal">MEGA DEAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PET</div>
+<div class="product-name">Purina One Adult Chicken &amp; Rice Dog Food 6kg</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $5.00</div>
+<div class="unit-price">$0.49/100g</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+<div class="deal-card">
+<div class="store-badge drakes">DRAKES - PET</div>
+<div class="product-name">Pedigree Dentastix Dog Treats 7 Pack 110g-270g</div>
+<div class="price-info">
+<span class="current-price">-</span>
+</div>
+<div class="savings">Save $3.50</div>
+<div class="deal-badge best-deal">SPECIAL</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ALDI Special Buys -->
+<div class="category-section">
+<div class="category-header" onclick="toggleCategory('aldi')">
+<div class="category-title">
+<span class="category-icon">🏪</span>
+                    ALDI Special Buys - Wed 18 Mar &amp; Sat 21 Mar 2026</div>
+<span class="expand-icon" id="aldi-icon">+</span>
+</div>
+<div class="category-content" id="aldi-content">
+<div class="deals-grid">
+<!-- Wed 18 Mar - Limited Time Only Meat -->
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - MEAT</div>
+<div class="product-name">RSPCA Approved Chicken Drumsticks with Maple Butter Glaze approx. 1.5kg - READY, SET…COOK!</div>
+<div class="price-info">
+<span class="current-price">$10.49</span>
+</div>
+<div class="unit-price">$4.24 per kg</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - MEAT</div>
+<div class="product-name">Blazing RSPCA Approved Chicken Burgers 440g - LET'S EAT MOIRA MAC'S</div>
+<div class="price-info">
+<span class="current-price">$9.79</span>
+</div>
+<div class="unit-price">$9.79 per kg</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - MEAT</div>
+<div class="product-name">New York Beef Strip Portion approx. 0.8kg - JINDURRA STATION</div>
+<div class="price-info">
+<span class="current-price">$23.99</span>
+</div>
+<div class="unit-price">$23.99 per kg</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<!-- Wed 18 Mar - Kitchen -->
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Classic Stand Mixer - AMBIANO</div>
+<div class="price-info">
+<span class="current-price">$69.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">25L Airfryer Oven - STIRLING</div>
+<div class="price-info">
+<span class="current-price">$109.00</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Stainless Steel Cookware Sets - CROFTON</div>
+<div class="price-info">
+<span class="current-price">$49.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Cook Fry and Serve Pan 28cm - CROFTON</div>
+<div class="price-info">
+<span class="current-price">$34.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Stainless Steel Mixing Bowls 3 Piece Set - CROFTON</div>
+<div class="price-info">
+<span class="current-price">$29.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Stick Mixer - AMBIANO</div>
+<div class="price-info">
+<span class="current-price">$29.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Electric Breakfast Appliances - AMBIANO</div>
+<div class="price-info">
+<span class="current-price">$29.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Magnetic Knife Block - CROFTON</div>
+<div class="price-info">
+<span class="current-price">$24.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Food Chopper or Hand Mixer - AMBIANO</div>
+<div class="price-info">
+<span class="current-price">$18.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - KITCHEN</div>
+<div class="product-name">Digital Kitchen Scale - AMBIANO</div>
+<div class="price-info">
+<span class="current-price">$9.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<!-- Wed 18 Mar - Bedroom -->
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">Fold Away Bed - SOHL</div>
+<div class="price-info">
+<span class="current-price">$129.00</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">Industrial Chest Of 5 Drawers - SOHL</div>
+<div class="price-info">
+<span class="current-price">$129.00</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">Airflow Jacquard Queen Size Mattress Topper - KIRKTON HOUSE</div>
+<div class="price-info">
+<span class="current-price">$69.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">375 Thread Count Australian Cotton Fitted Sheet Set King Bed - KIRKTON HOUSE</div>
+<div class="price-info">
+<span class="current-price">$49.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">Quilt Cover Set King Bed - KIRKTON HOUSE</div>
+<div class="price-info">
+<span class="current-price">$49.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">375 Thread Count Australian Cotton Fitted Sheet Set Queen Bed - KIRKTON HOUSE</div>
+<div class="price-info">
+<span class="current-price">$39.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - BEDROOM</div>
+<div class="product-name">Jacquard Carved Rug - KIRKTON HOUSE</div>
+<div class="price-info">
+<span class="current-price">$39.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Wed 18 Mar</div>
+</div>
+<!-- Sat 21 Mar - Camping -->
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Instant Up Tent 4 Person - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$99.00</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Solar Mat 200W</div>
+<div class="price-info">
+<span class="current-price">$199.00</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Queen Air Mattress with Built in Pump - BESTWAY</div>
+<div class="price-info">
+<span class="current-price">$59.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Steel Mesh Table - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$59.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Adult's Snuggle Hoodie - WEST BAY</div>
+<div class="price-info">
+<span class="current-price">$34.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Camp First Aid Kit 94 Piece - ST JOHN</div>
+<div class="price-info">
+<span class="current-price">$34.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Byron Bay Camp Chair - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$27.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Rechargeable Camping Lanterns - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$26.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Sleeping Bag - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$24.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Camping Poncho - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$24.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Camping Hanging Bags - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$24.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Heavy Duty Tarp 3.65m x 5.5m - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$29.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Water Repellent Picnic Blanket - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$29.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Memory Foam Camp Pillow - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$16.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Steel Mesh Coffee Table - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$14.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Adult's Hiking Socks 2 Pack - CRANE</div>
+<div class="price-info">
+<span class="current-price">$11.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">LED Headlamps - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$9.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Electric Air Pump - ADVENTURIDGE</div>
+<div class="price-info">
+<span class="current-price">$29.99</span>
+</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+<div class="deal-card">
+<div class="store-badge aldi">ALDI - CAMPING</div>
+<div class="product-name">Marshmallow Skewers 250g - GRILL SOCIETY</div>
+<div class="price-info">
+<span class="current-price">$7.99</span>
+</div>
+<div class="unit-price">$3.33 per 100g</div>
+<div class="deal-badge best-deal">SPECIAL BUY</div>
+<div class="availability">On Sale Sat 21 Mar</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
         function toggleCategory(categoryId) {
             const content = document.getElementById(categoryId + '-content');
             const icon = document.getElementById(categoryId + '-icon');

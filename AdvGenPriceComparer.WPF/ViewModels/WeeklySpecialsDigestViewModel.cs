@@ -27,7 +27,7 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
         _weeklySpecialsService = weeklySpecialsService ?? throw new ArgumentNullException(nameof(weeklySpecialsService));
         _dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
-        AllDeals = new ObservableCollection<WeeklySpecialItemViewModel>();
+        AllDeals = new ObservableCollection<WeeklySpecialDealViewModel>();
         Categories = new ObservableCollection<string>();
         Stores = new ObservableCollection<string>();
 
@@ -40,7 +40,7 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
         GenerateDigest();
     }
 
-    public ObservableCollection<WeeklySpecialItemViewModel> AllDeals { get; }
+    public ObservableCollection<WeeklySpecialDealViewModel> AllDeals { get; }
     public ObservableCollection<string> Categories { get; }
     public ObservableCollection<string> Stores { get; }
 
@@ -138,7 +138,7 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
 
         AllDeals.Clear();
 
-        IEnumerable<WeeklySpecialItem> deals = CurrentReport.AllDeals;
+        IEnumerable<WeeklySpecialDeal> deals = CurrentReport.AllDeals;
 
         if (SelectedCategory != "All")
         {
@@ -152,7 +152,7 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
 
         foreach (var deal in deals.OrderByDescending(d => d.SavingsPercentage))
         {
-            AllDeals.Add(new WeeklySpecialItemViewModel(deal));
+            AllDeals.Add(new WeeklySpecialDealViewModel(deal));
         }
     }
 
@@ -212,11 +212,11 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
 /// <summary>
 /// ViewModel wrapper for a weekly special item
 /// </summary>
-public class WeeklySpecialItemViewModel : ViewModelBase
+public class WeeklySpecialDealViewModel : ViewModelBase
 {
-    private readonly WeeklySpecialItem _item;
+    private readonly WeeklySpecialDeal _item;
 
-    public WeeklySpecialItemViewModel(WeeklySpecialItem item)
+    public WeeklySpecialDealViewModel(WeeklySpecialDeal item)
     {
         _item = item ?? throw new ArgumentNullException(nameof(item));
     }

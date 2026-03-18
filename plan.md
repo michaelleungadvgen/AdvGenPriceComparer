@@ -6083,7 +6083,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 **UI Features:**
 - [x] Add "Export Data" button in settings
 - [x] Add "Import from URL" dialog - IMPLEMENTED: ImportFromUrlWindow with URL input, package preview, duplicate handling options, progress tracking, and result display
-- [ ] Add static peer configuration UI
+- [x] Add static peer configuration UI - DONE: Created StaticPeerConfigWindow with full CRUD for discovery sources and peers, health checking, Data menu integration
 - [ ] Add export/import progress indicators
 - [ ] Add data validation reports
 - [ ] Add export file browser

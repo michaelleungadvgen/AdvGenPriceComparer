@@ -32,4 +32,5 @@ public interface IDialogService
     void ShowPriceAlertsDialog();
     void ShowWeeklySpecialsImportDialog();
     void ShowCloudSyncDialog();
+    void ShowStaticPeerConfigDialog();
 }

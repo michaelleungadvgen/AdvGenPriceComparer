@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -15,12 +16,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
     private readonly IItemRepository _itemRepository;
     private readonly IPlaceRepository _placeRepository;
     private readonly IPriceRecordRepository _priceRecordRepository;
-    private readonly ICategoryPredictionService? _categoryPredictionService;
-
-    public interface ICategoryPredictionService
-    {
-        Task<string> PredictCategoryAsync(Item item);
-    }
+    private readonly Application.Interfaces.ICategoryPredictionService? _categoryPredictionService;
     private readonly ILoggerService _logger;
 
     public WeeklySpecialsImportService(
@@ -28,7 +24,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
         IPlaceRepository placeRepository,
         IPriceRecordRepository priceRecordRepository,
         ILoggerService logger,
-        ICategoryPredictionService? categoryPredictionService = null)
+        Application.Interfaces.ICategoryPredictionService? categoryPredictionService = null)
     {
         _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
         _placeRepository = placeRepository ?? throw new ArgumentNullException(nameof(placeRepository));
@@ -384,7 +380,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
         {
             // Create new item
             var category = options.AutoCategorize && _categoryPredictionService != null && string.IsNullOrEmpty(product.Category)
-                ? await PredictCategoryAsync(product)
+                ? PredictCategory(product)
                 : (product.Category ?? "Uncategorized");
 
             var item = new Item
@@ -433,7 +429,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
         {
             // Create new item
             var category = options.AutoCategorize && _categoryPredictionService != null && string.IsNullOrEmpty(product.Category)
-                ? await PredictCategoryAsync(product.ProductName, product.Brand)
+                ? PredictCategory(product.ProductName, product.Brand)
                 : (product.Category ?? "Uncategorized");
 
             var item = new Item
@@ -466,7 +462,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
         });
     }
 
-    private async Task<string> PredictCategoryAsync(ColesProduct product)
+    private string PredictCategory(ColesProduct product)
     {
         if (_categoryPredictionService == null) return "Uncategorized";
 
@@ -477,10 +473,11 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
             Description = product.Description ?? ""
         };
 
-        return await _categoryPredictionService.PredictCategoryAsync(tempItem);
+        var result = _categoryPredictionService.PredictCategory(tempItem);
+        return result.PredictedCategory;
     }
 
-    private async Task<string> PredictCategoryAsync(string productName, string brand)
+    private string PredictCategory(string productName, string brand)
     {
         if (_categoryPredictionService == null) return "Uncategorized";
 
@@ -490,7 +487,8 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
             Brand = brand
         };
 
-        return await _categoryPredictionService.PredictCategoryAsync(tempItem);
+        var result = _categoryPredictionService.PredictCategory(tempItem);
+        return result.PredictedCategory;
     }
 
     private decimal ParsePrice(string? priceString)
@@ -552,7 +550,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
                 var unitPriceMatch = Regex.Match(line, @"\(\$([\d\.]+)/(.+?)\)");
                 var description = unitPriceMatch.Success ? $"${unitPriceMatch.Groups[1].Value}/{unitPriceMatch.Groups[2].Value}" : "";
 
-                items.Add(new WeeklySpecialItem
+                items.Add(new AdvGenPriceComparer.Core.Interfaces.WeeklySpecialItem
                 {
                     ProductId = $"ALDI_{items.Count:000}",
                     ProductName = productName,
@@ -613,7 +611,7 @@ public class WeeklySpecialsImportService : IWeeklySpecialsImportService
                         var specialType = savePart.Contains("Half Price", StringComparison.OrdinalIgnoreCase) ? "Half Price" :
                                          savePart.Contains("$") ? $"Save {savePart}" : savePart;
 
-                        items.Add(new WeeklySpecialItem
+                        items.Add(new AdvGenPriceComparer.Core.Interfaces.WeeklySpecialItem
                         {
                             ProductId = $"DRAKES_{items.Count:000}",
                             ProductName = productName,
