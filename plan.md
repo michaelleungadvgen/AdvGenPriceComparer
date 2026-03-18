@@ -1,7 +1,7 @@
 # AdvGenPriceComparer WPF Application - Complete Development Plan
 
-**Last Updated:** 2026-03-13
-**Current Status:** 85% Complete - Missing Critical Services
+**Last Updated:** 2026-03-18
+**Current Status:** 95% Complete - Core Services Implemented
 
 ---
 
@@ -229,10 +229,10 @@ See **[Phase 12: Ollama Chat Interface for Natural Language Price Queries](#-pha
 
 ## ⚠️ Critical Missing Components
 
-### 1. JsonImportService (PRIORITY 1) 🔴
-**Location:** `AdvGenPriceComparer.WPF/Services/JsonImportService.cs`
+### 1. JsonImportService (PRIORITY 1) ✅ COMPLETE
+**Location:** `AdvGenPriceComparer.Application/Services/JsonImportService.cs`
 **Referenced:** App.xaml.cs lines 87-91
-**Status:** Not implemented - app will fail at startup
+**Status:** ✅ IMPLEMENTED - Service exists and is fully functional
 
 **Required Class Structure:**
 ```csharp
@@ -305,10 +305,10 @@ public class JsonImportService
 - Use `IProgress<ImportProgress>` for UI updates
 - Track: Total items, Imported, Skipped, Failed
 
-### 2. ServerConfigService (PRIORITY 2) 🔴
-**Location:** `AdvGenPriceComparer.WPF/Services/ServerConfigService.cs`
+### 2. ServerConfigService (PRIORITY 2) ✅ COMPLETE
+**Location:** `AdvGenPriceComparer.Core/Services/ServerConfigService.cs`
 **Referenced:** App.xaml.cs lines 81-82
-**Status:** Not implemented - app will fail at startup
+**Status:** ✅ IMPLEMENTED - Service exists and is fully functional
 
 **Required Class Structure:**
 ```csharp
@@ -410,18 +410,18 @@ public class ExportService
 
 ## 📋 Implementation Checklist
 
-### Phase 1: Fix Startup Errors (CRITICAL - 4-5 hours)
-- [ ] **Create JsonImportService.cs**
-  - [ ] Coles/Woolworths JSON parser (1-2 hours)
-  - [ ] Drakes markdown parser (2-3 hours)
-  - [ ] Duplicate detection (30 mins)
-  - [ ] Progress tracking (30 mins)
-- [ ] **Create ServerConfigService.cs** (1 hour)
-  - [ ] Load/save servers.json
-  - [ ] Connection management
-  - [ ] Health check methods
-- [ ] **Create sample servers.json** in project root (5 mins)
-- [ ] **Test app startup** - should run without errors
+### Phase 1: Fix Startup Errors (CRITICAL - 4-5 hours) ✅ COMPLETE
+- [x] **Create JsonImportService.cs**
+  - [x] Coles/Woolworths JSON parser (1-2 hours)
+  - [x] Drakes markdown parser (2-3 hours)
+  - [x] Duplicate detection (30 mins)
+  - [x] Progress tracking (30 mins)
+- [x] **Create ServerConfigService.cs** (1 hour)
+  - [x] Load/save servers.json
+  - [x] Connection management
+  - [x] Health check methods
+- [x] **Create sample servers.json** in project root (5 mins)
+- [x] **Test app startup** - should run without errors
 
 ### Phase 2: Complete Import Functionality (3-4 hours)
 - [x] Connect ImportDataViewModel to JsonImportService
