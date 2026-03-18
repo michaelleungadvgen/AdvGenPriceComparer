@@ -39,6 +39,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         GlobalSearchCommand = new RelayCommand(ShowGlobalSearch);
         ScanBarcodeCommand = new RelayCommand(ScanBarcode);
         PriceDropNotificationsCommand = new RelayCommand(ShowPriceDropNotifications);
+        PriceAlertsCommand = new RelayCommand(ShowPriceAlerts);
         DealExpirationRemindersCommand = new RelayCommand(ShowDealExpirationReminders);
         WeeklySpecialsDigestCommand = new RelayCommand(ShowWeeklySpecialsDigest);
         ShoppingListsCommand = new RelayCommand(ShowShoppingLists);
@@ -77,6 +78,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ICommand GlobalSearchCommand { get; }
     public ICommand ScanBarcodeCommand { get; }
     public ICommand PriceDropNotificationsCommand { get; }
+    public ICommand PriceAlertsCommand { get; }
     public ICommand DealExpirationRemindersCommand { get; }
     public ICommand WeeklySpecialsDigestCommand { get; }
     public ICommand ShoppingListsCommand { get; }
@@ -257,6 +259,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void ShowPriceDropNotifications()
     {
         _dialogService.ShowPriceDropNotificationsDialog();
+    }
+
+    private void ShowPriceAlerts()
+    {
+        _dialogService.ShowPriceAlertsDialog();
     }
 
     private void ShowDealExpirationReminders()

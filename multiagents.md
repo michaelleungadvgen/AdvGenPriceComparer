@@ -207,10 +207,30 @@
 | Favourite items list | 🟢 DONE | Agent-027 | Implemented IFavoritesService, FavoritesViewModel, FavoritesWindow UI, 15 unit tests all passing |
 | Add menu item to open Settings | 🟢 DONE | Agent-038 | Added Tools menu with Settings item to MainWindow menu bar, opens SettingsWindow via IDialogService |
 | **Multi-store trip optimization** | 🟢 DONE | Agent-Kimi | Created ITripOptimizerService, TripOptimizerService, TripOptimizerViewModel, TripOptimizerWindow with full UI for planning efficient shopping routes across multiple stores. Supports 3 optimization strategies (Cost, Distance, Balanced), shows store stops with items, travel time, distance, and potential savings. |
+| **Cloud sync functionality** | 🟡 DOING | Agent-Kimi-Cloud | Implementing cloud-based data synchronization service with conflict resolution, automatic sync scheduling, and offline support |
+| **Price Alert System** | 🟢 DONE | Agent-Kimi-Alert | Implemented IPriceAlertService, PriceAlert model, PriceAlertService, PriceAlertViewModel, PriceAlertWindow UI. Users can set target prices and receive notifications. Integrated with MainWindow menu.
 
 ---
 
 ## Active Agent Assignments
+
+### Agent-Kimi-Cloud (In Progress)
+- **Task:** Cloud sync functionality - Implement cloud-based data synchronization
+- **Started:** 2026-03-18
+- **Estimated Completion:** 4-6 hours
+- **Plan:**
+  1. Create ICloudSyncService interface in Core project
+  2. Implement CloudSyncService in WPF project with:
+     - Automatic synchronization of Items, Places, and PriceRecords
+     - Conflict resolution strategies (ServerWins, ClientWins, LastWriteWins)
+     - Sync scheduling (manual, on-change, periodic)
+     - Offline support with sync queue
+     - Progress reporting and status tracking
+  3. Create CloudSyncSettings model for configuration
+  4. Create CloudSyncStatusWindow UI for managing sync
+  5. Add menu item to MainWindow
+  6. Register service in DI container
+  7. Write unit tests
 
 ### Agent-034 (Completed)
 - **Task:** Verified IDatabaseProvider interface and LiteDbProvider implementation
@@ -528,6 +548,24 @@
 - **Results:** Build succeeds with 0 errors, all 17 SettingsViewModelTests passing
 
 | Update PROJECT_STATUS.md - Mark Shopping list and Trip optimizer as DONE | 🟢 DONE | Agent-Kimi-Docs | Synced PROJECT_STATUS.md with actual implementation status - marked Shopping list integration, Trip optimizer, Price comparison view, Historical price charts, Barcode scanner, Global search, Price drop notifications, P2P sharing, Dark mode as DONE
+
+### Agent-Kimi-Alert (DONE)
+- **Task:** Price Alert System - Implement IPriceAlertService for users to set target prices and receive notifications
+- **Started:** 2026-03-18
+- **Completed:** 2026-03-18
+- **Changes Made:**
+  1. ✅ Created IPriceAlertService interface in Core/Interfaces/
+  2. ✅ Created PriceAlert model in Core/Models/ with enums (PriceAlertCondition, PriceAlertStatus)
+  3. ✅ Created PriceAlertEntity in Data.LiteDB/Entities/ for LiteDB storage
+  4. ✅ Updated DatabaseService with PriceAlerts collection and indexes
+  5. ✅ Implemented PriceAlertService in WPF/Services/ with full CRUD operations
+  6. ✅ Created PriceAlertViewModel with filtering, stats, and command bindings
+  7. ✅ Created PriceAlertWindow.xaml and .xaml.cs with modern UI
+  8. ✅ Updated IDialogService and SimpleDialogService with ShowPriceAlertsDialog()
+  9. ✅ Added PriceAlertsCommand and ShowPriceAlerts() to MainWindowViewModel
+  10. ✅ Added 🎯 Price Alerts menu item to MainWindow.xaml
+  11. ✅ Registered IPriceAlertService in App.xaml.cs DI container
+- **Test Results:** 372 tests passing (no new failures)
 
 ---
 

@@ -1,0 +1,235 @@
+<ui:FluentWindow x:Class="AdvGenPriceComparer.WPF.Views.PriceAlertWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Title="🎯 Price Alerts" 
+                 Height="800" Width="1000"
+                 WindowStartupLocation="CenterOwner"
+                 Background="White">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="White" Padding="20,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="🎯 Price Alerts" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock Text="Set target prices and get notified when items reach your desired price" 
+                               FontSize="12" Opacity="0.7" Margin="0,5,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <ui:Badge Appearance="Success" 
+                              Content="{Binding ActiveAlertCount}"
+                              ToolTip="Active alerts"
+                              Margin="0,0,5,0"/>
+                    <ui:Badge Appearance="Caution" 
+                              Content="{Binding TriggeredAlertCount}"
+                              ToolTip="Triggered alerts"
+                              Visibility="{Binding TriggeredAlertCount, Converter={StaticResource CountToVisibilityConverter}}"
+                              Margin="0,0,10,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- New Alert Section -->
+        <Border Grid.Row="1" Background="#F5F5F5" Padding="20,15" BorderBrush="#E0E0E0" BorderThickness="0,1">
+            <Expander Header="➕ Create New Price Alert" IsExpanded="True">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Row 1 Labels -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Item *" FontWeight="SemiBold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Store (Optional)" FontWeight="SemiBold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Target Price *" FontWeight="SemiBold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Condition" FontWeight="SemiBold" Margin="0,0,10,5"/>
+
+                    <!-- Row 1 Inputs -->
+                    <ComboBox Grid.Row="1" Grid.Column="0" 
+                              ItemsSource="{Binding AllItems}"
+                              SelectedItem="{Binding SelectedItem}"
+                              DisplayMemberPath="Name"
+                              Margin="0,0,10,0"
+                              VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" 
+                              ItemsSource="{Binding AllPlaces}"
+                              SelectedItem="{Binding SelectedPlace}"
+                              DisplayMemberPath="Name"
+                              Margin="0,0,10,0"
+                              VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" 
+                             Text="{Binding TargetPrice, StringFormat='${0:F2}'}" 
+                             Margin="0,0,10,0"
+                             VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="3" 
+                              ItemsSource="{Binding ConditionOptions}"
+                              SelectedItem="{Binding SelectedCondition}"
+                              Margin="0,0,10,0"
+                              VerticalAlignment="Center"/>
+                    <Button Grid.Row="1" Grid.Column="4" 
+                            Content="Create Alert" 
+                            Command="{Binding CreateAlertCommand}"
+                            Padding="20,5"
+                            VerticalAlignment="Center"/>
+
+                    <!-- Row 2 Labels -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Alert Name (Optional)" FontWeight="SemiBold" Margin="0,10,10,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Expiry (Days)" FontWeight="SemiBold" Margin="0,10,10,5"/>
+
+                    <!-- Row 2 Inputs -->
+                    <Grid Grid.Row="2" Grid.Column="0" Margin="0,0,10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding AlertName}" 
+                                 Margin="0,0,10,0"
+                                 VerticalAlignment="Center"/>
+                        <CheckBox Grid.Column="1" 
+                                  Content="Notify"
+                                  IsChecked="{Binding EnableNotification}"
+                                  VerticalAlignment="Center"/>
+                    </Grid>
+                    <TextBox Grid.Row="2" Grid.Column="1" 
+                             Text="{Binding ExpiryDays}" 
+                             Margin="0,0,10,0"
+                             VerticalAlignment="Center"/>
+                </Grid>
+            </Expander>
+        </Border>
+
+        <!-- Alerts List -->
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Filter -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Filter: " VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <ComboBox ItemsSource="{Binding FilterOptions}"
+                          SelectedItem="{Binding FilterStatus}"
+                          Width="120"
+                          VerticalAlignment="Center"/>
+                <Button Content="🔄 Refresh" 
+                        Command="{Binding RefreshCommand}" 
+                        Padding="10,5"
+                        Margin="10,0,0,0"/>
+            </StackPanel>
+
+            <!-- Toolbar -->
+            <ToolBarTray Grid.Row="1" Margin="0,0,0,10">
+                <ToolBar>
+                    <Button Content="✓ Acknowledge" 
+                            Command="{Binding AcknowledgeAlertCommand}"
+                            CommandParameter="{Binding SelectedAlert}"
+                            Padding="10,5"/>
+                    <Separator/>
+                    <Button Content="▶ Reactivate" 
+                            Command="{Binding ReactivateAlertCommand}"
+                            CommandParameter="{Binding SelectedAlert}"
+                            Padding="10,5"/>
+                    <Button Content="⏸ Disable" 
+                            Command="{Binding DisableAlertCommand}"
+                            CommandParameter="{Binding SelectedAlert}"
+                            Padding="10,5"/>
+                    <Separator/>
+                    <Button Content="🗑 Delete" 
+                            Command="{Binding DeleteAlertCommand}"
+                            CommandParameter="{Binding SelectedAlert}"
+                            Padding="10,5"/>
+                    <Separator/>
+                    <Button Content="🔄 Clear Form" 
+                            Command="{Binding ClearFormCommand}"
+                            Padding="10,5"/>
+                </ToolBar>
+            </ToolBarTray>
+
+            <!-- Alerts DataGrid -->
+            <DataGrid Grid.Row="2" 
+                      ItemsSource="{Binding Alerts}"
+                      SelectedItem="{Binding SelectedAlert}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      AlternatingRowBackground="#F9F9F9">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Status" Width="80">
+                        <DataGridTextColumn.Binding>
+                            <Binding Path="StatusText">
+                                <Binding.Converter>
+                                    <StaticResource ResourceKey="StatusColorConverter"/>
+                                </Binding.Converter>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Alert Name" Binding="{Binding Alert.AlertName}" Width="180"/>
+                    <DataGridTextColumn Header="Item" Binding="{Binding Alert.ItemName}" Width="200"/>
+                    <DataGridTextColumn Header="Store" Binding="{Binding Alert.PlaceName}" Width="120"/>
+                    <DataGridTextColumn Header="Target" Width="100">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0} ${1:F2}">
+                                <Binding Path="ConditionText"/>
+                                <Binding Path="Alert.TargetPrice"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Created" Binding="{Binding Alert.DateCreated, StringFormat=d}" Width="90"/>
+                    <DataGridTextColumn Header="Triggered" Binding="{Binding Alert.LastTriggered, StringFormat=g}" Width="120"/>
+                    <DataGridTextColumn Header="Count" Binding="{Binding Alert.TriggerCount}" Width="60"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Empty State -->
+            <TextBlock Grid.Row="2"
+                       Text="No price alerts yet.&#x0a;Create an alert to get notified when an item reaches your target price!"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Opacity="0.5"
+                       TextAlignment="Center"
+                       Visibility="{Binding Alerts.Count, Converter={StaticResource ZeroToVisibilityConverter}}"/>
+        </Grid>
+
+        <!-- Bottom Action Bar -->
+        <Border Grid.Row="3" Background="#F5F5F5" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="20,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Press ESC to close"
+                           VerticalAlignment="Center"
+                           Margin="0,0,15,0"
+                           Opacity="0.6"
+                           FontSize="12"/>
+                <Button Content="Close"
+                        Command="{Binding CloseCommand}"
+                        Padding="30,8"
+                        FontWeight="SemiBold"
+                        IsDefault="True"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</ui:FluentWindow>

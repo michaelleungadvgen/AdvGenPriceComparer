@@ -41,18 +41,27 @@ public partial class App : System.Windows.Application
 
         try
         {
-            // Apply theme from settings
+            // Apply theme and localization from settings
             var settingsService = Services.GetRequiredService<ISettingsService>();
             var themeService = Services.GetRequiredService<IThemeService>();
+            var localizationService = Services.GetRequiredService<ILocalizationService>();
             
             // Wait for settings to be loaded (they load async in background)
-            // We'll apply the theme once settings are confirmed loaded
+            // We'll apply the settings once confirmed loaded
             settingsService.SettingsChanged += (s, args) =>
             {
                 if (args.Loaded)
                 {
                     logger.LogInfo($"Applying theme from settings: {settingsService.ApplicationTheme}");
                     themeService.ApplyTheme(settingsService.ApplicationTheme);
+                    
+                    // Apply localization culture from settings
+                    if (!string.IsNullOrEmpty(settingsService.Culture) && 
+                        !settingsService.Culture.Equals(localizationService.CurrentCulture, StringComparison.OrdinalIgnoreCase))
+                    {
+                        logger.LogInfo($"Applying culture from settings: {settingsService.Culture}");
+                        localizationService.ChangeCulture(settingsService.Culture);
+                    }
                 }
             };
 
@@ -103,6 +112,7 @@ public partial class App : System.Windows.Application
                 new ServerConfigService(serverConfigPath));
             services.AddSingleton<IP2PNetworkService, NetworkManager>();
             services.AddSingleton<IThemeService, ThemeService>();
+            services.AddSingleton<ILocalizationService, LocalizationService>();
 
             // Peer Discovery Service for P2P static data sharing
             services.AddSingleton<PeerDiscoveryService>(provider =>
@@ -299,6 +309,14 @@ public partial class App : System.Windows.Application
                 var notificationService = provider.GetRequiredService<INotificationService>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new PriceDropNotificationService(groceryData, notificationService, logger);
+            });
+            services.AddSingleton<IPriceAlertService>(provider =>
+            {
+                var dbService = provider.GetRequiredService<AdvGenPriceComparer.Data.LiteDB.Services.DatabaseService>();
+                var notificationService = provider.GetRequiredService<INotificationService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                return new PriceAlertService(dbService, notificationService, logger, groceryData);
             });
             services.AddSingleton<IFavoritesService>(provider =>
             {

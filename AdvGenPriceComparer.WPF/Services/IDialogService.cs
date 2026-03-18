@@ -29,4 +29,5 @@ public interface IDialogService
     void ShowBestPricesDialog();
     void ShowEditPlaceDialog(Core.Models.Place place);
     void ShowTripOptimizerDialog();
+    void ShowPriceAlertsDialog();
 }

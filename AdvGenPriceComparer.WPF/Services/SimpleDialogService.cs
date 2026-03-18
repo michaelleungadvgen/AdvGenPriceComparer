@@ -266,4 +266,16 @@ public class SimpleDialogService : IDialogService
         var window = new TripOptimizerWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowPriceAlertsDialog()
+    {
+        var priceAlertService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IPriceAlertService>();
+        var groceryDataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.PriceAlertViewModel(priceAlertService, groceryDataService, dialogService, logger);
+        var window = new PriceAlertWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

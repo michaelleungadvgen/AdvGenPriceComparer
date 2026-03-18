@@ -238,6 +238,10 @@
                            Command="{Binding PriceDropNotificationsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
+                    <ui:Button Content="🎯 Price Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Command="{Binding PriceAlertsCommand}"
+                           Appearance="Transparent"
+                           Padding="8,6" Cursor="Hand" FontSize="13"/>
                     <ui:Button Content="⏰ Deal Reminders" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding DealExpirationRemindersCommand}"
                            Appearance="Transparent"
