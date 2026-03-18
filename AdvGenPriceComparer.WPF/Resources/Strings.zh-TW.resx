@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  <!-- Application Title -->
+  <data name="App.Title" xml:space="preserve">
+    <value>AdvGen 價格比較器</value>
+  </data>
+  
+  <!-- Navigation -->
+  <data name="Nav.Dashboard" xml:space="preserve">
+    <value>儀表板</value>
+  </data>
+  <data name="Nav.Items" xml:space="preserve">
+    <value>商品</value>
+  </data>
+  <data name="Nav.Stores" xml:space="preserve">
+    <value>商店</value>
+  </data>
+  <data name="Nav.Categories" xml:space="preserve">
+    <value>分類</value>
+  </data>
+  <data name="Nav.Alerts" xml:space="preserve">
+    <value>提醒</value>
+  </data>
+  <data name="Nav.Reports" xml:space="preserve">
+    <value>報告</value>
+  </data>
+  <data name="Nav.ShoppingLists" xml:space="preserve">
+    <value>購物清單</value>
+  </data>
+  
+  <!-- Common Actions -->
+  <data name="Action.Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="Action.Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="Action.Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="Action.Save" xml:space="preserve">
+    <value>儲存</value>
+  </data>
+  <data name="Action.Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Action.Search" xml:space="preserve">
+    <value>搜尋</value>
+  </data>
+  <data name="Action.Import" xml:space="preserve">
+    <value>匯入</value>
+  </data>
+  <data name="Action.Export" xml:space="preserve">
+    <value>匯出</value>
+  </data>
+  <data name="Action.Refresh" xml:space="preserve">
+    <value>重新整理</value>
+  </data>
+  <data name="Action.Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  
+  <!-- Dashboard -->
+  <data name="Dashboard.TotalItems" xml:space="preserve">
+    <value>商品總數</value>
+  </data>
+  <data name="Dashboard.TrackedStores" xml:space="preserve">
+    <value>追蹤商店</value>
+  </data>
+  <data name="Dashboard.PriceUpdates" xml:space="preserve">
+    <value>價格更新</value>
+  </data>
+  <data name="Dashboard.ActiveDeals" xml:space="preserve">
+    <value>優惠活動</value>
+  </data>
+  <data name="Dashboard.QuickActions" xml:space="preserve">
+    <value>快速操作</value>
+  </data>
+  
+  <!-- Items -->
+  <data name="Item.Name" xml:space="preserve">
+    <value>名稱</value>
+  </data>
+  <data name="Item.Brand" xml:space="preserve">
+    <value>品牌</value>
+  </data>
+  <data name="Item.Category" xml:space="preserve">
+    <value>分類</value>
+  </data>
+  <data name="Item.Price" xml:space="preserve">
+    <value>價格</value>
+  </data>
+  <data name="Item.Barcode" xml:space="preserve">
+    <value>條碼</value>
+  </data>
+  <data name="Item.Store" xml:space="preserve">
+    <value>商店</value>
+  </data>
+  
+  <!-- Settings -->
+  <data name="Settings.Title" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings.General" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="Settings.Database" xml:space="preserve">
+    <value>資料庫</value>
+  </data>
+  <data name="Settings.ImportExport" xml:space="preserve">
+    <value>匯入 / 匯出</value>
+  </data>
+  <data name="Settings.Notifications" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="Settings.ML" xml:space="preserve">
+    <value>機器學習</value>
+  </data>
+  <data name="Settings.About" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>主題</value>
+  </data>
+  <data name="Settings.Theme.Light" xml:space="preserve">
+    <value>淺色</value>
+  </data>
+  <data name="Settings.Theme.Dark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="Settings.Theme.System" xml:space="preserve">
+    <value>系統預設</value>
+  </data>
+  
+  <!-- Messages -->
+  <data name="Message.ConfirmDelete" xml:space="preserve">
+    <value>確定要刪除此項目嗎？</value>
+  </data>
+  <data name="Message.ChangesSaved" xml:space="preserve">
+    <value>更改已成功儲存。</value>
+  </data>
+  <data name="Message.ErrorOccurred" xml:space="preserve">
+    <value>發生錯誤。請重試。</value>
+  </data>
+  <data name="Message.Loading" xml:space="preserve">
+    <value>載入中...</value>
+  </data>
+  <data name="Message.NoData" xml:space="preserve">
+    <value>無可用資料。</value>
+  </data>
+  
+  <!-- Price Comparison -->
+  <data name="PriceComparison.Title" xml:space="preserve">
+    <value>比較價格</value>
+  </data>
+  <data name="PriceComparison.BestPrice" xml:space="preserve">
+    <value>最優價格</value>
+  </data>
+  <data name="PriceComparison.Savings" xml:space="preserve">
+    <value>節省</value>
+  </data>
+  
+  <!-- Menu -->
+  <data name="Menu.File" xml:space="preserve">
+    <value>檔案</value>
+  </data>
+  <data name="Menu.Data" xml:space="preserve">
+    <value>資料</value>
+  </data>
+  <data name="Menu.Tools" xml:space="preserve">
+    <value>工具</value>
+  </data>
+  <data name="Menu.Help" xml:space="preserve">
+    <value>說明</value>
+  </data>
+  
+</root>
