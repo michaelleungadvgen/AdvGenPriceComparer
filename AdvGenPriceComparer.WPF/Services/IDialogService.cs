@@ -31,4 +31,5 @@ public interface IDialogService
     void ShowTripOptimizerDialog();
     void ShowPriceAlertsDialog();
     void ShowWeeklySpecialsImportDialog();
+    void ShowCloudSyncDialog();
 }

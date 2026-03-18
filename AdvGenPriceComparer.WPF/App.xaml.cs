@@ -310,6 +310,15 @@ public partial class App : System.Windows.Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new PriceDropNotificationService(groceryData, notificationService, logger);
             });
+            services.AddSingleton<ICloudSyncService>(provider =>
+            {
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var settingsService = provider.GetRequiredService<ISettingsService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new CloudSyncService(itemRepo, placeRepo, priceRepo, settingsService, logger);
+            });
             services.AddSingleton<IPriceAlertService>(provider =>
             {
                 var dbService = provider.GetRequiredService<AdvGenPriceComparer.Data.LiteDB.Services.DatabaseService>();
@@ -410,6 +419,13 @@ public partial class App : System.Windows.Application
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<ItemViewModel>();
             services.AddTransient<PlaceViewModel>();
+            services.AddTransient<CloudSyncViewModel>(provider =>
+            {
+                var cloudSyncService = provider.GetRequiredService<ICloudSyncService>();
+                var dialogService = provider.GetRequiredService<IDialogService>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                return new CloudSyncViewModel(cloudSyncService, dialogService, logger);
+            });
             services.AddTransient<AddStoreViewModel>();
             services.AddTransient<ImportDataViewModel>();
             services.AddTransient<PriceHistoryViewModel>();

@@ -363,7 +363,7 @@ public partial class MainWindow : FluentWindow
             logger.LogInfo("Weekly specials import dialog closed");
 
             // Refresh dashboard data after import
-            ViewModel.RefreshDataAsync();
+            ViewModel.RefreshDashboard();
         }
         catch (Exception ex)
         {
@@ -520,6 +520,20 @@ public partial class MainWindow : FluentWindow
         catch (Exception ex)
         {
             MessageBox.Show($"Error opening server data transfer dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void CloudSync_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowCloudSyncDialog();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening cloud sync dialog: {ex.Message}",
                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

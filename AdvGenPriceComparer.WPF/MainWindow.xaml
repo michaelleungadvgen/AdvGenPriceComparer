@@ -125,6 +125,7 @@
                 <Separator/>
                 <MenuItem Header="Import Weekly Specials..." Click="ImportWeeklySpecials_Click"/>
                 <MenuItem Header="Import from URL..." Click="ImportFromUrl_Click"/>
+                <MenuItem Header="Cloud Sync..." Click="CloudSync_Click"/>
                 <MenuItem Header="Server Data Transfer..." Click="ServerDataTransfer_Click"/>
                 <Separator/>
                 <MenuItem Header="Generate Demo Data" Click="GenerateDemoData_Click"/>

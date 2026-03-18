@@ -1,4 +1,5 @@
 using System.Windows;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Views;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -288,6 +289,17 @@ public class SimpleDialogService : IDialogService
         
         var viewModel = new ViewModels.WeeklySpecialsImportViewModel(importService, dialogService, logger);
         var window = new WeeklySpecialsImportWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
+
+    public void ShowCloudSyncDialog()
+    {
+        var cloudSyncService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ICloudSyncService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.CloudSyncViewModel(cloudSyncService, dialogService, logger);
+        var window = new CloudSyncStatusWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
 }
