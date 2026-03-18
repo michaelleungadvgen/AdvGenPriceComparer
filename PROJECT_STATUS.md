@@ -155,7 +155,7 @@ AdvGenPriceComparer/
 - [x] P2P price data sharing (NetworkManager) - Implemented with IP2PNetworkService interface and NetworkManager
 - [x] Cloud sync functionality
 - [x] Dark mode theme - Implemented with IThemeService/ThemeService
-- [x] Localization (multiple languages)
+- [x] Localization (multiple languages) - Implemented with ILocalizationService, RESX resource files (English, Simplified Chinese, Traditional Chinese), language switching in Settings
 - [ ] Mobile companion app API
 
 ---
