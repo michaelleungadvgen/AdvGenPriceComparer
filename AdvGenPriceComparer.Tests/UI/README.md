@@ -43,8 +43,8 @@ The Page Object pattern is used for maintainable UI tests:
    ```
 
 2. Ensure the application executable exists at:
-   - `AdvGenPriceComparer.WPF/bin/Debug/net9.0-windows7.0/AdvGenPriceComparer.WPF.exe`
-   - Or: `AdvGenPriceComparer.WPF/bin/Release/net9.0-windows7.0/AdvGenPriceComparer.WPF.exe`
+   - `AdvGenPriceComparer.WPF/bin/Debug/net9.0-windows/AdvGenPriceComparer.WPF.exe`
+   - Or: `AdvGenPriceComparer.WPF/bin/Release/net9.0-windows/AdvGenPriceComparer.WPF.exe`
 
 ### Run All UI Tests
 
