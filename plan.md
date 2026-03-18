@@ -4693,7 +4693,7 @@ public class PriceChatViewModel : ViewModelBase
 - [x] Add menu item to open Chat Assistant (in MainWindow sidebar)
 - [x] Test with various natural language queries (build successful, 248 tests passing)
 - [ ] Optimize prompts for better intent recognition
-- [ ] Document supported query types
+- [x] Document supported query types - DONE: Created OLLAMA_QUERIES.md with comprehensive documentation of all 9 query types, examples, SPQL mappings, and usage tips
 
 ### 12.11 Configuration in App.xaml.cs
 
