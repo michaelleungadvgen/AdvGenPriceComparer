@@ -4,7 +4,6 @@ using System.Windows;
 using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
-using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
 using AdvGenPriceComparer.Data.LiteDB.Services;

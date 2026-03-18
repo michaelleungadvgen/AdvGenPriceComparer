@@ -219,6 +219,15 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-Current (DONE)
+- **Task:** Fix duplicate using statement in App.xaml.cs - Remove duplicate `using AdvGenPriceComparer.Core.Interfaces;` statement
+- **Started:** 2026-03-18
+- **Completed:** 2026-03-18
+- **Issue:** Lines 6-7 had duplicate using statements causing CS0105 warning
+- **Solution:** Removed one of the duplicate lines
+- **Files Modified:** `AdvGenPriceComparer.WPF/App.xaml.cs` - Line 7 removed
+- **Build Result:** 0 errors, 110 warnings (CS0105 warning eliminated)
+
 ### Agent-Kimi-Cloud (In Progress)
 - **Task:** Cloud sync functionality - Implement cloud-based data synchronization
 - **Started:** 2026-03-18
@@ -472,6 +481,7 @@
 | 2026-03-18 | **Fix LocalizationService build error** - Fixed CS0104 ambiguous reference error in LocalizationService.cs where CultureInfo conflicted between System.Globalization and Core.Interfaces. Changed lines 188-189 to use fully qualified System.Globalization.CultureInfo type. Build now succeeds with 0 errors. | Agent-Kimi-Fix |
 | 2026-03-18 | **Weekly specials import** - Implemented IWeeklySpecialsImportService interface in Core, WeeklySpecialsImportService in WPF, WeeklySpecialsImportViewModel, and WeeklySpecialsImportWindow. Supports importing catalogue data from Coles/Woolworths (JSON) and ALDI/Drakes (Markdown) with preview, auto-detection, progress tracking, and ML-based auto-categorization. Added Data menu item. 372 tests passing. | Agent-Kimi-Weekly |
 | 2026-03-18 | **Cloud sync functionality** - Implemented ICloudSyncService interface in Core, CloudSyncSettings/CloudSyncStatus/ConflictResolutionStrategy enums and models, CloudSyncService in WPF with offline queue support, automatic conflict detection, multiple resolution strategies (ServerWins, ClientWins, LastWriteWins, Merge, Manual). CloudSyncViewModel and CloudSyncStatusWindow XAML UI with 4 tabs (Status, Settings, Conflicts, Queue). Added Data > Cloud Sync menu item. Registered in DI container. Build succeeds with 0 errors, 373 tests passing. | Agent-Current |
+| 2026-03-18 | **Fix duplicate using statement in App.xaml.cs** - Removed duplicate `using AdvGenPriceComparer.Core.Interfaces;` statement on lines 6-7 that was causing CS0105 warning. Build now succeeds with 0 errors. | Agent-Kimi-Current |
 | 2026-03-18 | **Add Language Selector UI to Settings** - Added language selector ComboBox to SettingsWindow General section, bound to AvailableCultures and Culture properties. Updated SettingsViewModel to integrate with ILocalizationService for immediate culture switching. Updated SimpleDialogService to inject ILocalizationService. Added TestLocalizationService to SettingsViewModelTests. | Agent-Current |
 | 2026-03-18 | **Document Ollama supported query types** - Created comprehensive OLLAMA_QUERIES.md documenting all 9 supported natural language query types for Ollama Chat Interface: Price Query, Price Comparison, Cheapest Item, Category Query, Items On Sale, Price History, Best Deals, Store Inventory, Budget Query. Includes natural language examples, SPQL mappings, query parameters, and usage tips. | Agent-Kimi-Docs |
 | 2026-03-18 | **Fix UI Automation Test Paths** - Fixed AdvGenPriceComparer.Tests.csproj TargetFramework from net9.0-windows7.0 to net9.0-windows. Updated AdvGenPriceComparer.Tests/UI/README.md with correct executable paths. Build succeeds with 0 errors. | Agent-Kimi-Paths |
