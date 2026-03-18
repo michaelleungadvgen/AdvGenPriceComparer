@@ -124,7 +124,8 @@ public class SimpleDialogService : IDialogService
         var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         var themeService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IThemeService>();
-        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService, themeService);
+        var localizationService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILocalizationService>();
+        var viewModel = new ViewModels.SettingsViewModel(settingsService, logger, dialogService, themeService, localizationService);
         var window = new SettingsWindow { DataContext = viewModel, Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }

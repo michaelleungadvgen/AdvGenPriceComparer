@@ -1,3 +1,4 @@
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
@@ -13,6 +14,7 @@ public class SettingsViewModel : ViewModelBase
     private readonly ILoggerService _logger;
     private readonly IDialogService _dialogService;
     private readonly IThemeService _themeService;
+    private readonly ILocalizationService _localizationService;
 
     // Database Settings
     private DatabaseProviderType _databaseProvider;
@@ -64,12 +66,14 @@ public class SettingsViewModel : ViewModelBase
         ISettingsService settingsService,
         ILoggerService logger,
         IDialogService dialogService,
-        IThemeService themeService)
+        IThemeService themeService,
+        ILocalizationService localizationService)
     {
         _settingsService = settingsService;
         _logger = logger;
         _dialogService = dialogService;
         _themeService = themeService;
+        _localizationService = localizationService;
 
         SaveCommand = new RelayCommand(SaveSettingsAsync, CanSave);
         ResetCommand = new RelayCommand(ResetSettings);
@@ -103,7 +107,15 @@ public class SettingsViewModel : ViewModelBase
         set
         {
             if (SetProperty(ref _culture, value))
+            {
+                // Apply culture change immediately via localization service
+                if (_localizationService != null && !string.IsNullOrEmpty(value))
+                {
+                    _localizationService.ChangeCulture(value);
+                    _logger.LogInfo($"Culture changed to: {value}");
+                }
                 ((RelayCommand)SaveCommand).RaiseCanExecuteChanged();
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
@@ -55,10 +56,10 @@ public class SettingsViewModelTests : IDisposable
         return new SettingsService(logger);
     }
 
-    private SettingsViewModel CreateViewModel(ISettingsService settingsService, IDialogService dialogService, IThemeService? themeService = null)
+    private SettingsViewModel CreateViewModel(ISettingsService settingsService, IDialogService dialogService, IThemeService? themeService = null, ILocalizationService? localizationService = null)
     {
         var logger = new TestLoggerService();
-        return new SettingsViewModel(settingsService, logger, dialogService, themeService ?? new TestThemeService());
+        return new SettingsViewModel(settingsService, logger, dialogService, themeService ?? new TestThemeService(), localizationService ?? new TestLocalizationService());
     }
 
     #region Provider Change Detection Tests
@@ -415,6 +416,33 @@ public class SettingsViewModelTests : IDisposable
             CurrentTheme = theme;
             ThemeChanged?.Invoke(this, new ThemeChangedEventArgs { OldTheme = oldTheme, NewTheme = theme });
         }
+    }
+
+    private class TestLocalizationService : ILocalizationService
+    {
+        public string CurrentCulture { get; private set; } = "en-US";
+        public IReadOnlyList<Core.Interfaces.CultureInfo> AvailableCultures => new List<Core.Interfaces.CultureInfo>
+        {
+            new Core.Interfaces.CultureInfo("en-US", "English (US)", "English", "US"),
+            new Core.Interfaces.CultureInfo("zh-CN", "Chinese (Simplified)", "Chinese (Simplified)", "CN")
+        };
+
+        public event EventHandler<CultureChangedEventArgs>? CultureChanged;
+
+        public bool ChangeCulture(string cultureCode)
+        {
+            if (string.IsNullOrWhiteSpace(cultureCode))
+                return false;
+
+            var oldCulture = CurrentCulture;
+            CurrentCulture = cultureCode;
+            CultureChanged?.Invoke(this, new CultureChangedEventArgs(oldCulture, cultureCode));
+            return true;
+        }
+
+        public string GetString(string key) => key;
+        public string GetString(string key, string cultureCode) => key;
+        public string GetFormattedString(string key, params object[] args) => string.Format(key, args);
     }
 
     private class TestDialogService : IDialogService

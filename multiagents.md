@@ -122,6 +122,7 @@
 | **Implement SyncFromStaticPeer() method** | 🟢 DONE | Agent-Kimi-6 | Implemented SyncFromStaticPeer() method in StaticDataImporter with incremental sync, timestamp checking, discovery.json fetching, and comprehensive sync result reporting |
 | **Localization (multiple languages)** | 🟡 DOING | Agent-Kimi-9 | Implementing multi-language support with resource files (RESX), ILocalizationService, and language switching in settings |
 | **Fix LocalizationService build error** | 🟢 DONE | Agent-Kimi-Fix | Fixed CS0104 ambiguous reference error between System.Globalization.CultureInfo and Core.Interfaces.CultureInfo by using fully qualified type names |
+| **Add Language Selector UI to Settings** | 🟢 DONE | Agent-Current | Added language selector ComboBox to SettingsWindow General section, bound to AvailableCultures and Culture properties, integrated with ILocalizationService for immediate culture switching on selection change |
 | **Document forecasting accuracy and limitations** | 🟢 DONE | Agent-Kimi-Docs | Created comprehensive PRICE_FORECASTING.md documentation covering accuracy metrics (MAPE 5-15%), performance expectations, limitations, data requirements, best practices, and troubleshooting |
 
 ---
@@ -467,6 +468,7 @@
 | 2026-03-18 | **Document forecasting accuracy and limitations** - Created comprehensive PRICE_FORECASTING.md in AdvGenPriceComparer.ML/ covering MAPE metrics (5-15%), confidence intervals (95%), trend detection accuracy (75-85%), anomaly detection performance, data requirements (30-90+ days), algorithm limitations, best practices, and troubleshooting guide. | Agent-Kimi-Docs |
 | 2026-03-18 | **Fix LocalizationService build error** - Fixed CS0104 ambiguous reference error in LocalizationService.cs where CultureInfo conflicted between System.Globalization and Core.Interfaces. Changed lines 188-189 to use fully qualified System.Globalization.CultureInfo type. Build now succeeds with 0 errors. | Agent-Kimi-Fix |
 | 2026-03-18 | **Weekly specials import** - Implemented IWeeklySpecialsImportService interface in Core, WeeklySpecialsImportService in WPF, WeeklySpecialsImportViewModel, and WeeklySpecialsImportWindow. Supports importing catalogue data from Coles/Woolworths (JSON) and ALDI/Drakes (Markdown) with preview, auto-detection, progress tracking, and ML-based auto-categorization. Added Data menu item. 372 tests passing. | Agent-Kimi-Weekly |
+| 2026-03-18 | **Add Language Selector UI to Settings** - Added language selector ComboBox to SettingsWindow General section, bound to AvailableCultures and Culture properties. Updated SettingsViewModel to integrate with ILocalizationService for immediate culture switching. Updated SimpleDialogService to inject ILocalizationService. Added TestLocalizationService to SettingsViewModelTests. | Agent-Current |
 
 ---
 
