@@ -214,6 +214,7 @@
 | **Fix UI Automation Test Paths** | 🟢 DONE | Agent-Kimi-Paths | Fixed AdvGenPriceComparer.Tests.csproj TargetFramework from net9.0-windows7.0 to net9.0-windows, updated README.md with correct paths. Build succeeds with 0 errors.
 | **Weekly specials import** | 🟢 DONE | Agent-Kimi-Weekly | Implemented IWeeklySpecialsImportService, WeeklySpecialsImportService, WeeklySpecialsImportViewModel, WeeklySpecialsImportWindow. Supports JSON (Coles/Woolworths) and Markdown (ALDI/Drakes) formats with preview, auto-detection, and progress tracking. 372 tests passing. |
 | **Price Alert System** | 🟢 DONE | Agent-Kimi-Alert | Implemented IPriceAlertService, PriceAlert model, PriceAlertService, PriceAlertViewModel, PriceAlertWindow UI. Users can set target prices and receive notifications. Integrated with MainWindow menu.
+| **Mobile companion app API** | 🟢 DONE | Agent-Kimi-Mobile | Created comprehensive mobile API with MOBILE_API.md documentation, MobileApiController with 15+ endpoints, MobileDtos.cs with 25+ optimized DTOs. Features: dashboard summary, quick price check, nearby stores with Haversine distance, barcode lookup, deal feed, shopping list CRUD and sync, price alerts, push notification registration.
 
 ---
 
@@ -481,8 +482,35 @@
 | 2026-03-18 | **Fix LocalizationService build error** - Fixed CS0104 ambiguous reference error in LocalizationService.cs where CultureInfo conflicted between System.Globalization and Core.Interfaces. Changed lines 188-189 to use fully qualified System.Globalization.CultureInfo type. Build now succeeds with 0 errors. | Agent-Kimi-Fix |
 | 2026-03-18 | **Weekly specials import** - Implemented IWeeklySpecialsImportService interface in Core, WeeklySpecialsImportService in WPF, WeeklySpecialsImportViewModel, and WeeklySpecialsImportWindow. Supports importing catalogue data from Coles/Woolworths (JSON) and ALDI/Drakes (Markdown) with preview, auto-detection, progress tracking, and ML-based auto-categorization. Added Data menu item. 372 tests passing. | Agent-Kimi-Weekly |
 | 2026-03-18 | **Cloud sync functionality** - Implemented ICloudSyncService interface in Core, CloudSyncSettings/CloudSyncStatus/ConflictResolutionStrategy enums and models, CloudSyncService in WPF with offline queue support, automatic conflict detection, multiple resolution strategies (ServerWins, ClientWins, LastWriteWins, Merge, Manual). CloudSyncViewModel and CloudSyncStatusWindow XAML UI with 4 tabs (Status, Settings, Conflicts, Queue). Added Data > Cloud Sync menu item. Registered in DI container. Build succeeds with 0 errors, 373 tests passing. | Agent-Current |
+| 2026-03-18 | **Mobile companion app API** - Created comprehensive mobile API with MOBILE_API.md documentation, MobileApiController with 15+ endpoints (dashboard, price-check, nearby-stores, barcode lookup, shopping list sync, price alerts, push notifications), MobileDtos.cs with 25+ optimized DTOs, Haversine distance calculation, and bearing direction. Ready for mobile app integration. | Agent-Kimi-Mobile |
 | 2026-03-18 | **Fix duplicate using statement in App.xaml.cs** - Removed duplicate `using AdvGenPriceComparer.Core.Interfaces;` statement on lines 6-7 that was causing CS0105 warning. Build now succeeds with 0 errors. | Agent-Kimi-Current |
 | 2026-03-18 | **Add Language Selector UI to Settings** - Added language selector ComboBox to SettingsWindow General section, bound to AvailableCultures and Culture properties. Updated SettingsViewModel to integrate with ILocalizationService for immediate culture switching. Updated SimpleDialogService to inject ILocalizationService. Added TestLocalizationService to SettingsViewModelTests. | Agent-Current |
+### Agent-Kimi-Mobile (DONE)
+- **Task:** Mobile companion app API - Create mobile-optimized API endpoints for companion app
+- **Started:** 2026-03-18
+- **Completed:** 2026-03-18
+- **Changes Made:**
+  1. Created MOBILE_API.md documentation with complete API specification
+  2. Created MobileApiController.cs with 15+ mobile-specific endpoints:
+     - Dashboard summary
+     - Quick price check
+     - Nearby stores with distance calculation
+     - Compact items list
+     - Barcode lookup with price history
+     - Deal feed
+     - Shopping list CRUD and sync
+     - Price alerts
+     - Push notification registration
+  3. Created MobileDtos.cs with 25+ mobile-optimized DTOs
+  4. Implemented Haversine formula for distance calculation
+  5. Added bearing calculation for store direction
+  6. Shopping lists with delta sync support
+  7. In-memory storage for shopping lists and price alerts (ready for DB integration)
+- **Files Created:**
+  - `AdvGenPriceComparer.Server/MOBILE_API.md`
+  - `AdvGenPriceComparer.Server/Controllers/MobileApiController.cs`
+  - `AdvGenPriceComparer.Server/Models/MobileDtos.cs`
+
 | 2026-03-18 | **Document Ollama supported query types** - Created comprehensive OLLAMA_QUERIES.md documenting all 9 supported natural language query types for Ollama Chat Interface: Price Query, Price Comparison, Cheapest Item, Category Query, Items On Sale, Price History, Best Deals, Store Inventory, Budget Query. Includes natural language examples, SPQL mappings, query parameters, and usage tips. | Agent-Kimi-Docs |
 | 2026-03-18 | **Localization - Add Traditional Chinese (zh-TW) resource file** - Created Strings.zh-TW.resx with complete Traditional Chinese translations for all application strings. Supports Taiwan/Hong Kong users with proper Traditional Chinese characters (儲存, 匯入, 匯出, 說明, etc.) | Agent-Kimi-9 |
 | 2026-03-18 | **Fix UI Automation Test Paths** - Fixed AdvGenPriceComparer.Tests.csproj TargetFramework from net9.0-windows7.0 to net9.0-windows. Updated AdvGenPriceComparer.Tests/UI/README.md with correct executable paths. Build succeeds with 0 errors. | Agent-Kimi-Paths |

@@ -156,7 +156,7 @@ AdvGenPriceComparer/
 - [x] Cloud sync functionality
 - [x] Dark mode theme - Implemented with IThemeService/ThemeService
 - [x] Localization (multiple languages) - Implemented with ILocalizationService, RESX resource files (English, Simplified Chinese, Traditional Chinese), language switching in Settings
-- [ ] Mobile companion app API
+- [x] Mobile companion app API - Implemented MobileApiController with 15+ endpoints including dashboard, price-check, nearby-stores, barcode lookup, shopping list sync, price alerts, push notifications. See MOBILE_API.md for documentation.
 
 ---
 
