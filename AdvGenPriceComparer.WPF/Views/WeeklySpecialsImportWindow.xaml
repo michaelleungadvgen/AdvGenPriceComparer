@@ -1,0 +1,183 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.WeeklySpecialsImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AdvGenPriceComparer.WPF.ViewModels"
+        Title="Import Weekly Specials" 
+        Height="700" Width="900"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:WeeklySpecialsImportViewModel}">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{DynamicResource SystemAccentColorBrush}" Padding="15,10" CornerRadius="4" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="📅 Import Weekly Specials" FontSize="22" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Import catalogue data from Coles, Woolworths, ALDI, and Drakes" 
+                           Foreground="White" Opacity="0.9" Margin="0,3,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Configuration Panel -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Supermarket Chain -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+                <TextBlock Text="Supermarket Chain:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <ComboBox ItemsSource="{Binding SupermarketChains}" 
+                          SelectedItem="{Binding SelectedChain}"
+                          IsEnabled="{Binding CanSelectFile}"
+                          Padding="8,5"/>
+                <TextBlock Text="{Binding SelectedChainDescription}" 
+                           FontSize="11" Foreground="Gray" Margin="0,3,0,0" FontStyle="Italic"/>
+            </StackPanel>
+
+            <!-- File Selection -->
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,0,0,10">
+                <TextBlock Text="Catalogue File:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" 
+                             Text="{Binding SelectedFilePath, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="True"
+                             Padding="8,5"
+                             VerticalContentAlignment="Center"/>
+                    <Button Grid.Column="1" 
+                            Content="Browse..." 
+                            Command="{Binding SelectFileCommand}"
+                            IsEnabled="{Binding CanSelectFile}"
+                            Padding="15,5" 
+                            Margin="10,0,0,0"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Date Range -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
+                <TextBlock Text="Valid From:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <DatePicker SelectedDate="{Binding ValidFrom}" 
+                            IsEnabled="{Binding CanSelectFile}"
+                            Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,10">
+                <TextBlock Text="Valid To:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <DatePicker SelectedDate="{Binding ValidTo}" 
+                            IsEnabled="{Binding CanSelectFile}"
+                            Padding="5"/>
+            </StackPanel>
+
+            <!-- Options -->
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,0,10">
+                <CheckBox Content="Skip duplicate products" 
+                          IsChecked="{Binding SkipDuplicates}"
+                          IsEnabled="{Binding CanSelectFile}"
+                          Margin="0,0,20,0"/>
+                <CheckBox Content="Auto-categorize products using ML" 
+                          IsChecked="{Binding AutoCategorize}"
+                          IsEnabled="{Binding CanSelectFile}"/>
+            </StackPanel>
+
+            <!-- Action Buttons -->
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                        Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button Content="🔍 Preview" 
+                        Command="{Binding PreviewCommand}"
+                        IsEnabled="{Binding CanPreview}"
+                        Padding="20,8" 
+                        Margin="0,0,10,0"
+                        Background="{DynamicResource SystemAccentColorBrush}"
+                        Foreground="White"/>
+                <Button Content="📥 Import" 
+                        Command="{Binding ImportCommand}"
+                        IsEnabled="{Binding CanImport}"
+                        Padding="20,8" 
+                        Margin="0,0,10,0"
+                        Background="Green"
+                        Foreground="White"/>
+                <Button Content="Cancel" 
+                        Command="{Binding CloseCommand}"
+                        Padding="20,8"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Preview DataGrid -->
+        <GroupBox Grid.Row="3" Header="Preview" Visibility="{Binding ShowPreview, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,10">
+            <DataGrid ItemsSource="{Binding PreviewItems}" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      AlternatingRowBackground="#F5F5F5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" Width="*"/>
+                    <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="120"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=${}{0:F2}}" Width="80"/>
+                    <DataGridTextColumn Header="Original" Binding="{Binding OriginalPrice, StringFormat=${}{0:F2}}" Width="80"/>
+                    <DataGridTextColumn Header="Savings" Binding="{Binding SavingsPercentage, StringFormat={}{0:F0}%}" Width="70"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding SpecialType}" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <!-- Progress Section -->
+        <Grid Grid.Row="4" Visibility="{Binding IsImporting, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <ProgressBar Grid.Row="0" 
+                         Value="{Binding ImportProgress}" 
+                         Maximum="100"
+                         Height="20"
+                         Margin="0,0,0,5"/>
+            
+            <TextBlock Grid.Row="1" 
+                       Text="{Binding StatusMessage}" 
+                       HorizontalAlignment="Center"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,3"/>
+            
+            <TextBlock Grid.Row="2" 
+                       Text="{Binding CurrentProductName}" 
+                       HorizontalAlignment="Center"
+                       FontSize="11"
+                       Foreground="Gray"
+                       TextTrimming="CharacterEllipsis"/>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="5" Background="#F0F0F0" Padding="10,5" CornerRadius="2">
+            <TextBlock Text="{Binding StatusMessage}" 
+                       FontSize="11" 
+                       Foreground="#666"
+                       TextTrimming="CharacterEllipsis"/>
+        </Border>
+    </Grid>
+</Window>

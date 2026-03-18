@@ -208,6 +208,7 @@
 | Add menu item to open Settings | 🟢 DONE | Agent-038 | Added Tools menu with Settings item to MainWindow menu bar, opens SettingsWindow via IDialogService |
 | **Multi-store trip optimization** | 🟢 DONE | Agent-Kimi | Created ITripOptimizerService, TripOptimizerService, TripOptimizerViewModel, TripOptimizerWindow with full UI for planning efficient shopping routes across multiple stores. Supports 3 optimization strategies (Cost, Distance, Balanced), shows store stops with items, travel time, distance, and potential savings. |
 | **Cloud sync functionality** | 🟡 DOING | Agent-Kimi-Cloud | Implementing cloud-based data synchronization service with conflict resolution, automatic sync scheduling, and offline support |
+| **Weekly specials import** | 🟢 DONE | Agent-Kimi-Weekly | Implemented IWeeklySpecialsImportService, WeeklySpecialsImportService, WeeklySpecialsImportViewModel, WeeklySpecialsImportWindow. Supports JSON (Coles/Woolworths) and Markdown (ALDI/Drakes) formats with preview, auto-detection, and progress tracking. 372 tests passing. |
 | **Price Alert System** | 🟢 DONE | Agent-Kimi-Alert | Implemented IPriceAlertService, PriceAlert model, PriceAlertService, PriceAlertViewModel, PriceAlertWindow UI. Users can set target prices and receive notifications. Integrated with MainWindow menu.
 
 ---
@@ -465,6 +466,7 @@
 | 2026-03-13 | **Update PROJECT_STATUS.md** - Synchronized pending features list with actual implementation status. Marked as DONE: Shopping list integration, Multi-store trip optimization, Price comparison view, Historical price charts, Barcode scanner integration, Search across all entities, Price drop notifications, P2P price data sharing, Dark mode theme. Build: 0 errors, 354 tests passing. | Agent-Kimi-Docs |
 | 2026-03-18 | **Document forecasting accuracy and limitations** - Created comprehensive PRICE_FORECASTING.md in AdvGenPriceComparer.ML/ covering MAPE metrics (5-15%), confidence intervals (95%), trend detection accuracy (75-85%), anomaly detection performance, data requirements (30-90+ days), algorithm limitations, best practices, and troubleshooting guide. | Agent-Kimi-Docs |
 | 2026-03-18 | **Fix LocalizationService build error** - Fixed CS0104 ambiguous reference error in LocalizationService.cs where CultureInfo conflicted between System.Globalization and Core.Interfaces. Changed lines 188-189 to use fully qualified System.Globalization.CultureInfo type. Build now succeeds with 0 errors. | Agent-Kimi-Fix |
+| 2026-03-18 | **Weekly specials import** - Implemented IWeeklySpecialsImportService interface in Core, WeeklySpecialsImportService in WPF, WeeklySpecialsImportViewModel, and WeeklySpecialsImportWindow. Supports importing catalogue data from Coles/Woolworths (JSON) and ALDI/Drakes (Markdown) with preview, auto-detection, progress tracking, and ML-based auto-categorization. Added Data menu item. 372 tests passing. | Agent-Kimi-Weekly |
 
 ---
 

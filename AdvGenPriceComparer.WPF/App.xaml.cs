@@ -338,6 +338,15 @@ public partial class App : System.Windows.Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new WeeklySpecialsService(groceryData, logger);
             });
+            services.AddSingleton<IWeeklySpecialsImportService>(provider =>
+            {
+                var itemRepo = provider.GetRequiredService<IItemRepository>();
+                var placeRepo = provider.GetRequiredService<IPlaceRepository>();
+                var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var logger = provider.GetRequiredService<ILoggerService>();
+                var categoryPredictionService = provider.GetService<ICategoryPredictionService>();
+                return new WeeklySpecialsImportService(itemRepo, placeRepo, priceRepo, logger, categoryPredictionService);
+            });
             services.AddSingleton<IBestPriceService>(provider =>
             {
                 var itemRepo = provider.GetRequiredService<IItemRepository>();

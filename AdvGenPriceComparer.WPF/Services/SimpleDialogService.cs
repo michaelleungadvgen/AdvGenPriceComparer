@@ -278,4 +278,15 @@ public class SimpleDialogService : IDialogService
         var window = new PriceAlertWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public void ShowWeeklySpecialsImportDialog()
+    {
+        var importService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IWeeklySpecialsImportService>();
+        var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        
+        var viewModel = new ViewModels.WeeklySpecialsImportViewModel(importService, dialogService, logger);
+        var window = new WeeklySpecialsImportWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

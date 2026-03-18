@@ -30,4 +30,5 @@ public interface IDialogService
     void ShowEditPlaceDialog(Core.Models.Place place);
     void ShowTripOptimizerDialog();
     void ShowPriceAlertsDialog();
+    void ShowWeeklySpecialsImportDialog();
 }

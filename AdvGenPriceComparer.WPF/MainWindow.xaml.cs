@@ -351,6 +351,28 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private void ImportWeeklySpecials_Click(object sender, RoutedEventArgs e)
+    {
+        var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
+        logger.LogInfo("ImportWeeklySpecials_Click called");
+
+        try
+        {
+            var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            dialogService.ShowWeeklySpecialsImportDialog();
+            logger.LogInfo("Weekly specials import dialog closed");
+
+            // Refresh dashboard data after import
+            ViewModel.RefreshDataAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Error in ImportWeeklySpecials_Click", ex);
+            MessageBox.Show($"Error opening weekly specials import dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void OldImportJsonData_Click_Backup(object sender, RoutedEventArgs e)
     {
         try

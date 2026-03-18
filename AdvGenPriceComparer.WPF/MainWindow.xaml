@@ -123,6 +123,7 @@
                 <MenuItem Header="Add Item" Command="{Binding AddItemCommand}"/>
                 <MenuItem Header="Add Store" Command="{Binding AddPlaceCommand}"/>
                 <Separator/>
+                <MenuItem Header="Import Weekly Specials..." Click="ImportWeeklySpecials_Click"/>
                 <MenuItem Header="Import from URL..." Click="ImportFromUrl_Click"/>
                 <MenuItem Header="Server Data Transfer..." Click="ServerDataTransfer_Click"/>
                 <Separator/>

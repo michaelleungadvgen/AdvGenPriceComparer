@@ -149,7 +149,7 @@ AdvGenPriceComparer/
 - [x] Favourite items list
 - [x] Shopping list integration - Implemented with ShoppingListService and ShoppingListWindow
 - [x] Multi-store trip optimization - Implemented with TripOptimizerService and TripOptimizerWindow
-- [ ] Weekly specials import (Coles, Woolworths, ALDI, Drakes)
+- [x] Weekly specials import (Coles, Woolworths, ALDI, Drakes) - IMPLEMENTED: IWeeklySpecialsImportService with support for JSON (Coles/Woolworths) and Markdown (ALDI/Drakes) formats
 
 ### Low Priority
 - [x] P2P price data sharing (NetworkManager) - Implemented with IP2PNetworkService interface and NetworkManager
