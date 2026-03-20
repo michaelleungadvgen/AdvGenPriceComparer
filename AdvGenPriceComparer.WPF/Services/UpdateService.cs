@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,16 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -186,6 +187,35 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Verify file hash before executing to prevent supply chain attacks
+            if (!string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                string calculatedHash;
+                using (var sha256 = SHA256.Create())
+                {
+                    using (var stream = File.OpenRead(tempPath))
+                    {
+                        var hashBytes = sha256.ComputeHash(stream);
+                        calculatedHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                    }
+                }
+
+                if (!calculatedHash.Equals(updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security Error: File hash validation failed. Expected {updateResult.FileHash}, got {calculatedHash}. Aborting execution.");
+
+                    try
+                    {
+                        File.Delete(tempPath);
+                    }
+                    catch (Exception deleteEx)
+                    {
+                        _logger.LogError("Failed to delete invalid update file", deleteEx);
+                    }
+                    return false;
+                }
+            }
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
