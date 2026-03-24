@@ -1,5 +1,5 @@
 using AdvGenPriceComparer.Application.Commands;
-using AdvGenPriceComparer.Application.Mediator;
+using AdvGenFlow;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using Microsoft.Extensions.Logging;
@@ -95,6 +95,16 @@ public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, Updat
                 item.Unit = request.Unit.Trim();
             if (request.Description != null)
                 item.Description = request.Description.Trim();
+            if (request.SubCategory != null)
+                item.SubCategory = request.SubCategory.Trim();
+            if (request.ImageUrl != null)
+                item.ImageUrl = request.ImageUrl.Trim();
+            if (request.Tags != null)
+                item.Tags = request.Tags.ToList();
+            if (request.Allergens != null)
+                item.Allergens = request.Allergens.ToList();
+            if (request.DietaryFlags != null)
+                item.DietaryFlags = request.DietaryFlags.ToList();
 
             item.LastUpdated = DateTime.UtcNow;
 

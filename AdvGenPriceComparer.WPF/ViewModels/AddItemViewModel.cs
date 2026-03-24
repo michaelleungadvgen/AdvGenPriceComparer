@@ -459,24 +459,34 @@ public class AddItemViewModel : ViewModelBase
                     return false;
                 }
 
-                // Apply extended fields (SubCategory, ImageUrl, Tags, Allergens, DietaryFlags)
-                // that are not covered by CreateItemCommand; then persist via UpdateItemCommand
-                // (Note: UpdateItemCommand also only covers the 7 core fields — the extended fields
-                // SubCategory, ImageUrl, Tags, Allergens, DietaryFlags are set on the in-memory item
-                // here for UI consistency but require a future mediator extension to fully persist.)
-                var createdItem = createResult.Item;
-                UpdateItemExtendedFields(createdItem);
+                // Persist extended fields (SubCategory, ImageUrl, Tags, Allergens, DietaryFlags)
+                // via UpdateItemCommand now that the command supports them.
+                var parsedTags = string.IsNullOrWhiteSpace(TagsText)
+                    ? null
+                    : (IEnumerable<string>)TagsText.Split(',')
+                        .Select(t => t.Trim())
+                        .Where(t => !string.IsNullOrWhiteSpace(t))
+                        .ToList();
+                var parsedAllergens = string.IsNullOrWhiteSpace(AllergensText)
+                    ? null
+                    : (IEnumerable<string>)AllergensText.Split(',')
+                        .Select(a => a.Trim())
+                        .Where(a => !string.IsNullOrWhiteSpace(a))
+                        .ToList();
+                var parsedDietaryFlags = string.IsNullOrWhiteSpace(DietaryFlagsText)
+                    ? null
+                    : (IEnumerable<string>)DietaryFlagsText.Split(',')
+                        .Select(d => d.Trim())
+                        .Where(d => !string.IsNullOrWhiteSpace(d))
+                        .ToList();
 
-                // Persist the 7 core fields again via UpdateItemCommand to keep parity
                 _mediator.Send(new UpdateItemCommand(
-                    createdItem.Id,
-                    createdItem.Name,
-                    createdItem.Brand,
-                    createdItem.Category,
-                    createdItem.Barcode,
-                    createdItem.PackageSize,
-                    createdItem.Unit,
-                    createdItem.Description
+                    createResult.Item.Id,
+                    SubCategory: string.IsNullOrWhiteSpace(SubCategory) ? null : SubCategory,
+                    ImageUrl: string.IsNullOrWhiteSpace(ImageUrl) ? null : ImageUrl,
+                    Tags: parsedTags,
+                    Allergens: parsedAllergens,
+                    DietaryFlags: parsedDietaryFlags
                 )).GetAwaiter().GetResult();
 
                 ItemId = createResult.ItemId; // Set ItemId so user can add prices
@@ -484,7 +494,26 @@ public class AddItemViewModel : ViewModelBase
             }
             else
             {
-                // Update existing item
+                // Update existing item including all extended fields
+                var editTags = string.IsNullOrWhiteSpace(TagsText)
+                    ? null
+                    : (IEnumerable<string>)TagsText.Split(',')
+                        .Select(t => t.Trim())
+                        .Where(t => !string.IsNullOrWhiteSpace(t))
+                        .ToList();
+                var editAllergens = string.IsNullOrWhiteSpace(AllergensText)
+                    ? null
+                    : (IEnumerable<string>)AllergensText.Split(',')
+                        .Select(a => a.Trim())
+                        .Where(a => !string.IsNullOrWhiteSpace(a))
+                        .ToList();
+                var editDietaryFlags = string.IsNullOrWhiteSpace(DietaryFlagsText)
+                    ? null
+                    : (IEnumerable<string>)DietaryFlagsText.Split(',')
+                        .Select(d => d.Trim())
+                        .Where(d => !string.IsNullOrWhiteSpace(d))
+                        .ToList();
+
                 var updateResult = _mediator.Send(new UpdateItemCommand(
                     ItemId,
                     string.IsNullOrWhiteSpace(Name) ? null : Name,
@@ -493,20 +522,18 @@ public class AddItemViewModel : ViewModelBase
                     string.IsNullOrWhiteSpace(Barcode) ? null : Barcode,
                     string.IsNullOrWhiteSpace(PackageSize) ? null : PackageSize,
                     string.IsNullOrWhiteSpace(Unit) ? null : Unit,
-                    string.IsNullOrWhiteSpace(Description) ? null : Description
+                    string.IsNullOrWhiteSpace(Description) ? null : Description,
+                    SubCategory: string.IsNullOrWhiteSpace(SubCategory) ? null : SubCategory,
+                    ImageUrl: string.IsNullOrWhiteSpace(ImageUrl) ? null : ImageUrl,
+                    Tags: editTags,
+                    Allergens: editAllergens,
+                    DietaryFlags: editDietaryFlags
                 )).GetAwaiter().GetResult();
 
                 if (!updateResult.Success)
                 {
                     _dialogService.ShowError($"Failed to update item: {updateResult.ErrorMessage}");
                     return false;
-                }
-
-                // Apply extended fields to the returned item for UI consistency
-                // (SubCategory, ImageUrl, Tags, Allergens, DietaryFlags require future mediator support)
-                if (updateResult.Item != null)
-                {
-                    UpdateItemExtendedFields(updateResult.Item);
                 }
 
                 _dialogService.ShowSuccess($"Item '{Name}' updated successfully!");
@@ -519,43 +546,6 @@ public class AddItemViewModel : ViewModelBase
             _dialogService.ShowError($"Failed to save item: {ex.Message}");
             return false;
         }
-    }
-
-    /// <summary>
-    /// Applies extended fields (SubCategory, ImageUrl, Tags, Allergens, DietaryFlags) to the item
-    /// in-memory. These fields are not covered by CreateItemCommand or UpdateItemCommand and will
-    /// require a future mediator command extension to be fully persisted.
-    /// </summary>
-    private void UpdateItemExtendedFields(Item item)
-    {
-        item.SubCategory = string.IsNullOrWhiteSpace(SubCategory) ? null : SubCategory;
-        item.ImageUrl = string.IsNullOrWhiteSpace(ImageUrl) ? null : ImageUrl;
-
-        if (!string.IsNullOrWhiteSpace(TagsText))
-        {
-            item.Tags = TagsText.Split(',')
-                .Select(t => t.Trim())
-                .Where(t => !string.IsNullOrWhiteSpace(t))
-                .ToList();
-        }
-
-        if (!string.IsNullOrWhiteSpace(AllergensText))
-        {
-            item.Allergens = AllergensText.Split(',')
-                .Select(a => a.Trim())
-                .Where(a => !string.IsNullOrWhiteSpace(a))
-                .ToList();
-        }
-
-        if (!string.IsNullOrWhiteSpace(DietaryFlagsText))
-        {
-            item.DietaryFlags = DietaryFlagsText.Split(',')
-                .Select(d => d.Trim())
-                .Where(d => !string.IsNullOrWhiteSpace(d))
-                .ToList();
-        }
-
-        item.MarkAsUpdated();
     }
 
     public void LoadItem(Item item)

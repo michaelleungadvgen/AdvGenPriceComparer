@@ -1,4 +1,4 @@
-using AdvGenPriceComparer.Application.Mediator;
+using AdvGenFlow;
 using AdvGenPriceComparer.Core.Models;
 
 namespace AdvGenPriceComparer.Application.Commands;
@@ -14,7 +14,12 @@ public record UpdateItemCommand(
     string? Barcode = null,
     string? PackageSize = null,
     string? Unit = null,
-    string? Description = null
+    string? Description = null,
+    string? SubCategory = null,
+    string? ImageUrl = null,
+    IEnumerable<string>? Tags = null,
+    IEnumerable<string>? Allergens = null,
+    IEnumerable<string>? DietaryFlags = null
 ) : IRequest<UpdateItemResult>;
 
 /// <summary>
