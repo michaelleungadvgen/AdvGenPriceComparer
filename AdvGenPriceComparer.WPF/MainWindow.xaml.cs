@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using AdvGenFlow;
 using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -135,19 +136,12 @@ public partial class MainWindow : FluentWindow
     {
         try
         {
-            var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<IMediator>();
             var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
 
-            // Cast to GroceryDataService since CategoryViewModel needs it
-            if (dataService is not GroceryDataService groceryDataService)
-            {
-                throw new InvalidOperationException("IGroceryDataService is not of type GroceryDataService");
-            }
-
-            var viewModel = new CategoryViewModel(groceryDataService, logger);
+            var viewModel = new CategoryViewModel(mediator, logger);
             var page = new CategoryPage(viewModel);
 
-            // Hide dashboard and show frame
             DashboardContent.Visibility = Visibility.Collapsed;
             ContentFrame.Visibility = Visibility.Visible;
             ContentFrame.Navigate(page);

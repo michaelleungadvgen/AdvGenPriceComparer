@@ -6,22 +6,23 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
-using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 
 namespace AdvGenPriceComparer.WPF.ViewModels
 {
     public class CategoryViewModel : INotifyPropertyChanged
     {
-        private readonly GroceryDataService _dataService;
+        private readonly IMediator _mediator;
         private readonly ILoggerService _logger;
         private ObservableCollection<string> _categories;
         private string _selectedCategory;
         private string _newCategoryName;
         private int _itemCount;
 
-        public CategoryViewModel(GroceryDataService dataService, ILoggerService logger)
+        public CategoryViewModel(IMediator mediator, ILoggerService logger)
         {
-            _dataService = dataService;
+            _mediator = mediator;
             _logger = logger;
             _categories = new ObservableCollection<string>();
 
@@ -88,7 +89,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels
                 Categories.Clear();
 
                 // Get all unique categories from items
-                var allItems = _dataService.Items.GetAll();
+                var allItems = _mediator.Send(new GetAllItemsQuery()).GetAwaiter().GetResult();
                 var uniqueCategories = allItems
                     .Select(i => i.Category)
                     .Where(c => !string.IsNullOrWhiteSpace(c))
@@ -119,11 +120,8 @@ namespace AdvGenPriceComparer.WPF.ViewModels
 
             try
             {
-                var items = _dataService.Items.GetAll()
-                    .Where(i => i.Category == SelectedCategory)
-                    .ToList();
-
-                ItemCount = items.Count;
+                var items = _mediator.Send(new GetItemsByCategoryQuery(SelectedCategory)).GetAwaiter().GetResult();
+                ItemCount = items.Count();
             }
             catch (Exception ex)
             {
@@ -180,9 +178,8 @@ namespace AdvGenPriceComparer.WPF.ViewModels
                 _logger.LogInfo($"Deleting category: {SelectedCategory}");
 
                 // Check if any items use this category
-                var itemsWithCategory = _dataService.Items.GetAll()
-                    .Where(i => i.Category == SelectedCategory)
-                    .ToList();
+                var itemsWithCategory = _mediator.Send(new GetItemsByCategoryQuery(SelectedCategory))
+                    .GetAwaiter().GetResult().ToList();
 
                 if (itemsWithCategory.Any())
                 {
