@@ -163,7 +163,7 @@ public class ItemViewModel : ViewModelBase
 
     private void AddItem()
     {
-        var viewModel = new AddItemViewModel(_dataService, _dialogService, _categoryPredictionService);
+        var viewModel = new AddItemViewModel(_mediator, _dialogService, _categoryPredictionService);
         var window = new Views.AddItemWindow(viewModel);
 
         if (window.ShowDialog() == true)
@@ -176,7 +176,7 @@ public class ItemViewModel : ViewModelBase
     {
         if (item == null) return;
 
-        var viewModel = new AddItemViewModel(_dataService, _dialogService);
+        var viewModel = new AddItemViewModel(_mediator, _dialogService);
         viewModel.LoadItem(item);
         var window = new Views.AddItemWindow(viewModel);
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using AdvGenFlow;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Commands;
@@ -17,6 +18,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 public class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private readonly IGroceryDataService _dataService;
+    private readonly IMediator _mediator;
     private readonly IDialogService _dialogService;
     private readonly CategoryPredictionService? _categoryPredictionService;
     private int _totalItems;
@@ -25,10 +27,12 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     public MainWindowViewModel(
         IGroceryDataService dataService,
+        IMediator mediator,
         IDialogService dialogService,
         CategoryPredictionService? categoryPredictionService = null)
     {
         _dataService = dataService;
+        _mediator = mediator;
         _dialogService = dialogService;
         _categoryPredictionService = categoryPredictionService;
 
@@ -214,7 +218,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     private void AddItem()
     {
-        var viewModel = new AddItemViewModel(_dataService, _dialogService, _categoryPredictionService);
+        var viewModel = new AddItemViewModel(_mediator, _dialogService, _categoryPredictionService);
         var window = new Views.AddItemWindow(viewModel);
 
         if (window.ShowDialog() == true)
