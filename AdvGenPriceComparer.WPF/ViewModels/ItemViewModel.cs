@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Commands;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.ML.Services;
@@ -14,6 +17,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 public class ItemViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
+    private readonly IMediator _mediator;
     private readonly IDialogService _dialogService;
     private readonly CategoryPredictionService? _categoryPredictionService;
     private ObservableCollection<Item> _items;
@@ -24,11 +28,13 @@ public class ItemViewModel : ViewModelBase
     private List<Item> _allItems = new();
 
     public ItemViewModel(
-        IGroceryDataService dataService, 
+        IGroceryDataService dataService,
+        IMediator mediator,
         IDialogService dialogService,
         CategoryPredictionService? categoryPredictionService = null)
     {
         _dataService = dataService;
+        _mediator = mediator;
         _dialogService = dialogService;
         _categoryPredictionService = categoryPredictionService;
         _items = new ObservableCollection<Item>();
@@ -101,7 +107,7 @@ public class ItemViewModel : ViewModelBase
     {
         try
         {
-            _allItems = _dataService.GetAllItems().ToList();
+            _allItems = _mediator.Send(new GetAllItemsQuery()).GetAwaiter().GetResult().ToList();
 
             // Load categories
             Categories.Clear();
@@ -192,10 +198,17 @@ public class ItemViewModel : ViewModelBase
         {
             try
             {
-                _dataService.Items.Delete(item.Id);
-                _allItems.Remove(item);
-                FilterItems();
-                _dialogService.ShowSuccess("Item deleted successfully.");
+                var deleteResult = _mediator.Send(new DeleteItemCommand(item.Id)).GetAwaiter().GetResult();
+                if (deleteResult.Success)
+                {
+                    _allItems.Remove(item);
+                    FilterItems();
+                    _dialogService.ShowSuccess("Item deleted successfully.");
+                }
+                else
+                {
+                    _dialogService.ShowError($"Failed to delete item: {deleteResult.ErrorMessage}");
+                }
             }
             catch (Exception ex)
             {

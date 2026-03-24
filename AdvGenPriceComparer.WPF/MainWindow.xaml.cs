@@ -93,8 +93,9 @@ public partial class MainWindow : FluentWindow
         try
         {
             var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
+            var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<IMediator>();
             var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
-            var viewModel = new ItemViewModel(dataService, dialogService);
+            var viewModel = new ItemViewModel(dataService, mediator, dialogService);
             var page = new ItemsPage(viewModel);
 
             // Hide dashboard and show frame
