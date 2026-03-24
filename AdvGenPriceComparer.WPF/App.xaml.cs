@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application;
 using AdvGenPriceComparer.Application.Interfaces;
 using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
@@ -171,7 +173,13 @@ public partial class App : System.Windows.Application
             services.AddSingleton<IItemRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Items);
             services.AddSingleton<IPlaceRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Places);
             services.AddSingleton<IAlertRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Alerts);
-            
+
+            // Required: handlers inject ILogger<T>
+            services.AddLogging();
+
+            // Register Application layer mediator and all handlers (via reflection)
+            services.AddApplicationServices();
+
             // Price History Tracking Service
             services.AddSingleton<IPriceHistoryTrackingService, PriceHistoryTrackingService>();
             
