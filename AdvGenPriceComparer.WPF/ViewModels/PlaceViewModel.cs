@@ -1,6 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Commands;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
@@ -13,13 +16,15 @@ public class PlaceViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly IMediator _mediator;
     private ObservableCollection<Place> _places;
     private Place? _selectedPlace;
 
-    public PlaceViewModel(IGroceryDataService dataService, IDialogService dialogService)
+    public PlaceViewModel(IGroceryDataService dataService, IDialogService dialogService, IMediator mediator)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+        _mediator = mediator;
         _places = new ObservableCollection<Place>();
 
         AddPlaceCommand = new RelayCommand(AddPlace);
@@ -58,7 +63,7 @@ public class PlaceViewModel : ViewModelBase
         try
         {
             Places.Clear();
-            var places = _dataService.GetAllPlaces();
+            var places = _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult();
             foreach (var place in places)
             {
                 Places.Add(place);
@@ -101,9 +106,16 @@ public class PlaceViewModel : ViewModelBase
         {
             try
             {
-                _dataService.Places.Delete(SelectedPlace.Id);
-                Places.Remove(SelectedPlace);
-                _dialogService.ShowSuccess("Store deleted successfully.");
+                var deleteResult = _mediator.Send(new DeletePlaceCommand(SelectedPlace.Id)).GetAwaiter().GetResult();
+                if (deleteResult.Success)
+                {
+                    Places.Remove(SelectedPlace);
+                    _dialogService.ShowSuccess("Store deleted successfully.");
+                }
+                else
+                {
+                    _dialogService.ShowError($"Failed to delete store: {deleteResult.ErrorMessage}");
+                }
             }
             catch (Exception ex)
             {
