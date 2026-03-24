@@ -4,7 +4,6 @@ using System.Windows.Input;
 using AdvGenFlow;
 using AdvGenPriceComparer.Application.Commands;
 using AdvGenPriceComparer.Application.Queries;
-using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
@@ -14,15 +13,13 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 
 public class PlaceViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
     private readonly IMediator _mediator;
     private ObservableCollection<Place> _places;
     private Place? _selectedPlace;
 
-    public PlaceViewModel(IGroceryDataService dataService, IDialogService dialogService, IMediator mediator)
+    public PlaceViewModel(IDialogService dialogService, IMediator mediator)
     {
-        _dataService = dataService;
         _dialogService = dialogService;
         _mediator = mediator;
         _places = new ObservableCollection<Place>();
@@ -77,7 +74,7 @@ public class PlaceViewModel : ViewModelBase
 
     private void AddPlace()
     {
-        var viewModel = new AddStoreViewModel(_dataService, _dialogService);
+        var viewModel = new AddStoreViewModel(_mediator, _dialogService);
         var window = new AddStoreWindow(viewModel);
 
         if (window.ShowDialog() == true)

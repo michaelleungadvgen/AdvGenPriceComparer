@@ -117,7 +117,8 @@ public partial class MainWindow : FluentWindow
         {
             var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
             var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
-            var viewModel = new StoreViewModel(dataService, dialogService);
+            var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenFlow.IMediator>();
+            var viewModel = new StoreViewModel(dataService, dialogService, mediator);
             var page = new StoresPage(viewModel);
 
             // Hide dashboard and show frame
@@ -281,11 +282,12 @@ public partial class MainWindow : FluentWindow
             logger.LogInfo("Getting services from DI container");
             var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
             var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
+            var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenFlow.IMediator>();
             var jsonImportService = ((App)System.Windows.Application.Current).Services.GetRequiredService<JsonImportService>();
             logger.LogInfo("Services retrieved successfully");
 
             logger.LogInfo("Creating ImportDataViewModel");
-            var viewModel = new ImportDataViewModel(dataService, dialogService, jsonImportService);
+            var viewModel = new ImportDataViewModel(dataService, dialogService, mediator, jsonImportService);
             logger.LogInfo("ImportDataViewModel created");
 
             logger.LogInfo("Creating ImportDataWindow");

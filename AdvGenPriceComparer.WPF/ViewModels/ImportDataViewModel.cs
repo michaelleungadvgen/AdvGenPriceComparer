@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using AdvGenFlow;
 using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
@@ -28,6 +29,7 @@ public class ImportDataViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly IMediator _mediator;
     private readonly JsonImportService _jsonImportService;
     private CancellationTokenSource? _cancellationTokenSource;
 
@@ -47,10 +49,11 @@ public class ImportDataViewModel : ViewModelBase
     /// <summary>
     /// Constructor with JsonImportService injection
     /// </summary>
-    public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, JsonImportService jsonImportService)
+    public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, IMediator mediator, JsonImportService jsonImportService)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+        _mediator = mediator;
         _jsonImportService = jsonImportService;
 
         Stores = new ObservableCollection<Place>();
@@ -192,7 +195,7 @@ public class ImportDataViewModel : ViewModelBase
 
     public void OpenNewStoreDialog(Window owner)
     {
-        var viewModel = new AddStoreViewModel(_dataService, _dialogService);
+        var viewModel = new AddStoreViewModel(_mediator, _dialogService);
         var window = new AddStoreWindow(viewModel) { Owner = owner };
 
         if (window.ShowDialog() == true)

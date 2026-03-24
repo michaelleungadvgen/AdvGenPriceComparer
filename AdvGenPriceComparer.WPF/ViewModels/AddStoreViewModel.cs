@@ -1,12 +1,13 @@
 using System;
-using AdvGenPriceComparer.Core.Interfaces;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Commands;
 using AdvGenPriceComparer.WPF.Services;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
 public class AddStoreViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
+    private readonly IMediator _mediator;
     private readonly IDialogService _dialogService;
 
     private string? _storeId;
@@ -18,9 +19,9 @@ public class AddStoreViewModel : ViewModelBase
     private string _postcode = string.Empty;
     private string _phone = string.Empty;
 
-    public AddStoreViewModel(IGroceryDataService dataService, IDialogService dialogService)
+    public AddStoreViewModel(IMediator mediator, IDialogService dialogService)
     {
-        _dataService = dataService;
+        _mediator = mediator;
         _dialogService = dialogService;
     }
 
@@ -92,23 +93,20 @@ public class AddStoreViewModel : ViewModelBase
             if (string.IsNullOrEmpty(StoreId))
             {
                 // Add new store
-                var storeId = _dataService.AddSupermarket(
+                var result = _mediator.Send(new CreatePlaceCommand(
                     StoreName,
                     Chain,
                     string.IsNullOrWhiteSpace(Address) ? null : Address,
                     string.IsNullOrWhiteSpace(Suburb) ? null : Suburb,
                     string.IsNullOrWhiteSpace(State) ? null : State,
-                    string.IsNullOrWhiteSpace(Postcode) ? null : Postcode);
+                    string.IsNullOrWhiteSpace(Postcode) ? null : Postcode,
+                    string.IsNullOrWhiteSpace(Phone) ? null : Phone
+                )).GetAwaiter().GetResult();
 
-                // Update phone if provided
-                if (!string.IsNullOrWhiteSpace(Phone))
+                if (!result.Success)
                 {
-                    var place = _dataService.GetPlaceById(storeId);
-                    if (place != null)
-                    {
-                        place.Phone = Phone;
-                        _dataService.Places.Update(place);
-                    }
+                    _dialogService.ShowError($"Failed to add store: {result.ErrorMessage}");
+                    return false;
                 }
 
                 _dialogService.ShowSuccess($"Store '{StoreName}' added successfully!");
@@ -116,20 +114,24 @@ public class AddStoreViewModel : ViewModelBase
             else
             {
                 // Update existing store
-                var store = _dataService.GetPlaceById(StoreId);
-                if (store != null)
-                {
-                    store.Name = StoreName;
-                    store.Chain = Chain;
-                    store.Address = string.IsNullOrWhiteSpace(Address) ? null : Address;
-                    store.Suburb = string.IsNullOrWhiteSpace(Suburb) ? null : Suburb;
-                    store.State = string.IsNullOrWhiteSpace(State) ? null : State;
-                    store.Postcode = string.IsNullOrWhiteSpace(Postcode) ? null : Postcode;
-                    store.Phone = string.IsNullOrWhiteSpace(Phone) ? null : Phone;
+                var result = _mediator.Send(new UpdatePlaceCommand(
+                    StoreId,
+                    StoreName,
+                    Chain,
+                    string.IsNullOrWhiteSpace(Address) ? null : Address,
+                    string.IsNullOrWhiteSpace(Suburb) ? null : Suburb,
+                    string.IsNullOrWhiteSpace(State) ? null : State,
+                    string.IsNullOrWhiteSpace(Postcode) ? null : Postcode,
+                    string.IsNullOrWhiteSpace(Phone) ? null : Phone
+                )).GetAwaiter().GetResult();
 
-                    _dataService.Places.Update(store);
-                    _dialogService.ShowSuccess($"Store '{StoreName}' updated successfully!");
+                if (!result.Success)
+                {
+                    _dialogService.ShowError($"Failed to update store: {result.ErrorMessage}");
+                    return false;
                 }
+
+                _dialogService.ShowSuccess($"Store '{StoreName}' updated successfully!");
             }
 
             return true;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using AdvGenFlow;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
@@ -13,6 +14,7 @@ public class StoreViewModel : ViewModelBase
 {
     private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
+    private readonly IMediator _mediator;
     private ObservableCollection<Place> _stores = new();
     private ObservableCollection<Place> _allStores = new();
     private Place? _selectedStore;
@@ -20,10 +22,11 @@ public class StoreViewModel : ViewModelBase
     private string _selectedChain = "All Chains";
     private ObservableCollection<string> _chains = new();
 
-    public StoreViewModel(IGroceryDataService dataService, IDialogService dialogService)
+    public StoreViewModel(IGroceryDataService dataService, IDialogService dialogService, IMediator mediator)
     {
         _dataService = dataService;
         _dialogService = dialogService;
+        _mediator = mediator;
 
         // Initialize commands
         AddStoreCommand = new RelayCommand(AddStore);
@@ -157,7 +160,7 @@ public class StoreViewModel : ViewModelBase
         try
         {
             var dialog = new Views.AddStoreWindow(
-                new AddStoreViewModel(_dataService, _dialogService))
+                new AddStoreViewModel(_mediator, _dialogService))
             {
                 Owner = System.Windows.Application.Current.MainWindow
             };
@@ -180,7 +183,7 @@ public class StoreViewModel : ViewModelBase
 
         try
         {
-            var viewModel = new AddStoreViewModel(_dataService, _dialogService)
+            var viewModel = new AddStoreViewModel(_mediator, _dialogService)
             {
                 StoreId = store.Id,
                 StoreName = store.Name,

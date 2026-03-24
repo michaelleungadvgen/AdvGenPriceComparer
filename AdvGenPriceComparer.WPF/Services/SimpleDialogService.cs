@@ -232,10 +232,10 @@ public class SimpleDialogService : IDialogService
 
     public void ShowEditPlaceDialog(Core.Models.Place place)
     {
-        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenFlow.IMediator>();
         var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
-        
-        var viewModel = new ViewModels.AddStoreViewModel(dataService, dialogService)
+
+        var viewModel = new ViewModels.AddStoreViewModel(mediator, dialogService)
         {
             StoreId = place.Id,
             StoreName = place.Name,

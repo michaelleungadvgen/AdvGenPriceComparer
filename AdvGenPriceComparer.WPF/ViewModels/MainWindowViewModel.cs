@@ -229,7 +229,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     private void AddPlace()
     {
-        var viewModel = new AddStoreViewModel(_dataService, _dialogService);
+        var viewModel = new AddStoreViewModel(_mediator, _dialogService);
         var window = new AddStoreWindow(viewModel);
 
         if (window.ShowDialog() == true)
