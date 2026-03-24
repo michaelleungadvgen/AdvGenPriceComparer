@@ -1,4 +1,4 @@
-## 2025-02-28 - Plaintext API Key Storage in Settings File
-**Vulnerability:** API keys were being written to local JSON files (`settings.json`) in plaintext by the `SettingsService`, making them accessible to any user or application with file system read access.
-**Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
-**Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2024-05-24 - API Error Information Leakage
+**Vulnerability:** The API `UploadData` endpoint was leaking raw exception messages (`ex.Message`) back to clients in the JSON response when an error occurred, specifically in the `ErrorMessage = $"Internal error: {ex.Message}"` assignment.
+**Learning:** Returning unhandled exception details directly in API responses can expose sensitive information about the server environment, backend architecture, or database structure to an attacker.
+**Prevention:** Always catch exceptions and return a generic error message (e.g., "An internal server error occurred.") to the client, while securely logging the full exception details on the server side using the configured logger.
