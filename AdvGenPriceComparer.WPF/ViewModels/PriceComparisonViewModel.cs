@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AdvGenPriceComparer.Core.Interfaces;
-using AdvGenPriceComparer.Core.Models;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 
 namespace AdvGenPriceComparer.WPF.ViewModels;
 
 public class PriceComparisonViewModel
 {
-    private readonly IGroceryDataService _dataService;
+    private readonly IMediator _mediator;
 
-    public PriceComparisonViewModel(IGroceryDataService dataService, string category = null)
+    public PriceComparisonViewModel(IMediator mediator, string category = null)
     {
-        _dataService = dataService;
+        _mediator = mediator;
         LoadComparisonData(category);
     }
 
@@ -24,16 +24,16 @@ public class PriceComparisonViewModel
 
     private void LoadComparisonData(string category)
     {
-        var storeStats = _dataService.GetStoreComparisonStats().ToList();
+        var storeStats = _mediator.Send(new GetStoreComparisonStatsQuery()).GetAwaiter().GetResult().ToList();
 
         if (storeStats.Any())
         {
             StoreComparisons = storeStats.Select(stat => new StoreComparisonItem
             {
-                StoreName = stat.storeName,
-                AveragePrice = stat.avgPrice,
-                ItemCount = stat.productCount,
-                IsLowest = stat.avgPrice == storeStats.Min(s => s.avgPrice)
+                StoreName = stat.StoreName,
+                AveragePrice = stat.AveragePrice,
+                ItemCount = stat.ProductCount,
+                IsLowest = stat.AveragePrice == storeStats.Min(s => s.AveragePrice)
             }).OrderBy(s => s.AveragePrice).ToList();
         }
     }

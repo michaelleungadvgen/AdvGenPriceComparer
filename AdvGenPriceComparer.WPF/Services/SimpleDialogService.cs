@@ -43,8 +43,8 @@ public class SimpleDialogService : IDialogService
 
     public void ShowComparePricesDialog(string category = null)
     {
-        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
-        var viewModel = new ViewModels.PriceComparisonViewModel(dataService, category);
+        var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenFlow.IMediator>();
+        var viewModel = new ViewModels.PriceComparisonViewModel(mediator, category);
         var window = new ComparePricesWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
