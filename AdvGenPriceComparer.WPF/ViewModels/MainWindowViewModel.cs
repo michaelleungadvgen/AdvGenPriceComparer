@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Commands;
@@ -104,9 +105,9 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     {
         try
         {
-            TotalItems = _dataService.GetAllItems().Count();
-            TrackedStores = _dataService.GetAllPlaces().Count();
-            PriceUpdates = _dataService.GetRecentPriceUpdates(1000).Count();
+            TotalItems = _mediator.Send(new GetAllItemsQuery()).GetAwaiter().GetResult().Count();
+            TrackedStores = _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult().Count();
+            PriceUpdates = _mediator.Send(new GetRecentPriceUpdatesQuery(1000)).GetAwaiter().GetResult().Count();
 
             LoadChartData();
         }
@@ -121,14 +122,14 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         try
         {
             // Load Items by Category
-            var categoryStats = _dataService.GetCategoryStats().ToList();
+            var categoryStats = _mediator.Send(new GetCategoryStatsQuery()).GetAwaiter().GetResult().ToList();
 
             if (categoryStats.Any())
             {
                 CategorySeries = categoryStats.Select(stat => new PieSeries<int>
                 {
-                    Values = new[] { stat.count },
-                    Name = stat.category,
+                    Values = new[] { stat.ItemCount },
+                    Name = stat.Category,
                     DataLabelsPaint = new SolidColorPaint(SKColors.White),
                     DataLabelsSize = 12,
                     DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle
@@ -149,11 +150,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
             }
 
             // Load Price Trends (last 30 days)
-            var priceHistory = _dataService.GetPriceHistory(
-                itemId: null,
-                placeId: null,
-                from: DateTime.Now.AddDays(-30),
-                to: DateTime.Now).ToList();
+            var priceHistory = _mediator.Send(new GetPriceHistoryQuery(
+                ItemId: null,
+                PlaceId: null,
+                From: DateTime.Now.AddDays(-30),
+                To: DateTime.Now)).GetAwaiter().GetResult().ToList();
 
             if (priceHistory.Any())
             {
