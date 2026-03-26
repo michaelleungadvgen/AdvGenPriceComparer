@@ -6,7 +6,6 @@ using System.Windows.Input;
 using AdvGenFlow;
 using AdvGenPriceComparer.Application.Commands;
 using AdvGenPriceComparer.Application.Queries;
-using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.ML.Services;
 using AdvGenPriceComparer.WPF.Commands;
@@ -16,7 +15,6 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 
 public class ItemViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
     private readonly IMediator _mediator;
     private readonly IDialogService _dialogService;
     private readonly CategoryPredictionService? _categoryPredictionService;
@@ -28,12 +26,10 @@ public class ItemViewModel : ViewModelBase
     private List<Item> _allItems = new();
 
     public ItemViewModel(
-        IGroceryDataService dataService,
         IMediator mediator,
         IDialogService dialogService,
         CategoryPredictionService? categoryPredictionService = null)
     {
-        _dataService = dataService;
         _mediator = mediator;
         _dialogService = dialogService;
         _categoryPredictionService = categoryPredictionService;
