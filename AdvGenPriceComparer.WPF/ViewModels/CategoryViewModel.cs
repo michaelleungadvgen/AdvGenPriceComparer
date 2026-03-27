@@ -192,11 +192,20 @@ namespace AdvGenPriceComparer.WPF.ViewModels
                     return;
                 }
 
-                // Remove from list
-                Categories.Remove(SelectedCategory);
-                SelectedCategory = null;
+                var confirmResult = System.Windows.MessageBox.Show(
+                    $"Are you sure you want to delete the category '{SelectedCategory}'?\nThis action cannot be undone.",
+                    "Confirm Delete",
+                    System.Windows.MessageBoxButton.YesNo,
+                    System.Windows.MessageBoxImage.Question);
 
-                _logger.LogInfo("Category deleted successfully");
+                if (confirmResult == System.Windows.MessageBoxResult.Yes)
+                {
+                    // Remove from list
+                    Categories.Remove(SelectedCategory);
+                    SelectedCategory = null;
+
+                    _logger.LogInfo("Category deleted successfully");
+                }
             }
             catch (Exception ex)
             {
