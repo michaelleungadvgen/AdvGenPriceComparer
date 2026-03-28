@@ -1,4 +1,4 @@
-using AdvGenPriceComparer.Application.Mediator;
+using AdvGenFlow;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -10,12 +10,12 @@ namespace AdvGenPriceComparer.Application;
 public static class ServiceRegistration
 {
     /// <summary>
-    /// Adds Application layer services to the DI container, including custom Mediator and all handlers
+    /// Adds Application layer services to the DI container, including AdvGenFlow Mediator and all handlers
     /// </summary>
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        // Register custom Mediator
-        services.AddSingleton<IMediator, Mediator.Mediator>();
+        // Register AdvGenFlow Mediator
+        services.AddSingleton<IMediator, Mediator>();
 
         // Register all request handlers from this assembly
         RegisterHandlers(services, Assembly.GetExecutingAssembly());
@@ -50,11 +50,6 @@ public static class ServiceRegistration
                     if (genericDef == typeof(IRequestHandler<,>))
                     {
                         // This is a handler with a response
-                        services.AddTransient(interfaceType, type);
-                    }
-                    else if (genericDef == typeof(IRequestHandler<>))
-                    {
-                        // This is a handler without a response
                         services.AddTransient(interfaceType, type);
                     }
                 }

@@ -1,0 +1,143 @@
+<svg width="800" height="1200" viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景和全局样式 -->
+  <rect width="800" height="1200" fill="#FEF7E6" rx="24" ry="24"/>
+  <style>
+    .title-main { font: bold 28px 'Segoe UI', 'Poppins', sans-serif; fill: #2D3E50; }
+    .title-sub { font: 18px 'Segoe UI', sans-serif; fill: #6C7A89; }
+    .winner-badge { font: bold 32px 'Segoe UI', sans-serif; fill: #FFFFFF; }
+    .stats-number { font: bold 28px 'Segoe UI', sans-serif; fill: #D2691E; }
+    .stats-text { font: 16px 'Segoe UI', sans-serif; fill: #4A5B6E; }
+    .deal-title { font: bold 20px 'Segoe UI', sans-serif; fill: #2C3E2F; }
+    .deal-desc { font: 15px 'Segoe UI', sans-serif; fill: #5D6D7E; }
+    .price-old { font: 14px 'Segoe UI', sans-serif; fill: #A0A0A0; text-decoration: line-through; }
+    .price-new { font: bold 20px 'Segoe UI', sans-serif; fill: #E67E22; }
+    .save-badge { font: 12px 'Segoe UI', sans-serif; fill: #FFFFFF; }
+    .footer-link { font: 14px 'Segoe UI', sans-serif; fill: #3498DB; text-decoration: underline; }
+    .store-label-coles { font: bold 16px 'Segoe UI', sans-serif; fill: #CC3D2E; }
+    .store-label-woolies { font: bold 16px 'Segoe UI', sans-serif; fill: #00843D; }
+    .divider { stroke: #E2DCC7; stroke-width: 2; stroke-dasharray: 4 6; }
+    .highlight-bg { fill: #FFEFD5; rx: 16; }
+  </style>
+
+  <!-- 顶部装饰：彩蛋元素 -->
+  <circle cx="80" cy="70" r="12" fill="#F5A623" opacity="0.6"/>
+  <circle cx="110" cy="55" r="10" fill="#E67E22" opacity="0.5"/>
+  <circle cx="50" cy="90" r="14" fill="#D35400" opacity="0.4"/>
+  <text x="120" y="70" font-size="28" fill="#F39C12" font-family="monospace">🐣</text>
+  <text x="700" y="80" font-size="32" fill="#F5B041">🐰</text>
+
+  <!-- 主标题 -->
+  <text x="40" y="50" class="title-main">🛒 本週超市價格比較</text>
+  <text x="40" y="85" class="title-sub">2026年3月25日至31日 · 復活節特輯</text>
+
+  <!-- 胜出横幅 -->
+  <rect x="40" y="110" width="720" height="70" fill="#CC3D2E" rx="16" ry="16"/>
+  <text x="400" y="155" text-anchor="middle" class="winner-badge">🏆 本週勝出：Coles</text>
+  <text x="400" y="185" text-anchor="middle" font-size="14" fill="#FFDAB9">以 52 件更便宜商品勝出！</text>
+
+  <!-- 数据卡：三列 -->
+  <rect x="40" y="210" width="220" height="110" fill="#FFFFFF" rx="16" filter="url(#lightShadow)"/>
+  <text x="150" y="245" text-anchor="middle" class="stats-number">116</text>
+  <text x="150" y="270" text-anchor="middle" class="stats-text">比較商品數</text>
+
+  <rect x="290" y="210" width="220" height="110" fill="#FFFFFF" rx="16"/>
+  <text x="400" y="245" text-anchor="middle" class="stats-number">$609+</text>
+  <text x="400" y="270" text-anchor="middle" class="stats-text">總節省金額</text>
+
+  <rect x="540" y="210" width="220" height="110" fill="#FFFFFF" rx="16"/>
+  <text x="650" y="245" text-anchor="middle" class="stats-number">45%</text>
+  <text x="650" y="270" text-anchor="middle" class="stats-text">Coles 最優惠</text>
+  <text x="650" y="295" text-anchor="middle" class="stats-text" font-size="13">Woolworths 41%</text>
+
+  <!-- 精選超值優惠标题 -->
+  <text x="40" y="365" class="title-main" font-size="24">🔥 本週精選超值優惠</text>
+  <line x1="40" y1="380" x2="760" y2="380" class="divider"/>
+
+  <!-- 优惠列表 - 左侧列 和 右侧列 布局使用绝对定位更清晰 -->
+  <!-- 商品1: Coca-Cola -->
+  <rect x="40" y="400" width="350" height="100" fill="#FFF9EF" rx="12" stroke="#F7DCB4" stroke-width="1"/>
+  <text x="55" y="430" class="deal-title">🥤 Coca-Cola 經典/零糖/健怡 汽水</text>
+  <text x="55" y="455" class="store-label-woolies">Woolworths 半價</text>
+  <text x="55" y="485" class="price-old">$21.00</text>
+  <text x="115" y="485" class="price-new">$10.50</text>
+  <rect x="280" y="465" width="70" height="28" fill="#E67E22" rx="14"/>
+  <text x="315" y="485" text-anchor="middle" class="save-badge">慳 $13.20</text>
+
+  <!-- 商品2: Cadbury 大復活節彩蛋袋 -->
+  <rect x="410" y="400" width="350" height="100" fill="#FFF9EF" rx="12" stroke="#F7DCB4" stroke-width="1"/>
+  <text x="425" y="430" class="deal-title">🍫 Cadbury 大復活節朱古力彩蛋袋 803-916g</text>
+  <text x="425" y="455" class="store-label-coles">Coles 半價</text>
+  <text x="425" y="485" class="price-old">$7.50</text>
+  <text x="485" y="485" class="price-new">$4.50</text>
+  <rect x="650" y="465" width="80" height="28" fill="#E67E22" rx="14"/>
+  <text x="690" y="485" text-anchor="middle" class="save-badge">慳 $14.00</text>
+
+  <!-- 商品3: Cadbury 中復活節彩蛋袋 -->
+  <rect x="40" y="515" width="350" height="100" fill="#FFF9EF" rx="12" stroke="#F7DCB4" stroke-width="1"/>
+  <text x="55" y="545" class="deal-title">🍫 Cadbury 中復活節朱古力彩蛋袋 649-650g</text>
+  <text x="55" y="570" class="store-label-coles">Coles 半價</text>
+  <text x="55" y="600" class="price-old">$7.50</text>
+  <text x="115" y="600" class="price-new">$4.50</text>
+  <rect x="280" y="580" width="70" height="28" fill="#E67E22" rx="14"/>
+  <text x="315" y="600" text-anchor="middle" class="save-badge">慳 $11.50</text>
+
+  <!-- 商品4: Nestlé Duo Egg -->
+  <rect x="410" y="515" width="350" height="100" fill="#FFF9EF" rx="12" stroke="#F7DCB4" stroke-width="1"/>
+  <text x="425" y="545" class="deal-title">🐣 Nestlé Duo Egg 150g</text>
+  <text x="425" y="570" class="store-label-coles">Coles 半價</text>
+  <text x="425" y="600" class="price-old">$9.50</text>
+  <text x="485" y="600" class="price-new">$4.75</text>
+  <rect x="650" y="580" width="80" height="28" fill="#E67E22" rx="14"/>
+  <text x="690" y="600" text-anchor="middle" class="save-badge">慳 $8.75</text>
+
+  <!-- 商品5: Darrell Lea 袋熊朱古力 -->
+  <rect x="40" y="630" width="350" height="100" fill="#FFF9EF" rx="12" stroke="#F7DCB4" stroke-width="1"/>
+  <text x="55" y="660" class="deal-title">🐰 Darrell Lea 袋熊朱古力 100g</text>
+  <text x="55" y="685" class="store-label-woolies">Woolworths 半價</text>
+  <text x="55" y="715" class="price-old">$10.50</text>
+  <text x="115" y="715" class="price-new">$5.25</text>
+  <rect x="280" y="695" width="70" height="28" fill="#E67E22" rx="14"/>
+  <text x="315" y="715" text-anchor="middle" class="save-badge">慳 $3.75</text>
+
+  <!-- 商品6: Philadelphia 忌廉芝士磚 -->
+  <rect x="410" y="630" width="350" height="100" fill="#FFF9EF" rx="12" stroke="#F7DCB4" stroke-width="1"/>
+  <text x="425" y="660" class="deal-title">🧀 Philadelphia 忌廉芝士磚 250g</text>
+  <text x="425" y="685" class="store-label-coles" fill="#CC3D2E">Coles & Woolworths 同價半價</text>
+  <text x="425" y="715" class="price-old">$5.70</text>
+  <text x="485" y="715" class="price-new">$2.85</text>
+  <rect x="650" y="695" width="70" height="28" fill="#16A085" rx="14"/>
+  <text x="685" y="715" text-anchor="middle" class="save-badge">慳 $2.85</text>
+
+  <!-- 分隔装饰 + 查看完整报告 -->
+  <line x1="40" y1="760" x2="760" y2="760" class="divider"/>
+  <text x="40" y="800" class="title-main" font-size="20">📋 查看完整比較報告 👇</text>
+  <rect x="40" y="820" width="720" height="50" fill="#E8E0C5" rx="30"/>
+  <a href="https://www.michaelleung.info/prices/price_super_market_25032026_chinese.html">
+    <text x="400" y="855" text-anchor="middle" class="footer-link" font-size="16">https://www.michaelleung.info/prices/price_super_market_25032026_chinese.html</text>
+  </a>
+
+  <!-- 分享提示和标签 -->
+  <text x="40" y="920" class="stats-text" font-weight="bold">💡 記得分享俾朋友知，一齊慳！</text>
+  <g transform="translate(40, 950)">
+    <rect x="0" y="0" width="700" height="50" fill="#F2E8D5" rx="20"/>
+    <text x="30" y="32" class="stats-text" font-size="14">#超市比較 #澳洲生活 #慳錢攻略 #Coles #Woolworths #復活節特價 #Brisbane #澳洲華人</text>
+  </g>
+
+  <!-- 定义阴影滤镜 -->
+  <defs>
+    <filter id="lightShadow" x="-0.02" y="-0.02" width="1.06" height="1.06">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- 底部小彩蛋: 復活節兔仔 -->
+  <text x="750" y="1160" font-size="24" fill="#E6B17E">🐇</text>
+  <text x="30" y="1180" font-size="12" fill="#B0A790">AI 超市比價 · 每週更新</text>
+</svg>

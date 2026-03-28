@@ -1,4 +1,4 @@
-using AdvGenPriceComparer.Application.Mediator;
+using AdvGenFlow;
 using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;

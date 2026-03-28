@@ -1,145 +1,20 @@
 {
   "comparison_summary": {
-    "total_products_compared": 70,
-    "coles_cheaper_count": 24,
-    "woolworths_cheaper_count": 33,
-    "same_price_count": 13,
-    "coles_cheaper_percentage": 34.29,
-    "woolworths_cheaper_percentage": 47.14,
-    "coles_total_potential_savings": 421.35,
-    "woolworths_total_potential_savings": 151.6,
-    "average_price_difference": 8.19,
-    "comparison_date": "2026-03-17 21:16:45"
+    "total_products_compared": 116,
+    "coles_cheaper_count": 52,
+    "woolworths_cheaper_count": 48,
+    "same_price_count": 16,
+    "coles_cheaper_percentage": 44.83,
+    "woolworths_cheaper_percentage": 41.38,
+    "coles_total_potential_savings": 437.15,
+    "woolworths_total_potential_savings": 171.6,
+    "average_price_difference": 5.25,
+    "comparison_date": "2026-03-24 22:18:07"
   },
   "matched_products": [
     {
       "woolworths_product": {
-        "id": "WOL002",
-        "name": "John West Tuna 95g",
-        "brand": "John",
-        "price": "$1.45",
-        "price_numeric": 1.45,
-        "original_price": "$2.90",
-        "savings": "$1.45",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL025",
-        "name": "John West Yellowfin Tuna 90g",
-        "brand": "John West",
-        "price": "$1.45",
-        "price_numeric": 1.45,
-        "original_price": "$2.90",
-        "savings": "$1.45",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.737,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL004",
-        "name": "Arnotts Shapes Crackers 160-190g",
-        "brand": "Arnotts",
-        "price": "$2.00",
-        "price_numeric": 2.0,
-        "original_price": "$4.00",
-        "savings": "$2.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL068",
-        "name": "Arnott's Jatz or Clix Crackers 225g-250g",
-        "brand": "Arnott's",
-        "price": "$2.80",
-        "price_numeric": 2.8,
-        "original_price": "$4.00",
-        "savings": "$1.20",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.72,
-      "price_difference": -0.8,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL006",
-        "name": "Head & Shoulders Shampoo or Conditioner 850ml",
-        "brand": "Head",
-        "price": "$13.00",
-        "price_numeric": 13.0,
-        "original_price": "$13.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL039",
-        "name": "Tresemme Shampoo or Conditioner 940mL",
-        "brand": "Tresemme",
-        "price": "$9.25",
-        "price_numeric": 9.25,
-        "original_price": "$18.50",
-        "savings": "$9.25",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.742,
-      "price_difference": 3.75,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL007",
-        "name": "Toblerone Milk Block 340g",
-        "brand": "Toblerone",
-        "price": "$10.00",
-        "price_numeric": 10.0,
-        "original_price": "$20.00",
-        "savings": "$10.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL052",
-        "name": "Toblerone 340g-360g",
-        "brand": "Toblerone",
-        "price": "$10.00",
-        "price_numeric": 10.0,
-        "original_price": "$20.00",
-        "savings": "$10.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.621,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL008",
-        "name": "Cadbury Favourites 470g",
-        "brand": "Cadbury",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$24.00",
-        "savings": "$12.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL053",
-        "name": "Cadbury Favourites 470g",
-        "brand": "Cadbury",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$24.00",
-        "savings": "$12.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 1.0,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL010",
+        "id": "WOL001",
         "name": "Cadbury Mini Easter Egg Bags 110-125g",
         "brand": "Cadbury",
         "price": "$4.50",
@@ -149,499 +24,74 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL055",
-        "name": "Cadbury Easter Egg 100g-110g",
+        "id": "CL005",
+        "name": "Cadbury Easter Eggs Bag 110g-125g",
         "brand": "Cadbury",
-        "price": "$5.50",
-        "price_numeric": 5.5,
-        "original_price": "$7.00",
-        "savings": "$1.50",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.783,
-      "price_difference": -1.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL011",
-        "name": "Cadbury Hollow Easter Egg 100-110g",
-        "brand": "Cadbury",
-        "price": "$4.00",
-        "price_numeric": 4.0,
-        "original_price": "$4.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL055",
-        "name": "Cadbury Easter Egg 100g-110g",
-        "brand": "Cadbury",
-        "price": "$5.50",
-        "price_numeric": 5.5,
-        "original_price": "$7.00",
-        "savings": "$1.50",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.837,
-      "price_difference": -1.5,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL014",
-        "name": "Cadbury Gift Box 155-172g",
-        "brand": "Cadbury",
-        "price": "$10.00",
-        "price_numeric": 10.0,
-        "original_price": "$10.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL057",
-        "name": "Cadbury Humpty Gift Box 132g-150g",
-        "brand": "Cadbury",
-        "price": "$8.00",
-        "price_numeric": 8.0,
-        "original_price": "$11.50",
-        "savings": "$3.50",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.821,
-      "price_difference": 2.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL015",
-        "name": "Lindt Gold Bunny 200g",
-        "brand": "Lindt",
-        "price": "$14.00",
-        "price_numeric": 14.0,
-        "original_price": "$14.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL056",
-        "name": "Lindt Gold Bunny 100g",
-        "brand": "Lindt",
-        "price": "$9.00",
-        "price_numeric": 9.0,
-        "original_price": "$12.00",
+        "price": "$4.50 each",
+        "price_numeric": 4.5,
+        "original_price": "$7.50",
         "savings": "$3.00",
-        "special_type": "Special"
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 1.0,
-      "price_difference": 5.0,
-      "cheaper_store": "Coles"
+      "similarity_score": 0.863,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
     },
     {
       "woolworths_product": {
-        "id": "WOL040",
-        "name": "Johnson’s Body Wash 1 Litre",
-        "brand": "Johnson’s",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$12.00",
-        "savings": "$6.00",
+        "id": "WOL003",
+        "name": "Philadelphia Cream Cheese Block 250g – From the Fridge",
+        "brand": "Philadelphia",
+        "price": "$2.85",
+        "price_numeric": 2.85,
+        "original_price": "$5.70",
+        "savings": "$2.85",
         "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL252",
-        "name": "Bosistos Body Wash 1 Litre",
-        "brand": "Bosistos",
-        "price": "$9.00",
-        "price_numeric": 9.0,
-        "original_price": "$18.00",
-        "savings": "$9.00",
-        "special_type": "Half Price"
+        "id": "CL009",
+        "name": "Philadelphia Cream Cheese Block 250g",
+        "brand": "Philadelphia",
+        "price": "$2.85 each",
+        "price_numeric": 2.85,
+        "original_price": "$5.70",
+        "savings": "$2.85",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.809,
-      "price_difference": -3.0,
-      "cheaper_store": "Woolworths"
+      "similarity_score": 0.795,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
     },
     {
       "woolworths_product": {
-        "id": "WOL041",
-        "name": "MCoBeauty Rebuild & Restore Anti-Fall Shampoo or Conditioner 250ml",
-        "brand": "MCoBeauty",
-        "price": "$11.00",
-        "price_numeric": 11.0,
-        "original_price": "$22.00",
-        "savings": "$11.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL039",
-        "name": "Tresemme Shampoo or Conditioner 940mL",
-        "brand": "Tresemme",
-        "price": "$9.25",
-        "price_numeric": 9.25,
-        "original_price": "$18.50",
-        "savings": "$9.25",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.602,
-      "price_difference": 1.75,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL042",
-        "name": "L’Oréal Elvive Glycolic Gloss Shampoo or Conditioner 800ml",
-        "brand": "L’Oréal",
-        "price": "$10.50",
-        "price_numeric": 10.5,
-        "original_price": "$21.00",
-        "savings": "$10.50",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL253",
-        "name": "L'Oréal Elvive Glycolic Gloss Shampoo 200mL or Conditioner 150mL",
-        "brand": "L'Oréal",
-        "price": "$9.50",
-        "price_numeric": 9.5,
-        "original_price": "$19.00",
-        "savings": "$9.50",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 1.0,
-      "price_difference": 1.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL048",
-        "name": "Arnott’s Cream Biscuits 200-250g",
-        "brand": "Arnott’s",
-        "price": "$2.40",
-        "price_numeric": 2.4,
-        "original_price": "$2.40",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL073",
-        "name": "Arnott's Iced VoVo Biscuits 210g",
-        "brand": "Arnott's",
-        "price": "$3.00",
-        "price_numeric": 3.0,
-        "original_price": "$4.00",
-        "savings": "$2.00",
-        "special_type": "Multi-Buy Special"
-      },
-      "similarity_score": 0.8,
-      "price_difference": -0.6,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL050",
-        "name": "Coca-Cola, Sprite or Fanta Soft Drink Varieties 10 x 375ml",
-        "brand": "Coca-Cola,",
-        "price": "$12.60",
-        "price_numeric": 12.6,
-        "original_price": "$12.60",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL024",
-        "name": "Coca-Cola, Fanta or Sprite Soft Drink 12x300mL",
+        "id": "WOL005",
+        "name": "Coca-Cola Classic, Zero Sugar or Diet Soft Drink Varieties 12 x 300ml",
         "brand": "Coca-Cola",
         "price": "$10.50",
         "price_numeric": 10.5,
         "original_price": "$21.00",
         "savings": "$10.50",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.818,
-      "price_difference": 2.1,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL051",
-        "name": "Solo Energy Drink 4 x 250ml",
-        "brand": "Solo",
-        "price": "$6.60",
-        "price_numeric": 6.6,
-        "original_price": "$6.60",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL135",
-        "name": "Monster Energy Drink 4x500mL",
-        "brand": "Monster",
-        "price": "$9.90",
-        "price_numeric": 9.9,
-        "original_price": "$16.50",
-        "savings": "$6.60",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.757,
-      "price_difference": -3.3,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL052",
-        "name": "Mount Franklin Lightly Sparkling Water 10 x 375ml",
-        "brand": "Mount",
-        "price": "$12.60",
-        "price_numeric": 12.6,
-        "original_price": "$12.60",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL145",
-        "name": "Mt Franklin Lightly Sparkling Water 6x250mL",
-        "brand": "Mt Franklin",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$10.00",
-        "savings": "$4.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.959,
-      "price_difference": 6.6,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL054",
-        "name": "Lindt Lindor Bar 38g",
-        "brand": "Lindt",
-        "price": "$2.25",
-        "price_numeric": 2.25,
-        "original_price": "$2.25",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL054",
-        "name": "Lindt Lindor Assorted Eggs Bag 297g-300g",
-        "brand": "Lindt",
-        "price": "$16.00",
-        "price_numeric": 16.0,
-        "original_price": "$32.00",
-        "savings": "$16.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.652,
-      "price_difference": -13.75,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL056",
-        "name": "Cobs Popcorn 70-120g",
-        "brand": "Cobs",
-        "price": "$1.75",
-        "price_numeric": 1.75,
-        "original_price": "$3.50",
-        "savings": "$1.75",
         "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL067",
-        "name": "Cobs Popcorn 80g-120g",
-        "brand": "Cobs",
-        "price": "$2.50",
-        "price_numeric": 2.5,
-        "original_price": "$3.50",
-        "savings": "$1.00",
-        "special_type": "Special"
+        "id": "CL159",
+        "name": "Pepsi Max or Solo Zero Sugar Soft Drink 24x375mL",
+        "brand": "Pepsi/Solo",
+        "price": "$23.70 each",
+        "price_numeric": 23.7,
+        "original_price": "$39.50",
+        "savings": "$15.80",
+        "special_type": "Specials"
       },
-      "similarity_score": 1.0,
-      "price_difference": -0.75,
+      "similarity_score": 0.65,
+      "price_difference": -13.2,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL060",
-        "name": "CC’s Corn Chips 175g",
-        "brand": "CC’s",
-        "price": "$2.50",
-        "price_numeric": 2.5,
-        "original_price": "$5.00",
-        "savings": "$2.50",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL070",
-        "name": "Doritos or XXL Corn Chips 150g-170g",
-        "brand": "Doritos",
-        "price": "$3.75",
-        "price_numeric": 3.75,
-        "original_price": "$5.00",
-        "savings": "$1.25",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.649,
-      "price_difference": -1.25,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL063",
-        "name": "Uncle Tobys Roll Ups 94g Pk 6",
-        "brand": "Uncle",
-        "price": "$2.75",
-        "price_numeric": 2.75,
-        "original_price": "$5.50",
-        "savings": "$2.75",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL030",
-        "name": "Uncle Tobys Plus Cereal 410g-435g",
-        "brand": "Uncle Tobys",
-        "price": "$3.50",
-        "price_numeric": 3.5,
-        "original_price": "$7.00",
-        "savings": "$3.50",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.667,
-      "price_difference": -0.75,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL065",
-        "name": "Moccona Coffee Sachets Pk 8-10",
-        "brand": "Moccona",
-        "price": "$3.95",
-        "price_numeric": 3.95,
-        "original_price": "$7.90",
-        "savings": "$3.95",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL009",
-        "name": "Nescafé Coffee Sachets 8 Pack-10 Pack",
-        "brand": "Nescafé",
-        "price": "$4.00",
-        "price_numeric": 4.0,
-        "original_price": "$8.00",
-        "savings": "$4.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.772,
-      "price_difference": -0.05,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL066",
-        "name": "Kellogg’s Nutri Grain 470g, Coco Pops 535g or Special K 500g",
-        "brand": "Kellogg’s",
-        "price": "$5.40",
-        "price_numeric": 5.4,
-        "original_price": "$5.40",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL153",
-        "name": "Kellogg's Nutri Grain 470g or Coco Pops 535g",
-        "brand": "Kellogg's",
-        "price": "$6.30",
-        "price_numeric": 6.3,
-        "original_price": "$9.00",
-        "savings": "$2.70",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.861,
-      "price_difference": -0.9,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL069",
-        "name": "La Gina Olive Oil 1 Litre",
-        "brand": "La",
-        "price": "$13.00",
-        "price_numeric": 13.0,
-        "original_price": "$26.00",
-        "savings": "$13.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL182",
-        "name": "Moro Extra Virgin Olive Oil 2.2 Litre",
-        "brand": "Moro",
-        "price": "$29.00",
-        "price_numeric": 29.0,
-        "original_price": "$40.00",
-        "savings": "$11.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.714,
-      "price_difference": -16.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL074",
-        "name": "Primo Shortcut Bacon 750g – From the Fridge",
-        "brand": "Primo",
-        "price": "$8.40",
-        "price_numeric": 8.4,
-        "original_price": "$16.80",
-        "savings": "$8.40",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL090",
-        "name": "Primo Rindless Short Cut Bacon 1kg",
-        "brand": "Primo",
-        "price": "$14.50",
-        "price_numeric": 14.5,
-        "original_price": "$22.00",
-        "savings": "$7.50",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.606,
-      "price_difference": -6.1,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL083",
-        "name": "Australian Loose Sweet Corn",
-        "brand": "Australian",
-        "price": "$1.00",
-        "price_numeric": 1.0,
-        "original_price": "$1.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL015",
-        "name": "Coles Australian Loose White Seedless Grapes",
-        "brand": "Coles",
-        "price": "$4.00",
-        "price_numeric": 4.0,
-        "original_price": null,
-        "savings": null,
-        "special_type": "Special"
-      },
-      "similarity_score": 0.62,
-      "price_difference": -3.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL088",
-        "name": "JC Seafood Jumbo Raw Prawn Cutlets 240g",
-        "brand": "JC",
+        "id": "WOL007",
+        "name": "Cadbury Large Bunny 250-270g",
+        "brand": "Cadbury",
         "price": "$10.00",
         "price_numeric": 10.0,
         "original_price": "$10.00",
@@ -649,174 +99,74 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL062",
-        "name": "KB's Thawed Cooked Jumbo Prawn Cutlets",
-        "brand": "KB's",
-        "price": "$35.00",
-        "price_numeric": 35.0,
-        "original_price": "$42.00",
-        "savings": "$7.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.722,
-      "price_difference": -25.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL097",
-        "name": "MasterFoods Seafood or Tartare Sauce 220-260g",
-        "brand": "MasterFoods",
-        "price": "$2.50",
-        "price_numeric": 2.5,
-        "original_price": "$2.50",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL174",
-        "name": "MasterFoods Squeeze Tomato or Barbecue Sauce 475mL-500mL",
-        "brand": "MasterFoods",
-        "price": "$2.50",
-        "price_numeric": 2.5,
-        "original_price": "$4.20",
-        "savings": "$1.70",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.676,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL103",
-        "name": "Australian Pork Scotch Fillet Steak 600g",
-        "brand": "Australian",
-        "price": "$10.00",
+        "id": "CL019",
+        "name": "Cadbury Easter Bunny 250g-270g",
+        "brand": "Cadbury",
+        "price": "$10.00 each",
         "price_numeric": 10.0,
-        "original_price": "$10.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL095",
-        "name": "Coles Australian Pork Loin Chops Large Pack",
-        "brand": "Coles",
-        "price": "$17.00",
-        "price_numeric": 17.0,
-        "original_price": "$19.00",
-        "savings": "$2.00",
-        "special_type": "Down Down"
-      },
-      "similarity_score": 0.603,
-      "price_difference": -7.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL104",
-        "name": "Australian Lamb Leg Steak 540g",
-        "brand": "Australian",
-        "price": "$15.00",
-        "price_numeric": 15.0,
         "original_price": "$15.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
+        "savings": "$5.00",
+        "special_type": "Specials"
       },
-      "coles_product": {
-        "id": "COL098",
-        "name": "Coles Australian Lamb Loin Chops",
-        "brand": "Coles",
-        "price": "$26.00",
-        "price_numeric": 26.0,
-        "original_price": "$33.00",
-        "savings": "$7.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.667,
-      "price_difference": -11.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL120",
-        "name": "Leggo’s Pasta Sauce 490-500g",
-        "brand": "Leggo’s",
-        "price": "$3.30",
-        "price_numeric": 3.3,
-        "original_price": "$3.30",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL167",
-        "name": "Leggo's Pasta Sauce 490g-500g",
-        "brand": "Leggo's",
-        "price": "$3.30",
-        "price_numeric": 3.3,
-        "original_price": "$4.60",
-        "savings": "$1.30",
-        "special_type": "Down Down"
-      },
-      "similarity_score": 1.0,
+      "similarity_score": 0.821,
       "price_difference": 0.0,
       "cheaper_store": "Same Price"
     },
     {
       "woolworths_product": {
-        "id": "WOL121",
-        "name": "Annalisa Canned Tomatoes 400g",
-        "brand": "Annalisa",
-        "price": "$1.50",
-        "price_numeric": 1.5,
-        "original_price": "$1.50",
+        "id": "WOL008",
+        "name": "Cadbury Hollow Egg 100-110g",
+        "brand": "Cadbury",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$4.00",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL101",
-        "name": "Australian Red Perino Tomatoes 200g Pack",
-        "brand": "Australian",
-        "price": "$3.50",
-        "price_numeric": 3.5,
-        "original_price": null,
-        "savings": null,
-        "special_type": "Special"
+        "id": "CL014",
+        "name": "Cadbury Roses 380g",
+        "brand": "Cadbury",
+        "price": "$10.00 each",
+        "price_numeric": 10.0,
+        "original_price": "$20.00",
+        "savings": "$10.00",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.63,
-      "price_difference": -2.0,
+      "similarity_score": 0.645,
+      "price_difference": -6.0,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL123",
-        "name": "Fountain Tomato or Barbecue Sauce 500ml",
-        "brand": "Fountain",
-        "price": "$2.20",
-        "price_numeric": 2.2,
-        "original_price": "$2.20",
+        "id": "WOL009",
+        "name": "Nestlé Duo Egg 150g",
+        "brand": "Nestlé",
+        "price": "$13.50",
+        "price_numeric": 13.5,
+        "original_price": "$13.50",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL174",
-        "name": "MasterFoods Squeeze Tomato or Barbecue Sauce 475mL-500mL",
-        "brand": "MasterFoods",
-        "price": "$2.50",
-        "price_numeric": 2.5,
-        "original_price": "$4.20",
-        "savings": "$1.70",
-        "special_type": "Special"
+        "id": "CL110",
+        "name": "Nestlé Milo Duo Cereal 580g",
+        "brand": "Nestlé",
+        "price": "$4.75 each",
+        "price_numeric": 4.75,
+        "original_price": "$9.50",
+        "savings": "$4.75",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.704,
-      "price_difference": -0.3,
-      "cheaper_store": "Woolworths"
+      "similarity_score": 0.667,
+      "price_difference": 8.75,
+      "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
-        "id": "WOL124",
-        "name": "Baxters Chutney, Relish or Jam 225-240g",
-        "brand": "Baxters",
+        "id": "WOL011",
+        "name": "Nestlé Mini Egg Bags 81-95g",
+        "brand": "Nestlé",
         "price": "$4.50",
         "price_numeric": 4.5,
         "original_price": "$4.50",
@@ -824,524 +174,24 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL179",
-        "name": "Beerenberg Chutney or Relish 260g-280g",
-        "brand": "Beerenberg",
-        "price": "$4.60",
-        "price_numeric": 4.6,
-        "original_price": "$6.45",
-        "savings": "$1.85",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.706,
-      "price_difference": -0.1,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL130",
-        "name": "Good Earth Oils Extra Virgin Cold Pressed Canola Oil 4 Litre",
-        "brand": "Good",
-        "price": "$19.00",
-        "price_numeric": 19.0,
-        "original_price": "$38.00",
-        "savings": "$19.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL182",
-        "name": "Moro Extra Virgin Olive Oil 2.2 Litre",
-        "brand": "Moro",
-        "price": "$29.00",
-        "price_numeric": 29.0,
-        "original_price": "$40.00",
-        "savings": "$11.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.615,
-      "price_difference": -10.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL131",
-        "name": "Arnott’s Cruskits 125g",
-        "brand": "Arnott’s",
-        "price": "$3.50",
-        "price_numeric": 3.5,
-        "original_price": "$3.50",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL069",
-        "name": "Arnott's Cruskits Crispbread 125g",
-        "brand": "Arnott's",
-        "price": "$3.50",
-        "price_numeric": 3.5,
-        "original_price": "$4.00",
-        "savings": "$0.50",
-        "special_type": "Down Down"
-      },
-      "similarity_score": 0.756,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL133",
-        "name": "MasterFoods Cooking & Simmer Sauce 485-510g",
-        "brand": "MasterFoods",
-        "price": "$4.00",
-        "price_numeric": 4.0,
-        "original_price": "$4.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL031",
-        "name": "Passage to India Simmer Sauce 375g",
-        "brand": "Passage to India",
-        "price": "$3.15",
-        "price_numeric": 3.15,
-        "original_price": "$6.30",
-        "savings": "$3.15",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.656,
-      "price_difference": 0.85,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL134",
-        "name": "Old El Paso Family Size Kits 495-1040g",
-        "brand": "Old",
-        "price": "$10.80",
-        "price_numeric": 10.8,
-        "original_price": "$10.80",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL180",
-        "name": "Old El Paso Hard 'N Soft Taco Kit 350g",
-        "brand": "Old El Paso",
-        "price": "$6.65",
-        "price_numeric": 6.65,
-        "original_price": "$9.50",
-        "savings": "$2.85",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.633,
-      "price_difference": 4.15,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL140",
-        "name": "Moccona Freeze Dried Classic Coffee 400g",
-        "brand": "Moccona",
-        "price": "$26.00",
-        "price_numeric": 26.0,
-        "original_price": "$26.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL154",
-        "name": "Moccona Freeze Dried Instant Coffee 200g",
-        "brand": "Moccona",
-        "price": "$16.50",
-        "price_numeric": 16.5,
-        "original_price": "$23.60",
-        "savings": "$7.10",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.829,
-      "price_difference": 9.5,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL147",
-        "name": "Dairy Farmers Protein Smoothies 400ml",
-        "brand": "Dairy",
-        "price": "$3.40",
-        "price_numeric": 3.4,
-        "original_price": "$3.40",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL185",
-        "name": "Rokeby Protein Smoothie 425mL",
-        "brand": "Rokeby",
-        "price": "$3.50",
-        "price_numeric": 3.5,
-        "original_price": "$4.70",
-        "savings": "$1.20",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.704,
-      "price_difference": -0.1,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL148",
-        "name": "Western Star Spreadable 500g – From the Fridge",
-        "brand": "Western",
-        "price": "$7.00",
-        "price_numeric": 7.0,
-        "original_price": "$7.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL192",
-        "name": "Western Star Spreadable Blend 500g",
-        "brand": "Western Star",
-        "price": "$7.00",
-        "price_numeric": 7.0,
-        "original_price": "$7.90",
-        "savings": "$0.90",
-        "special_type": "Down Down"
-      },
-      "similarity_score": 0.765,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL151",
-        "name": "YoPRO High Protein Yoghurt 700g",
-        "brand": "YoPRO",
-        "price": "$8.00",
-        "price_numeric": 8.0,
-        "original_price": "$8.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL183",
-        "name": "YoPro Perform High Protein Yoghurt No Added Sugar 175g",
-        "brand": "YoPro",
-        "price": "$3.00",
-        "price_numeric": 3.0,
-        "original_price": "$3.90",
-        "savings": "$0.90",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.693,
-      "price_difference": 5.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL157",
-        "name": "Bulla Creamy Classics Sandwiches 448ml Pk 4",
-        "brand": "Bulla",
-        "price": "$5.00",
-        "price_numeric": 5.0,
-        "original_price": "$10.00",
-        "savings": "$5.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL225",
-        "name": "Bulla Creamy Classics Ice Cream Sundae Cones 4 Pack 580mL",
-        "brand": "Bulla",
-        "price": "$6.25",
-        "price_numeric": 6.25,
-        "original_price": "$12.50",
-        "savings": "$6.25",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.723,
-      "price_difference": -1.25,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL159",
-        "name": "Ben & Jerry’s Ice Cream Tub 427-465ml",
-        "brand": "Ben",
-        "price": "$9.50",
-        "price_numeric": 9.5,
-        "original_price": "$9.50",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL224",
-        "name": "Sara Lee Ice Cream Tub 1 Litre",
-        "brand": "Sara Lee",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$12.00",
-        "savings": "$6.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.615,
-      "price_difference": 3.5,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL161",
-        "name": "Perfect Italiano Cheese Varieties 450g – From the Fridge",
-        "brand": "Perfect",
-        "price": "$8.50",
-        "price_numeric": 8.5,
-        "original_price": "$8.50",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL193",
-        "name": "Perfect Italiano Grated Cheese 450g",
-        "brand": "Perfect Italiano",
-        "price": "$8.50",
-        "price_numeric": 8.5,
-        "original_price": "$9.50",
-        "savings": "$1.00",
-        "special_type": "Down Down"
-      },
-      "similarity_score": 0.667,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL177",
-        "name": "Nestlé NAN Optipro Stage 3 Toddler Milk Drink 800g",
+        "id": "CL190",
+        "name": "Nestlé Milo Cereal 620g",
         "brand": "Nestlé",
-        "price": "$20.00",
-        "price_numeric": 20.0,
-        "original_price": "$20.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL262",
-        "name": "Aptamil Gold+ 3 Toddler Milk Drink 900g",
-        "brand": "Aptamil",
-        "price": "$26.50",
-        "price_numeric": 26.5,
-        "original_price": null,
+        "price": "$7.50 each",
+        "price_numeric": 7.5,
+        "original_price": "$9.50",
         "savings": null,
-        "special_type": "Every Day"
-      },
-      "similarity_score": 0.667,
-      "price_difference": -6.5,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL179",
-        "name": "Huggies Ultra Dry Nappy Pants Pk 48-62",
-        "brand": "Huggies",
-        "price": "$29.00",
-        "price_numeric": 29.0,
-        "original_price": "$29.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL263",
-        "name": "Huggies Skin Protect Nappy Pants 42 Pack-58 Pack",
-        "brand": "Huggies",
-        "price": "$28.00",
-        "price_numeric": 28.0,
-        "original_price": "$35.00",
-        "savings": "$7.00",
-        "special_type": "Special"
+        "special_type": "Down Down"
       },
       "similarity_score": 0.632,
-      "price_difference": 1.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL181",
-        "name": "Bonds Men’s Low Cut Socks Assorted Pk 3",
-        "brand": "Bonds",
-        "price": "$8.00",
-        "price_numeric": 8.0,
-        "original_price": "$16.00",
-        "savings": "$8.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL283",
-        "name": "Bonds Women's Logo 1/4 Crew Sock 3 Pack",
-        "brand": "Bonds",
-        "price": "$8.00",
-        "price_numeric": 8.0,
-        "original_price": "$16.00",
-        "savings": "$8.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.63,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL188",
-        "name": "Pine O Cleen Disinfectant Wipes Pk 110",
-        "brand": "Pine",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$12.00",
-        "savings": "$6.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL277",
-        "name": "Dettol Multipurpose Disinfectant Wipes 110 Pack",
-        "brand": "Dettol",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$12.00",
-        "savings": "$6.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.625,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL190",
-        "name": "Morning Fresh Dishwashing Liquid 400ml",
-        "brand": "Morning",
-        "price": "$3.00",
-        "price_numeric": 3.0,
-        "original_price": "$6.00",
-        "savings": "$3.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL272",
-        "name": "Morning Fresh Dishwashing Liquid 350mL",
-        "brand": "Morning Fresh",
-        "price": "$3.00",
-        "price_numeric": 3.0,
-        "original_price": "$6.00",
-        "savings": "$3.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 1.0,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL191",
-        "name": "OMO Ultimate or Expert Laundry Liquid 2 Litre, Powder 2 kg or Capsules Pk 28",
-        "brand": "OMO",
-        "price": "$18.00",
-        "price_numeric": 18.0,
-        "original_price": "$36.00",
-        "savings": "$18.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL049",
-        "name": "Omo Laundry Liquid 2 Litre or Powder 2kg",
-        "brand": "Omo",
-        "price": "$15.00",
-        "price_numeric": 15.0,
-        "original_price": "$30.00",
-        "savings": "$15.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.659,
-      "price_difference": 3.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL192",
-        "name": "My Dog Wet Dog Food 400g",
-        "brand": "My",
-        "price": "$1.50",
-        "price_numeric": 1.5,
-        "original_price": "$3.00",
-        "savings": "$1.50",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL264",
-        "name": "My Dog Dog Food 400g",
-        "brand": "My Dog",
-        "price": "$1.50",
-        "price_numeric": 1.5,
-        "original_price": "$3.00",
-        "savings": "$1.50",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.882,
-      "price_difference": 0.0,
-      "cheaper_store": "Same Price"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL194",
-        "name": "Supercoat Dry Dog Food 2.6-2.8 kg",
-        "brand": "Supercoat",
-        "price": "$9.00",
-        "price_numeric": 9.0,
-        "original_price": "$18.00",
-        "savings": "$9.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL269",
-        "name": "Supercoat Dry Dog Food 6.7kg-7kg",
-        "brand": "Supercoat",
-        "price": "$27.00",
-        "price_numeric": 27.0,
-        "original_price": null,
-        "savings": null,
-        "special_type": "Every Day"
-      },
-      "similarity_score": 0.923,
-      "price_difference": -18.0,
+      "price_difference": -3.0,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL205",
-        "name": "Cadbury Dairy Milk Hollow Hunting Easter Eggs 170g Pk 10",
-        "brand": "Cadbury",
-        "price": "$6.90",
-        "price_numeric": 6.9,
-        "original_price": "$6.90",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL058",
-        "name": "Cadbury Milk Chocolate Hollow Hunting Eggs 255g",
-        "brand": "Cadbury",
-        "price": "$9.00",
-        "price_numeric": 9.0,
-        "original_price": "$15.00",
-        "savings": "$6.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.688,
-      "price_difference": -2.1,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL207",
-        "name": "Rexona Advanced 72hr Antiperspirant Deodorant 220ml",
-        "brand": "Rexona",
+        "id": "WOL012",
+        "name": "Darrell Lea Bilby 100g",
+        "brand": "Darrell",
         "price": "$5.25",
         "price_numeric": 5.25,
         "original_price": "$10.50",
@@ -1349,123 +199,123 @@
         "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL013",
-        "name": "Nivea Antiperspirant Aerosol Deodorant 250mL",
-        "brand": "Nivea",
-        "price": "$4.75",
-        "price_numeric": 4.75,
-        "original_price": "$9.50",
-        "savings": "$4.75",
-        "special_type": "Half Price"
+        "id": "CL013",
+        "name": "Darrell Lea Rocklea Road 290g",
+        "brand": "Darrell Lea",
+        "price": "$9.00 each",
+        "price_numeric": 9.0,
+        "original_price": "$18.00",
+        "savings": "$9.00",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.651,
-      "price_difference": 0.5,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL209",
-        "name": "Cold Power Laundry Liquid 2 Litre or Powder 2 kg",
-        "brand": "Cold",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$24.00",
-        "savings": "$12.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL049",
-        "name": "Omo Laundry Liquid 2 Litre or Powder 2kg",
-        "brand": "Omo",
-        "price": "$15.00",
-        "price_numeric": 15.0,
-        "original_price": "$30.00",
-        "savings": "$15.00",
-        "special_type": "Half Price"
-      },
-      "similarity_score": 0.866,
-      "price_difference": -3.0,
+      "similarity_score": 0.634,
+      "price_difference": -3.75,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL211",
-        "name": "Australian Red Seedless Grapes",
-        "brand": "Australian",
-        "price": "$4.50",
+        "id": "WOL013",
+        "name": "Cadbury Dairy Milk Hollow Hunting Easter Eggs 170g Pk 10",
+        "brand": "Cadbury",
+        "price": "$7.00",
+        "price_numeric": 7.0,
+        "original_price": "$7.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL021",
+        "name": "Cadbury Milk Chocolate Hollow Hunting Eggs 255g",
+        "brand": "Cadbury",
+        "price": "$9.00 each",
+        "price_numeric": 9.0,
+        "original_price": "$15.00",
+        "savings": "$6.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.688,
+      "price_difference": -2.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL014",
+        "name": "Lindt Gold Bunny 100g",
+        "brand": "Lindt",
+        "price": "$8.00",
+        "price_numeric": 8.0,
+        "original_price": "$8.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL020",
+        "name": "Lindt Gold Bunny 100g",
+        "brand": "Lindt",
+        "price": "$8.00 each",
+        "price_numeric": 8.0,
+        "original_price": "$12.00",
+        "savings": "$4.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 1.0,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL017",
+        "name": "Cadbury Medium Easter Egg Bags 649-650g",
+        "brand": "Cadbury",
+        "price": "$16.00",
+        "price_numeric": 16.0,
+        "original_price": "$16.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL005",
+        "name": "Cadbury Easter Eggs Bag 110g-125g",
+        "brand": "Cadbury",
+        "price": "$4.50 each",
         "price_numeric": 4.5,
-        "original_price": "$4.50",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
+        "original_price": "$7.50",
+        "savings": "$3.00",
+        "special_type": "Half Price Specials"
       },
-      "coles_product": {
-        "id": "COL015",
-        "name": "Coles Australian Loose White Seedless Grapes",
-        "brand": "Coles",
-        "price": "$4.00",
-        "price_numeric": 4.0,
-        "original_price": null,
-        "savings": null,
-        "special_type": "Special"
-      },
-      "similarity_score": 0.757,
-      "price_difference": 0.5,
+      "similarity_score": 0.83,
+      "price_difference": 11.5,
       "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
-        "id": "WOL218",
-        "name": "Mission Mini Wraps Varieties 384g Pk 8",
-        "brand": "Mission",
-        "price": "$5.00",
-        "price_numeric": 5.0,
-        "original_price": "$5.00",
+        "id": "WOL018",
+        "name": "Cadbury Large Easter Egg Bags 803-916g",
+        "brand": "Cadbury",
+        "price": "$18.50",
+        "price_numeric": 18.5,
+        "original_price": "$18.50",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL082",
-        "name": "Mission Wraps 8 Pack 567g",
-        "brand": "Mission",
-        "price": "$4.50",
+        "id": "CL005",
+        "name": "Cadbury Easter Eggs Bag 110g-125g",
+        "brand": "Cadbury",
+        "price": "$4.50 each",
         "price_numeric": 4.5,
-        "original_price": "$5.50",
-        "savings": "$1.00",
-        "special_type": "Special"
+        "original_price": "$7.50",
+        "savings": "$3.00",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.789,
-      "price_difference": 0.5,
+      "similarity_score": 0.846,
+      "price_difference": 14.0,
       "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
-        "id": "WOL226",
-        "name": "Easter Mixed Decoration Set",
-        "brand": "Easter",
-        "price": "$6.40",
-        "price_numeric": 6.4,
-        "original_price": "$6.40",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL288",
-        "name": "Hat Decorating Kit",
-        "brand": "Coles",
-        "price": "$5.00",
-        "price_numeric": 5.0,
-        "original_price": null,
-        "savings": null,
-        "special_type": "Special"
-      },
-      "similarity_score": 0.622,
-      "price_difference": 1.4,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL230",
-        "name": "Cadbury Easter Gift Box 124-132g",
+        "id": "WOL021",
+        "name": "Cadbury Gift Box 124-132g",
         "brand": "Cadbury",
         "price": "$8.00",
         "price_numeric": 8.0,
@@ -1474,24 +324,574 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL059",
+        "id": "CL022",
         "name": "Cadbury Easter Egg Gift Box 153g-172g",
         "brand": "Cadbury",
-        "price": "$10.00",
-        "price_numeric": 10.0,
+        "price": "$9.00 each",
+        "price_numeric": 9.0,
         "original_price": "$13.50",
-        "savings": "$3.50",
-        "special_type": "Special"
+        "savings": "$4.50",
+        "special_type": "Specials"
       },
-      "similarity_score": 0.92,
-      "price_difference": -2.0,
+      "similarity_score": 0.744,
+      "price_difference": -1.0,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL235",
-        "name": "San Remo Gluten Free 200-350g",
-        "brand": "San",
+        "id": "WOL022",
+        "name": "Kinder Mini Easter Egg Bags 100g",
+        "brand": "Kinder",
+        "price": "$5.60",
+        "price_numeric": 5.6,
+        "original_price": "$5.60",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL005",
+        "name": "Cadbury Easter Eggs Bag 110g-125g",
+        "brand": "Cadbury",
+        "price": "$4.50 each",
+        "price_numeric": 4.5,
+        "original_price": "$7.50",
+        "savings": "$3.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.68,
+      "price_difference": 1.1,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL023",
+        "name": "Arnott’s Shapes Light & Crispy Crackers 120g",
+        "brand": "Arnott’s",
+        "price": "$2.00",
+        "price_numeric": 2.0,
+        "original_price": "$4.00",
+        "savings": "$2.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL178",
+        "name": "Arnott's Shapes Crackers 160g-190g",
+        "brand": "Arnott's",
+        "price": "$2.80 each",
+        "price_numeric": 2.8,
+        "original_price": "$4.00",
+        "savings": "$1.20",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.787,
+      "price_difference": -0.8,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL024",
+        "name": "Nivea 72hr Anti-Perspirant Deodorant 250ml",
+        "brand": "Nivea",
+        "price": "$5.25",
+        "price_numeric": 5.25,
+        "original_price": "$10.50",
+        "savings": "$5.25",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL126",
+        "name": "Rexona Advanced 72hr Aerosol Deodorant 220mL",
+        "brand": "Rexona",
+        "price": "$5.25 each",
+        "price_numeric": 5.25,
+        "original_price": "$10.50",
+        "savings": "$5.25",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.622,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL025",
+        "name": "Oral-B Sensitive Gum Care Toothpaste 90g~",
+        "brand": "Oral-B",
+        "price": "$5.00",
+        "price_numeric": 5.0,
+        "original_price": "$10.00",
+        "savings": "$5.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL125",
+        "name": "Colgate Optic White Purple Toothpaste 100g",
+        "brand": "Colgate",
+        "price": "$5.00 each",
+        "price_numeric": 5.0,
+        "original_price": "$10.00",
+        "savings": "$5.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.603,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL026",
+        "name": "Arnott’s Tee Vee Snacks 175g",
+        "brand": "Arnott’s",
+        "price": "$2.75",
+        "price_numeric": 2.75,
+        "original_price": "$5.50",
+        "savings": "$2.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL178",
+        "name": "Arnott's Shapes Crackers 160g-190g",
+        "brand": "Arnott's",
+        "price": "$2.80 each",
+        "price_numeric": 2.8,
+        "original_price": "$4.00",
+        "savings": "$1.20",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.638,
+      "price_difference": -0.05,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL028",
+        "name": "Arnott’s Tim Tam 165-200g",
+        "brand": "Arnott’s",
+        "price": "$3.60",
+        "price_numeric": 3.6,
+        "original_price": "$3.60",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL155",
+        "name": "Arnott's Tim Tam Biscuits 165g-200g",
+        "brand": "Arnott's",
+        "price": "$3.60 each",
+        "price_numeric": 3.6,
+        "original_price": "$6.00",
+        "savings": "$2.40",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.78,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL029",
+        "name": "Pepsi, Solo, Mountain Dew, or Schweppes Lemonade Soft Drink Varieties 10 x 375ml",
+        "brand": "Pepsi,",
+        "price": "$10.00",
+        "price_numeric": 10.0,
+        "original_price": "$20.00",
+        "savings": "$10.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL156",
+        "name": "Pepsi Max, Solo or Schweppes Lemonade Soft Drink 6x250mL",
+        "brand": "Pepsi/Solo/Schweppes",
+        "price": "$5.70 each",
+        "price_numeric": 5.7,
+        "original_price": "$9.50",
+        "savings": "$3.80",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.825,
+      "price_difference": 4.3,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL032",
+        "name": "Schweppes Mixers or Mineral Water 4 x 300ml",
+        "brand": "Schweppes",
+        "price": "$3.75",
+        "price_numeric": 3.75,
+        "original_price": "$8.00",
+        "savings": "$4.25",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL169",
+        "name": "Schweppes Mixers, Soft Drink or Mineral Water 1.1 Litre",
+        "brand": "Schweppes",
+        "price": "$1.80 each",
+        "price_numeric": 1.8,
+        "original_price": "$3.00",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.769,
+      "price_difference": 1.95,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL033",
+        "name": "Twinings Tea Bags Pk 80-100",
+        "brand": "Twinings",
+        "price": "$6.75",
+        "price_numeric": 6.75,
+        "original_price": "$13.50",
+        "savings": "$6.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL191",
+        "name": "Lipton Tea Bags 100 Pack",
+        "brand": "Lipton",
+        "price": "$3.50 each",
+        "price_numeric": 3.5,
+        "original_price": "$7.00",
+        "savings": "$3.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.652,
+      "price_difference": 3.25,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL035",
+        "name": "Lipton Ice Tea 1.5 Litre",
+        "brand": "Lipton",
+        "price": "$2.75",
+        "price_numeric": 2.75,
+        "original_price": "$5.50",
+        "savings": "$2.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL208",
+        "name": "Alfa One Rice Bran Oil 3 Litre",
+        "brand": "Alfa One",
+        "price": "$14.00 each",
+        "price_numeric": 14.0,
+        "original_price": "$17.65",
+        "savings": "$3.65",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.625,
+      "price_difference": -11.25,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL036",
+        "name": "Nice & Natural Nut Bars 180-192g Pk 6",
+        "brand": "Nice",
+        "price": "$2.75",
+        "price_numeric": 2.75,
+        "original_price": "$5.50",
+        "savings": "$2.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL187",
+        "name": "Nice & Natural Fruit Blocks 120g",
+        "brand": "Nice & Natural",
+        "price": "$4.00 each",
+        "price_numeric": 4.0,
+        "original_price": "$5.60",
+        "savings": "$1.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.706,
+      "price_difference": -1.25,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL037",
+        "name": "Tostitos Corn Chips 175g",
+        "brand": "Tostitos",
+        "price": "$2.60",
+        "price_numeric": 2.6,
+        "original_price": "$5.20",
+        "savings": "$2.60",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL099",
+        "name": "CC's Corn Chips 175g",
+        "brand": "CC's",
+        "price": "$2.50 each",
+        "price_numeric": 2.5,
+        "original_price": "$5.00",
+        "savings": "$2.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.706,
+      "price_difference": 0.1,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL038",
+        "name": "Uncle Tobys Plus Cereal 410-435g",
+        "brand": "Uncle",
+        "price": "$3.50",
+        "price_numeric": 3.5,
+        "original_price": "$7.00",
+        "savings": "$3.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL109",
+        "name": "Uncle Tobys Plus Cereal 620g-705g",
+        "brand": "Uncle Tobys",
+        "price": "$4.75 each",
+        "price_numeric": 4.75,
+        "original_price": "$9.50",
+        "savings": "$4.75",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 1.0,
+      "price_difference": -1.25,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL039",
+        "name": "Nestlé Milo Cereal 330-350g",
+        "brand": "Nestlé",
+        "price": "$3.50",
+        "price_numeric": 3.5,
+        "original_price": "$7.00",
+        "savings": "$3.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL190",
+        "name": "Nestlé Milo Cereal 620g",
+        "brand": "Nestlé",
+        "price": "$7.50 each",
+        "price_numeric": 7.5,
+        "original_price": "$9.50",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 1.0,
+      "price_difference": -4.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL040",
+        "name": "Coca-Cola Classic, Zero Sugar or Diet Soft Drink Varieties 6 x 250ml",
+        "brand": "Coca-Cola",
+        "price": "$6.00",
+        "price_numeric": 6.0,
+        "original_price": "$6.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL159",
+        "name": "Pepsi Max or Solo Zero Sugar Soft Drink 24x375mL",
+        "brand": "Pepsi/Solo",
+        "price": "$23.70 each",
+        "price_numeric": 23.7,
+        "original_price": "$39.50",
+        "savings": "$15.80",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.65,
+      "price_difference": -17.7,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL041",
+        "name": "Oxyshred Energy Drink 4x 355ml",
+        "brand": "Oxyshred",
+        "price": "$9.60",
+        "price_numeric": 9.6,
+        "original_price": "$9.60",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL163",
+        "name": "Monster Energy Drink 500mL",
+        "brand": "Monster",
+        "price": "$3.10 each",
+        "price_numeric": 3.1,
+        "original_price": "$4.45",
+        "savings": "$1.35",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.78,
+      "price_difference": 6.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL042",
+        "name": "Kirks Soft Drink Varieties 1.25 Litre",
+        "brand": "Kirks",
+        "price": "$1.80",
+        "price_numeric": 1.8,
+        "original_price": "$1.80",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL154",
+        "name": "Powerade Sports Drink 1 Litre",
+        "brand": "Powerade",
+        "price": "$3.45 each",
+        "price_numeric": 3.45,
+        "original_price": "$5.80",
+        "savings": "$2.35",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.653,
+      "price_difference": -1.65,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL044",
+        "name": "Golden Circle Fruit Drink 1 Litre",
+        "brand": "Golden",
+        "price": "$2.00",
+        "price_numeric": 2.0,
+        "original_price": "$2.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL154",
+        "name": "Powerade Sports Drink 1 Litre",
+        "brand": "Powerade",
+        "price": "$3.45 each",
+        "price_numeric": 3.45,
+        "original_price": "$5.80",
+        "savings": "$2.35",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.607,
+      "price_difference": -1.45,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL045",
+        "name": "V Energy Drink 4 x 500ml",
+        "brand": "V",
+        "price": "$10.50",
+        "price_numeric": 10.5,
+        "original_price": "$10.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL167",
+        "name": "V Energy Drink 4x250mL",
+        "brand": "V",
+        "price": "$8.40 each",
+        "price_numeric": 8.4,
+        "original_price": "$12.00",
+        "savings": "$3.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 1.0,
+      "price_difference": 2.1,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL047",
+        "name": "Old El Paso Standard Kits 290-520g",
+        "brand": "Old",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$8.50",
+        "savings": "$4.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL177",
+        "name": "Old El Paso Hard 'N Soft Taco Kit 560g",
+        "brand": "Old El Paso",
+        "price": "$10.80 each",
+        "price_numeric": 10.8,
+        "original_price": "$12.00",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.667,
+      "price_difference": -6.8,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL048",
+        "name": "Old El Paso Premium Kits 295-505g",
+        "brand": "Old",
+        "price": "$4.50",
+        "price_numeric": 4.5,
+        "original_price": "$9.50",
+        "savings": "$5.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL177",
+        "name": "Old El Paso Hard 'N Soft Taco Kit 560g",
+        "brand": "Old El Paso",
+        "price": "$10.80 each",
+        "price_numeric": 10.8,
+        "original_price": "$12.00",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.607,
+      "price_difference": -6.3,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL052",
+        "name": "Barilla Pasta 500g",
+        "brand": "Barilla",
+        "price": "$2.80",
+        "price_numeric": 2.8,
+        "original_price": "$2.80",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL203",
+        "name": "Barilla Pasta Sauce 400g",
+        "brand": "Barilla",
+        "price": "$3.90 each",
+        "price_numeric": 3.9,
+        "original_price": "$4.90",
+        "savings": "$1.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.812,
+      "price_difference": -1.1,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL054",
+        "name": "Maggi 2 Minute Noodles 345-395g Pk 5",
+        "brand": "Maggi",
         "price": "$3.50",
         "price_numeric": 3.5,
         "original_price": "$3.50",
@@ -1499,426 +899,999 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL113",
-        "name": "Sanitarium Gluten Free Weet-Bix 375g",
-        "brand": "Sanitarium",
+        "id": "CL104",
+        "name": "Maggi Instant Noodle Cup 58g-65g",
+        "brand": "Maggi",
+        "price": "$1.25 each",
+        "price_numeric": 1.25,
+        "original_price": "$2.50",
+        "savings": "$1.25",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.706,
+      "price_difference": 2.25,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL055",
+        "name": "SunRice Family Pack Microwave Rice 450g",
+        "brand": "SunRice",
+        "price": "$3.15",
+        "price_numeric": 3.15,
+        "original_price": "$3.15",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL201",
+        "name": "Sunrice 90 Second Microwave Plain Rice Pouch 250g",
+        "brand": "Sunrice",
+        "price": "$1.80 each",
+        "price_numeric": 1.8,
+        "original_price": "$3.00",
+        "savings": "$1.20",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.63,
+      "price_difference": 1.35,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL057",
+        "name": "Thanks To Nature Shampoo or Conditioner 500ml",
+        "brand": "Thanks",
+        "price": "$9.00",
+        "price_numeric": 9.0,
+        "original_price": "$18.00",
+        "savings": "$9.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL127",
+        "name": "Herbal Essences Shampoo or Conditioner 600mL",
+        "brand": "Herbal Essences",
+        "price": "$8.75 each",
+        "price_numeric": 8.75,
+        "original_price": "$17.50",
+        "savings": "$8.75",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.676,
+      "price_difference": 0.25,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL058",
+        "name": "John Frieda Shampoo or Conditioner 250ml",
+        "brand": "John",
+        "price": "$10.50",
+        "price_numeric": 10.5,
+        "original_price": "$21.00",
+        "savings": "$10.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL127",
+        "name": "Herbal Essences Shampoo or Conditioner 600mL",
+        "brand": "Herbal Essences",
+        "price": "$8.75 each",
+        "price_numeric": 8.75,
+        "original_price": "$17.50",
+        "savings": "$8.75",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.697,
+      "price_difference": 1.75,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL059",
+        "name": "OGX Pro Growth + Peptide Shampoo or Conditioner 385ml",
+        "brand": "OGX",
+        "price": "$12.50",
+        "price_numeric": 12.5,
+        "original_price": "$25.00",
+        "savings": "$12.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL283",
+        "name": "Ogx Argan Oil of Morocco Shampoo or Conditioner 385mL",
+        "brand": "Ogx",
+        "price": "$11.50 each",
+        "price_numeric": 11.5,
+        "original_price": "$23.00",
+        "savings": "$11.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.628,
+      "price_difference": 1.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL060",
+        "name": "Pantene Shampoo or Conditioner 800-900ml",
+        "brand": "Pantene",
+        "price": "$10.50",
+        "price_numeric": 10.5,
+        "original_price": "$21.00",
+        "savings": "$10.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL127",
+        "name": "Herbal Essences Shampoo or Conditioner 600mL",
+        "brand": "Herbal Essences",
+        "price": "$8.75 each",
+        "price_numeric": 8.75,
+        "original_price": "$17.50",
+        "savings": "$8.75",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.774,
+      "price_difference": 1.75,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL061",
+        "name": "Nivea 72hr Roll On Deodorant 50ml",
+        "brand": "Nivea",
+        "price": "$2.75",
+        "price_numeric": 2.75,
+        "original_price": "$5.50",
+        "savings": "$2.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL126",
+        "name": "Rexona Advanced 72hr Aerosol Deodorant 220mL",
+        "brand": "Rexona",
+        "price": "$5.25 each",
+        "price_numeric": 5.25,
+        "original_price": "$10.50",
+        "savings": "$5.25",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.667,
+      "price_difference": -2.5,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL062",
+        "name": "Nivea Shower Cream 1 Litre",
+        "brand": "Nivea",
+        "price": "$8.50",
+        "price_numeric": 8.5,
+        "original_price": "$17.00",
+        "savings": "$8.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL226",
+        "name": "Connoisseur Ice Cream Tub 1 Litre",
+        "brand": "Connoisseur",
+        "price": "$9.75 each",
+        "price_numeric": 9.75,
+        "original_price": "$13.00",
+        "savings": "$3.25",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.604,
+      "price_difference": -1.25,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL066",
+        "name": "My Soda Shampoo or Conditioner 350ml",
+        "brand": "My",
         "price": "$5.00",
         "price_numeric": 5.0,
-        "original_price": null,
-        "savings": null,
-        "special_type": "Every Day"
+        "original_price": "$10.00",
+        "savings": "$5.00",
+        "special_type": "HALF_PRICE"
       },
-      "similarity_score": 0.667,
-      "price_difference": -1.5,
+      "coles_product": {
+        "id": "CL127",
+        "name": "Herbal Essences Shampoo or Conditioner 600mL",
+        "brand": "Herbal Essences",
+        "price": "$8.75 each",
+        "price_numeric": 8.75,
+        "original_price": "$17.50",
+        "savings": "$8.75",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.71,
+      "price_difference": -3.75,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL236",
-        "name": "BFree Low Carb High Protein Wraps 210g",
-        "brand": "BFree",
-        "price": "$7.40",
-        "price_numeric": 7.4,
-        "original_price": "$7.40",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL162",
-        "name": "Mayver's Low Carb High Protein Bars 128g",
-        "brand": "Mayver's",
-        "price": "$6.60",
-        "price_numeric": 6.6,
-        "original_price": "$8.30",
-        "savings": "$1.70",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.765,
-      "price_difference": 0.8,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL243",
-        "name": "Pauls Plus+ Protein Yoghurt Pouch 150g",
-        "brand": "Pauls",
-        "price": "$2.45",
-        "price_numeric": 2.45,
-        "original_price": "$2.45",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL251",
-        "name": "Vaalia Probiotics Kids Yoghurt Pouch 140g",
-        "brand": "Vaalia",
-        "price": "$2.00",
-        "price_numeric": 2.0,
-        "original_price": null,
-        "savings": "$2.50",
-        "special_type": "Multi-Buy Special"
-      },
-      "similarity_score": 0.647,
-      "price_difference": 0.45,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL255",
-        "name": "Lyca $20 Starter Pack¥",
-        "brand": "Lyca",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$20.00",
-        "savings": "$14.00",
+        "id": "WOL068",
+        "name": "Palmolive Liquid Hand Wash Refill 1 Litre",
+        "brand": "Palmolive",
+        "price": "$3.75",
+        "price_numeric": 3.75,
+        "original_price": "$7.50",
+        "savings": "$3.75",
         "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL299",
-        "name": "amaysim $30 Starter Pack",
-        "brand": "amaysim",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$30.00",
-        "savings": "$18.00",
-        "special_type": "Special"
+        "id": "CL129",
+        "name": "Palmolive Liquid Hand Wash Refill 1 Litre",
+        "brand": "Palmolive",
+        "price": "$3.75 each",
+        "price_numeric": 3.75,
+        "original_price": "$7.50",
+        "savings": "$3.75",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.667,
-      "price_difference": -6.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL256",
-        "name": "amaysim $25 Starter Pack‡",
-        "brand": "amaysim",
-        "price": "$10.00",
-        "price_numeric": 10.0,
-        "original_price": "$25.00",
-        "savings": "$15.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL299",
-        "name": "amaysim $30 Starter Pack",
-        "brand": "amaysim",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$30.00",
-        "savings": "$18.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.889,
-      "price_difference": -2.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL257",
-        "name": "Optus $35 SIM Starter Kit†",
-        "brand": "Optus",
-        "price": "$13.00",
-        "price_numeric": 13.0,
-        "original_price": "$35.00",
-        "savings": "$22.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL297",
-        "name": "Optus $39 Prepaid SIM Starter Kit",
-        "brand": "Optus",
-        "price": "$14.00",
-        "price_numeric": 14.0,
-        "original_price": "$39.00",
-        "savings": "$25.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.821,
-      "price_difference": -1.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL258",
-        "name": "amaysim $40 Starter Pack§",
-        "brand": "amaysim",
-        "price": "$15.00",
-        "price_numeric": 15.0,
-        "original_price": "$40.00",
-        "savings": "$25.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL299",
-        "name": "amaysim $30 Starter Pack",
-        "brand": "amaysim",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$30.00",
-        "savings": "$18.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.944,
-      "price_difference": 3.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL259",
-        "name": "Lebara $250 Starter Pack~",
-        "brand": "Lebara",
-        "price": "$169.00",
-        "price_numeric": 169.0,
-        "original_price": "$169.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL299",
-        "name": "amaysim $30 Starter Pack",
-        "brand": "amaysim",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$30.00",
-        "savings": "$18.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.667,
-      "price_difference": 157.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL260",
-        "name": "Optus $350 SIM Starter Kit†",
-        "brand": "Optus",
-        "price": "$219.00",
-        "price_numeric": 219.0,
-        "original_price": "$219.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL297",
-        "name": "Optus $39 Prepaid SIM Starter Kit",
-        "brand": "Optus",
-        "price": "$14.00",
-        "price_numeric": 14.0,
-        "original_price": "$39.00",
-        "savings": "$25.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.807,
-      "price_difference": 205.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL262",
-        "name": "Boost $300 Starter PackΔ",
-        "brand": "Boost",
-        "price": "$250.00",
-        "price_numeric": 250.0,
-        "original_price": "$250.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL304",
-        "name": "Boost $300 SIM Pack",
-        "brand": "Boost",
-        "price": "$250.00",
-        "price_numeric": 250.0,
-        "original_price": "$300.00",
-        "savings": "$50.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.611,
+      "similarity_score": 1.0,
       "price_difference": 0.0,
       "cheaper_store": "Same Price"
     },
     {
       "woolworths_product": {
-        "id": "WOL263",
-        "name": "Belong $55 Starter Pack€",
-        "brand": "Belong",
-        "price": "$20.00",
-        "price_numeric": 20.0,
-        "original_price": "$55.00",
-        "savings": "$35.00",
+        "id": "WOL069",
+        "name": "Colgate Total Active Prevention Toothpaste 115g",
+        "brand": "Colgate",
+        "price": "$3.50",
+        "price_numeric": 3.5,
+        "original_price": "$7.00",
+        "savings": "$3.50",
         "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL303",
-        "name": "Belong $35 Data Pack",
-        "brand": "Belong",
-        "price": "$17.00",
-        "price_numeric": 17.0,
-        "original_price": "$35.00",
-        "savings": "$18.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.71,
-      "price_difference": 3.0,
-      "cheaper_store": "Coles"
-    }
-  ],
-  "top_coles_savings": [
-    {
-      "woolworths_product": {
-        "id": "WOL260",
-        "name": "Optus $350 SIM Starter Kit†",
-        "brand": "Optus",
-        "price": "$219.00",
-        "price_numeric": 219.0,
-        "original_price": "$219.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL297",
-        "name": "Optus $39 Prepaid SIM Starter Kit",
-        "brand": "Optus",
-        "price": "$14.00",
-        "price_numeric": 14.0,
-        "original_price": "$39.00",
-        "savings": "$25.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.807,
-      "price_difference": 205.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL259",
-        "name": "Lebara $250 Starter Pack~",
-        "brand": "Lebara",
-        "price": "$169.00",
-        "price_numeric": 169.0,
-        "original_price": "$169.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL299",
-        "name": "amaysim $30 Starter Pack",
-        "brand": "amaysim",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$30.00",
-        "savings": "$18.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.667,
-      "price_difference": 157.0,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL140",
-        "name": "Moccona Freeze Dried Classic Coffee 400g",
-        "brand": "Moccona",
-        "price": "$26.00",
-        "price_numeric": 26.0,
-        "original_price": "$26.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL154",
-        "name": "Moccona Freeze Dried Instant Coffee 200g",
-        "brand": "Moccona",
-        "price": "$16.50",
-        "price_numeric": 16.5,
-        "original_price": "$23.60",
-        "savings": "$7.10",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.829,
-      "price_difference": 9.5,
-      "cheaper_store": "Coles"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL052",
-        "name": "Mount Franklin Lightly Sparkling Water 10 x 375ml",
-        "brand": "Mount",
-        "price": "$12.60",
-        "price_numeric": 12.6,
-        "original_price": "$12.60",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
-      },
-      "coles_product": {
-        "id": "COL145",
-        "name": "Mt Franklin Lightly Sparkling Water 6x250mL",
-        "brand": "Mt Franklin",
-        "price": "$6.00",
-        "price_numeric": 6.0,
+        "id": "CL125",
+        "name": "Colgate Optic White Purple Toothpaste 100g",
+        "brand": "Colgate",
+        "price": "$5.00 each",
+        "price_numeric": 5.0,
         "original_price": "$10.00",
-        "savings": "$4.00",
-        "special_type": "Special"
+        "savings": "$5.00",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.959,
-      "price_difference": 6.6,
-      "cheaper_store": "Coles"
+      "similarity_score": 0.684,
+      "price_difference": -1.5,
+      "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL015",
-        "name": "Lindt Gold Bunny 200g",
-        "brand": "Lindt",
-        "price": "$14.00",
-        "price_numeric": 14.0,
-        "original_price": "$14.00",
+        "id": "WOL076",
+        "name": "Australian Beurre Bosc Pears",
+        "brand": "Australian",
+        "price": "$3.50",
+        "price_numeric": 3.5,
+        "original_price": "$3.50",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL056",
-        "name": "Lindt Gold Bunny 100g",
-        "brand": "Lindt",
-        "price": "$9.00",
-        "price_numeric": 9.0,
-        "original_price": "$12.00",
-        "savings": "$3.00",
-        "special_type": "Special"
+        "id": "CL084",
+        "name": "Australian Blackberries 125g Punnet",
+        "brand": "Australian",
+        "price": "$4.50 pk",
+        "price_numeric": 4.5,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.69,
+      "price_difference": -1.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL077",
+        "name": "Australian Black Seedless Grapes",
+        "brand": "Australian",
+        "price": "$5.00",
+        "price_numeric": 5.0,
+        "original_price": "$5.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL082",
+        "name": "Coles Australian Loose Red Seedless Grapes",
+        "brand": "Coles",
+        "price": "$4.50 kg",
+        "price_numeric": 4.5,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.757,
+      "price_difference": 0.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL078",
+        "name": "Australian Mi Apple™ Apples",
+        "brand": "Australian",
+        "price": "$4.90",
+        "price_numeric": 4.9,
+        "original_price": "$4.90",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL083",
+        "name": "Australian Royal Gala Apples",
+        "brand": "Australian",
+        "price": "$4.90 kg",
+        "price_numeric": 4.9,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.778,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL079",
+        "name": "Australian Spring Onions",
+        "brand": "Australian",
+        "price": "$2.00",
+        "price_numeric": 2.0,
+        "original_price": "$2.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL012",
+        "name": "Australian Red Perino Tomatoes 200g Pack",
+        "brand": "Australian",
+        "price": "$3.50 pk",
+        "price_numeric": 3.5,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.704,
+      "price_difference": -1.5,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL093",
+        "name": "Fresh Tasmanian Atlantic Salmon Fillets Skin Off",
+        "brand": "Fresh",
+        "price": "$36.00",
+        "price_numeric": 36.0,
+        "original_price": "$36.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL028",
+        "name": "Coles Tasmanian Fresh Salmon Portions Skin On",
+        "brand": "Coles",
+        "price": "$34.00 kg",
+        "price_numeric": 34.0,
+        "original_price": "$38.00",
+        "savings": "$4.00 kg",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.645,
+      "price_difference": 2.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL096",
+        "name": "Ocean Blue Smoked Salmon 300g",
+        "brand": "Ocean",
+        "price": "$15.00",
+        "price_numeric": 15.0,
+        "original_price": "$15.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL032",
+        "name": "Ocean Blue Smoked Salmon 100g",
+        "brand": "Ocean Blue",
+        "price": "$7.50 pk",
+        "price_numeric": 7.5,
+        "original_price": "$9.00",
+        "savings": null,
+        "special_type": "Down Down"
       },
       "similarity_score": 1.0,
-      "price_difference": 5.0,
+      "price_difference": 7.5,
       "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
-        "id": "WOL151",
-        "name": "YoPRO High Protein Yoghurt 700g",
-        "brand": "YoPRO",
-        "price": "$8.00",
-        "price_numeric": 8.0,
-        "original_price": "$8.00",
+        "id": "WOL101",
+        "name": "Birds Eye Steamfresh Vegetables 450g – From the Freezer",
+        "brand": "Birds",
+        "price": "$3.60",
+        "price_numeric": 3.6,
+        "original_price": "$3.60",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL183",
-        "name": "YoPro Perform High Protein Yoghurt No Added Sugar 175g",
-        "brand": "YoPro",
-        "price": "$3.00",
-        "price_numeric": 3.0,
-        "original_price": "$3.90",
-        "savings": "$0.90",
-        "special_type": "Special"
+        "id": "CL230",
+        "name": "Birds Eye Steamfresh Fish 380g",
+        "brand": "Birds Eye",
+        "price": "$9.90 each",
+        "price_numeric": 9.9,
+        "original_price": "$11.00",
+        "savings": null,
+        "special_type": "Down Down"
       },
-      "similarity_score": 0.693,
-      "price_difference": 5.0,
+      "similarity_score": 0.63,
+      "price_difference": -6.3,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL103",
+        "name": "John West Tuna Value Pack 12 x 95g",
+        "brand": "John",
+        "price": "$19.00",
+        "price_numeric": 19.0,
+        "original_price": "$19.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL006",
+        "name": "John West Tuna 95g",
+        "brand": "John West",
+        "price": "$1.45 each",
+        "price_numeric": 1.45,
+        "original_price": "$2.90",
+        "savings": "$1.45",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.824,
+      "price_difference": 17.55,
       "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL109",
+        "name": "Australian Fresh RSPCA Approved Chicken Breast Diced 1 kg",
+        "brand": "Australian",
+        "price": "$13.50",
+        "price_numeric": 13.5,
+        "original_price": "$13.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL095",
+        "name": "Coles RSPCA Approved Chicken Boneless Herb & Garlic 1kg",
+        "brand": "Coles",
+        "price": "$10.00 pk",
+        "price_numeric": 10.0,
+        "original_price": "$13.00",
+        "savings": "$3.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.634,
+      "price_difference": 3.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL110",
+        "name": "Australian Pork Ribs",
+        "brand": "Australian",
+        "price": "$18.00",
+        "price_numeric": 18.0,
+        "original_price": "$18.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL037",
+        "name": "Coles Australian Pork Leg Roast Boneless",
+        "brand": "Coles",
+        "price": "$9.00 kg",
+        "price_numeric": 9.0,
+        "original_price": "$12.00",
+        "savings": "$3.00 kg",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.633,
+      "price_difference": 9.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL111",
+        "name": "Australian Beef Rump Steak",
+        "brand": "Australian",
+        "price": "$24.00",
+        "price_numeric": 24.0,
+        "original_price": "$24.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL084",
+        "name": "Australian Blackberries 125g Punnet",
+        "brand": "Australian",
+        "price": "$4.50 pk",
+        "price_numeric": 4.5,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.607,
+      "price_difference": 19.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL112",
+        "name": "Australian Lamb Mid Loin Chops",
+        "brand": "Australian",
+        "price": "$24.00",
+        "price_numeric": 24.0,
+        "original_price": "$24.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL090",
+        "name": "Coles Australian Lamb Loin Chops",
+        "brand": "Coles",
+        "price": "$26.00 kg",
+        "price_numeric": 26.0,
+        "original_price": "$33.00",
+        "savings": "$7.00 kg",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.839,
+      "price_difference": -2.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL114",
+        "name": "Carman’s Protein Bake Bars 175-180g Pk 4-5",
+        "brand": "Carman’s",
+        "price": "$5.50",
+        "price_numeric": 5.5,
+        "original_price": "$5.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL189",
+        "name": "Carman's Energy Bars 5 Pack 175g-200g",
+        "brand": "Carman's",
+        "price": "$5.50 each",
+        "price_numeric": 5.5,
+        "original_price": "$7.90",
+        "savings": "$2.40",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.618,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL121",
+        "name": "Iddy Biddy Fruit Snack 120-160g Pk 8-12",
+        "brand": "Iddy",
+        "price": "$3.90",
+        "price_numeric": 3.9,
+        "original_price": "$3.90",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL173",
+        "name": "Iddy Biddy Fruit Flavoured Snacks 160g",
+        "brand": "Iddy Biddy",
+        "price": "$3.90 each",
+        "price_numeric": 3.9,
+        "original_price": "$4.40",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.698,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL122",
+        "name": "Bega Peanut Butter 375g",
+        "brand": "Bega",
+        "price": "$4.80",
+        "price_numeric": 4.8,
+        "original_price": "$4.80",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL175",
+        "name": "Bega Smooth or Crunchy Peanut Butter 375g",
+        "brand": "Bega",
+        "price": "$4.90 each",
+        "price_numeric": 4.9,
+        "original_price": "$5.80",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.706,
+      "price_difference": -0.1,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL126",
+        "name": "So Good Almond Milk 1 Litre",
+        "brand": "So",
+        "price": "$2.00",
+        "price_numeric": 2.0,
+        "original_price": "$2.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL185",
+        "name": "Vitasoy Unsweetened Almond Milk 1 Litre",
+        "brand": "Vitasoy",
+        "price": "$2.00 each",
+        "price_numeric": 2.0,
+        "original_price": "$3.30",
+        "savings": "$1.30",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.7,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL127",
+        "name": "Nestlé Milo 1 kg",
+        "brand": "Nestlé",
+        "price": "$13.50",
+        "price_numeric": 13.5,
+        "original_price": "$13.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL190",
+        "name": "Nestlé Milo Cereal 620g",
+        "brand": "Nestlé",
+        "price": "$7.50 each",
+        "price_numeric": 7.5,
+        "original_price": "$9.50",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.759,
+      "price_difference": 6.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL128",
+        "name": "Vittoria Espresso Coffee Beans or Ground Coffee 1 kg",
+        "brand": "Vittoria",
+        "price": "$39.00",
+        "price_numeric": 39.0,
+        "original_price": "$39.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL198",
+        "name": "Vittoria Mountain Grown Coffee Beans or Ground 1kg",
+        "brand": "Vittoria",
+        "price": "$37.00 each",
+        "price_numeric": 37.0,
+        "original_price": "$53.00",
+        "savings": "$16.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.713,
+      "price_difference": 2.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL130",
+        "name": "Harris Freeze Dried Coffee 300g",
+        "brand": "Harris",
+        "price": "$22.00",
+        "price_numeric": 22.0,
+        "original_price": "$22.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL196",
+        "name": "Moccona Freeze Dried Instant Coffee 400g",
+        "brand": "Moccona",
+        "price": "$26.00 each",
+        "price_numeric": 26.0,
+        "original_price": "$37.50",
+        "savings": "$11.50",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.689,
+      "price_difference": -4.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL133",
+        "name": "McCain Pickers 230-350g",
+        "brand": "McCain",
+        "price": "$5.00",
+        "price_numeric": 5.0,
+        "original_price": "$5.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL240",
+        "name": "McCain Pizza Slices 2 Pack 600g",
+        "brand": "McCain",
+        "price": "$7.70 each",
+        "price_numeric": 7.7,
+        "original_price": "$9.80",
+        "savings": "$2.10",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.686,
+      "price_difference": -2.7,
+      "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
         "id": "WOL134",
-        "name": "Old El Paso Family Size Kits 495-1040g",
-        "brand": "Old",
+        "name": "McCain Rustica Pizza 370-460g",
+        "brand": "McCain",
+        "price": "$7.70",
+        "price_numeric": 7.7,
+        "original_price": "$7.70",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL239",
+        "name": "McCain Family Pizza 490g-500g",
+        "brand": "McCain",
+        "price": "$7.00 each",
+        "price_numeric": 7.0,
+        "original_price": "$8.80",
+        "savings": "$1.80",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.718,
+      "price_difference": 0.7,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL135",
+        "name": "Four’N Twenty Party Pies 560-600g",
+        "brand": "Four’N",
+        "price": "$7.20",
+        "price_numeric": 7.2,
+        "original_price": "$7.20",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL238",
+        "name": "Four'N Twenty Angus Beef Pies 4 Pack 700g",
+        "brand": "Four'N Twenty",
+        "price": "$8.90 each",
+        "price_numeric": 8.9,
+        "original_price": "$12.50",
+        "savings": "$3.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.727,
+      "price_difference": -1.7,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL136",
+        "name": "McCain Pub Size Meals 480-500g",
+        "brand": "McCain",
+        "price": "$7.50",
+        "price_numeric": 7.5,
+        "original_price": "$7.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL231",
+        "name": "McCain Red Box Tray Meal 375g-400g",
+        "brand": "McCain",
+        "price": "2 for $8.00",
+        "price_numeric": 28.0,
+        "original_price": null,
+        "savings": "$3.20",
+        "special_type": "Multi-buy Special"
+      },
+      "similarity_score": 0.622,
+      "price_difference": -20.5,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL138",
+        "name": "On The Menu Frozen Meals 260g",
+        "brand": "On",
+        "price": "$3.90",
+        "price_numeric": 3.9,
+        "original_price": "$3.90",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL233",
+        "name": "On The Menu Plated Meal 320g-400g",
+        "brand": "On The Menu",
+        "price": "$5.80 each",
+        "price_numeric": 5.8,
+        "original_price": "$7.30",
+        "savings": "$1.50",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.766,
+      "price_difference": -1.9,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL139",
+        "name": "McCain Plated Dinner 320g",
+        "brand": "McCain",
+        "price": "$6.50",
+        "price_numeric": 6.5,
+        "original_price": "$6.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL228",
+        "name": "McCain Red Box Plate Meal 320g",
+        "brand": "McCain",
+        "price": "$6.50 each",
+        "price_numeric": 6.5,
+        "original_price": "$7.50",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.622,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL141",
+        "name": "Mars or Snickers Frozen Dessert Bars 220-250ml Pk 5",
+        "brand": "Mars",
+        "price": "$4.75",
+        "price_numeric": 4.75,
+        "original_price": "$9.50",
+        "savings": "$4.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL220",
+        "name": "Weis Frozen Dessert Bars 4 Pack-6 Pack 264mL-280mL",
+        "brand": "Weis",
+        "price": "$5.70 each",
+        "price_numeric": 5.7,
+        "original_price": "$9.50",
+        "savings": "$3.80",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.727,
+      "price_difference": -0.95,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL147",
+        "name": "Peters Frosty Fruits 420-600ml Pk 6-8",
+        "brand": "Peters",
+        "price": "$6.00",
+        "price_numeric": 6.0,
+        "original_price": "$6.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL221",
+        "name": "Peters Frosty Fruits Sticks 6 Pack-8 Pack 420mL-600mL or Lifesavers Icy Poles 8 Pack 530mL",
+        "brand": "Peters/Lifesavers",
+        "price": "$6.00 each",
+        "price_numeric": 6.0,
+        "original_price": "$9.00",
+        "savings": "$3.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.642,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL148",
+        "name": "Dairy Farmers Thick & Creamy 550-600g – From the Fridge",
+        "brand": "Dairy",
+        "price": "$4.75",
+        "price_numeric": 4.75,
+        "original_price": "$4.75",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL258",
+        "name": "Dairy Farmers Thick & Creamy Yoghurt 140g-150g",
+        "brand": "Dairy Farmers",
+        "price": "$1.45 each",
+        "price_numeric": 1.45,
+        "original_price": "$2.95",
+        "savings": "$1.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.763,
+      "price_difference": 3.3,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL155",
+        "name": "Remedy Kombucha Varieties 330ml",
+        "brand": "Remedy",
+        "price": "$2.95",
+        "price_numeric": 2.95,
+        "original_price": "$2.95",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL166",
+        "name": "Remedy Kombucha 4x250mL",
+        "brand": "Remedy",
+        "price": "$6.65 each",
+        "price_numeric": 6.65,
+        "original_price": "$9.50",
+        "savings": "$2.85",
+        "special_type": "Specials"
+      },
+      "similarity_score": 1.0,
+      "price_difference": -3.7,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL158",
+        "name": "Devondale Cheese Block Varieties 625g",
+        "brand": "Devondale",
         "price": "$10.80",
         "price_numeric": 10.8,
         "original_price": "$10.80",
@@ -1926,22 +1899,272 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL180",
-        "name": "Old El Paso Hard 'N Soft Taco Kit 350g",
-        "brand": "Old El Paso",
-        "price": "$6.65",
-        "price_numeric": 6.65,
-        "original_price": "$9.50",
-        "savings": "$2.85",
-        "special_type": "Special"
+        "id": "CL248",
+        "name": "Bega Cheese Block or Grated 500g",
+        "brand": "Bega",
+        "price": "$9.50 each",
+        "price_numeric": 9.5,
+        "original_price": "$10.50",
+        "savings": null,
+        "special_type": "Down Down"
       },
-      "similarity_score": 0.633,
-      "price_difference": 4.15,
+      "similarity_score": 0.652,
+      "price_difference": 1.3,
       "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
-        "id": "WOL006",
+        "id": "WOL162",
+        "name": "Blackmores Glucosamine 1500mg Tablets Pk 150#",
+        "brand": "Blackmores",
+        "price": "$25.00",
+        "price_numeric": 25.0,
+        "original_price": "$50.00",
+        "savings": "$25.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL119",
+        "name": "Blackmores Bio C 1000mg Tablets 150 Pack",
+        "brand": "Blackmores",
+        "price": "$25.00 each",
+        "price_numeric": 25.0,
+        "original_price": "$50.00",
+        "savings": "$25.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.759,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL163",
+        "name": "Blackmores CoQ10 150mg Capsules Pk 90#",
+        "brand": "Blackmores",
+        "price": "$30.00",
+        "price_numeric": 30.0,
+        "original_price": "$60.00",
+        "savings": "$30.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL117",
+        "name": "Blackmores CoQ10 150mg Capsules 30 Pack",
+        "brand": "Blackmores",
+        "price": "$15.00 each",
+        "price_numeric": 15.0,
+        "original_price": "$30.00",
+        "savings": "$15.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.93,
+      "price_difference": 15.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL164",
+        "name": "Blackmores Omega Triple Strength Fish Oil Capsules Pk 150#",
+        "brand": "Blackmores",
+        "price": "$42.50",
+        "price_numeric": 42.5,
+        "original_price": "$85.00",
+        "savings": "$42.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL114",
+        "name": "Blackmores Omega Triple Super Strength Capsules 60 Pack",
+        "brand": "Blackmores",
+        "price": "$22.50 each",
+        "price_numeric": 22.5,
+        "original_price": "$45.00",
+        "savings": "$22.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.804,
+      "price_difference": 20.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL165",
+        "name": "Curash Fragrance Free Baby Wipes Pk 3 x 80",
+        "brand": "Curash",
+        "price": "$8.40",
+        "price_numeric": 8.4,
+        "original_price": "$8.40",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL284",
+        "name": "Curash Fragrance Free Sensitive Skin Baby Wipes 80 Pack",
+        "brand": "Curash",
+        "price": "$3.50 each",
+        "price_numeric": 3.5,
+        "original_price": "$5.50",
+        "savings": "$2.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.761,
+      "price_difference": 4.9,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL166",
+        "name": "Huggies Pure & Sensitive Nappy Pants Pk 40-54",
+        "brand": "Huggies",
+        "price": "$24.50",
+        "price_numeric": 24.5,
+        "original_price": "$24.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL128",
+        "name": "Huggies Little Sleepers Nappy Pants 20 Pack-24 Pack",
+        "brand": "Huggies",
+        "price": "$11.00 each",
+        "price_numeric": 11.0,
+        "original_price": "$22.00",
+        "savings": "$11.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.69,
+      "price_difference": 13.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL169",
+        "name": "Alula Gentle Stage 3 Toddler Milk Drink 900g",
+        "brand": "Alula",
+        "price": "$16.00",
+        "price_numeric": 16.0,
+        "original_price": "$16.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL286",
+        "name": "Nestle NAN Optipro Stage 3 Toddler Milk Drink 800g",
+        "brand": "Nestle",
+        "price": "$18.75 each",
+        "price_numeric": 18.75,
+        "original_price": "$25.00",
+        "savings": "$6.25",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.738,
+      "price_difference": -2.75,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL172",
+        "name": "Décor Microsafe EasyHeat Oblong Container 1.6 Litre",
+        "brand": "Décor",
+        "price": "$4.35",
+        "price_numeric": 4.35,
+        "original_price": "$8.70",
+        "savings": "$4.35",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL144",
+        "name": "Décor Tellfresh Container 1 Litre",
+        "brand": "Décor",
+        "price": "$3.00 each",
+        "price_numeric": 3.0,
+        "original_price": "$6.00",
+        "savings": "$3.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.615,
+      "price_difference": 1.35,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL173",
+        "name": "Palmolive Ultra Dishwashing Liquid 950ml",
+        "brand": "Palmolive",
+        "price": "$4.75",
+        "price_numeric": 4.75,
+        "original_price": "$9.50",
+        "savings": "$4.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL139",
+        "name": "Morning Fresh Dishwashing Liquid 900mL",
+        "brand": "Morning Fresh",
+        "price": "$5.00 each",
+        "price_numeric": 5.0,
+        "original_price": "$10.00",
+        "savings": "$5.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.697,
+      "price_difference": -0.25,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL174",
+        "name": "Undo This Mess Laundry Liquid 2 Litre",
+        "brand": "Undo",
+        "price": "$9.00",
+        "price_numeric": 9.0,
+        "original_price": "$18.00",
+        "savings": "$9.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL135",
+        "name": "Earthwise Laundry Liquid 2 Litre",
+        "brand": "Earthwise",
+        "price": "$10.00 each",
+        "price_numeric": 10.0,
+        "original_price": "$20.00",
+        "savings": "$10.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.794,
+      "price_difference": -1.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL177",
+        "name": "Pine O Cleen Disinfectant Wipes Pk 150",
+        "brand": "Pine",
+        "price": "$7.50",
+        "price_numeric": 7.5,
+        "original_price": "$15.00",
+        "savings": "$7.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL138",
+        "name": "Pine O Cleen Disinfectant Liquid 1.25 Litre",
+        "brand": "Pine O Cleen",
+        "price": "$4.50 each",
+        "price_numeric": 4.5,
+        "original_price": "$9.00",
+        "savings": "$4.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.753,
+      "price_difference": 3.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL183",
         "name": "Head & Shoulders Shampoo or Conditioner 850ml",
         "brand": "Head",
         "price": "$13.00",
@@ -1951,318 +2174,1245 @@
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL039",
-        "name": "Tresemme Shampoo or Conditioner 940mL",
-        "brand": "Tresemme",
-        "price": "$9.25",
-        "price_numeric": 9.25,
-        "original_price": "$18.50",
-        "savings": "$9.25",
-        "special_type": "Half Price"
+        "id": "CL127",
+        "name": "Herbal Essences Shampoo or Conditioner 600mL",
+        "brand": "Herbal Essences",
+        "price": "$8.75 each",
+        "price_numeric": 8.75,
+        "original_price": "$17.50",
+        "savings": "$8.75",
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.742,
-      "price_difference": 3.75,
+      "similarity_score": 0.783,
+      "price_difference": 4.25,
       "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
-        "id": "WOL159",
-        "name": "Ben & Jerry’s Ice Cream Tub 427-465ml",
-        "brand": "Ben",
-        "price": "$9.50",
-        "price_numeric": 9.5,
-        "original_price": "$9.50",
+        "id": "WOL186",
+        "name": "Dove Beauty Bar Pk 6 x 90g",
+        "brand": "Dove",
+        "price": "$8.75",
+        "price_numeric": 8.75,
+        "original_price": "$8.75",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL224",
-        "name": "Sara Lee Ice Cream Tub 1 Litre",
-        "brand": "Sara Lee",
-        "price": "$6.00",
-        "price_numeric": 6.0,
-        "original_price": "$12.00",
-        "savings": "$6.00",
-        "special_type": "Half Price"
+        "id": "CL278",
+        "name": "Dove Beauty Bar Regular or Sensitive 6 Pack",
+        "brand": "Dove",
+        "price": "$8.75 each",
+        "price_numeric": 8.75,
+        "original_price": "$10.90",
+        "savings": null,
+        "special_type": "Down Down"
       },
-      "similarity_score": 0.615,
-      "price_difference": 3.5,
+      "similarity_score": 0.604,
+      "price_difference": 0.0,
+      "cheaper_store": "Same Price"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL188",
+        "name": "Garnier Fructis Shampoo or Conditioner 850ml",
+        "brand": "Garnier",
+        "price": "$10.00",
+        "price_numeric": 10.0,
+        "original_price": "$10.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL310",
+        "name": "NEW Garnier Fructis Keratin Sleek Shampoo or Conditioner 200mL",
+        "brand": "Garnier",
+        "price": "$7.00 each",
+        "price_numeric": 7.0,
+        "original_price": "$14.00",
+        "savings": "$7.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.795,
+      "price_difference": 3.0,
       "cheaper_store": "Coles"
     },
     {
       "woolworths_product": {
         "id": "WOL191",
-        "name": "OMO Ultimate or Expert Laundry Liquid 2 Litre, Powder 2 kg or Capsules Pk 28",
-        "brand": "OMO",
-        "price": "$18.00",
-        "price_numeric": 18.0,
-        "original_price": "$36.00",
-        "savings": "$18.00",
+        "name": "My Dog Wet Dog Food 100g",
+        "brand": "My",
+        "price": "$0.90",
+        "price_numeric": 0.9,
+        "original_price": "$1.80",
+        "savings": "$0.90",
         "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL049",
-        "name": "Omo Laundry Liquid 2 Litre or Powder 2kg",
-        "brand": "Omo",
-        "price": "$15.00",
+        "id": "CL298",
+        "name": "My Dog Dog Food 6x100g",
+        "brand": "My Dog",
+        "price": "$8.00 each",
+        "price_numeric": 8.0,
+        "original_price": "$10.00",
+        "savings": "$2.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.882,
+      "price_difference": -7.1,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL194",
+        "name": "Nature’s Gift Grain Free Dry Dog Food 2.5 kg",
+        "brand": "Nature’s",
+        "price": "$9.50",
+        "price_numeric": 9.5,
+        "original_price": "$19.00",
+        "savings": "$9.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL297",
+        "name": "Nature's Gift Dog Food 700g",
+        "brand": "Nature's Gift",
+        "price": "$2.45 each",
+        "price_numeric": 2.45,
+        "original_price": "$3.50",
+        "savings": "$1.05",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.721,
+      "price_difference": 7.05,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL197",
+        "name": "Billie’s Bowl Dry Dog Food 3 kg",
+        "brand": "Billie’s",
+        "price": "$8.50",
+        "price_numeric": 8.5,
+        "original_price": "$17.00",
+        "savings": "$8.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL301",
+        "name": "Vitapet Dry Dog Food 3kg",
+        "brand": "Vitapet",
+        "price": "$14.00 each",
+        "price_numeric": 14.0,
+        "original_price": "$20.00",
+        "savings": "$6.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.652,
+      "price_difference": -5.5,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL198",
+        "name": "Friskies Dry Cat Food 2.5 kg",
+        "brand": "Friskies",
+        "price": "$13.90",
+        "price_numeric": 13.9,
+        "original_price": "$13.90",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL296",
+        "name": "Optimum Dry Cat Food 1.4kg",
+        "brand": "Optimum",
+        "price": "$12.90 each",
+        "price_numeric": 12.9,
+        "original_price": "$21.50",
+        "savings": "$8.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.667,
+      "price_difference": 1.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL204",
+        "name": "Purina One Dry Cat Food 1.4-1.5 kg",
+        "brand": "Purina",
+        "price": "$14.00",
+        "price_numeric": 14.0,
+        "original_price": "$14.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL296",
+        "name": "Optimum Dry Cat Food 1.4kg",
+        "brand": "Optimum",
+        "price": "$12.90 each",
+        "price_numeric": 12.9,
+        "original_price": "$21.50",
+        "savings": "$8.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.667,
+      "price_difference": 1.1,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL205",
+        "name": "Woolworths Angus Beef Burgers 454g Pk 4",
+        "brand": "Woolworths",
+        "price": "$7.50",
+        "price_numeric": 7.5,
+        "original_price": "$7.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL092",
+        "name": "Coles Finest Angus Beef Burgers 300g",
+        "brand": "Coles",
+        "price": "$8.00 pk",
+        "price_numeric": 8.0,
+        "original_price": "$9.00",
+        "savings": "$1.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.677,
+      "price_difference": -0.5,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL207",
+        "name": "Nescafé Coffee Sachets Pk 8-10",
+        "brand": "Nescafé",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$8.00",
+        "savings": "$4.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL108",
+        "name": "Moccona Café Classics Coffee Sachets 10 Pack",
+        "brand": "Moccona",
+        "price": "$3.95 each",
+        "price_numeric": 3.95,
+        "original_price": "$7.90",
+        "savings": "$3.95",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.667,
+      "price_difference": 0.05,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL209",
+        "name": "Australian Pork Leg Boneless Roast",
+        "brand": "Australian",
+        "price": "$8.00",
+        "price_numeric": 8.0,
+        "original_price": "$8.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL037",
+        "name": "Coles Australian Pork Leg Roast Boneless",
+        "brand": "Coles",
+        "price": "$9.00 kg",
+        "price_numeric": 9.0,
+        "original_price": "$12.00",
+        "savings": "$3.00 kg",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.757,
+      "price_difference": -1.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL210",
+        "name": "Cadbury Dairy Milk Gift Box 340g",
+        "brand": "Cadbury",
+        "price": "$17.00",
+        "price_numeric": 17.0,
+        "original_price": "$17.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL022",
+        "name": "Cadbury Easter Egg Gift Box 153g-172g",
+        "brand": "Cadbury",
+        "price": "$9.00 each",
+        "price_numeric": 9.0,
+        "original_price": "$13.50",
+        "savings": "$4.50",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.741,
+      "price_difference": 8.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL211",
+        "name": "Cadbury Dairy Milk Egg Bag 440g",
+        "brand": "Cadbury",
+        "price": "$13.50",
+        "price_numeric": 13.5,
+        "original_price": "$13.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL005",
+        "name": "Cadbury Easter Eggs Bag 110g-125g",
+        "brand": "Cadbury",
+        "price": "$4.50 each",
+        "price_numeric": 4.5,
+        "original_price": "$7.50",
+        "savings": "$3.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.735,
+      "price_difference": 9.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL213",
+        "name": "Easter Bon Bons Pk 6",
+        "brand": "Easter",
+        "price": "$4.20",
+        "price_numeric": 4.2,
+        "original_price": "$4.20",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL063",
+        "name": "Easter Bunny Basket",
+        "brand": "Coles",
+        "price": "$2.00 each",
+        "price_numeric": 2.0,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.667,
+      "price_difference": 2.2,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL215",
+        "name": "Easter Mug – Assorted",
+        "brand": "Easter",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$4.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL063",
+        "name": "Easter Bunny Basket",
+        "brand": "Coles",
+        "price": "$2.00 each",
+        "price_numeric": 2.0,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.632,
+      "price_difference": 2.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL219",
+        "name": "Easter Cookie Cutter Pk 4",
+        "brand": "Easter",
+        "price": "$3.00",
+        "price_numeric": 3.0,
+        "original_price": "$3.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL065",
+        "name": "Cookie Cutter & Stamp 6 Pack",
+        "brand": "Coles",
+        "price": "$6.00 each",
+        "price_numeric": 6.0,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.696,
+      "price_difference": -3.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL229",
+        "name": "Easter Wooden Bunny Tabletop",
+        "brand": "Easter",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$4.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL063",
+        "name": "Easter Bunny Basket",
+        "brand": "Coles",
+        "price": "$2.00 each",
+        "price_numeric": 2.0,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.681,
+      "price_difference": 2.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL233",
+        "name": "Easter Bunny – Assorted",
+        "brand": "Easter",
+        "price": "$10.50",
+        "price_numeric": 10.5,
+        "original_price": "$10.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL063",
+        "name": "Easter Bunny Basket",
+        "brand": "Coles",
+        "price": "$2.00 each",
+        "price_numeric": 2.0,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.8,
+      "price_difference": 8.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL242",
+        "name": "Cadbury Baking Chocolate Chips 200g",
+        "brand": "Cadbury",
+        "price": "$4.50",
+        "price_numeric": 4.5,
+        "original_price": "$4.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL183",
+        "name": "Cadbury Chocolate Bites or Balls 120g-142g",
+        "brand": "Cadbury",
+        "price": "$4.90 each",
+        "price_numeric": 4.9,
+        "original_price": "$7.00",
+        "savings": "$2.10",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.678,
+      "price_difference": -0.4,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL243",
+        "name": "Cadbury Baking Chocolate Block 180g",
+        "brand": "Cadbury",
+        "price": "$4.50",
+        "price_numeric": 4.5,
+        "original_price": "$4.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL183",
+        "name": "Cadbury Chocolate Bites or Balls 120g-142g",
+        "brand": "Cadbury",
+        "price": "$4.90 each",
+        "price_numeric": 4.9,
+        "original_price": "$7.00",
+        "savings": "$2.10",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.678,
+      "price_difference": -0.4,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL244",
+        "name": "Cadbury Baking Chocolate Melts 225g",
+        "brand": "Cadbury",
+        "price": "$4.50",
+        "price_numeric": 4.5,
+        "original_price": "$4.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL183",
+        "name": "Cadbury Chocolate Bites or Balls 120g-142g",
+        "brand": "Cadbury",
+        "price": "$4.90 each",
+        "price_numeric": 4.9,
+        "original_price": "$7.00",
+        "savings": "$2.10",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.712,
+      "price_difference": -0.4,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL252",
+        "name": "Red Rock Deli Crackers 135g",
+        "brand": "Red",
+        "price": "$2.50",
+        "price_numeric": 2.5,
+        "original_price": "$5.00",
+        "savings": "$2.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL151",
+        "name": "Vege Chips 100g or Rice Crackers 75g",
+        "brand": "Coles",
+        "price": "$2.90 each",
+        "price_numeric": 2.9,
+        "original_price": "$4.90",
+        "savings": "$2.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.609,
+      "price_difference": -0.4,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL286",
+        "name": "Supercoat Dry Dog Food 10 kg",
+        "brand": "Supercoat",
+        "price": "$36.50",
+        "price_numeric": 36.5,
+        "original_price": "$36.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL300",
+        "name": "Supercoat Dry Dog Food 2.6kg-2.8kg",
+        "brand": "Supercoat",
+        "price": "$12.50 each",
+        "price_numeric": 12.5,
+        "original_price": "$18.00",
+        "savings": "$5.50",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.917,
+      "price_difference": 24.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL289",
+        "name": "Purina One Dry Cat Food 2.8-3 kg",
+        "brand": "Purina",
+        "price": "$32.00",
+        "price_numeric": 32.0,
+        "original_price": "$32.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL296",
+        "name": "Optimum Dry Cat Food 1.4kg",
+        "brand": "Optimum",
+        "price": "$12.90 each",
+        "price_numeric": 12.9,
+        "original_price": "$21.50",
+        "savings": "$8.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.681,
+      "price_difference": 19.1,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL291",
+        "name": "My Dog Wet Dog Food Pk 24 x 100g",
+        "brand": "My",
+        "price": "$28.00",
+        "price_numeric": 28.0,
+        "original_price": "$28.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL298",
+        "name": "My Dog Dog Food 6x100g",
+        "brand": "My Dog",
+        "price": "$8.00 each",
+        "price_numeric": 8.0,
+        "original_price": "$10.00",
+        "savings": "$2.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.811,
+      "price_difference": 20.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL292",
+        "name": "Schmackos Strapz Dog Treats 1 kg",
+        "brand": "Schmackos",
+        "price": "$24.00",
+        "price_numeric": 24.0,
+        "original_price": "$24.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL299",
+        "name": "Schmackos Dog Treats 500g",
+        "brand": "Schmackos",
+        "price": "$13.60 each",
+        "price_numeric": 13.6,
+        "original_price": "$17.00",
+        "savings": "$3.40",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.851,
+      "price_difference": 10.4,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL293",
+        "name": "Optus X Value 5GΔ",
+        "brand": "Optus",
+        "price": "$129.00",
+        "price_numeric": 129.0,
+        "original_price": "$129.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL322",
+        "name": "Optus X Lite 4",
+        "brand": "Optus",
+        "price": "$29.00 each",
+        "price_numeric": 29.0,
+        "original_price": "$59.00",
+        "savings": "$30.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.759,
+      "price_difference": 100.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL294",
+        "name": "Telstra T-Prime‡",
+        "brand": "Telstra",
+        "price": "$169.00",
+        "price_numeric": 169.0,
+        "original_price": "$169.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL316",
+        "name": "Telstra T-Prime 5G",
+        "brand": "Telstra",
+        "price": "$179.00 each",
+        "price_numeric": 179.0,
+        "original_price": "$199.00",
+        "savings": "$20.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 1.0,
+      "price_difference": -10.0,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL295",
+        "name": "Amaysim $50 Starter Pack†",
+        "brand": "Amaysim",
+        "price": "$35.00",
+        "price_numeric": 35.0,
+        "original_price": "$35.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL318",
+        "name": "Lebara $29.90 Starter Pack",
+        "brand": "Lebara",
+        "price": "$12.00 each",
+        "price_numeric": 12.0,
+        "original_price": "$29.90",
+        "savings": "$17.90",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.632,
+      "price_difference": 23.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL298",
+        "name": "Optus $39 SIM Starter KitΔ",
+        "brand": "Optus",
+        "price": "$13.00",
+        "price_numeric": 13.0,
+        "original_price": "$39.00",
+        "savings": "$26.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL327",
+        "name": "Optus $39 Prepaid SIM Starter Kit",
+        "brand": "Optus",
+        "price": "$14.00 each",
+        "price_numeric": 14.0,
+        "original_price": "$39.00",
+        "savings": "$25.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.842,
+      "price_difference": -1.0,
+      "cheaper_store": "Woolworths"
+    }
+  ],
+  "top_coles_savings": [
+    {
+      "woolworths_product": {
+        "id": "WOL293",
+        "name": "Optus X Value 5GΔ",
+        "brand": "Optus",
+        "price": "$129.00",
+        "price_numeric": 129.0,
+        "original_price": "$129.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL322",
+        "name": "Optus X Lite 4",
+        "brand": "Optus",
+        "price": "$29.00 each",
+        "price_numeric": 29.0,
+        "original_price": "$59.00",
+        "savings": "$30.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.759,
+      "price_difference": 100.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL286",
+        "name": "Supercoat Dry Dog Food 10 kg",
+        "brand": "Supercoat",
+        "price": "$36.50",
+        "price_numeric": 36.5,
+        "original_price": "$36.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL300",
+        "name": "Supercoat Dry Dog Food 2.6kg-2.8kg",
+        "brand": "Supercoat",
+        "price": "$12.50 each",
+        "price_numeric": 12.5,
+        "original_price": "$18.00",
+        "savings": "$5.50",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.917,
+      "price_difference": 24.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL295",
+        "name": "Amaysim $50 Starter Pack†",
+        "brand": "Amaysim",
+        "price": "$35.00",
+        "price_numeric": 35.0,
+        "original_price": "$35.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL318",
+        "name": "Lebara $29.90 Starter Pack",
+        "brand": "Lebara",
+        "price": "$12.00 each",
+        "price_numeric": 12.0,
+        "original_price": "$29.90",
+        "savings": "$17.90",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.632,
+      "price_difference": 23.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL164",
+        "name": "Blackmores Omega Triple Strength Fish Oil Capsules Pk 150#",
+        "brand": "Blackmores",
+        "price": "$42.50",
+        "price_numeric": 42.5,
+        "original_price": "$85.00",
+        "savings": "$42.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL114",
+        "name": "Blackmores Omega Triple Super Strength Capsules 60 Pack",
+        "brand": "Blackmores",
+        "price": "$22.50 each",
+        "price_numeric": 22.5,
+        "original_price": "$45.00",
+        "savings": "$22.50",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.804,
+      "price_difference": 20.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL291",
+        "name": "My Dog Wet Dog Food Pk 24 x 100g",
+        "brand": "My",
+        "price": "$28.00",
+        "price_numeric": 28.0,
+        "original_price": "$28.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL298",
+        "name": "My Dog Dog Food 6x100g",
+        "brand": "My Dog",
+        "price": "$8.00 each",
+        "price_numeric": 8.0,
+        "original_price": "$10.00",
+        "savings": "$2.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.811,
+      "price_difference": 20.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL111",
+        "name": "Australian Beef Rump Steak",
+        "brand": "Australian",
+        "price": "$24.00",
+        "price_numeric": 24.0,
+        "original_price": "$24.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL084",
+        "name": "Australian Blackberries 125g Punnet",
+        "brand": "Australian",
+        "price": "$4.50 pk",
+        "price_numeric": 4.5,
+        "original_price": null,
+        "savings": null,
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.607,
+      "price_difference": 19.5,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL289",
+        "name": "Purina One Dry Cat Food 2.8-3 kg",
+        "brand": "Purina",
+        "price": "$32.00",
+        "price_numeric": 32.0,
+        "original_price": "$32.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL296",
+        "name": "Optimum Dry Cat Food 1.4kg",
+        "brand": "Optimum",
+        "price": "$12.90 each",
+        "price_numeric": 12.9,
+        "original_price": "$21.50",
+        "savings": "$8.60",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.681,
+      "price_difference": 19.1,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL103",
+        "name": "John West Tuna Value Pack 12 x 95g",
+        "brand": "John",
+        "price": "$19.00",
+        "price_numeric": 19.0,
+        "original_price": "$19.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL006",
+        "name": "John West Tuna 95g",
+        "brand": "John West",
+        "price": "$1.45 each",
+        "price_numeric": 1.45,
+        "original_price": "$2.90",
+        "savings": "$1.45",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.824,
+      "price_difference": 17.55,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL163",
+        "name": "Blackmores CoQ10 150mg Capsules Pk 90#",
+        "brand": "Blackmores",
+        "price": "$30.00",
+        "price_numeric": 30.0,
+        "original_price": "$60.00",
+        "savings": "$30.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL117",
+        "name": "Blackmores CoQ10 150mg Capsules 30 Pack",
+        "brand": "Blackmores",
+        "price": "$15.00 each",
         "price_numeric": 15.0,
         "original_price": "$30.00",
         "savings": "$15.00",
-        "special_type": "Half Price"
+        "special_type": "Half Price Specials"
       },
-      "similarity_score": 0.659,
-      "price_difference": 3.0,
+      "similarity_score": 0.93,
+      "price_difference": 15.0,
+      "cheaper_store": "Coles"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL018",
+        "name": "Cadbury Large Easter Egg Bags 803-916g",
+        "brand": "Cadbury",
+        "price": "$18.50",
+        "price_numeric": 18.5,
+        "original_price": "$18.50",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
+      },
+      "coles_product": {
+        "id": "CL005",
+        "name": "Cadbury Easter Eggs Bag 110g-125g",
+        "brand": "Cadbury",
+        "price": "$4.50 each",
+        "price_numeric": 4.5,
+        "original_price": "$7.50",
+        "savings": "$3.00",
+        "special_type": "Half Price Specials"
+      },
+      "similarity_score": 0.846,
+      "price_difference": 14.0,
       "cheaper_store": "Coles"
     }
   ],
   "top_woolworths_savings": [
     {
       "woolworths_product": {
-        "id": "WOL088",
-        "name": "JC Seafood Jumbo Raw Prawn Cutlets 240g",
-        "brand": "JC",
-        "price": "$10.00",
-        "price_numeric": 10.0,
-        "original_price": "$10.00",
+        "id": "WOL136",
+        "name": "McCain Pub Size Meals 480-500g",
+        "brand": "McCain",
+        "price": "$7.50",
+        "price_numeric": 7.5,
+        "original_price": "$7.50",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL062",
-        "name": "KB's Thawed Cooked Jumbo Prawn Cutlets",
-        "brand": "KB's",
-        "price": "$35.00",
-        "price_numeric": 35.0,
-        "original_price": "$42.00",
-        "savings": "$7.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.722,
-      "price_difference": -25.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL194",
-        "name": "Supercoat Dry Dog Food 2.6-2.8 kg",
-        "brand": "Supercoat",
-        "price": "$9.00",
-        "price_numeric": 9.0,
-        "original_price": "$18.00",
-        "savings": "$9.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL269",
-        "name": "Supercoat Dry Dog Food 6.7kg-7kg",
-        "brand": "Supercoat",
-        "price": "$27.00",
-        "price_numeric": 27.0,
+        "id": "CL231",
+        "name": "McCain Red Box Tray Meal 375g-400g",
+        "brand": "McCain",
+        "price": "2 for $8.00",
+        "price_numeric": 28.0,
         "original_price": null,
-        "savings": null,
-        "special_type": "Every Day"
+        "savings": "$3.20",
+        "special_type": "Multi-buy Special"
       },
-      "similarity_score": 0.923,
-      "price_difference": -18.0,
+      "similarity_score": 0.622,
+      "price_difference": -20.5,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL069",
-        "name": "La Gina Olive Oil 1 Litre",
-        "brand": "La",
-        "price": "$13.00",
-        "price_numeric": 13.0,
-        "original_price": "$26.00",
-        "savings": "$13.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL182",
-        "name": "Moro Extra Virgin Olive Oil 2.2 Litre",
-        "brand": "Moro",
-        "price": "$29.00",
-        "price_numeric": 29.0,
-        "original_price": "$40.00",
-        "savings": "$11.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.714,
-      "price_difference": -16.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL054",
-        "name": "Lindt Lindor Bar 38g",
-        "brand": "Lindt",
-        "price": "$2.25",
-        "price_numeric": 2.25,
-        "original_price": "$2.25",
+        "id": "WOL040",
+        "name": "Coca-Cola Classic, Zero Sugar or Diet Soft Drink Varieties 6 x 250ml",
+        "brand": "Coca-Cola",
+        "price": "$6.00",
+        "price_numeric": 6.0,
+        "original_price": "$6.00",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL054",
-        "name": "Lindt Lindor Assorted Eggs Bag 297g-300g",
-        "brand": "Lindt",
-        "price": "$16.00",
-        "price_numeric": 16.0,
-        "original_price": "$32.00",
-        "savings": "$16.00",
-        "special_type": "Half Price"
+        "id": "CL159",
+        "name": "Pepsi Max or Solo Zero Sugar Soft Drink 24x375mL",
+        "brand": "Pepsi/Solo",
+        "price": "$23.70 each",
+        "price_numeric": 23.7,
+        "original_price": "$39.50",
+        "savings": "$15.80",
+        "special_type": "Specials"
       },
-      "similarity_score": 0.652,
-      "price_difference": -13.75,
+      "similarity_score": 0.65,
+      "price_difference": -17.7,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL104",
-        "name": "Australian Lamb Leg Steak 540g",
-        "brand": "Australian",
-        "price": "$15.00",
-        "price_numeric": 15.0,
-        "original_price": "$15.00",
+        "id": "WOL005",
+        "name": "Coca-Cola Classic, Zero Sugar or Diet Soft Drink Varieties 12 x 300ml",
+        "brand": "Coca-Cola",
+        "price": "$10.50",
+        "price_numeric": 10.5,
+        "original_price": "$21.00",
+        "savings": "$10.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL159",
+        "name": "Pepsi Max or Solo Zero Sugar Soft Drink 24x375mL",
+        "brand": "Pepsi/Solo",
+        "price": "$23.70 each",
+        "price_numeric": 23.7,
+        "original_price": "$39.50",
+        "savings": "$15.80",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.65,
+      "price_difference": -13.2,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL035",
+        "name": "Lipton Ice Tea 1.5 Litre",
+        "brand": "Lipton",
+        "price": "$2.75",
+        "price_numeric": 2.75,
+        "original_price": "$5.50",
+        "savings": "$2.75",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL208",
+        "name": "Alfa One Rice Bran Oil 3 Litre",
+        "brand": "Alfa One",
+        "price": "$14.00 each",
+        "price_numeric": 14.0,
+        "original_price": "$17.65",
+        "savings": "$3.65",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.625,
+      "price_difference": -11.25,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL294",
+        "name": "Telstra T-Prime‡",
+        "brand": "Telstra",
+        "price": "$169.00",
+        "price_numeric": 169.0,
+        "original_price": "$169.00",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL098",
-        "name": "Coles Australian Lamb Loin Chops",
-        "brand": "Coles",
-        "price": "$26.00",
-        "price_numeric": 26.0,
-        "original_price": "$33.00",
-        "savings": "$7.00",
-        "special_type": "Special"
+        "id": "CL316",
+        "name": "Telstra T-Prime 5G",
+        "brand": "Telstra",
+        "price": "$179.00 each",
+        "price_numeric": 179.0,
+        "original_price": "$199.00",
+        "savings": "$20.00",
+        "special_type": "Specials"
       },
-      "similarity_score": 0.667,
-      "price_difference": -11.0,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL130",
-        "name": "Good Earth Oils Extra Virgin Cold Pressed Canola Oil 4 Litre",
-        "brand": "Good",
-        "price": "$19.00",
-        "price_numeric": 19.0,
-        "original_price": "$38.00",
-        "savings": "$19.00",
-        "special_type": "HALF_PRICE"
-      },
-      "coles_product": {
-        "id": "COL182",
-        "name": "Moro Extra Virgin Olive Oil 2.2 Litre",
-        "brand": "Moro",
-        "price": "$29.00",
-        "price_numeric": 29.0,
-        "original_price": "$40.00",
-        "savings": "$11.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.615,
+      "similarity_score": 1.0,
       "price_difference": -10.0,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL103",
-        "name": "Australian Pork Scotch Fillet Steak 600g",
-        "brand": "Australian",
-        "price": "$10.00",
-        "price_numeric": 10.0,
-        "original_price": "$10.00",
-        "savings": "$0.00",
-        "special_type": "REGULAR"
+        "id": "WOL191",
+        "name": "My Dog Wet Dog Food 100g",
+        "brand": "My",
+        "price": "$0.90",
+        "price_numeric": 0.9,
+        "original_price": "$1.80",
+        "savings": "$0.90",
+        "special_type": "HALF_PRICE"
       },
       "coles_product": {
-        "id": "COL095",
-        "name": "Coles Australian Pork Loin Chops Large Pack",
-        "brand": "Coles",
-        "price": "$17.00",
-        "price_numeric": 17.0,
-        "original_price": "$19.00",
+        "id": "CL298",
+        "name": "My Dog Dog Food 6x100g",
+        "brand": "My Dog",
+        "price": "$8.00 each",
+        "price_numeric": 8.0,
+        "original_price": "$10.00",
         "savings": "$2.00",
+        "special_type": "Specials"
+      },
+      "similarity_score": 0.882,
+      "price_difference": -7.1,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL047",
+        "name": "Old El Paso Standard Kits 290-520g",
+        "brand": "Old",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$8.50",
+        "savings": "$4.50",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL177",
+        "name": "Old El Paso Hard 'N Soft Taco Kit 560g",
+        "brand": "Old El Paso",
+        "price": "$10.80 each",
+        "price_numeric": 10.8,
+        "original_price": "$12.00",
+        "savings": null,
         "special_type": "Down Down"
       },
-      "similarity_score": 0.603,
-      "price_difference": -7.0,
+      "similarity_score": 0.667,
+      "price_difference": -6.8,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL177",
-        "name": "Nestlé NAN Optipro Stage 3 Toddler Milk Drink 800g",
-        "brand": "Nestlé",
-        "price": "$20.00",
-        "price_numeric": 20.0,
-        "original_price": "$20.00",
+        "id": "WOL048",
+        "name": "Old El Paso Premium Kits 295-505g",
+        "brand": "Old",
+        "price": "$4.50",
+        "price_numeric": 4.5,
+        "original_price": "$9.50",
+        "savings": "$5.00",
+        "special_type": "HALF_PRICE"
+      },
+      "coles_product": {
+        "id": "CL177",
+        "name": "Old El Paso Hard 'N Soft Taco Kit 560g",
+        "brand": "Old El Paso",
+        "price": "$10.80 each",
+        "price_numeric": 10.8,
+        "original_price": "$12.00",
+        "savings": null,
+        "special_type": "Down Down"
+      },
+      "similarity_score": 0.607,
+      "price_difference": -6.3,
+      "cheaper_store": "Woolworths"
+    },
+    {
+      "woolworths_product": {
+        "id": "WOL101",
+        "name": "Birds Eye Steamfresh Vegetables 450g – From the Freezer",
+        "brand": "Birds",
+        "price": "$3.60",
+        "price_numeric": 3.6,
+        "original_price": "$3.60",
         "savings": "$0.00",
         "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL262",
-        "name": "Aptamil Gold+ 3 Toddler Milk Drink 900g",
-        "brand": "Aptamil",
-        "price": "$26.50",
-        "price_numeric": 26.5,
-        "original_price": null,
+        "id": "CL230",
+        "name": "Birds Eye Steamfresh Fish 380g",
+        "brand": "Birds Eye",
+        "price": "$9.90 each",
+        "price_numeric": 9.9,
+        "original_price": "$11.00",
         "savings": null,
-        "special_type": "Every Day"
+        "special_type": "Down Down"
       },
-      "similarity_score": 0.667,
-      "price_difference": -6.5,
+      "similarity_score": 0.63,
+      "price_difference": -6.3,
       "cheaper_store": "Woolworths"
     },
     {
       "woolworths_product": {
-        "id": "WOL074",
-        "name": "Primo Shortcut Bacon 750g – From the Fridge",
-        "brand": "Primo",
-        "price": "$8.40",
-        "price_numeric": 8.4,
-        "original_price": "$16.80",
-        "savings": "$8.40",
-        "special_type": "HALF_PRICE"
+        "id": "WOL008",
+        "name": "Cadbury Hollow Egg 100-110g",
+        "brand": "Cadbury",
+        "price": "$4.00",
+        "price_numeric": 4.0,
+        "original_price": "$4.00",
+        "savings": "$0.00",
+        "special_type": "REGULAR"
       },
       "coles_product": {
-        "id": "COL090",
-        "name": "Primo Rindless Short Cut Bacon 1kg",
-        "brand": "Primo",
-        "price": "$14.50",
-        "price_numeric": 14.5,
-        "original_price": "$22.00",
-        "savings": "$7.50",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.606,
-      "price_difference": -6.1,
-      "cheaper_store": "Woolworths"
-    },
-    {
-      "woolworths_product": {
-        "id": "WOL255",
-        "name": "Lyca $20 Starter Pack¥",
-        "brand": "Lyca",
-        "price": "$6.00",
-        "price_numeric": 6.0,
+        "id": "CL014",
+        "name": "Cadbury Roses 380g",
+        "brand": "Cadbury",
+        "price": "$10.00 each",
+        "price_numeric": 10.0,
         "original_price": "$20.00",
-        "savings": "$14.00",
-        "special_type": "HALF_PRICE"
+        "savings": "$10.00",
+        "special_type": "Half Price Specials"
       },
-      "coles_product": {
-        "id": "COL299",
-        "name": "amaysim $30 Starter Pack",
-        "brand": "amaysim",
-        "price": "$12.00",
-        "price_numeric": 12.0,
-        "original_price": "$30.00",
-        "savings": "$18.00",
-        "special_type": "Special"
-      },
-      "similarity_score": 0.667,
+      "similarity_score": 0.645,
       "price_difference": -6.0,
       "cheaper_store": "Woolworths"
     }

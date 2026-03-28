@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" style="background:#fef7e8; font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2c5f2d"/>
+      <stop offset="100%" stop-color="#1e3a1e"/>
+    </linearGradient>
+    <filter id="shadow" x="-0.02" y="-0.02" width="1.1" height="1.1">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景装饰 -->
+  <rect width="800" height="1200" fill="#fef7e8"/>
+  <circle cx="650" cy="180" r="140" fill="#fce5b4" opacity="0.3"/>
+  <circle cx="120" cy="950" r="200" fill="#ffdd99" opacity="0.2"/>
+
+  <!-- 主标题区 -->
+  <rect x="0" y="0" width="800" height="130" fill="url(#headerGrad)"/>
+  <text x="400" y="70" font-size="32" font-weight="bold" text-anchor="middle" fill="#FFD966" filter="url(#shadow)">🛒 本週超市特賣精選</text>
+  <text x="400" y="110" font-size="20" text-anchor="middle" fill="#FFEFC0">Drakes + ALDI 最新優惠整理</text>
+  <text x="400" y="140" font-size="14" text-anchor="middle" fill="#FFE0A3">🐣 復活節搶先購 ｜ 優惠數量有限 售完即止</text>
+
+  <!-- Drakes 超市区块 -->
+  <rect x="30" y="160" width="360" height="480" rx="24" fill="white" filter="url(#shadow)" stroke="#ddcba4" stroke-width="1.5"/>
+  <rect x="30" y="160" width="360" height="56" rx="24" fill="#e15a2b" fill-opacity="0.9"/>
+  <text x="210" y="200" font-size="28" font-weight="bold" text-anchor="middle" fill="white" letter-spacing="1">Drakes 超市</text>
+  <text x="210" y="230" font-size="14" text-anchor="middle" fill="#fff0dd">📅 3月18日 – 24日特賣</text>
+  
+  <!-- Drakes 内容 -->
+  <text x="50" y="270" font-size="16" font-weight="bold" fill="#b64926">🐣 復活節巧克力半價！</text>
+  <text x="50" y="295" font-size="13" fill="#333">• Cadbury 復活節彩蛋禮盒系列 — 低至 $6 起</text>
+  <text x="50" y="315" font-size="13" fill="#333">• Kinder 彩蛋 / Darrell Lea 兔子造型巧克力 — 多款特價</text>
+  <text x="50" y="335" font-size="13" fill="#333">• Red Tulip 空心蛋 170g — 僅 $6</text>
+  
+  <text x="50" y="365" font-size="16" font-weight="bold" fill="#b64926">🍗 肉類 & 海鮮</text>
+  <text x="50" y="390" font-size="13" fill="#333">• 澳洲羊腿（每公斤特價）</text>
+  <text x="50" y="410" font-size="13" fill="#333">• 新鮮大蝦、鮭魚、劍魚排（熟食部）</text>
+  <text x="50" y="430" font-size="13" fill="#333">• Drakes 現烤BBQ烤雞</text>
+  
+  <text x="50" y="460" font-size="16" font-weight="bold" fill="#b64926">🥦 蔬果</text>
+  <text x="50" y="485" font-size="13" fill="#333">• 昆士蘭甜玉米、牛油果 5個裝</text>
+  <text x="50" y="505" font-size="13" fill="#333">• 澳洲棕蘑菇 $9.90/kg、洋蔥1kg特價</text>
+  
+  <text x="50" y="535" font-size="16" font-weight="bold" fill="#b64926">🥤 飲料</text>
+  <text x="50" y="560" font-size="13" fill="#333">• Coca-Cola 24罐裝 $26</text>
+  <text x="50" y="580" font-size="13" fill="#333">• Pepsi 1.25L / Red Bull 4罐裝 特價</text>
+  
+  <!-- ALDI 超市区块 -->
+  <rect x="410" y="160" width="360" height="660" rx="24" fill="white" filter="url(#shadow)" stroke="#ddcba4" stroke-width="1.5"/>
+  <rect x="410" y="160" width="360" height="56" rx="24" fill="#1f6392" fill-opacity="0.9"/>
+  <text x="590" y="200" font-size="28" font-weight="bold" text-anchor="middle" fill="white">ALDI 超市</text>
+  <text x="590" y="230" font-size="14" text-anchor="middle" fill="#e3f0ff">📅 3月21日 – 28日特賣精選</text>
+  
+  <text x="430" y="270" font-size="16" font-weight="bold" fill="#1f6392">🏕️ 露營裝備（3月21日起）</text>
+  <text x="430" y="295" font-size="13" fill="#333">• 4人即開帳篷 $99  / 充氣床墊（含打氣機）$59.99</text>
+  <text x="430" y="315" font-size="13" fill="#333">• 太陽能充電板 200W $199  / 睡袋 $24.99</text>
+  
+  <text x="430" y="345" font-size="16" font-weight="bold" fill="#1f6392">🍳 廚房好物（3月25日起）</text>
+  <text x="430" y="370" font-size="13" fill="#333">• 25L 氣炸烤箱 $109  / 經典攪拌機 $69.99</text>
+  <text x="430" y="390" font-size="13" fill="#333">• 不鏽鋼鍋具組 $49.99  / 食物切碎機 $18.99</text>
+  
+  <text x="430" y="420" font-size="16" font-weight="bold" fill="#1f6392">📺 科技娛樂（3月28日起）</text>
+  <text x="430" y="445" font-size="13" fill="#333">• BAUHN 50吋 Ultra HD WebOS 電視 $359</text>
+  <text x="430" y="465" font-size="13" fill="#333">• BAUHN 70吋 Ultra HD WebOS 電視 $599</text>
+  <text x="430" y="485" font-size="13" fill="#333">• 藍牙無線耳機 $39.99</text>
+  
+  <text x="430" y="515" font-size="16" font-weight="bold" fill="#1f6392">🐰 復活節甜點（3月25日起）</text>
+  <text x="430" y="540" font-size="13" fill="#d64b2c" font-weight="bold">• Arnott's Shapes 175g 僅 $1.99！</text>
+  <text x="430" y="560" font-size="13" fill="#333">• Kinder 粉/藍兔子 75g $6.29</text>
+  <text x="430" y="580" font-size="13" fill="#333">• M&amp;M's 脆皮彩蛋 500g $11.99</text>
+  
+  <!-- 分隔提醒区域： 下方共用 -->
+  <rect x="30" y="660" width="740" height="90" rx="18" fill="#fff3e0" stroke="#e3c494" stroke-width="1" stroke-dasharray="4 2"/>
+  <text x="400" y="695" font-size="15" font-weight="bold" text-anchor="middle" fill="#aa6f20">💡 優惠提醒</text>
+  <text x="400" y="720" font-size="13" text-anchor="middle" fill="#5a3e1a">Drakes 優惠至3月24日止，ALDI 商品售完即止，先到先得！</text>
+  <text x="400" y="742" font-size="12" text-anchor="middle" fill="#8b6946">* 價格以門市為準，圖片僅供參考，部分特價商品依門市庫存為準</text>
+
+  <!-- 额外装饰：小复活节彩蛋图案 -->
+  <circle cx="730" cy="760" r="12" fill="#f5bc70" stroke="#c47e3a" stroke-width="1.5"/>
+  <circle cx="720" cy="758" r="2" fill="white"/>
+  <text x="727" y="770" font-size="9" fill="#784e2e" text-anchor="middle">🐣</text>
+  <circle cx="58" cy="890" r="10" fill="#e1a2c1" stroke="#b34e7a" stroke-width="1"/>
+  <text x="58" y="896" font-size="10" fill="#fff" text-anchor="middle">🥚</text>
+  
+  <!-- 底部 ALDI 额外说明日期延展 -->
+  <text x="400" y="810" font-size="11" text-anchor="middle" fill="#999" font-style="italic">ALDI 特別買家: 露營設備3/21開賣，廚房家電3/25，電子產品3/28起售</text>
+  
+  <!-- 绘制小装饰线条 -->
+  <line x1="30" y1="840" x2="770" y2="840" stroke="#f0dcb0" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <text x="400" y="870" font-size="12" fill="#bb9955" text-anchor="middle">🎉 復活節提前囤貨 ｜ 購物愉快 🎉</text>
+</svg>

@@ -1,11 +1,13 @@
-Product,Retailer,Current Price,Regular Price,Savings,URL
-"LG 77"" G5 4K Evo AI Gallery OLED TV",JB Hi-Fi,"$4,988","$7,995","$3,007",https://www.jbhifi.com.au/products/lg-77-oled-evo-g5-ai-4k-uhd-smart-tv-2025
-Samsung Galaxy S26 (512GB Upgrade),Harvey Norman,"$1,549","$1,849","$300 (Free Storage)",https://www.harveynorman.com.au/samsung-galaxy-s26.html
-Dyson V15 Detect Absolute Vacuum,The Good Guys,$887,"$1,299",$412,https://www.thegoodguys.com.au/dyson-v15-detect-absolute-cordless-vacuum-447955-01
-"LG 55"" G5 4K Evo AI Gallery OLED TV",JB Hi-Fi,"$2,677","$4,295","$1,618",https://www.jbhifi.com.au/products/lg-55-oled-evo-g5-ai-4k-uhd-smart-tv-2025
-"HP OmniBook 5 AI 16"" OLED Laptop",Harvey Norman,"$1,548","$2,298",$750,https://www.harveynorman.com.au/hp-omnibook-5-ai-16-inch-oled-snapdragon-x-plus-x1p-42-100-32gb-512gb-ssd-laptop.html
-"Samsung 75"" U8500F Crystal 4K TV",The Good Guys,"$1,284","$1,699",$415,https://www.thegoodguys.com.au/samsung-75-inches-u8500f-crystal-uhd-4k-smart-tv-2025-ua75u8500fwxxy
-"Apple MacBook Neo 13"" (A18 Pro)",The Good Guys,$899,"$1,099",$200,https://www.thegoodguys.com.au/apple-macbook-neo-13-inches-a18-pro-chip-8gb-256gb-citrus-mhfd4xa
-"Hisense 100"" Q7QAU 4K QLED TV",The Good Guys,"$2,954","$3,999","$1,045",https://www.thegoodguys.com.au/hisense-100-inches-q7qau-4k-qled-smart-tv-2025-100q7qau
-JBL Bar 1000MK2 7.1.4 Soundbar,Harvey Norman,"$1,112","$1,595",$483,https://www.harveynorman.com.au/jbl-bar-1000mk2-7-1-4-channel-dolby-atmos-soundbar-with-detachable-speakers-black.html
-LG CineBeam QUBE 4K Projector (HU710PB),JB Hi-Fi,"$1,245","$1,674",$429,https://www.jbhifi.com.au/products/lg-hu710pb-cinebeam-qube-lifestyle-4k-uhd-smart-projector
+| Retailer | Product Name | Current Price | Discount/Savings | URL |
+| :--- | :--- | :--- | :--- | :--- |
+| **JB Hi-Fi** | Dyson V8™ Handstick Vacuum | $388 | Save $411 (1/2 Price) | [Link](https://www.jbhifi.com.au/products/dyson-v8-handstick-vacuum) |
+| **JB Hi-Fi** | Dreame L30 Ultra S Robot Vacuum & Mop | $699 | Save $800 (was $1,499) | [Link](https://www.jbhifi.com.au/products/dreame-l30-ultra-s-robot-vacuum-and-mop-with-auto-empty-and-mop-self-cleaning) |
+| **JB Hi-Fi** | ASUS Zenbook 14" 3K OLED Laptop (1TB, Core Ultra 5) | $2,399 | (deal may have ended) | [Link](https://www.jbhifi.com.au/products/asus-zenbook-14-14-3k-oled-laptop-intel-core-ultra-51tb) |
+| **JB Hi-Fi** | Kindle Paperwhite (12th Gen) 32GB | $299 | Red Hot Deal | [Link](https://www.jbhifi.com.au/products/kindle-paperwhite-12th-gen-7-signature-edition-32gb) |
+| **Harvey Norman** | Sony 98" Bravia 5 4K Mini LED TV | $4,877 | Save $4,118 | [Link](https://www.harveynorman.com.au/sony-98-inch-bravia-5-4k-hdr-mini-led-tv.html) |
+| **Harvey Norman** | LG 77" C5 4K OLED evo Smart TV | $3,721 | Save $2,274 | [Link](https://www.harveynorman.com.au/lg-77-inch-c5-4k-oled-evo-smart-tv.html) |
+| **Harvey Norman** | Samsung Galaxy S26 256GB | $1,348 | Hot Deal — ends 23/03/26 | [Link](https://www.harveynorman.com.au/samsung-galaxy-s26.html) |
+| **The Good Guys** | Lenovo Yoga Slim 7 14" OLED (Core Ultra 5, 16GB/512GB) | $1,199 | Save $300 | [Link](https://www.thegoodguys.com.au/lenovo-yoga-slim-7-14-inches-oled-core-ultra-5-16gb-512gb-laptop-83cv00dsau) |
+| **The Good Guys** | Samsung Galaxy A56 5G 128GB (Graphite) | $594 | Clearance Pricing | [Link](https://www.thegoodguys.com.au/samsung-galaxy-a56-5g-128gb-awesome-graphite-11901336088) |
+| **The Good Guys** | Sangean AM/FM Pocket Radio | $39 | Save $10 (Market Low) | [Link](https://www.thegoodguys.com.au/sangean-amfm-pocket-radio-sr36bk) |
+

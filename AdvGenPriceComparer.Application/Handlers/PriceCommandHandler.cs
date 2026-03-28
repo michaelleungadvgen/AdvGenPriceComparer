@@ -1,5 +1,5 @@
 using AdvGenPriceComparer.Application.Commands;
-using AdvGenPriceComparer.Application.Mediator;
+using AdvGenFlow;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using Microsoft.Extensions.Logging;

@@ -3021,3 +3021,57 @@ Here are the three ALDI catalogues converted into a structured Markdown format:
 - **Drill Brush and Sanding 14pc Set** - FERREX - $9.99
 - **Floating Shelves Assorted** - DELTA - $7.99
 
+
+## Available from Wed 11th March
+
+### Limited Time Only Meat
+
+- **RSPCA Approved Chicken Stir Fry Strips 500g** - READY, SET…COOK! - $7.99 ($15.98/kg)
+- **Chicken Parmi Balls 480g** - PC PETITE CUISINE - $8.49 ($17.69/kg)
+- **Popcorn Pork 400g** - SUNPORK FRESH FOODS - $8.99 ($22.48/kg)
+
+### Automotive
+
+- **Jump Starter Powerbank** - RIDE+GO - $59.99
+- **Carpet Car Mats** - RIDE+GO - $11.99
+- **Waterproof Car Seat Cover** - RIDE+GO - $12.99
+- **Car Cleaning Wipes 50 Pack** - POWER FORCE - $4.99
+- **Mentos Car Air Freshener 42g** - MENTOS - $3.99 ($9.50/100g)
+- **Car Boot Anti-Slip Mats** - RIDE+GO - $9.99
+- **Car Organisers** - RIDE+GO - $7.99
+- **Ratchet Spanners** - WORKZONE - $17.99
+- **High Pressure Attachment** - GARDENLINE - $14.99
+
+### Clothing
+
+- **Women's Ponte Wide Leg Pants** - SERRA - $19.99
+- **Women's Long Sleeve Tee 2 Pack** - SERRA - $11.99
+- **Women's Soft Leggings 2 Pack** - SERRA - $12.99
+- **Women's Knit Jumper** - SERRA - $13.99
+- **Women's Seamless Bralette 2 Pack** - UP2FASHION WOMEN - $16.99
+- **Women's Sweat Top or Pants** - SERRA - $14.99
+- **Women's Relaxed Shirt** - SERRA - $14.99
+- **Women's Jackets** - SERRA - $29.99
+- **Women's Underwear** - SERRA - $7.99
+- **Women's Casual Comfort Shoes** - SERRA - $14.99
+
+### Kitchen
+
+- **Microwave Safe Containers 5 Piece Set** - CROFTON - $9.99
+- **Coloured Mini Pots and Pans** - CROFTON - $4.99
+- **Microwave Toastie Maker** - JOIE - $14.99
+- **Mixing Bowl Set** - CROFTON - $9.99
+- **Multifunction Food Chopper** - CROFTON - $12.99
+- **Microfibre Tea Towel 3 Pack** - PEPPERTREE - $5.99
+- **Kitchen Cleaning Brushes** - EASY HOME - $1.99
+- **Antibacterial Cutting Boards 3 Piece Set** - CROFTON - $12.99
+- **Colourful Silicone Utensils** - CROFTON - $1.69
+- **Coloured Frypan 30cm** - CROFTON - $12.99
+- **Coloured Frypan 24cm** - CROFTON - $9.99
+- **Baking Assortment** - JOIE - $7.99
+- **Kitchen Knives with Safety Blades** - CROFTON - $2.99
+
+### Pet
+
+- **Foldable Pet Travel Mat** - PETPLAY - $14.99
+- **Luxury Pet Car Travel Seat** - PETPLAY - $34.99

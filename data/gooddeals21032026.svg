@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 1200"
+   style="background:#f8f9fc; font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;"
+   version="1.1"
+   id="svg46"
+   sodipodi:docname="gooddeals21032026.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview46"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.5158333"
+     inkscape:cx="399.7801"
+     inkscape:cy="758.32875"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg46" />
+  <defs
+     id="defs3">
+    <linearGradient
+       id="bgGrad"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         stop-color="#ffffff"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="#f0f2f5"
+         id="stop2" />
+    </linearGradient>
+    <filter
+       id="shadow"
+       x="-0.0069736842"
+       y="-0.036805556"
+       width="1.0165789"
+       height="1.0875">
+      <feGaussianBlur
+         in="SourceAlpha"
+         stdDeviation="2"
+         id="feGaussianBlur2" />
+      <feOffset
+         dx="2"
+         dy="2"
+         result="offsetblur"
+         id="feOffset2" />
+      <feComponentTransfer
+         id="feComponentTransfer2">
+        <feFuncA
+           type="linear"
+           slope="0.2"
+           id="feFuncA2" />
+      </feComponentTransfer>
+      <feMerge
+         id="feMerge3">
+        <feMergeNode
+           id="feMergeNode2" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode3" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect
+     width="800"
+     height="1200"
+     fill="url(#bgGrad)"
+     id="rect3" />
+  <!-- 装饰条 -->
+  <rect
+     x="0"
+     y="0"
+     width="800"
+     height="12"
+     fill="#E31E24"
+     id="rect4" />
+  <rect
+     x="0"
+     y="12"
+     width="800"
+     height="4"
+     fill="#FFB347"
+     id="rect5" />
+  <!-- 标题区 -->
+  <text
+     x="40"
+     y="70"
+     font-size="28"
+     font-weight="800"
+     fill="#1a2c3e"
+     id="text5">🛒 本週精選澳洲好優惠！</text>
+  <text
+     x="40"
+     y="108"
+     font-size="16"
+     fill="#5e6f8d"
+     id="text6">幫大家搜羅了幾個值得留意的特賣，快來看看有沒有你心水的！👇</text>
+  <!-- 优惠卡片列表：坐标从 y=140 开始，每张卡片高度约 148，间隔 8 -->
+  <!-- 1. Samsung Galaxy S26 -->
+  <g
+     filter="url(#shadow)"
+     id="g12">
+    <rect
+       x="20"
+       y="140"
+       width="760"
+       height="144"
+       rx="20"
+       fill="white"
+       stroke="#e2e8f0"
+       stroke-width="1"
+       id="rect6" />
+    <!-- 商品图片示意：手机图标 -->
+    <circle
+       cx="70"
+       cy="212"
+       r="28"
+       fill="#EFF3FF"
+       id="circle6" />
+    <text
+       x="70"
+       y="222"
+       font-size="24"
+       text-anchor="middle"
+       fill="#1E3A8A"
+       id="text7">📱</text>
+    <text
+       x="120"
+       y="190"
+       font-size="18"
+       font-weight="700"
+       fill="#1f2a48"
+       id="text8">Samsung Galaxy S26 256GB</text>
+    <text
+       x="120"
+       y="218"
+       font-size="14"
+       fill="#475569"
+       id="text9">Harvey Norman 限時特價，截止 23/03！</text>
+    <text
+       x="120"
+       y="250"
+       font-size="20"
+       font-weight="800"
+       fill="#E31E24"
+       id="text10">$1,348</text>
+    <text
+       x="220"
+       y="253"
+       font-size="14"
+       fill="#94a3b8"
+       text-decoration="line-through"
+       id="text11">原價 $1,549</text>
+    <text
+       x="660"
+       y="248"
+       font-size="14"
+       fill="#2c7a4d"
+       font-weight="600"
+       id="text12">🔥 手快有手慢冇</text>
+  </g>
+  <!-- 2. Dreame L30 Ultra S -->
+  <g
+     filter="url(#shadow)"
+     id="g18">
+    <rect
+       x="20"
+       y="292"
+       width="760"
+       height="144"
+       rx="20"
+       fill="white"
+       stroke="#e2e8f0"
+       stroke-width="1"
+       id="rect12" />
+    <circle
+       cx="70"
+       cy="364"
+       r="28"
+       fill="#FEF6E0"
+       id="circle12" />
+    <text
+       x="70"
+       y="374"
+       font-size="24"
+       text-anchor="middle"
+       fill="#B45309"
+       id="text13">🤖</text>
+    <text
+       x="120"
+       y="342"
+       font-size="18"
+       font-weight="700"
+       fill="#1f2a48"
+       id="text14">Dreame L30 Ultra S 機械人吸塵拖地機</text>
+    <text
+       x="120"
+       y="370"
+       font-size="14"
+       fill="#475569"
+       id="text15">JB Hi-Fi 半價！慳足 $800，自動倒塵/洗拖把</text>
+    <text
+       x="120"
+       y="402"
+       font-size="20"
+       font-weight="800"
+       fill="#E31E24"
+       id="text16">$699</text>
+    <text
+       x="220"
+       y="405"
+       font-size="14"
+       fill="#94a3b8"
+       text-decoration="line-through"
+       id="text17">原價 $1,499</text>
+    <text
+       x="660"
+       y="400"
+       font-size="14"
+       fill="#2c7a4d"
+       font-weight="600"
+       id="text18">懶人恩物 😂</text>
+  </g>
+  <!-- 3. Dyson V8 无线吸尘机 -->
+  <g
+     filter="url(#shadow)"
+     id="g24">
+    <rect
+       x="20"
+       y="444"
+       width="760"
+       height="144"
+       rx="20"
+       fill="white"
+       stroke="#e2e8f0"
+       stroke-width="1"
+       id="rect18" />
+    <circle
+       cx="70"
+       cy="516"
+       r="28"
+       fill="#E9F5EF"
+       id="circle18" />
+    <text
+       x="70"
+       y="526"
+       font-size="24"
+       text-anchor="middle"
+       fill="#2B6E3C"
+       id="text19">🧹</text>
+    <text
+       x="120"
+       y="494"
+       font-size="18"
+       font-weight="700"
+       fill="#1f2a48"
+       id="text20">Dyson V8™ 無線吸塵機</text>
+    <text
+       x="120"
+       y="522"
+       font-size="14"
+       fill="#475569"
+       id="text21">JB Hi-Fi 半價優惠，Dyson 入門好時機 💪</text>
+    <text
+       x="120"
+       y="554"
+       font-size="20"
+       font-weight="800"
+       fill="#E31E24"
+       id="text22">$388</text>
+    <text
+       x="220"
+       y="557"
+       font-size="14"
+       fill="#94a3b8"
+       text-decoration="line-through"
+       id="text23">原價 $799</text>
+    <text
+       x="660"
+       y="552"
+       font-size="14"
+       fill="#2c7a4d"
+       font-weight="600"
+       id="text24">慳 $411</text>
+  </g>
+  <!-- 4. LG 77吋 C5 OLED 电视 -->
+  <g
+     filter="url(#shadow)"
+     id="g30">
+    <rect
+       x="20"
+       y="596"
+       width="760"
+       height="144"
+       rx="20"
+       fill="white"
+       stroke="#e2e8f0"
+       stroke-width="1"
+       id="rect24" />
+    <circle
+       cx="70"
+       cy="668"
+       r="28"
+       fill="#E9ECF9"
+       id="circle24" />
+    <text
+       x="70"
+       y="678"
+       font-size="24"
+       text-anchor="middle"
+       fill="#1E40AF"
+       id="text25">📺</text>
+    <text
+       x="120"
+       y="646"
+       font-size="18"
+       font-weight="700"
+       fill="#1f2a48"
+       id="text26">LG 77吋 C5 4K OLED evo 智能電視</text>
+    <text
+       x="120"
+       y="674"
+       font-size="14"
+       fill="#475569"
+       id="text27">Harvey Norman，追劇打機一流 🎮</text>
+    <text
+       x="120"
+       y="706"
+       font-size="20"
+       font-weight="800"
+       fill="#E31E24"
+       id="text28">$3,721</text>
+    <text
+       x="240"
+       y="709"
+       font-size="14"
+       fill="#94a3b8"
+       text-decoration="line-through"
+       id="text29">原價 $5,995</text>
+    <text
+       x="660"
+       y="704"
+       font-size="14"
+       fill="#2c7a4d"
+       font-weight="600"
+       id="text30">慳 $2,274</text>
+  </g>
+  <!-- 5. Kindle Paperwhite 第12代 -->
+  <g
+     filter="url(#shadow)"
+     id="g36">
+    <rect
+       x="20"
+       y="748"
+       width="760"
+       height="144"
+       rx="20"
+       fill="white"
+       stroke="#e2e8f0"
+       stroke-width="1"
+       id="rect30" />
+    <circle
+       cx="70"
+       cy="820"
+       r="28"
+       fill="#FCF4E8"
+       id="circle30" />
+    <text
+       x="70"
+       y="830"
+       font-size="24"
+       text-anchor="middle"
+       fill="#7C5E3A"
+       id="text31">📚</text>
+    <text
+       x="120"
+       y="798"
+       font-size="18"
+       font-weight="700"
+       fill="#1f2a48"
+       id="text32">Kindle Paperwhite 第12代 32GB</text>
+    <text
+       x="120"
+       y="826"
+       font-size="14"
+       fill="#475569"
+       id="text33">JB Hi-Fi 特價，睇書護眼又慳電，送禮自用都啱 📖</text>
+    <text
+       x="120"
+       y="858"
+       font-size="20"
+       font-weight="800"
+       fill="#E31E24"
+       id="text34">$299</text>
+    <text
+       x="220"
+       y="861"
+       font-size="14"
+       fill="#94a3b8"
+       id="text35">特價優惠</text>
+    <text
+       x="660"
+       y="856"
+       font-size="14"
+       fill="#2c7a4d"
+       font-weight="600"
+       id="text36">限量快搶</text>
+  </g>
+  <!-- 6. Lenovo Yoga Slim 7 -->
+  <g
+     filter="url(#shadow)"
+     id="g42">
+    <rect
+       x="20"
+       y="900"
+       width="760"
+       height="144"
+       rx="20"
+       fill="white"
+       stroke="#e2e8f0"
+       stroke-width="1"
+       id="rect36" />
+    <circle
+       cx="70"
+       cy="972"
+       r="28"
+       fill="#E9F0FA"
+       id="circle36" />
+    <text
+       x="70"
+       y="982"
+       font-size="24"
+       text-anchor="middle"
+       fill="#2563EB"
+       id="text37">💻</text>
+    <text
+       x="120"
+       y="950"
+       font-size="18"
+       font-weight="700"
+       fill="#1f2a48"
+       id="text38">Lenovo Yoga Slim 7 14吋 OLED 筆電</text>
+    <text
+       x="120"
+       y="978"
+       font-size="14"
+       fill="#475569"
+       id="text39">The Good Guys，輕薄靚芒，上班返學都好用 ✨</text>
+    <text
+       x="120"
+       y="1010"
+       font-size="20"
+       font-weight="800"
+       fill="#E31E24"
+       id="text40">$1,199</text>
+    <text
+       x="240"
+       y="1013"
+       font-size="14"
+       fill="#94a3b8"
+       text-decoration="line-through"
+       id="text41">原價 $1,499</text>
+    <text
+       x="660"
+       y="1008"
+       font-size="14"
+       fill="#2c7a4d"
+       font-weight="600"
+       id="text42">慳 $300</text>
+  </g>
+  <!-- 额外信息栏: 链接 + 免责声明 -->
+  <rect
+     x="20.135317"
+     y="1060.1354"
+     width="759.72937"
+     height="129.20709"
+     rx="15.994303"
+     fill="#eff3fa"
+     stroke="#cbd5e1"
+     stroke-width="1"
+     id="rect42" />
+  <text
+     x="40"
+     y="1142"
+     font-size="11"
+     fill="#6c757d"
+     id="text45">⚠️ 優惠隨時完結，心動不如行動！價格及存貨以零售商網站為準。</text>
+  <!-- hashtag 区 -->
+  <text
+     x="40"
+     y="1175"
+     font-size="12"
+     fill="#5a6c8a"
+     id="text46">#澳洲優惠 #好抵買 #省錢攻略 #JBHiFi #HarveyNorman #TheGoodGuys</text>
+  <!-- 小装饰：右下角价格标签 -->
+  <path
+     d="M730 1150 L750 1150 L745 1160 Z"
+     fill="#E31E24"
+     opacity="0.5"
+     id="path46" />
+</svg>
