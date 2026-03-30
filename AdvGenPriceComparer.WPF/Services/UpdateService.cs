@@ -166,16 +166,22 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult result)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (string.IsNullOrWhiteSpace(result.FileHash))
+            {
+                _logger.LogError("Security failure: Update manifest does not contain a FileHash. Rejecting download.");
+                return false;
+            }
+
+            _logger.LogInfo($"Starting download from: {result.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(result.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,9 +189,23 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Verify hash securely before writing to disk
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(actualHash, result.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security failure: Downloaded update hash '{actualHash}' does not match expected hash '{result.FileHash}'. Rejecting update.");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed and verified: {tempPath}");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
