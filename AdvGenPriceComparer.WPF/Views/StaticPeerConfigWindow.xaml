@@ -272,7 +272,7 @@
                         <Button Content="Edit" Padding="10,3" Command="{Binding EditPeerCommand}" CommandParameter="{Binding SelectedPeer}"/>
                         <Button Content="Delete" Padding="10,3" Command="{Binding DeletePeerCommand}" CommandParameter="{Binding SelectedPeer}"/>
                         <Separator/>
-                        <Button Content="★" Padding="10,3" Command="{Binding TogglePeerFavoriteCommand}" CommandParameter="{Binding SelectedPeer}"/>
+                        <Button Content="★" AutomationProperties.Name="Toggle Favorite" Padding="10,3" Command="{Binding TogglePeerFavoriteCommand}" CommandParameter="{Binding SelectedPeer}"/>
                         <Button Content="Health" Padding="10,3" Command="{Binding CheckPeerHealthCommand}" CommandParameter="{Binding SelectedPeer}"/>
                     </ToolBar>
                 </ToolBarTray>
