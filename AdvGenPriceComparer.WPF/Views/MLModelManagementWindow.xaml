@@ -195,7 +195,7 @@
                                       Margin="0,4,0,0"/>
                         </Grid>
 
-                        <Button Content="🔄 Reload Model"
+                        <Button Content="🔄 Reload Model" AutomationProperties.Name="Reload Model"
                                 Command="{Binding ReloadModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 IsEnabled="{Binding IsNotBusy}"/>
@@ -205,7 +205,7 @@
                 <!-- Training Actions -->
                 <GroupBox Header="Training" Style="{StaticResource CardStyle}">
                     <StackPanel>
-                        <Button Content="📊 Train from Database"
+                        <Button Content="📊 Train from Database" AutomationProperties.Name="Train from Database"
                                 Command="{Binding TrainFromDatabaseCommand}"
                                 Style="{StaticResource ActionButtonStyle}"
                                 IsEnabled="{Binding IsNotBusy}"/>
@@ -215,7 +215,7 @@
                                   TextWrapping="Wrap"
                                   Margin="0,-4,0,12"/>
 
-                        <Button Content="📁 Train from CSV"
+                        <Button Content="📁 Train from CSV" AutomationProperties.Name="Train from CSV"
                                 Command="{Binding TrainFromCsvCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 IsEnabled="{Binding IsNotBusy}"/>
@@ -224,7 +224,7 @@
                                   Foreground="#666"
                                   Margin="0,-4,0,12"/>
 
-                        <Button Content="🔄 Retrain Model"
+                        <Button Content="🔄 Retrain Model" AutomationProperties.Name="Retrain Model"
                                 Command="{Binding RetrainModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 IsEnabled="{Binding CanRetrain}"/>

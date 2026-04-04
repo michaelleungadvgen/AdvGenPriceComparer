@@ -136,7 +136,7 @@
                           SelectedItem="{Binding FilterStatus}"
                           Width="120"
                           VerticalAlignment="Center"/>
-                <Button Content="🔄 Refresh" 
+                <Button Content="🔄 Refresh" AutomationProperties.Name="Refresh"
                         Command="{Binding RefreshCommand}" 
                         Padding="10,5"
                         Margin="10,0,0,0"/>
@@ -145,26 +145,26 @@
             <!-- Toolbar -->
             <ToolBarTray Grid.Row="1" Margin="0,0,0,10">
                 <ToolBar>
-                    <Button Content="✓ Acknowledge" 
+                    <Button Content="✓ Acknowledge" AutomationProperties.Name="Acknowledge"
                             Command="{Binding AcknowledgeAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
                             Padding="10,5"/>
                     <Separator/>
-                    <Button Content="▶ Reactivate" 
+                    <Button Content="▶ Reactivate" AutomationProperties.Name="Reactivate"
                             Command="{Binding ReactivateAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
                             Padding="10,5"/>
-                    <Button Content="⏸ Disable" 
+                    <Button Content="⏸ Disable" AutomationProperties.Name="Disable"
                             Command="{Binding DisableAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
                             Padding="10,5"/>
                     <Separator/>
-                    <Button Content="🗑 Delete" 
+                    <Button Content="🗑 Delete" AutomationProperties.Name="Delete"
                             Command="{Binding DeleteAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
                             Padding="10,5"/>
                     <Separator/>
-                    <Button Content="🔄 Clear Form" 
+                    <Button Content="🔄 Clear Form" AutomationProperties.Name="Clear Form"
                             Command="{Binding ClearFormCommand}"
                             Padding="10,5"/>
                 </ToolBar>
