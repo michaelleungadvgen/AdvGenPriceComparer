@@ -183,6 +183,7 @@
                     <ui:Button Content="Remove Selected"
                                Command="{Binding RemoveFromFavoritesCommand}"
                                Icon="{ui:SymbolIcon Delete24}"
+                               AutomationProperties.Name="Remove Selected Favorites"
                                Appearance="Danger"
                                IsEnabled="{Binding CanRemoveFromFavorites}"/>
                 </StackPanel>

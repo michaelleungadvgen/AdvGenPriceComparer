@@ -32,10 +32,12 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <ui:Badge Appearance="Success" 
                               Content="{Binding ActiveAlertCount}"
+                              AutomationProperties.Name="Active alerts count"
                               ToolTip="Active alerts"
                               Margin="0,0,5,0"/>
                     <ui:Badge Appearance="Caution" 
                               Content="{Binding TriggeredAlertCount}"
+                              AutomationProperties.Name="Triggered alerts count"
                               ToolTip="Triggered alerts"
                               Visibility="{Binding TriggeredAlertCount, Converter={StaticResource CountToVisibilityConverter}}"
                               Margin="0,0,10,0"/>

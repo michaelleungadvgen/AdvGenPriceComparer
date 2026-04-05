@@ -48,6 +48,7 @@
                 
                 <Button Grid.Column="1"
                         Content="✕"
+                        AutomationProperties.Name="Close"
                         Command="{Binding ClearSearchCommand}"
                         Width="40"
                         Height="40"
