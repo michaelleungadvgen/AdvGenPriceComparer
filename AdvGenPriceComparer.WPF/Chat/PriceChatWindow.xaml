@@ -113,6 +113,8 @@
 
                 <Button Grid.Column="1" 
                         Content="✕" 
+                        AutomationProperties.Name="Close chat"
+                        ToolTip="Close chat"
                         Width="30" 
                         Height="30"
                         Background="Transparent"
