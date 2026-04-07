@@ -8,3 +8,7 @@
 **Learning:** In WPF applications using `ui:Button` and `ui:SymbolIcon`, relying solely on the `ToolTip` attribute is insufficient for screen readers. Icon-only buttons lack proper text representation without explicitly defining an ARIA label.
 **Action:** Always define `AutomationProperties.Name` on icon-only buttons to ensure they are fully accessible to screen readers, just like using `aria-label` in web development.
 
+
+## 2025-03-05 - WPF Text-based Icon Button Accessibility
+**Learning:** In WPF applications, standard text-emoji based icon buttons (e.g. `Content="🗑️"` or `Content="➤"`) are still considered icon-only buttons for accessibility purposes. Like shape-based icons, using `ToolTip` is not enough to make them accessible to screen readers.
+**Action:** Always add an explicit `AutomationProperties.Name` to any text or emoji button that serves as an icon to ensure full screen reader accessibility.
