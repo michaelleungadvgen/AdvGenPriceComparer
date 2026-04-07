@@ -112,7 +112,8 @@
                 </StackPanel>
 
                 <Button Grid.Column="1" 
-                        Content="✕" 
+                        Content="✕"
+                        AutomationProperties.Name="Close"
                         Width="30" 
                         Height="30"
                         Background="Transparent"
