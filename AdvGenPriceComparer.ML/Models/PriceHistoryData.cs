@@ -64,21 +64,18 @@ public class PriceHistoryData
 public class PriceForecastOutput
 {
     /// <summary>
-    /// Forecasted price value
+    /// Forecasted price values - column name must match ForecastBySsa outputColumnName
     /// </summary>
-    [ColumnName("Score")]
     public float[] ForecastedPrices { get; set; } = Array.Empty<float>();
 
     /// <summary>
-    /// Lower bound of confidence interval
+    /// Lower bound of confidence interval - column name must match ForecastBySsa confidenceLowerBoundColumn
     /// </summary>
-    [ColumnName("LowerBound")]
     public float[] LowerBounds { get; set; } = Array.Empty<float>();
 
     /// <summary>
-    /// Upper bound of confidence interval
+    /// Upper bound of confidence interval - column name must match ForecastBySsa confidenceUpperBoundColumn
     /// </summary>
-    [ColumnName("UpperBound")]
     public float[] UpperBounds { get; set; } = Array.Empty<float>();
 }
 

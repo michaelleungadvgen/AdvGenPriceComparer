@@ -3,6 +3,7 @@ using AdvGenPriceComparer.ML.Models;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.TimeSeries;
+using Microsoft.ML.Transforms.TimeSeries;
 
 namespace AdvGenPriceComparer.ML.Services;
 
@@ -182,22 +183,13 @@ public class PriceForecastingService
 
             var model = pipeline.Fit(dataView);
 
-            // Create forecast engine using extension method
-            var forecastEngine = _mlContext.Model.CreatePredictionEngine<PriceHistoryData, PriceForecastOutput>(model);
+            // Create time series forecast engine for SSA models
+            // Note: CreatePredictionEngine doesn't work with SSA forecasting models
+            // CreateTimeSeriesEngine is an extension method on ITransformer
+            var forecastEngine = model.CreateTimeSeriesEngine<PriceHistoryData, PriceForecastOutput>(_mlContext);
 
-            // Generate forecast - create a sample input for prediction
-            var sampleInput = new PriceHistoryData
-            {
-                ItemId = itemId,
-                ItemName = itemName,
-                Date = priceHistory.Max(p => p.Date),
-                Price = priceHistory.OrderBy(p => p.Date).Last().Price,
-                IsOnSale = priceHistory.OrderBy(p => p.Date).Last().IsOnSale,
-                Store = priceHistory.FirstOrDefault()?.Store ?? string.Empty,
-                Category = priceHistory.FirstOrDefault()?.Category ?? string.Empty
-            };
-
-            var forecast = forecastEngine.Predict(sampleInput);
+            // Generate forecast - predict next 'daysAhead' periods
+            var forecast = forecastEngine.Predict(horizon: daysAhead);
 
             // Build forecast results
             var forecasts = new List<PriceForecast>();

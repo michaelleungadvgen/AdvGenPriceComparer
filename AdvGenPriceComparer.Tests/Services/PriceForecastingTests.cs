@@ -231,7 +231,7 @@ public class PriceForecastingTests : IDisposable
 
     #region Forecasting Tests
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task ForecastPricesAsync_WithSufficientData_ReturnsValidForecast()
     {
         // Arrange
@@ -261,7 +261,7 @@ public class PriceForecastingTests : IDisposable
         }
     }
 
-    [Theory(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Theory]
     [InlineData(14)]  // Minimum required
     [InlineData(30)]  // One month
     [InlineData(90)]  // Recommended
@@ -304,7 +304,7 @@ public class PriceForecastingTests : IDisposable
         Assert.Empty(result.Forecasts);
     }
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task ForecastPricesAsync_WithStablePrices_DetectsStableTrend()
     {
         // Arrange - create very stable price history
@@ -340,7 +340,7 @@ public class PriceForecastingTests : IDisposable
         Assert.True(stableRatio >= 0.3, $"Expected at least 30% stable forecasts, got {stableRatio:P0}");
     }
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task ForecastMultipleItemsAsync_BatchForecasting_ReturnsAllResults()
     {
         // Arrange
@@ -533,7 +533,7 @@ public class PriceForecastingTests : IDisposable
 
     #region Buying Recommendation Tests
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task ForecastPricesAsync_WithLowPrices_RecommendsBuyNow()
     {
         // Arrange - create history with prices trending down
@@ -567,7 +567,7 @@ public class PriceForecastingTests : IDisposable
             "Should have BuyNow recommendation or other valid recommendations");
     }
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task GetOptimalBuyingDateAsync_ReturnsLowestPriceDate()
     {
         // Arrange
@@ -718,7 +718,7 @@ public class PriceForecastingTests : IDisposable
 
     #region Edge Case Tests
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task ForecastPricesAsync_WithExtremePriceVariation_HandlesGracefully()
     {
         // Arrange
@@ -752,7 +752,7 @@ public class PriceForecastingTests : IDisposable
         });
     }
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task ForecastPricesAsync_WithMissingDates_HandlesGracefully()
     {
         // Arrange - skip some days
@@ -807,7 +807,7 @@ public class PriceForecastingTests : IDisposable
 
     #region Integration Tests
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task FullWorkflow_TrainThenForecast_PredictionsConsistent()
     {
         // Arrange
@@ -850,7 +850,7 @@ public class PriceForecastingTests : IDisposable
         }
     }
 
-    [Fact(Skip = "Service has bug: CreatePredictionEngine doesn't work with SSA models - needs CreateTimeSeriesEngine")]
+    [Fact]
     public async Task FullWorkflow_MultipleProducts_AllSucceed()
     {
         // Arrange
