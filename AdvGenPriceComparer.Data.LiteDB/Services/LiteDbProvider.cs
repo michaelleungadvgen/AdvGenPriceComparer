@@ -21,6 +21,7 @@ public class LiteDbProvider : IDatabaseProvider
     public IPlaceRepository Places { get; private set; } = null!;
     public IPriceRecordRepository PriceRecords { get; private set; } = null!;
     public IAlertRepository Alerts { get; private set; } = null!;
+    public IExportHistoryRepository ExportHistories { get; private set; } = null!;
 
     public Task<bool> ConnectAsync(DatabaseConnectionSettings settings)
     {
@@ -36,6 +37,7 @@ public class LiteDbProvider : IDatabaseProvider
             Places = new PlaceRepository(_database);
             PriceRecords = new PriceRecordRepository(_database);
             Alerts = new AlertRepository(_database);
+            ExportHistories = new ExportHistoryRepository(_database);
             
             return Task.FromResult(true);
         }

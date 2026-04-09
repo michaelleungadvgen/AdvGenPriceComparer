@@ -26,6 +26,7 @@ public class AdvGenNoSqlProvider : IDatabaseProvider
     public IPlaceRepository Places { get; private set; } = null!;
     public IPriceRecordRepository PriceRecords { get; private set; } = null!;
     public IAlertRepository Alerts { get; private set; } = null!;
+    public IExportHistoryRepository ExportHistories { get; private set; } = null!;
 
     public AdvGenNoSqlProvider(ILoggerService logger)
     {
@@ -35,6 +36,7 @@ public class AdvGenNoSqlProvider : IDatabaseProvider
         Places = new AdvGenNoSqlPlaceRepository(this, logger);
         PriceRecords = new AdvGenNoSqlPriceRecordRepository(this, logger);
         Alerts = new AdvGenNoSqlAlertRepository(this, logger);
+        ExportHistories = new AdvGenNoSqlExportHistoryRepository(this, logger);
     }
 
     public async Task<bool> ConnectAsync(DatabaseConnectionSettings settings)
@@ -73,6 +75,7 @@ public class AdvGenNoSqlProvider : IDatabaseProvider
                 Places = new AdvGenNoSqlPlaceRepository(this, _logger);
                 PriceRecords = new AdvGenNoSqlPriceRecordRepository(this, _logger);
                 Alerts = new AdvGenNoSqlAlertRepository(this, _logger);
+                ExportHistories = new AdvGenNoSqlExportHistoryRepository(this, _logger);
                 
                 _logger.LogInfo("Successfully connected to AdvGenNoSQLServer");
                 return true;

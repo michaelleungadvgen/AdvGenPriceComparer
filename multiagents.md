@@ -789,6 +789,36 @@
 
 ---
 
+### Agent-Current (DONE)
+- **Task:** Add export history tracking - Create ExportHistory model, repository, and integration with StaticDataExporter
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  1. ✅ Created ExportHistory model in Core/Models/ with ExportType enum
+  2. ✅ Created IExportHistoryRepository interface in Core/Interfaces/
+  3. ✅ Created ExportHistoryEntity in Data.LiteDB/Entities/
+  4. ✅ Created ExportHistoryRepository in Data.LiteDB/Repositories/
+  5. ✅ Updated LiteDbProvider with ExportHistories property
+  6. ✅ Updated AdvGenNoSqlProvider with ExportHistories (local cache implementation)
+  7. ✅ Updated StaticDataExporter to record export history after each export
+  8. ✅ Registered IExportHistoryRepository in App.xaml.cs DI
+  9. ✅ Created 14 comprehensive unit tests - all passing
+- **Files Created:**
+  - AdvGenPriceComparer.Core/Models/ExportHistory.cs
+  - AdvGenPriceComparer.Core/Interfaces/IExportHistoryRepository.cs
+  - AdvGenPriceComparer.Data.LiteDB/Entities/ExportHistoryEntity.cs
+  - AdvGenPriceComparer.Data.LiteDB/Repositories/ExportHistoryRepository.cs
+  - AdvGenPriceComparer.WPF/Services/AdvGenNoSqlExportHistoryRepository.cs
+  - AdvGenPriceComparer.Tests/Repositories/ExportHistoryRepositoryTests.cs
+- **Files Modified:**
+  - AdvGenPriceComparer.Core/Interfaces/IDatabaseProvider.cs
+  - AdvGenPriceComparer.Data.LiteDB/Services/LiteDbProvider.cs
+  - AdvGenPriceComparer.WPF/Services/AdvGenNoSqlProvider.cs
+  - AdvGenPriceComparer.WPF/Services/StaticDataExporter.cs
+  - AdvGenPriceComparer.WPF/App.xaml.cs
+
+---
+
 ## Notes for Agents
 
 1. **Before starting a task:**

@@ -6127,7 +6127,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [x] Add scheduled export job - IMPLEMENTED: ScheduledExportService with daily/weekly/monthly schedules, retention policy, cleanup (daily/hourly)
 - [ ] Add validation before export
 - [ ] Add file size monitoring
-- [ ] Add export history tracking
+- [x] Add export history tracking - DONE: Created ExportHistory model, IExportHistoryRepository interface, ExportHistoryRepository implementation, integrated with StaticDataExporter, 14 unit tests passing
 
 **Import Functionality:**
 - [x] Create `StaticDataImporter` service - IMPLEMENTED: Full service with ImportFromDirectoryAsync, ImportFromArchiveAsync, ImportFromUrlAsync, PreviewPackageAsync

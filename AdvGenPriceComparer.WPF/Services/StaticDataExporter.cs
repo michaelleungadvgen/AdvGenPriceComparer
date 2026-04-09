@@ -21,6 +21,7 @@ public class StaticDataExporter
     private readonly IItemRepository _itemRepository;
     private readonly IPlaceRepository _placeRepository;
     private readonly IPriceRecordRepository _priceRecordRepository;
+    private readonly IExportHistoryRepository _exportHistoryRepository;
     private readonly ILoggerService _logger;
     private readonly JsonSerializerOptions _jsonOptions;
 
@@ -28,11 +29,13 @@ public class StaticDataExporter
         IItemRepository itemRepository,
         IPlaceRepository placeRepository,
         IPriceRecordRepository priceRecordRepository,
+        IExportHistoryRepository exportHistoryRepository,
         ILoggerService logger)
     {
         _itemRepository = itemRepository;
         _placeRepository = placeRepository;
         _priceRecordRepository = priceRecordRepository;
+        _exportHistoryRepository = exportHistoryRepository;
         _logger = logger;
         _jsonOptions = new JsonSerializerOptions
         {
@@ -51,6 +54,8 @@ public class StaticDataExporter
         IProgress<StaticExportProgress>? progress = null)
     {
         var result = new StaticExportResult();
+        var startTime = DateTime.UtcNow;
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         
         try
         {
@@ -174,8 +179,88 @@ public class StaticDataExporter
             _logger.LogError(result.ErrorMessage, ex);
             progress?.Report(new StaticExportProgress { Percentage = 0, Status = $"Error: {ex.Message}" });
         }
+        finally
+        {
+            stopwatch.Stop();
+            
+            // Record export history
+            var exportHistory = new ExportHistory
+            {
+                Id = result.PackageId ?? Guid.NewGuid().ToString(),
+                ExportedAt = startTime,
+                ExportType = ExportType.StaticPackage,
+                StoresExported = result.TotalStores,
+                ProductsExported = result.TotalProducts,
+                PricesExported = result.TotalPriceRecords,
+                TotalSizeBytes = result.ArchiveSize > 0 ? result.ArchiveSize : CalculateDirectorySizeSafe(outputDirectory),
+                OutputPath = result.ArchivePath ?? outputDirectory,
+                PackageId = result.PackageId,
+                Description = options.Description,
+                IsSuccessful = result.Success,
+                ErrorMessage = result.ErrorMessage,
+                Duration = stopwatch.Elapsed,
+                FilterCriteria = SerializeFilterCriteria(options)
+            };
+            
+            try
+            {
+                _exportHistoryRepository.Add(exportHistory);
+                _logger.LogInfo($"Export history recorded: {exportHistory.Id}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to record export history: {ex.Message}", ex);
+            }
+        }
 
         return result;
+    }
+
+    /// <summary>
+    /// Calculate directory size safely, returning 0 if directory doesn't exist.
+    /// </summary>
+    private static long CalculateDirectorySizeSafe(string path)
+    {
+        if (!Directory.Exists(path))
+            return 0;
+        
+        try
+        {
+            long size = 0;
+            var dir = new DirectoryInfo(path);
+            foreach (var file in dir.GetFiles("*", SearchOption.AllDirectories))
+            {
+                size += file.Length;
+            }
+            return size;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// Serialize filter criteria to a string for history tracking.
+    /// </summary>
+    private static string? SerializeFilterCriteria(StaticExportOptions options)
+    {
+        var filters = new List<string>();
+        
+        if (!string.IsNullOrEmpty(options.Category))
+            filters.Add($"Category: {options.Category}");
+        if (!string.IsNullOrEmpty(options.Brand))
+            filters.Add($"Brand: {options.Brand}");
+        if (options.DateFrom.HasValue)
+            filters.Add($"From: {options.DateFrom:yyyy-MM-dd}");
+        if (options.DateTo.HasValue)
+            filters.Add($"To: {options.DateTo:yyyy-MM-dd}");
+        if (options.OnlyOnSale)
+            filters.Add("OnlyOnSale: true");
+        if (options.StoreIds?.Any() == true)
+            filters.Add($"Stores: {options.StoreIds.Count}");
+        
+        return filters.Any() ? string.Join(", ", filters) : null;
     }
 
     /// <summary>
