@@ -21,6 +21,7 @@ public class StaticDataImporter
     private readonly IItemRepository _itemRepository;
     private readonly IPlaceRepository _placeRepository;
     private readonly IPriceRecordRepository _priceRecordRepository;
+    private readonly IImportHistoryRepository _importHistoryRepository;
     private readonly ILoggerService _logger;
     private readonly JsonSerializerOptions _jsonOptions;
 
@@ -28,11 +29,13 @@ public class StaticDataImporter
         IItemRepository itemRepository,
         IPlaceRepository placeRepository,
         IPriceRecordRepository priceRecordRepository,
+        IImportHistoryRepository importHistoryRepository,
         ILoggerService logger)
     {
         _itemRepository = itemRepository;
         _placeRepository = placeRepository;
         _priceRecordRepository = priceRecordRepository;
+        _importHistoryRepository = importHistoryRepository;
         _logger = logger;
         _jsonOptions = new JsonSerializerOptions
         {
@@ -129,8 +132,80 @@ public class StaticDataImporter
             _logger.LogError(result.ErrorMessage, ex);
             progress?.Report(new StaticImportProgress { Percentage = 0, Status = $"Error: {ex.Message}" });
         }
+        finally
+        {
+            // Record import history (source will be updated by caller if needed)
+            RecordImportHistory(result, result.SourceUrl ?? packageDirectory, options);
+        }
 
         return result;
+    }
+
+    /// <summary>
+    /// Record import history for the operation.
+    /// </summary>
+    private void RecordImportHistory(StaticImportResult result, string sourcePath, StaticImportOptions options)
+    {
+        try
+        {
+            var importHistory = new ImportHistory
+            {
+                Id = result.PackageId ?? Guid.NewGuid().ToString(),
+                ImportedAt = result.ImportedAt == default ? DateTime.UtcNow : result.ImportedAt,
+                ImportType = ImportType.StaticPackage,
+                SourcePath = sourcePath,
+                PackageId = result.PackageId,
+                StoresImported = result.StoresImported,
+                StoresSkipped = result.StoresSkipped,
+                ProductsImported = result.ProductsImported,
+                ProductsSkipped = result.ProductsSkipped,
+                PricesImported = result.PricesImported,
+                PricesSkipped = result.PricesSkipped,
+                TotalSizeBytes = CalculateSourceSize(sourcePath),
+                IsSuccessful = result.Success,
+                ErrorMessage = result.ErrorMessage,
+                DuplicateStrategy = options.DuplicateStoreStrategy.ToString(),
+                ErrorCount = result.Errors.Count
+            };
+
+            _importHistoryRepository.Add(importHistory);
+            _logger.LogInfo($"Import history recorded: {importHistory.Id}");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Failed to record import history: {ex.Message}", ex);
+        }
+    }
+
+    /// <summary>
+    /// Calculate the size of the source path (file or directory).
+    /// </summary>
+    private static long CalculateSourceSize(string sourcePath)
+    {
+        try
+        {
+            if (File.Exists(sourcePath))
+            {
+                return new FileInfo(sourcePath).Length;
+            }
+            
+            if (Directory.Exists(sourcePath))
+            {
+                long size = 0;
+                var dir = new DirectoryInfo(sourcePath);
+                foreach (var file in dir.GetFiles("*", SearchOption.AllDirectories))
+                {
+                    size += file.Length;
+                }
+                return size;
+            }
+        }
+        catch
+        {
+            // Ignore errors when calculating size
+        }
+        
+        return 0;
     }
 
     /// <summary>
@@ -165,7 +240,12 @@ public class StaticDataImporter
             // Import from extracted directory
             var result = await ImportFromDirectoryAsync(tempDir, options, progress);
             result.ArchivePath = archivePath;
-
+            
+            // Update the source path in history to point to the archive
+            // Note: ImportFromDirectoryAsync already recorded history with tempDir
+            // We re-record with the archive path for better tracking
+            RecordImportHistory(result, archivePath, options);
+            
             return result;
         }
         catch (Exception ex)

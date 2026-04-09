@@ -6139,7 +6139,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [x] Add import progress tracking - IMPLEMENTED: IProgress<StaticImportProgress> support
 - [x] Implement `SyncFromStaticPeer()` method - DONE: Implemented in StaticDataImporter with incremental sync support, timestamp checking, discovery.json fetching, manifest comparison, and comprehensive result reporting
 - [ ] Add incremental sync (only new files)
-- [ ] Add import history tracking
+- [x] Add import history tracking - DONE: Created ImportHistory model, IImportHistoryRepository interface, ImportHistoryEntity, ImportHistoryRepository, AdvGenNoSqlImportHistoryRepository, integrated with StaticDataImporter, 17 unit tests passing
 
 **P2P Integration:**
 - [ ] Update `NetworkManager` to generate these formats

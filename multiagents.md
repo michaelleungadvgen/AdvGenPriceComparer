@@ -817,6 +817,36 @@
   - AdvGenPriceComparer.WPF/Services/StaticDataExporter.cs
   - AdvGenPriceComparer.WPF/App.xaml.cs
 
+### Agent-Current (DONE)
+- **Task:** Add import history tracking - Create ImportHistory model, repository, and integration with StaticDataImporter
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  1. ✅ Created ImportHistory model in Core/Models with ImportType enum
+  2. ✅ Created IImportHistoryRepository interface in Core/Interfaces with ImportStatistics
+  3. ✅ Created ImportHistoryEntity in Data.LiteDB/Entities
+  4. ✅ Created ImportHistoryRepository in Data.LiteDB/Repositories
+  5. ✅ Updated IDatabaseProvider to include ImportHistories property
+  6. ✅ Updated LiteDbProvider to initialize ImportHistories repository
+  7. ✅ Updated AdvGenNoSqlProvider in WPF to include ImportHistories (local cache)
+  8. ✅ Created AdvGenNoSqlImportHistoryRepository for HTTP provider
+  9. ✅ Updated StaticDataImporter to record import history after each import
+  10. ✅ Registered IImportHistoryRepository in App.xaml.cs DI
+  11. ✅ Created 17 comprehensive unit tests - all passing
+- **Files Created:**
+  - AdvGenPriceComparer.Core/Models/ImportHistory.cs
+  - AdvGenPriceComparer.Core/Interfaces/IImportHistoryRepository.cs
+  - AdvGenPriceComparer.Data.LiteDB/Entities/ImportHistoryEntity.cs
+  - AdvGenPriceComparer.Data.LiteDB/Repositories/ImportHistoryRepository.cs
+  - AdvGenPriceComparer.WPF/Services/AdvGenNoSqlImportHistoryRepository.cs
+  - AdvGenPriceComparer.Tests/Repositories/ImportHistoryRepositoryTests.cs
+- **Files Modified:**
+  - AdvGenPriceComparer.Core/Interfaces/IDatabaseProvider.cs
+  - AdvGenPriceComparer.Data.LiteDB/Services/LiteDbProvider.cs
+  - AdvGenPriceComparer.WPF/Services/AdvGenNoSqlProvider.cs
+  - AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs
+  - AdvGenPriceComparer.WPF/App.xaml.cs
+
 ---
 
 ## Notes for Agents

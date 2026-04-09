@@ -39,4 +39,5 @@ public interface IDatabaseProvider : IDisposable
     IPriceRecordRepository PriceRecords { get; }
     IAlertRepository Alerts { get; }
     IExportHistoryRepository ExportHistories { get; }
+    IImportHistoryRepository ImportHistories { get; }
 }

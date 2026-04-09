@@ -174,6 +174,7 @@ public partial class App : System.Windows.Application
             services.AddSingleton<IPlaceRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Places);
             services.AddSingleton<IAlertRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().Alerts);
             services.AddSingleton<IExportHistoryRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().ExportHistories);
+            services.AddSingleton<IImportHistoryRepository>(provider => provider.GetRequiredService<IDatabaseProvider>().ImportHistories);
 
             // Required: handlers inject ILogger<T>
             services.AddLogging();
@@ -278,8 +279,9 @@ public partial class App : System.Windows.Application
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
+                var importHistoryRepo = provider.GetRequiredService<IImportHistoryRepository>();
                 var logger = provider.GetRequiredService<ILoggerService>();
-                return new StaticDataImporter(itemRepo, placeRepo, priceRepo, logger);
+                return new StaticDataImporter(itemRepo, placeRepo, priceRepo, importHistoryRepo, logger);
             });
             services.AddSingleton<ScheduledExportService>(provider =>
             {
