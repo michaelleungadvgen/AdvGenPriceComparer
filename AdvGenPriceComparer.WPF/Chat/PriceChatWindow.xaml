@@ -301,6 +301,7 @@
 
                 <Button Grid.Column="1"
                         Content="🗑️"
+                        AutomationProperties.Name="Clear chat history"
                         FontSize="16"
                         Width="40"
                         Height="40"
