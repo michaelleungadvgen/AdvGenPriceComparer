@@ -173,7 +173,7 @@
 
 ---
 
-## Phase 12: Ollama Chat Interface ✅ COMPLETE
+## Phase 12: Ollama Chat Interface 🟡 IN PROGRESS
 | Task | Status | Assigned To | Notes |
 |------|--------|-------------|-------|
 | Install Ollama and Mistral 7B model | 🟢 DONE | Agent-046 | Used llama3.2 model instead (already available) |
@@ -182,6 +182,7 @@
 | Implement QueryRouterService | 🟢 DONE | Agent-046 | Query routing to repositories implemented |
 | Build PriceChatWindow.xaml UI | 🟢 DONE | Agent-046 | Modern chat UI with message bubbles |
 | Test with natural language queries | 🟢 DONE | Agent-046 | Build successful, 248 tests passing |
+| Optimize prompts for better intent recognition | 🟢 DONE | Agent-Kimi-047 | Created SystemPrompts.cs with 12+ optimized prompts for intent extraction and response generation. Updated OllamaService to use contextual prompts based on query type. Added temporal information enrichment. Build succeeds with 0 errors. |
 
 ---
 

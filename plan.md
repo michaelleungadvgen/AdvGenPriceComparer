@@ -4760,7 +4760,7 @@ public class PriceChatViewModel : ViewModelBase
 - [x] Implement `ChatViewModel` (with command support and suggested questions)
 - [x] Add menu item to open Chat Assistant (in MainWindow sidebar)
 - [x] Test with various natural language queries (build successful, 248 tests passing)
-- [ ] Optimize prompts for better intent recognition
+- [x] Optimize prompts for better intent recognition - DONE: Created SystemPrompts.cs with 12+ optimized prompts for intent extraction and response generation. Updated OllamaService to use contextual prompts based on query type. Added temporal information enrichment.
 - [x] Document supported query types - DONE: Created OLLAMA_QUERIES.md with comprehensive documentation of all 9 query types, examples, SPQL mappings, and usage tips
 
 ### 12.11 Configuration in App.xaml.cs
