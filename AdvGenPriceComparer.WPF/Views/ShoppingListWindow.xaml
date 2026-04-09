@@ -188,6 +188,7 @@
                              BorderBrush="#ddd"/>
                     <Button Grid.Column="1" 
                             Content="➕ Create"
+                                            AutomationProperties.Name="Create list"
                             Command="{Binding CreateListCommand}"
                             Style="{StaticResource ActionButtonStyle}"
                             Margin="8,0,0,0"/>
@@ -326,6 +327,7 @@
                              KeyDown="NewItemName_KeyDown"/>
                     <Button Grid.Column="1" 
                             Content="➕ Add"
+                                            AutomationProperties.Name="Add item"
                             Command="{Binding AddItemCommand}"
                             Style="{StaticResource ActionButtonStyle}"
                             Margin="8,0,0,0"/>
