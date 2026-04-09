@@ -77,6 +77,36 @@ public class PriceForecastOutput
     /// Upper bound of confidence interval - column name must match ForecastBySsa confidenceUpperBoundColumn
     /// </summary>
     public float[] UpperBounds { get; set; } = Array.Empty<float>();
+    
+    /// <summary>
+    /// Helper method to safely get forecast at index, returns 0 if out of bounds
+    /// </summary>
+    public float GetForecast(int index)
+    {
+        if (ForecastedPrices != null && index >= 0 && index < ForecastedPrices.Length)
+            return ForecastedPrices[index];
+        return 0f;
+    }
+    
+    /// <summary>
+    /// Helper method to safely get lower bound at index
+    /// </summary>
+    public float GetLowerBound(int index, float defaultValue)
+    {
+        if (LowerBounds != null && index >= 0 && index < LowerBounds.Length)
+            return LowerBounds[index];
+        return defaultValue;
+    }
+    
+    /// <summary>
+    /// Helper method to safely get upper bound at index
+    /// </summary>
+    public float GetUpperBound(int index, float defaultValue)
+    {
+        if (UpperBounds != null && index >= 0 && index < UpperBounds.Length)
+            return UpperBounds[index];
+        return defaultValue;
+    }
 }
 
 /// <summary>

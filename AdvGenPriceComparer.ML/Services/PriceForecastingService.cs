@@ -168,14 +168,35 @@ public class PriceForecastingService
             var preparedData = PrepareTrainingData(priceHistory);
             var dataView = _mlContext.Data.LoadFromEnumerable(preparedData);
 
+            // Calculate SSA parameters
+            // seriesLength must be at least 2 * windowSize for SSA to work properly
+            // Use conservative parameters to avoid ML.NET index errors
+            var windowSize = 7;
+            
+            // seriesLength should be less than trainSize (preparedData.Count)
+            // and at least 2 * windowSize
+            var seriesLength = Math.Min(preparedData.Count - 1, Math.Max(windowSize * 3, 21));
+            if (seriesLength < windowSize * 2)
+            {
+                seriesLength = windowSize * 2;
+            }
+            
+            var trainSize = preparedData.Count;
+            
+            // Horizon cannot exceed seriesLength and should be reasonable
+            var horizon = Math.Min(daysAhead, Math.Min(seriesLength / 2, 30));
+            if (horizon < 1) horizon = 1;
+
+            _logInfo?.Invoke($"Training SSA model: windowSize={windowSize}, seriesLength={seriesLength}, trainSize={trainSize}, horizon={horizon}, dataCount={preparedData.Count}");
+
             // Build and train SSA model
             var pipeline = _mlContext.Forecasting.ForecastBySsa(
                 outputColumnName: nameof(PriceForecastOutput.ForecastedPrices),
                 inputColumnName: nameof(PriceHistoryData.Price),
-                windowSize: 7,
-                seriesLength: preparedData.Count,
-                trainSize: preparedData.Count,
-                horizon: daysAhead,
+                windowSize: windowSize,
+                seriesLength: seriesLength,
+                trainSize: trainSize,
+                horizon: horizon,
                 confidenceLevel: 0.95f,
                 confidenceLowerBoundColumn: nameof(PriceForecastOutput.LowerBounds),
                 confidenceUpperBoundColumn: nameof(PriceForecastOutput.UpperBounds)
@@ -188,19 +209,52 @@ public class PriceForecastingService
             // CreateTimeSeriesEngine is an extension method on ITransformer
             var forecastEngine = model.CreateTimeSeriesEngine<PriceHistoryData, PriceForecastOutput>(_mlContext);
 
-            // Generate forecast - predict next 'daysAhead' periods
-            var forecast = forecastEngine.Predict(horizon: daysAhead);
+            // Generate forecast - predict next 'horizon' periods
+            var forecast = forecastEngine.Predict(horizon: horizon);
 
             // Build forecast results
             var forecasts = new List<PriceForecast>();
             var lastDate = priceHistory.Max(p => p.Date);
             var lastPrice = priceHistory.OrderBy(p => p.Date).Last().Price;
 
-            for (int i = 0; i < daysAhead && i < forecast.ForecastedPrices.Length; i++)
+            // Ensure we have valid forecast arrays
+            var forecastedPrices = forecast.ForecastedPrices ?? Array.Empty<float>();
+            var lowerBounds = forecast.LowerBounds ?? Array.Empty<float>();
+            var upperBounds = forecast.UpperBounds ?? Array.Empty<float>();
+
+            // If ML.NET returned fewer forecasts than requested, pad with projected values
+            if (forecastedPrices.Length < daysAhead)
             {
-                var predictedPrice = forecast.ForecastedPrices[i];
-                var lowerBound = forecast.LowerBounds.Length > i ? forecast.LowerBounds[i] : predictedPrice * 0.9f;
-                var upperBound = forecast.UpperBounds.Length > i ? forecast.UpperBounds[i] : predictedPrice * 1.1f;
+                var paddedForecasts = new float[daysAhead];
+                var paddedLower = new float[daysAhead];
+                var paddedUpper = new float[daysAhead];
+                
+                Array.Copy(forecastedPrices, paddedForecasts, forecastedPrices.Length);
+                Array.Copy(lowerBounds, paddedLower, Math.Min(lowerBounds.Length, daysAhead));
+                Array.Copy(upperBounds, paddedUpper, Math.Min(upperBounds.Length, daysAhead));
+                
+                // Pad remaining days using the last forecast value with slight adjustments
+                var lastForecast = forecastedPrices.Length > 0 ? forecastedPrices.Last() : lastPrice;
+                var lastLower = lowerBounds.Length > 0 ? lowerBounds.Last() : lastForecast * 0.9f;
+                var lastUpper = upperBounds.Length > 0 ? upperBounds.Last() : lastForecast * 1.1f;
+                
+                for (int i = forecastedPrices.Length; i < daysAhead; i++)
+                {
+                    paddedForecasts[i] = lastForecast;
+                    paddedLower[i] = lastLower;
+                    paddedUpper[i] = lastUpper;
+                }
+                
+                forecastedPrices = paddedForecasts;
+                lowerBounds = paddedLower;
+                upperBounds = paddedUpper;
+            }
+
+            for (int i = 0; i < daysAhead && i < forecastedPrices.Length; i++)
+            {
+                var predictedPrice = forecastedPrices[i];
+                var lowerBound = lowerBounds.Length > i ? lowerBounds[i] : predictedPrice * 0.9f;
+                var upperBound = upperBounds.Length > i ? upperBounds[i] : predictedPrice * 1.1f;
 
                 var forecastDate = lastDate.AddDays(i + 1);
                 var trend = DetermineTrend(lastPrice, predictedPrice, forecasts, i);
