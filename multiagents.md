@@ -727,6 +727,19 @@
   3. Removed unused local `CategoryStat` class
 - **Result:** All 11 MainWindowViewModelTests now pass
 
+### Agent-Kimi-Docs (DONE)
+- **Task:** Fix plan.md documentation inconsistency - Phase 9, 11, 12 status was "Planned" but actually COMPLETE
+- **Started:** 2026-04-09
+- **Completed:** 2026-04-09
+- **Issue:** plan.md showed Phase 9 (ML.NET Auto-Categorization), Phase 11 (ML.NET Price Prediction), Phase 12 (Ollama Chat Interface) as "Status: Planned" at the top of the document, but these phases are actually complete as evidenced by:
+  - Existing ML.NET project files in AdvGenPriceComparer.ML/
+  - Existing Chat files in AdvGenPriceComparer.WPF/Chat/
+  - Build succeeding with 0 errors
+  - multiagents.md marking these phases as ✅ COMPLETE
+- **Fix:** Updated plan.md to change Status from "Planned" to "✅ COMPLETE" for all three phases
+- **Files Modified:** plan.md (lines 23, 66, 123)
+- **Verification:** Build succeeds with 0 errors, 20 ExportService tests passing
+
 ---
 
 ## Notes for Agents
