@@ -1104,6 +1104,7 @@ public class MockDataGenerator
 - [x] Implement ViewModel tests
 - [x] Create integration tests - 7 comprehensive xUnit integration tests covering ImportThenExport, ExportAndReimport, ImportMultipleFormats, DateFiltering, StoreFiltering, Compression, and DuplicateData handling
 - [x] Create CategoryPredictionService unit tests - Agent-Kimi-MLTest: 32 comprehensive tests covering constructor, prediction, auto-categorization, batch operations, interface implementation, and null handling
+- [x] Create OllamaService unit tests - Agent-Kimi-Current: 26 comprehensive xUnit tests covering IsAvailableAsync, GetAvailableModelsAsync, SetModel, ClearHistory, ChatAsync, ExtractIntentAsync, GenerateResponseAsync, error handling, and logging
 - [x] Set up CI/CD pipeline for automated testing - Agent-018: Updated GitHub Actions for WPF build with .NET 9
 - [x] Generate code coverage reports - Agent-019: Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage)
 - [x] Document testing strategy - Agent-020: Created comprehensive TESTING.md in AdvGenPriceComparer.Tests/
@@ -4762,6 +4763,7 @@ public class PriceChatViewModel : ViewModelBase
 - [x] Test with various natural language queries (build successful, 248 tests passing)
 - [x] Optimize prompts for better intent recognition - DONE: Created SystemPrompts.cs with 12+ optimized prompts for intent extraction and response generation. Updated OllamaService to use contextual prompts based on query type. Added temporal information enrichment.
 - [x] Document supported query types - DONE: Created OLLAMA_QUERIES.md with comprehensive documentation of all 9 query types, examples, SPQL mappings, and usage tips
+- [x] Create OllamaService unit tests - DONE: Created 26 comprehensive xUnit tests for OllamaService covering all public methods, error handling, and edge cases. Added test constructor to OllamaService for dependency injection.
 
 ### 12.11 Configuration in App.xaml.cs
 
@@ -6231,6 +6233,130 @@ await importer.ImportFromStaticPeer("http://localhost:8080/data");
 - **Phase 13 (Static Data Import/Export):** 2-3 days
 - **Phase 14 (Clean Architecture Refactoring):** 4-6 days
 - **Total Full Implementation:** 44-56 days
+
+---
+
+## 🌐 Phase 17: Web Portal (Blazor Server + AdvGenNoSqlServer.Client)
+
+### 17.1 Overview
+Build a new `AdvGenPriceComparer.Web` Blazor Server project that serves as:
+- **Public portal** — browse/search grocery prices and view weekly deal highlights
+- **Admin portal** — full CRUD management for items, places, and price records
+
+Data access is via `AdvGenNoSqlServer.Client` NuGet package (same packages already used in the WPF project). Authentication uses ASP.NET Core Identity with two roles: `Public` (anonymous browsing) and `Admin`.
+
+**Key Objectives:**
+- Replace static weekly HTML reports with a live dynamic portal
+- Reuse `AdvGenNoSqlServer.Client` for consistent data access
+- Blazor Server for real-time UI with minimal frontend complexity
+- ASP.NET Core Identity for role-based access (Admin vs public)
+
+---
+
+### 17.2 Project Setup
+
+- [ ] Create `AdvGenPriceComparer.Web` ASP.NET Core Blazor Server project (net9.0)
+- [ ] Add to `AdvGenPriceComparer.sln`
+- [ ] Add NuGet package references:
+  - `AdvGenNoSqlServer.Client` Version="1.0.0"
+  - `AdvGenNoSqlServer.Core` Version="1.0.0"
+  - `AdvGenNoSqlServer.Network` Version="1.0.0"
+  - `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
+  - `Microsoft.EntityFrameworkCore.Sqlite` (for Identity store)
+- [ ] Add project reference to `AdvGenPriceComparer.Core` (for shared models)
+
+---
+
+### 17.3 Authentication & Authorization
+
+- [ ] Create `WebIdentityDbContext` (EF Core + SQLite) for ASP.NET Core Identity user store
+- [ ] Register Identity with two roles: `Admin` and `User`
+- [ ] Seed default admin account from `appsettings.json` (`Admin:Email`, `Admin:Password`)
+- [ ] Configure cookie authentication with login/logout/access-denied routes
+- [ ] Create `Login.razor` page (email + password form)
+- [ ] Create `Logout.razor` page
+- [ ] Add `[Authorize(Roles = "Admin")]` guard on all admin pages
+- [ ] Public pages accessible without authentication
+
+---
+
+### 17.4 AdvGenNoSqlServer.Client Integration
+
+- [ ] Register `AdvGenNoSqlServer.Client` services in `Program.cs` (base URL + API key from `appsettings.json`)
+- [ ] Create `WebDataService` wrapper that exposes:
+  - `GetItemsAsync(search, category, page)` — paginated item list
+  - `GetWeeklyDealsAsync()` — items with biggest price drops this week
+  - `GetItemByIdAsync(id)`
+  - `GetPlacesAsync()`
+  - `GetPriceRecordsAsync(itemId)`
+  - CRUD methods for admin: `CreateItemAsync`, `UpdateItemAsync`, `DeleteItemAsync`
+  - CRUD methods for admin: `CreatePlaceAsync`, `UpdatePlaceAsync`, `DeletePlaceAsync`
+  - CRUD methods for admin: `CreatePriceRecordAsync`, `UpdatePriceRecordAsync`, `DeletePriceRecordAsync`
+
+---
+
+### 17.5 Shared Layout & Navigation
+
+- [ ] Create `MainLayout.razor` with header, nav sidebar, and content area
+- [ ] Create `NavMenu.razor` with conditional nav links (public vs admin sections)
+- [ ] Apply branding consistent with existing static portal (teal colour scheme)
+- [ ] Create `_Imports.razor` with common usings
+
+---
+
+### 17.6 Public Pages
+
+- [ ] **`/` (Home)** — hero section, link to weekly deals and browse
+- [ ] **`/deals` (Weekly Deals)** — card grid of top deals this week (name, store, price, savings %)
+- [ ] **`/browse` (Browse Items)** — searchable, filterable item list with pagination
+  - Search by name
+  - Filter by category (dropdown)
+  - Filter by store/chain
+  - Each item links to `/item/{id}`
+- [ ] **`/item/{id}` (Item Detail)** — item info, price table across stores, price history list
+
+---
+
+### 17.7 Admin Pages
+
+- [ ] **`/admin` (Dashboard)** — summary stats: total items, places, price records; recent activity
+- [ ] **`/admin/items` (Items List)** — searchable data grid with Edit/Delete actions and Add button
+- [ ] **`/admin/items/new` (Add Item)** — form to create new item
+- [ ] **`/admin/items/{id}/edit` (Edit Item)** — pre-populated form to update item
+- [ ] **`/admin/places` (Places List)** — searchable data grid with Edit/Delete actions and Add button
+- [ ] **`/admin/places/new` (Add Place)** — form to create new place/store
+- [ ] **`/admin/places/{id}/edit` (Edit Place)** — pre-populated form to update place
+- [ ] **`/admin/price-records` (Price Records List)** — filterable list by item/store with Edit/Delete and Add button
+- [ ] **`/admin/price-records/new` (Add Price Record)** — form with item picker, place picker, price, date
+- [ ] **`/admin/price-records/{id}/edit` (Edit Price Record)** — pre-populated form
+
+---
+
+### 17.8 Configuration
+
+- [ ] Add `appsettings.json` with:
+  ```json
+  {
+    "AdvGenNoSqlServer": {
+      "BaseUrl": "http://localhost:5000",
+      "ApiKey": ""
+    },
+    "Admin": {
+      "Email": "admin@example.com",
+      "Password": ""
+    },
+    "ConnectionStrings": {
+      "IdentityDb": "Data Source=WebIdentity.db"
+    }
+  }
+  ```
+- [ ] Add `appsettings.Development.json` for local development overrides
+
+---
+
+### 17.9 Timeline
+
+- **Phase 17 (Web Portal):** 3-5 days
 
 ---
 

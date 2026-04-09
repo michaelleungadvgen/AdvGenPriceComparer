@@ -33,6 +33,15 @@ namespace AdvGenPriceComparer.WPF.Chat.Services
             };
         }
 
+        /// <summary>
+        /// Constructor for testing - allows injecting HttpClient
+        /// </summary>
+        public OllamaService(ILoggerService logger, HttpClient httpClient)
+        {
+            _logger = logger;
+            _httpClient = httpClient;
+        }
+
         public async Task<bool> IsAvailableAsync()
         {
             try

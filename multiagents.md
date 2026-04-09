@@ -222,6 +222,21 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-Current (DONE)
+- **Task:** Create OllamaService unit tests - Comprehensive test coverage for Chat/Ollama functionality
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:** 
+  - Created OllamaServiceTests.cs with 26 comprehensive xUnit tests
+  - Tests cover: IsAvailableAsync, GetAvailableModelsAsync, SetModel, ClearHistory, ChatAsync, ExtractIntentAsync, GenerateResponseAsync
+  - Added test constructor to OllamaService for HttpClient injection
+  - All 26 tests passing
+- **Files Modified:**
+  - AdvGenPriceComparer.Tests/Services/OllamaServiceTests.cs (new)
+  - AdvGenPriceComparer.WPF/Chat/Services/OllamaService.cs (added test constructor)
+
+---
+
 ### Agent-Kimi-ForecastFix (DONE)
 - **Task:** Fix PriceForecastingService.ForecastPricesAsync - Replace CreatePredictionEngine with CreateTimeSeriesEngine
 - **Started:** 2026-04-09
@@ -322,7 +337,15 @@
 - **Files Modified:** `AdvGenPriceComparer.WPF/App.xaml.cs` - Line 7 removed
 - **Build Result:** 0 errors, 110 warnings (CS0105 warning eliminated)
 
-### Agent-Kimi-Cloud (In Progress)
+### Agent-Kimi-DocsUpdate (DONE)
+- **Task:** Update README.md In Progress section - Mark Phase 9 and Phase 11 as COMPLETE
+- **Started:** 2026-04-09
+- **Completed:** 2026-04-09
+- **Issue:** README.md shows ML.NET Auto-Categorization (Phase 9) and ML.NET Price Prediction (Phase 11) as "In Progress" but they are actually COMPLETE
+- **Solution:** Updated README.md In Progress section to reflect actual completion status
+- **Files Modified:** README.md - Updated roadmap section with completed ML.NET features, moved items to "Completed" section
+
+### Agent-Kimi-Cloud (DONE)
 - **Task:** Cloud sync functionality - Implement cloud-based data synchronization
 - **Started:** 2026-03-18
 - **Estimated Completion:** 4-6 hours
@@ -612,6 +635,7 @@
 | 2026-04-09 | **Add export/import progress indicators UI** - Created ExportProgressWindow.xaml and ImportProgressWindow.xaml with progress bars, status text, statistics display, and cancellation support. Added ErrorCountToBrushConverter. Updated IDialogService interface with ShowExportProgressDialog() and ShowImportProgressDialog() methods. Implemented in SimpleDialogService. Fixed 4 test files to implement new interface methods. Build succeeds with 0 errors. | Agent-Code-2026 |
 | 2026-04-09 | **Fix TODO in ItemWithPricesViewModel** - Implemented store name and location loading from IGroceryDataService. Updated `StoreName` property and `FormatStoreLocation()` method to load actual place data using PlaceId. Added proper null-safety and exception handling. | Agent-Kimi-Current |
 | 2026-04-09 | **Create CategoryPredictionService unit tests** - Created comprehensive unit tests for CategoryPredictionService with 32 tests covering constructor behavior (logging, model path), prediction without model (returns Uncategorized, zero confidence), TryAutoCategorize with various thresholds, GetTopSuggestions, batch prediction operations, ICategoryPredictionService interface implementation, LoadModel/ReloadModel behavior, default confidence threshold validation, and null handling for all methods. Build succeeds with 0 errors, all 32 tests passing. | Agent-Kimi-MLTest |
+| 2026-04-09 | **Update README.md roadmap** - Fixed outdated "In Progress" section that incorrectly showed ML.NET Auto-Categorization (Phase 9) and ML.NET Price Prediction (Phase 11) as in progress. Moved these to "Completed ✅" section with descriptions. Also moved completed items (Barcode scanning) from Planned to appropriate sections. Build succeeds with 0 errors. | Agent-Kimi-DocsUpdate |
 
 ---
 
