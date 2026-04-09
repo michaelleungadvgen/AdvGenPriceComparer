@@ -7,6 +7,7 @@ using AdvGenPriceComparer.Tests.Services;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
+using AdvGenPriceComparer.WPF.Views;
 using Xunit;
 
 namespace AdvGenPriceComparer.Tests.ViewModels;
@@ -317,5 +318,7 @@ public class ItemViewModelTests : IDisposable
         public void ShowCloudSyncDialog() { }
         public void ShowStaticPeerConfigDialog() { }
         public bool ShowQuestion(string title, string message) => true;
+        public ExportProgressWindow ShowExportProgressDialog(string title = "Exporting Data...") => null!;
+        public ImportProgressWindow ShowImportProgressDialog(string title = "Importing Data...") => null!;
     }
 }

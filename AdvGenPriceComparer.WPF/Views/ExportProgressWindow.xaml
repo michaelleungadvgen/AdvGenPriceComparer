@@ -1,0 +1,64 @@
+<Window x:Class="AdvGenPriceComparer.WPF.Views.ExportProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Exporting Data..." 
+        Height="220" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        ShowInTaskbar="False">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" 
+                   Text="Exporting Data" 
+                   FontSize="18" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,10"/>
+
+        <!-- Description -->
+        <TextBlock Grid.Row="1" 
+                   Text="Please wait while your data is being exported..."
+                   Foreground="Gray"
+                   Margin="0,0,0,15"/>
+
+        <!-- Status Text -->
+        <TextBlock Grid.Row="2" 
+                   Text="{Binding StatusMessage, FallbackValue='Preparing...'}"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,8"
+                   TextTrimming="CharacterEllipsis"/>
+
+        <!-- Progress Bar -->
+        <ProgressBar Grid.Row="3" 
+                     Height="25"
+                     Minimum="0" 
+                     Maximum="100"
+                     Value="{Binding ProgressPercentage, FallbackValue=0}"
+                     IsIndeterminate="{Binding IsIndeterminate, FallbackValue=True}"/>
+
+        <!-- Progress Percentage -->
+        <TextBlock Grid.Row="4" 
+                   Text="{Binding ProgressPercentage, StringFormat='{}{0:F0}%', FallbackValue='0%'}"
+                   HorizontalAlignment="Center"
+                   Margin="0,8,0,0"
+                   FontWeight="SemiBold"/>
+
+        <!-- Cancel Button -->
+        <Button Grid.Row="4" 
+                Content="Cancel" 
+                Width="80" 
+                Height="28"
+                HorizontalAlignment="Right"
+                Command="{Binding CancelCommand}"
+                Visibility="{Binding CanCancel, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"/>
+    </Grid>
+</Window>

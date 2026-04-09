@@ -37,6 +37,7 @@
             <converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
             <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
             <converters:DecimalToVisibilityConverter x:Key="DecimalToVisibilityConverter"/>
+            <converters:ErrorCountToBrushConverter x:Key="ErrorCountToBrushConverter"/>
             
             <!-- Enum Collections -->
             <ObjectDataProvider x:Key="OptimizationStrategyEnum" MethodName="GetValues" ObjectType="{x:Type services:OptimizationStrategy}">

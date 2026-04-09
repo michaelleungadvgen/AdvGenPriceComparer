@@ -6150,7 +6150,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [x] Add "Export Data" button in settings
 - [x] Add "Import from URL" dialog - IMPLEMENTED: ImportFromUrlWindow with URL input, package preview, duplicate handling options, progress tracking, and result display
 - [x] Add static peer configuration UI - DONE: Created StaticPeerConfigWindow with full CRUD for discovery sources and peers, health checking, Data menu integration
-- [ ] Add export/import progress indicators
+- [x] Add export/import progress indicators - DONE: Created ExportProgressWindow and ImportProgressWindow with progress bars, status text, statistics display, and cancellation support. Updated IDialogService interface and SimpleDialogService implementation.
 - [ ] Add data validation reports
 - [ ] Add export file browser
 

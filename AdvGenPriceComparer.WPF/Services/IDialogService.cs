@@ -1,4 +1,5 @@
 using AdvGenPriceComparer.WPF.Models;
+using AdvGenPriceComparer.WPF.Views;
 
 namespace AdvGenPriceComparer.WPF.Services;
 
@@ -33,4 +34,8 @@ public interface IDialogService
     void ShowWeeklySpecialsImportDialog();
     void ShowCloudSyncDialog();
     void ShowStaticPeerConfigDialog();
+    
+    // Progress Dialogs
+    ExportProgressWindow ShowExportProgressDialog(string title = "Exporting Data...");
+    ImportProgressWindow ShowImportProgressDialog(string title = "Importing Data...");
 }

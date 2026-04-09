@@ -243,16 +243,31 @@
   - AdvGenPriceComparer.Tests/ViewModels/TestMediator.cs (new)
   - AdvGenPriceComparer.Tests/Services/TestGroceryDataService.cs (new)
 
-### Agent-Kimi-Current (DOING)
+### Agent-Kimi-Current (DONE)
 - **Task:** Add export/import progress indicators UI - Create progress dialogs for data export and import operations
 - **Started:** 2026-03-18
-- **Estimated Completion:** 2-3 hours
-- **Plan:**
-  1. Create ExportProgressWindow.xaml with progress bar and status
-  2. Create ImportProgressWindow.xaml with progress bar and status
-  3. Update ExportService to report progress via IProgress<T>
-  4. Update StaticDataImporter to report progress via IProgress<T>
-  5. Add menu items or integrate with existing dialogs
+- **Completed:** 2026-04-09
+- **Note:** Task reassigned to new agent - ExportService and StaticDataExporter already have IProgress<T> support but no UI windows exist
+
+### Agent-Code-2026 (DONE)
+- **Task:** Add export/import progress indicators UI - Create progress dialogs for data export and import operations
+- **Started:** 2026-04-09
+- **Completed:** 2026-04-09
+- **Summary:**
+  1. Created ExportProgressWindow.xaml and .xaml.cs with progress bar, status text, and cancellation support
+  2. Created ImportProgressWindow.xaml and .xaml.cs with progress bar, current item display, statistics panel (items created, price records, errors), and cancellation support
+  3. Created ErrorCountToBrushConverter.cs in Converters folder for error count coloring
+  4. Added ShowExportProgressDialog() and ShowImportProgressDialog() methods to IDialogService interface
+  5. Implemented the new methods in SimpleDialogService
+  6. Registered ErrorCountToBrushConverter in App.xaml
+  7. Fixed 4 test files to implement the new interface methods (ImportDataViewModelTests, ItemViewModelTests, MainWindowViewModelTests, SettingsViewModelTests)
+- **Files Created:**
+  - AdvGenPriceComparer.WPF/Views/ExportProgressWindow.xaml
+  - AdvGenPriceComparer.WPF/Views/ExportProgressWindow.xaml.cs
+  - AdvGenPriceComparer.WPF/Views/ImportProgressWindow.xaml
+  - AdvGenPriceComparer.WPF/Views/ImportProgressWindow.xaml.cs
+  - AdvGenPriceComparer.WPF/Converters/ErrorCountToBrushConverter.cs
+- **Build Result:** 0 errors, 27 warnings (pre-existing)
 
 ### Agent-Kimi-Cloud (DONE)
 - **Task:** Fix duplicate using statement in App.xaml.cs - Remove duplicate `using AdvGenPriceComparer.Core.Interfaces;` statement
@@ -550,6 +565,7 @@
 | 2026-03-18 | **Localization - Add Traditional Chinese (zh-TW) resource file** - Created Strings.zh-TW.resx with complete Traditional Chinese translations for all application strings. Supports Taiwan/Hong Kong users with proper Traditional Chinese characters (儲存, 匯入, 匯出, 說明, etc.) | Agent-Kimi-9 |
 | 2026-03-18 | **Fix UI Automation Test Paths** - Fixed AdvGenPriceComparer.Tests.csproj TargetFramework from net9.0-windows7.0 to net9.0-windows. Updated AdvGenPriceComparer.Tests/UI/README.md with correct executable paths. Build succeeds with 0 errors. | Agent-Kimi-Paths |
 | 2026-03-18 | **Update Phase Status in multiagents.md** - Updated all phase headers from (TODO) to ✅ COMPLETE for Phases 5-14. Updated plan.md to mark JsonImportService and ServerConfigService as complete. Synchronized documentation with actual implementation status. | Agent-Kimi-Docs |
+| 2026-04-09 | **Add export/import progress indicators UI** - Created ExportProgressWindow.xaml and ImportProgressWindow.xaml with progress bars, status text, statistics display, and cancellation support. Added ErrorCountToBrushConverter. Updated IDialogService interface with ShowExportProgressDialog() and ShowImportProgressDialog() methods. Implemented in SimpleDialogService. Fixed 4 test files to implement new interface methods. Build succeeds with 0 errors. | Agent-Code-2026 |
 
 ---
 

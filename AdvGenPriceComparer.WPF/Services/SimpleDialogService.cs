@@ -313,4 +313,24 @@ public class SimpleDialogService : IDialogService
         var window = new StaticPeerConfigWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
+
+    public ExportProgressWindow ShowExportProgressDialog(string title = "Exporting Data...")
+    {
+        var window = new ExportProgressWindow
+        {
+            Owner = System.Windows.Application.Current.MainWindow,
+            Title = title
+        };
+        return window;
+    }
+
+    public ImportProgressWindow ShowImportProgressDialog(string title = "Importing Data...")
+    {
+        var window = new ImportProgressWindow
+        {
+            Owner = System.Windows.Application.Current.MainWindow,
+            Title = title
+        };
+        return window;
+    }
 }
