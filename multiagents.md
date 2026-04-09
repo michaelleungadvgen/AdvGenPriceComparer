@@ -220,6 +220,29 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-Current (DONE)
+- **Task:** Fix TODO in ItemWithPricesViewModel - Implement store name loading from service
+- **Started:** 2026-04-09
+- **Completed:** 2026-04-09
+- **Task Description:** 
+  - Fix `StoreName` property (line 197) to load actual place name from IGroceryDataService instead of returning "Store"
+  - Fix `FormatStoreLocation` method (line 204) to load place information using PlaceId
+- **Files Modified:**
+  - `AdvGenPriceComparer/ViewModels/ItemWithPricesViewModel.cs`
+- **Changes Made:**
+  1. Added `using AdvGenPriceComparer.Core.Interfaces;` namespace import
+  2. Added `_groceryDataService` field to `ItemWithPricesViewModel` class
+  3. Updated constructor to accept optional `IGroceryDataService groceryDataService` parameter
+  4. Updated `LoadPriceHistory()` and `AddPriceRecord()` to pass service to `PriceRecordViewModel`
+  5. Added `_groceryDataService` field to `PriceRecordViewModel` class
+  6. Updated `PriceRecordViewModel` constructor to accept optional `IGroceryDataService` parameter
+  7. Implemented `StoreName` property to load actual place name from service with null-safety and exception handling
+  8. Implemented `FormatStoreLocation()` to load place location (suburb, state, postcode) from service
+  9. Both implementations gracefully handle cases where service is null or place is not found
+- **Note:** WinUI project has pre-existing build issues with Windows App SDK (not related to these changes)
+
+## Active Agent Assignments
+
 ### Agent-Kimi-FixTests (DONE)
 - **Task:** Fix test compilation errors - Update ViewModel tests for new IMediator-based constructors
 - **Started:** 2026-04-09
@@ -566,6 +589,7 @@
 | 2026-03-18 | **Fix UI Automation Test Paths** - Fixed AdvGenPriceComparer.Tests.csproj TargetFramework from net9.0-windows7.0 to net9.0-windows. Updated AdvGenPriceComparer.Tests/UI/README.md with correct executable paths. Build succeeds with 0 errors. | Agent-Kimi-Paths |
 | 2026-03-18 | **Update Phase Status in multiagents.md** - Updated all phase headers from (TODO) to ✅ COMPLETE for Phases 5-14. Updated plan.md to mark JsonImportService and ServerConfigService as complete. Synchronized documentation with actual implementation status. | Agent-Kimi-Docs |
 | 2026-04-09 | **Add export/import progress indicators UI** - Created ExportProgressWindow.xaml and ImportProgressWindow.xaml with progress bars, status text, statistics display, and cancellation support. Added ErrorCountToBrushConverter. Updated IDialogService interface with ShowExportProgressDialog() and ShowImportProgressDialog() methods. Implemented in SimpleDialogService. Fixed 4 test files to implement new interface methods. Build succeeds with 0 errors. | Agent-Code-2026 |
+| 2026-04-09 | **Fix TODO in ItemWithPricesViewModel** - Implemented store name and location loading from IGroceryDataService. Updated `StoreName` property and `FormatStoreLocation()` method to load actual place data using PlaceId. Added proper null-safety and exception handling. | Agent-Kimi-Current |
 
 ---
 
