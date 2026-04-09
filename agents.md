@@ -316,3 +316,50 @@ When using `System.Text.Json` for configuration files:
   dotnet build
   dotnet run  # Runs on https://localhost:5001 and http://localhost:5000
   ```
+
+### Auto-Update Mechanism
+- **UpdateService**: Checks for application updates from a remote JSON file
+  - Location: `AdvGenPriceComparer.WPF/Services/UpdateService.cs`
+  - Default URL: `https://raw.githubusercontent.com/advgen/pricecomparer/main/updates.json`
+  - Configurable via `UpdateService.UpdateInfoUrl` property
+  - **updates.json format** (see `updates.json` in project root):
+    ```json
+    {
+      "latestVersion": "1.0.0",
+      "downloadUrl": "https://github.com/advgen/pricecomparer/releases/download/v1.0.0/AdvGenPriceComparer.msi",
+      "releaseNotes": "Description of changes...",
+      "isMandatory": false,
+      "fileSize": 124092808,
+      "releaseDate": "2026-04-10T00:00:00Z",
+      "fileHash": "sha256:hash_of_file"
+    }
+    ```
+  - Update check runs automatically on startup (if enabled in settings)
+  - Throttled to once per 24 hours via `last_update_check.txt` in AppData
+  - Shows `UpdateNotificationWindow` when update is available
+
+### Installer Build (WiX v4)
+- **Installer Project**: `AdvGenPriceComparer.Installer/`
+  - WiX v4 SDK-style project
+  - Outputs MSI package (~124MB)
+  - Creates Start Menu and Desktop shortcuts
+  - Supports major upgrades
+- **Build Commands**:
+  ```powershell
+  cd AdvGenPriceComparer.Installer
+  dotnet build -c Release -p:Platform=x64
+  # Output: bin/x64/Release/AdvGenPriceComparer.msi
+  ```
+- **Silent Installation**:
+  ```powershell
+  msiexec /i AdvGenPriceComparer.msi /qn
+  # With desktop shortcut:
+  msiexec /i AdvGenPriceComparer.msi INSTALLDESKTOPSHORTCUT=1 /qn
+  ```
+- **To create a new release**:
+  1. Update version in `AdvGenPriceComparer.Installer/Package.wxs` (line 9)
+  2. Build the installer (see command above)
+  3. Calculate SHA256 hash of the MSI file
+  4. Upload MSI to GitHub Releases
+  5. Update `updates.json` with new version, URL, hash, and release notes
+  6. Commit and push `updates.json` to trigger auto-update for users

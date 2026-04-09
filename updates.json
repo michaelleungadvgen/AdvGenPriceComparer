@@ -1,0 +1,9 @@
+{
+  "latestVersion": "1.0.0",
+  "downloadUrl": "https://github.com/advgen/pricecomparer/releases/download/v1.0.0/AdvGenPriceComparer.msi",
+  "releaseNotes": "Initial release of AdvGen Price Comparer.\n\nFeatures:\n- Track grocery prices across multiple stores\n- Compare prices between Coles, Woolworths, ALDI, and Drakes\n- Import price data from JSON and markdown files\n- Export data for sharing\n- Price history tracking with charts\n- ML-powered auto-categorization\n- Price prediction and forecasting\n- Natural language queries with Ollama\n- Dark mode theme support\n- Multi-language support (English, Chinese)",
+  "isMandatory": false,
+  "fileSize": 124092808,
+  "releaseDate": "2026-04-10T00:00:00Z",
+  "fileHash": "sha256:placeholder_replace_with_actual_hash"
+}
