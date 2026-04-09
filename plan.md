@@ -1103,6 +1103,7 @@ public class MockDataGenerator
 - [x] Implement Repository layer tests
 - [x] Implement ViewModel tests
 - [x] Create integration tests - 7 comprehensive xUnit integration tests covering ImportThenExport, ExportAndReimport, ImportMultipleFormats, DateFiltering, StoreFiltering, Compression, and DuplicateData handling
+- [x] Create CategoryPredictionService unit tests - Agent-Kimi-MLTest: 32 comprehensive tests covering constructor, prediction, auto-categorization, batch operations, interface implementation, and null handling
 - [x] Set up CI/CD pipeline for automated testing - Agent-018: Updated GitHub Actions for WPF build with .NET 9
 - [x] Generate code coverage reports - Agent-019: Added coverlet.runsettings, generates coverage data in CI (27.67% line coverage)
 - [x] Document testing strategy - Agent-020: Created comprehensive TESTING.md in AdvGenPriceComparer.Tests/
