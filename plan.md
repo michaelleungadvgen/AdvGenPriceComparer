@@ -3774,6 +3774,7 @@ public class PriceForecastViewModel : ViewModelBase
 - [x] Integrate LiveCharts for price visualization
 - [x] Add menu item to open Price Forecast window
 - [x] Test forecasting with real historical data - Created 26 xUnit tests for PriceForecastingService
+- [x] **FIXED: PriceForecastingService.CreatePredictionEngine bug** - Fixed incorrect ML.NET API usage. Changed from `CreatePredictionEngine` (which doesn't work with SSA models) to `CreateTimeSeriesEngine` extension method on `ITransformer`. This fix enables proper time series forecasting with ML.NET's SSA algorithm.
 - [x] Implement price alert system - DONE: Created IPriceAlertService, PriceAlert model, PriceAlertService, PriceAlertWindow UI with full CRUD, filtering, and notifications
 - [x] Document forecasting accuracy and limitations - DONE: Created PRICE_FORECASTING.md with comprehensive accuracy metrics, limitations, best practices, and troubleshooting guide
 
