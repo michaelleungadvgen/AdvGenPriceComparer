@@ -8,6 +8,7 @@ using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Data.LiteDB.Services;
 using AdvGenPriceComparer.Data.LiteDB.Repositories;
+using AdvGenPriceComparer.Tests.Services;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.ViewModels;
@@ -23,6 +24,7 @@ public class ImportDataViewModelTests : IDisposable
     private readonly string _testDbPath;
     private readonly TestGroceryDataService _dataService;
     private readonly TestDialogService _dialogService;
+    private readonly TestMediator _mediator;
     private readonly DatabaseService _dbService;
     private readonly JsonImportService _jsonImportService;
 
@@ -31,6 +33,7 @@ public class ImportDataViewModelTests : IDisposable
         _testDbPath = Path.Combine(Path.GetTempPath(), $"test_import_vm_{Guid.NewGuid():N}.db");
         _dataService = new TestGroceryDataService();
         _dialogService = new TestDialogService();
+        _mediator = new TestMediator(_dataService);
         _dbService = new DatabaseService(_testDbPath);
         var itemRepo = new ItemRepository(_dbService);
         var placeRepo = new PlaceRepository(_dbService);
@@ -51,7 +54,7 @@ public class ImportDataViewModelTests : IDisposable
     public void Constructor_WithServices_InitializesCollections()
     {
         // Act
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.NotNull(viewModel.Stores);
@@ -63,7 +66,7 @@ public class ImportDataViewModelTests : IDisposable
     public void Constructor_SetsDefaultValues()
     {
         // Act
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.Equal(1, viewModel.CurrentStep);
@@ -76,7 +79,7 @@ public class ImportDataViewModelTests : IDisposable
     public void StepVisibility_Properties_ReturnCorrectValues()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Assert - Step 1
         Assert.Equal(System.Windows.Visibility.Visible, viewModel.Step1Visibility);
@@ -104,7 +107,7 @@ public class ImportDataViewModelTests : IDisposable
     public void SelectedFilesText_NoFiles_ReturnsCorrectText()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.Equal("No files selected", viewModel.SelectedFilesText);
@@ -114,7 +117,7 @@ public class ImportDataViewModelTests : IDisposable
     public void SetSelectedFiles_WithFiles_UpdatesCollections()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         var filePaths = new[] { @"C:\test\file1.json", @"C:\test\file2.json" };
 
         // Act
@@ -134,7 +137,7 @@ public class ImportDataViewModelTests : IDisposable
         // Arrange
         _dataService.AddTestPlace("Coles Brisbane", "Coles");
         _dataService.AddTestPlace("Woolworths Sydney", "Woolworths");
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Act
         viewModel.LoadStores();
@@ -150,7 +153,7 @@ public class ImportDataViewModelTests : IDisposable
         _dataService.AddTestPlace("Zebra Store", "Zebra");
         _dataService.AddTestPlace("Alpha Store", "Alpha");
         _dataService.AddTestPlace("Beta Store", "Beta");
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Act
         viewModel.LoadStores();
@@ -165,7 +168,7 @@ public class ImportDataViewModelTests : IDisposable
     public void GoToStep1_SetsCurrentStepTo1()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         viewModel.CurrentStep = 2;
 
         // Act
@@ -179,7 +182,7 @@ public class ImportDataViewModelTests : IDisposable
     public void GoToStep3_SetsCurrentStepTo3()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Act
         viewModel.GoToStep3();
@@ -193,7 +196,7 @@ public class ImportDataViewModelTests : IDisposable
     public void IsImporting_WhenTrue_SetsProgressVisibility()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Act
         viewModel.IsImporting = true;
@@ -208,7 +211,7 @@ public class ImportDataViewModelTests : IDisposable
     public void IsImporting_WhenFalse_SetsProgressVisibilityCollapsed()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         viewModel.IsImporting = true;
 
         // Act
@@ -224,7 +227,7 @@ public class ImportDataViewModelTests : IDisposable
     public void ImportButtonText_Initially_ReturnsImport()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.Equal("Import", viewModel.ImportButtonText);
@@ -234,7 +237,7 @@ public class ImportDataViewModelTests : IDisposable
     public void CatalogueDate_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         viewModel.PropertyChanged += (s, e) =>
         {
@@ -253,7 +256,7 @@ public class ImportDataViewModelTests : IDisposable
     public void SelectedStore_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         viewModel.PropertyChanged += (s, e) =>
         {
@@ -272,7 +275,7 @@ public class ImportDataViewModelTests : IDisposable
     public void ImportStatus_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         viewModel.PropertyChanged += (s, e) =>
         {
@@ -291,7 +294,7 @@ public class ImportDataViewModelTests : IDisposable
     public void CurrentStep_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         string? changedProperty = null;
         viewModel.PropertyChanged += (s, e) =>
@@ -311,118 +314,12 @@ public class ImportDataViewModelTests : IDisposable
     public void CancelOperation_DoesNotThrow_WhenNotImporting()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
 
         // Act & Assert (should not throw)
         viewModel.CancelOperation();
     }
 
-    #region Test Helpers
-
-    private class TestGroceryDataService : IGroceryDataService
-    {
-        private readonly List<Item> _items = new();
-        private readonly List<Place> _places = new();
-        private readonly List<PriceRecord> _priceRecords = new();
-
-        public IItemRepository Items => throw new NotImplementedException();
-        public IPlaceRepository Places => throw new NotImplementedException();
-        public IPriceRecordRepository PriceRecords => throw new NotImplementedException();
-        public IAlertRepository Alerts => throw new NotImplementedException();
-
-        public string AddTestPlace(string name, string chain)
-        {
-            var id = Guid.NewGuid().ToString();
-            _places.Add(new Place
-            {
-                Id = id,
-                Name = name,
-                Chain = chain,
-                DateAdded = DateTime.UtcNow,
-                IsActive = true
-            });
-            return id;
-        }
-
-        public string AddTestItem(string name, string brand, string category)
-        {
-            var id = Guid.NewGuid().ToString();
-            _items.Add(new Item
-            {
-                Id = id,
-                Name = name,
-                Brand = brand,
-                Category = category,
-                DateAdded = DateTime.UtcNow,
-                IsActive = true
-            });
-            return id;
-        }
-
-        public string AddGroceryItem(string name, string? brand = null, string? category = null, string? barcode = null, string? packageSize = null, string? unit = null)
-        {
-            return AddTestItem(name, brand ?? "", category ?? "");
-        }
-
-        public Item? GetItemById(string id) => _items.FirstOrDefault(i => i.Id == id);
-        public IEnumerable<Item> GetAllItems() => _items;
-
-        public string AddSupermarket(string name, string chain, string? address = null, string? suburb = null, string? state = null, string? postcode = null)
-        {
-            return AddTestPlace(name, chain);
-        }
-
-        public Place? GetPlaceById(string id) => _places.FirstOrDefault(p => p.Id == id);
-        public IEnumerable<Place> GetAllPlaces() => _places.OrderBy(p => p.Name);
-
-        public string RecordPrice(string itemId, string placeId, decimal price, bool isOnSale = false, decimal? originalPrice = null, string? saleDescription = null, DateTime? validFrom = null, DateTime? validTo = null, string source = "manual")
-        {
-            var id = Guid.NewGuid().ToString();
-            _priceRecords.Add(new PriceRecord
-            {
-                Id = id,
-                ItemId = itemId,
-                PlaceId = placeId,
-                Price = price,
-                DateRecorded = DateTime.Now
-            });
-            return id;
-        }
-
-        public IEnumerable<PriceRecord> GetRecentPriceUpdates(int count = 10) => _priceRecords.Take(count);
-
-        public IEnumerable<(Item item, decimal lowestPrice, Place place)> FindBestDeals(string? category = null)
-        {
-            return Enumerable.Empty<(Item, decimal, Place)>();
-        }
-
-        public Dictionary<string, object> GetDashboardStats()
-        {
-            return new Dictionary<string, object>
-            {
-                ["totalItems"] = _items.Count,
-                ["totalStores"] = _places.Count,
-                ["recentUpdates"] = _priceRecords.Count
-            };
-        }
-
-        public IEnumerable<PriceRecord> GetPriceHistory(string? itemId = null, string? placeId = null, DateTime? from = null, DateTime? to = null)
-        {
-            return _priceRecords;
-        }
-
-        public IEnumerable<(string category, decimal avgPrice, int count)> GetCategoryStats()
-        {
-            return Enumerable.Empty<(string, decimal, int)>();
-        }
-
-        public IEnumerable<(string storeName, decimal avgPrice, int productCount)> GetStoreComparisonStats()
-        {
-            return Enumerable.Empty<(string, decimal, int)>();
-        }
-
-        public void Dispose() { }
-    }
 
     private class TestDialogService : IDialogService
     {
@@ -456,8 +353,6 @@ public class ImportDataViewModelTests : IDisposable
         public void ShowStaticPeerConfigDialog() { }
         public bool ShowQuestion(string title, string message) => true;
     }
-
-    #endregion
 }
 
 

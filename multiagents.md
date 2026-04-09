@@ -220,7 +220,41 @@
 
 ## Active Agent Assignments
 
-### Agent-Kimi-Current (DONE)
+### Agent-Kimi-FixTests (DONE)
+- **Task:** Fix test compilation errors - Update ViewModel tests for new IMediator-based constructors
+- **Started:** 2026-04-09
+- **Completed:** 2026-04-09
+- **Issue:** Test files have compilation errors due to recent ViewModel constructor changes
+  - MainWindowViewModel now requires IMediator instead of IGroceryDataService
+  - ItemViewModel now requires IMediator instead of IGroceryDataService  
+  - ImportDataViewModel now requires IMediator and JsonImportService
+- **Solution:**
+  1. Created TestMediator class implementing IMediator interface (AdvGenPriceComparer.Tests/ViewModels/TestMediator.cs)
+  2. Created shared TestGroceryDataService class (AdvGenPriceComparer.Tests/Services/TestGroceryDataService.cs)
+  3. Updated MainWindowViewModelTests to use TestMediator
+  4. Updated ItemViewModelTests to use TestMediator
+  5. Updated ImportDataViewModelTests to pass all 4 constructor parameters
+  6. Removed duplicate private TestGroceryDataService classes from test files
+- **Build Result:** 0 errors, 27 warnings (pre-existing)
+- **Files Modified:**
+  - AdvGenPriceComparer.Tests/ViewModels/MainWindowViewModelTests.cs
+  - AdvGenPriceComparer.Tests/ViewModels/ItemViewModelTests.cs
+  - AdvGenPriceComparer.Tests/ViewModels/ImportDataViewModelTests.cs
+  - AdvGenPriceComparer.Tests/ViewModels/TestMediator.cs (new)
+  - AdvGenPriceComparer.Tests/Services/TestGroceryDataService.cs (new)
+
+### Agent-Kimi-Current (DOING)
+- **Task:** Add export/import progress indicators UI - Create progress dialogs for data export and import operations
+- **Started:** 2026-03-18
+- **Estimated Completion:** 2-3 hours
+- **Plan:**
+  1. Create ExportProgressWindow.xaml with progress bar and status
+  2. Create ImportProgressWindow.xaml with progress bar and status
+  3. Update ExportService to report progress via IProgress<T>
+  4. Update StaticDataImporter to report progress via IProgress<T>
+  5. Add menu items or integrate with existing dialogs
+
+### Agent-Kimi-Cloud (DONE)
 - **Task:** Fix duplicate using statement in App.xaml.cs - Remove duplicate `using AdvGenPriceComparer.Core.Interfaces;` statement
 - **Started:** 2026-03-18
 - **Completed:** 2026-03-18
