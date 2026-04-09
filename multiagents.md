@@ -125,6 +125,7 @@
 | **Fix LocalizationService build error** | 🟢 DONE | Agent-Kimi-Fix | Fixed CS0104 ambiguous reference error between System.Globalization.CultureInfo and Core.Interfaces.CultureInfo by using fully qualified type names |
 | **Add Language Selector UI to Settings** | 🟢 DONE | Agent-Current | Added language selector ComboBox to SettingsWindow General section, bound to AvailableCultures and Culture properties, integrated with ILocalizationService for immediate culture switching on selection change |
 | **Document Ollama supported query types** | 🟢 DONE | Agent-Kimi-Docs | Created comprehensive OLLAMA_QUERIES.md documenting all 9 supported query types (Price Query, Price Comparison, Cheapest Item, Category Query, Items On Sale, Price History, Best Deals, Store Inventory, Budget Query) with natural language examples, SPQL mappings, and usage tips |
+| **Create CategoryPredictionService unit tests** | 🟢 DONE | Agent-Kimi-MLTest | Created comprehensive unit tests for CategoryPredictionService with 32 tests covering constructor behavior, prediction without model, TryAutoCategorize, GetTopSuggestions, batch operations, interface implementation, LoadModel, and null handling
 | **Document forecasting accuracy and limitations** | 🟢 DONE | Agent-Kimi-Docs | Created comprehensive PRICE_FORECASTING.md documentation covering accuracy metrics (MAPE 5-15%), performance expectations, limitations, data requirements, best practices, and troubleshooting |
 
 ---
