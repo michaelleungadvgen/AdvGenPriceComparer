@@ -67,14 +67,17 @@ public class TestMediator : IMediator
             var stats = items
                 .Where(i => !string.IsNullOrEmpty(i.Category))
                 .GroupBy(i => i.Category)
-                .Select(g => new CategoryStat { Category = g.Key!, Count = g.Count() })
+                .Select(g => new CategoryStats(Category: g.Key!, AveragePrice: 0m, ItemCount: g.Count(), MinPrice: 0m, MaxPrice: 0m))
                 .ToList();
             return (TResponse)(object)stats;
         }
 
         if (request is GetPriceHistoryQuery priceHistoryQuery)
         {
-            var history = _dataService.GetPriceHistory(priceHistoryQuery.ItemId, priceHistoryQuery.PlaceId, priceHistoryQuery.From, priceHistoryQuery.To);
+            var history = _dataService.GetPriceHistory(priceHistoryQuery.ItemId, priceHistoryQuery.PlaceId, priceHistoryQuery.From, priceHistoryQuery.To)
+                .Where(pr => priceHistoryQuery.From == null || pr.DateRecorded >= priceHistoryQuery.From)
+                .Where(pr => priceHistoryQuery.To == null || pr.DateRecorded <= priceHistoryQuery.To)
+                .ToList();
             return (TResponse)(object)history;
         }
 
@@ -194,12 +197,6 @@ public class TestMediator : IMediator
 }
 
 // Response models for queries
-public class CategoryStat
-{
-    public string Category { get; set; } = string.Empty;
-    public int Count { get; set; }
-}
-
 public class DashboardStats
 {
     public int TotalItems { get; set; }

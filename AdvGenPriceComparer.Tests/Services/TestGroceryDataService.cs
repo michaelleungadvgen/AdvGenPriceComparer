@@ -111,6 +111,10 @@ public class TestGroceryDataService : IGroceryDataService, IDisposable
             query = query.Where(pr => pr.ItemId == itemId);
         if (!string.IsNullOrEmpty(placeId))
             query = query.Where(pr => pr.PlaceId == placeId);
+        if (from.HasValue)
+            query = query.Where(pr => pr.DateRecorded >= from.Value);
+        if (to.HasValue)
+            query = query.Where(pr => pr.DateRecorded <= to.Value);
         return query;
     }
 

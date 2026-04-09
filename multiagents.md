@@ -513,6 +513,7 @@
 | 2026-03-13 | **Fix failing ExportService unit tests** - Fixed 3 failing tests: (1) Date range filtering logic - changed to use proper overlap detection, (2) ItemRepository.Add() timestamp handling - preserve existing timestamps for test scenarios, (3) Added IItemRepository.GetAllIncludingInactive() method and updated ExportService to use it. All 20 ExportServiceTests now passing. Build succeeds with 0 errors, 354 tests passing. | Agent-Kimi-8 |
 | 2026-03-13 | **Update PROJECT_STATUS.md** - Synchronized pending features list with actual implementation status. Marked as DONE: Shopping list integration, Multi-store trip optimization, Price comparison view, Historical price charts, Barcode scanner integration, Search across all entities, Price drop notifications, P2P price data sharing, Dark mode theme. Build: 0 errors, 354 tests passing. | Agent-Kimi-Docs |
 | 2026-03-18 | **Document forecasting accuracy and limitations** - Created comprehensive PRICE_FORECASTING.md in AdvGenPriceComparer.ML/ covering MAPE metrics (5-15%), confidence intervals (95%), trend detection accuracy (75-85%), anomaly detection performance, data requirements (30-90+ days), algorithm limitations, best practices, and troubleshooting guide. | Agent-Kimi-Docs |
+| 2026-04-09 | **Fix MainWindowViewModelTests** - Fixed CategorySeries and PriceTrendSeries not being populated in tests. Updated TestMediator to return correct CategoryStats type with ItemCount property. Updated TestGroceryDataService.GetPriceHistory() to filter by date range. All 11 MainWindowViewModelTests now pass. | Agent-Kimi-ViewModel |
 | 2026-03-18 | **Fix LocalizationService build error** - Fixed CS0104 ambiguous reference error in LocalizationService.cs where CultureInfo conflicted between System.Globalization and Core.Interfaces. Changed lines 188-189 to use fully qualified System.Globalization.CultureInfo type. Build now succeeds with 0 errors. | Agent-Kimi-Fix |
 | 2026-03-18 | **Weekly specials import** - Implemented IWeeklySpecialsImportService interface in Core, WeeklySpecialsImportService in WPF, WeeklySpecialsImportViewModel, and WeeklySpecialsImportWindow. Supports importing catalogue data from Coles/Woolworths (JSON) and ALDI/Drakes (Markdown) with preview, auto-detection, progress tracking, and ML-based auto-categorization. Added Data menu item. 372 tests passing. | Agent-Kimi-Weekly |
 | 2026-03-18 | **Cloud sync functionality** - Implemented ICloudSyncService interface in Core, CloudSyncSettings/CloudSyncStatus/ConflictResolutionStrategy enums and models, CloudSyncService in WPF with offline queue support, automatic conflict detection, multiple resolution strategies (ServerWins, ClientWins, LastWriteWins, Merge, Manual). CloudSyncViewModel and CloudSyncStatusWindow XAML UI with 4 tabs (Status, Settings, Conflicts, Queue). Added Data > Cloud Sync menu item. Registered in DI container. Build succeeds with 0 errors, 373 tests passing. | Agent-Current |
@@ -650,6 +651,22 @@
   10. ✅ Added 🎯 Price Alerts menu item to MainWindow.xaml
   11. ✅ Registered IPriceAlertService in App.xaml.cs DI container
 - **Test Results:** 372 tests passing (no new failures)
+
+### Agent-Kimi-ViewModel (DONE)
+- **Task:** Fix MainWindowViewModelTests - CategorySeries and PriceTrendSeries not populated
+- **Started:** 2026-04-09
+- **Completed:** 2026-04-09
+- **Issue:** Two tests failing:
+  1. `RefreshDashboard_WithCategoryData_PopulatesCategorySeries` - CategorySeries was empty
+  2. `RefreshDashboard_WithPriceHistory_PopulatesPriceTrendSeries` - PriceTrendSeries was empty
+- **Root Cause:**
+  1. `TestMediator` returned local `CategoryStat` class with `Count` property, but real query returns `CategoryStats` with `ItemCount` property
+  2. `TestGroceryDataService.GetPriceHistory()` didn't filter by date range parameters
+- **Fix:**
+  1. Updated `TestMediator` to return `CategoryStats` record with correct `ItemCount` property name
+  2. Updated `TestGroceryDataService.GetPriceHistory()` to filter by `from` and `to` date parameters
+  3. Removed unused local `CategoryStat` class
+- **Result:** All 11 MainWindowViewModelTests now pass
 
 ---
 
