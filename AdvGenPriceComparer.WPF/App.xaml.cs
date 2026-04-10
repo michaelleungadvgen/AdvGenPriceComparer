@@ -265,14 +265,17 @@ public partial class App : System.Windows.Application
                 var logger = provider.GetRequiredService<ILoggerService>();
                 return new ExportService(itemRepo, placeRepo, priceRepo, logger);
             });
+            services.AddTransient<IExportValidator, ExportValidator>();
+            services.AddTransient<IFileSizeMonitor, ExportSizeMonitor>();
             services.AddTransient<StaticDataExporter>(provider =>
             {
                 var itemRepo = provider.GetRequiredService<IItemRepository>();
                 var placeRepo = provider.GetRequiredService<IPlaceRepository>();
                 var priceRepo = provider.GetRequiredService<IPriceRecordRepository>();
                 var exportHistoryRepo = provider.GetRequiredService<IExportHistoryRepository>();
+                var exportValidator = provider.GetRequiredService<IExportValidator>();
                 var logger = provider.GetRequiredService<ILoggerService>();
-                return new StaticDataExporter(itemRepo, placeRepo, priceRepo, exportHistoryRepo, logger);
+                return new StaticDataExporter(itemRepo, placeRepo, priceRepo, exportHistoryRepo, exportValidator, logger);
             });
             services.AddTransient<StaticDataImporter>(provider =>
             {

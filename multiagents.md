@@ -1033,6 +1033,32 @@
   - AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs
   - AdvGenPriceComparer.WPF/App.xaml.cs
 
+### Agent-Kimi-Validation (DONE)
+- **Task:** Add validation before export - Implement data validation for static export to ensure data integrity
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  1. Created IExportValidator interface in Core/Interfaces/
+  2. Created ExportValidation models (ValidationIssue, ExportValidationResult, ExportValidationOptions) in Core/Models/
+  3. Implemented ExportValidator service in WPF/Services/ with comprehensive validation rules:
+     - Store validation (missing ID, duplicate IDs, missing name, invalid coordinates, inactive stores)
+     - Product validation (missing ID, duplicate IDs/barcode, missing category, invalid barcode format)
+     - Price record validation (missing references, invalid store/product refs, negative/zero prices, invalid sale prices, date range validation, future dates)
+  4. Integrated validation into StaticDataExporter.ExportStaticPackageAsync with options to skip or allow errors
+  5. Updated StaticExportOptions with validation settings (SkipValidation, AllowValidationErrors, AllowWarnings, ValidationOptions)
+  6. Updated StaticExportResult with ValidationResult property and helper methods (HasValidationWarnings, HasValidationErrors)
+  7. Registered IExportValidator in DI container (App.xaml.cs)
+  8. Created 13 comprehensive unit tests - all passing
+- **Files Created:**
+  - AdvGenPriceComparer.Core/Interfaces/IExportValidator.cs
+  - AdvGenPriceComparer.Core/Models/ExportValidation.cs
+  - AdvGenPriceComparer.WPF/Services/ExportValidator.cs
+  - AdvGenPriceComparer.Tests/Services/ExportValidatorTests.cs
+- **Files Modified:**
+  - AdvGenPriceComparer.WPF/Services/StaticDataExporter.cs
+  - AdvGenPriceComparer.WPF/App.xaml.cs
+- **Build Result:** 0 errors, 13 tests passing
+
 ### Agent-Kimi-P2P (DONE)
 - **Task:** Update NetworkManager to generate P2P discovery file on server start
 - **Started:** 2026-04-10
@@ -1064,6 +1090,27 @@
 | Create Admin Pages | 🟢 DONE | Agent-Kimi-Web | Dashboard.razor, Items.razor/ItemEdit.razor, Places.razor/PlaceEdit.razor, PriceRecords.razor/PriceRecordEdit.razor |
 | Add Configuration | 🟢 DONE | Agent-Kimi-Web | appsettings.json, appsettings.Development.json configured |
 | **Fix Web Portal build errors** | 🟢 DONE | Agent-Current | Fixed missing Microsoft.EntityFrameworkCore.Sqlite package and corrected GetByItemId -> GetByItem method call |
+
+### Agent-Kimi-FileSize (DONE)
+- **Task:** Add file size monitoring for export operations - Monitor export directory size, implement size limits and cleanup
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Assigned To:** Agent-Kimi-Current
+- **Results:**
+  1. ✅ Created IFileSizeMonitor interface in Core/Interfaces/
+  2. ✅ Created FileSizeMonitorModels in Core/Models/ with DirectorySizeInfo, SizeCheckResult, CleanupResult, etc.
+  3. ✅ Created ExportSizeMonitor service in WPF/Services/ with:
+     - Directory size monitoring and tracking
+     - Size limit enforcement (configurable max size)
+     - Automatic cleanup of old exports when limit exceeded
+     - File count limits
+  4. ✅ Registered IFileSizeMonitor in DI container (App.xaml.cs)
+  5. ✅ Created 16 comprehensive unit tests - all passing
+- **Files Created:**
+  - AdvGenPriceComparer.Core/Interfaces/IFileSizeMonitor.cs
+  - AdvGenPriceComparer.Core/Models/FileSizeMonitorModels.cs
+  - AdvGenPriceComparer.WPF/Services/ExportSizeMonitor.cs
+  - AdvGenPriceComparer.Tests/Services/ExportSizeMonitorTests.cs
 
 ---
 

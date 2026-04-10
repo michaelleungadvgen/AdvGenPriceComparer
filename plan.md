@@ -6125,7 +6125,7 @@ foreach (var recordFile in records.PriceRecords.Take(7)) // Last 7 days
 - [ ] Implement `UpdateRecordsIndex()` method
 - [ ] Implement `ExportDiscovery()` method
 - [x] Add scheduled export job - IMPLEMENTED: ScheduledExportService with daily/weekly/monthly schedules, retention policy, cleanup (daily/hourly)
-- [ ] Add validation before export
+- [x] Add validation before export - DONE: Created IExportValidator interface, ExportValidator service with comprehensive validation rules (stores, products, price records), integrated with StaticDataExporter, 13 unit tests passing
 - [ ] Add file size monitoring
 - [x] Add export history tracking - DONE: Created ExportHistory model, IExportHistoryRepository interface, ExportHistoryRepository implementation, integrated with StaticDataExporter, 14 unit tests passing
 
@@ -6340,9 +6340,51 @@ dotnet build AdvGenPriceComparer.Web/AdvGenPriceComparer.Web.csproj
 
 ---
 
-### 17.9 Timeline
+### 17.9 File Size Monitoring for Export Operations ✅
+
+**Implemented by:** Agent-Kimi-Current (2026-04-10)
+
+**Changes Made:**
+- Created `IFileSizeMonitor` interface in Core/Interfaces/ with methods for:
+  - `GetDirectorySizeInfoAsync()` - Get comprehensive directory size information
+  - `CheckSizeBeforeExportAsync()` - Validate export won't exceed limits
+  - `CleanupOldExportsAsync()` - Clean up old exports with configurable strategies
+  - `PerformAutoCleanupAsync()` - Automatic cleanup when limits exceeded
+  - `AreLimitsExceededAsync()` - Check if size/count limits are exceeded
+  
+- Created `FileSizeMonitorModels` in Core/Models/ with:
+  - `DirectorySizeInfo` - Total size, file count, largest files, available space
+  - `SizeCheckResult` - Export validation with recommendations
+  - `CleanupResult` - Cleanup operation results with deleted files
+  - `FileSizeMonitorOptions` - Configurable limits and thresholds
+  - `CleanupOptions` - Cleanup strategies and filters
+  - `ExportFileInfo` - File metadata for monitoring
+  
+- Created `ExportSizeMonitor` service in WPF/Services/ with:
+  - Directory size calculation with subdirectories
+  - Size limit enforcement (default: 1GB)
+  - File count limits (default: 1000 files)
+  - Automatic cleanup with configurable threshold (default: 90%)
+  - Support for multiple cleanup strategies (OldestFirst, LargestFirst, LeastRecentlyAccessed)
+  - File extension filtering
+  - Human-readable size formatting (B, KB, MB, GB, TB)
+  
+- Registered `IFileSizeMonitor` in DI container (App.xaml.cs)
+
+- Created 16 comprehensive unit tests in `ExportSizeMonitorTests.cs`
+
+**Files Created:**
+- `AdvGenPriceComparer.Core/Interfaces/IFileSizeMonitor.cs`
+- `AdvGenPriceComparer.Core/Models/FileSizeMonitorModels.cs`
+- `AdvGenPriceComparer.WPF/Services/ExportSizeMonitor.cs`
+- `AdvGenPriceComparer.Tests/Services/ExportSizeMonitorTests.cs`
+
+---
+
+### 17.10 Timeline
 
 - **Phase 17 (Web Portal):** 3-5 days — **COMPLETED**
+- **File Size Monitoring:** 2 hours — **COMPLETED**
 
 ---
 
