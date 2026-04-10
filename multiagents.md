@@ -576,6 +576,7 @@
 
 | Date | Task | Completed By |
 |------|------|--------------|
+| 2026-04-10 | **Add Health Check endpoint** | Agent-Kimi-Health | Created HealthController with GET /health, /health/ping, /health/info endpoints. Includes database, SignalR, and memory health checks. Updated API_PROTOCOL.md with documentation. |
 | 2026-02-26 | Settings Service implementation - Created ISettingsService interface, SettingsService with JSON persistence, registered in DI container, 26 comprehensive xUnit tests | Agent-026 |
 |------|------|--------------|
 | 2026-02-25 | JsonImportService implementation | Pre-existing |
@@ -1106,6 +1107,7 @@
 | Create Admin Pages | 🟢 DONE | Agent-Kimi-Web | Dashboard.razor, Items.razor/ItemEdit.razor, Places.razor/PlaceEdit.razor, PriceRecords.razor/PriceRecordEdit.razor |
 | Add Configuration | 🟢 DONE | Agent-Kimi-Web | appsettings.json, appsettings.Development.json configured |
 | **Fix Web Portal build errors** | 🟢 DONE | Agent-Current | Fixed missing Microsoft.EntityFrameworkCore.Sqlite package and corrected GetByItemId -> GetByItem method call |
+| **Add Health Check endpoint** | 🟢 DONE | Agent-Kimi-Health | Created HealthController with GET /health, /health/ping, /health/info endpoints. Includes database, SignalR, and memory health checks. Updated API_PROTOCOL.md with documentation.
 
 ### Agent-Kimi-FileSize (DONE)
 - **Task:** Add file size monitoring for export operations - Monitor export directory size, implement size limits and cleanup

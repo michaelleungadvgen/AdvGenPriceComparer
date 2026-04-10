@@ -14,6 +14,7 @@
 4. [Common Headers](#common-headers)
 5. [Response Format](#response-format)
 6. [API Endpoints](#api-endpoints)
+   - [Health API](#health-api)
    - [Items API](#items-api)
    - [Places API](#places-api)
    - [Prices API](#prices-api)
@@ -140,6 +141,111 @@ For list responses:
 ---
 
 ## API Endpoints
+
+### Health API
+
+Base path: `/health`
+
+The health endpoints provide server status information and do not require authentication.
+
+#### Get Health Status
+
+```http
+GET /health
+```
+
+**Response (Healthy):**
+```json
+{
+  "status": "Healthy",
+  "timestamp": "2026-04-10T10:30:00Z",
+  "version": "1.0.0",
+  "uptime": {
+    "startTime": "2026-04-10T08:00:00Z",
+    "duration": "02:30:00",
+    "formatted": "2h 30m"
+  },
+  "components": {
+    "database": {
+      "status": "Healthy",
+      "responseTimeMs": 15,
+      "details": {
+        "provider": "SQLite",
+        "canConnect": true
+      }
+    },
+    "signalr": {
+      "status": "Healthy",
+      "responseTimeMs": 0,
+      "details": {
+        "hubPath": "/hubs/price-updates",
+        "enabled": true
+      }
+    },
+    "memory": {
+      "status": "Healthy",
+      "responseTimeMs": 1,
+      "details": {
+        "workingSetMB": 128,
+        "gcMemoryMB": 64,
+        "processId": 12345
+      }
+    }
+  }
+}
+```
+
+**Response Codes:**
+- `200 OK` - Server is healthy
+- `503 Service Unavailable` - Server is unhealthy (one or more components failed)
+
+#### Ping Endpoint
+
+Simple endpoint for basic connectivity checks.
+
+```http
+GET /health/ping
+```
+
+**Response:**
+```json
+{
+  "status": "ok",
+  "timestamp": "2026-04-10T10:30:00Z",
+  "uptime": "2h 30m"
+}
+```
+
+#### Server Information
+
+Get detailed server information including database statistics.
+
+```http
+GET /health/info
+```
+
+**Response:**
+```json
+{
+  "version": "1.0.0",
+  "environment": "Production",
+  "framework": ".NET 9.0.0",
+  "timestamp": "2026-04-10T10:30:00Z",
+  "uptime": {
+    "startTime": "2026-04-10T08:00:00Z",
+    "duration": "02:30:00",
+    "formatted": "2h 30m"
+  },
+  "databaseStats": {
+    "totalItems": 1500,
+    "totalPlaces": 50,
+    "totalPriceRecords": 5000,
+    "databaseProvider": "SQLite"
+  }
+}
+```
+
+---
 
 ### Items API
 
