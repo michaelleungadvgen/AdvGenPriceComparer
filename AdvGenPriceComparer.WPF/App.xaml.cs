@@ -531,7 +531,8 @@ public partial class App : System.Windows.Application
             services.AddSingleton<IOllamaService>(provider =>
             {
                 var logger = provider.GetRequiredService<ILoggerService>();
-                return new OllamaService(logger);
+                var settings = provider.GetRequiredService<ISettingsService>();
+                return new OllamaService(logger, settings);
             });
             services.AddSingleton<IQueryRouterService>(provider =>
             {

@@ -739,6 +739,28 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-Current (DONE)
+- **Task:** Add Ollama configuration settings - Allow users to configure Ollama URL and model
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  1. ✅ Added `OllamaUrl` and `OllamaModel` to `ISettingsService` interface
+  2. ✅ Added properties and persistence to `SettingsService` with default values (http://localhost:11434, llama3.2)
+  3. ✅ Added properties to `SettingsViewModel` with two-way binding
+  4. ✅ Added UI section in `SettingsWindow.xaml` under ML category
+  5. ✅ Updated `OllamaService` to use configurable settings from `ISettingsService`
+  6. ✅ Updated DI registration in `App.xaml.cs`
+  7. ✅ Build succeeds with 0 errors
+  8. ✅ All 26 OllamaService tests passing
+- **Files Modified:**
+  - `AdvGenPriceComparer.WPF/Services/ISettingsService.cs`
+  - `AdvGenPriceComparer.WPF/Services/SettingsService.cs`
+  - `AdvGenPriceComparer.WPF/ViewModels/SettingsViewModel.cs`
+  - `AdvGenPriceComparer.WPF/Views/SettingsWindow.xaml`
+  - `AdvGenPriceComparer.WPF/Chat/Services/OllamaService.cs`
+  - `AdvGenPriceComparer.WPF/App.xaml.cs`
+  - `AdvGenPriceComparer.Tests/Services/OllamaServiceTests.cs`
+
 ### Agent-Kimi-Security (DONE)
 - **Task:** Fix plaintext API key storage vulnerability - Encrypt sensitive settings using DPAPI
 - **Started:** 2026-04-10

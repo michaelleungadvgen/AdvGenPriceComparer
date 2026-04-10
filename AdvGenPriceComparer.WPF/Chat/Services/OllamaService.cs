@@ -19,16 +19,16 @@ namespace AdvGenPriceComparer.WPF.Chat.Services
     {
         private readonly HttpClient _httpClient;
         private readonly ILoggerService _logger;
+        private readonly ISettingsService _settingsService;
         private readonly List<ChatMessage> _conversationHistory = new();
-        private string _model = "llama3.2";
-        private const string OllamaBaseUrl = "http://localhost:11434";
 
-        public OllamaService(ILoggerService logger)
+        public OllamaService(ILoggerService logger, ISettingsService settingsService)
         {
             _logger = logger;
+            _settingsService = settingsService;
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri(OllamaBaseUrl),
+                BaseAddress = new Uri(_settingsService.OllamaUrl),
                 Timeout = TimeSpan.FromSeconds(60)
             };
         }
@@ -40,6 +40,7 @@ namespace AdvGenPriceComparer.WPF.Chat.Services
         {
             _logger = logger;
             _httpClient = httpClient;
+            _settingsService = null!; // Test constructor doesn't need settings
         }
 
         public async Task<bool> IsAvailableAsync()
@@ -109,13 +110,13 @@ namespace AdvGenPriceComparer.WPF.Chat.Services
                 }
                 var requestBody = new
                 {
-                    model = _model,
+                    model = _settingsService?.OllamaModel ?? "llama3.2",
                     messages = messages.ToArray(),
                     stream = false
                 };
                 var json = JsonSerializer.Serialize(requestBody);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                _logger.LogInfo($"Sending chat request to Ollama with model: {_model}");
+                _logger.LogInfo($"Sending chat request to Ollama with model: {_settingsService?.OllamaModel ?? "llama3.2"}");
                 var response = await _httpClient.PostAsync("/api/chat", content);
                 response.EnsureSuccessStatusCode();
                 var responseJson = await response.Content.ReadAsStringAsync();
@@ -228,7 +229,10 @@ Response:";
 
         public void SetModel(string model)
         {
-            _model = model;
+            if (_settingsService != null)
+            {
+                _settingsService.OllamaModel = model;
+            }
             _logger.LogInfo($"Ollama model set to: {model}");
         }
 

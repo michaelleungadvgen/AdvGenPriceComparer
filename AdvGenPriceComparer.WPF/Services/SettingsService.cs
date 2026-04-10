@@ -48,6 +48,8 @@ public class SettingsService : ISettingsService
     private int _connectionTimeout = DefaultConnectionTimeout;
     private int _retryCount = DefaultRetryCount;
     private ApplicationTheme _applicationTheme = ApplicationTheme.Light;
+    private string _ollamaUrl = "http://localhost:11434";
+    private string _ollamaModel = "llama3.2";
 
     public DatabaseProviderType DatabaseProviderType
     {
@@ -246,6 +248,26 @@ public class SettingsService : ISettingsService
         {
             _applicationTheme = value;
             _logger?.LogInfo($"Settings: ApplicationTheme changed to {value}");
+        }
+    }
+
+    public string OllamaUrl
+    {
+        get => _ollamaUrl;
+        set
+        {
+            _ollamaUrl = value;
+            _logger?.LogDebug($"Settings: OllamaUrl changed to {value}");
+        }
+    }
+
+    public string OllamaModel
+    {
+        get => _ollamaModel;
+        set
+        {
+            _ollamaModel = value;
+            _logger?.LogDebug($"Settings: OllamaModel changed to {value}");
         }
     }
 
@@ -570,6 +592,8 @@ public class SettingsService : ISettingsService
         _connectionTimeout = DefaultConnectionTimeout;
         _retryCount = DefaultRetryCount;
         _applicationTheme = ApplicationTheme.Light;
+        _ollamaUrl = "http://localhost:11434";
+        _ollamaModel = "llama3.2";
 
         // Reset paths
         var appDataPath = Path.Combine(
@@ -614,6 +638,8 @@ public class SettingsService : ISettingsService
         _connectionTimeout = data.ConnectionTimeout;
         _retryCount = data.RetryCount;
         _applicationTheme = data.ApplicationTheme;
+        _ollamaUrl = data.OllamaUrl ?? _ollamaUrl;
+        _ollamaModel = data.OllamaModel ?? _ollamaModel;
     }
 
     private SettingsData CreateSettingsData()
@@ -639,7 +665,9 @@ public class SettingsService : ISettingsService
             AlertCheckIntervalHours = _alertCheckIntervalHours,
             ConnectionTimeout = _connectionTimeout,
             RetryCount = _retryCount,
-            ApplicationTheme = _applicationTheme
+            ApplicationTheme = _applicationTheme,
+            OllamaUrl = _ollamaUrl,
+            OllamaModel = _ollamaModel
         };
     }
 
@@ -731,5 +759,7 @@ public class SettingsService : ISettingsService
         public int ConnectionTimeout { get; set; } = 30;
         public int RetryCount { get; set; } = 3;
         public ApplicationTheme ApplicationTheme { get; set; } = ApplicationTheme.Light;
+        public string OllamaUrl { get; set; } = "http://localhost:11434";
+        public string OllamaModel { get; set; } = "llama3.2";
     }
 }

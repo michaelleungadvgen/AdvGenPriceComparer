@@ -47,6 +47,10 @@ public class SettingsViewModel : ViewModelBase
     // Theme Settings
     private ApplicationTheme _applicationTheme = ApplicationTheme.Light;
 
+    // Ollama Settings
+    private string _ollamaUrl = "http://localhost:11434";
+    private string _ollamaModel = "llama3.2";
+
     // View State
     private string _selectedCategory = "General";
     private ObservableCollection<string> _categories = new()
@@ -333,6 +337,27 @@ public class SettingsViewModel : ViewModelBase
         }
     }
 
+    // Ollama Settings
+    public string OllamaUrl
+    {
+        get => _ollamaUrl;
+        set
+        {
+            if (SetProperty(ref _ollamaUrl, value))
+                ((RelayCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+    }
+
+    public string OllamaModel
+    {
+        get => _ollamaModel;
+        set
+        {
+            if (SetProperty(ref _ollamaModel, value))
+                ((RelayCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+    }
+
     public List<ApplicationTheme> AvailableThemes => new()
     {
         ApplicationTheme.Light,
@@ -396,6 +421,8 @@ public class SettingsViewModel : ViewModelBase
             ConnectionTimeout = _settingsService.ConnectionTimeout;
             RetryCount = _settingsService.RetryCount;
             ApplicationTheme = _settingsService.ApplicationTheme;
+            OllamaUrl = _settingsService.OllamaUrl ?? "http://localhost:11434";
+            OllamaModel = _settingsService.OllamaModel ?? "llama3.2";
 
             _logger.LogInfo("Settings loaded successfully");
         }
@@ -468,6 +495,8 @@ public class SettingsViewModel : ViewModelBase
             _settingsService.ConnectionTimeout = ConnectionTimeout;
             _settingsService.RetryCount = RetryCount;
             _settingsService.ApplicationTheme = ApplicationTheme;
+            _settingsService.OllamaUrl = OllamaUrl;
+            _settingsService.OllamaModel = OllamaModel;
 
             await _settingsService.SaveSettingsAsync();
             _logger.LogInfo("Settings saved successfully");

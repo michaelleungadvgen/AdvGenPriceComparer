@@ -108,6 +108,16 @@ public interface ISettingsService
     ApplicationTheme ApplicationTheme { get; set; }
 
     /// <summary>
+    /// Ollama server base URL (e.g., http://localhost:11434)
+    /// </summary>
+    string OllamaUrl { get; set; }
+
+    /// <summary>
+    /// Ollama model name (e.g., llama3.2, mistral)
+    /// </summary>
+    string OllamaModel { get; set; }
+
+    /// <summary>
     /// Load settings from disk
     /// </summary>
     Task LoadSettingsAsync();

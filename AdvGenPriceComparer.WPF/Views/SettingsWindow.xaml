@@ -450,6 +450,40 @@
 
                             <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                                 <StackPanel>
+                                    <TextBlock Text="Ollama Chat Configuration" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                    
+                                    <Grid Margin="0,0,0,15">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="Ollama URL" VerticalAlignment="Center"/>
+                                        <TextBox Grid.Column="1" 
+                                                 Text="{Binding OllamaUrl}" 
+                                                 Padding="8,5"/>
+                                    </Grid>
+                                    
+                                    <Grid Margin="0,0,0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="Model Name" VerticalAlignment="Center"/>
+                                        <TextBox Grid.Column="1" 
+                                                 Text="{Binding OllamaModel}" 
+                                                 Padding="8,5"/>
+                                    </Grid>
+                                    
+                                    <TextBlock Text="Example: http://localhost:11434 (URL) and llama3.2 or mistral (Model)" 
+                                               Foreground="#666" 
+                                               FontSize="11"
+                                               FontStyle="Italic"
+                                               Margin="150,10,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                                <StackPanel>
                                     <TextBlock Text="About ML Auto-Categorization" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,15"/>
                                     
                                     <TextBlock TextWrapping="Wrap" Foreground="#666" FontSize="12" Margin="0,0,0,10">

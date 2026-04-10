@@ -325,6 +325,16 @@ When using `System.Text.Json` for configuration files:
   - Migration support: Gracefully handles plaintext-to-encrypted migration
   - Cross-platform: Falls back to plaintext on non-Windows platforms (for tests)
 
+### Ollama Chat Configuration
+- **ISettingsService Properties**: Ollama URL and model are configurable via settings
+  - `OllamaUrl`: Base URL for Ollama server (default: `http://localhost:11434`)
+  - `OllamaModel`: Model name to use (default: `llama3.2`, can use `mistral`, `llama2`, etc.)
+  - Location: Settings > ML > Ollama Chat Configuration
+  - Persistence: Saved to `settings.json` in AppData
+- **OllamaService**: Uses configurable settings instead of hardcoded values
+  - Injected via constructor: `OllamaService(ILoggerService logger, ISettingsService settingsService)`
+  - Falls back to defaults if settings not available
+
 ### Auto-Update Mechanism
 - **UpdateService**: Checks for application updates from a remote JSON file
   - Location: `AdvGenPriceComparer.WPF/Services/UpdateService.cs`

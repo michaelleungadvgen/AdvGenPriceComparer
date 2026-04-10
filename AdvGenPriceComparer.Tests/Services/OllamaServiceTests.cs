@@ -58,6 +58,14 @@ public class OllamaServiceTests : IDisposable
         return service;
     }
 
+    private Mock<ISettingsService> CreateMockSettings()
+    {
+        var mockSettings = new Mock<ISettingsService>();
+        mockSettings.Setup(s => s.OllamaUrl).Returns("http://localhost:11434");
+        mockSettings.Setup(s => s.OllamaModel).Returns("llama3.2");
+        return mockSettings;
+    }
+
     #region Constructor Tests
 
     [Fact]
