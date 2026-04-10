@@ -716,6 +716,8 @@
 | 2026-04-10 | **Migrate PriceAlertViewModel to IMediator** - Migrated PriceAlertViewModel from IGroceryDataService to IMediator pattern. Deleted legacy AlertViewModel/AlertsPage (replaced by PriceAlertViewModel/PriceAlertWindow). Updated SimpleDialogService to pass IMediator. Build succeeds with 0 errors. | Agent-Kimi-Mediator |
 | 2026-04-10 | **Fix remaining UI Automation Test Failures** - Added AutomationProperties.AutomationId to all remaining buttons in MainWindow.xaml that were missing IDs: CategoriesNavButton, PriceHistoryNavButton, ReportsNavButton, ViewReportsButton, ComparePricesButton, BestPricesButton, FavoritesButton, ScanBarcodeButton, PriceDropAlertsButton, PriceAlertsButton, DealRemindersButton, WeeklySpecialsButton, ShoppingListsButton, SettingsButton, MLModelManagementButton, PriceForecastButton, DetectFakeSalesButton, AIChatAssistantButton, GenerateDemoDataButton. Build succeeds with 0 errors. | Agent-Kimi-Automation |
 | 2026-04-10 | **Migrate StoreViewModel to IMediator** - Removed IGroceryDataService dependency from StoreViewModel. Replaced _dataService.GetAllPlaces() with _mediator.Send(new GetAllPlacesQuery()). Replaced _dataService.Places.Delete() with _mediator.Send(new DeletePlaceCommand()). Updated MainWindow.xaml.cs call site. Build succeeds with 0 errors. | Agent-Kimi-Mediator-Migration |
+| 2026-04-10 | **Phase 18: Task 1 - Add Application Project Reference and Wire DI** - Verified Application project reference exists in WPF csproj. Verified `services.AddLogging()` and `services.AddApplicationServices()` in App.xaml.cs. Build succeeds with 0 errors. | Agent-Kimi-Current |
+| 2026-04-10 | **Phase 18: Task 2 - Add Missing Commands (DeletePlace, UpdatePlace, DeletePriceRecord)** - Created DeletePlaceCommand, UpdatePlaceCommand, DeletePriceRecordCommand with result records. Created PlaceDeleteUpdateCommandHandlers and PriceRecordDeleteCommandHandler. All handlers auto-register via reflection. Build succeeds with 0 errors. | Agent-Kimi-Current |
 
 ---
 
@@ -1129,6 +1131,44 @@
   - AdvGenPriceComparer.Core/Models/FileSizeMonitorModels.cs
   - AdvGenPriceComparer.WPF/Services/ExportSizeMonitor.cs
   - AdvGenPriceComparer.Tests/Services/ExportSizeMonitorTests.cs
+
+---
+
+## Phase 18: Mediator Wiring Implementation
+
+### Task 1: Add Application Project Reference and Wire DI
+**Status:** 🟢 DONE  
+**Assigned To:** Agent-Kimi-Current  
+**Started:** 2026-04-10  
+**Completed:** 2026-04-10  
+**Result:** Task was already complete - all required configurations were in place.
+
+**Verification:**
+- ✅ `AdvGenPriceComparer.Application` project reference exists in WPF csproj
+- ✅ `services.AddLogging()` and `services.AddApplicationServices()` in App.xaml.cs
+- ✅ Required usings present (`AdvGenFlow` and `AdvGenPriceComparer.Application`)
+- ✅ Build succeeds with 0 errors
+
+---
+
+### Task 2: Add Missing Commands (DeletePlace, UpdatePlace, DeletePriceRecord)
+**Status:** 🟢 DONE  
+**Assigned To:** Agent-Kimi-Current  
+**Started:** 2026-04-10  
+**Completed:** 2026-04-10  
+**Result:** All commands and handlers created successfully.
+
+**Files Created:**
+- ✅ `AdvGenPriceComparer.Application/Commands/DeletePlaceCommand.cs`
+- ✅ `AdvGenPriceComparer.Application/Commands/UpdatePlaceCommand.cs`
+- ✅ `AdvGenPriceComparer.Application/Commands/DeletePriceRecordCommand.cs`
+- ✅ `AdvGenPriceComparer.Application/Handlers/PlaceDeleteUpdateCommandHandlers.cs`
+- ✅ `AdvGenPriceComparer.Application/Handlers/PriceRecordDeleteCommandHandler.cs`
+
+**Verification:**
+- Application layer builds with 0 errors
+- WPF project builds with 0 errors (118 warnings are pre-existing)
+- Handlers auto-register via reflection in `ServiceRegistration.cs`
 
 ---
 
