@@ -317,6 +317,14 @@ When using `System.Text.Json` for configuration files:
   dotnet run  # Runs on https://localhost:5001 and http://localhost:5000
   ```
 
+### Security Features
+- **API Key Encryption**: SettingsService encrypts sensitive data using Windows DPAPI
+  - Location: `AdvGenPriceComparer.WPF/Services/SettingsService.cs` (lines 646-707)
+  - Encryption: Uses `System.Security.Cryptography.ProtectedData` with `DataProtectionScope.CurrentUser`
+  - Methods: `EncryptString()` and `DecryptString()` for secure API key storage
+  - Migration support: Gracefully handles plaintext-to-encrypted migration
+  - Cross-platform: Falls back to plaintext on non-Windows platforms (for tests)
+
 ### Auto-Update Mechanism
 - **UpdateService**: Checks for application updates from a remote JSON file
   - Location: `AdvGenPriceComparer.WPF/Services/UpdateService.cs`
