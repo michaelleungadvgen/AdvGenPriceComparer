@@ -55,7 +55,7 @@ public class ImportDataViewModelTests : IDisposable
     public void Constructor_WithServices_InitializesCollections()
     {
         // Act
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.NotNull(viewModel.Stores);
@@ -67,7 +67,7 @@ public class ImportDataViewModelTests : IDisposable
     public void Constructor_SetsDefaultValues()
     {
         // Act
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.Equal(1, viewModel.CurrentStep);
@@ -80,7 +80,7 @@ public class ImportDataViewModelTests : IDisposable
     public void StepVisibility_Properties_ReturnCorrectValues()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Assert - Step 1
         Assert.Equal(System.Windows.Visibility.Visible, viewModel.Step1Visibility);
@@ -108,7 +108,7 @@ public class ImportDataViewModelTests : IDisposable
     public void SelectedFilesText_NoFiles_ReturnsCorrectText()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.Equal("No files selected", viewModel.SelectedFilesText);
@@ -118,7 +118,7 @@ public class ImportDataViewModelTests : IDisposable
     public void SetSelectedFiles_WithFiles_UpdatesCollections()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         var filePaths = new[] { @"C:\test\file1.json", @"C:\test\file2.json" };
 
         // Act
@@ -138,10 +138,10 @@ public class ImportDataViewModelTests : IDisposable
         // Arrange
         _dataService.AddTestPlace("Coles Brisbane", "Coles");
         _dataService.AddTestPlace("Woolworths Sydney", "Woolworths");
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Act
-        viewModel.LoadStores();
+        viewModel.LoadStoresAsync().GetAwaiter().GetResult();
 
         // Assert
         Assert.Equal(2, viewModel.Stores.Count);
@@ -154,10 +154,10 @@ public class ImportDataViewModelTests : IDisposable
         _dataService.AddTestPlace("Zebra Store", "Zebra");
         _dataService.AddTestPlace("Alpha Store", "Alpha");
         _dataService.AddTestPlace("Beta Store", "Beta");
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Act
-        viewModel.LoadStores();
+        viewModel.LoadStoresAsync().GetAwaiter().GetResult();
 
         // Assert
         Assert.Equal("Alpha Store", viewModel.Stores[0].Name);
@@ -169,7 +169,7 @@ public class ImportDataViewModelTests : IDisposable
     public void GoToStep1_SetsCurrentStepTo1()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         viewModel.CurrentStep = 2;
 
         // Act
@@ -183,7 +183,7 @@ public class ImportDataViewModelTests : IDisposable
     public void GoToStep3_SetsCurrentStepTo3()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Act
         viewModel.GoToStep3();
@@ -197,7 +197,7 @@ public class ImportDataViewModelTests : IDisposable
     public void IsImporting_WhenTrue_SetsProgressVisibility()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Act
         viewModel.IsImporting = true;
@@ -212,7 +212,7 @@ public class ImportDataViewModelTests : IDisposable
     public void IsImporting_WhenFalse_SetsProgressVisibilityCollapsed()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         viewModel.IsImporting = true;
 
         // Act
@@ -228,7 +228,7 @@ public class ImportDataViewModelTests : IDisposable
     public void ImportButtonText_Initially_ReturnsImport()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Assert
         Assert.Equal("Import", viewModel.ImportButtonText);
@@ -238,7 +238,7 @@ public class ImportDataViewModelTests : IDisposable
     public void CatalogueDate_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         viewModel.PropertyChanged += (s, e) =>
         {
@@ -257,7 +257,7 @@ public class ImportDataViewModelTests : IDisposable
     public void SelectedStore_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         viewModel.PropertyChanged += (s, e) =>
         {
@@ -276,7 +276,7 @@ public class ImportDataViewModelTests : IDisposable
     public void ImportStatus_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         viewModel.PropertyChanged += (s, e) =>
         {
@@ -295,7 +295,7 @@ public class ImportDataViewModelTests : IDisposable
     public void CurrentStep_SetValue_RaisesPropertyChanged()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
         var propertyChangedRaised = false;
         string? changedProperty = null;
         viewModel.PropertyChanged += (s, e) =>
@@ -315,7 +315,7 @@ public class ImportDataViewModelTests : IDisposable
     public void CancelOperation_DoesNotThrow_WhenNotImporting()
     {
         // Arrange
-        var viewModel = new ImportDataViewModel(_dataService, _dialogService, _mediator, _jsonImportService);
+        var viewModel = new ImportDataViewModel(_dialogService, _mediator, _jsonImportService);
 
         // Act & Assert (should not throw)
         viewModel.CancelOperation();
