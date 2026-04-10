@@ -719,6 +719,7 @@
 | 2026-04-10 | **Phase 18: Task 1 - Add Application Project Reference and Wire DI** - Verified Application project reference exists in WPF csproj. Verified `services.AddLogging()` and `services.AddApplicationServices()` in App.xaml.cs. Build succeeds with 0 errors. | Agent-Kimi-Current |
 | 2026-04-10 | **Phase 18: Task 2 - Add Missing Commands (DeletePlace, UpdatePlace, DeletePriceRecord)** - Created DeletePlaceCommand, UpdatePlaceCommand, DeletePriceRecordCommand with result records. Created PlaceDeleteUpdateCommandHandlers and PriceRecordDeleteCommandHandler. All handlers auto-register via reflection. Build succeeds with 0 errors. | Agent-Kimi-Current |
 | 2026-04-10 | **Fix ExportSizeMonitorTests cleanup logic** - Fixed 3 previously skipped tests. Root cause: accessing FileInfo properties after Delete() call. Fixed by caching file info before deletion. Also fixed MinFilesToKeep logic order and added case-insensitive extension comparison. All 19 ExportSizeMonitorTests now passing. | Agent-Kimi-FixTests |
+| 2026-04-10 | **Migrate MLModelManagementViewModel to IMediator** - Replaced IGroceryDataService dependency with IMediator, updated using statements, changed constructor signature, updated TrainFromDatabaseAsync() and RetrainModelAsync() to use GetAllItemsQuery, updated SimpleDialogService. Build succeeds with 0 errors. | Agent-Kimi-Current |
 
 ---
 
@@ -1247,6 +1248,26 @@
   - `AdvGenPriceComparer.WPF/ViewModels/ImportDataViewModel.cs`
   - `AdvGenPriceComparer.WPF/MainWindow.xaml.cs`
   - `AdvGenPriceComparer.WPF/Views/ImportDataWindow.xaml.cs`
+
+---
+
+### Agent-Kimi-Current (DONE)
+- **Task:** Migrate MLModelManagementViewModel from IGroceryDataService to IMediator
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Status:** 🟢 DONE
+- **Results:**
+  1. ✅ Replaced IGroceryDataService dependency with IMediator in MLModelManagementViewModel
+  2. ✅ Updated using statements to use AdvGenFlow namespace
+  3. ✅ Changed constructor signature from IGroceryDataService to IMediator
+  4. ✅ Updated TrainFromDatabaseAsync() to use _mediator.Send(new GetAllItemsQuery())
+  5. ✅ Updated RetrainModelAsync() to use _mediator.Send(new GetAllItemsQuery())
+  6. ✅ Updated SimpleDialogService.ShowMLModelManagementDialog() to pass IMediator
+  7. ✅ Build succeeds with 0 errors, 118 warnings (pre-existing)
+  8. ✅ SettingsServiceTests passed (25/25)
+- **Files Modified:**
+  - `AdvGenPriceComparer.WPF/ViewModels/MLModelManagementViewModel.cs`
+  - `AdvGenPriceComparer.WPF/Services/SimpleDialogService.cs`
 
 ---
 

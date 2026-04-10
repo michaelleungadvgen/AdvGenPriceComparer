@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.ML.Models;
@@ -19,7 +21,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 
 public class MLModelManagementViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
+    private readonly IMediator _mediator;
     private readonly IDialogService _dialogService;
     private readonly ILoggerService _logger;
     private readonly ModelTrainingService _trainingService;
@@ -45,12 +47,12 @@ public class MLModelManagementViewModel : ViewModelBase
     private ObservableCollection<CategoryScoreDisplay> _categoryScores = new();
 
     public MLModelManagementViewModel(
-        IGroceryDataService dataService,
+        IMediator mediator,
         IDialogService dialogService,
         ILoggerService logger,
         string modelPath)
     {
-        _dataService = dataService;
+        _mediator = mediator;
         _dialogService = dialogService;
         _logger = logger;
         _modelPath = modelPath;
@@ -259,7 +261,7 @@ public class MLModelManagementViewModel : ViewModelBase
             IsBusy = true;
             StatusMessage = "Loading items from database...";
 
-            var items = _dataService.GetAllItems().ToList();
+            var items = (await _mediator.Send(new GetAllItemsQuery())).ToList();
             var categorizedItems = items.Where(i => !string.IsNullOrEmpty(i.Category)).ToList();
 
             if (categorizedItems.Count < ModelTrainingService.MinimumTrainingItems)
@@ -399,7 +401,7 @@ public class MLModelManagementViewModel : ViewModelBase
             IsBusy = true;
             StatusMessage = "Loading new training data...";
 
-            var items = _dataService.GetAllItems()
+            var items = (await _mediator.Send(new GetAllItemsQuery()))
                 .Where(i => !string.IsNullOrEmpty(i.Category))
                 .ToList();
 

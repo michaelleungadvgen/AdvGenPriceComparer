@@ -134,7 +134,7 @@ public class SimpleDialogService : IDialogService
 
     public void ShowMLModelManagementDialog()
     {
-        var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<IMediator>();
         var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var settingsService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ISettingsService>();
@@ -142,7 +142,7 @@ public class SimpleDialogService : IDialogService
         // Use MLModelPath from settings service
         var modelPath = settingsService.MLModelPath;
         
-        var viewModel = new ViewModels.MLModelManagementViewModel(dataService, dialogService, logger, modelPath);
+        var viewModel = new ViewModels.MLModelManagementViewModel(mediator, dialogService, logger, modelPath);
         var window = new MLModelManagementWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
