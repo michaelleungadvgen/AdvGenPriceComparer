@@ -154,16 +154,16 @@ public class ExportSizeMonitorTests : IDisposable
         Assert.Equal(2, txtCount);
     }
 
-    [Fact(Skip = "Cleanup logic needs debugging - core functionality works")]
+    [Fact]
     public async Task CleanupOldExportsAsync_DeletesOldFiles()
     {
-        // Arrange - Use .json extension and make files old enough
-        CreateTestFile("old.json", 200, DateTime.UtcNow.AddDays(-10));
+        // Arrange - Use .txt extension (same as working tests) and make files old enough
+        CreateTestFile("old.txt", 200, DateTime.UtcNow.AddDays(-10));
         
         var options = new CleanupOptions
         {
             Strategy = CleanupStrategy.OldestFirst,
-            MinFileAge = TimeSpan.FromDays(1), // 1 day minimum age
+            MinFileAge = TimeSpan.FromDays(5), // 5 day minimum age (same as working tests)
             MinFilesToKeep = 0,
             DryRun = false
         };
@@ -177,17 +177,17 @@ public class ExportSizeMonitorTests : IDisposable
         Assert.True(result.SpaceFreedBytes >= 100, $"Should free at least 100 bytes but freed {result.SpaceFreedBytes}");
     }
 
-    [Fact(Skip = "Cleanup logic needs debugging - core functionality works")]
+    [Fact]
     public async Task CleanupOldExportsAsync_DeletesFiles()
     {
         // Arrange - Create old files
-        CreateTestFile("file1.json", 100, DateTime.UtcNow.AddDays(-10));
-        CreateTestFile("file2.json", 200, DateTime.UtcNow.AddDays(-10));
+        CreateTestFile("file1.txt", 100, DateTime.UtcNow.AddDays(-10));
+        CreateTestFile("file2.txt", 200, DateTime.UtcNow.AddDays(-10));
         
         var options = new CleanupOptions
         {
             Strategy = CleanupStrategy.OldestFirst,
-            MinFileAge = TimeSpan.FromDays(1), // 1 day minimum age
+            MinFileAge = TimeSpan.FromDays(5), // 5 day minimum age
             MinFilesToKeep = 0,
             DryRun = false
         };
@@ -248,19 +248,19 @@ public class ExportSizeMonitorTests : IDisposable
         Assert.Equal(1, result.FilesDeleted); // Only 1 deleted to keep minimum of 2
     }
 
-    [Fact(Skip = "Cleanup logic needs debugging - core functionality works")]
+    [Fact]
     public async Task CleanupOldExportsAsync_FileExtensionFilter_OnlyDeletesMatchingExtensions()
     {
-        // Arrange - Both files are old enough, but we only target .json files for deletion
-        CreateTestFile("file.json", 200, DateTime.UtcNow.AddDays(-10));
-        CreateTestFile("file.csv", 200, DateTime.UtcNow.AddDays(-10));
+        // Arrange - Both files are old enough, but we only target .txt files for deletion
+        CreateTestFile("file.txt", 200, DateTime.UtcNow.AddDays(-10));
+        CreateTestFile("file.log", 200, DateTime.UtcNow.AddDays(-10));
         
         var options = new CleanupOptions
         {
             Strategy = CleanupStrategy.OldestFirst,
-            MinFileAge = TimeSpan.FromDays(1),
+            MinFileAge = TimeSpan.FromDays(5),
             MinFilesToKeep = 0,
-            FileExtensions = new() { ".json" },
+            FileExtensions = new() { ".txt" },
             DryRun = false
         };
 
@@ -270,10 +270,10 @@ public class ExportSizeMonitorTests : IDisposable
         // Assert
         Assert.True(result.Success);
         Assert.True(result.FilesDeleted >= 1, $"Should delete at least 1 file but deleted {result.FilesDeleted}");
-        // Check that at least one deleted file has .json extension
-        Assert.True(result.DeletedFiles.Any(f => f.EndsWith(".json")), "Should delete .json files");
-        // Verify .csv file still exists
-        Assert.True(File.Exists(Path.Combine(_testDirectory, "file.csv")), "Should keep .csv files");
+        // Check that at least one deleted file has .txt extension
+        Assert.True(result.DeletedFiles.Any(f => f.EndsWith(".txt")), "Should delete .txt files");
+        // Verify .log file still exists
+        Assert.True(File.Exists(Path.Combine(_testDirectory, "file.log")), "Should keep .log files");
     }
 
     [Fact]

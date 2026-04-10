@@ -6371,7 +6371,7 @@ dotnet build AdvGenPriceComparer.Web/AdvGenPriceComparer.Web.csproj
   
 - Registered `IFileSizeMonitor` in DI container (App.xaml.cs)
 
-- Created 16 comprehensive unit tests in `ExportSizeMonitorTests.cs`
+- Created 19 comprehensive unit tests in `ExportSizeMonitorTests.cs` (16 original + 3 fixed from skipped tests)
 
 **Files Created:**
 - `AdvGenPriceComparer.Core/Interfaces/IFileSizeMonitor.cs`

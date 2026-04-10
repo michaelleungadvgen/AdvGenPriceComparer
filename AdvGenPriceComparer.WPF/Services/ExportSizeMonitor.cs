@@ -181,32 +181,38 @@ public class ExportSizeMonitor : IFileSizeMonitor
 
         long spaceFreed = 0;
         int filesKept = 0;
+        int totalDeletableFiles = files.Count;
 
         foreach (var file in files)
         {
-            // Ensure we keep minimum number of files
-            if (files.Count - result.FilesDeleted <= cleanupOptions.MinFilesToKeep && spaceFreed < targetFreeSpace)
-            {
-                filesKept++;
-                continue;
-            }
-
             // Stop if we've freed enough space
             if (spaceFreed >= targetFreeSpace && result.FilesDeleted > 0)
             {
                 break;
             }
 
+            // Ensure we keep minimum number of files
+            int filesRemaining = totalDeletableFiles - result.FilesDeleted;
+            if (filesRemaining <= cleanupOptions.MinFilesToKeep)
+            {
+                filesKept++;
+                continue;
+            }
+
             try
             {
+                // Cache file info before deletion
+                var fileName = file.FullName;
+                var fileLength = file.Length;
+                
                 if (!cleanupOptions.DryRun)
                 {
                     file.Delete();
                 }
                 
                 result.FilesDeleted++;
-                spaceFreed += file.Length;
-                result.DeletedFiles.Add(file.FullName);
+                spaceFreed += fileLength;
+                result.DeletedFiles.Add(fileName);
                 
                 _logger.LogInfo($"{(cleanupOptions.DryRun ? "[DRY RUN] Would delete" : "Deleted")}: {file.FullName} ({FormatBytes(file.Length)})");
             }
@@ -372,7 +378,10 @@ public class ExportSizeMonitor : IFileSizeMonitor
                     if (options.FileExtensions?.Count > 0)
                     {
                         var extension = fileInfo.Extension.ToLowerInvariant();
-                        if (!options.FileExtensions.Contains(extension))
+                        var normalizedExtensions = options.FileExtensions
+                            .Select(e => e.ToLowerInvariant())
+                            .ToList();
+                        if (!normalizedExtensions.Contains(extension))
                         {
                             continue;
                         }

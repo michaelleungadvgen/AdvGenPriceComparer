@@ -718,6 +718,7 @@
 | 2026-04-10 | **Migrate StoreViewModel to IMediator** - Removed IGroceryDataService dependency from StoreViewModel. Replaced _dataService.GetAllPlaces() with _mediator.Send(new GetAllPlacesQuery()). Replaced _dataService.Places.Delete() with _mediator.Send(new DeletePlaceCommand()). Updated MainWindow.xaml.cs call site. Build succeeds with 0 errors. | Agent-Kimi-Mediator-Migration |
 | 2026-04-10 | **Phase 18: Task 1 - Add Application Project Reference and Wire DI** - Verified Application project reference exists in WPF csproj. Verified `services.AddLogging()` and `services.AddApplicationServices()` in App.xaml.cs. Build succeeds with 0 errors. | Agent-Kimi-Current |
 | 2026-04-10 | **Phase 18: Task 2 - Add Missing Commands (DeletePlace, UpdatePlace, DeletePriceRecord)** - Created DeletePlaceCommand, UpdatePlaceCommand, DeletePriceRecordCommand with result records. Created PlaceDeleteUpdateCommandHandlers and PriceRecordDeleteCommandHandler. All handlers auto-register via reflection. Build succeeds with 0 errors. | Agent-Kimi-Current |
+| 2026-04-10 | **Fix ExportSizeMonitorTests cleanup logic** - Fixed 3 previously skipped tests. Root cause: accessing FileInfo properties after Delete() call. Fixed by caching file info before deletion. Also fixed MinFilesToKeep logic order and added case-insensitive extension comparison. All 19 ExportSizeMonitorTests now passing. | Agent-Kimi-FixTests |
 
 ---
 
@@ -1131,6 +1132,24 @@
   - AdvGenPriceComparer.Core/Models/FileSizeMonitorModels.cs
   - AdvGenPriceComparer.WPF/Services/ExportSizeMonitor.cs
   - AdvGenPriceComparer.Tests/Services/ExportSizeMonitorTests.cs
+
+### Agent-Kimi-FixTests (DONE)
+- **Task:** Fix ExportSizeMonitorTests cleanup logic - Fix 3 skipped tests related to cleanup functionality
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Assigned To:** Agent-Kimi-FixTests
+- **Status:** 🟢 DONE
+- **Issues Found & Fixed:**
+  1. **File info access after deletion bug**: Code was accessing `file.Length` and `file.FullName` AFTER calling `file.Delete()`, which could cause issues
+  2. **MinFilesToKeep logic**: Reordered the checks so MinFilesToKeep is evaluated correctly
+  3. **File extension comparison**: Added case-insensitive extension comparison with normalization
+- **Changes Made:**
+  1. Fixed `ExportSizeMonitor.cs` - Cache file info (FullName, Length) BEFORE calling Delete()
+  2. Fixed `ExportSizeMonitor.cs` - Reordered MinFilesToKeep check to happen after space check
+  3. Fixed `ExportSizeMonitor.cs` - Added case-insensitive file extension filtering
+  4. Removed Skip attributes from 3 tests in `ExportSizeMonitorTests.cs`
+  5. Updated test file extensions and MinFileAge to match working test patterns
+- **Results:** All 19 ExportSizeMonitorTests now passing (previously 3 were skipped)
 
 ---
 
