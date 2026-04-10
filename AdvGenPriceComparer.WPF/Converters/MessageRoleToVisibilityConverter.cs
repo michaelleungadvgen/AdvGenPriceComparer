@@ -19,7 +19,8 @@ namespace AdvGenPriceComparer.WPF.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            // One-way converter - no conversion back needed
+            return Binding.DoNothing;
         }
     }
 }

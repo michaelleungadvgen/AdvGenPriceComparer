@@ -222,7 +222,12 @@
 
 ## Active Agent Assignments
 
-### Agent-Kimi-Current (DONE)
+### Agent-Kimi-Current (DOING)
+- **Task:** Fix NotImplementedException in WPF Converters - Replace all ConvertBack exceptions with Binding.DoNothing
+- **Started:** 2026-04-10
+- **Description:** Multiple WPF value converters throw NotImplementedException in ConvertBack methods. These are one-way converters that should return Binding.DoNothing instead.
+
+### Agent-Kimi-Previous (DONE)
 - **Task:** Create OllamaService unit tests - Comprehensive test coverage for Chat/Ollama functionality
 - **Started:** 2026-04-10
 - **Completed:** 2026-04-10

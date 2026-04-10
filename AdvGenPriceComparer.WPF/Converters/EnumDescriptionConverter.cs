@@ -34,7 +34,8 @@ public class EnumDescriptionConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        throw new NotSupportedException("EnumDescriptionConverter does not support ConvertBack");
+        // One-way converter - no conversion back needed
+        return Binding.DoNothing;
     }
 
     private static string AddSpacesToSentence(string text, bool preserveAcronyms)
@@ -79,7 +80,8 @@ public class IntToVisibilityConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        throw new NotSupportedException();
+        // One-way converter - no conversion back needed
+        return Binding.DoNothing;
     }
 }
 
@@ -99,6 +101,7 @@ public class DecimalToVisibilityConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        throw new NotSupportedException();
+        // One-way converter - no conversion back needed
+        return Binding.DoNothing;
     }
 }

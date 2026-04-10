@@ -58,6 +58,7 @@ public class RelevanceToOpacityConverter : System.Windows.Data.IValueConverter
 
     public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        throw new System.NotImplementedException();
+        // One-way converter - no conversion back needed
+        return System.Windows.Data.Binding.DoNothing;
     }
 }
