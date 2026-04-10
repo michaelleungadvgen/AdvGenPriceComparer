@@ -714,6 +714,7 @@
 | 2026-04-10 | **Fix Web Portal (Phase 17) build errors** - Added missing Microsoft.EntityFrameworkCore.Sqlite package to AdvGenPriceComparer.Web.csproj. Fixed incorrect method call GetByItemId -> GetByItem in WebDataService.cs. Build now succeeds with 0 errors. | Agent-Current |
 | 2026-04-10 | **Migrate PriceAlertViewModel to IMediator** - Migrated PriceAlertViewModel from IGroceryDataService to IMediator pattern. Deleted legacy AlertViewModel/AlertsPage (replaced by PriceAlertViewModel/PriceAlertWindow). Updated SimpleDialogService to pass IMediator. Build succeeds with 0 errors. | Agent-Kimi-Mediator |
 | 2026-04-10 | **Fix remaining UI Automation Test Failures** - Added AutomationProperties.AutomationId to all remaining buttons in MainWindow.xaml that were missing IDs: CategoriesNavButton, PriceHistoryNavButton, ReportsNavButton, ViewReportsButton, ComparePricesButton, BestPricesButton, FavoritesButton, ScanBarcodeButton, PriceDropAlertsButton, PriceAlertsButton, DealRemindersButton, WeeklySpecialsButton, ShoppingListsButton, SettingsButton, MLModelManagementButton, PriceForecastButton, DetectFakeSalesButton, AIChatAssistantButton, GenerateDemoDataButton. Build succeeds with 0 errors. | Agent-Kimi-Automation |
+| 2026-04-10 | **Migrate StoreViewModel to IMediator** - Removed IGroceryDataService dependency from StoreViewModel. Replaced _dataService.GetAllPlaces() with _mediator.Send(new GetAllPlacesQuery()). Replaced _dataService.Places.Delete() with _mediator.Send(new DeletePlaceCommand()). Updated MainWindow.xaml.cs call site. Build succeeds with 0 errors. | Agent-Kimi-Mediator-Migration |
 
 ---
 
@@ -739,6 +740,21 @@
 ---
 
 ## Active Agent Assignments
+
+### Agent-Kimi-Mediator-Migration (DONE)
+- **Task:** Migrate StoreViewModel to IMediator - Remove IGroceryDataService dependency
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  - ✅ Removed IGroceryDataService dependency from StoreViewModel
+  - ✅ Added using statements for AdvGenPriceComparer.Application.Queries and Commands
+  - ✅ Replaced _dataService.GetAllPlaces() with _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult()
+  - ✅ Replaced _dataService.Places.Delete() with _mediator.Send(new DeletePlaceCommand()) with result checking
+  - ✅ Fixed MainWindow.xaml.cs call site to use new constructor signature
+  - ✅ Build succeeds with 0 errors, 118 warnings (pre-existing)
+- **Files Modified:**
+  - `AdvGenPriceComparer.WPF/ViewModels/StoreViewModel.cs`
+  - `AdvGenPriceComparer.WPF/MainWindow.xaml.cs`
 
 ### Agent-Kimi-Automation (DONE)
 - **Task:** Fix remaining UI Automation Test Failures - Add missing AutomationProperties.AutomationId to MainWindow buttons

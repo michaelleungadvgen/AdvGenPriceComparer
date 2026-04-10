@@ -3,7 +3,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using AdvGenFlow;
-using AdvGenPriceComparer.Core.Interfaces;
+using AdvGenPriceComparer.Application.Commands;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
@@ -12,7 +13,6 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 
 public class StoreViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
     private readonly IMediator _mediator;
     private ObservableCollection<Place> _stores = new();
@@ -22,9 +22,8 @@ public class StoreViewModel : ViewModelBase
     private string _selectedChain = "All Chains";
     private ObservableCollection<string> _chains = new();
 
-    public StoreViewModel(IGroceryDataService dataService, IDialogService dialogService, IMediator mediator)
+    public StoreViewModel(IDialogService dialogService, IMediator mediator)
     {
-        _dataService = dataService;
         _dialogService = dialogService;
         _mediator = mediator;
 
@@ -90,7 +89,7 @@ public class StoreViewModel : ViewModelBase
     {
         try
         {
-            var stores = _dataService.GetAllPlaces().ToList();
+            var stores = _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult().ToList();
             _allStores = new ObservableCollection<Place>(stores);
             FilterStores();
         }
@@ -104,7 +103,7 @@ public class StoreViewModel : ViewModelBase
     {
         try
         {
-            var chains = _dataService.GetAllPlaces()
+            var chains = _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult()
                 .Select(s => s.Chain)
                 .Where(c => !string.IsNullOrEmpty(c))
                 .Distinct()
@@ -226,10 +225,17 @@ public class StoreViewModel : ViewModelBase
 
             if (result == MessageBoxResult.Yes)
             {
-                _dataService.Places.Delete(store.Id);
-                LoadStores();
-                LoadChains();
-                _dialogService.ShowSuccess($"Store '{store.Name}' deleted successfully.");
+                var deleteResult = _mediator.Send(new DeletePlaceCommand(store.Id)).GetAwaiter().GetResult();
+                if (deleteResult.Success)
+                {
+                    LoadStores();
+                    LoadChains();
+                    _dialogService.ShowSuccess($"Store '{store.Name}' deleted successfully.");
+                }
+                else
+                {
+                    _dialogService.ShowError($"Failed to delete store: {deleteResult.ErrorMessage}");
+                }
             }
         }
         catch (Exception ex)
