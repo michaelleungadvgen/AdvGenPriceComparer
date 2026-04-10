@@ -28,7 +28,7 @@ public partial class ImportDataWindow : Window
             _logger.LogInfo("DataContext set to ViewModel");
 
             _logger.LogInfo("Loading stores");
-            ViewModel.LoadStores();
+            ViewModel.LoadStoresAsync().GetAwaiter().GetResult();
             _logger.LogInfo($"Stores loaded: {ViewModel.Stores.Count} stores found");
         }
         catch (Exception ex)
@@ -53,9 +53,9 @@ public partial class ImportDataWindow : Window
         }
     }
 
-    private void NewStore_Click(object sender, RoutedEventArgs e)
+    private async void NewStore_Click(object sender, RoutedEventArgs e)
     {
-        ViewModel.OpenNewStoreDialog(this);
+        await ViewModel.OpenNewStoreDialogAsync(this);
     }
 
     private void Next_Click(object sender, RoutedEventArgs e)

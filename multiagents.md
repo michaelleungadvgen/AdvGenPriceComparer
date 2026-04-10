@@ -1230,6 +1230,26 @@
 
 ---
 
+### Agent-Kimi-Current (DONE)
+- **Task:** Migrate ImportDataViewModel to IMediator - Remove IGroceryDataService dependency
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Status:** 🟢 DONE
+- **Changes Made:**
+  1. ✅ Updated ImportDataViewModel to use GetAllPlacesQuery instead of _dataService.GetAllPlaces()
+  2. ✅ Updated ImportDataViewModel to use SearchItemsQuery instead of _dataService.Items.SearchByName()
+  3. ✅ Removed IGroceryDataService dependency from ImportDataViewModel constructor
+  4. ✅ Made LoadStores(), OpenNewStoreDialog(), CreatePreviewItem() async
+  5. ✅ Updated MainWindow.xaml.cs to not pass IGroceryDataService to ImportDataViewModel
+  6. ✅ Updated ImportDataWindow.xaml.cs to use async methods
+  7. ✅ Build succeeds with 0 errors (118 warnings are pre-existing)
+- **Files Modified:**
+  - `AdvGenPriceComparer.WPF/ViewModels/ImportDataViewModel.cs`
+  - `AdvGenPriceComparer.WPF/MainWindow.xaml.cs`
+  - `AdvGenPriceComparer.WPF/Views/ImportDataWindow.xaml.cs`
+
+---
+
 ## Notes for Agents
 
 1. **Before starting a task:**

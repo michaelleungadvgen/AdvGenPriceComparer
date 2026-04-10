@@ -12,7 +12,7 @@ using AdvGenFlow;
 using AdvGenPriceComparer.Application.Services;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
-using AdvGenPriceComparer.Data.LiteDB.Services;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.WPF.Services;
 using AdvGenPriceComparer.WPF.Views;
 
@@ -27,7 +27,6 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 /// </summary>
 public class ImportDataViewModel : ViewModelBase
 {
-    private readonly IGroceryDataService _dataService;
     private readonly IDialogService _dialogService;
     private readonly IMediator _mediator;
     private readonly JsonImportService _jsonImportService;
@@ -49,9 +48,8 @@ public class ImportDataViewModel : ViewModelBase
     /// <summary>
     /// Constructor with JsonImportService injection
     /// </summary>
-    public ImportDataViewModel(IGroceryDataService dataService, IDialogService dialogService, IMediator mediator, JsonImportService jsonImportService)
+    public ImportDataViewModel(IDialogService dialogService, IMediator mediator, JsonImportService jsonImportService)
     {
-        _dataService = dataService;
         _dialogService = dialogService;
         _mediator = mediator;
         _jsonImportService = jsonImportService;
@@ -169,11 +167,11 @@ public class ImportDataViewModel : ViewModelBase
 
     public string ImportButtonText => _importCompleted ? "Close" : "Import";
 
-    public void LoadStores()
+    public async Task LoadStoresAsync()
     {
         Stores.Clear();
-        var stores = _dataService.GetAllPlaces().OrderBy(p => p.Name);
-        foreach (var store in stores)
+        var stores = await _mediator.Send(new GetAllPlacesQuery());
+        foreach (var store in stores.OrderBy(p => p.Name))
         {
             Stores.Add(store);
         }
@@ -193,14 +191,14 @@ public class ImportDataViewModel : ViewModelBase
         OnPropertyChanged(nameof(FileCount));
     }
 
-    public void OpenNewStoreDialog(Window owner)
+    public async Task OpenNewStoreDialogAsync(Window owner)
     {
         var viewModel = new AddStoreViewModel(_mediator, _dialogService);
         var window = new AddStoreWindow(viewModel) { Owner = owner };
 
         if (window.ShowDialog() == true)
         {
-            LoadStores();
+            await LoadStoresAsync();
             // Select the newly added store
             SelectedStore = Stores.FirstOrDefault(s => s.Name == viewModel.StoreName);
         }
@@ -255,7 +253,7 @@ public class ImportDataViewModel : ViewModelBase
                 foreach (var product in products)
                 {
                     // Create preview item from product
-                    var previewItem = CreatePreviewItem(product);
+                    var previewItem = await CreatePreviewItemAsync(product);
                     PreviewItems.Add(previewItem);
                 }
             }
@@ -291,14 +289,15 @@ public class ImportDataViewModel : ViewModelBase
         }
     }
 
-    private ImportPreviewItem CreatePreviewItem(ColesProduct product)
+    private async Task<ImportPreviewItem> CreatePreviewItemAsync(ColesProduct product)
     {
         var price = ParsePrice(product.Price);
         var originalPrice = ParsePrice(product.OriginalPrice);
         var savings = ParsePrice(product.Savings);
 
         // Try to find existing item by name and brand
-        var existingItems = _dataService.Items.SearchByName(product.ProductName)
+        var searchResults = await _mediator.Send(new SearchItemsQuery(product.ProductName));
+        var existingItems = searchResults
             .Where(i => i.Brand == product.Brand)
             .ToList();
 

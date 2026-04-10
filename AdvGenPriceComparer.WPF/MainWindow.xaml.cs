@@ -278,14 +278,13 @@ public partial class MainWindow : FluentWindow
         try
         {
             logger.LogInfo("Getting services from DI container");
-            var dataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IGroceryDataService>();
             var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
             var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenFlow.IMediator>();
             var jsonImportService = ((App)System.Windows.Application.Current).Services.GetRequiredService<JsonImportService>();
             logger.LogInfo("Services retrieved successfully");
 
             logger.LogInfo("Creating ImportDataViewModel");
-            var viewModel = new ImportDataViewModel(dataService, dialogService, mediator, jsonImportService);
+            var viewModel = new ImportDataViewModel(dialogService, mediator, jsonImportService);
             logger.LogInfo("ImportDataViewModel created");
 
             logger.LogInfo("Creating ImportDataWindow");
