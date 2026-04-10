@@ -333,4 +333,14 @@ public class SimpleDialogService : IDialogService
         };
         return window;
     }
+
+    public void ShowValidationReportDialog(Core.Models.ValidationReport report)
+    {
+        var viewModel = new ValidationReportViewModel
+        {
+            Report = report
+        };
+        var window = new ValidationReportWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
+        window.ShowDialog();
+    }
 }

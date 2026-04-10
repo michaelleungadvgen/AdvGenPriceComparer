@@ -38,4 +38,7 @@ public interface IDialogService
     // Progress Dialogs
     ExportProgressWindow ShowExportProgressDialog(string title = "Exporting Data...");
     ImportProgressWindow ShowImportProgressDialog(string title = "Importing Data...");
+    
+    // Validation Report Dialog
+    void ShowValidationReportDialog(Core.Models.ValidationReport report);
 }

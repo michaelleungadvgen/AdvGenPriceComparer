@@ -38,6 +38,10 @@
             <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
             <converters:DecimalToVisibilityConverter x:Key="DecimalToVisibilityConverter"/>
             <converters:ErrorCountToBrushConverter x:Key="ErrorCountToBrushConverter"/>
+            <converters:ValidationSeverityToBrushConverter x:Key="ValidationSeverityToBrushConverter"/>
+            <converters:ValidationSeverityToIconConverter x:Key="ValidationSeverityToIconConverter"/>
+            <converters:ValidationStatusToBrushConverter x:Key="ValidationStatusToBrushConverter"/>
+            <converters:ValidationEntryTypeToDisplayConverter x:Key="ValidationEntryTypeToDisplayConverter"/>
             
             <!-- Enum Collections -->
             <ObjectDataProvider x:Key="OptimizationStrategyEnum" MethodName="GetValues" ObjectType="{x:Type services:OptimizationStrategy}">

@@ -504,6 +504,7 @@ public class SettingsViewModelTests : IDisposable
         public bool ShowQuestion(string title, string message) => ConfirmResult;
         public ExportProgressWindow ShowExportProgressDialog(string title = "Exporting Data...") => null!;
         public ImportProgressWindow ShowImportProgressDialog(string title = "Importing Data...") => null!;
+        public void ShowValidationReportDialog(Core.Models.ValidationReport report) { }
     }
 
     #endregion
