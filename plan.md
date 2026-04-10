@@ -484,7 +484,7 @@ public class ExportService
 - [x] Unit tests for SettingsService - FIXED 2026-03-12: SettingsService now respects APPDATA environment variable for test isolation. All 25 tests now passing (was 55 failing, then 2 failing due to line ending and event timing issues which were also fixed)
 - [x] Unit tests for import/export services  
 - [x] Integration tests for database operations - DONE: Created 19 comprehensive xUnit integration tests in DatabaseOperationsIntegrationTests.cs
-- [x] UI automation tests - COMPLETED: FlaUI 4.0.0 framework, ApplicationLauncher utility, Page Object pattern, 30+ tests covering MainWindow, ItemsPage, Import/Export
+- [x] UI automation tests - COMPLETED: FlaUI 4.0.0 framework, ApplicationLauncher utility, Page Object pattern, 30+ tests covering MainWindow, ItemsPage, Import/Export. FIXED 2026-04-10: Added AutomationProperties.AutomationId to MainWindow buttons for UI test discoverability
 - [x] Create installer (WiX Toolset or ClickOnce) - WiX v4 SDK-style project, outputs MSI (~25MB)
 - [x] Configure auto-update mechanism - IMPLEMENTED: IUpdateService, UpdateService with remote JSON version check, UpdateNotificationWindow, auto-check on startup with 24-hour throttling
 - [x] User documentation - COMPLETED: Agent-032 created comprehensive USER_GUIDE.md

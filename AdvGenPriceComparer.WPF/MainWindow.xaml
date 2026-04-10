@@ -170,20 +170,23 @@
                            BorderThickness="0"
                            Padding="12,8" Cursor="Hand" FontWeight="Medium"
                            Click="DashboardNav_Click"
-                           Appearance="Secondary"/>
+                           Appearance="Secondary"
+                           AutomationProperties.AutomationId="DashboardNavButton"/>
 
                     <!-- Navigation Buttons -->
                     <ui:Button x:Name="ItemsNavBtn" Content="Items" HorizontalAlignment="Stretch" Margin="0,0,0,4"
                            Background="Transparent" Foreground="#555" BorderThickness="0"
                            Padding="12,8" Cursor="Hand"
                            Click="ItemsNav_Click"
-                           Appearance="Secondary"/>
+                           Appearance="Secondary"
+                           AutomationProperties.AutomationId="ItemsNavButton"/>
 
                     <ui:Button x:Name="StoresNavBtn" Content="Stores" HorizontalAlignment="Stretch" Margin="0,0,0,4"
                            Background="Transparent" Foreground="#555" BorderThickness="0"
                            Padding="12,8" Cursor="Hand"
                            Click="StoresNav_Click"
-                           Appearance="Secondary"/>
+                           Appearance="Secondary"
+                           AutomationProperties.AutomationId="StoresNavButton"/>
 
                     <ui:Button x:Name="CategoriesNavBtn" Content="Categories" HorizontalAlignment="Stretch" Margin="0,0,0,4"
                            Background="Transparent" Foreground="#555" BorderThickness="0"
@@ -205,18 +208,21 @@
 
                     <!-- Quick Actions -->
                     <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
-                    <ui:Button Content="🔍 Global Search" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button x:Name="GlobalSearchButton" Content="🔍 Global Search" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding GlobalSearchCommand}"
                            Appearance="Transparent"
-                           Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.AutomationId="GlobalSearchButton"/>
+                    <ui:Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding AddItemCommand}"
                            Appearance="Transparent"
-                           Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="Add Store" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.AutomationId="AddItemButton"/>
+                    <ui:Button x:Name="AddStoreButton" Content="Add Store" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding AddPlaceCommand}"
                            Appearance="Transparent"
-                           Padding="8,6" Cursor="Hand" FontSize="13"/>
+                           Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.AutomationId="AddStoreButton"/>
                     <ui:Button Content="View Reports" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Click="ReportsNav_Click"
                            Appearance="Transparent"
@@ -280,14 +286,16 @@
 
                     <!-- Import/Export -->
                     <TextBlock Text="Import/Export" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
-                    <ui:Button Content="Import JSON Data" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button x:Name="ImportDataButton" Content="Import JSON Data" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Click="ImportJsonData_Click"
                            Appearance="Transparent"
-                           Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="Export Data" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                           Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.AutomationId="ImportDataButton"/>
+                    <ui:Button x:Name="ExportDataButton" Content="Export Data" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Click="ExportJsonData_Click"
                            Appearance="Transparent"
-                           Padding="8,6" Cursor="Hand" FontSize="13"/>
+                           Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.AutomationId="ExportDataButton"/>
 
                         <!-- Demo Data -->
                         <TextBlock Text="Demo" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>

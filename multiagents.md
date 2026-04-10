@@ -235,6 +235,24 @@
   - `AdvGenPriceComparer.Web/Services/WebDataService.cs` - Fixed method name
 
 ### Agent-Kimi-Current (DONE)
+- **Task:** Fix UI Automation Test Failures - Add missing AutomationProperties.AutomationId to MainWindow buttons
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Issue:** UI automation tests were failing with "Button with automation ID 'ImportDataButton' not found" because the MainWindow.xaml buttons didn't have AutomationProperties.AutomationId set
+- **Solution:** Added AutomationProperties.AutomationId to all interactive buttons in MainWindow.xaml sidebar:
+  - DashboardNav
+  - ItemsNavBtn (as ItemsNav)
+  - StoresNavBtn (as StoresNav)
+  - GlobalSearchButton
+  - AddItemButton
+  - AddStoreButton
+  - ImportDataButton
+  - ExportDataButton
+- **Files Modified:**
+  - AdvGenPriceComparer.WPF/MainWindow.xaml
+- **Build Result:** 0 errors, 112 warnings (pre-existing)
+
+### Agent-Kimi-Previous (DONE)
 - **Task:** Fix NotImplementedException in WPF Converters - Replace all ConvertBack exceptions with Binding.DoNothing
 - **Started:** 2026-04-10
 - **Completed:** 2026-04-10
@@ -687,6 +705,7 @@
 | 2026-04-09 | **Fix TODO in ItemWithPricesViewModel** - Implemented store name and location loading from IGroceryDataService. Updated `StoreName` property and `FormatStoreLocation()` method to load actual place data using PlaceId. Added proper null-safety and exception handling. | Agent-Kimi-Current |
 | 2026-04-09 | **Create CategoryPredictionService unit tests** - Created comprehensive unit tests for CategoryPredictionService with 32 tests covering constructor behavior (logging, model path), prediction without model (returns Uncategorized, zero confidence), TryAutoCategorize with various thresholds, GetTopSuggestions, batch prediction operations, ICategoryPredictionService interface implementation, LoadModel/ReloadModel behavior, default confidence threshold validation, and null handling for all methods. Build succeeds with 0 errors, all 32 tests passing. | Agent-Kimi-MLTest |
 | 2026-04-09 | **Update README.md roadmap** - Fixed outdated "In Progress" section that incorrectly showed ML.NET Auto-Categorization (Phase 9) and ML.NET Price Prediction (Phase 11) as in progress. Moved these to "Completed ✅" section with descriptions. Also moved completed items (Barcode scanning) from Planned to appropriate sections. Build succeeds with 0 errors. | Agent-Kimi-DocsUpdate |
+| 2026-04-10 | **Fix UI Automation Test Failures** - Added AutomationProperties.AutomationId to MainWindow.xaml buttons (ImportDataButton, AddItemButton, AddStoreButton, DashboardNav, ItemsNav, StoresNav, GlobalSearchButton, ExportDataButton) to fix UI automation test failures. Build succeeds with 0 errors, 112 warnings (pre-existing). | Agent-Kimi-Current |
 | 2026-04-10 | **Mark Phase 12 (Ollama Chat Interface) as COMPLETE** - Verified all Ollama features are implemented and working: OllamaService, QueryRouterService, PriceChatWindow UI, SystemPrompts for intent recognition. All 26 OllamaServiceTests passing. Updated multiagents.md status from 🟡 IN PROGRESS to ✅ COMPLETE. | Agent-Current |
 | 2026-04-10 | **Create updates.json template for auto-update mechanism** - Created sample updates.json file with proper schema (latestVersion, downloadUrl, releaseNotes, isMandatory, fileSize, releaseDate, fileHash). This file should be hosted at the URL configured in UpdateService.UpdateInfoUrl for the auto-update feature to work. | Agent-Kimi-Update |
 | 2026-04-10 | **Fix NotImplementedException in WPF Converters** - Fixed 15+ WPF value converters by replacing NotImplementedException with Binding.DoNothing in ConvertBack methods. All converters are one-way only, so this follows WPF best practices. | Agent-Kimi-Current |
