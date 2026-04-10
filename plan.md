@@ -6389,3 +6389,129 @@ dotnet build AdvGenPriceComparer.Web/AdvGenPriceComparer.Web.csproj
 ---
 
 **END OF PLAN**
+
+## Phase 18: Mediator Wiring Implementation
+
+### 18.1 Overview
+Wire the WPF project to route data operations through `IMediator` (AdvGenFlow) instead of calling `IGroceryDataService` and repositories directly. This completes the Clean Architecture migration by ensuring all data access flows through the Application layer.
+
+**Key Objectives:**
+- Add Application project reference and configure DI
+- Create missing Commands and Handlers for complete CRUD operations
+- Migrate ViewModels to use `IMediator` instead of direct repository calls
+- Remove `IGroceryDataService` dependencies from migrated ViewModels
+
+---
+
+### 18.2 Task 1: Add Application Project Reference and Wire DI ✅
+
+**Status:** COMPLETED  
+**Implemented by:** Agent-Kimi-Current (2026-04-10)
+
+**Changes Made:**
+- ✅ Verified `AdvGenPriceComparer.Application` project reference exists in WPF csproj
+- ✅ Verified `services.AddLogging()` registered in App.xaml.cs (required for handler `ILogger<T>` injection)
+- ✅ Verified `services.AddApplicationServices()` registered in App.xaml.cs (registers all handlers via reflection)
+- ✅ Verified required usings present: `AdvGenFlow` and `AdvGenPriceComparer.Application`
+
+**Build Verification:**
+```powershell
+dotnet build AdvGenPriceComparer.WPF/AdvGenPriceComparer.WPF.csproj
+# Build succeeded with 0 errors
+```
+
+---
+
+### 18.3 Task 2: Add Missing Commands (DeletePlace, UpdatePlace, DeletePriceRecord) ✅
+
+**Status:** COMPLETED  
+**Implemented by:** Agent-Kimi-Current (2026-04-10)
+
+**Changes Made:**
+- Created `DeletePlaceCommand` with `DeletePlaceResult` record (Success, ErrorMessage, factory methods)
+- Created `UpdatePlaceCommand` with `UpdatePlaceResult` record (supports partial updates via optional parameters)
+- Created `DeletePriceRecordCommand` with `DeletePriceRecordResult` record
+- Created `PlaceDeleteUpdateCommandHandlers.cs` containing:
+  - `DeletePlaceCommandHandler` - Deletes place by ID with not-found checking
+  - `UpdatePlaceCommandHandler` - Updates place properties (Name, Chain, Address, Suburb, State, Postcode, Phone)
+- Created `PriceRecordDeleteCommandHandler.cs` - Deletes price record by ID with not-found checking
+
+**Handler Features:**
+- All handlers implement `IRequestHandler<TRequest, TResponse>` from AdvGenFlow
+- Repository injection via constructor
+- Logger injection for operation tracking
+- Try-catch error handling with appropriate result types
+- Null checking for entities before operations
+
+**Auto-Registration:**
+- Handlers auto-register via reflection in `ServiceRegistration.AddApplicationServices()`
+- No manual registration required in App.xaml.cs
+
+**Files Created:**
+- `AdvGenPriceComparer.Application/Commands/DeletePlaceCommand.cs`
+- `AdvGenPriceComparer.Application/Commands/UpdatePlaceCommand.cs`
+- `AdvGenPriceComparer.Application/Commands/DeletePriceRecordCommand.cs`
+- `AdvGenPriceComparer.Application/Handlers/PlaceDeleteUpdateCommandHandlers.cs`
+- `AdvGenPriceComparer.Application/Handlers/PriceRecordDeleteCommandHandler.cs`
+
+**Build Verification:**
+```powershell
+dotnet build AdvGenPriceComparer.Application/AdvGenPriceComparer.Application.csproj
+# Build succeeded with 0 errors, 6 warnings (pre-existing)
+
+dotnet build AdvGenPriceComparer.WPF/AdvGenPriceComparer.WPF.csproj
+# Build succeeded with 0 errors, 118 warnings (pre-existing)
+```
+
+---
+
+### 18.4 Remaining Tasks (TODO)
+
+| Task | Description | Status |
+|------|-------------|--------|
+| Task 3 | Migrate CategoryViewModel to IMediator | 🔴 TODO |
+| Task 4 | Migrate ItemViewModel to IMediator | 🔴 TODO |
+| Task 5 | Migrate PlaceViewModel to IMediator | 🟢 DONE |
+| Task 6 | Migrate AddItemViewModel to IMediator | 🔴 TODO |
+| Task 7 | Migrate AddStoreViewModel to IMediator | 🔴 TODO |
+| Task 8 | Migrate PriceComparisonViewModel to IMediator | 🔴 TODO |
+| Task 9 | Migrate MainWindowViewModel to IMediator | 🔴 TODO |
+| Task 10 | Remove Unused IGroceryDataService Injections | 🔴 TODO |
+
+---
+
+### 18.5 Migration Pattern
+
+**Before (direct repository access):**
+```csharp
+private readonly IGroceryDataService _dataService;
+
+public void LoadData()
+{
+    var items = _dataService.Items.GetAll();
+    _dataService.Items.Delete(itemId);
+}
+```
+
+**After (mediator pattern):**
+```csharp
+private readonly IMediator _mediator;
+
+public async Task LoadDataAsync()
+{
+    var items = await _mediator.Send(new GetAllItemsQuery());
+    var result = await _mediator.Send(new DeleteItemCommand(itemId));
+    if (!result.Success) { /* handle error */ }
+}
+```
+
+---
+
+### 18.6 Timeline
+
+- **Phase 18 (Mediator Wiring):** 2-3 days — **IN PROGRESS**
+  - Task 1: ~30 min — ✅ COMPLETED
+  - Task 2: ~1 hour — ✅ COMPLETED
+  - Tasks 3-10: ~2 days — PENDING
+
+---
