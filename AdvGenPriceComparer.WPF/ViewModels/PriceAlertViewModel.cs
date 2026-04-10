@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
@@ -13,7 +15,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 public class PriceAlertViewModel : ViewModelBase
 {
     private readonly IPriceAlertService _priceAlertService;
-    private readonly IGroceryDataService _groceryData;
+    private readonly IMediator _mediator;
     private readonly IDialogService _dialogService;
     private readonly ILoggerService _logger;
 
@@ -175,12 +177,12 @@ public class PriceAlertViewModel : ViewModelBase
 
     public PriceAlertViewModel(
         IPriceAlertService priceAlertService,
-        IGroceryDataService groceryData,
+        IMediator mediator,
         IDialogService dialogService,
         ILoggerService logger)
     {
         _priceAlertService = priceAlertService ?? throw new ArgumentNullException(nameof(priceAlertService));
-        _groceryData = groceryData ?? throw new ArgumentNullException(nameof(groceryData));
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         _dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
@@ -235,7 +237,7 @@ public class PriceAlertViewModel : ViewModelBase
     private void LoadItems()
     {
         AllItems.Clear();
-        var items = _groceryData.Items.GetAll();
+        var items = _mediator.Send(new GetAllItemsQuery()).GetAwaiter().GetResult();
         foreach (var item in items.OrderBy(i => i.Name))
         {
             AllItems.Add(item);
@@ -246,7 +248,7 @@ public class PriceAlertViewModel : ViewModelBase
     {
         AllPlaces.Clear();
         AllPlaces.Add(new Place { Id = string.Empty, Name = "All Stores" });
-        var places = _groceryData.Places.GetAll();
+        var places = _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult();
         foreach (var place in places.OrderBy(p => p.Name))
         {
             AllPlaces.Add(place);
@@ -264,7 +266,7 @@ public class PriceAlertViewModel : ViewModelBase
         if (SelectedItem == null) return;
 
         // Get current price for the item
-        var prices = _groceryData.PriceRecords.GetByItem(SelectedItem.Id);
+        var prices = _mediator.Send(new GetPriceHistoryQuery(ItemId: SelectedItem.Id)).GetAwaiter().GetResult();
         var latestPrice = prices.OrderByDescending(p => p.DateRecorded).FirstOrDefault();
 
         if (latestPrice != null)

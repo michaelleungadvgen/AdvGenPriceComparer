@@ -711,6 +711,7 @@
 | 2026-04-10 | **Fix NotImplementedException in WPF Converters** - Fixed 15+ WPF value converters by replacing NotImplementedException with Binding.DoNothing in ConvertBack methods. All converters are one-way only, so this follows WPF best practices. | Agent-Kimi-Current |
 | 2026-04-10 | **Fix NotImplementedException in WinUI Converters** - Fixed 3 WinUI value converters by replacing NotImplementedException with DependencyProperty.UnsetValue in ConvertBack methods. WinUI project has pre-existing build issues with Windows App SDK. | Agent-Kimi-Current |
 | 2026-04-10 | **Fix Web Portal (Phase 17) build errors** - Added missing Microsoft.EntityFrameworkCore.Sqlite package to AdvGenPriceComparer.Web.csproj. Fixed incorrect method call GetByItemId -> GetByItem in WebDataService.cs. Build now succeeds with 0 errors. | Agent-Current |
+| 2026-04-10 | **Migrate PriceAlertViewModel to IMediator** - Migrated PriceAlertViewModel from IGroceryDataService to IMediator pattern. Deleted legacy AlertViewModel/AlertsPage (replaced by PriceAlertViewModel/PriceAlertWindow). Updated SimpleDialogService to pass IMediator. Build succeeds with 0 errors. | Agent-Kimi-Mediator |
 
 ---
 
@@ -736,6 +737,22 @@
 ---
 
 ## Active Agent Assignments
+
+### Agent-Kimi-Mediator (DONE)
+- **Task:** Migrate AlertViewModel and PriceAlertViewModel from IGroceryDataService to IMediator
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  1. Deleted legacy AlertViewModel.cs and AlertsPage (no longer used)
+  2. Migrated PriceAlertViewModel to use IMediator instead of IGroceryDataService
+  3. Updated SimpleDialogService.ShowPriceAlertsDialog() to pass IMediator
+  4. Build succeeds with 0 errors
+- **Files Modified:**
+  - Deleted: AdvGenPriceComparer.WPF/ViewModels/AlertViewModel.cs
+  - Deleted: AdvGenPriceComparer.WPF/Views/AlertsPage.xaml
+  - Deleted: AdvGenPriceComparer.WPF/Views/AlertsPage.xaml.cs
+  - Modified: AdvGenPriceComparer.WPF/ViewModels/PriceAlertViewModel.cs
+  - Modified: AdvGenPriceComparer.WPF/Services/SimpleDialogService.cs
 
 ### Agent-FixSettingsTests (DONE)
 - **Task:** Fix SettingsServiceTests - 55 tests failing due to SettingsService not respecting APPDATA environment variable
