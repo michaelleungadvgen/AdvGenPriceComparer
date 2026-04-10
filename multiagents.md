@@ -1,7 +1,7 @@
 # Multi-Agent Task Tracker
 
 **Project:** AdvGenPriceComparer WPF Application  
-**Last Updated:** 2026-02-25
+**Last Updated:** 2026-04-10
 
 ---
 
