@@ -713,6 +713,7 @@
 | 2026-04-10 | **Fix NotImplementedException in WinUI Converters** - Fixed 3 WinUI value converters by replacing NotImplementedException with DependencyProperty.UnsetValue in ConvertBack methods. WinUI project has pre-existing build issues with Windows App SDK. | Agent-Kimi-Current |
 | 2026-04-10 | **Fix Web Portal (Phase 17) build errors** - Added missing Microsoft.EntityFrameworkCore.Sqlite package to AdvGenPriceComparer.Web.csproj. Fixed incorrect method call GetByItemId -> GetByItem in WebDataService.cs. Build now succeeds with 0 errors. | Agent-Current |
 | 2026-04-10 | **Migrate PriceAlertViewModel to IMediator** - Migrated PriceAlertViewModel from IGroceryDataService to IMediator pattern. Deleted legacy AlertViewModel/AlertsPage (replaced by PriceAlertViewModel/PriceAlertWindow). Updated SimpleDialogService to pass IMediator. Build succeeds with 0 errors. | Agent-Kimi-Mediator |
+| 2026-04-10 | **Fix remaining UI Automation Test Failures** - Added AutomationProperties.AutomationId to all remaining buttons in MainWindow.xaml that were missing IDs: CategoriesNavButton, PriceHistoryNavButton, ReportsNavButton, ViewReportsButton, ComparePricesButton, BestPricesButton, FavoritesButton, ScanBarcodeButton, PriceDropAlertsButton, PriceAlertsButton, DealRemindersButton, WeeklySpecialsButton, ShoppingListsButton, SettingsButton, MLModelManagementButton, PriceForecastButton, DetectFakeSalesButton, AIChatAssistantButton, GenerateDemoDataButton. Build succeeds with 0 errors. | Agent-Kimi-Automation |
 
 ---
 
@@ -738,6 +739,35 @@
 ---
 
 ## Active Agent Assignments
+
+### Agent-Kimi-Automation (DONE)
+- **Task:** Fix remaining UI Automation Test Failures - Add missing AutomationProperties.AutomationId to MainWindow buttons
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Issue:** UI automation tests were failing because several buttons in MainWindow.xaml didn't have AutomationProperties.AutomationId set. Previous fix only added IDs to some buttons.
+- **Solution:** Added AutomationProperties.AutomationId to all remaining interactive buttons in MainWindow.xaml sidebar:
+  - CategoriesNavBtn (as CategoriesNavButton)
+  - PriceHistoryNavBtn (as PriceHistoryNavButton)
+  - ReportsNavBtn (as ReportsNavButton)
+  - View Reports button (as ViewReportsButton)
+  - Compare Prices button (as ComparePricesButton)
+  - Best Prices button (as BestPricesButton)
+  - Favorites button (as FavoritesButton)
+  - Scan Barcode button (as ScanBarcodeButton)
+  - Price Drop Alerts button (as PriceDropAlertsButton)
+  - Price Alerts button (as PriceAlertsButton)
+  - Deal Reminders button (as DealRemindersButton)
+  - Weekly Specials button (as WeeklySpecialsButton)
+  - Shopping Lists button (as ShoppingListsButton)
+  - Settings button (as SettingsButton)
+  - ML Model Management button (as MLModelManagementButton)
+  - Price Forecast button (as PriceForecastButton)
+  - Detect Fake Sales button (as DetectFakeSalesButton)
+  - AI Chat Assistant button (as AIChatAssistantButton)
+  - Generate Demo Data button (as GenerateDemoDataButton)
+- **Build Result:** 0 errors, warnings only (pre-existing)
+- **Files Modified:**
+  - `AdvGenPriceComparer.WPF/MainWindow.xaml`
 
 ### Agent-Kimi-Current (DONE)
 - **Task:** Add Ollama configuration settings - Allow users to configure Ollama URL and model
