@@ -1,0 +1,117 @@
+@page "/admin/places"
+@attribute [Authorize(Roles = "Admin")]
+@inject IWebDataService WebDataService
+@inject NavigationManager Navigation
+
+<PageTitle>Places - Admin - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Places Management</h1>
+        <a href="admin/places/new" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Add New Place
+        </a>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+    else if (!places.Any())
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">No places found</h4>
+            <p>No places have been added yet.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Chain</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var place in places)
+                    {
+                        <tr>
+                            <td>@place.Name</td>
+                            <td>@place.Chain</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(place.Address))
+                                {
+                                    <span>@place.Address</span>
+                                    @if (!string.IsNullOrEmpty(place.Suburb))
+                                    {
+                                        <span>, @place.Suburb</span>
+                                    }
+                                    @if (!string.IsNullOrEmpty(place.State))
+                                    {
+                                        <span> @place.State</span>
+                                    }
+                                }
+                            </td>
+                            <td>@place.Phone</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="admin/places/@place.Id/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeletePlace(place)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    private List<Place> places = new();
+    private bool isLoading = true;
+
+    protected override void OnInitialized()
+    {
+        LoadPlaces();
+    }
+
+    private void LoadPlaces()
+    {
+        isLoading = true;
+        try
+        {
+            places = WebDataService.GetPlaces().ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading places: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void DeletePlace(Place place)
+    {
+        try
+        {
+            WebDataService.DeletePlace(place.Id);
+            LoadPlaces();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting place: {ex.Message}");
+        }
+    }
+}

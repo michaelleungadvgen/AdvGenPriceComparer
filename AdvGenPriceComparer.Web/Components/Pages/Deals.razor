@@ -1,0 +1,96 @@
+@page "/deals"
+@inject IWebDataService WebDataService
+
+<PageTitle>Weekly Deals - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>🔥 Weekly Deals</h1>
+        <span class="text-muted">@deals.Count deals found</span>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3 text-muted">Loading deals...</p>
+        </div>
+    }
+    else if (!deals.Any())
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">No deals found</h4>
+            <p>We're currently updating our deals database. Check back soon for the latest savings!</p>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var deal in deals)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm deal-card">
+                        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">$@deal.BestPrice.ToString("F2")</span>
+                            <span class="badge bg-info">DEAL</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@deal.Item?.Name</h5>
+                            @if (!string.IsNullOrEmpty(deal.Item?.Brand))
+                            {
+                                <p class="card-text text-muted mb-2">@deal.Item.Brand</p>
+                            }
+                            @if (!string.IsNullOrEmpty(deal.Item?.Category))
+                            {
+                                <span class="badge bg-secondary">@deal.Item.Category</span>
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="bi bi-shop"></i> @deal.BestStore?.Name
+                                </small>
+                                <a href="item/@deal.Item?.Id" class="btn btn-outline-primary btn-sm">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .deal-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+    }
+
+    .deal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+</style>
+
+@code {
+    private List<(Item? Item, decimal BestPrice, Place? BestStore)> deals = new();
+    private bool isLoading = true;
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            deals = WebDataService.GetBestDeals(50).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading deals: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

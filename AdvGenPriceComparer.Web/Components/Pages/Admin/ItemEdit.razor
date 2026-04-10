@@ -1,0 +1,178 @@
+@page "/admin/items/new"
+@page "/admin/items/{id}/edit"
+@attribute [Authorize(Roles = "Admin")]
+@inject IWebDataService WebDataService
+@inject NavigationManager Navigation
+
+<PageTitle>@(IsNew ? "Add" : "Edit") Item - Admin - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">@(IsNew ? "Add New Item" : "Edit Item")</h4>
+                </div>
+                <div class="card-body">
+                    @if (isLoading)
+                    {
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="item" OnValidSubmit="SaveItem">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary class="alert alert-danger" />
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name *</label>
+                                <InputText id="name" class="form-control" @bind-Value="item.Name" />
+                                <ValidationMessage For="() => item.Name" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="brand" class="form-label">Brand</label>
+                                <InputText id="brand" class="form-control" @bind-Value="item.Brand" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="category" class="form-label">Category</label>
+                                    <InputSelect id="category" class="form-select" @bind-Value="item.Category">
+                                        <option value="">-- Select Category --</option>
+                                        @foreach (var category in categories)
+                                        {
+                                            <option value="@category">@category</option>
+                                        }
+                                    </InputSelect>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="barcode" class="form-label">Barcode</label>
+                                    <InputText id="barcode" class="form-control" @bind-Value="item.Barcode" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <InputTextArea id="description" class="form-control" @bind-Value="item.Description" rows="3" />
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <InputCheckbox id="isActive" class="form-check-input" @bind-Value="item.IsActive" />
+                                <label for="isActive" class="form-check-label">Active</label>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                    }
+                                    @(IsNew ? "Create Item" : "Save Changes")
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Item item = new() { Name = "" };
+    private List<string> categories = new();
+    private bool isLoading = true;
+    private bool isSaving = false;
+
+    private bool IsNew => string.IsNullOrEmpty(Id);
+
+    protected override void OnInitialized()
+    {
+        LoadCategories();
+        
+        if (!IsNew)
+        {
+            LoadItem();
+        }
+        else
+        {
+            isLoading = false;
+        }
+    }
+
+    private void LoadCategories()
+    {
+        try
+        {
+            categories = WebDataService.GetCategories().ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading categories: {ex.Message}");
+        }
+    }
+
+    private void LoadItem()
+    {
+        try
+        {
+            var loadedItem = WebDataService.GetItemById(Id!);
+            if (loadedItem != null)
+            {
+                item = loadedItem;
+            }
+            else
+            {
+                Navigation.NavigateTo("admin/items");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading item: {ex.Message}");
+            Navigation.NavigateTo("admin/items");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void SaveItem()
+    {
+        isSaving = true;
+        try
+        {
+            if (IsNew)
+            {
+                WebDataService.CreateItem(item);
+            }
+            else
+            {
+                WebDataService.UpdateItem(item);
+            }
+            Navigation.NavigateTo("admin/items");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving item: {ex.Message}");
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("admin/items");
+    }
+}

@@ -1,0 +1,228 @@
+@page "/admin/price-records/new"
+@page "/admin/price-records/{id}/edit"
+@attribute [Authorize(Roles = "Admin")]
+@inject IWebDataService WebDataService
+@inject NavigationManager Navigation
+
+<PageTitle>@(IsNew ? "Add" : "Edit") Price Record - Admin - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">@(IsNew ? "Add New Price Record" : "Edit Price Record")</h4>
+                </div>
+                <div class="card-body">
+                    @if (isLoading)
+                    {
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="priceRecord" OnValidSubmit="SavePriceRecord">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary class="alert alert-danger" />
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="itemId" class="form-label">Item *</label>
+                                    <InputSelect id="itemId" class="form-select" @bind-Value="priceRecord.ItemId">
+                                        <option value="">-- Select Item --</option>
+                                        @foreach (var item in items)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="() => priceRecord.ItemId" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="placeId" class="form-label">Store *</label>
+                                    <InputSelect id="placeId" class="form-select" @bind-Value="priceRecord.PlaceId">
+                                        <option value="">-- Select Store --</option>
+                                        @foreach (var place in places)
+                                        {
+                                            <option value="@place.Id">@place.Name</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="() => priceRecord.PlaceId" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="price" class="form-label">Price *</label>
+                                    <InputNumber id="price" class="form-control" @bind-Value="priceRecord.Price" />
+                                    <ValidationMessage For="() => priceRecord.Price" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="originalPrice" class="form-label">Original Price</label>
+                                    <InputNumber id="originalPrice" class="form-control" @bind-Value="priceRecord.OriginalPrice" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="dateRecorded" class="form-label">Date Recorded</label>
+                                    <InputDate id="dateRecorded" class="form-control" @bind-Value="priceRecord.DateRecorded" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validFrom" class="form-label">Valid From</label>
+                                    <InputDate id="validFrom" class="form-control" @bind-Value="priceRecord.ValidFrom" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validTo" class="form-label">Valid To</label>
+                                    <InputDate id="validTo" class="form-control" @bind-Value="priceRecord.ValidTo" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check mt-4">
+                                        <InputCheckbox id="isOnSale" class="form-check-input" @bind-Value="priceRecord.IsOnSale" />
+                                        <label for="isOnSale" class="form-check-label">On Sale</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="saleDescription" class="form-label">Sale Description</label>
+                                <InputText id="saleDescription" class="form-control" @bind-Value="priceRecord.SaleDescription" 
+                                           placeholder="e.g., 50% off, Buy 2 get 1 free" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="notes" class="form-label">Notes</label>
+                                <InputTextArea id="notes" class="form-control" @bind-Value="priceRecord.Notes" rows="3" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                    }
+                                    @(IsNew ? "Create Price Record" : "Save Changes")
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private PriceRecord priceRecord = new() { ItemId = "", PlaceId = "", Price = 0, DateRecorded = DateTime.Now };
+    private List<Item> items = new();
+    private List<Place> places = new();
+    private bool isLoading = true;
+    private bool isSaving = false;
+
+    private bool IsNew => string.IsNullOrEmpty(Id);
+
+    protected override void OnInitialized()
+    {
+        LoadItems();
+        LoadPlaces();
+        
+        if (!IsNew)
+        {
+            LoadPriceRecord();
+        }
+        else
+        {
+            isLoading = false;
+        }
+    }
+
+    private void LoadItems()
+    {
+        try
+        {
+            items = WebDataService.GetItems(null, null, 1, 1000).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading items: {ex.Message}");
+        }
+    }
+
+    private void LoadPlaces()
+    {
+        try
+        {
+            places = WebDataService.GetPlaces().ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading places: {ex.Message}");
+        }
+    }
+
+    private void LoadPriceRecord()
+    {
+        try
+        {
+            var allRecords = WebDataService.GetPriceRecords();
+            var loadedRecord = allRecords.FirstOrDefault(r => r.Id == Id);
+            
+            if (loadedRecord != null)
+            {
+                priceRecord = loadedRecord;
+            }
+            else
+            {
+                Navigation.NavigateTo("admin/price-records");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading price record: {ex.Message}");
+            Navigation.NavigateTo("admin/price-records");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void SavePriceRecord()
+    {
+        isSaving = true;
+        try
+        {
+            if (IsNew)
+            {
+                WebDataService.CreatePriceRecord(priceRecord);
+            }
+            else
+            {
+                WebDataService.UpdatePriceRecord(priceRecord);
+            }
+            Navigation.NavigateTo("admin/price-records");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving price record: {ex.Message}");
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("admin/price-records");
+    }
+}

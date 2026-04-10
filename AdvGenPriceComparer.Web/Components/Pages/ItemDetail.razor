@@ -1,0 +1,250 @@
+@page "/item/{id}"
+@inject IWebDataService WebDataService
+@inject NavigationManager Navigation
+
+<PageTitle>@(item?.Name ?? "Item Details") - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    @if (isLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+    else if (item == null)
+    {
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">Item not found</h4>
+            <p>The item you're looking for doesn't exist or has been removed.</p>
+            <a href="browse" class="btn btn-primary">Browse Items</a>
+        </div>
+    }
+    else
+    {
+        @* Breadcrumb *@
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="browse">Browse</a></li>
+                @if (!string.IsNullOrEmpty(item.Category))
+                {
+                    <li class="breadcrumb-item">@item.Category</li>
+                }
+                <li class="breadcrumb-item active" aria-current="page">@item.Name</li>
+            </ol>
+        </nav>
+
+        @* Item Header *@
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="card-title">@item.Name</h1>
+                        @if (!string.IsNullOrEmpty(item.Brand))
+                        {
+                            <p class="lead text-muted">@item.Brand</p>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Category))
+                        {
+                            <span class="badge bg-primary">@item.Category</span>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Barcode))
+                        {
+                            <span class="badge bg-secondary ms-2">Barcode: @item.Barcode</span>
+                        }
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        @if (latestPrice != null)
+                        {
+                            <div class="price-display">
+                                <span class="display-4 text-success">$@latestPrice.Price.ToString("F2")</span>
+                                @if (latestPrice.IsOnSale)
+                                {
+                                    <span class="badge bg-success ms-2">ON SALE</span>
+                                }
+                            </div>
+                            <small class="text-muted">Last updated: @latestPrice.DateRecorded.ToString("d")</small>
+                        }
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(item.Description))
+                {
+                    <hr />
+                    <p class="card-text">@item.Description</p>
+                }
+            </div>
+        </div>
+
+        @* Current Prices at Stores *@
+        <h3 class="mb-3">Current Prices</h3>
+        @if (currentPrices.Any())
+        {
+            <div class="table-responsive mb-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Store</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var price in currentPrices.OrderBy(p => p.Price))
+                        {
+                            var place = GetPlaceForRecord(price);
+                            <tr>
+                                <td>
+                                    @if (place != null)
+                                    {
+                                        <strong>@place.Name</strong>
+                                        @if (!string.IsNullOrEmpty(place.Chain))
+                                        {
+                                            <br /><small class="text-muted">@place.Chain</small>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Unknown Store</span>
+                                    }
+                                </td>
+                                <td>
+                                    <span class="h5 @(price.IsOnSale ? "text-success" : "")">$@price.Price.ToString("F2")</span>
+                                    @if (price.OriginalPrice.HasValue && price.OriginalPrice > price.Price)
+                                    {
+                                        <br /><small class="text-muted text-decoration-line-through">$@price.OriginalPrice.Value.ToString("F2")</small>
+                                    }
+                                </td>
+                                <td>
+                                    @if (price.IsOnSale)
+                                    {
+                                        <span class="badge bg-success">On Sale</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Regular</span>
+                                    }
+                                </td>
+                                <td>@price.DateRecorded.ToString("g")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                No current price information available for this item.
+            </div>
+        }
+
+        @* Price History *@
+        @if (priceHistory.Any())
+        {
+            <h3 class="mb-3">Price History</h3>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Store</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var record in priceHistory.Take(20))
+                                {
+                                    var place = GetPlaceForRecord(record);
+                                    <tr>
+                                        <td>@record.DateRecorded.ToString("d")</td>
+                                        <td>@place?.Name</td>
+                                        <td>$@record.Price.ToString("F2")</td>
+                                        <td>
+                                            @if (record.IsOnSale)
+                                            {
+                                                <span class="badge bg-success">Sale</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<style>
+    .price-display {
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = string.Empty;
+
+    private Item? item;
+    private List<PriceRecord> currentPrices = new();
+    private List<PriceRecord> priceHistory = new();
+    private PriceRecord? latestPrice;
+    private bool isLoading = true;
+    private Dictionary<string, Place?> placeCache = new();
+
+    protected override void OnInitialized()
+    {
+        LoadItemDetails();
+    }
+
+    private void LoadItemDetails()
+    {
+        isLoading = true;
+        try
+        {
+            item = WebDataService.GetItemById(Id);
+            
+            if (item != null)
+            {
+                // Load current prices from all stores
+                var allPrices = WebDataService.GetPriceRecords(Id).ToList();
+                
+                // Get the latest price for each store
+                currentPrices = allPrices
+                    .GroupBy(p => p.PlaceId)
+                    .Select(g => g.OrderByDescending(p => p.DateRecorded).First())
+                    .ToList();
+
+                // Get full price history
+                priceHistory = WebDataService.GetPriceHistory(Id).ToList();
+                
+                // Get overall latest price
+                latestPrice = allPrices.OrderByDescending(p => p.DateRecorded).FirstOrDefault();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading item details: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private Place? GetPlaceForRecord(PriceRecord record)
+    {
+        if (!placeCache.ContainsKey(record.PlaceId))
+        {
+            placeCache[record.PlaceId] = WebDataService.GetPlaceById(record.PlaceId);
+        }
+        return placeCache[record.PlaceId];
+    }
+}

@@ -1,0 +1,197 @@
+@page "/admin"
+@attribute [Authorize(Roles = "Admin")]
+@inject IWebDataService WebDataService
+
+<PageTitle>Admin Dashboard - AdvGen PriceComparer</PageTitle>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <div class="container">
+            <h1 class="mb-4">Admin Dashboard</h1>
+
+            @if (isLoading)
+            {
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @* Stats Cards *@
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-4">
+                    <div class="col">
+                        <div class="card text-white bg-primary h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Total Items</h6>
+                                        <h2 class="mb-0">@stats.TotalItems</h2>
+                                    </div>
+                                    <i class="bi bi-box-seam display-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-white bg-success h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Total Places</h6>
+                                        <h2 class="mb-0">@stats.TotalPlaces</h2>
+                                    </div>
+                                    <i class="bi bi-shop display-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-white bg-info h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Price Records</h6>
+                                        <h2 class="mb-0">@stats.TotalPriceRecords</h2>
+                                    </div>
+                                    <i class="bi bi-currency-dollar display-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-white bg-warning h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Active Deals</h6>
+                                        <h2 class="mb-0">@stats.ActiveDeals</h2>
+                                    </div>
+                                    <i class="bi bi-tag-fill display-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Quick Actions *@
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Quick Actions</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-2">
+                                    <a href="admin/items/new" class="btn btn-outline-primary">
+                                        <i class="bi bi-plus-lg"></i> Add New Item
+                                    </a>
+                                    <a href="admin/places/new" class="btn btn-outline-success">
+                                        <i class="bi bi-plus-lg"></i> Add New Place
+                                    </a>
+                                    <a href="admin/price-records/new" class="btn btn-outline-info">
+                                        <i class="bi bi-plus-lg"></i> Add Price Record
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">System Info</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Last Updated:</span>
+                                        <span class="text-muted">@stats.LastUpdated.ToString("g")</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Application:</span>
+                                        <span class="text-muted">AdvGen PriceComparer Web</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Management Sections *@
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Management Sections</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="col">
+                                <a href="admin/items" class="text-decoration-none">
+                                    <div class="card h-100 text-center p-4 hover-shadow">
+                                        <i class="bi bi-box-seam display-1 text-primary"></i>
+                                        <h5 class="mt-3">Items</h5>
+                                        <p class="text-muted">Manage grocery items and products</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="admin/places" class="text-decoration-none">
+                                    <div class="card h-100 text-center p-4 hover-shadow">
+                                        <i class="bi bi-shop display-1 text-success"></i>
+                                        <h5 class="mt-3">Places</h5>
+                                        <p class="text-muted">Manage stores and locations</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="admin/price-records" class="text-decoration-none">
+                                    <div class="card h-100 text-center p-4 hover-shadow">
+                                        <i class="bi bi-currency-dollar display-1 text-info"></i>
+                                        <h5 class="mt-3">Price Records</h5>
+                                        <p class="text-muted">Manage price history and deals</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="container">
+            <div class="alert alert-danger">
+                <h4 class="alert-heading">Access Denied</h4>
+                <p>You do not have permission to access the admin dashboard.</p>
+                <a href="/" class="btn btn-primary">Go Home</a>
+            </div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+<style>
+    .hover-shadow:hover {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+</style>
+
+@code {
+    private DashboardStats stats = new();
+    private bool isLoading = true;
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            stats = WebDataService.GetDashboardStats();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading dashboard stats: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

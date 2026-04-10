@@ -1,0 +1,207 @@
+@page "/admin/price-records"
+@attribute [Authorize(Roles = "Admin")]
+@inject IWebDataService WebDataService
+@inject NavigationManager Navigation
+
+<PageTitle>Price Records - Admin - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Price Records Management</h1>
+        <a href="admin/price-records/new" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Add New Price Record
+        </a>
+    </div>
+
+    @* Filters *@
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Item</label>
+                    <select class="form-select" @bind="selectedItemId">
+                        <option value="">All Items</option>
+                        @foreach (var item in items)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Place</label>
+                    <select class="form-select" @bind="selectedPlaceId">
+                        <option value="">All Places</option>
+                        @foreach (var place in places)
+                        {
+                            <option value="@place.Id">@place.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" @onclick="LoadPriceRecords">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+    else if (!priceRecords.Any())
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">No price records found</h4>
+            <p>No price records match your filter criteria.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Store</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var record in priceRecords.Take(100))
+                    {
+                        var item = GetItemForRecord(record);
+                        var place = GetPlaceForRecord(record);
+                        <tr>
+                            <td>@record.DateRecorded.ToString("g")</td>
+                            <td>@item?.Name</td>
+                            <td>@place?.Name</td>
+                            <td>
+                                <span class="h6 @(record.IsOnSale ? "text-success" : "")">$@record.Price.ToString("F2")</span>
+                                @if (record.OriginalPrice.HasValue && record.OriginalPrice > record.Price)
+                                {
+                                    <br /><small class="text-muted text-decoration-line-through">$@record.OriginalPrice.Value.ToString("F2")</small>
+                                }
+                            </td>
+                            <td>
+                                @if (record.IsOnSale)
+                                {
+                                    <span class="badge bg-success">On Sale</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Regular</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="admin/price-records/@record.Id/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeletePriceRecord(record)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    private List<PriceRecord> priceRecords = new();
+    private List<Item> items = new();
+    private List<Place> places = new();
+    private bool isLoading = true;
+    private Dictionary<string, Item?> itemCache = new();
+    private Dictionary<string, Place?> placeCache = new();
+    
+    private string selectedItemId = "";
+    private string selectedPlaceId = "";
+
+    protected override void OnInitialized()
+    {
+        LoadItems();
+        LoadPlaces();
+        LoadPriceRecords();
+    }
+
+    private void LoadItems()
+    {
+        try
+        {
+            items = WebDataService.GetItems(null, null, 1, 1000).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading items: {ex.Message}");
+        }
+    }
+
+    private void LoadPlaces()
+    {
+        try
+        {
+            places = WebDataService.GetPlaces().ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading places: {ex.Message}");
+        }
+    }
+
+    private void LoadPriceRecords()
+    {
+        isLoading = true;
+        try
+        {
+            priceRecords = WebDataService.GetPriceRecords(
+                string.IsNullOrEmpty(selectedItemId) ? null : selectedItemId,
+                string.IsNullOrEmpty(selectedPlaceId) ? null : selectedPlaceId).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading price records: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private Item? GetItemForRecord(PriceRecord record)
+    {
+        if (!itemCache.ContainsKey(record.ItemId))
+        {
+            itemCache[record.ItemId] = WebDataService.GetItemById(record.ItemId);
+        }
+        return itemCache[record.ItemId];
+    }
+
+    private Place? GetPlaceForRecord(PriceRecord record)
+    {
+        if (!placeCache.ContainsKey(record.PlaceId))
+        {
+            placeCache[record.PlaceId] = WebDataService.GetPlaceById(record.PlaceId);
+        }
+        return placeCache[record.PlaceId];
+    }
+
+    private void DeletePriceRecord(PriceRecord record)
+    {
+        try
+        {
+            WebDataService.DeletePriceRecord(record.Id);
+            LoadPriceRecords();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting price record: {ex.Message}");
+        }
+    }
+}

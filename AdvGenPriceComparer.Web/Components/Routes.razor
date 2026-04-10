@@ -1,0 +1,35 @@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
+            <NotAuthorized>
+                @if (context.User.Identity?.IsAuthenticated != true)
+                {
+                    <AdvGenPriceComparer.Web.Components.Pages.Login />
+                }
+                else
+                {
+                    <div class="container">
+                        <div class="alert alert-danger mt-5">
+                            <h4 class="alert-heading">Access Denied</h4>
+                            <p>You do not have permission to access this page.</p>
+                            <a href="/" class="btn btn-primary">Go Home</a>
+                        </div>
+                    </div>
+                }
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <div class="container">
+                <div class="alert alert-warning mt-5">
+                    <h4 class="alert-heading">Page Not Found</h4>
+                    <p>Sorry, there's nothing at this address.</p>
+                    <a href="/" class="btn btn-primary">Go Home</a>
+                </div>
+            </div>
+        </LayoutView>
+    </NotFound>
+</Router>

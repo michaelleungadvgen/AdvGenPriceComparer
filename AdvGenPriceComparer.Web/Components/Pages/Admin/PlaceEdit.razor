@@ -1,0 +1,172 @@
+@page "/admin/places/new"
+@page "/admin/places/{id}/edit"
+@attribute [Authorize(Roles = "Admin")]
+@inject IWebDataService WebDataService
+@inject NavigationManager Navigation
+
+<PageTitle>@(IsNew ? "Add" : "Edit") Place - Admin - AdvGen PriceComparer</PageTitle>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">@(IsNew ? "Add New Place" : "Edit Place")</h4>
+                </div>
+                <div class="card-body">
+                    @if (isLoading)
+                    {
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="place" OnValidSubmit="SavePlace">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary class="alert alert-danger" />
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name *</label>
+                                <InputText id="name" class="form-control" @bind-Value="place.Name" />
+                                <ValidationMessage For="() => place.Name" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="chain" class="form-label">Chain</label>
+                                <InputText id="chain" class="form-control" @bind-Value="place.Chain" 
+                                           placeholder="e.g., Coles, Woolworths, Aldi" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <InputText id="address" class="form-control" @bind-Value="place.Address" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="suburb" class="form-label">Suburb</label>
+                                    <InputText id="suburb" class="form-control" @bind-Value="place.Suburb" />
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State</label>
+                                    <InputSelect id="state" class="form-select" @bind-Value="place.State">
+                                        <option value="">-- Select --</option>
+                                        <option value="QLD">Queensland</option>
+                                        <option value="NSW">New South Wales</option>
+                                        <option value="VIC">Victoria</option>
+                                        <option value="SA">South Australia</option>
+                                        <option value="WA">Western Australia</option>
+                                        <option value="TAS">Tasmania</option>
+                                        <option value="ACT">Australian Capital Territory</option>
+                                        <option value="NT">Northern Territory</option>
+                                    </InputSelect>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="postcode" class="form-label">Postcode</label>
+                                    <InputText id="postcode" class="form-control" @bind-Value="place.Postcode" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <InputText id="phone" class="form-control" @bind-Value="place.Phone" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                    }
+                                    @(IsNew ? "Create Place" : "Save Changes")
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Place place = new() { Name = "" };
+    private bool isLoading = true;
+    private bool isSaving = false;
+
+    private bool IsNew => string.IsNullOrEmpty(Id);
+
+    protected override void OnInitialized()
+    {
+        if (!IsNew)
+        {
+            LoadPlace();
+        }
+        else
+        {
+            isLoading = false;
+        }
+    }
+
+    private void LoadPlace()
+    {
+        try
+        {
+            var loadedPlace = WebDataService.GetPlaceById(Id!);
+            if (loadedPlace != null)
+            {
+                place = loadedPlace;
+            }
+            else
+            {
+                Navigation.NavigateTo("admin/places");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading place: {ex.Message}");
+            Navigation.NavigateTo("admin/places");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void SavePlace()
+    {
+        isSaving = true;
+        try
+        {
+            if (IsNew)
+            {
+                WebDataService.CreatePlace(place);
+            }
+            else
+            {
+                WebDataService.UpdatePlace(place);
+            }
+            Navigation.NavigateTo("admin/places");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving place: {ex.Message}");
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("admin/places");
+    }
+}

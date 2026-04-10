@@ -222,6 +222,18 @@
 
 ## Active Agent Assignments
 
+### Agent-Current (DONE)
+- **Task:** Fix Web Portal (Phase 17) build errors
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:** 
+  - Fixed missing `Microsoft.EntityFrameworkCore.Sqlite` package reference in AdvGenPriceComparer.Web.csproj
+  - Fixed incorrect method call `GetByItemId` -> `GetByItem` in WebDataService.cs (line 251)
+  - Verified build succeeds with 0 errors, 2 warnings (pre-existing nullable reference warnings)
+- **Files Modified:**
+  - `AdvGenPriceComparer.Web/AdvGenPriceComparer.Web.csproj` - Added EF Core SQLite package
+  - `AdvGenPriceComparer.Web/Services/WebDataService.cs` - Fixed method name
+
 ### Agent-Kimi-Current (DONE)
 - **Task:** Fix NotImplementedException in WPF Converters - Replace all ConvertBack exceptions with Binding.DoNothing
 - **Started:** 2026-04-10
@@ -679,6 +691,7 @@
 | 2026-04-10 | **Create updates.json template for auto-update mechanism** - Created sample updates.json file with proper schema (latestVersion, downloadUrl, releaseNotes, isMandatory, fileSize, releaseDate, fileHash). This file should be hosted at the URL configured in UpdateService.UpdateInfoUrl for the auto-update feature to work. | Agent-Kimi-Update |
 | 2026-04-10 | **Fix NotImplementedException in WPF Converters** - Fixed 15+ WPF value converters by replacing NotImplementedException with Binding.DoNothing in ConvertBack methods. All converters are one-way only, so this follows WPF best practices. | Agent-Kimi-Current |
 | 2026-04-10 | **Fix NotImplementedException in WinUI Converters** - Fixed 3 WinUI value converters by replacing NotImplementedException with DependencyProperty.UnsetValue in ConvertBack methods. WinUI project has pre-existing build issues with Windows App SDK. | Agent-Kimi-Current |
+| 2026-04-10 | **Fix Web Portal (Phase 17) build errors** - Added missing Microsoft.EntityFrameworkCore.Sqlite package to AdvGenPriceComparer.Web.csproj. Fixed incorrect method call GetByItemId -> GetByItem in WebDataService.cs. Build now succeeds with 0 errors. | Agent-Current |
 
 ---
 
@@ -869,6 +882,22 @@
   - AdvGenPriceComparer.WPF/Services/AdvGenNoSqlProvider.cs
   - AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs
   - AdvGenPriceComparer.WPF/App.xaml.cs
+
+---
+
+## Phase 17: Web Portal (Blazor Server) ✅ COMPLETE
+
+| Task | Status | Assigned To | Notes |
+|------|--------|-------------|-------|
+| Create AdvGenPriceComparer.Web project | 🟢 DONE | Agent-Kimi-Web | Blazor Server project with net9.0 created |
+| Add NuGet package references | 🟢 DONE | Agent-Kimi-Web | Microsoft.AspNetCore.Identity.EntityFrameworkCore 9.0.0, Microsoft.EntityFrameworkCore.Sqlite 9.0.0 |
+| Setup Authentication & Authorization | 🟢 DONE | Agent-Kimi-Web | ASP.NET Core Identity with Admin/User roles implemented |
+| Create WebDataService wrapper | 🟢 DONE | Agent-Kimi-Web | IWebDataService interface and WebDataService implementation complete |
+| Create Shared Layout & Navigation | 🟢 DONE | Agent-Kimi-Web | MainLayout.razor, NavMenu.razor with conditional links |
+| Create Public Pages | 🟢 DONE | Agent-Kimi-Web | Home.razor, Deals.razor, Browse.razor, ItemDetail.razor |
+| Create Admin Pages | 🟢 DONE | Agent-Kimi-Web | Dashboard.razor, Items.razor/ItemEdit.razor, Places.razor/PlaceEdit.razor, PriceRecords.razor/PriceRecordEdit.razor |
+| Add Configuration | 🟢 DONE | Agent-Kimi-Web | appsettings.json, appsettings.Development.json configured |
+| **Fix Web Portal build errors** | 🟢 DONE | Agent-Current | Fixed missing Microsoft.EntityFrameworkCore.Sqlite package and corrected GetByItemId -> GetByItem method call |
 
 ---
 
