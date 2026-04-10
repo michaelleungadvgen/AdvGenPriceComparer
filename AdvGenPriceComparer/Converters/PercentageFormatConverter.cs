@@ -1,4 +1,5 @@
 using System;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
 namespace AdvGenPriceComparer.Desktop.WinUI.Converters;
@@ -22,6 +23,7 @@ public class PercentageFormatConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        throw new NotImplementedException();
+        // One-way converter - no conversion back needed
+        return DependencyProperty.UnsetValue;
     }
 }
