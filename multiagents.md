@@ -883,6 +883,22 @@
   - AdvGenPriceComparer.WPF/Services/StaticDataImporter.cs
   - AdvGenPriceComparer.WPF/App.xaml.cs
 
+### Agent-Kimi-P2P (DONE)
+- **Task:** Update NetworkManager to generate P2P discovery file on server start
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:**
+  1. ✅ Added `DiscoveryFilePath`, `ServerLocation`, `ServerDescription` properties to NetworkManager
+  2. ✅ Added `GenerateDiscoveryFileAsync()` method that creates discovery.json when server starts
+  3. ✅ Added `UpdateDiscoveryTimestampAsync()` method for periodic timestamp updates
+  4. ✅ Added `CleanupDiscoveryFileAsync()` method that removes discovery.json when server stops
+  5. ✅ Added `DiscoveryInfo` model class with P2P format (id, type, address, location, lastSeen, lastUpdated, description, capabilities, version)
+  6. ✅ Integrated discovery generation into `StartServer()` and cleanup into `StopServer()`
+  7. ✅ Added ILoggerService dependency to NetworkManager for logging
+- **Files Modified:**
+  - `AdvGenPriceComparer.WPF/Services/NetworkManager.cs` - Added discovery file generation
+- **Build Result:** 0 errors, WPF project builds successfully
+
 ---
 
 ## Phase 17: Web Portal (Blazor Server) ✅ COMPLETE

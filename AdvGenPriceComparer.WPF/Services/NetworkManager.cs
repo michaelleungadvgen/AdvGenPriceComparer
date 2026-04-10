@@ -1,6 +1,9 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Services;
@@ -36,10 +39,13 @@ public class NetworkManager : IP2PNetworkService
     public bool IsServerRunning => _isServerRunning;
     public IReadOnlyList<NetworkPeerInfo> ConnectedPeers => _connectedPeers.AsReadOnly();
 
-    public NetworkManager(IGroceryDataService groceryData, ServerConfigService? serverConfig = null)
+    private readonly ILoggerService? _logger;
+
+    public NetworkManager(IGroceryDataService groceryData, ServerConfigService? serverConfig = null, ILoggerService? logger = null)
     {
         _groceryData = groceryData;
         _serverConfig = serverConfig ?? new ServerConfigService();
+        _logger = logger;
     }
 
     #region IP2PNetworkService Implementation
@@ -85,6 +91,14 @@ public class NetworkManager : IP2PNetworkService
 
     #region Server Functionality
 
+    public string DiscoveryFilePath { get; set; } = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "AdvGenPriceComparer",
+        "discovery.json");
+
+    public string ServerLocation { get; set; } = "Unknown Location";
+    public string ServerDescription { get; set; } = "AdvGenPriceComparer P2P Node";
+
     public async Task<bool> StartServer(int port = 8081)
     {
         try
@@ -100,12 +114,96 @@ public class NetworkManager : IP2PNetworkService
             // Accept connections in background
             _ = Task.Run(AcceptConnectionsAsync);
 
+            // Generate discovery file for P2P network
+            _ = Task.Run(async () => await GenerateDiscoveryFileAsync(port));
+
             return true;
         }
         catch (Exception ex)
         {
             ErrorOccurred?.Invoke(this, $"Failed to start server: {ex.Message}");
             return false;
+        }
+    }
+
+    /// <summary>
+    /// Generates a discovery.json file for P2P network when server starts.
+    /// This allows other peers to discover this node.
+    /// </summary>
+    private async Task GenerateDiscoveryFileAsync(int port)
+    {
+        try
+        {
+            var discovery = new DiscoveryInfo
+            {
+                Id = NodeId,
+                Type = "full_peer",
+                Address = $"localhost:{port}",
+                Location = ServerLocation,
+                LastSeen = DateTime.UtcNow,
+                LastUpdated = DateTime.UtcNow,
+                Description = ServerDescription,
+                Capabilities = new List<string> { "prices", "sync", "heartbeat" },
+                Version = "1.0"
+            };
+
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+
+            // Ensure directory exists
+            var directory = Path.GetDirectoryName(DiscoveryFilePath);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            var json = JsonSerializer.Serialize(discovery, options);
+            await File.WriteAllTextAsync(DiscoveryFilePath, json);
+
+            _logger?.LogInfo($"Discovery file generated at: {DiscoveryFilePath}");
+        }
+        catch (Exception ex)
+        {
+            _logger?.LogError($"Failed to generate discovery file: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Updates the discovery file with current timestamp (keeps peer alive in network).
+    /// Should be called periodically when the server is running.
+    /// </summary>
+    public async Task UpdateDiscoveryTimestampAsync()
+    {
+        try
+        {
+            if (!File.Exists(DiscoveryFilePath)) return;
+
+            var json = await File.ReadAllTextAsync(DiscoveryFilePath);
+            var discovery = JsonSerializer.Deserialize<DiscoveryInfo>(json);
+            
+            if (discovery != null)
+            {
+                discovery.LastUpdated = DateTime.UtcNow;
+                discovery.LastSeen = DateTime.UtcNow;
+
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                };
+
+                var updatedJson = JsonSerializer.Serialize(discovery, options);
+                await File.WriteAllTextAsync(DiscoveryFilePath, updatedJson);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger?.LogError($"Failed to update discovery timestamp: {ex.Message}");
         }
     }
 
@@ -198,6 +296,33 @@ public class NetworkManager : IP2PNetworkService
         }
         _connections.Clear();
         _connectedPeers.Clear();
+
+        // Clean up discovery file when server stops
+        _ = Task.Run(CleanupDiscoveryFileAsync);
+    }
+
+    /// <summary>
+    /// Removes the discovery file when the server stops.
+    /// This signals to other peers that this node is offline.
+    /// </summary>
+    private async Task CleanupDiscoveryFileAsync()
+    {
+        try
+        {
+            if (File.Exists(DiscoveryFilePath))
+            {
+                // Option 1: Delete the file entirely
+                File.Delete(DiscoveryFilePath);
+                _logger?.LogInfo("Discovery file removed (server stopped)");
+
+                // Option 2: Update with offline status (alternative approach)
+                // This could be implemented if we want to keep historical data
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger?.LogError($"Failed to cleanup discovery file: {ex.Message}");
+        }
     }
 
     #endregion
@@ -673,4 +798,56 @@ public class NetworkManager : IP2PNetworkService
         }
         GC.SuppressFinalize(this);
     }
+}
+
+/// <summary>
+/// Discovery information for P2P network nodes.
+/// Used to generate discovery.json for peer discovery.
+/// </summary>
+public class DiscoveryInfo
+{
+    /// <summary>
+    /// Unique identifier for the node (format: machineName_guid)
+    /// </summary>
+    public string Id { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Node type: "full_peer" (active P2P) or "static_peer" (HTTP-hosted)
+    /// </summary>
+    public string Type { get; set; } = "full_peer";
+
+    /// <summary>
+    /// Connection address (host:port for full_peer, URL for static_peer)
+    /// </summary>
+    public string Address { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Human-readable geographic location
+    /// </summary>
+    public string? Location { get; set; }
+
+    /// <summary>
+    /// Last time this node was seen online
+    /// </summary>
+    public DateTime LastSeen { get; set; }
+
+    /// <summary>
+    /// Last time the discovery data was updated
+    /// </summary>
+    public DateTime LastUpdated { get; set; }
+
+    /// <summary>
+    /// Human-readable description of this node
+    /// </summary>
+    public string? Description { get; set; }
+
+    /// <summary>
+    /// List of capabilities this node supports
+    /// </summary>
+    public List<string> Capabilities { get; set; } = new();
+
+    /// <summary>
+    /// Protocol version
+    /// </summary>
+    public string Version { get; set; } = "1.0";
 }
