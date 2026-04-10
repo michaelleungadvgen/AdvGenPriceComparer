@@ -522,11 +522,11 @@ public partial class App : System.Windows.Application
             services.AddTransient<TripOptimizerWindow>(provider =>
             {
                 var tripOptimizerService = provider.GetRequiredService<ITripOptimizerService>();
-                var groceryData = provider.GetRequiredService<IGroceryDataService>();
+                var mediator = provider.GetRequiredService<IMediator>();
                 var shoppingListService = provider.GetRequiredService<IShoppingListService>();
                 var logger = provider.GetRequiredService<ILoggerService>();
                 var dialogService = provider.GetRequiredService<IDialogService>();
-                var viewModel = new TripOptimizerViewModel(tripOptimizerService, groceryData, shoppingListService, logger, dialogService);
+                var viewModel = new TripOptimizerViewModel(tripOptimizerService, mediator, shoppingListService, logger, dialogService);
                 return new TripOptimizerWindow(viewModel);
             });
 

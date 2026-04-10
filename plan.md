@@ -6469,14 +6469,19 @@ dotnet build AdvGenPriceComparer.WPF/AdvGenPriceComparer.WPF.csproj
 
 | Task | Description | Status |
 |------|-------------|--------|
-| Task 3 | Migrate CategoryViewModel to IMediator | 🔴 TODO |
-| Task 4 | Migrate ItemViewModel to IMediator | 🔴 TODO |
+| Task 3 | Migrate CategoryViewModel to IMediator | 🟢 DONE |
+| Task 4 | Migrate ItemViewModel to IMediator | 🟢 DONE |
 | Task 5 | Migrate PlaceViewModel to IMediator | 🟢 DONE |
-| Task 6 | Migrate AddItemViewModel to IMediator | 🔴 TODO |
-| Task 7 | Migrate AddStoreViewModel to IMediator | 🔴 TODO |
+| Task 6 | Migrate AddItemViewModel to IMediator | 🟢 DONE |
+| Task 7 | Migrate AddStoreViewModel to IMediator | 🟢 DONE |
 | Task 8 | Migrate PriceComparisonViewModel to IMediator | 🔴 TODO |
 | Task 9 | Migrate MainWindowViewModel to IMediator | 🔴 TODO |
-| Task 10 | Remove Unused IGroceryDataService Injections | 🔴 TODO |
+| Task 10 | Migrate PriceDropNotificationViewModel to IMediator | 🔴 TODO |
+| Task 11 | Migrate TripOptimizerViewModel to IMediator | 🟢 DONE |
+| Task 12 | Migrate ImportDataViewModel to IMediator | 🔴 TODO |
+| Task 13 | Migrate MLModelManagementViewModel to IMediator | 🔴 TODO |
+| Task 14 | Migrate ServerDataTransferViewModel to IMediator | 🔴 TODO |
+| Task 15 | Remove Unused IGroceryDataService Injections | 🔴 TODO |
 
 ---
 

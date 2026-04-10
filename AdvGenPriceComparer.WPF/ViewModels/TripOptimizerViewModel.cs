@@ -2,6 +2,8 @@ using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.Commands;
 using AdvGenPriceComparer.WPF.Services;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +19,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 public class TripOptimizerViewModel : ViewModelBase
 {
     private readonly ITripOptimizerService _tripOptimizerService;
-    private readonly IGroceryDataService _groceryDataService;
+    private readonly IMediator _mediator;
     private readonly IShoppingListService _shoppingListService;
     private readonly ILoggerService _logger;
     private readonly IDialogService _dialogService;
@@ -200,13 +202,13 @@ public class TripOptimizerViewModel : ViewModelBase
 
     public TripOptimizerViewModel(
         ITripOptimizerService tripOptimizerService,
-        IGroceryDataService groceryDataService,
+        IMediator mediator,
         IShoppingListService shoppingListService,
         ILoggerService logger,
         IDialogService dialogService)
     {
         _tripOptimizerService = tripOptimizerService;
-        _groceryDataService = groceryDataService;
+        _mediator = mediator;
         _shoppingListService = shoppingListService;
         _logger = logger;
         _dialogService = dialogService;
@@ -234,7 +236,7 @@ public class TripOptimizerViewModel : ViewModelBase
             }
 
             // Load stores
-            var stores = _groceryDataService.Places.GetAll();
+            var stores = _mediator.Send(new GetAllPlacesQuery()).GetAwaiter().GetResult();
             AvailableStores.Clear();
             foreach (var store in stores.Where(s => s.IsActive))
             {

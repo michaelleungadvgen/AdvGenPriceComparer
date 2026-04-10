@@ -1,4 +1,5 @@
 using System.Windows;
+using AdvGenFlow;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.WPF.Models;
 using AdvGenPriceComparer.WPF.Views;
@@ -259,12 +260,12 @@ public class SimpleDialogService : IDialogService
     public void ShowTripOptimizerDialog()
     {
         var tripOptimizerService = ((App)System.Windows.Application.Current).Services.GetRequiredService<ITripOptimizerService>();
-        var groceryDataService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
+        var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<IMediator>();
         var shoppingListService = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IShoppingListService>();
         var logger = ((App)System.Windows.Application.Current).Services.GetRequiredService<ILoggerService>();
         var dialogService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IDialogService>();
         
-        var viewModel = new ViewModels.TripOptimizerViewModel(tripOptimizerService, groceryDataService, shoppingListService, logger, dialogService);
+        var viewModel = new ViewModels.TripOptimizerViewModel(tripOptimizerService, mediator, shoppingListService, logger, dialogService);
         var window = new TripOptimizerWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }
