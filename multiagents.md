@@ -739,6 +739,29 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-New (DONE)
+- **Task:** Add data validation reports for import/export operations
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Results:** 
+  - Created ValidationReport model in Core/Models with comprehensive validation structures
+  - Created ValidationReportViewModel with filtering, search, and export capabilities
+  - Created ValidationReportWindow.xaml/.xaml.cs with modern UI and tabbed interface
+  - Created ValidationSeverityConverters for color-coded display
+  - Updated IDialogService with ShowValidationReportDialog() method
+  - Updated SimpleDialogService with implementation
+  - Updated App.xaml to register new converters
+  - Updated 4 test files with new interface method
+  - Build succeeds with 0 errors
+- **Features Implemented:**
+  - Summary statistics cards (total items, valid, warnings, errors, success rate)
+  - Filter by severity (Info, Warning, Error, Critical)
+  - Filter by entry type (Store, Product, PriceRecord, Manifest, Schema, Checksum)
+  - Search functionality across entity names, messages, and fields
+  - Duplicate detection results display
+  - Export to JSON, Markdown, CSV, and HTML formats
+  - Factory method to create reports from StaticImportResult
+
 ### Agent-Kimi-Current (DONE)
 - **Task:** Fix CategoryPredictionService ML model accuracy - Skip tests requiring production-quality model
 - **Started:** 2026-04-10
