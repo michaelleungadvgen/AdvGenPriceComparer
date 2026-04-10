@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using AdvGenFlow;
+using AdvGenPriceComparer.Application.Queries;
 using AdvGenPriceComparer.Core.Interfaces;
 using AdvGenPriceComparer.Core.Models;
 using AdvGenPriceComparer.WPF.Commands;
@@ -13,7 +15,7 @@ namespace AdvGenPriceComparer.WPF.ViewModels;
 public class PriceDropNotificationViewModel : ViewModelBase
 {
     private readonly IPriceDropNotificationService _notificationService;
-    private readonly IGroceryDataService _groceryData;
+    private readonly IMediator _mediator;
 
     public ObservableCollection<AlertLogicEntity> Notifications { get; set; } = new();
     public ObservableCollection<Item> WatchedItems { get; set; } = new();
@@ -107,10 +109,10 @@ public class PriceDropNotificationViewModel : ViewModelBase
 
     public PriceDropNotificationViewModel(
         IPriceDropNotificationService notificationService,
-        IGroceryDataService groceryData)
+        IMediator mediator)
     {
         _notificationService = notificationService ?? throw new ArgumentNullException(nameof(notificationService));
-        _groceryData = groceryData ?? throw new ArgumentNullException(nameof(groceryData));
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
         RefreshCommand = new RelayCommand(LoadNotifications);
         MarkAsReadCommand = new RelayCommand<AlertLogicEntity>(async (alert) => await MarkAsReadAsync(alert));
@@ -139,16 +141,20 @@ public class PriceDropNotificationViewModel : ViewModelBase
         UnreadCount = _notificationService.GetUnreadNotificationCount();
     }
 
-    private void LoadWatchedItems()
+    private async void LoadWatchedItems()
     {
         WatchedItems.Clear();
-        var activeAlerts = _groceryData.Alerts.GetActiveAlerts()
+        
+        // Get active alerts using Mediator
+        var activeAlerts = await _mediator.Send(new GetActiveAlertsQuery());
+        var priceAlerts = activeAlerts
             .Where(a => a.Type == AlertType.PriceDecrease || a.Type == AlertType.PriceChange)
             .ToList();
 
-        foreach (var alert in activeAlerts)
+        foreach (var alert in priceAlerts)
         {
-            var item = _groceryData.Items.GetById(alert.ItemId);
+            // Get item by ID using Mediator
+            var item = await _mediator.Send(new GetItemByIdQuery(alert.ItemId));
             if (item != null && !WatchedItems.Any(i => i.Id == item.Id))
             {
                 WatchedItems.Add(item);

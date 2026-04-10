@@ -6476,7 +6476,7 @@ dotnet build AdvGenPriceComparer.WPF/AdvGenPriceComparer.WPF.csproj
 | Task 7 | Migrate AddStoreViewModel to IMediator | 🟢 DONE |
 | Task 8 | Migrate PriceComparisonViewModel to IMediator | 🔴 TODO |
 | Task 9 | Migrate MainWindowViewModel to IMediator | 🔴 TODO |
-| Task 10 | Migrate PriceDropNotificationViewModel to IMediator | 🔴 TODO |
+| Task 10 | Migrate PriceDropNotificationViewModel to IMediator | 🟢 DONE | Agent-Kimi | 2026-04-10 |
 | Task 11 | Migrate TripOptimizerViewModel to IMediator | 🟢 DONE |
 | Task 12 | Migrate ImportDataViewModel to IMediator | 🔴 TODO |
 | Task 13 | Migrate MLModelManagementViewModel to IMediator | 🔴 TODO |

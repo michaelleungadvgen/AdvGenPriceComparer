@@ -745,6 +745,27 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-Mediator-Current (DONE)
+- **Task:** Migrate PriceDropNotificationViewModel to IMediator - Remove IGroceryDataService dependency
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Status:** 🟢 DONE
+- **Results:**
+  1. ✅ Created GetActiveAlertsQuery in AdvGenPriceComparer.Application/Queries/
+  2. ✅ Created GetActiveAlertsQueryHandler in AdvGenPriceComparer.Application/Handlers/
+  3. ✅ Migrated PriceDropNotificationViewModel to use IMediator instead of IGroceryDataService
+  4. ✅ Updated SimpleDialogService to pass IMediator
+  5. ✅ Updated App.xaml.cs DI registration for PriceDropNotificationViewModel
+  6. ✅ Build succeeds with 0 errors
+- **Files Modified:**
+  - `AdvGenPriceComparer.Application/Queries/GetActiveAlertsQuery.cs` (new)
+  - `AdvGenPriceComparer.Application/Handlers/GetActiveAlertsQueryHandler.cs` (new)
+  - `AdvGenPriceComparer.WPF/ViewModels/PriceDropNotificationViewModel.cs`
+  - `AdvGenPriceComparer.WPF/Services/SimpleDialogService.cs`
+  - `AdvGenPriceComparer.WPF/App.xaml.cs`
+
+---
+
 ### Agent-Kimi-Mediator-Migration (DONE)
 - **Task:** Migrate StoreViewModel to IMediator - Remove IGroceryDataService dependency
 - **Started:** 2026-04-10

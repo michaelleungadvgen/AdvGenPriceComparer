@@ -79,8 +79,8 @@ public class SimpleDialogService : IDialogService
     public void ShowPriceDropNotificationsDialog()
     {
         var notificationService = ((App)System.Windows.Application.Current).Services.GetRequiredService<IPriceDropNotificationService>();
-        var groceryData = ((App)System.Windows.Application.Current).Services.GetRequiredService<Core.Interfaces.IGroceryDataService>();
-        var viewModel = new ViewModels.PriceDropNotificationViewModel(notificationService, groceryData);
+        var mediator = ((App)System.Windows.Application.Current).Services.GetRequiredService<AdvGenFlow.IMediator>();
+        var viewModel = new ViewModels.PriceDropNotificationViewModel(notificationService, mediator);
         var window = new PriceDropNotificationsWindow(viewModel) { Owner = System.Windows.Application.Current.MainWindow };
         window.ShowDialog();
     }

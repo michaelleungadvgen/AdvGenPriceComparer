@@ -453,8 +453,8 @@ public partial class App : System.Windows.Application
             services.AddTransient<PriceDropNotificationViewModel>(provider =>
             {
                 var notificationService = provider.GetRequiredService<IPriceDropNotificationService>();
-                var groceryData = provider.GetRequiredService<IGroceryDataService>();
-                return new PriceDropNotificationViewModel(notificationService, groceryData);
+                var mediator = provider.GetRequiredService<AdvGenFlow.IMediator>();
+                return new PriceDropNotificationViewModel(notificationService, mediator);
             });
             services.AddTransient<DealExpirationReminderViewModel>(provider =>
             {
