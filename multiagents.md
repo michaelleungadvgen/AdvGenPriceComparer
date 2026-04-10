@@ -739,6 +739,20 @@
 
 ## Active Agent Assignments
 
+### Agent-Kimi-Security (DONE)
+- **Task:** Fix plaintext API key storage vulnerability - Encrypt sensitive settings using DPAPI
+- **Started:** 2026-04-10
+- **Completed:** 2026-04-10
+- **Issue:** API keys stored in plaintext in settings.json as documented in .jules/sentinel.md
+- **Solution:** Verified SettingsService.cs already implements encryption using `ProtectedData.Protect/Unprotect` with `DataProtectionScope.CurrentUser`
+- **Implementation Details:**
+  - `EncryptString()` method (lines 646-670): Encrypts plaintext using DPAPI, returns Base64-encoded ciphertext
+  - `DecryptString()` method (lines 672-707): Decrypts Base64 ciphertext, handles migration from plaintext (FormatException fallback)
+  - Cross-platform safe: Gracefully handles `PlatformNotSupportedException` on non-Windows
+  - Secure fallback: Returns empty/plaintext on decryption errors to prevent lockouts
+- **Verification:** All 25 SettingsServiceTests passing, build succeeds with 0 errors
+- **Files:** SettingsService.cs (already implemented)
+
 ### Agent-Kimi-New (DONE)
 - **Task:** Add data validation reports for import/export operations
 - **Started:** 2026-04-10
