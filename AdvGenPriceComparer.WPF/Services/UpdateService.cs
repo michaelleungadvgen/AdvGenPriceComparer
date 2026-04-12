@@ -166,14 +166,18 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (string.IsNullOrEmpty(updateResult.FileHash))
+            {
+                _logger.LogError("Update rejected: Missing file hash in update manifest.");
+                return false;
+            }
 
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
+            var downloadUrl = updateResult.DownloadUrl;
+            _logger.LogInfo($"Starting download from: {downloadUrl}");
 
             var response = await _httpClient.GetAsync(downloadUrl);
             if (!response.IsSuccessStatusCode)
@@ -183,17 +187,47 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            using var sha256 = System.Security.Cryptography.SHA256.Create();
+            var hashBytes = sha256.ComputeHash(data);
+            var computedHash = Convert.ToHexString(hashBytes);
+
+            var expectedHash = updateResult.FileHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                ? updateResult.FileHash.Substring(7)
+                : updateResult.FileHash;
+
+            if (!string.Equals(computedHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError($"Update rejected: File hash mismatch. Expected {expectedHash}, got {computedHash}.");
+                return false;
+            }
+
+            var isMsi = downloadUrl.EndsWith(".msi", StringComparison.OrdinalIgnoreCase);
+            var extension = isMsi ? ".msi" : ".exe";
+            var tempPath = Path.Combine(Path.GetTempPath(), $"AdvGenPriceComparer_Update{extension}");
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
 
             // Execute the installer
-            Process.Start(new ProcessStartInfo
+            if (isMsi)
             {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Verb = "open"
-            });
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "msiexec.exe",
+                    Arguments = $"/i \"{tempPath}\"",
+                    UseShellExecute = false
+                });
+            }
+            else
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = tempPath,
+                    UseShellExecute = false
+                });
+            }
 
             return true;
         }
