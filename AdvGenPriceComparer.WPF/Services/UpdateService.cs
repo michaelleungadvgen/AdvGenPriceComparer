@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,13 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
-
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,23 +181,61 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            if (!string.IsNullOrWhiteSpace(updateResult.FileHash) && updateResult.FileHash != "sha256:placeholder_replace_with_actual_hash")
+            {
+                using (var sha256 = SHA256.Create())
+                {
+                    var hashBytes = sha256.ComputeHash(data);
+                    var hashString = Convert.ToHexString(hashBytes);
+                    var expectedHash = updateResult.FileHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                                       ? updateResult.FileHash.Substring(7)
+                                       : updateResult.FileHash;
+
+                    if (!string.Equals(hashString, expectedHash, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _logger.LogError($"Update verification failed: Hash mismatch. Expected {expectedHash}, got {hashString}");
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                _logger.LogInfo("Skipping hash verification: No valid file hash provided in update payload.");
+            }
+
+            var isExe = updateResult.DownloadUrl.EndsWith(".exe", StringComparison.OrdinalIgnoreCase);
+            var ext = isExe ? ".exe" : ".msi";
+            var tempPath = Path.Combine(Path.GetTempPath(), $"AdvGenPriceComparer_Update{ext}");
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download and verification completed: {tempPath}");
 
-            // Execute the installer
-            Process.Start(new ProcessStartInfo
+            if (isExe)
             {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Verb = "open"
-            });
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = tempPath,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            else
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "msiexec.exe",
+                    Arguments = $"/i \"{tempPath}\"",
+                    UseShellExecute = false
+                });
+            }
 
             return true;
         }
         catch (Exception ex)
         {
-            _logger.LogError("Failed to download update", ex);
+            _logger.LogError("Failed to download or verify update", ex);
             return false;
         }
     }
