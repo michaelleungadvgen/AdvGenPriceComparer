@@ -147,13 +147,13 @@
                         <!-- Quick Actions -->
                         <GroupBox Header="Quick Actions" Margin="0,15,0,0">
                             <WrapPanel Margin="10">
-                                <Button Content="🔄 Sync Now" Style="{StaticResource ActionButton}" 
+                                <Button Content="🔄 Sync Now" AutomationProperties.Name="Sync Now" Style="{StaticResource ActionButton}"
                                         Command="{Binding SyncNowCommand}" IsEnabled="{Binding CanSync}"/>
-                                <Button Content="📤 Export to Cloud" Style="{StaticResource ActionButton}" 
+                                <Button Content="📤 Export to Cloud" AutomationProperties.Name="Export to Cloud" Style="{StaticResource ActionButton}"
                                         Command="{Binding ExportCommand}" IsEnabled="{Binding CanSync}"/>
-                                <Button Content="📥 Import from Cloud" Style="{StaticResource ActionButton}" 
+                                <Button Content="📥 Import from Cloud" AutomationProperties.Name="Import from Cloud" Style="{StaticResource ActionButton}"
                                         Command="{Binding ImportCommand}" IsEnabled="{Binding CanSync}"/>
-                                <Button Content="🔌 Test Connection" Style="{StaticResource ActionButton}" 
+                                <Button Content="🔌 Test Connection" AutomationProperties.Name="Test Connection" Style="{StaticResource ActionButton}"
                                         Command="{Binding TestConnectionCommand}" IsEnabled="{Binding CanSync}"/>
                             </WrapPanel>
                         </GroupBox>
