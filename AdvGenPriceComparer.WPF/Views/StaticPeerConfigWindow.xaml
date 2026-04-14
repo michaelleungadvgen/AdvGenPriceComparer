@@ -289,10 +289,10 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <Button Content="🔄 Discover Peers" Padding="15,8" Margin="0,0,10,0"
+                    <Button Content="🔄 Discover Peers" AutomationProperties.Name="Discover Peers" Padding="15,8" Margin="0,0,10,0"
                             Command="{Binding DiscoverPeersCommand}"
                             IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}"/>
-                    <Button Content="💓 Check All Health" Padding="15,8" Margin="0,0,10,0"
+                    <Button Content="💓 Check All Health" AutomationProperties.Name="Check All Health" Padding="15,8" Margin="0,0,10,0"
                             Command="{Binding CheckAllHealthCommand}"
                             IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}"/>
                 </StackPanel>

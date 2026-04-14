@@ -216,7 +216,7 @@
                                   SelectedItem="{Binding SelectedComparisonStore}"
                                   DisplayMemberPath="Name"
                                   Margin="0,0,8,0"/>
-                        <Button Content="📊 View Chart"
+                        <Button Content="📊 View Chart" AutomationProperties.Name="View Chart"
                                 Command="{Binding ToggleChartViewCommand}"
                                 Padding="12,6"
                                 Background="Transparent"

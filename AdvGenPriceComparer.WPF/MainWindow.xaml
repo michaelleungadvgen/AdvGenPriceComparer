@@ -205,7 +205,7 @@
 
                     <!-- Quick Actions -->
                     <TextBlock Text="Quick Actions" FontWeight="SemiBold" Margin="0,16,0,8" FontSize="12" Opacity="0.6"/>
-                    <ui:Button Content="🔍 Global Search" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="🔍 Global Search" AutomationProperties.Name="Global Search" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding GlobalSearchCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
@@ -225,7 +225,7 @@
                            Command="{Binding ComparePricesCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="🔥 Best Prices" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="🔥 Best Prices" AutomationProperties.Name="Best Prices" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding BestPricesCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
@@ -233,15 +233,15 @@
                            Command="{Binding FavoritesCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="📷 Scan Barcode" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="📷 Scan Barcode" AutomationProperties.Name="Scan Barcode" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ScanBarcodeCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="📢 Price Drop Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="📢 Price Drop Alerts" AutomationProperties.Name="Price Drop Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceDropNotificationsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="🎯 Price Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="🎯 Price Alerts" AutomationProperties.Name="Price Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceAlertsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
@@ -249,31 +249,31 @@
                            Command="{Binding DealExpirationRemindersCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="📰 Weekly Specials" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="📰 Weekly Specials" AutomationProperties.Name="Weekly Specials" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding WeeklySpecialsDigestCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="🛒 Shopping Lists" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="🛒 Shopping Lists" AutomationProperties.Name="Shopping Lists" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ShoppingListsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="⚙️ Settings" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="⚙️ Settings" AutomationProperties.Name="Settings" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding SettingsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="🤖 ML Model Management" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="🤖 ML Model Management" AutomationProperties.Name="ML Model Management" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding MLModelManagementCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="📈 Price Forecast" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="📈 Price Forecast" AutomationProperties.Name="Price Forecast" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceForecastCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="🎭 Detect Fake Sales" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="🎭 Detect Fake Sales" AutomationProperties.Name="Detect Fake Sales" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding IllusoryDiscountDetectionCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
-                    <ui:Button Content="💬 AI Chat Assistant" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                    <ui:Button Content="💬 AI Chat Assistant" AutomationProperties.Name="AI Chat Assistant" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ChatCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"/>
