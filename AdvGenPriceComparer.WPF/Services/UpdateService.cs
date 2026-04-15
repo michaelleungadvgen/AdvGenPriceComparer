@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 using System.Windows;
 
 namespace AdvGenPriceComparer.WPF.Services;
@@ -166,10 +167,11 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
+            var downloadUrl = updateResult.DownloadUrl;
             _logger.LogInfo($"Starting download from: {downloadUrl}");
 
             // For MSI installers, we download to temp and execute
@@ -183,6 +185,28 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Cryptographic verification
+            if (!string.IsNullOrWhiteSpace(updateResult.FileHash) &&
+                !string.Equals(updateResult.FileHash, "placeholder", StringComparison.OrdinalIgnoreCase))
+            {
+                string expectedHash = updateResult.FileHash;
+                if (expectedHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
+                {
+                    expectedHash = expectedHash.Substring(7);
+                }
+
+                using var sha256 = SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                string actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update download failed cryptographic verification. Expected: {expectedHash}, Actual: {actualHash}");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
