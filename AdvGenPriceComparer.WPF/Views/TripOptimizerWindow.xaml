@@ -61,7 +61,7 @@
 
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="🛒 Trip Optimizer" 
-                               FontSize="24" FontWeight="Bold" Foreground="White"/>
+                               FontSize="24" FontWeight="Bold" Foreground="White" AutomationProperties.Name="Trip Optimizer"/>
                     <TextBlock Text="Plan the most efficient shopping route across multiple stores"
                                Foreground="White" Opacity="0.9" Margin="0,4,0,0"/>
                 </StackPanel>
@@ -70,7 +70,7 @@
                     <Button Content="🔄 Refresh" 
                             Command="{Binding RefreshListsCommand}"
                             Padding="12,8" Margin="0,0,8,0"
-                            Background="#FFFFFF" Foreground="#0D6EFD" BorderThickness="0"/>
+                            Background="#FFFFFF" Foreground="#0D6EFD" BorderThickness="0" AutomationProperties.Name="Refresh"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -88,7 +88,7 @@
                     <!-- Shopping List Selection -->
                     <Border Style="{StaticResource CardStyle}">
                         <StackPanel>
-                            <TextBlock Text="📋 Shopping List" Style="{StaticResource SectionHeaderStyle}"/>
+                            <TextBlock Text="📋 Shopping List" Style="{StaticResource SectionHeaderStyle}" AutomationProperties.Name="Shopping List"/>
 
                             <ComboBox ItemsSource="{Binding AvailableShoppingLists}"
                                       SelectedItem="{Binding SelectedShoppingList}"
@@ -107,7 +107,7 @@
                     <!-- Optimization Options -->
                     <Border Style="{StaticResource CardStyle}">
                         <StackPanel>
-                            <TextBlock Text="⚙️ Optimization Strategy" Style="{StaticResource SectionHeaderStyle}"/>
+                            <TextBlock Text="⚙️ Optimization Strategy" Style="{StaticResource SectionHeaderStyle}" AutomationProperties.Name="Optimization Strategy"/>
 
                             <ComboBox ItemsSource="{Binding Source={StaticResource OptimizationStrategyEnum}}"
                                       SelectedItem="{Binding SelectedStrategy}"
@@ -257,7 +257,7 @@
                                   Margin="0,12,0,0">
                         <StackPanel>
                             <TextBlock Text="🛍️ Shopping Route" 
-                                       Style="{StaticResource SectionHeaderStyle}"/>
+                                       Style="{StaticResource SectionHeaderStyle}" AutomationProperties.Name="Shopping Route"/>
 
                             <!-- Store Stops List -->
                             <ItemsControl ItemsSource="{Binding StoreStops}">
@@ -378,7 +378,7 @@
                                 <StackPanel>
                                     <TextBlock Text="⚠️ Unavailable Items" 
                                                FontWeight="SemiBold" 
-                                               Foreground="#856404"/>
+                                               Foreground="#856404" AutomationProperties.Name="Unavailable Items"/>
                                     <TextBlock Text="The following items could not be found at any store:"
                                                FontSize="12" 
                                                Foreground="#856404"
@@ -437,11 +437,11 @@
                     <Button Content="📋 Copy to Clipboard"
                             Command="{Binding ExportResultsCommand}"
                             Padding="12,8" Margin="0,0,8,0"
-                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}" AutomationProperties.Name="Copy to Clipboard"/>
                     <Button Content="🖨️ Print"
                             Command="{Binding PrintResultsCommand}"
                             Padding="12,8"
-                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}" AutomationProperties.Name="Print"/>
                 </StackPanel>
             </Grid>
         </Border>

@@ -272,7 +272,7 @@
                         <Button Content="Edit" Padding="10,3" Command="{Binding EditPeerCommand}" CommandParameter="{Binding SelectedPeer}"/>
                         <Button Content="Delete" Padding="10,3" Command="{Binding DeletePeerCommand}" CommandParameter="{Binding SelectedPeer}"/>
                         <Separator/>
-                        <Button Content="★" Padding="10,3" Command="{Binding TogglePeerFavoriteCommand}" CommandParameter="{Binding SelectedPeer}"/>
+                        <Button Content="★" Padding="10,3" Command="{Binding TogglePeerFavoriteCommand}" CommandParameter="{Binding SelectedPeer}" AutomationProperties.Name="Favorite"/>
                         <Button Content="Health" Padding="10,3" Command="{Binding CheckPeerHealthCommand}" CommandParameter="{Binding SelectedPeer}"/>
                     </ToolBar>
                 </ToolBarTray>
@@ -291,10 +291,10 @@
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <Button Content="🔄 Discover Peers" Padding="15,8" Margin="0,0,10,0"
                             Command="{Binding DiscoverPeersCommand}"
-                            IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}"/>
+                            IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}" AutomationProperties.Name="Discover Peers"/>
                     <Button Content="💓 Check All Health" Padding="15,8" Margin="0,0,10,0"
                             Command="{Binding CheckAllHealthCommand}"
-                            IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}"/>
+                            IsEnabled="{Binding IsDiscovering, Converter={StaticResource InverseBooleanConverter}}" AutomationProperties.Name="Check All Health"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
