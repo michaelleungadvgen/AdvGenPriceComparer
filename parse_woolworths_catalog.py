@@ -26,6 +26,10 @@ class WoolworthsProductExtractor:
             'Special': re.compile(r'Special', re.IGNORECASE)
         }
         
+        # Skip keywords and patterns
+        self.skip_keywords = ('SAVE', 'PRICE', 'BUY', 'GET', 'IMAGE', 'DEVICERGB', 'WIDTH', 'HEIGHT', 'BPC')
+        self.per_pattern = re.compile(r'^\d+\s*(per|Per)')
+
         # Category keywords for classification
         self.category_keywords = {
             'Health & Beauty': ['olay', 'pantene', 'loreal', 'nivea', 'colgate', 'shampoo', 'conditioner', 'serum', 'cream', 'dove', 'dettol', 'antibacterial', 'body wash', 'fish oil', 'blackmores'],
@@ -144,11 +148,12 @@ class WoolworthsProductExtractor:
             line = self.clean_ocr_text(line)
             
             # Skip short fragments, prices, and discount indicators
+            line_upper = line.upper()
             if (len(line) > 3 and 
                 not self.price_pattern.search(line) and 
-                not any(keyword in line.upper() for keyword in ['SAVE', 'PRICE', 'BUY', 'GET', 'IMAGE', 'DEVICERGB', 'WIDTH', 'HEIGHT', 'BPC']) and
+                not any(keyword in line_upper for keyword in self.skip_keywords) and
                 not line.replace(' ', '').replace('.', '').isdigit() and
-                not re.match(r'^\d+\s*(per|Per)', line)):
+                not self.per_pattern.match(line)):
                 
                 # Clean up common OCR artifacts
                 line = re.sub(r'[^\w\s&\'-]', ' ', line)
@@ -293,8 +298,8 @@ def main():
     extractor = WoolworthsProductExtractor()
     
     # Parse catalog
-    catalog_path = r"C:\Users\advgen10\source\repos\AdvGenPriceComparer\catalog_extracted.txt"
-    output_path = r"C:\Users\advgen10\source\repos\AdvGenPriceComparer\data\woolworths_24072025.json"
+    catalog_path = r"catalog_extracted.txt"
+    output_path = r"woolworths_24072025.json"
     
     products = extractor.parse_catalog(catalog_path)
     
