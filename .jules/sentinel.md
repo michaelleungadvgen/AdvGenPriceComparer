@@ -1,4 +1,4 @@
-## 2025-02-28 - Plaintext API Key Storage in Settings File
-**Vulnerability:** API keys were being written to local JSON files (`settings.json`) in plaintext by the `SettingsService`, making them accessible to any user or application with file system read access.
-**Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
-**Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2024-05-15 - Authorization Bypass Due to Missing Environment Checks
+**Vulnerability:** The API key middleware (`ApiKeyMiddleware.cs`) allowed unauthorized read access (GET requests) to `/api/prices` in all environments, despite code comments indicating this was meant for development only.
+**Learning:** Security bypasses intended for local development should never rely solely on implicit states or comments; they must explicitly check the environment to ensure they aren't accidentally promoted to production.
+**Prevention:** Always inject `IWebHostEnvironment` and wrap development-only bypasses with an explicit `env.IsDevelopment()` check.
