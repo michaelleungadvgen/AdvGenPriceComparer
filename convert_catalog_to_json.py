@@ -1,6 +1,5 @@
 import json
 import re
-from typing import List, Dict, Optional
 
 def parse_catalog_to_json(input_file: str, output_file: str) -> None:
     """
