@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +167,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string fileHash = "")
     {
         try
         {
@@ -183,6 +184,24 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            if (!string.IsNullOrWhiteSpace(fileHash) && fileHash != "placeholder")
+            {
+                var expectedHash = fileHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                    ? fileHash.Substring(7)
+                    : fileHash;
+
+                using var sha256 = SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update hash mismatch. Expected: {expectedHash}, Actual: {actualHash}");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");

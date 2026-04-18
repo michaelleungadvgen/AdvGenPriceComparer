@@ -29,7 +29,7 @@ public interface IUpdateService
     /// </summary>
     /// <param name="downloadUrl">URL to the installer</param>
     /// <returns>True if download started successfully</returns>
-    Task<bool> DownloadUpdateAsync(string downloadUrl);
+    Task<bool> DownloadUpdateAsync(string downloadUrl, string fileHash = "");
 
     /// <summary>
     /// Open the download page in browser
