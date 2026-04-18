@@ -190,7 +190,7 @@
                             Content="➕ Create"
                             Command="{Binding CreateListCommand}"
                             Style="{StaticResource ActionButtonStyle}"
-                            Margin="8,0,0,0"/>
+                            Margin="8,0,0,0" AutomationProperties.Name="Create"/>
                 </Grid>
 
                 <!-- Lists -->
@@ -328,7 +328,7 @@
                             Content="➕ Add"
                             Command="{Binding AddItemCommand}"
                             Style="{StaticResource ActionButtonStyle}"
-                            Margin="8,0,0,0"/>
+                            Margin="8,0,0,0" AutomationProperties.Name="Add"/>
                 </Grid>
 
                 <!-- Items List -->

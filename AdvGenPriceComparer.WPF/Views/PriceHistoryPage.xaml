@@ -178,7 +178,7 @@
                             Foreground="#666"
                             BorderThickness="0"
                             Cursor="Hand"
-                            FontSize="13"/>
+                            FontSize="13" AutomationProperties.Name="Refresh"/>
                 </Grid>
             </Grid>
         </Border>
