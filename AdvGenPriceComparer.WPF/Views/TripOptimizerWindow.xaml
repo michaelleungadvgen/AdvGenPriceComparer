@@ -70,7 +70,7 @@
                     <Button Content="🔄 Refresh" 
                             Command="{Binding RefreshListsCommand}"
                             Padding="12,8" Margin="0,0,8,0"
-                            Background="#FFFFFF" Foreground="#0D6EFD" BorderThickness="0"/>
+                            Background="#FFFFFF" Foreground="#0D6EFD" BorderThickness="0" AutomationProperties.Name="Refresh"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -437,11 +437,11 @@
                     <Button Content="📋 Copy to Clipboard"
                             Command="{Binding ExportResultsCommand}"
                             Padding="12,8" Margin="0,0,8,0"
-                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}" AutomationProperties.Name="Copy to Clipboard"/>
                     <Button Content="🖨️ Print"
                             Command="{Binding PrintResultsCommand}"
                             Padding="12,8"
-                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}" AutomationProperties.Name="Print"/>
                 </StackPanel>
             </Grid>
         </Border>

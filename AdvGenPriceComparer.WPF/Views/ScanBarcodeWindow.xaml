@@ -135,11 +135,11 @@
                                     <Button Content="📋 Copy" 
                                             Command="{Binding CopyBarcodeCommand}"
                                             Padding="15,5"
-                                            Margin="0,0,10,0"/>
+                                            Margin="0,0,10,0" AutomationProperties.Name="Copy"/>
                                     <Button Content="🗑️ Clear" 
                                             Command="{Binding ClearScanCommand}"
                                             Padding="15,5"
-                                            Style="{StaticResource DefaultButtonStyle}"/>
+                                            Style="{StaticResource DefaultButtonStyle}" AutomationProperties.Name="Clear"/>
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
@@ -298,11 +298,11 @@
                                     Command="{Binding GenerateBarcodeCommand}"
                                     Padding="20,10"
                                     Margin="0,0,10,0"
-                                    Style="{StaticResource AccentButtonStyle}"/>
+                                    Style="{StaticResource AccentButtonStyle}" AutomationProperties.Name="Generate"/>
                             <Button Content="🗑️ Clear" 
                                     Command="{Binding ClearGenerateCommand}"
                                     Padding="20,10"
-                                    Style="{StaticResource DefaultButtonStyle}"/>
+                                    Style="{StaticResource DefaultButtonStyle}" AutomationProperties.Name="Clear"/>
                         </StackPanel>
                     </StackPanel>
 
