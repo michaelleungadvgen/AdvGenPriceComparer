@@ -56,7 +56,9 @@
                         BorderThickness="0"
                         FontSize="18"
                         VerticalAlignment="Top"
-                        Cursor="Hand"/>
+                        Cursor="Hand"
+                        ToolTip="Clear search"
+                        AutomationProperties.Name="Clear search"/>
             </Grid>
         </Border>
 
