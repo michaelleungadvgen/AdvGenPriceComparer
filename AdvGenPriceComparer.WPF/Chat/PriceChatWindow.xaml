@@ -113,6 +113,7 @@
 
                 <Button Grid.Column="1" 
                         Content="✕" 
+                        AutomationProperties.Name="Close"
                         Width="30" 
                         Height="30"
                         Background="Transparent"
@@ -305,6 +306,7 @@
                         Width="40"
                         Height="40"
                         Margin="10,0"
+                        AutomationProperties.Name="Clear chat"
                         Background="Transparent"
                         BorderThickness="0"
                         ToolTip="Clear chat"
@@ -315,6 +317,7 @@
                         FontSize="16"
                         Width="45"
                         Height="45"
+                        AutomationProperties.Name="Send message"
                         Background="#0078D4"
                         Foreground="White"
                         BorderThickness="0"
