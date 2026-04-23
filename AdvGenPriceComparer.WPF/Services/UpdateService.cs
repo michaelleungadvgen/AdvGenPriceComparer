@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,25 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (updateResult == null || string.IsNullOrWhiteSpace(updateResult.DownloadUrl))
+            {
+                _logger.LogError("Update download URL is missing.");
+                return false;
+            }
 
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update verification failed: Missing file hash in update manifest.");
+                return false;
+            }
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
+
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,17 +193,51 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Secure temporary file generation
+            var tempPath = Path.Combine(Path.GetTempPath(), $"AdvGenPriceComparer_Update_{Guid.NewGuid():N}.msi");
+
+            // For .exe downloads, we must adjust extension to avoid execution issues
+            if (updateResult.DownloadUrl.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+            {
+                tempPath = Path.Combine(Path.GetTempPath(), $"AdvGenPriceComparer_Update_{Guid.NewGuid():N}.exe");
+            }
+
+            // Verify hash
+            using (var sha256 = SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(actualHash, updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update verification failed: Hash mismatch. Expected: {updateResult.FileHash}, Actual: {actualHash}");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed and verified: {tempPath}");
 
-            // Execute the installer
-            Process.Start(new ProcessStartInfo
+            // Execute the installer securely
+            var startInfo = new ProcessStartInfo
             {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Verb = "open"
-            });
+                UseShellExecute = false
+            };
+
+            if (tempPath.EndsWith(".msi", StringComparison.OrdinalIgnoreCase))
+            {
+                var systemFolder = Environment.GetFolderPath(Environment.SpecialFolder.System);
+                startInfo.FileName = Path.Combine(systemFolder, "msiexec.exe");
+                startInfo.Arguments = $"/i \"{tempPath}\"";
+            }
+            else
+            {
+                startInfo.FileName = tempPath;
+            }
+
+            Process.Start(startInfo);
 
             return true;
         }
