@@ -119,6 +119,8 @@
                         BorderThickness="0"
                         Foreground="White"
                         FontSize="16"
+                        ToolTip="Close window"
+                        AutomationProperties.Name="Close window"
                         Click="CloseButton_Click"/>
             </Grid>
         </Border>
@@ -308,6 +310,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         ToolTip="Clear chat"
+                        AutomationProperties.Name="Clear chat"
                         Command="{Binding ClearChatCommand}"/>
 
                 <Button Grid.Column="2"
@@ -319,6 +322,7 @@
                         Foreground="White"
                         BorderThickness="0"
                         ToolTip="Send message"
+                        AutomationProperties.Name="Send message"
                         Command="{Binding SendMessageCommand}">
                     <Button.Style>
                         <Style TargetType="Button">
