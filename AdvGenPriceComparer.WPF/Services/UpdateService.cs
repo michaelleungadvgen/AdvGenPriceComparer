@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,10 +167,16 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash)
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(expectedHash))
+            {
+                _logger.LogError("Update verification failed: Expected hash is empty or missing from update manifest.");
+                return false;
+            }
+
             _logger.LogInfo($"Starting download from: {downloadUrl}");
 
             // For MSI installers, we download to temp and execute
@@ -183,9 +190,21 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Cryptographically verify downloaded update
+            using var sha256 = SHA256.Create();
+            var hashBytes = sha256.ComputeHash(data);
+            var computedHash = Convert.ToHexString(hashBytes);
+
+            if (!string.Equals(computedHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError($"Update verification failed: Hash mismatch. Expected {expectedHash}, but got {computedHash}.");
+                return false;
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed and verified: {tempPath}");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
