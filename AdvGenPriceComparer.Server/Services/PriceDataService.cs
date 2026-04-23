@@ -358,9 +358,9 @@ public class PriceDataService : IPriceDataService
         catch (Exception ex)
         {
             result.Success = false;
-            result.ErrorMessage = ex.Message;
+            result.ErrorMessage = "An error occurred while processing the upload data";
             session.IsSuccess = false;
-            session.ErrorMessage = ex.Message;
+            session.ErrorMessage = "An error occurred while processing the upload data";
             await _context.UploadSessions.AddAsync(session);
             await _context.SaveChangesAsync();
         }
