@@ -178,7 +178,8 @@
                             Foreground="#666"
                             BorderThickness="0"
                             Cursor="Hand"
-                            FontSize="13"/>
+                            FontSize="13"
+                            AutomationProperties.Name="Refresh"/>
                 </Grid>
             </Grid>
         </Border>
@@ -222,7 +223,8 @@
                                 Background="Transparent"
                                 BorderBrush="#ddd"
                                 BorderThickness="1"
-                                Cursor="Hand"/>
+                                Cursor="Hand"
+                                AutomationProperties.Name="View Chart"/>
                     </StackPanel>
                 </Grid>
                 
