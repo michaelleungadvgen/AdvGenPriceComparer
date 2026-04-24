@@ -56,7 +56,8 @@
                         BorderThickness="0"
                         FontSize="18"
                         VerticalAlignment="Top"
-                        Cursor="Hand"/>
+                        Cursor="Hand"
+                        AutomationProperties.Name="Close"/>
             </Grid>
         </Border>
 

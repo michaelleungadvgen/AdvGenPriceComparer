@@ -39,7 +39,8 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Button Content="🔄 Refresh" Padding="15,8" Margin="0,0,10,0"
                             Command="{Binding RefreshCommand}"
-                            Background="White" Foreground="{DynamicResource SystemAccentColorBrush}"/>
+                            Background="White" Foreground="{DynamicResource SystemAccentColorBrush}"
+                            AutomationProperties.Name="Refresh"/>
                 </StackPanel>
             </Grid>
         </Border>

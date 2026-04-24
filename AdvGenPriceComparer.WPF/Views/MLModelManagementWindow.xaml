@@ -198,7 +198,8 @@
                         <Button Content="🔄 Reload Model"
                                 Command="{Binding ReloadModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
-                                IsEnabled="{Binding IsNotBusy}"/>
+                                IsEnabled="{Binding IsNotBusy}"
+                                AutomationProperties.Name="Reload Model"/>
                     </StackPanel>
                 </GroupBox>
 
@@ -208,7 +209,8 @@
                         <Button Content="📊 Train from Database"
                                 Command="{Binding TrainFromDatabaseCommand}"
                                 Style="{StaticResource ActionButtonStyle}"
-                                IsEnabled="{Binding IsNotBusy}"/>
+                                IsEnabled="{Binding IsNotBusy}"
+                                AutomationProperties.Name="Train from Database"/>
                         <TextBlock Text="Uses categorized items in database (min 100)"
                                   FontSize="11"
                                   Foreground="#666"
@@ -218,7 +220,8 @@
                         <Button Content="📁 Train from CSV"
                                 Command="{Binding TrainFromCsvCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
-                                IsEnabled="{Binding IsNotBusy}"/>
+                                IsEnabled="{Binding IsNotBusy}"
+                                AutomationProperties.Name="Train from CSV"/>
                         <TextBlock Text="Import training data from CSV file"
                                   FontSize="11"
                                   Foreground="#666"
@@ -227,7 +230,8 @@
                         <Button Content="🔄 Retrain Model"
                                 Command="{Binding RetrainModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
-                                IsEnabled="{Binding CanRetrain}"/>
+                                IsEnabled="{Binding CanRetrain}"
+                                AutomationProperties.Name="Retrain Model"/>
                         <TextBlock Text="Improve model with recent categorizations"
                                   FontSize="11"
                                   Foreground="#666"
@@ -356,7 +360,8 @@
                             HorizontalAlignment="Left"
                             MinWidth="150"
                             IsEnabled="{Binding CanTestPrediction}"
-                            Margin="0,0,0,20"/>
+                            Margin="0,0,0,20"
+                            AutomationProperties.Name="Test Prediction"/>
 
                     <!-- Prediction Results -->
                     <Border Grid.Row="3"
