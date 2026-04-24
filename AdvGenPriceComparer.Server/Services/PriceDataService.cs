@@ -355,12 +355,12 @@ public class PriceDataService : IPriceDataService
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             result.Success = false;
-            result.ErrorMessage = ex.Message;
+            result.ErrorMessage = "An internal error occurred while processing data.";
             session.IsSuccess = false;
-            session.ErrorMessage = ex.Message;
+            session.ErrorMessage = "An internal error occurred while processing data.";
             await _context.UploadSessions.AddAsync(session);
             await _context.SaveChangesAsync();
         }
