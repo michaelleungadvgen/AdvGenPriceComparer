@@ -1,4 +1,4 @@
-## 2025-02-28 - Plaintext API Key Storage in Settings File
-**Vulnerability:** API keys were being written to local JSON files (`settings.json`) in plaintext by the `SettingsService`, making them accessible to any user or application with file system read access.
-**Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
-**Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2025-05-01 - Unverified Update File Download Execution
+**Vulnerability:** Update service downloaded MSI installers and executed them directly without cryptographically verifying the file hash (`FileHash` in the manifest was ignored), leading to arbitrary code execution if the update source is compromised or intercepted.
+**Learning:** File hashing must happen in-memory immediately after the download and BEFORE writing to disk to prevent Time-of-Check to Time-of-Use (TOCTOU) file replacement attacks.
+**Prevention:** Always verify downloaded installer or executable files against a known-good checksum before storing or executing them.

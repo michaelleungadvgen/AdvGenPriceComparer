@@ -166,10 +166,11 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
+            var downloadUrl = updateResult.DownloadUrl;
             _logger.LogInfo($"Starting download from: {downloadUrl}");
 
             // For MSI installers, we download to temp and execute
@@ -183,6 +184,33 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Hash verification before writing to file (TOCTOU prevention)
+            var expectedHash = updateResult.FileHash;
+            if (!string.IsNullOrWhiteSpace(expectedHash) && !expectedHash.Contains("placeholder", StringComparison.OrdinalIgnoreCase))
+            {
+                if (expectedHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
+                {
+                    expectedHash = expectedHash.Substring(7);
+                }
+
+                using var sha256 = System.Security.Cryptography.SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update file hash mismatch. Expected: {expectedHash}, Actual: {actualHash}");
+                    return false;
+                }
+
+                _logger.LogInfo("Update file hash verified successfully.");
+            }
+            else
+            {
+                _logger.LogInfo("Skipping update file hash verification (hash missing or placeholder).");
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
