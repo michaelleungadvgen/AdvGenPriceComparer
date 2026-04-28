@@ -147,7 +147,7 @@
                         <!-- Quick Actions -->
                         <GroupBox Header="Quick Actions" Margin="0,15,0,0">
                             <WrapPanel Margin="10">
-                                <Button Content="🔄 Sync Now" Style="{StaticResource ActionButton}" 
+                                <Button Content="🔄 Sync Now" AutomationProperties.Name="Sync cloud data now" Style="{StaticResource ActionButton}"
                                         Command="{Binding SyncNowCommand}" IsEnabled="{Binding CanSync}"/>
                                 <Button Content="📤 Export to Cloud" Style="{StaticResource ActionButton}" 
                                         Command="{Binding ExportCommand}" IsEnabled="{Binding CanSync}"/>
