@@ -233,16 +233,16 @@
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right"
                     Margin="0,15,0,0">
-            <Button Content="🔄 Refresh" 
+            <Button Content="🔄 Refresh" AutomationProperties.Name="Refresh list"
                     Command="{Binding GenerateDigestCommand}"
                     Style="{StaticResource SecondaryButtonStyle}"/>
-            <Button Content="📋 Copy" 
+            <Button Content="📋 Copy" AutomationProperties.Name="Copy digest"
                     Command="{Binding CopyToClipboardCommand}"
                     Style="{StaticResource ButtonStyle}"/>
-            <Button Content="📝 Export Markdown" 
+            <Button Content="📝 Export Markdown" AutomationProperties.Name="Export data as Markdown"
                     Command="{Binding ExportMarkdownCommand}"
                     Style="{StaticResource ButtonStyle}"/>
-            <Button Content="📄 Export Text" 
+            <Button Content="📄 Export Text" AutomationProperties.Name="Export data as Text"
                     Command="{Binding ExportTextCommand}"
                     Style="{StaticResource ButtonStyle}"/>
         </StackPanel>

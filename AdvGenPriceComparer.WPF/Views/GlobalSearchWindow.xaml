@@ -47,7 +47,7 @@
                 </StackPanel>
                 
                 <Button Grid.Column="1"
-                        Content="✕"
+                        Content="✕" AutomationProperties.Name="Close search"
                         Command="{Binding ClearSearchCommand}"
                         Width="40"
                         Height="40"
