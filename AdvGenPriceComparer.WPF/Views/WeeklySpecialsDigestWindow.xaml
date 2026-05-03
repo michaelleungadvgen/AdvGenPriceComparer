@@ -233,10 +233,10 @@
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right"
                     Margin="0,15,0,0">
-            <Button Content="🔄 Refresh" 
+            <Button Content="🔄 Refresh" AutomationProperties.Name="Refresh"
                     Command="{Binding GenerateDigestCommand}"
                     Style="{StaticResource SecondaryButtonStyle}"/>
-            <Button Content="📋 Copy" 
+            <Button Content="📋 Copy" AutomationProperties.Name="Copy"
                     Command="{Binding CopyToClipboardCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             <Button Content="📝 Export Markdown" 
