@@ -135,11 +135,9 @@
                                     <Button Content="📋 Copy" 
                                             Command="{Binding CopyBarcodeCommand}"
                                             Padding="15,5"
-                                            Margin="0,0,10,0"/>
-                                    <Button Content="🗑️ Clear" 
-                                            Command="{Binding ClearScanCommand}"
-                                            Padding="15,5"
-                                            Style="{StaticResource DefaultButtonStyle}"/>
+                                            Margin="0,0,10,0"
+                                            AutomationProperties.Name="Copy barcode text"/>
+                                    <Button Content="🗑️ Clear" Command="{Binding ClearScanCommand}" Padding="15,5" Style="{StaticResource DefaultButtonStyle}" AutomationProperties.Name="Clear scan"/>
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
@@ -298,11 +296,9 @@
                                     Command="{Binding GenerateBarcodeCommand}"
                                     Padding="20,10"
                                     Margin="0,0,10,0"
-                                    Style="{StaticResource AccentButtonStyle}"/>
-                            <Button Content="🗑️ Clear" 
-                                    Command="{Binding ClearGenerateCommand}"
-                                    Padding="20,10"
-                                    Style="{StaticResource DefaultButtonStyle}"/>
+                                    Style="{StaticResource AccentButtonStyle}"
+                                    AutomationProperties.Name="Generate new barcode"/>
+                            <Button Content="🗑️ Clear" Command="{Binding ClearGenerateCommand}" Padding="20,10" Style="{StaticResource DefaultButtonStyle}" AutomationProperties.Name="Clear generated barcode"/>
                         </StackPanel>
                     </StackPanel>
 
