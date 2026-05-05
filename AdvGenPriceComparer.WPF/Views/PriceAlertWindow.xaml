@@ -160,6 +160,8 @@
                             Padding="10,5"/>
                     <Separator/>
                     <Button Content="🗑 Delete" 
+                            ToolTip="Delete Alert"
+                            AutomationProperties.Name="Delete Alert"
                             Command="{Binding DeleteAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
                             Padding="10,5"/>
