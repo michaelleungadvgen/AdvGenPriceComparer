@@ -222,6 +222,8 @@
                     Command="{Binding DismissAllCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             <Button Content="🗑 Clear Dismissed" 
+                    ToolTip="Clear Dismissed Reminders"
+                    AutomationProperties.Name="Clear Dismissed Reminders"
                     Command="{Binding ClearDismissedCommand}"
                     Style="{StaticResource SecondaryButtonStyle}"/>
         </StackPanel>
