@@ -215,6 +215,7 @@
                            Command="{Binding GlobalSearchCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Global Search"
                            AutomationProperties.AutomationId="GlobalSearchButton"/>
                     <ui:Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding AddItemCommand}"
@@ -240,66 +241,79 @@
                            Command="{Binding BestPricesCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Best Prices"
                            AutomationProperties.AutomationId="BestPricesButton"/>
                     <ui:Button x:Name="FavoritesButton" Content="⭐ Favorites" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding FavoritesCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Favorites"
                            AutomationProperties.AutomationId="FavoritesButton"/>
                     <ui:Button x:Name="ScanBarcodeButton" Content="📷 Scan Barcode" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ScanBarcodeCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Scan Barcode"
                            AutomationProperties.AutomationId="ScanBarcodeButton"/>
                     <ui:Button x:Name="PriceDropAlertsButton" Content="📢 Price Drop Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceDropNotificationsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Price Drop Alerts"
                            AutomationProperties.AutomationId="PriceDropAlertsButton"/>
                     <ui:Button x:Name="PriceAlertsButton" Content="🎯 Price Alerts" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceAlertsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Price Alerts"
                            AutomationProperties.AutomationId="PriceAlertsButton"/>
                     <ui:Button x:Name="DealRemindersButton" Content="⏰ Deal Reminders" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding DealExpirationRemindersCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Deal Reminders"
                            AutomationProperties.AutomationId="DealRemindersButton"/>
                     <ui:Button x:Name="WeeklySpecialsButton" Content="📰 Weekly Specials" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding WeeklySpecialsDigestCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Weekly Specials"
                            AutomationProperties.AutomationId="WeeklySpecialsButton"/>
                     <ui:Button x:Name="ShoppingListsButton" Content="🛒 Shopping Lists" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ShoppingListsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Shopping Lists"
                            AutomationProperties.AutomationId="ShoppingListsButton"/>
                     <ui:Button x:Name="SettingsButton" Content="⚙️ Settings" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding SettingsCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Settings"
                            AutomationProperties.AutomationId="SettingsButton"/>
                     <ui:Button x:Name="MLModelManagementButton" Content="🤖 ML Model Management" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding MLModelManagementCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="ML Model Management"
                            AutomationProperties.AutomationId="MLModelManagementButton"/>
                     <ui:Button x:Name="PriceForecastButton" Content="📈 Price Forecast" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding PriceForecastCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Price Forecast"
                            AutomationProperties.AutomationId="PriceForecastButton"/>
                     <ui:Button x:Name="DetectFakeSalesButton" Content="🎭 Detect Fake Sales" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding IllusoryDiscountDetectionCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="Detect Fake Sales"
                            AutomationProperties.AutomationId="DetectFakeSalesButton"/>
                     <ui:Button x:Name="AIChatAssistantButton" Content="💬 AI Chat Assistant" HorizontalAlignment="Stretch" Margin="0,0,0,6"
                            Command="{Binding ChatCommand}"
                            Appearance="Transparent"
                            Padding="8,6" Cursor="Hand" FontSize="13"
+                           AutomationProperties.Name="AI Chat Assistant"
                            AutomationProperties.AutomationId="AIChatAssistantButton"/>
 
                     <!-- Import/Export -->
