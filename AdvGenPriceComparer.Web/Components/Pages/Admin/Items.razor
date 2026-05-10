@@ -2,6 +2,7 @@
 @attribute [Authorize(Roles = "Admin")]
 @inject IWebDataService WebDataService
 @inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Items - Admin - AdvGen PriceComparer</PageTitle>
 
@@ -186,8 +187,11 @@
         LoadItems();
     }
 
-    private void DeleteItem(Item item)
+    private async Task DeleteItem(Item item)
     {
+        bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete the item '{item.Name}'?");
+        if (!confirmed) return;
+
         try
         {
             WebDataService.DeleteItem(item.Id);
