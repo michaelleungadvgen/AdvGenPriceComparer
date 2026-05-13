@@ -2,6 +2,7 @@
 @attribute [Authorize(Roles = "Admin")]
 @inject IWebDataService WebDataService
 @inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Price Records - Admin - AdvGen PriceComparer</PageTitle>
 
@@ -192,8 +193,16 @@
         return placeCache[record.PlaceId];
     }
 
-    private void DeletePriceRecord(PriceRecord record)
+    private async Task DeletePriceRecord(PriceRecord record)
     {
+        var item = GetItemForRecord(record);
+        var place = GetPlaceForRecord(record);
+        string itemName = item?.Name ?? "Unknown Item";
+        string placeName = place?.Name ?? "Unknown Place";
+
+        bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete the price record for '{itemName}' at '{placeName}'?");
+        if (!confirmed) return;
+
         try
         {
             WebDataService.DeletePriceRecord(record.Id);
