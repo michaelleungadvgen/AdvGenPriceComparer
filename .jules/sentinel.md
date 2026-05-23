@@ -7,3 +7,7 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2025-05-18 - Auth Bypass in Custom Middleware
+**Vulnerability:** Path-based authorization and rate limit bypass in ASP.NET Core middleware caused by using substring matching (`.Contains()`) instead of exact or prefix matching (`.StartsWith()`).
+**Learning:** Using substring matching for path exclusions allows attackers to append excluded segments like `/swagger` to the end of any protected route (e.g., `/api/admin/users/swagger`), completely bypassing the middleware.
+**Prevention:** Always use exact matching (`==`) or prefix matching (`StartsWith()`) when excluding paths in custom authorization, rate limiting, or logging middleware.
