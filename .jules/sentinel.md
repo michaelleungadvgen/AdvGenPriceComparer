@@ -7,3 +7,7 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2024-05-24 - Rate Limit & Auth Bypass via Contains
+**Vulnerability:** Path exclusion checks in API Key and Rate Limit middleware used `path.Contains("/swagger")`, allowing attackers to bypass protections simply by appending `?query=/swagger` or `/api/sensitive/swagger` to the URL.
+**Learning:** `Contains()` for path checking is a common source of authorization and rate limit bypasses. It matches substrings anywhere in the URL.
+**Prevention:** Always use exact matching (`==`) or prefix matching (`StartsWith()`) for path-based exclusions in custom ASP.NET Core middleware.
