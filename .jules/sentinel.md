@@ -7,3 +7,8 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+
+## 2025-02-28 - Authorization Bypass via Substring Path Matching
+**Vulnerability:** `ApiKeyMiddleware` and `RateLimitMiddleware` used `.Contains()` and `StartsWith()` without directory boundary checks (e.g. `.StartsWith("/api/prices")`) for path exclusions, which could allow attackers to bypass API key validation and rate limiting by appending specific strings to the URL or crafting paths like `/api/prices_secret_bypass`.
+**Learning:** In custom ASP.NET Core middleware, using substring matching (`Contains()`) or prefix matching without a trailing slash for path exclusions creates authorization and rate limit bypass vulnerabilities.
+**Prevention:** Always use exact matching (`==`) or prefix matching with a directory boundary (`StartsWith("/path/")`) for path exclusions.
