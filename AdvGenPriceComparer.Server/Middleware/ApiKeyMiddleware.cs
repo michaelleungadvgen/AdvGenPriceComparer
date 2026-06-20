@@ -20,14 +20,15 @@ public class ApiKeyMiddleware
     {
         // Skip API key validation for Swagger and health endpoints
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
-        if (path.Contains("/swagger") || path.Contains("/health") || path == "/")
+        if (path.StartsWith("/swagger/") || path == "/swagger" || path.StartsWith("/health/") || path == "/health" || path == "/")
         {
             await _next(context);
             return;
         }
 
         // Allow anonymous access in development for certain endpoints
-        if (context.Request.Method == "GET" && path.StartsWith("/api/prices"))
+        var env = context.RequestServices.GetRequiredService<IWebHostEnvironment>();
+        if (env.IsDevelopment() && context.Request.Method == "GET" && (path.StartsWith("/api/prices/") || path == "/api/prices"))
         {
             // Public read access
             await _next(context);
