@@ -7,3 +7,7 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2026-06-22 - Auth Bypass via Substring Matching & Missing Environment Check [RESOLVED]
+**Vulnerability:** Middleware used `.Contains("/health")` and `.StartsWith("/api/prices")` (without trailing slash), and failed to check `env.IsDevelopment()` before granting anonymous access, leading to API key and rate limit bypasses in production.
+**Learning:** Development bypasses left in production and substring route matching are high-impact API vulnerabilities.
+**Prevention:** Always explicitly verify `IWebHostEnvironment.IsDevelopment()` when bypassing auth for dev endpoints, and use exact `==` or directory boundary `StartsWith("/path/")` matches for paths.
