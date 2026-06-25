@@ -7,3 +7,7 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2025-02-28 - Insecure Path Matching in Middlewares
+**Vulnerability:** Middlewares were using `.Contains("/swagger")` and `.StartsWith("/api/prices")` for path matching. This allows authorization and rate limit bypasses by requesting paths like `/api/prices_fake` or `/api/sensitive?q=/swagger`.
+**Learning:** Substring and prefix matching for URL paths without enforcing directory boundaries (trailing slashes or exact matches) creates critical vulnerabilities when enforcing security policies. Additionally, missing `env.IsDevelopment()` checks allowed bypasses in production.
+**Prevention:** In custom ASP.NET Core middleware, always use exact matching (`==`) or prefix matching with a directory boundary (`StartsWith("/path/")`) for path exclusions. Always verify the environment using `IWebHostEnvironment.IsDevelopment()` to prevent unauthorized access in production.
