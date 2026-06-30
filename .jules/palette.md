@@ -8,3 +8,7 @@
 **Learning:** In WPF applications using `ui:Button` and `ui:SymbolIcon`, relying solely on the `ToolTip` attribute is insufficient for screen readers. Icon-only buttons lack proper text representation without explicitly defining an ARIA label.
 **Action:** Always define `AutomationProperties.Name` on icon-only buttons to ensure they are fully accessible to screen readers, just like using `aria-label` in web development.
 
+
+## 2025-02-18 - Semantic HTML in Blazor for Keyboard Nav
+**Learning:** In Blazor applications, wrapping interactive elements (like cards) in `<div>` with `@onclick` breaks keyboard navigation (tabbing and Enter/Space to click) and native browser features (like "Open in new tab").
+**Action:** Always replace `<div @onclick="Action">` with semantic `<a href="route">` tags. Use utility classes like `text-decoration-none text-dark` to preserve the visual appearance of the element without forcing display property changes that break layouts (like `d-block` on Bootstrap cards).
