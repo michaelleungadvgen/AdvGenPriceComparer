@@ -1,0 +1,2992 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>價格比較報告 | Coles vs Woolworths | 2026年5月13-19日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #85c5d4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-links a.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #85c5d4 0%, #6bb0c0 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .week-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .week-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .week-btn.current {
+            background: rgba(255,255,255,0.9);
+            color: #85c5d4;
+            border-color: white;
+        }
+
+        .winner-announcement {
+            background: #00a651;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* Retailer Logos Section */
+        .retailer-section {
+            background: white;
+            padding: 40px 0;
+            border-bottom: 3px solid #f1f3f4;
+            text-align: center;
+        }
+
+        .retailer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .retailer-logo {
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .coles-logo {
+            background: #e31e24;
+        }
+
+        .woolworths-logo {
+            background: #00a651;
+        }
+
+        .vs-separator {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #333;
+            padding: 0 20px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #85c5d4;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Product Comparison Section */
+        .comparison-section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: #85c5d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .price-comparison {
+            padding: 25px;
+        }
+
+        .store-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .store-price:last-child {
+            border-bottom: none;
+        }
+
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .store-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .store-badge.coles {
+            background: #e31e24;
+        }
+
+        .store-badge.woolworths {
+            background: #00a651;
+        }
+
+        .store-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .price-info {
+            text-align: right;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .best-deal {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .special-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-text p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="logo">
+                <div class="nav-title">每週價格比較</div>
+                <nav class="nav-links">
+                    <a href="price_super_market_06052026_chinese.html">上週</a>
+                    <a href="#" class="active">本週</a>
+                    <a href="price_super_market_20052026_chinese.html">下週</a>
+                
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🛒 智能價格比較</h1>
+            <p>人工智慧分析 Coles 與 Woolworths 每週特價</p>
+
+            <div class="week-selector">
+                <a href="price_super_market_06052026_chinese.html" class="week-btn">2026年5月6-12日</a>
+                <a href="#" class="week-btn current">2026年5月13-19日</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retailer Logos Section -->
+    <section class="retailer-section">
+        <div class="container">
+            <h2 class="section-title">🏆 正面交鋒價格對決</h2>
+
+            <div class="retailer-logos">
+                <div class="retailer-logo coles-logo">COLES</div>
+                <div class="vs-separator">VS</div>
+                <div class="retailer-logo woolworths-logo">WOOLWORTHS</div>
+            </div>
+            <div class="winner-announcement">Woolworths 以 34 項更便宜商品勝出</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <h2 class="section-title">📊 每週分析</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">73</div>
+                    <div class="stat-label">比較商品數</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$768+</div>
+                    <div class="stat-label">識別總節省金額</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">34%</div>
+                    <div class="stat-label">Coles 最優惠</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">47%</div>
+                    <div class="stat-label">Woolworths 最優惠</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Comparison Section -->
+    <section class="comparison-section" id="products">
+        <div class="container">
+            <h2 class="section-title">商品價格比較</h2>
+            <div class="comparison-grid">
+                
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola Soft Drink 24x375mL</div>
+                        <div class="product-details">飲料 • 相似度: 69.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$23.50</div>
+
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$37.50</span>$26.00 個</div>
+                                <div class="best-deal">最優惠 - 省 $11.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths English Muffins Pk 6</div>
+                        <div class="product-details">一般 • 相似度: 67.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.00</div>
+                                <div class="best-deal">最優惠 - 省 $0.20</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.40</span>$3.20 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths Seed Beans 420g</div>
+                        <div class="product-details">一般 • 相似度: 75.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price"></span>$1.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Little One’s Baby Wipes Pk 480</div>
+                        <div class="product-details">一般 • 相似度: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$11.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.50</span>$3.85 個</div>
+                                <div class="best-deal">最優惠 - 省 $7.15</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Fantastic Noodles Cup 45-70g</div>
+                        <div class="product-details">飲料 • 相似度: 63.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.75</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$2.40</span>$1.20 個</div>
+                                <div class="best-deal">最優惠 - 省 $0.55</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Twinings Tea Bags Pk 10</div>
+                        <div class="product-details">一般 • 相似度: 89.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.70</div>
+                                <div class="best-deal">最優惠 - 省 $4.05</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.50</span>$6.75 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Woolworths Ice Cream Tub 1 Litre</div>
+                        <div class="product-details">冷凍 • 相似度: 60.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.00</div>
+                                <div class="best-deal">最優惠 - 省 $1.80</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$7.80 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Vege Chips Rice Crackers 75g – From the Health Foo...</div>
+                        <div class="product-details">零食 • 相似度: 64.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.90</span>$2.45</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.90</span>$2.45 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Tostitos Corn Tortilla Chips 175g</div>
+                        <div class="product-details">零食 • 相似度: 90.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.20</span>$2.60</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.20</span>$2.60 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Campbell’s Chunky or Country Ladle Soup 495-505g</div>
+                        <div class="product-details">一般 • 相似度: 89.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.50</span>$2.25</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.50</span>$2.25 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">John West Yellowfin Tuna 90g</div>
+                        <div class="product-details">一般 • 相似度: 73.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$2.90</span>$1.45</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$2.90</span>$1.45 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Continental Pasta & Sauce Side Dish 80g</div>
+                        <div class="product-details">醬料 • 相似度: 60.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$3.00</span>$1.50</div>
+                                <div class="best-deal">最優惠 - 省 $3.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.50</span>$4.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">My Soda Shampoo or Conditioner 350ml</div>
+                        <div class="product-details">一般 • 相似度: 77.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.00</span>$5.00</div>
+                                <div class="best-deal">最優惠 - 省 $1.75</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.50</span>$6.75 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Thanks To Nature Shampoo or Conditioner 500ml</div>
+                        <div class="product-details">一般 • 相似度: 69.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.00</span>$9.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.50</span>$6.75 個</div>
+                                <div class="best-deal">最優惠 - 省 $2.25</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dove Shampoo or Conditioner 850ml</div>
+                        <div class="product-details">一般 • 相似度: 81.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$19.50</span>$9.75</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">新品特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$19.50</span>$9.75 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pantene Miracles Shampoo or Conditioner 600-650ml</div>
+                        <div class="product-details">一般 • 相似度: 73.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$21.00</span>$10.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.50</span>$6.75 個</div>
+                                <div class="best-deal">最優惠 - 省 $3.75</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">L’Oréal Elvive Glycolic Gloss Shampoo or Condition...</div>
+                        <div class="product-details">一般 • 相似度: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$21.00</span>$10.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$21.00</span>$10.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">OGX Extra Strength Shampoo or Conditioner 385ml</div>
+                        <div class="product-details">一般 • 相似度: 70.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$25.00</span>$12.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">新品特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$19.50</span>$9.75 個</div>
+                                <div class="best-deal">最優惠 - 省 $2.75</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">DermaVeen Shampoo or Conditioner 1 Litre</div>
+                        <div class="product-details">一般 • 相似度: 81.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$32.00</span>$16.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">新品特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$19.50</span>$9.75 個</div>
+                                <div class="best-deal">最優惠 - 省 $6.25</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Glen 20 Disinfectant Spray 300g</div>
+                        <div class="product-details">一般 • 相似度: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$5.50</div>
+                                <div class="best-deal">最優惠 - 省 $1.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Morning Fresh Dishwashing Liquid 900ml</div>
+                        <div class="product-details">一般 • 相似度: 83.1%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.00</span>$5.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.00</span>$5.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">ar FÜM Laundry Liquid 2 Litre</div>
+                        <div class="product-details">一般 • 相似度: 70.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$24.00</span>$12.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$5.50 個</div>
+                                <div class="best-deal">最優惠 - 省 $6.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Fairy Platinum Dishwasher Tablets Pk 52</div>
+                        <div class="product-details">一般 • 相似度: 64.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$46.00</span>$23.00</div>
+                                <div class="best-deal">最優惠 - 省 $6.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$58.00</span>$29.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Undo This Mess Laundry Liquid 2 Litre</div>
+                        <div class="product-details">一般 • 相似度: 64.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.00</span>$9.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$5.50 個</div>
+                                <div class="best-deal">最優惠 - 省 $3.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Stayfree Ultra Thin Regular Pads with Wings Pk 14</div>
+                        <div class="product-details">一般 • 相似度: 68.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.60</div>
+                                <div class="best-deal">最優惠 - 省 $0.30</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.60</span>$3.90 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Aveeno Intense Relief Fragrance Free Hand Cream Dr...</div>
+                        <div class="product-details">一般 • 相似度: 60.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50</div>
+                                <div class="best-deal">最優惠 - 省 $3.30</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$14.00</span>$9.80 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Cenovis Sugarless C 500mg Chewable Tablets Pk 320†</div>
+                        <div class="product-details">一般 • 相似度: 92.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$29.50</span>$14.75</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.50</span>$9.25 個</div>
+                                <div class="best-deal">最優惠 - 省 $5.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Colgate Total Active Prevention Toothpaste 115g</div>
+                        <div class="product-details">一般 • 相似度: 80.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+                                <div class="best-deal">最優惠 - 省 $2.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$5.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Brut 24hr Antiperspirant Deodorant 130g</div>
+                        <div class="product-details">一般 • 相似度: 69.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.50</span>$3.75</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.50</span>$3.00 個</div>
+                                <div class="best-deal">最優惠 - 省 $0.75</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Thankyou Body Wash 1 Litre or Hand or Body Wash Re...</div>
+                        <div class="product-details">一般 • 相似度: 67.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$17.95</span>$8.95</div>
+                                <div class="best-deal">最優惠 - 省 $1.05</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$17.00</span>$10.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Envy™ Apples</div>
+                        <div class="product-details">一般 • 相似度: 75.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$5.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price"></span>$4.90 公斤</div>
+                                <div class="best-deal">最優惠 - 省 $0.60</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Fresh Whole Plain RSPCA Approved Chicke...</div>
+                        <div class="product-details">肉類及海鮮 • 相似度: 61.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$4.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.50</span>$4.00 公斤</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Lamb Mid Loin Chops</div>
+                        <div class="product-details">一般 • 相似度: 83.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$24.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$34.00</span>$24.00 公斤</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Pork Belly Roast</div>
+                        <div class="product-details">一般 • 相似度: 68.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$17.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$12.00</span>$10.00 公斤</div>
+                                <div class="best-deal">最優惠 - 省 $7.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Australian Pork Loin Boneless Roast</div>
+                        <div class="product-details">一般 • 相似度: 72.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$13.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$12.00</span>$10.00 公斤</div>
+                                <div class="best-deal">最優惠 - 省 $3.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dare Iced Coffee 750ml</div>
+                        <div class="product-details">一般 • 相似度: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.50</span>$4.50</div>
+                                <div class="best-deal">最優惠 - 省 $1.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Multi-buy Special</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price"></span>2 for $6.20</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Vaalia Kids Probiotics Yoghurt Pouch 140g – From t...</div>
+                        <div class="product-details">一般 • 相似度: 72.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$1.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$2.80</span>$1.40 個</div>
+                                <div class="best-deal">最優惠 - 省 $0.10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Connoisseur Ice Cream Tub 1 Litre</div>
+                        <div class="product-details">冷凍 • 相似度: 68.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50</div>
+                                <div class="best-deal">最優惠 - 省 $1.30</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$7.80 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">McCain Rustica Pizza 370-460g</div>
+                        <div class="product-details">一般 • 相似度: 71.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$5.50</div>
+                                <div class="best-deal">最優惠 - 省 $0.70</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.80</span>$6.20 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Birds Eye Deli Fish or Snacking Varieties 225-250g</div>
+                        <div class="product-details">肉類及海鮮 • 相似度: 60.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$8.80</div>
+                                <div class="best-deal">最優惠 - 省 $1.10</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Down Down</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$9.90 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Leggo’s Pasta Sauce 490-500g</div>
+                        <div class="product-details">醬料 • 相似度: 100.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.30</div>
+                                <div class="best-deal">最優惠 - 省 $1.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Down Down</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.60</span>$3.30 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Moro Olive Oil or Extra Virgin Olive Oil 1 Litre</div>
+                        <div class="product-details">一般 • 相似度: 77.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$16.00</div>
+                                <div class="best-deal">最優惠 - 省 $34.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$27.00</span>$16.00 個</div>
+                                <div class="best-deal">最優惠 - 省 $11.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Sam’s Pantry Protein Bars 190-205g Pk 5</div>
+                        <div class="product-details">一般 • 相似度: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.00</div>
+                                <div class="best-deal">最優惠 - 省 $2.70</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.50</span>$5.70 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Uncle Tobys Big Bowl Oats 368g Pk 8</div>
+                        <div class="product-details">一般 • 相似度: 80.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+                                <div class="best-deal">最優惠 - 省 $2.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$5.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Pic’s Peanut Butter 380g</div>
+                        <div class="product-details">乳製品 • 相似度: 61.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.50</span>$3.75</div>
+                                <div class="best-deal">最優惠 - 省 $0.75</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$5.80</span>$4.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Nestlé KitKat Cereal 330g</div>
+                        <div class="product-details">一般 • 相似度: 71.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$7.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$9.50</span>$4.75 個</div>
+                                <div class="best-deal">最優惠 - 省 $2.75</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Arnott’s Tim Tam Deluxe 175g</div>
+                        <div class="product-details">一般 • 相似度: 75.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.90</div>
+                                <div class="best-deal">最優惠 - 省 $0.30</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$6.00</span>$4.20 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">So Good Oat or Almond Milk 1 Litre</div>
+                        <div class="product-details">乳製品 • 相似度: 60.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$2.00</div>
+                                <div class="best-deal">最優惠 - 省 $1.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.00</span>$3.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Vittoria Coffee Sachets Pk 16</div>
+                        <div class="product-details">一般 • 相似度: 88.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$9.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.50</span>$4.25 個</div>
+                                <div class="best-deal">最優惠 - 省 $4.75</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Moccona Freeze Dried Coffee 400g</div>
+                        <div class="product-details">一般 • 相似度: 69.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$26.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$39.00</span>$19.50 個</div>
+                                <div class="best-deal">最優惠 - 省 $6.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">OxyShred Infinity Energy Drink 355ml</div>
+                        <div class="product-details">飲料 • 相似度: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.90</span>$2.45</div>
+                                <div class="best-deal">最優惠 - 省 $4.05</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">OxyShred Energy Drink 355ml</div>
+                        <div class="product-details">飲料 • 相似度: 76.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.90</span>$2.45</div>
+                                <div class="best-deal">最優惠 - 省 $4.05</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">OxyShred Energy Drink 4 x 355ml</div>
+                        <div class="product-details">飲料 • 相似度: 76.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$16.00</span>$8.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$13.00</span>$6.50 個</div>
+                                <div class="best-deal">最優惠 - 省 $1.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola Soft Drink Varieties 2 Litre</div>
+                        <div class="product-details">飲料 • 相似度: 88.9%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.50</div>
+                                <div class="best-deal">最優惠 - 省 $22.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$37.50</span>$26.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Coca-Cola, Sprite or Fanta Soft Drink Varieties 10...</div>
+                        <div class="product-details">飲料 • 相似度: 75.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$12.60</div>
+                                <div class="best-deal">最優惠 - 省 $13.40</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$37.50</span>$26.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Mount Franklin Lightly Sparkling Water 10 x 375ml</div>
+                        <div class="product-details">一般 • 相似度: 74.5%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$12.60</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$10.00</span>$6.00 個</div>
+                                <div class="best-deal">最優惠 - 省 $6.60</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Nexba Kombucha 4 x 330ml</div>
+                        <div class="product-details">一般 • 相似度: 69.0%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.55</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.30</span>$2.50 個</div>
+                                <div class="best-deal">最優惠 - 省 $4.05</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Birds Eye Steamfresh Vegetables or Potatoes 400g</div>
+                        <div class="product-details">一般 • 相似度: 67.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$3.90</div>
+                                <div class="best-deal">最優惠 - 省 $6.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Down Down</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$11.00</span>$9.90 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Perfect Italiano Cheese Varieties 450g – From the ...</div>
+                        <div class="product-details">乳製品 • 相似度: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$8.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Down Down</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$9.50</span>$8.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dynamo Professional Laundry Liquid 2 Litre or Caps...</div>
+                        <div class="product-details">一般 • 相似度: 74.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$29.00</span>$14.50</div>
+                                <div class="best-deal">最優惠 - 省 $0.50</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$30.00</span>$15.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">BabyLove Nappy Pants Pk 22-34</div>
+                        <div class="product-details">一般 • 相似度: 61.3%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                <div class="best-deal">最優惠 - 省 $5.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Down Down</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$17.50</span>$15.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Vitapet Tenders Dog Treats 80-100g</div>
+                        <div class="product-details">一般 • 相似度: 65.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.00</div>
+                                <div class="best-deal">最優惠 - 省 $6.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price"></span>$12.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">My Dog Wet Dog Food Pk 6 x 100g</div>
+                        <div class="product-details">一般 • 相似度: 76.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$7.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$1.80</span>$0.90 個</div>
+                                <div class="best-deal">最優惠 - 省 $6.10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Vitapet Dry Dog Food 3 kg</div>
+                        <div class="product-details">一般 • 相似度: 69.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$14.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$18.00</span>$12.50 個</div>
+                                <div class="best-deal">最優惠 - 省 $1.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Kellogg’s Nutri Grain 290g</div>
+                        <div class="product-details">一般 • 相似度: 80.8%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.00</span>$3.50</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$4.50</span>$3.50 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Nescafé Coffee Sachets Pk 8-10</div>
+                        <div class="product-details">一般 • 相似度: 66.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$8.00</span>$4.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">半價特惠</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$7.90</span>$3.95 個</div>
+                                <div class="best-deal">最優惠 - 省 $0.05</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">BabyLove Nappy Pants Pk 22-34</div>
+                        <div class="product-details">一般 • 相似度: 61.3%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$20.00</span>$10.00</div>
+                                <div class="best-deal">最優惠 - 省 $5.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">Down Down</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$17.50</span>$15.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Dodo $33 Starter Pack¥</div>
+                        <div class="product-details">一般 • 相似度: 60.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$33.00</span>$12.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$35.00</span>$12.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus $49 SIM Starter Kit‡</div>
+                        <div class="product-details">一般 • 相似度: 85.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    <div class="special-badge">半價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$49.00</span>$17.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$49.00</span>$17.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Telstra T-Inspire 2~</div>
+                        <div class="product-details">一般 • 相似度: 82.4%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$99.00</div>
+                                <div class="best-deal">最優惠 - 省 $30.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$149.00</span>$129.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Optus $350 SIM Starter Kit‡</div>
+                        <div class="product-details">一般 • 相似度: 86.2%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$250.00</div>
+                                
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$350.00</span>$219.00 個</div>
+                                <div class="best-deal">最優惠 - 省 $31.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lyca $20 Starter Pack†</div>
+                        <div class="product-details">一般 • 相似度: 70.6%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$6.00</div>
+                                <div class="best-deal">最優惠 - 省 $234.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$320.00</span>$240.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="card-header">
+                        <div class="product-name">Lyca $40 Starter Pack†</div>
+                        <div class="product-details">一般 • 相似度: 64.7%</div>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge woolworths"></div>
+                                <div>
+                                    <div class="store-name">Woolworths</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price">$12.00</div>
+                                <div class="best-deal">最優惠 - 省 $228.00</div>
+                            </div>
+                        </div>
+                        <div class="store-price">
+                            <div class="store-info">
+                                <div class="store-badge coles"></div>
+                                <div>
+                                    <div class="store-name">Coles</div>
+                                    <div class="special-badge">特價</div>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <div class="current-price"><span class="original-price">$320.00</span>$240.00 個</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://www.michaelleung.info/images/logo_ml_3.png" alt="Michael Leung" class="footer-logo">
+                <div class="footer-text">
+                    <p>AI 智能價格比較 | 由 AdvGen Price Comparer 生成</p>
+                    <p>資料來源：Coles 及 Woolworths 官方目錄 - 2026年5月13-19日</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.michaelleung.info/prices">首頁</a>
+                    <a href="https://github.com/michaelleungadvgen/AdvGenPriceComparer">GitHub</a>
+                    <a href="https://buymeacoffee.com/advgen">請我喝杯咖啡</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
