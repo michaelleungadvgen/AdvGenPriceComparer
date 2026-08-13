@@ -164,9 +164,20 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
         {
             var markdown = _weeklySpecialsService.ExportToMarkdown(CurrentReport);
             var fileName = $"WeeklySpecials_{CurrentReport.WeekStart:yyyyMMdd}.md";
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
-            File.WriteAllText(path, markdown);
-            _dialogService.ShowSuccess($"Digest exported to:\n{path}");
+
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Filter = "Markdown files (*.md)|*.md|All files (*.*)|*.*",
+                DefaultExt = "md",
+                FileName = fileName,
+                Title = "Export Weekly Specials as Markdown"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, markdown);
+                _dialogService.ShowSuccess($"Digest exported to:\n{saveFileDialog.FileName}");
+            }
         }
         catch (Exception ex)
         {
@@ -182,9 +193,20 @@ public class WeeklySpecialsDigestViewModel : ViewModelBase
         {
             var text = _weeklySpecialsService.ExportToPlainText(CurrentReport);
             var fileName = $"WeeklySpecials_{CurrentReport.WeekStart:yyyyMMdd}.txt";
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
-            File.WriteAllText(path, text);
-            _dialogService.ShowSuccess($"Digest exported to:\n{path}");
+
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
+                DefaultExt = "txt",
+                FileName = fileName,
+                Title = "Export Weekly Specials as Text"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, text);
+                _dialogService.ShowSuccess($"Digest exported to:\n{saveFileDialog.FileName}");
+            }
         }
         catch (Exception ex)
         {
