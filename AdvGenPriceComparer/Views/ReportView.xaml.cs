@@ -314,17 +314,99 @@ public sealed partial class ReportView : Page
         DrawCharts();
     }
 
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern IntPtr GetActiveWindow();
+
     private async void ExportToCsv_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement CSV export
-        var dialog = new ContentDialog
+        try
         {
-            Title = "Export to CSV",
-            Content = "CSV export functionality will be implemented soon.",
-            CloseButtonText = "OK",
-            XamlRoot = this.XamlRoot
-        };
-        await dialog.ShowAsync();
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+
+            // Get the current active window handle
+            var hwnd = GetActiveWindow();
+            WinRT.Interop.InitializeWithWindow.Initialize(savePicker, hwnd);
+
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            savePicker.FileTypeChoices.Add("CSV File", new List<string>() { ".csv" });
+            savePicker.SuggestedFileName = $"PriceReport_{DateTime.Now:yyyyMMdd}";
+
+            var file = await savePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                var csv = new System.Text.StringBuilder();
+
+                // Add Report Summary
+                csv.AppendLine("Grocery Price Report Summary");
+                csv.AppendLine($"Generated on,{DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+                csv.AppendLine($"Time Period,{_viewModel.SelectedTimePeriod}");
+                csv.AppendLine($"Store Chain,{_viewModel.SelectedStoreChain}");
+                csv.AppendLine($"Total Products,{_viewModel.TotalProducts}");
+                csv.AppendLine($"Avg Price Change,{_viewModel.AvgPriceChange:+0.0;-0.0;0.0}%");
+                csv.AppendLine($"Best Store,{_viewModel.BestStore ?? "N/A"}");
+                csv.AppendLine();
+
+                // Add Top Products Data
+                if (_viewModel.TopProductsData != null && _viewModel.TopProductsData.Any())
+                {
+                    csv.AppendLine("Top Products by Price Variance");
+                    csv.AppendLine("Product Name,Min Price,Max Price,Avg Price,Variance (%)");
+                    foreach (var item in _viewModel.TopProductsData)
+                    {
+                        var name = item.ProductName.Contains(",") ? $"\"{item.ProductName}\"" : item.ProductName;
+                        csv.AppendLine($"{name},{item.MinPrice:F2},{item.MaxPrice:F2},{item.AvgPrice:F2},{item.Variance:F2}");
+                    }
+                    csv.AppendLine();
+                }
+
+                // Add Store Comparison Data
+                if (_viewModel.StoreComparisonData != null && _viewModel.StoreComparisonData.Any())
+                {
+                    csv.AppendLine("Average Prices by Store");
+                    csv.AppendLine("Store Name,Avg Price,Product Count");
+                    foreach (var store in _viewModel.StoreComparisonData)
+                    {
+                        var name = store.StoreName.Contains(",") ? $"\"{store.StoreName}\"" : store.StoreName;
+                        csv.AppendLine($"{name},{store.AvgPrice:F2},{store.ProductCount}");
+                    }
+                    csv.AppendLine();
+                }
+
+                // Add Category Breakdown Data
+                if (_viewModel.CategoryBreakdownData != null && _viewModel.CategoryBreakdownData.Any())
+                {
+                    csv.AppendLine("Price Distribution by Category");
+                    csv.AppendLine("Category,Total Spent,Product Count");
+                    foreach (var category in _viewModel.CategoryBreakdownData)
+                    {
+                        var name = category.Category.Contains(",") ? $"\"{category.Category}\"" : category.Category;
+                        csv.AppendLine($"{name},{category.TotalSpent:F2},{category.ProductCount}");
+                    }
+                }
+
+                await Windows.Storage.FileIO.WriteTextAsync(file, csv.ToString());
+
+                var dialog = new ContentDialog
+                {
+                    Title = "Export Successful",
+                    Content = $"Report successfully exported to {file.Name}",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                await dialog.ShowAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Export Failed",
+                Content = $"An error occurred during export: {ex.Message}",
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+            await dialog.ShowAsync();
+        }
     }
 
     private async void ExportToPdf_Click(object sender, RoutedEventArgs e)
