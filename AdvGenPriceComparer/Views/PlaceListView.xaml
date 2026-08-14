@@ -22,59 +22,33 @@
 
         <!-- Simple Store List -->
         <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="12">
-                <!-- Sample Store Cards -->
-                <Border Background="#f5f5f5" Padding="16" CornerRadius="8">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Text="Coles Westfield" FontWeight="SemiBold" FontSize="16"/>
-                            <TextBlock Text="123 Main Street, Sydney NSW 2000" FontSize="14" Opacity="0.7"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                            <Button Content="Edit" FontSize="12"/>
-                            <Button Content="View Prices" FontSize="12"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-                
-                <Border Background="#f5f5f5" Padding="16" CornerRadius="8">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Text="Woolworths Metro" FontWeight="SemiBold" FontSize="16"/>
-                            <TextBlock Text="456 George Street, Sydney NSW 2000" FontSize="14" Opacity="0.7"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                            <Button Content="Edit" FontSize="12"/>
-                            <Button Content="View Prices" FontSize="12"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-                
-                <Border Background="#f5f5f5" Padding="16" CornerRadius="8">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Text="IGA Express" FontWeight="SemiBold" FontSize="16"/>
-                            <TextBlock Text="789 Pitt Street, Sydney NSW 2000" FontSize="14" Opacity="0.7"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                            <Button Content="Edit" FontSize="12"/>
-                            <Button Content="View Prices" FontSize="12"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </StackPanel>
+            <ItemsControl x:Name="StoresList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#f5f5f5" Padding="16" CornerRadius="8" Margin="0,0,0,12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <TextBlock Text="{Binding Address}" FontSize="14" Opacity="0.7"/>
+                                        <TextBlock Text="{Binding Suburb}" FontSize="14" Opacity="0.7"/>
+                                        <TextBlock Text="{Binding State}" FontSize="14" Opacity="0.7"/>
+                                        <TextBlock Text="{Binding Postcode}" FontSize="14" Opacity="0.7"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                    <Button Content="Edit" FontSize="12" Tag="{Binding}"/>
+                                    <Button Content="View Prices" FontSize="12" Tag="{Binding}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </Page>

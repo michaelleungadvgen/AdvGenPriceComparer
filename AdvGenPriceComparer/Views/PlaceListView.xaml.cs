@@ -14,6 +14,7 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
         private IDialogService? _dialogService;
         private IGroceryDataService? _groceryDataService;
         private INotificationService? _notificationService;
+        private System.Collections.ObjectModel.ObservableCollection<AdvGenPriceComparer.Core.Models.Place> _stores = new();
 
         public PlaceListView()
         {
@@ -38,8 +39,26 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
 
         private void LoadStores()
         {
-            // TODO: Load stores from database
-            // For now, this is a placeholder that will be connected to the database service
+            try
+            {
+                if (_groceryDataService != null)
+                {
+                    var stores = _groceryDataService.GetAllPlaces();
+                    _stores.Clear();
+                    foreach (var store in stores)
+                    {
+                        _stores.Add(store);
+                    }
+                    if (StoresList != null)
+                    {
+                        StoresList.ItemsSource = _stores;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading stores: {ex.Message}");
+            }
         }
 
         private async void AddStore_Click(object sender, RoutedEventArgs e)
