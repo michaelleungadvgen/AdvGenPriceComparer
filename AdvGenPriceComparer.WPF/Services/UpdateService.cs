@@ -166,7 +166,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash = "")
     {
         try
         {
@@ -183,6 +183,25 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Hash validation to prevent execution of unverified binaries (prevent TOCTOU)
+            if (!string.IsNullOrWhiteSpace(expectedHash) && !expectedHash.Contains("placeholder", StringComparison.OrdinalIgnoreCase))
+            {
+                var cleanExpectedHash = expectedHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                    ? expectedHash.Substring(7)
+                    : expectedHash;
+
+                using var sha256 = System.Security.Cryptography.SHA256.Create();
+                var actualHashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(actualHashBytes);
+
+                if (!string.Equals(actualHash, cleanExpectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update file hash mismatch! Expected: {cleanExpectedHash}, Actual: {actualHash}. Aborting installation.");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
