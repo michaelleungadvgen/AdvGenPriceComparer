@@ -166,16 +166,16 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,6 +183,25 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Verify file hash if provided
+            if (!string.IsNullOrEmpty(updateResult.FileHash) && !updateResult.FileHash.Contains("placeholder", StringComparison.OrdinalIgnoreCase))
+            {
+                var expectedHash = updateResult.FileHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                    ? updateResult.FileHash.Substring(7)
+                    : updateResult.FileHash;
+
+                using var sha256 = System.Security.Cryptography.SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update file hash validation failed. Expected: {expectedHash}, Actual: {actualHash}");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
