@@ -117,8 +117,8 @@ public partial class UpdateNotificationWindow : Window
                 if (_updateResult.DownloadUrl.EndsWith(".msi", StringComparison.OrdinalIgnoreCase) ||
                     _updateResult.DownloadUrl.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                 {
-                    // Try to download directly
-                    _ = _updateService.DownloadUpdateAsync(_updateResult.DownloadUrl);
+                    // Try to download directly and verify with expected hash if provided
+                    _ = _updateService.DownloadUpdateAsync(_updateResult.DownloadUrl, _updateResult.FileHash);
                 }
                 else
                 {
