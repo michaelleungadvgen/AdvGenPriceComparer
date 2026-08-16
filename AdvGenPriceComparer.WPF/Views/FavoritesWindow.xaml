@@ -71,6 +71,7 @@
                        Content="Clear"
                        Command="{Binding ClearSearchCommand}"
                        Margin="10,0,0,0"
+                       AutomationProperties.Name="Clear search"
                        Visibility="{Binding SearchText, Converter={StaticResource NullToVisibilityConverter}}"/>
         </Grid>
 
@@ -184,6 +185,7 @@
                                Command="{Binding RemoveFromFavoritesCommand}"
                                Icon="{ui:SymbolIcon Delete24}"
                                Appearance="Danger"
+                               AutomationProperties.Name="Remove selected favorites"
                                IsEnabled="{Binding CanRemoveFromFavorites}"/>
                 </StackPanel>
             </Grid>
