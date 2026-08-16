@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,21 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
+        var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update rejected: FileHash is missing or empty.");
+                if (File.Exists(tempPath)) File.Delete(tempPath);
+                return false;
+            }
 
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -185,21 +191,44 @@ public class UpdateService : IUpdateService
             var data = await response.Content.ReadAsByteArrayAsync();
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed: {tempPath}. Verifying hash...");
+
+            using (var sha256 = SHA256.Create())
+            {
+                using (var stream = File.OpenRead(tempPath))
+                {
+                    var hashBytes = sha256.ComputeHash(stream);
+                    var calculatedHash = Convert.ToHexString(hashBytes);
+
+                    if (!string.Equals(calculatedHash, updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _logger.LogError($"Update rejected: Hash mismatch. Expected {updateResult.FileHash}, got {calculatedHash}.");
+                        stream.Close(); // explicit close to release file lock before deletion
+                        File.Delete(tempPath);
+                        return false;
+                    }
+                }
+            }
+
+            _logger.LogInfo("Hash verification successful.");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
             {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Verb = "open"
+                FileName = "msiexec.exe",
+                Arguments = $"/i \"{tempPath}\"",
+                UseShellExecute = false
             });
 
             return true;
         }
         catch (Exception ex)
         {
-            _logger.LogError("Failed to download update", ex);
+            _logger.LogError("Failed to download or verify update", ex);
+            if (File.Exists(tempPath))
+            {
+                try { File.Delete(tempPath); } catch { }
+            }
             return false;
         }
     }
