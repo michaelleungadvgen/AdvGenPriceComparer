@@ -235,10 +235,10 @@
                     Margin="0,15,0,0">
             <Button Content="🔄 Refresh" 
                     Command="{Binding GenerateDigestCommand}"
-                    Style="{StaticResource SecondaryButtonStyle}"/>
+                    Style="{StaticResource SecondaryButtonStyle}" AutomationProperties.Name="Refresh"/>
             <Button Content="📋 Copy" 
                     Command="{Binding CopyToClipboardCommand}"
-                    Style="{StaticResource ButtonStyle}"/>
+                    Style="{StaticResource ButtonStyle}" AutomationProperties.Name="Copy"/>
             <Button Content="📝 Export Markdown" 
                     Command="{Binding ExportMarkdownCommand}"
                     Style="{StaticResource ButtonStyle}"/>

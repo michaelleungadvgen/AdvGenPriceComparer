@@ -198,7 +198,7 @@
                         <Button Content="🔄 Reload Model"
                                 Command="{Binding ReloadModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
-                                IsEnabled="{Binding IsNotBusy}"/>
+                                IsEnabled="{Binding IsNotBusy}" AutomationProperties.Name="Reload Model"/>
                     </StackPanel>
                 </GroupBox>
 
@@ -227,7 +227,7 @@
                         <Button Content="🔄 Retrain Model"
                                 Command="{Binding RetrainModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
-                                IsEnabled="{Binding CanRetrain}"/>
+                                IsEnabled="{Binding CanRetrain}" AutomationProperties.Name="Retrain Model"/>
                         <TextBlock Text="Improve model with recent categorizations"
                                   FontSize="11"
                                   Foreground="#666"

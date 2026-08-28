@@ -119,7 +119,7 @@
                         BorderThickness="0"
                         Foreground="White"
                         FontSize="16"
-                        Click="CloseButton_Click"/>
+                        Click="CloseButton_Click" AutomationProperties.Name="Close"/>
             </Grid>
         </Border>
 
@@ -308,7 +308,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         ToolTip="Clear chat"
-                        Command="{Binding ClearChatCommand}"/>
+                        Command="{Binding ClearChatCommand}" AutomationProperties.Name="Delete"/>
 
                 <Button Grid.Column="2"
                         Content="➤"
