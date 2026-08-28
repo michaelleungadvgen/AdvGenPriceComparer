@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,10 +167,17 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update rejected: Cryptographic hash manifest is missing or empty.");
+                return false;
+            }
+
+            var downloadUrl = updateResult.DownloadUrl;
             _logger.LogInfo($"Starting download from: {downloadUrl}");
 
             // For MSI installers, we download to temp and execute
@@ -183,9 +191,20 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Verify downloaded file integrity cryptographically
+            var hashBytes = SHA256.HashData(data);
+            var computedHash = Convert.ToHexString(hashBytes);
+
+            if (!computedHash.Equals(updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError($"Update rejected: SHA-256 hash mismatch. Expected: {updateResult.FileHash}, Computed: {computedHash}");
+                return false;
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed and verified: {tempPath}");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
