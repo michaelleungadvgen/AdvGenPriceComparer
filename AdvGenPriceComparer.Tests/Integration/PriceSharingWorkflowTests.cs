@@ -40,7 +40,7 @@ public class PriceSharingWorkflowTests : IClassFixture<WebApplicationFactory<Pro
     {
         _factory = factory.WithWebHostBuilder(builder =>
         {
-            builder.UseEnvironment("Testing");
+            builder.UseEnvironment("Development");
             builder.ConfigureServices((context, services) =>
             {
                 // Remove all database-related descriptors to avoid provider conflicts
