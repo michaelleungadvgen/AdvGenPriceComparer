@@ -118,7 +118,7 @@ public partial class UpdateNotificationWindow : Window
                     _updateResult.DownloadUrl.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                 {
                     // Try to download directly
-                    _ = _updateService.DownloadUpdateAsync(_updateResult.DownloadUrl);
+                    _ = _updateService.DownloadUpdateAsync(_updateResult);
                 }
                 else
                 {
