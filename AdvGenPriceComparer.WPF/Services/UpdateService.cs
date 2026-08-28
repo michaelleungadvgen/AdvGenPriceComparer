@@ -166,16 +166,29 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (updateResult == null || string.IsNullOrWhiteSpace(updateResult.DownloadUrl))
+            {
+                _logger.LogError("Invalid update result or download URL.");
+                return false;
+            }
+
+            // Security: Mandate hash validation to prevent execution of unverified payloads
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update rejected: Missing file hash in update manifest.");
+                return false;
+            }
+
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,9 +196,23 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Verify the file hash before writing to disk and executing
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(data);
+                var hashString = Convert.ToHexString(hashBytes);
+
+                if (!hashString.Equals(updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update rejected: Downloaded file hash ({hashString}) does not match expected hash ({updateResult.FileHash}).");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed and verified: {tempPath}");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
