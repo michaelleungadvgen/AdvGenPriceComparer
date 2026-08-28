@@ -8,3 +8,7 @@
 **Learning:** In WPF applications using `ui:Button` and `ui:SymbolIcon`, relying solely on the `ToolTip` attribute is insufficient for screen readers. Icon-only buttons lack proper text representation without explicitly defining an ARIA label.
 **Action:** Always define `AutomationProperties.Name` on icon-only buttons to ensure they are fully accessible to screen readers, just like using `aria-label` in web development.
 
+
+## 2024-05-27 - Blazor Navigation Accessibility
+**Learning:** In Blazor web projects, using `<div>` elements with `@onclick` event handlers for navigation breaks keyboard accessibility and native browser features (like middle-click to open in a new tab).
+**Action:** Always replace navigation `<div>` elements with semantic `<a>` tags. Ensure the `href` uses an absolute path (e.g., `/item/{id}`) to prevent relative path stacking issues, and apply utility classes like `text-decoration-none text-dark` to preserve visual styling.
