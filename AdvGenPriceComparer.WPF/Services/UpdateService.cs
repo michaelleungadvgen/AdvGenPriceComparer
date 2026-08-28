@@ -166,14 +166,12 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
+            var downloadUrl = updateResult.DownloadUrl;
             _logger.LogInfo($"Starting download from: {downloadUrl}");
-
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
             var response = await _httpClient.GetAsync(downloadUrl);
             if (!response.IsSuccessStatusCode)
@@ -183,6 +181,30 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            if (!string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                var expectedHash = updateResult.FileHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                    ? updateResult.FileHash.Substring(7)
+                    : updateResult.FileHash;
+
+                if (!string.IsNullOrWhiteSpace(expectedHash) && !expectedHash.Equals("placeholder", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var sha256 = System.Security.Cryptography.SHA256.Create();
+                    var hashBytes = sha256.ComputeHash(data);
+                    var actualHash = Convert.ToHexString(hashBytes);
+
+                    if (!string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _logger.LogError($"Update file hash mismatch. Expected: {expectedHash}, Actual: {actualHash}");
+                        return false;
+                    }
+                    _logger.LogInfo("Update file hash verified successfully.");
+                }
+            }
+
+            // For MSI installers, we download to temp and execute
+            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
