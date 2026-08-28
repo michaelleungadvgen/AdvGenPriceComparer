@@ -7,3 +7,7 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2025-02-28 - Middleware Path Matching and Environment Checks
+**Vulnerability:** API middlewares used `.Contains()` for path exclusions allowing authorization bypass (e.g. `/api/protected?q=/swagger`), and bypassed auth for development endpoints without verifying `env.IsDevelopment()`.
+**Learning:** Substring matching for paths is a security risk. Development exclusions must verify the environment explicitly.
+**Prevention:** Always use exact matching (`==`) or prefix matching (`StartsWith()`) for path rules, and ensure `IWebHostEnvironment.IsDevelopment()` is checked before loosening security policies.
