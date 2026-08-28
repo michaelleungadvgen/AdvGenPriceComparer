@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,16 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -186,6 +187,30 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Validate file hash unconditionally
+            if (string.IsNullOrEmpty(updateResult.FileHash))
+            {
+                _logger.LogError("Security Error: No file hash provided in update manifest. Cannot securely verify the downloaded update.");
+                File.Delete(tempPath);
+                return false;
+            }
+
+            _logger.LogInfo("Verifying downloaded file hash...");
+            using var sha256 = SHA256.Create();
+            using var stream = File.OpenRead(tempPath);
+            var hashBytes = await sha256.ComputeHashAsync(stream);
+            var calculatedHash = Convert.ToHexString(hashBytes);
+
+            if (!calculatedHash.Equals(updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError($"Security Error: Downloaded file hash ({calculatedHash}) does not match expected hash ({updateResult.FileHash}). The file may have been tampered with.");
+                stream.Close();
+                File.Delete(tempPath);
+                return false;
+            }
+
+            _logger.LogInfo("File hash verification successful.");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
