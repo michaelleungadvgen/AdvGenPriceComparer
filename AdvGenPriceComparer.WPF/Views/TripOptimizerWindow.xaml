@@ -67,7 +67,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Content="🔄 Refresh" 
+                    <Button Content="🔄 Refresh" AutomationProperties.Name="Refresh list"
                             Command="{Binding RefreshListsCommand}"
                             Padding="12,8" Margin="0,0,8,0"
                             Background="#FFFFFF" Foreground="#0D6EFD" BorderThickness="0"/>
@@ -434,11 +434,11 @@
                            VerticalAlignment="Center"/>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="📋 Copy to Clipboard"
+                    <Button Content="📋 Copy to Clipboard" AutomationProperties.Name="Copy results to clipboard"
                             Command="{Binding ExportResultsCommand}"
                             Padding="12,8" Margin="0,0,8,0"
                             Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="🖨️ Print"
+                    <Button Content="🖨️ Print" AutomationProperties.Name="Print results"
                             Command="{Binding PrintResultsCommand}"
                             Padding="12,8"
                             Visibility="{Binding HasResults, Converter={StaticResource BooleanToVisibilityConverter}}"/>
