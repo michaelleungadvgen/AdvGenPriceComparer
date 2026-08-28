@@ -1,0 +1,13 @@
+I will fix the information disclosure vulnerability in `PricesController.UploadData` where raw exception messages are returned to the client.
+
+1.  **Modify `PricesController.cs`**
+    -   File: `AdvGenPriceComparer.Server/Controllers/PricesController.cs`
+    -   Target: Line 61 (`ErrorMessage = $"Internal error: {ex.Message}"`)
+    -   Action: Change to `ErrorMessage = "An internal error occurred while processing the upload request."` to prevent leaking stack traces or sensitive internal details to external users.
+2.  **Add a Sentinel Journal Entry**
+    -   File: `.jules/sentinel.md`
+    -   Action: Add an entry about information disclosure via exception messages in API responses, as it is a specific security gap (leaking internal system state to potentially untrusted clients, especially on a public-facing API).
+3.  **Complete pre-commit steps**
+    -   Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.
+4.  **Submit the pull request**
+    -   Create a PR with title "🛡️ Sentinel: [MEDIUM] Fix information disclosure in Prices API" and the required structured description.
