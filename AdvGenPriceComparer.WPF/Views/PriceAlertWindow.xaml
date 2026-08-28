@@ -139,7 +139,8 @@
                 <Button Content="🔄 Refresh" 
                         Command="{Binding RefreshCommand}" 
                         Padding="10,5"
-                        Margin="10,0,0,0"/>
+                        Margin="10,0,0,0"
+                        AutomationProperties.Name="Refresh"/>
             </StackPanel>
 
             <!-- Toolbar -->
@@ -148,25 +149,30 @@
                     <Button Content="✓ Acknowledge" 
                             Command="{Binding AcknowledgeAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
-                            Padding="10,5"/>
+                            Padding="10,5"
+                            AutomationProperties.Name="Acknowledge"/>
                     <Separator/>
                     <Button Content="▶ Reactivate" 
                             Command="{Binding ReactivateAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
-                            Padding="10,5"/>
+                            Padding="10,5"
+                            AutomationProperties.Name="Reactivate"/>
                     <Button Content="⏸ Disable" 
                             Command="{Binding DisableAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
-                            Padding="10,5"/>
+                            Padding="10,5"
+                            AutomationProperties.Name="Disable"/>
                     <Separator/>
                     <Button Content="🗑 Delete" 
                             Command="{Binding DeleteAlertCommand}"
                             CommandParameter="{Binding SelectedAlert}"
-                            Padding="10,5"/>
+                            Padding="10,5"
+                            AutomationProperties.Name="Delete"/>
                     <Separator/>
                     <Button Content="🔄 Clear Form" 
                             Command="{Binding ClearFormCommand}"
-                            Padding="10,5"/>
+                            Padding="10,5"
+                            AutomationProperties.Name="Clear Form"/>
                 </ToolBar>
             </ToolBarTray>
 

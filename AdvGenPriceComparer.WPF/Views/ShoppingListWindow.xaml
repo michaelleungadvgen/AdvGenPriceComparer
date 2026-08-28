@@ -190,7 +190,8 @@
                             Content="➕ Create"
                             Command="{Binding CreateListCommand}"
                             Style="{StaticResource ActionButtonStyle}"
-                            Margin="8,0,0,0"/>
+                            Margin="8,0,0,0"
+                            AutomationProperties.Name="Create"/>
                 </Grid>
 
                 <!-- Lists -->
@@ -289,7 +290,8 @@
                     <Button Grid.Column="1" 
                             Content="📥 Export"
                             Command="{Binding ExportToMarkdownCommand}"
-                            Style="{StaticResource SecondaryButtonStyle}"/>
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            AutomationProperties.Name="Export"/>
                 </Grid>
 
                 <!-- Progress -->
@@ -328,7 +330,8 @@
                             Content="➕ Add"
                             Command="{Binding AddItemCommand}"
                             Style="{StaticResource ActionButtonStyle}"
-                            Margin="8,0,0,0"/>
+                            Margin="8,0,0,0"
+                            AutomationProperties.Name="Add"/>
                 </Grid>
 
                 <!-- Items List -->
