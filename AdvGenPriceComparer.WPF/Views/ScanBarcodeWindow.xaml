@@ -137,6 +137,8 @@
                                             Padding="15,5"
                                             Margin="0,0,10,0"/>
                                     <Button Content="🗑️ Clear" 
+                                            ToolTip="Clear Scan"
+                                            AutomationProperties.Name="Clear Scan"
                                             Command="{Binding ClearScanCommand}"
                                             Padding="15,5"
                                             Style="{StaticResource DefaultButtonStyle}"/>
@@ -300,6 +302,8 @@
                                     Margin="0,0,10,0"
                                     Style="{StaticResource AccentButtonStyle}"/>
                             <Button Content="🗑️ Clear" 
+                                    ToolTip="Clear Generate"
+                                    AutomationProperties.Name="Clear Generate"
                                     Command="{Binding ClearGenerateCommand}"
                                     Padding="20,10"
                                     Style="{StaticResource DefaultButtonStyle}"/>

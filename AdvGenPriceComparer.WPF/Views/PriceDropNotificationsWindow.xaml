@@ -96,9 +96,15 @@
                     <Button Content="🔄 Refresh" Command="{Binding RefreshCommand}" Padding="10,5"/>
                     <Separator/>
                     <Button Content="✓ Mark All Read" Command="{Binding MarkAsReadCommand}" Padding="10,5"/>
-                    <Button Content="🗑 Clear All" Command="{Binding ClearAllCommand}" Padding="10,5"/>
+                    <Button Content="🗑 Clear All"
+                            ToolTip="Clear All Notifications"
+                            AutomationProperties.Name="Clear All Notifications"
+                            Command="{Binding ClearAllCommand}" Padding="10,5"/>
                     <Separator/>
-                    <Button Content="✕ Close" Command="{Binding CloseCommand}" Padding="10,5" ToolTip="Close window (Esc)"/>
+                    <Button Content="✕ Close"
+                            ToolTip="Close window (Esc)"
+                            AutomationProperties.Name="Close Notifications Window"
+                            Command="{Binding CloseCommand}" Padding="10,5"/>
                 </ToolBar>
             </ToolBarTray>
 
