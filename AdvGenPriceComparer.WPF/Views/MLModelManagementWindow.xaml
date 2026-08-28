@@ -195,7 +195,7 @@
                                       Margin="0,4,0,0"/>
                         </Grid>
 
-                        <Button Content="🔄 Reload Model"
+                        <Button Content="🔄 Reload Model" AutomationProperties.Name="Reload Model"
                                 Command="{Binding ReloadModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 IsEnabled="{Binding IsNotBusy}"/>
@@ -224,7 +224,7 @@
                                   Foreground="#666"
                                   Margin="0,-4,0,12"/>
 
-                        <Button Content="🔄 Retrain Model"
+                        <Button Content="🔄 Retrain Model" AutomationProperties.Name="Retrain Model"
                                 Command="{Binding RetrainModelCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 IsEnabled="{Binding CanRetrain}"/>
