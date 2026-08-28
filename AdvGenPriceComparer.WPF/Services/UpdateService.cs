@@ -166,16 +166,19 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update rejected: FileHash is missing or empty.");
+                return false;
+            }
 
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,17 +186,56 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(data);
+                var computedHash = Convert.ToHexString(hashBytes);
+
+                var expectedHash = updateResult.FileHash.Trim();
+                if (expectedHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
+                {
+                    expectedHash = expectedHash.Substring(7);
+                }
+
+                if (!string.Equals(computedHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update rejected: Hash mismatch. Expected {expectedHash}, got {computedHash}.");
+                    return false;
+                }
+            }
+
+            string extension = Path.GetExtension(updateResult.DownloadUrl);
+            if (string.IsNullOrEmpty(extension) || (!extension.Equals(".msi", StringComparison.OrdinalIgnoreCase) && !extension.Equals(".exe", StringComparison.OrdinalIgnoreCase)))
+            {
+                extension = ".msi";
+            }
+
+            var tempPath = Path.Combine(Path.GetTempPath(), $"AdvGenPriceComparer_Update{extension}");
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
 
-            // Execute the installer
-            Process.Start(new ProcessStartInfo
+            ProcessStartInfo startInfo;
+            if (extension.Equals(".msi", StringComparison.OrdinalIgnoreCase))
             {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Verb = "open"
-            });
+                startInfo = new ProcessStartInfo
+                {
+                    FileName = "msiexec.exe",
+                    Arguments = $"/i \"{tempPath}\"",
+                    UseShellExecute = false
+                };
+            }
+            else
+            {
+                startInfo = new ProcessStartInfo
+                {
+                    FileName = tempPath,
+                    UseShellExecute = false
+                };
+            }
+
+            Process.Start(startInfo);
 
             return true;
         }
