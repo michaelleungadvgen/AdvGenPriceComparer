@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,22 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult result)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (string.IsNullOrWhiteSpace(result.DownloadUrl))
+            {
+                _logger.LogError("Download URL is empty.");
+                return false;
+            }
+
+            _logger.LogInfo($"Starting download from: {result.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(result.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,6 +190,28 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Validate hash if provided
+            if (!string.IsNullOrWhiteSpace(result.FileHash))
+            {
+                using var sha256 = SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var hashString = Convert.ToHexString(hashBytes);
+
+                if (!hashString.Equals(result.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security Error: Update file hash mismatch! Expected: {result.FileHash}, Actual: {hashString}");
+                    return false; // Fail securely
+                }
+
+                _logger.LogInfo("Update file hash validation successful.");
+            }
+            else
+            {
+                _logger.LogError("Security Error: Update file hash is missing from update manifest!");
+                return false; // Fail securely if no hash is provided to prevent executing untrusted binaries
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
