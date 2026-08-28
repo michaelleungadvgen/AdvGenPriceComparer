@@ -33,10 +33,12 @@
                     <ui:Badge Appearance="Success" 
                               Content="{Binding ActiveAlertCount}"
                               ToolTip="Active alerts"
+                              AutomationProperties.Name="Active alerts"
                               Margin="0,0,5,0"/>
                     <ui:Badge Appearance="Caution" 
                               Content="{Binding TriggeredAlertCount}"
                               ToolTip="Triggered alerts"
+                              AutomationProperties.Name="Triggered alerts"
                               Visibility="{Binding TriggeredAlertCount, Converter={StaticResource CountToVisibilityConverter}}"
                               Margin="0,0,10,0"/>
                 </StackPanel>
