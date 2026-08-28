@@ -33,7 +33,7 @@
                     <TextBlock Text="⭐ Favorite Items" 
                                FontSize="24" 
                                FontWeight="Bold" 
-                               Foreground="White"/>
+                               Foreground="White" AutomationProperties.Name="Favorite Items"/>
                     <TextBlock Text="Quick access to your most important items"
                                Foreground="White" 
                                Opacity="0.9" 

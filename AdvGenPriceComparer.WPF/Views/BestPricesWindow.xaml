@@ -39,7 +39,7 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Button Content="🔄 Refresh" Padding="15,8" Margin="0,0,10,0"
                             Command="{Binding RefreshCommand}"
-                            Background="White" Foreground="{DynamicResource SystemAccentColorBrush}"/>
+                            Background="White" Foreground="{DynamicResource SystemAccentColorBrush}" AutomationProperties.Name="Refresh"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -49,13 +49,13 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Legend: " FontWeight="SemiBold" VerticalAlignment="Center"/>
                 <Border Background="#FFD700" Padding="8,3" Margin="10,0,5,0" CornerRadius="3">
-                    <TextBlock Text="🔥 BEST PRICE" FontSize="11" FontWeight="Bold"/>
+                    <TextBlock Text="🔥 BEST PRICE" FontSize="11" FontWeight="Bold" AutomationProperties.Name="BEST PRICE"/>
                 </Border>
                 <Border Background="#4CAF50" Padding="8,3" Margin="5,0" CornerRadius="3">
-                    <TextBlock Text="⭐ GREAT DEAL" FontSize="11" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="⭐ GREAT DEAL" FontSize="11" FontWeight="Bold" Foreground="White" AutomationProperties.Name="GREAT DEAL"/>
                 </Border>
                 <Border Background="#2196F3" Padding="8,3" Margin="5,0" CornerRadius="3">
-                    <TextBlock Text="✓ GOOD DEAL" FontSize="11" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="✓ GOOD DEAL" FontSize="11" FontWeight="Bold" Foreground="White" AutomationProperties.Name="GOOD DEAL"/>
                 </Border>
             </StackPanel>
         </Border>

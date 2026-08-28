@@ -155,7 +155,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Header -->
-                <TextBlock Grid.Row="0" Text="🛒 Shopping Lists" FontSize="20" FontWeight="Bold" Margin="0,0,0,16"/>
+                <TextBlock Grid.Row="0" Text="🛒 Shopping Lists" FontSize="20" FontWeight="Bold" Margin="0,0,0,16" AutomationProperties.Name="Shopping Lists"/>
 
                 <!-- Search -->
                 <Grid Grid.Row="1" Margin="0,0,0,12">
@@ -190,7 +190,7 @@
                             Content="➕ Create"
                             Command="{Binding CreateListCommand}"
                             Style="{StaticResource ActionButtonStyle}"
-                            Margin="8,0,0,0"/>
+                            Margin="8,0,0,0" AutomationProperties.Name="Create"/>
                 </Grid>
 
                 <!-- Lists -->
@@ -289,7 +289,7 @@
                     <Button Grid.Column="1" 
                             Content="📥 Export"
                             Command="{Binding ExportToMarkdownCommand}"
-                            Style="{StaticResource SecondaryButtonStyle}"/>
+                            Style="{StaticResource SecondaryButtonStyle}" AutomationProperties.Name="Export"/>
                 </Grid>
 
                 <!-- Progress -->
@@ -328,7 +328,7 @@
                             Content="➕ Add"
                             Command="{Binding AddItemCommand}"
                             Style="{StaticResource ActionButtonStyle}"
-                            Margin="8,0,0,0"/>
+                            Margin="8,0,0,0" AutomationProperties.Name="Add"/>
                 </Grid>
 
                 <!-- Items List -->
