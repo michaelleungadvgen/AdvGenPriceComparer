@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,14 +167,26 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
+            var downloadUrl = updateResult.DownloadUrl;
             _logger.LogInfo($"Starting download from: {downloadUrl}");
 
-            // For MSI installers, we download to temp and execute
-            var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update failed: Missing cryptographic hash in update manifest.");
+                return false;
+            }
+
+            var expectedHash = updateResult.FileHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                ? updateResult.FileHash.Substring(7)
+                : updateResult.FileHash;
+
+            var isMsi = downloadUrl.EndsWith(".msi", StringComparison.OrdinalIgnoreCase);
+            var extension = isMsi ? ".msi" : ".exe";
+            var tempPath = Path.Combine(Path.GetTempPath(), $"AdvGenPriceComparer_Update{extension}");
 
             var response = await _httpClient.GetAsync(downloadUrl);
             if (!response.IsSuccessStatusCode)
@@ -183,18 +196,38 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
-            await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
-
-            // Execute the installer
-            Process.Start(new ProcessStartInfo
+            using (var sha256 = SHA256.Create())
             {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Verb = "open"
-            });
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
 
+                if (!string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update failed: Hash mismatch. Expected {expectedHash}, got {actualHash}");
+                    return false;
+                }
+            }
+
+            await File.WriteAllBytesAsync(tempPath, data);
+            _logger.LogInfo($"Download completed and verified: {tempPath}");
+
+            var startInfo = new ProcessStartInfo
+            {
+                UseShellExecute = false
+            };
+
+            if (isMsi)
+            {
+                startInfo.FileName = "msiexec.exe";
+                startInfo.Arguments = $"/i \"{tempPath}\"";
+            }
+            else
+            {
+                startInfo.FileName = tempPath;
+            }
+
+            Process.Start(startInfo);
             return true;
         }
         catch (Exception ex)
