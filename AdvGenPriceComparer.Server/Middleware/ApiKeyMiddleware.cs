@@ -16,7 +16,7 @@ public class ApiKeyMiddleware
         _logger = logger;
     }
 
-    public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService)
+    public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService, IWebHostEnvironment env)
     {
         // Skip API key validation for Swagger and health endpoints
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
@@ -27,9 +27,9 @@ public class ApiKeyMiddleware
         }
 
         // Allow anonymous access in development for certain endpoints
-        if (context.Request.Method == "GET" && path.StartsWith("/api/prices"))
+        if (env.IsDevelopment() && context.Request.Method == "GET" && path.StartsWith("/api/prices"))
         {
-            // Public read access
+            // Public read access only in Development
             await _next(context);
             return;
         }
