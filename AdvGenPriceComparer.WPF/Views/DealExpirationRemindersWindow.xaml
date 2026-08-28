@@ -213,16 +213,16 @@
                     HorizontalAlignment="Right"
                     Margin="0,15,0,0">
             <Button Content="🔄 Refresh" 
-                    Command="{Binding RefreshCommand}"
+                    AutomationProperties.Name="Refresh reminders" Command="{Binding RefreshCommand}"
                     Style="{StaticResource SecondaryButtonStyle}"/>
             <Button Content="✓ Dismiss Selected" 
-                    Command="{Binding DismissDealCommand}"
+                    AutomationProperties.Name="Dismiss selected reminders" Command="{Binding DismissDealCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             <Button Content="✓✓ Dismiss All" 
-                    Command="{Binding DismissAllCommand}"
+                    AutomationProperties.Name="Dismiss all reminders" Command="{Binding DismissAllCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             <Button Content="🗑 Clear Dismissed" 
-                    Command="{Binding ClearDismissedCommand}"
+                    AutomationProperties.Name="Clear dismissed reminders" Command="{Binding ClearDismissedCommand}"
                     Style="{StaticResource SecondaryButtonStyle}"/>
         </StackPanel>
     </Grid>
