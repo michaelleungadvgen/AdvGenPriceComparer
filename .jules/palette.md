@@ -8,3 +8,7 @@
 **Learning:** In WPF applications using `ui:Button` and `ui:SymbolIcon`, relying solely on the `ToolTip` attribute is insufficient for screen readers. Icon-only buttons lack proper text representation without explicitly defining an ARIA label.
 **Action:** Always define `AutomationProperties.Name` on icon-only buttons to ensure they are fully accessible to screen readers, just like using `aria-label` in web development.
 
+
+## 2024-07-03 - Replaced div @onclick with a tag for item cards
+**Learning:** In Blazor web projects using Bootstrap 5, replacing a `<div class="card" @onclick...>` with an `<a href... class="card text-decoration-none text-dark">` improves keyboard accessibility (allowing tab navigation and 'open in new tab') without breaking the flexbox layout, whereas adding `d-block` would override the `.card` flex-direction.
+**Action:** Always use semantic `<a>` tags instead of `<div>` with `@onclick` for navigation in Blazor to ensure native browser features and accessibility are preserved.
