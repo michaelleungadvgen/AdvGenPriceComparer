@@ -15,12 +15,13 @@
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-search"></i></span>
                         <input type="text" class="form-control" placeholder="Search items..."
+                               aria-label="Search items"
                                @bind="searchTerm" @bind:event="oninput" @onkeyup="HandleSearch" />
                         <button class="btn btn-primary" @onclick="ApplyFilters">Search</button>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-select" @bind="selectedCategory">
+                    <select class="form-select" aria-label="Filter by category" @bind="selectedCategory">
                         <option value="">All Categories</option>
                         @foreach (var category in categories)
                         {
@@ -58,7 +59,7 @@
             @foreach (var item in items)
             {
                 <div class="col">
-                    <div class="card h-100 shadow-sm item-card" @onclick="() => ViewItem(item.Id)" style="cursor: pointer;">
+                    <a href="item/@item.Id" class="card h-100 shadow-sm item-card text-decoration-none text-dark" style="cursor: pointer;">
                         <div class="card-body">
                             <h5 class="card-title">@item.Name</h5>
                             @if (!string.IsNullOrEmpty(item.Brand))
@@ -73,7 +74,7 @@
                         <div class="card-footer bg-transparent text-center">
                             <small class="text-muted">Click for details</small>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
         </div>
@@ -215,10 +216,5 @@
     {
         currentPage = page;
         LoadItems();
-    }
-
-    private void ViewItem(string itemId)
-    {
-        Navigation.NavigateTo($"/item/{itemId}");
     }
 }
