@@ -19,8 +19,9 @@ public class RateLimitMiddleware
     public async Task InvokeAsync(HttpContext context, IRateLimitService rateLimitService)
     {
         // Skip rate limiting for Swagger and health endpoints
+        // SECURITY FIX: Use StartsWith instead of Contains to prevent rate limit bypass via suffix matching
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
-        if (path.Contains("/swagger") || path.Contains("/health") || path == "/")
+        if (path.StartsWith("/swagger") || path.StartsWith("/health") || path == "/")
         {
             await _next(context);
             return;

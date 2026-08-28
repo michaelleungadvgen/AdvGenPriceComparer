@@ -7,3 +7,7 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+## 2024-05-26 - Middleware Authorization Bypass
+**Vulnerability:** Path exclusion matching in middleware used `.Contains()` instead of exact or prefix matching, allowing attackers to bypass authentication or rate limiting by appending valid paths (like `/swagger`) to protected endpoints.
+**Learning:** Substring matching (`.Contains()`) on request paths creates critical security vulnerabilities when used for authorization or rate limiting logic.
+**Prevention:** Always use `.StartsWith()` or exact matching (`==`) for path-based exclusions in middleware.
