@@ -7,3 +7,8 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+
+## 2024-05-24 - Information Leakage in API Error Responses
+**Vulnerability:** The application was exposing raw exception messages (`ex.Message`) in API responses for the upload endpoints.
+**Learning:** This occurred because the exception messages were directly assigned to DTO error properties (`UploadResult.ErrorMessage`) and returned to the client, while they should only be logged internally.
+**Prevention:** Catch generic exceptions and return safe, generic error messages to clients. Log the detailed exception securely on the server side or store it in internal database records.

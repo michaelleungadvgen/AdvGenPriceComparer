@@ -58,7 +58,7 @@ public class PricesController : ControllerBase
             return BadRequest(new UploadResult
             {
                 Success = false,
-                ErrorMessage = $"Internal error: {ex.Message}"
+                ErrorMessage = "Internal server error during upload"
             });
         }
     }
