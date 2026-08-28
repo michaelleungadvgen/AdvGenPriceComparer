@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +167,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash = "")
     {
         try
         {
@@ -183,6 +184,26 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Validate hash if expected hash is provided to prevent supply chain attacks
+            if (!string.IsNullOrWhiteSpace(expectedHash))
+            {
+                using var sha256 = SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security validation failed: Downloaded file hash ({actualHash}) does not match expected hash ({expectedHash}). Update aborted.");
+                    return false;
+                }
+                _logger.LogInfo("Security validation passed: Update file hash verified.");
+            }
+            else
+            {
+                _logger.LogWarning("Security Warning: No file hash provided. Update file will be executed without cryptographic verification.");
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
