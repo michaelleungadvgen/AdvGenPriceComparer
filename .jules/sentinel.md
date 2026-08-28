@@ -7,3 +7,8 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+
+## 2024-05-17 - Middleware Path Exclusion Bypass
+**Vulnerability:** Insecure custom middleware path exclusion using `path.Contains("/swagger") || path.Contains("/health")` instead of prefix matching.
+**Learning:** Using substring matching (`Contains`) allows attackers to bypass API key authentication and rate limiting by appending the target string to restricted paths (e.g., `/api/secure-endpoint/health`).
+**Prevention:** Always use `StartsWith()` or exact string matching `==` for routing exceptions in ASP.NET Core custom middleware.
