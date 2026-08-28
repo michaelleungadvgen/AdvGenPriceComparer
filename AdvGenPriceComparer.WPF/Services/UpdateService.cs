@@ -166,10 +166,11 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
+            string downloadUrl = updateResult.DownloadUrl;
             _logger.LogInfo($"Starting download from: {downloadUrl}");
 
             // For MSI installers, we download to temp and execute
@@ -183,6 +184,24 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Cryptographic Verification to prevent supply chain attacks
+            if (!string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                using (var sha256 = System.Security.Cryptography.SHA256.Create())
+                {
+                    byte[] hashBytes = sha256.ComputeHash(data);
+                    string computedHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                    string expectedHash = updateResult.FileHash.Replace("-", "").ToLowerInvariant();
+
+                    if (computedHash != expectedHash)
+                    {
+                        _logger.LogError($"Security Error: Downloaded update file hash ({computedHash}) does not match expected hash ({expectedHash}). Execution aborted.");
+                        return false;
+                    }
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
