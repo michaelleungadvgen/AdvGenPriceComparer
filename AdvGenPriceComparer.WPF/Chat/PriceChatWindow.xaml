@@ -308,6 +308,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         ToolTip="Clear chat"
+                        AutomationProperties.Name="Clear chat"
                         Command="{Binding ClearChatCommand}"/>
 
                 <Button Grid.Column="2"
