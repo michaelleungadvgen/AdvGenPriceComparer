@@ -16,18 +16,18 @@ public class ApiKeyMiddleware
         _logger = logger;
     }
 
-    public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService)
+    public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService, IWebHostEnvironment env)
     {
         // Skip API key validation for Swagger and health endpoints
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
-        if (path.Contains("/swagger") || path.Contains("/health") || path == "/")
+        if (path.StartsWith("/swagger") || path.StartsWith("/health") || path == "/")
         {
             await _next(context);
             return;
         }
 
         // Allow anonymous access in development for certain endpoints
-        if (context.Request.Method == "GET" && path.StartsWith("/api/prices"))
+        if (env.IsDevelopment() && context.Request.Method == "GET" && path.StartsWith("/api/prices/"))
         {
             // Public read access
             await _next(context);
