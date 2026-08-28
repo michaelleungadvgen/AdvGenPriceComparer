@@ -93,12 +93,12 @@
             <!-- Toolbar -->
             <ToolBarTray Grid.Row="0" Margin="0,0,0,10">
                 <ToolBar>
-                    <Button Content="🔄 Refresh" Command="{Binding RefreshCommand}" Padding="10,5"/>
+                    <Button Content="🔄 Refresh" Command="{Binding RefreshCommand}" Padding="10,5" AutomationProperties.Name="Refresh"/>
                     <Separator/>
-                    <Button Content="✓ Mark All Read" Command="{Binding MarkAsReadCommand}" Padding="10,5"/>
-                    <Button Content="🗑 Clear All" Command="{Binding ClearAllCommand}" Padding="10,5"/>
+                    <Button Content="✓ Mark All Read" Command="{Binding MarkAsReadCommand}" Padding="10,5" AutomationProperties.Name="Mark All Read"/>
+                    <Button Content="🗑 Clear All" Command="{Binding ClearAllCommand}" Padding="10,5" AutomationProperties.Name="Clear All"/>
                     <Separator/>
-                    <Button Content="✕ Close" Command="{Binding CloseCommand}" Padding="10,5" ToolTip="Close window (Esc)"/>
+                    <Button Content="✕ Close" Command="{Binding CloseCommand}" Padding="10,5" ToolTip="Close window (Esc)" AutomationProperties.Name="Close window"/>
                 </ToolBar>
             </ToolBarTray>
 
