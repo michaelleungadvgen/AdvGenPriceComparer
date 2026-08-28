@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,22 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (updateResult == null || string.IsNullOrWhiteSpace(updateResult.DownloadUrl))
+            {
+                _logger.LogError("Invalid update result or download URL provided.");
+                return false;
+            }
+
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,6 +190,26 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Sentinel: Verify the file hash before executing downloaded file
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Security Error: Update hash is missing from update manifest. Refusing to install unverified update.");
+                return false;
+            }
+
+            using var sha256 = SHA256.Create();
+            var hashBytes = sha256.ComputeHash(data);
+            var computedHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+
+            if (!string.Equals(computedHash, updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError($"Security Error: Update hash mismatch. Expected {updateResult.FileHash}, but got {computedHash}. Update aborted.");
+                return false;
+            }
+
+            _logger.LogInfo($"Update hash verified successfully ({computedHash}). Proceeding to install.");
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
