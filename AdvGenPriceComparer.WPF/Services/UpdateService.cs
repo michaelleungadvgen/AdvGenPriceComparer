@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,16 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,6 +184,23 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            if (!string.IsNullOrEmpty(updateResult.FileHash))
+            {
+                var hashBytes = SHA256.HashData(data);
+                var hashHex = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(hashHex, updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Hash mismatch: expected {updateResult.FileHash}, but calculated {hashHex}");
+                    return false;
+                }
+            }
+            else
+            {
+                _logger.LogInfo("Warning: Skipping hash verification as no file hash was provided in the update manifest");
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
