@@ -58,7 +58,7 @@
             @foreach (var item in items)
             {
                 <div class="col">
-                    <div class="card h-100 shadow-sm item-card" @onclick="() => ViewItem(item.Id)" style="cursor: pointer;">
+                    <a href="/item/@item.Id" class="card h-100 shadow-sm item-card text-decoration-none text-dark" style="cursor: pointer;">
                         <div class="card-body">
                             <h5 class="card-title">@item.Name</h5>
                             @if (!string.IsNullOrEmpty(item.Brand))
@@ -73,7 +73,7 @@
                         <div class="card-footer bg-transparent text-center">
                             <small class="text-muted">Click for details</small>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
         </div>
@@ -217,8 +217,4 @@
         LoadItems();
     }
 
-    private void ViewItem(string itemId)
-    {
-        Navigation.NavigateTo($"/item/{itemId}");
-    }
 }
