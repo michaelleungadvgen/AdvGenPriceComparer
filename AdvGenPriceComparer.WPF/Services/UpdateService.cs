@@ -166,7 +166,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash = "")
     {
         try
         {
@@ -183,6 +183,23 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Verify hash if provided
+            if (!string.IsNullOrWhiteSpace(expectedHash) && expectedHash != "placeholder")
+            {
+                var cleanHash = expectedHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                    ? expectedHash.Substring(7)
+                    : expectedHash;
+
+                var actualHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(data));
+
+                if (!string.Equals(actualHash, cleanHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security error: Downloaded update file hash ({actualHash}) does not match expected hash ({cleanHash}).");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
