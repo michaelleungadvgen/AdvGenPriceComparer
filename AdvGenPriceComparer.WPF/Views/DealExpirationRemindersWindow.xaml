@@ -214,16 +214,20 @@
                     Margin="0,15,0,0">
             <Button Content="🔄 Refresh" 
                     Command="{Binding RefreshCommand}"
-                    Style="{StaticResource SecondaryButtonStyle}"/>
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    AutomationProperties.Name="Refresh"/>
             <Button Content="✓ Dismiss Selected" 
                     Command="{Binding DismissDealCommand}"
-                    Style="{StaticResource ButtonStyle}"/>
+                    Style="{StaticResource ButtonStyle}"
+                    AutomationProperties.Name="Dismiss Selected"/>
             <Button Content="✓✓ Dismiss All" 
                     Command="{Binding DismissAllCommand}"
-                    Style="{StaticResource ButtonStyle}"/>
+                    Style="{StaticResource ButtonStyle}"
+                    AutomationProperties.Name="Dismiss All"/>
             <Button Content="🗑 Clear Dismissed" 
                     Command="{Binding ClearDismissedCommand}"
-                    Style="{StaticResource SecondaryButtonStyle}"/>
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    AutomationProperties.Name="Clear Dismissed"/>
         </StackPanel>
     </Grid>
 </Window>
