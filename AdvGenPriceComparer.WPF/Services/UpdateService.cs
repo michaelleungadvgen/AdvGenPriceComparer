@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -166,16 +167,22 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Failed to download update: Missing FileHash in update manifest.");
+                return false;
+            }
+
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -185,7 +192,22 @@ public class UpdateService : IUpdateService
             var data = await response.Content.ReadAsByteArrayAsync();
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download completed: {tempPath}. Verifying hash...");
+
+            using (var sha256 = SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(updateResult.FileHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Security Error: Hash mismatch for downloaded update. Expected: {updateResult.FileHash}, Actual: {actualHash}");
+                    File.Delete(tempPath);
+                    return false;
+                }
+            }
+
+            _logger.LogInfo("Hash verification successful.");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
