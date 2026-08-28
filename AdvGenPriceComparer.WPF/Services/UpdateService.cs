@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,29 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            if (updateResult == null || string.IsNullOrWhiteSpace(updateResult.DownloadUrl))
+            {
+                _logger.LogError("Update check result or download URL is missing.");
+                return false;
+            }
+
+            // Security check: must have a hash to verify against
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update rejected: FileHash is missing from the update manifest.");
+                return false;
+            }
+
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -183,9 +197,23 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            // Cryptographic verification of the downloaded file
+            using (var sha256 = SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(data);
+                var computedHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(computedHash, updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update rejected: Downloaded file hash ({computedHash}) does not match expected hash ({updateResult.FileHash}). Possible MITM attack or corrupted download.");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
-            _logger.LogInfo($"Download completed: {tempPath}");
+            _logger.LogInfo($"Download and verification completed: {tempPath}");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
@@ -199,7 +227,7 @@ public class UpdateService : IUpdateService
         }
         catch (Exception ex)
         {
-            _logger.LogError("Failed to download update", ex);
+            _logger.LogError("Failed to download or verify update", ex);
             return false;
         }
     }
