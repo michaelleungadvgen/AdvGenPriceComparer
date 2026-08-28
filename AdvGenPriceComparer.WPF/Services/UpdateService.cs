@@ -166,7 +166,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash = "")
     {
         try
         {
@@ -183,6 +183,24 @@ public class UpdateService : IUpdateService
             }
 
             var data = await response.Content.ReadAsByteArrayAsync();
+
+            if (!string.IsNullOrWhiteSpace(expectedHash) && expectedHash != "placeholder")
+            {
+                var cleanHash = expectedHash.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase)
+                    ? expectedHash.Substring(7)
+                    : expectedHash;
+
+                using var sha256 = System.Security.Cryptography.SHA256.Create();
+                var hashBytes = sha256.ComputeHash(data);
+                var actualHash = Convert.ToHexString(hashBytes);
+
+                if (!string.Equals(actualHash, cleanHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update hash mismatch! Expected: {cleanHash}, Actual: {actualHash}");
+                    return false;
+                }
+            }
+
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
