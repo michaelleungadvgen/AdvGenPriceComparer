@@ -175,6 +175,15 @@ namespace AdvGenPriceComparer.WPF.ViewModels
                 if (string.IsNullOrWhiteSpace(SelectedCategory))
                     return;
 
+                var result = System.Windows.MessageBox.Show(
+                    $"Are you sure you want to delete the category '{SelectedCategory}'?\n\nThis action cannot be undone.",
+                    "Confirm Delete",
+                    System.Windows.MessageBoxButton.YesNo,
+                    System.Windows.MessageBoxImage.Question);
+
+                if (result != System.Windows.MessageBoxResult.Yes)
+                    return;
+
                 _logger.LogInfo($"Deleting category: {SelectedCategory}");
 
                 // Check if any items use this category
