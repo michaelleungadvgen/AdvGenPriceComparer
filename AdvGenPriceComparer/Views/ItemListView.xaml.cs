@@ -193,19 +193,77 @@ namespace AdvGenPriceComparer.Desktop.WinUI.Views
             try
             {
                 var itemViewModel = new ItemViewModel();
-                // TODO: Implement proper item dialog
-                var itemId = _groceryDataService.AddGroceryItem("New Item", "Brand", "Category");
-                var item = _groceryDataService.GetItemById(itemId);
+                var result = await _dialogService.ShowAddItemDialogAsync(itemViewModel);
                 
-                if (item != null)
+                if (result)
                 {
+                    var newItem = itemViewModel.CreateItem();
+                    var itemId = _groceryDataService.AddGroceryItem(
+                        newItem.Name,
+                        newItem.Brand ?? string.Empty,
+                        newItem.Category ?? "Other",
+                        newItem.Barcode ?? string.Empty,
+                        newItem.PackageSize ?? string.Empty,
+                        newItem.Unit ?? string.Empty
+                    );
                     
-                    // Add to our collection
-                    var newItemViewModel = new ItemWithPricesViewModel(item);
-                    _items.Add(newItemViewModel);
-                    ApplyFilter();
+                    var item = _groceryDataService.GetItemById(itemId);
+                    if (item != null)
+                    {
+                        // Update item with additional fields that AddGroceryItem might not handle
+                        bool updateNeeded = false;
+
+                        if (!string.IsNullOrEmpty(newItem.Description))
+                        {
+                            item.Description = newItem.Description;
+                            updateNeeded = true;
+                        }
+
+                        if (!string.IsNullOrEmpty(newItem.SubCategory))
+                        {
+                            item.SubCategory = newItem.SubCategory;
+                            updateNeeded = true;
+                        }
+
+                        if (!string.IsNullOrEmpty(newItem.ImageUrl))
+                        {
+                            item.ImageUrl = newItem.ImageUrl;
+                            updateNeeded = true;
+                        }
+
+                        if (newItem.Tags != null && newItem.Tags.Any())
+                        {
+                            item.Tags = newItem.Tags;
+                            updateNeeded = true;
+                        }
+
+                        if (newItem.DietaryFlags != null && newItem.DietaryFlags.Any())
+                        {
+                            item.DietaryFlags = newItem.DietaryFlags;
+                            updateNeeded = true;
+                        }
+
+                        if (newItem.Allergens != null && newItem.Allergens.Any())
+                        {
+                            item.Allergens = newItem.Allergens;
+                            updateNeeded = true;
+                        }
+
+                        if (updateNeeded)
+                        {
+                            _groceryDataService.Items.Update(item);
+                        }
+                    }
                     
-                    await _notificationService.ShowSuccessAsync("Item added successfully!");
+                    if (item != null)
+                    {
+                        // Add to our collection
+                        var newItemViewModel = new ItemWithPricesViewModel(item);
+                        _items.Add(newItemViewModel);
+                        ApplyFilter();
+
+                        await _notificationService.ShowSuccessAsync("Item added successfully!");
+                    }
                 }
             }
             catch (Exception ex)
