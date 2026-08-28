@@ -9,25 +9,27 @@ public class ApiKeyMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<ApiKeyMiddleware> _logger;
+    private readonly IWebHostEnvironment _env;
 
-    public ApiKeyMiddleware(RequestDelegate next, ILogger<ApiKeyMiddleware> logger)
+    public ApiKeyMiddleware(RequestDelegate next, ILogger<ApiKeyMiddleware> logger, IWebHostEnvironment env)
     {
         _next = next;
         _logger = logger;
+        _env = env;
     }
 
     public async Task InvokeAsync(HttpContext context, IApiKeyService apiKeyService)
     {
         // Skip API key validation for Swagger and health endpoints
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
-        if (path.Contains("/swagger") || path.Contains("/health") || path == "/")
+        if (path.StartsWith("/swagger") || path.StartsWith("/health") || path == "/")
         {
             await _next(context);
             return;
         }
 
         // Allow anonymous access in development for certain endpoints
-        if (context.Request.Method == "GET" && path.StartsWith("/api/prices"))
+        if (_env.IsDevelopment() && context.Request.Method == "GET" && path.StartsWith("/api/prices"))
         {
             // Public read access
             await _next(context);
