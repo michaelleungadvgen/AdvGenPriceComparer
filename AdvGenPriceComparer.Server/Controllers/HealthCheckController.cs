@@ -170,7 +170,7 @@ public class HealthController : ControllerBase
             {
                 Status = "Unhealthy",
                 ResponseTimeMs = stopwatch.ElapsedMilliseconds,
-                Error = $"Database connection failed: {ex.Message}"
+                Error = "Database connection failed"
             };
         }
     }
