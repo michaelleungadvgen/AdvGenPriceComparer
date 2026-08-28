@@ -12,11 +12,13 @@ public class PriceDataService : IPriceDataService
 {
     private readonly PriceDataContext _context;
     private readonly INotificationService _notificationService;
+    private readonly ILogger<PriceDataService> _logger;
 
-    public PriceDataService(PriceDataContext context, INotificationService notificationService)
+    public PriceDataService(PriceDataContext context, INotificationService notificationService, ILogger<PriceDataService> logger)
     {
         _context = context;
         _notificationService = notificationService;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<SharedItem>> GetItemsAsync(ItemFilter? filter = null, int page = 1, int pageSize = 100)
@@ -357,8 +359,9 @@ public class PriceDataService : IPriceDataService
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error processing data upload");
             result.Success = false;
-            result.ErrorMessage = ex.Message;
+            result.ErrorMessage = "An internal error occurred during the upload process.";
             session.IsSuccess = false;
             session.ErrorMessage = ex.Message;
             await _context.UploadSessions.AddAsync(session);
