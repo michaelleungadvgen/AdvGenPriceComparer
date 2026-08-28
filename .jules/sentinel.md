@@ -7,3 +7,8 @@
 - Graceful fallback for non-Windows platforms (returns plaintext for tests)
 **Learning:** Local application settings stored in AppData are often treated as "secure enough" by developers, but they remain highly vulnerable to local credential theft if unencrypted.
 **Prevention:** Always encrypt sensitive settings (like API keys, passwords, or tokens) at rest. For Windows desktop applications, utilize `System.Security.Cryptography.ProtectedData` (DPAPI) bound to the `CurrentUser` scope, which seamlessly encrypts data using the user's OS credentials.
+
+## 2025-03-05 - Missing Integrity Verification During Update Download
+**Vulnerability:** The application downloaded executables over HTTP without cryptographic hash verification, saving them to a temporary path and blindly executing them.
+**Learning:** This introduces a serious Time-Of-Check to Time-Of-Use (TOCTOU) and integrity concern. Files must be verified in memory before saving.
+**Prevention:** Compute and verify SHA256 hashes against a known good value prior to persisting the payload to disk.
