@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,16 +167,16 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult)
     {
         try
         {
-            _logger.LogInfo($"Starting download from: {downloadUrl}");
+            _logger.LogInfo($"Starting download from: {updateResult.DownloadUrl}");
 
             // For MSI installers, we download to temp and execute
             var tempPath = Path.Combine(Path.GetTempPath(), "AdvGenPriceComparer_Update.msi");
 
-            var response = await _httpClient.GetAsync(downloadUrl);
+            var response = await _httpClient.GetAsync(updateResult.DownloadUrl);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError($"Failed to download update: HTTP {(int)response.StatusCode}");
@@ -186,6 +187,33 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Verify file hash to prevent supply chain attacks
+            if (string.IsNullOrWhiteSpace(updateResult.FileHash))
+            {
+                _logger.LogError("Update hash is missing from manifest. Aborting update for security.");
+                File.Delete(tempPath);
+                return false;
+            }
+
+            string computedHash;
+            using (var sha256 = SHA256.Create())
+            {
+                using (var stream = File.OpenRead(tempPath))
+                {
+                    var hashBytes = sha256.ComputeHash(stream);
+                    computedHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                }
+            }
+
+            if (!string.Equals(computedHash, updateResult.FileHash, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError($"Update hash mismatch! Expected: {updateResult.FileHash}, Computed: {computedHash}. Aborting update for security.");
+                File.Delete(tempPath);
+                return false;
+            }
+
+            _logger.LogInfo("Update file hash verified successfully.");
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
