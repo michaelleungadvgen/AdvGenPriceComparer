@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +167,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash)
     {
         try
         {
@@ -186,6 +187,33 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Verify file hash before execution to prevent supply chain attacks
+            if (!string.IsNullOrEmpty(expectedHash))
+            {
+                string actualHash;
+                using (var sha256 = SHA256.Create())
+                {
+                    using (var stream = File.OpenRead(tempPath))
+                    {
+                        var hashBytes = sha256.ComputeHash(stream);
+                        actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                    }
+                }
+
+                if (!actualHash.Equals(expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Update file hash mismatch. Expected: {expectedHash}, Actual: {actualHash}. File will not be executed.");
+                    File.Delete(tempPath);
+                    return false;
+                }
+
+                _logger.LogInfo("Update file hash verified successfully.");
+            }
+            else
+            {
+                _logger.LogInfo("No expected hash provided. Proceeding without cryptographic verification.");
+            }
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
