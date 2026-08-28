@@ -32,6 +32,8 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <ui:Badge Appearance="Danger" 
                               Content="{Binding UnreadCount}"
+                              AutomationProperties.Name="Unread notifications count"
+                              ToolTip="Unread notifications"
                               Visibility="{Binding UnreadCount, Converter={StaticResource CountToVisibilityConverter}}"
                               Margin="0,0,10,0"/>
                     <ui:ToggleSwitch Content="Monitoring" 
