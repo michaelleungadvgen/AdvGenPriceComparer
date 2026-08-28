@@ -52,7 +52,7 @@
                         Width="40"
                         Height="40"
                         Background="Transparent"
-                        Foreground="White"
+                        Foreground="White" AutomationProperties.Name="Clear search"
                         BorderThickness="0"
                         FontSize="18"
                         VerticalAlignment="Top"
