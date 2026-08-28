@@ -27,9 +27,9 @@ public interface IUpdateService
     /// <summary>
     /// Download and install the update (if silent update is supported)
     /// </summary>
-    /// <param name="downloadUrl">URL to the installer</param>
+    /// <param name="updateResult">The update result containing download URL and file hash</param>
     /// <returns>True if download started successfully</returns>
-    Task<bool> DownloadUpdateAsync(string downloadUrl);
+    Task<bool> DownloadUpdateAsync(UpdateCheckResult updateResult);
 
     /// <summary>
     /// Open the download page in browser
