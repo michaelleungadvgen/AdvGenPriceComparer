@@ -166,7 +166,7 @@ public class UpdateService : IUpdateService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DownloadUpdateAsync(string downloadUrl)
+    public async Task<bool> DownloadUpdateAsync(string downloadUrl, string expectedHash)
     {
         try
         {
@@ -186,6 +186,31 @@ public class UpdateService : IUpdateService
             await File.WriteAllBytesAsync(tempPath, data);
 
             _logger.LogInfo($"Download completed: {tempPath}");
+
+            // Cryptographic verification of the downloaded file
+            if (!string.IsNullOrEmpty(expectedHash))
+            {
+                string actualHash;
+                using (var sha256 = System.Security.Cryptography.SHA256.Create())
+                using (var stream = File.OpenRead(tempPath))
+                {
+                    var hashBytes = sha256.ComputeHash(stream);
+                    actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                }
+
+                if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogError($"Hash verification failed. Expected: {expectedHash}, Actual: {actualHash}");
+                    File.Delete(tempPath);
+                    return false;
+                }
+
+                _logger.LogInfo("File hash verification successful.");
+            }
+            else
+            {
+                _logger.LogInfo("Warning: Skipping hash verification. No expected hash provided in the update manifest.");
+            }
 
             // Execute the installer
             Process.Start(new ProcessStartInfo
